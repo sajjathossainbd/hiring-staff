@@ -13,13 +13,14 @@ body {
 
 
 @layer base {
+
     h1,
     h2,
     h3,
     h4,
     h5,
     h6 {
-        @apply font-bold leading-[60px] text-[#05274F]
+        @apply font-bold leading-[60px] text-darkBlue
     }
 
     h1 {
@@ -42,17 +43,33 @@ body {
         @apply text-lg
     }
 
+    h6 {
+        @apply text-sm
+    }
+
     strong {
-        @apply font-bold text-[#05274F] text-sm
+        @apply font-bold text-darkBlue text-xs
     }
 
     p {
-        @apply text-[#4F5E64] leading-7
+        @apply text-gray leading-7
     }
 }
 
 @layer utilities {
-    .text-gray {
-        @apply text-xs text-[#A0Abb8]
+    .text-lightGray-12 {
+        @apply text-lightGray text-xs
+    }
+    .text-18{
+        @apply text-lg
+    }
+    .text-16{
+        @apply text-base
+    }
+    .text-14{
+        @apply text-sm
+    }
+    .text-12{
+        @apply text-xs
     }
 }

@@ -1,0 +1,25 @@
+fontsize
+--------
+    h1-52
+    h2-48
+    h3-36
+    h4-20
+    h5-16
+
+
+   
+    p-bold-16
+    p-bold-14
+    p-bold-12
+
+    p-18
+    p-16
+    p-14
+    p-12
+
+    color:
+    ------
+    primary-color: 3C65F5
+    secondary-color: 05274F
+    
+    text-pri-clr: 444444

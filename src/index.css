@@ -1,4 +1,58 @@
+/* Google Fonts Import -  Plus Jakarta Sans */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
 /* Essential components from the Tailwind CSS  */
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+body {
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+
+
+@layer base {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-bold leading-[60px] text-[#05274F]
+    }
+
+    h1 {
+        @apply text-6xl
+    }
+
+    h2 {
+        @apply text-5xl
+    }
+
+    h3 {
+        @apply text-4xl
+    }
+
+    h4 {
+        @apply text-xl
+    }
+
+    h5 {
+        @apply text-lg
+    }
+
+    strong {
+        @apply font-bold text-[#05274F] text-sm
+    }
+
+    p {
+        @apply text-[#4F5E64] leading-7
+    }
+}
+
+@layer utilities {
+    .text-gray {
+        @apply text-xs text-[#A0Abb8]
+    }
+}

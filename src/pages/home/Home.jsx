@@ -1,6 +1,11 @@
+import { Helmet } from "react-helmet-async";
+
 function Home() {
   return (
     <div>
+      <Helmet>
+        <title>Hiring Staff - Home</title>
+      </Helmet>
       <h2>
         The <span className="text-blue">Easiest Way </span>
         <br />

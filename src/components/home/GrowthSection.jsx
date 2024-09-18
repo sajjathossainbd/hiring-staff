@@ -5,7 +5,7 @@ import CounterSection from "./CounterSection";
 const GrowthSection = () => {
   return (
     <div>
-      <div className="hero  min-h-screen ">
+      <div className="container">
         <div className=" hero-content flex-col lg:flex-row w-full">
           <div className="relative  mx-auto py-12 px-4 lg:px-8">
             {/* Background Image */}

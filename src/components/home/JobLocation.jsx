@@ -1,4 +1,4 @@
-import SectionTitle from "../shared/SectionTitle";
+import SectionTitle from "../../components/shared/SectionTitle";
 
 const JobLocation = () => {
   const jobData = [
@@ -94,7 +94,7 @@ const JobLocation = () => {
   };
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="container">
       <SectionTitle
         title="Jobs by Location
 "

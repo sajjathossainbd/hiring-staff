@@ -27,7 +27,7 @@ const Navbar = () => {
 
   return (
     <div className='backdrop-blur-sm sticky top-0 z-50 shadow'>
-      <nav className="container mx-auto flex items-center justify-between lg:px-0 px-3 py-3 text-white mb-10">
+      <nav className="container mx-auto flex items-center justify-between lg:px-0 px-3 py-3 text-white">
         <div className="scale-100 cursor-pointer rounded-2xl py-2 text-xl font-semibold text-white">
           <div className="flex items-center gap-2">
             <img className="lg:size-12 size-8" src={logo} alt="Hiring Stuff" />

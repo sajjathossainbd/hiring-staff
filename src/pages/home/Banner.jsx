@@ -112,7 +112,7 @@ const Banner = () => {
   };
 
   return (
-    <div className="bg-banner-image bg-center bg-cover min-h-[80vh] px-4">
+    <div className="bg-banner-image bg-center bg-cover min-h-[80vh] px-4 lg:py-10">
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row py-10 lg:items-center justify-center gap-20">
           <div className="lg:w-1/2 w-full flex flex-col gap-8">

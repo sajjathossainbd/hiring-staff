@@ -9,11 +9,11 @@ import JobLocation from "./JobLocation";
 function Home() {
   return (
     <div>
-      <GrowthSection></GrowthSection>
       <Helmet>
         <title>Hiring Staff - Home</title>
       </Helmet>
       <Banner />
+      <GrowthSection></GrowthSection>
       <Category/>
       <Hiring/>
       <NewsLetter/>

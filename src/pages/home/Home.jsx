@@ -1,23 +1,14 @@
-<<<<<<< HEAD
-import Banner from "./Banner";
-=======
 import { Helmet } from "react-helmet-async";
->>>>>>> 167ba2f8f22610809d812f1ae0e2d36b0b3390cf
+import Banner from "./Banner";
 
 function Home() {
-
   return (
-<<<<<<< HEAD
-    <>
-      <Banner />
-    </>
-=======
     <div>
       <Helmet>
         <title>Hiring Staff - Home</title>
       </Helmet>
+      <Banner />
     </div>
->>>>>>> 167ba2f8f22610809d812f1ae0e2d36b0b3390cf
   );
 }
 

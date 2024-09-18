@@ -10,6 +10,7 @@ import "swiper/css/pagination";
 
 // import required modules
 import { Pagination } from "swiper/modules";
+import SectionTitle from "../../components/shared/SectionTitle";
 
 const Testimonial = () => {
   const testimonials = [
@@ -76,7 +77,14 @@ const Testimonial = () => {
   ];
 
   return (
-    <div className="py-10 container mx-auto px-4">
+    <div className="py-20 container mx-auto px-4">
+      <div className="w-1/2 mx-auto text-center pb-12">
+        <SectionTitle
+          title="Our Happy Customer"
+          subTitle="
+When it comes to choosing the right web hosting provider, we know how easy it is to get overwhelmed with the number."
+        />
+      </div>
       <Swiper
         spaceBetween={30}
         pagination={{

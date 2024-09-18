@@ -5,6 +5,7 @@ import Banner from "./Banner";
 import Hiring from "../../components/we-are-hiring/Hiring";
 import NewsLetter from "../../components/newsLetter/newsLetter";
 import JobLocation from "./JobLocation";
+import Recruiter from "./Recruiter";
 
 function Home() {
   return (
@@ -13,6 +14,7 @@ function Home() {
         <title>Hiring Staff - Home</title>
       </Helmet>
       <Banner />
+      <Recruiter />
       <GrowthSection></GrowthSection>
       <Category/>
       <Hiring/>

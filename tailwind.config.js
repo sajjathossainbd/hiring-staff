@@ -13,6 +13,7 @@ export default {
         lightGray: "#A0Abb8",
         white: "#ffffff",
         lightWhite: "#F9FBFF",
+        black: "#000000"
       },
     },
   },

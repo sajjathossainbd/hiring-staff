@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import logo from "../../assets/logo/hiring.png"
 
 const Navbar = () => {
   const [dropDownState, setDropDownState] = useState(false);
@@ -25,10 +26,13 @@ const Navbar = () => {
   ];
 
   return (
-    <div className='container mx-auto'>
-      <nav className="flex items-center justify-between px-4 py-3 text-white mb-24">
-        <div className="scale-100 cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold text-white transition-transform duration-200 hover:scale-110">
-          <h2>Logo</h2>
+    <div className='backdrop-blur-sm sticky top-0 z-50 shadow'>
+      <nav className="container mx-auto flex items-center justify-between lg:px-0 px-3 py-3 text-white mb-10">
+        <div className="scale-100 cursor-pointer rounded-2xl py-2 text-xl font-semibold text-white">
+          <div className="flex items-center gap-2">
+            <img className="lg:size-12 size-8" src={logo} alt="Hiring Stuff" />
+            <h3>Hiring Stuff</h3>
+          </div>
         </div>
 
         {/* Desktop Navigation */}
@@ -85,7 +89,11 @@ const Navbar = () => {
             <line x1="4" x2="20" y1="18" y2="18" />
           </svg>
           {dropDownState && (
-            <ul className="z-10 bg-blue absolute right-0 top-12 flex w-[200px] flex-col rounded-lg text-base">
+            <ul
+              data-aos="slide-left"
+              data-aos-offset="200"
+              data-aos-duration="700"
+              className="z-10 bg-blue absolute right-0 top-12 flex w-[200px] flex-col rounded-lg text-base">
               {navLinks.map(({ to, label }) => (
                 <li key={to} className="cursor-pointer px-6 py-2 text-darkBlue hover:bg-sky-600">
                   <NavLink

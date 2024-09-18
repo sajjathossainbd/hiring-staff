@@ -4,10 +4,12 @@ import Footer from "../pages/shared/Footer";
 
 function Root() {
   return (
-    <div className="container mx-auto">
+    <div>
       <Navbar />
-      <Outlet />
-      <Footer />
+      <div className="container mx-auto">
+        <Outlet />
+        <Footer />
+      </div>
     </div>
   );
 }

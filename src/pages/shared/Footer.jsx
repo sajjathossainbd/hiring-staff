@@ -3,6 +3,7 @@ import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
 import logo from "../../assets/logo/hiring.png"
 import appStore from "../../assets/footer-images/app-store.svg"
 import googlePlay from "../../assets/footer-images/google-play.svg"
+import NavLink from "../../components/shared/NavLink";
 
 const Footer = () => {
   return (
@@ -24,28 +25,28 @@ const Footer = () => {
         </aside>
         <nav>
           <h6 className="footer-title">Resources</h6>
-          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">About Us</a>
-          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">Candidates</a>
-          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">Contact Us</a>
+          <NavLink navTitle={"About Us"} />
+          <NavLink navTitle={"Candidates"} />
+          <NavLink navTitle={"Contact Us"} />
         </nav>
         <nav>
           <h6 className="footer-title">Community</h6>
-          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">Feature</a>
-          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">Pricing</a>
-          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">Credit</a>
-          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">FAQ</a>
+          <NavLink navTitle={"Feature"} />
+          <NavLink navTitle={"Pricing"} />
+          <NavLink navTitle={"Credit"} />
+          <NavLink navTitle={"FAQ"} />
         </nav>
         <nav>
           <h6 className="footer-title">Quick links</h6>
-          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">IOS</a>
-          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">Android</a>
-          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">Desktop</a>
+          <NavLink navTitle={"IOS"} />
+          <NavLink navTitle={"Android"} />
+          <NavLink navTitle={"Desktop"} />
         </nav>
         <nav>
           <h6 className="footer-title">More</h6>
-          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">Helps</a>
-          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">Privacy policy</a>
-          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">Terms</a>
+          <NavLink navTitle={"Helps"} />
+          <NavLink navTitle={"Privacy policy"} />
+          <NavLink navTitle={"Terms"} />
         </nav>
         <div className="space-y-3">
           <h6 className="footer-title">

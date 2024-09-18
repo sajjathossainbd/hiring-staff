@@ -1,25 +1,25 @@
-import GrowthSection from "../growthSection/GrowthSection";
 import { Helmet } from "react-helmet-async";
-import Category from "../../components/Category/Category";
-import Banner from "./Banner";
-import Hiring from "../../components/we-are-hiring/Hiring";
-import NewsLetter from "../../components/newsLetter/newsLetter";
-import JobLocation from "./JobLocation";
-import Recruiter from "./Recruiter";
+import Banner from "../../components/home/Banner";
+import Category from "../../components/home/Category";
+import Hiring from "../../components/home/Hiring";
+import GrowthSection from "../../components/home/GrowthSection";
+import Recruiter from "../../components/home/Recruiter";
+import JobLocation from "../../components/home/JobLocation";
+import NewsLetter from "../../components/home/NewsLetter";
 
 function Home() {
   return (
     <div>
       <Helmet>
-        <title>Hiring Staff - Home</title>
+        <title>Hiring Staff - Homepage</title>
       </Helmet>
       <Banner />
+      <Category />
+      <Hiring />
+      <GrowthSection />
       <Recruiter />
-      <GrowthSection></GrowthSection>
-      <Category/>
-      <Hiring/>
-      <NewsLetter/>
       <JobLocation />
+      <NewsLetter />
     </div>
   );
 }

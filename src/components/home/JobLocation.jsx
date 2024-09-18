@@ -94,7 +94,7 @@ const JobLocation = () => {
   };
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="container">
       <SectionTitle
         title="Jobs by Location
 "

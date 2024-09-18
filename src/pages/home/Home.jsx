@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import Category from "../../components/Category/Category";
 
 function Home() {
 
@@ -7,6 +8,7 @@ function Home() {
       <Helmet>
         <title>Hiring Staff - Home</title>
       </Helmet>
+      <Category/>
     </div>
   );
 }

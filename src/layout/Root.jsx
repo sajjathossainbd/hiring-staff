@@ -6,8 +6,10 @@ function Root() {
   return (
     <div>
       <Navbar />
-      <Outlet />
-      <Footer />
+      <div className="container mx-auto">
+        <Outlet />
+        <Footer />
+      </div>
     </div>
   );
 }

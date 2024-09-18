@@ -27,6 +27,14 @@ function Category() {
     { img: retail, name: "Design", jobs: "3 Jobs Available" },
     { img: sale, name: "Legal", jobs: "1 Job Available" },
     { img: management, name: "Health & Fitness", jobs: "2 Jobs Available" },
+    { img: management, name: "Health & Fitness", jobs: "2 Jobs Available" },
+    { img: management, name: "Health & Fitness", jobs: "2 Jobs Available" },
+    { img: management, name: "Health & Fitness", jobs: "2 Jobs Available" },
+    { img: management, name: "Health & Fitness", jobs: "2 Jobs Available" },
+    { img: management, name: "Health & Fitness", jobs: "2 Jobs Available" },
+    { img: management, name: "Health & Fitness", jobs: "2 Jobs Available" },
+    { img: management, name: "Health & Fitness", jobs: "2 Jobs Available" },
+    { img: management, name: "Health & Fitness", jobs: "2 Jobs Available" },
   ];
 
   // Create pairs of categories for two rows of items

@@ -1,5 +1,5 @@
-import RecruiterCard from "../../components/shared/RecruiterCard";
-import SectionTitle from "../../components/shared/SectionTitle";
+import RecruiterCard from "../shared/RecruiterCard";
+import SectionTitle from "../shared/SectionTitle";
 
 function Recruiter() {
   const topRecruiters = [

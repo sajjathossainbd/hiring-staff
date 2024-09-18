@@ -1,4 +1,4 @@
-import SectionTitle from "../../components/shared/SectionTitle";
+import SectionTitle from "../shared/SectionTitle";
 
 const JobLocation = () => {
   const jobData = [

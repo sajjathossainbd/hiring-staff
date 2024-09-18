@@ -4,7 +4,7 @@ import Footer from "../pages/shared/Footer";
 
 function Root() {
   return (
-    <div>
+    <div className="container mx-auto">
       <Navbar />
       <Outlet />
       <Footer />

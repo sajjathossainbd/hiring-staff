@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import Banner from "./Banner";
+import JobLocation from "./JobLocation";
 
 function Home() {
   return (
@@ -8,6 +9,7 @@ function Home() {
         <title>Hiring Staff - Home</title>
       </Helmet>
       <Banner />
+      <JobLocation />
     </div>
   );
 }

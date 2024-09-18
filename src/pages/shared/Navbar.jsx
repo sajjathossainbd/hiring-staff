@@ -20,14 +20,15 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { to: "/", label: "Home" },
-    { to: "/about", label: "About" },
-    { to: "/contact", label: "Contact" },
+    { to: '/', label: 'Home' },
+    { to: '/about', label: 'About' },
+    { to: '/contact', label: 'Contact' },
+    { to: '/pricing', label: 'Pricing' },
   ];
 
   return (
-    <div className="backdrop-blur-sm sticky top-0 z-50 bg-[#f2f6fd] ">
-      <nav className="container flex items-center justify-between text-white">
+    <div className="backdrop-blur-sm sticky top-0 z-50 bg-[#f2f6fd]">
+      <nav className="container flex items-center justify-between text-white py-7">
         <div className="scale-100 cursor-pointer rounded-2xl text-xl font-semibold text-white">
           <div className="flex items-center gap-2">
             <img className="lg:size-12 size-8" src={logo} alt="Hiring Stuff" />
@@ -38,14 +39,13 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <ul className="hidden md:flex items-center gap-7">
           {navLinks.map(({ to, label }) => (
-            <li key={to} className="group flex cursor-pointer flex-col pb-1">
+            <li key={to} className="group flex cursor-pointer flex-col pb-4">
               <NavLink
                 to={to}
                 className={({ isActive }) =>
-                  `font-medium ${
-                    isActive
-                      ? "text-blue border-b-2 border-blue"
-                      : "text-darkBlue"
+                  `font-medium ${isActive
+                    ? "text-blue border-b-2 border-blue"
+                    : "text-darkBlue"
                   }`
                 }
               >

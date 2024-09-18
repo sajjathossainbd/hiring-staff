@@ -37,7 +37,7 @@ function Category() {
   }
 
   return (
-    <div className="mx-2">
+    <div className="mx-2 container md:mx-auto">
       <SectionTitle
         title={"Browse by category"}
         subTitle={
@@ -60,19 +60,19 @@ function Category() {
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={index}>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mx-auto mt-14">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mx-auto mt-14 w-[95%] mb-5">
                 {/* Adjust for desired columns */}
                 {slide.map((category, idx) => (
                   <div
                     key={idx}
-                    className="h-24 w-auto  bg-white border border-lightGray hover:border-gray rounded-lg shadowtext-center flex justify-center items-center gap-2 "
+                    className="h-24 w-auto  bg-white border border-lightGray hover:border-gray rounded-lg shadowtext-center flex justify-center items-center gap-2 p-2 md:p-0"
                   >
                     <div className="flex justify-center items-center">
                       <img src={category.img} alt="" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold">{category.name}</h3>
-                      <p className="text-gray-500">{category.jobs}</p>
+                      <h3 className="text-14">{category.name}</h3>
+                      <p className="text-12 mt-2">{category.jobs}</p>
                     </div>
                   </div>
                 ))}

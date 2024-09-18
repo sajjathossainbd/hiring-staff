@@ -24,28 +24,28 @@ const Footer = () => {
         </aside>
         <nav>
           <h6 className="footer-title">Resources</h6>
-          <a className="link link-hover">About Us</a>
-          <a className="link link-hover">Candidates</a>
-          <a className="link link-hover">Contact Us</a>
+          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">About Us</a>
+          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">Candidates</a>
+          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">Contact Us</a>
         </nav>
         <nav>
           <h6 className="footer-title">Community</h6>
-          <a className="link link-hover">Feature</a>
-          <a className="link link-hover">Pricing</a>
-          <a className="link link-hover">Credit</a>
-          <a className="link link-hover">FAQ</a>
+          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">Feature</a>
+          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">Pricing</a>
+          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">Credit</a>
+          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">FAQ</a>
         </nav>
         <nav>
           <h6 className="footer-title">Quick links</h6>
-          <a className="link link-hover">IOS</a>
-          <a className="link link-hover">Android</a>
-          <a className="link link-hover">Desktop</a>
+          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">IOS</a>
+          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">Android</a>
+          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">Desktop</a>
         </nav>
         <nav>
           <h6 className="footer-title">More</h6>
-          <a className="link link-hover">Helps</a>
-          <a className="link link-hover">Privacy policy</a>
-          <a className="link link-hover">Terms</a>
+          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">Helps</a>
+          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">Privacy policy</a>
+          <a className="cursor-pointer hover:text-darkBlue hover:translate-x-1 transition-all">Terms</a>
         </nav>
         <div className="space-y-3">
           <h6 className="footer-title">
@@ -66,9 +66,9 @@ const Footer = () => {
       <div className="flex lg:flex-row flex-col items-center justify-between gap-2">
         <strong>Copyright © {new Date().getFullYear()} - Hiring Stuff all right reserved</strong>
         <div className="flex items-center gap-3 lg:gap-10">
-          <strong>Privacy Policy</strong>
-          <strong>Terms & Conditions</strong>
-          <strong>Security</strong>
+          <strong className="hover:text-blue cursor-pointer">Privacy Policy</strong>
+          <strong className="hover:text-blue cursor-pointer">Terms & Conditions</strong>
+          <strong className="hover:text-blue cursor-pointer">Security</strong>
         </div>
       </div>
 

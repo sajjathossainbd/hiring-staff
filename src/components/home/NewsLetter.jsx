@@ -1,11 +1,10 @@
-import bg from "../../assets/News Letter/newsletter2.avif";
 import email from "../../assets/News Letter/email.svg";
 import right from "../../assets/News Letter/undraw_newsletter_re_wrob.svg";
 import left from "../../assets/News Letter/undraw_connecting_teams_re_hno7.svg";
 function NewsLetter() {
   return (
-    <div className="container mx-auto rounded-2xl mt-12 ">
-      <section className="w-[97%] mx-auto bg-blue rounded-2xl py-16 px-4 md:px-8">
+    <div className="container mx-auto rounded-2xl mt-12 p-0 px-2">
+      <section className="w-[100%] mx-auto bg-blue rounded-2xl py-16 px-4 md:px-8">
         <div className=" mx-auto text-center px-0 md:px-8 lg:py-12 flex items-center justify-around">
           <div>
             <img src={left} alt="img" className="w-52 hidden lg:block" />

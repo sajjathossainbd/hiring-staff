@@ -3,6 +3,8 @@ import './pricing.css'
 import { IoIosArrowForward } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import PricingCard from '../../components/shared/PricingCard';
+import FaqCard from '../../components/shared/FaqCard';
+import NewsLetter from '../../components/home/NewsLetter';
 
 const Pricing = () => {
     return (
@@ -27,7 +29,7 @@ const Pricing = () => {
                     </div>
                 </div>
             </div>
-            <div className='max-w-6xl mx-auto lg:mt-20 mt-10 px-2'>
+            <div className='max-w-6xl mx-auto lg:mt-20 mt-10 px-2 p-0'>
                 <div className='text-center space-y-2'>
                     <h3>Pricing Table</h3>
                     <p className='text-18'>Choose The Best Plan That’s For You</p>
@@ -66,6 +68,40 @@ const Pricing = () => {
 
                 </div>
             </div>
+            <div className='container mx-auto lg:mt-20 mt-10 px-2 p-0'>
+                <div className='text-center space-y-2'>
+                    <h3>Frequently Asked Questions</h3>
+                    <p className='text-18 max-w-2xl inline-block'>Aliquam a augue suscipit, luctus neque purus ipsum neque dolor primis a libero tempus, blandit and cursus varius and magnis sapien</p>
+                </div>
+                <div className='mt-10 grid lg:grid-cols-2 grid-cols-1 gap-4 lg:gap-8'>
+
+                    <FaqCard
+                        title={"I have promotional or discount code?"}
+                        description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis id nibh vitae quam blandit venenatis. Duis vehicula magna ut neque tempus tristique. Nam venenatis turpis euismod arcu aliquet finibus. Vivamus nec vulputate ex, vitae condimentum ante. Suspendisse metus metus, laoreet nec arcu vel, venenatis cursus libero."}
+                    />
+                    <FaqCard
+                        title={"Where is my order? Quisque molestie"}
+                        description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis id nibh vitae quam blandit venenatis. Duis vehicula magna ut neque tempus tristique. Nam venenatis turpis euismod arcu aliquet finibus. Vivamus nec vulputate ex, vitae condimentum ante. Suspendisse metus metus, laoreet nec arcu vel, venenatis cursus libero."}
+                    />
+                    <FaqCard
+                        title={"How can I return an item purchased online?"}
+                        description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis id nibh vitae quam blandit venenatis. Duis vehicula magna ut neque tempus tristique. Nam venenatis turpis euismod arcu aliquet finibus. Vivamus nec vulputate ex, vitae condimentum ante. Suspendisse metus metus, laoreet nec arcu vel, venenatis cursus libero."}
+                    />
+                    <FaqCard
+                        title={"What are the delivery types you use?"}
+                        description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis id nibh vitae quam blandit venenatis. Duis vehicula magna ut neque tempus tristique. Nam venenatis turpis euismod arcu aliquet finibus. Vivamus nec vulputate ex, vitae condimentum ante. Suspendisse metus metus, laoreet nec arcu vel, venenatis cursus libero."}
+                    />
+                    <FaqCard
+                        title={"How can I pay for my purchases?"}
+                        description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis id nibh vitae quam blandit venenatis. Duis vehicula magna ut neque tempus tristique. Nam venenatis turpis euismod arcu aliquet finibus. Vivamus nec vulputate ex, vitae condimentum ante. Suspendisse metus metus, laoreet nec arcu vel, venenatis cursus libero."}
+                    />
+                    <FaqCard
+                        title={"What are the delivery types you use?"}
+                        description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis id nibh vitae quam blandit venenatis. Duis vehicula magna ut neque tempus tristique. Nam venenatis turpis euismod arcu aliquet finibus. Vivamus nec vulputate ex, vitae condimentum ante. Suspendisse metus metus, laoreet nec arcu vel, venenatis cursus libero."}
+                    />
+                </div>
+            </div>
+            <NewsLetter></NewsLetter>
         </div>
     );
 };

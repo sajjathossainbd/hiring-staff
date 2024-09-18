@@ -23,6 +23,7 @@ const Navbar = () => {
     { to: '/', label: 'Home' },
     { to: '/about', label: 'About' },
     { to: '/contact', label: 'Contact' },
+    { to: '/pricing', label: 'Pricing' },
   ];
 
   return (
@@ -38,7 +39,7 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <ul className="hidden md:flex items-center gap-7">
           {navLinks.map(({ to, label }) => (
-            <li key={to} className="group flex cursor-pointer flex-col pb-1">
+            <li key={to} className="group flex cursor-pointer flex-col pb-4">
               <NavLink
                 to={to}
                 className={({ isActive }) =>

@@ -7,8 +7,8 @@ import NavLink from "../../components/shared/NavLink";
 
 const Footer = () => {
   return (
-    <div>
-      <footer className="footer text-base-content lg:p-0 p-10">
+    <div className="container mx-auto">
+      <footer className="footer text-base-content lg:p-0 p-10 lg:mt-20 mt-10">
         <aside className="space-y-3">
           <div className="flex items-center gap-2">
             <img className="size-12" src={logo} alt="" />
@@ -64,7 +64,7 @@ const Footer = () => {
 
       <div className="divider"></div>
 
-      <div className="flex lg:flex-row flex-col items-center justify-between gap-2">
+      <div className="flex lg:flex-row flex-col items-center justify-between gap-2 mb-5">
         <strong>Copyright © {new Date().getFullYear()} - Hiring Stuff all right reserved</strong>
         <div className="flex items-center gap-3 lg:gap-10">
           <strong className="hover:text-blue cursor-pointer">Privacy Policy</strong>

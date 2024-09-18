@@ -7,8 +7,13 @@ export default {
       darkBlue: "#05274F",
       gray: "#4F5E64",
       lightGray: "#A0Abb8",
+      white: "#fff",
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "banner-image": "url('./src/assets/banner/bg-banner.svg')",
+      },
+    },
   },
   plugins: [require("daisyui")],
 };

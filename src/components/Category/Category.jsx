@@ -60,7 +60,7 @@ function Category() {
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={index}>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mx-auto mt-14 w-[95%] mb-5">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mx-auto mt-14 w-[95%] mb-8">
                 {/* Adjust for desired columns */}
                 {slide.map((category, idx) => (
                   <div

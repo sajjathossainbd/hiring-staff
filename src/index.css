@@ -1,5 +1,5 @@
 /* Google Fonts Import -  Plus Jakarta Sans */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
 
 /* Essential components from the Tailwind CSS  */
 @import "tailwindcss/base";
@@ -7,69 +7,67 @@
 @import "tailwindcss/utilities";
 
 body {
-    font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  overflow-x: hidden;
 }
 
-
-
 @layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold leading-[60px] text-darkBlue;
+  }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        @apply font-bold leading-[60px] text-darkBlue
-    }
+  h1 {
+    @apply text-6xl;
+  }
 
-    h1 {
-        @apply text-6xl
-    }
+  h2 {
+    @apply text-5xl;
+  }
 
-    h2 {
-        @apply text-5xl
-    }
+  h3 {
+    @apply text-4xl;
+  }
 
-    h3 {
-        @apply text-4xl
-    }
+  h4 {
+    @apply text-xl;
+  }
 
-    h4 {
-        @apply text-xl
-    }
+  h5 {
+    @apply text-lg;
+  }
 
-    h5 {
-        @apply text-lg
-    }
+  h6 {
+    @apply text-sm;
+  }
 
-    h6 {
-        @apply text-sm
-    }
+  strong {
+    @apply font-bold text-darkBlue text-xs;
+  }
 
-    strong {
-        @apply font-bold text-darkBlue text-xs
-    }
-
-    p {
-        @apply text-gray leading-7
-    }
+  p {
+    @apply text-gray leading-7;
+  }
 }
 
 @layer utilities {
-    .text-lightGray-12 {
-        @apply text-lightGray text-xs
-    }
-    .text-18{
-        @apply text-lg
-    }
-    .text-16{
-        @apply text-base
-    }
-    .text-14{
-        @apply text-sm
-    }
-    .text-12{
-        @apply text-xs
-    }
+  .text-lightGray-12 {
+    @apply text-lightGray text-xs;
+  }
+  .text-18 {
+    @apply text-lg;
+  }
+  .text-16 {
+    @apply text-base;
+  }
+  .text-14 {
+    @apply text-sm;
+  }
+  .text-12 {
+    @apply text-xs;
+  }
 }

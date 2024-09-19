@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import heroImage from "../../assets/banner/hero-image.png";
+import heroImage from "../../assets/home/banner.svg";
 import { Link } from "react-router-dom";
 
 const Banner = () => {
@@ -112,20 +112,20 @@ const Banner = () => {
   return (
     <div className="bg-banner-image bg-center bg-cover min-h-[80vh] px-4 lg:pb-10">
       <div className="container mx-auto">
-        <div className="flex flex-col lg:flex-row lg:py-10 py-6 lg:items-center justify-center gap-20">
+        <div className="flex flex-col-reverse lg:flex-row lg:items-center justify-center gap-20">
           <div className="lg:w-1/2 w-full flex flex-col gap-8">
-            {/* heading */}
             <h2>
-              The <span className="text-blue">Easiest Way</span>{" "}
-              <br className="lg:block hidden" /> to Get Your New Job
+              Accelerate <br className="lg:block hidden" /> Your Hiring with Our
+              <br className="lg:block hidden" />
+              <span className="text-blue"> Job Search </span>
+              Solutions
             </h2>
-            <p className="text-lg lg:w-[66%]">
-              Each month, more than 3 million job seekers turn to website in
-              their search for work, making over 140,000 applications every
-              single day.
+            <p className="text-18">
+              Every month, 3 million job seekers use our platform, submitting
+              over 140,000 applications daily to explore new opportunities and
+              connect with potential employers.
             </p>
             <div className="flex lg:flex-row flex-col items-center px-4 rounded-2xl bg-white">
-              {/* Dropdown for "Who shot first?" */}
               <div
                 className="lg:w-1/4 lg:mb-0 mb-3 py-5 w-full lg:border-r-2 h-8 border-[#D2D4D7] relative flex items-center"
                 ref={dropdownRef}
@@ -143,7 +143,8 @@ const Banner = () => {
                     data-aos="fade-down"
                     data-aos-offset="200"
                     data-aos-duration="500"
-                    className="absolute lg:top-14 top-8 z-10 bg-white w-full mt-1 max-h-48 overflow-y-auto overflow-x-hidden px-1">
+                    className="absolute lg:top-14 top-8 z-10 bg-white w-full mt-1 max-h-48 overflow-y-auto overflow-x-hidden px-1"
+                  >
                     <input
                       type="text"
                       className="rounded-md outline-none border w-full p-2"
@@ -188,7 +189,8 @@ const Banner = () => {
                     data-aos="fade-down"
                     data-aos-offset="200"
                     data-aos-duration="500"
-                    className="absolute lg:top-14 top-8 z-10 bg-white w-full mt-1 max-h-48 overflow-y-auto overflow-x-hidden px-1">
+                    className="absolute lg:top-14 top-8 z-10 bg-white w-full mt-1 max-h-48 overflow-y-auto overflow-x-hidden px-1"
+                  >
                     <input
                       type="text"
                       className="rounded-md outline-none border w-full p-2"
@@ -249,7 +251,7 @@ const Banner = () => {
               ))}
             </div>
           </div>
-          <div className="lg:w-1/2 w-full flex justify-center">
+          <div className="lg:w-1/2 w-10/12 flex justify-center">
             <img
               className="w-auto h-full object-cover"
               src={heroImage}

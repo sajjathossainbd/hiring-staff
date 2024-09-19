@@ -40,7 +40,7 @@ const Navbar = () => {
 
   return (
     <div className="backdrop-blur-sm sticky top-0 z-50 bg-lightBlue">
-      <nav className="container flex items-center justify-between py-3">
+      <nav className="container flex items-center justify-between py-1">
         <div className="scale-100 cursor-pointer rounded-2xl text-xl font-semibold text-darkBlue">
           <Link to={"/"}>
             <div className="flex items-center gap-2">

@@ -2,10 +2,6 @@ import RecruiterCard from "../shared/RecruiterCard";
 import SectionTitle from "../shared/SectionTitle";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-
 function Recruiter() {
   const topRecruiters = [
     {
@@ -301,75 +297,69 @@ function Recruiter() {
   const recruitersInSlides = chunkArray(topRecruiters, 12);
 
   return (
-    <div className=" container">
+    <div className="container relative">
       <SectionTitle
         title={"Top Recruiters"}
         subTitle={
           "Discover your next career move, freelance gig, or internship"
         }
       />
-
-      <div className="relative">
-        <div className="absolute top-[-20px] right-[-5px] flex gap-2 z-10">
-          <button className="swiper-button-prev-custom p-2 rounded-full bg-lightGray">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-[15px] h-[15px] text-white"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 19.5L8.25 12l7.5-7.5"
-              />
-            </svg>
-          </button>
-          <button className="swiper-button-next-custom bg-lightGray p-2 rounded-full">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-[15px] h-[15px] text-white"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M8.25 4.5L15.75 12l-7.5 7.5"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <Swiper
-          slidesPerView={1}
-          spaceBetween={30}
-          loop={true}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={{
-            nextEl: ".swiper-button-next-custom",
-            prevEl: ".swiper-button-prev-custom",
-          }}
-          modules={[Pagination, Navigation]}
-          className="mySwiper"
-        >
-          {recruitersInSlides.map((recruitersGroup, index) => (
-            <SwiperSlide key={index}>
-              <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-sm:grid-cols-1 gap-3 my-10">
-                {recruitersGroup.map((recruiter) => (
-                  <RecruiterCard key={recruiter.name} {...recruiter} />
-                ))}
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+      <div className="absolute top-4 right-4 flex gap-2 z-10">
+        <button className="swiper-button-prev-custom bg-gray-200 p-3 rounded-full">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-8 h-8"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.75 19.5L8.25 12l7.5-7.5"
+            />
+          </svg>
+        </button>
+        <button className="swiper-button-next-custom bg-gray-200 p-3 rounded-full">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-8 h-8"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M8.25 4.5L15.75 12l-7.5 7.5"
+            />
+          </svg>
+        </button>
       </div>
+
+      <Swiper
+        slidesPerView={1}
+        spaceBetween={30}
+        loop={true}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Pagination, Navigation]}
+        className="mySwiper"
+      >
+        {recruitersInSlides.map((recruitersGroup, index) => (
+          <SwiperSlide key={index}>
+            <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-sm:grid-cols-1 gap-3 my-10">
+              {recruitersGroup.map((recruiter) => (
+                <RecruiterCard key={recruiter.name} {...recruiter} />
+              ))}
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 }

@@ -1,5 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import TinnyBanner from "../../components/shared/TinnyBanner";
+import contactBanner from "../../assets/contact/contact-banner.png"
+import GetInTouch from "../../components/getInTouch/GetInTouch";
 import logo from "../../assets/logo/hiring.png"
 
 function ContactUs() {
@@ -63,6 +65,8 @@ function ContactUs() {
         </div>
 
       </div>
+      <GetInTouch/>
+   
     </>
   );
 }

@@ -76,7 +76,7 @@ function Category() {
                     className="h-24 w-auto  bg-white border border-lightGray hover:border-gray rounded-lg shadowtext-center flex justify-center items-center gap-2 p-2 md:p-0"
                   >
                     <div className="flex justify-center items-center">
-                      <img src={category.img} alt="" />
+                      <img src={category.img} alt="img" />
                     </div>
                     <div>
                       <h3 className="text-14">{category.name}</h3>
@@ -91,6 +91,7 @@ function Category() {
       </div>
     </div>
   );
+
 }
 
 export default Category;

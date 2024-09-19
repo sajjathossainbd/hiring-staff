@@ -127,7 +127,7 @@ const Banner = () => {
               single day.
             </p>
             <div className="flex lg:flex-row flex-col items-center px-4 rounded-2xl bg-white">
-              {/* Dropdown for "Who shot first?" */}
+              {/* dropdown for industry */}
               <div
                 className="lg:w-1/4 lg:mb-0 mb-3 py-5 w-full lg:border-r-2 h-8 border-[#D2D4D7] relative flex items-center"
                 ref={dropdownRef}
@@ -139,8 +139,13 @@ const Banner = () => {
                   {searchData.option}
                 </div>
 
+                {/* dropdown for industry */}
                 {isOpen && (
-                  <div className="absolute lg:top-14 top-8 z-10 bg-white w-full mt-1 max-h-48 overflow-y-auto overflow-x-hidden px-1">
+                  <div
+                    data-aos="fade-down"
+                    data-aos-offset="200"
+                    data-aos-duration="500"
+                    className="absolute lg:top-14 top-8 z-10 bg-white w-full mt-1 max-h-48 overflow-y-auto overflow-x-hidden px-1">
                     <input
                       type="text"
                       className="rounded-md outline-none border w-full p-2"
@@ -181,7 +186,11 @@ const Banner = () => {
                 </div>
 
                 {isLocationOpen && (
-                  <div className="absolute lg:top-14 top-8 z-10 bg-white w-full mt-1 max-h-48 overflow-y-auto overflow-x-hidden px-1">
+                  <div
+                    data-aos="fade-down"
+                    data-aos-offset="200"
+                    data-aos-duration="500"
+                    className="absolute lg:top-14 top-8 z-10 bg-white w-full mt-1 max-h-48 overflow-y-auto overflow-x-hidden px-1">
                     <input
                       type="text"
                       className="rounded-md outline-none border w-full p-2"

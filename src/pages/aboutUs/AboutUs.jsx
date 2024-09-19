@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import Testimonial from "./Testimonial";
 import TinnyBanner from "../../components/shared/TinnyBanner";
+import MeetOurTeam from "../../components/aboutUs/MeetOurTeam";
 
 function AboutUs() {
   return (
@@ -13,6 +14,7 @@ function AboutUs() {
         subTitle={"Get the latest news, updates and tips"}
         currentPath={"About Us"}
       />
+      <MeetOurTeam />
       <Testimonial />
     </div>
   );

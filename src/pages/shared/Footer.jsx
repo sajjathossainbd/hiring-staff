@@ -7,7 +7,7 @@ import NavLink from "../../components/shared/NavLink";
 
 const Footer = () => {
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto p-0">
       <footer className="footer text-base-content lg:p-0 p-10 lg:mt-20 mt-10">
         <aside className="space-y-3">
           <div className="flex items-center gap-2">

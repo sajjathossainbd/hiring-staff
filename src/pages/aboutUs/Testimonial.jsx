@@ -77,7 +77,7 @@ const Testimonial = () => {
   ];
 
   return (
-    <div className="py-20 container">
+    <div className="lg:pt-20 pt-10 container">
       <div className="lg:w-1/2 mx-auto text-center pb-12">
         <SectionTitle
           title="Our Happy Customer"
@@ -119,9 +119,9 @@ When it comes to choosing the right web hosting provider, we know how easy it is
                 <p className="select-none">
                   {testimonial.description.split(" ").length > 25
                     ? testimonial.description
-                        .split(" ")
-                        .slice(0, 25)
-                        .join(" ") + "..."
+                      .split(" ")
+                      .slice(0, 25)
+                      .join(" ") + "..."
                     : testimonial.description}
                 </p>
               </div>

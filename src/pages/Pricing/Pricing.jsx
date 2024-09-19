@@ -1,8 +1,8 @@
-import pricingBanner from "../../assets/pricing/pricing-page-banner.png"
 import PricingCard from '../../components/shared/PricingCard';
 import FaqCard from '../../components/shared/FaqCard';
 import NewsLetter from '../../components/home/NewsLetter';
 import TinnyBanner from '../../components/shared/TinnyBanner';
+import Testimonial from "../aboutUs/Testimonial";
 
 const Pricing = () => {
     return (
@@ -10,7 +10,6 @@ const Pricing = () => {
             <TinnyBanner
             title={"Pricing"}
             subTitle={"Pricing built to suits teams of all sizes."}
-            img={pricingBanner}
             currentPath={"Pricing Plan"}
             />
             <div className='max-w-6xl mx-auto lg:mt-20 mt-10 px-2 p-0'>
@@ -52,7 +51,7 @@ const Pricing = () => {
 
                 </div>
             </div>
-            <div className='container mx-auto lg:mt-20 mt-10 px-2 p-0'>
+            <div className='container lg:mt-20 mt-10'>
                 <div className='text-center space-y-2'>
                     <h3>Frequently Asked Questions</h3>
                     <p className='text-18 max-w-2xl inline-block'>Aliquam a augue suscipit, luctus neque purus ipsum neque dolor primis a libero tempus, blandit and cursus varius and magnis sapien</p>
@@ -85,6 +84,7 @@ const Pricing = () => {
                     />
                 </div>
             </div>
+            <Testimonial></Testimonial>
             <NewsLetter></NewsLetter>
         </div>
     );

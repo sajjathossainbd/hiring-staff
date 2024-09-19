@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
+import PrimaryButton from "../../components/shared/PrimaryButton";
 
 const Navbar = () => {
   const [dropDownState, setDropDownState] = useState(false);
@@ -60,9 +61,10 @@ const Navbar = () => {
               <NavLink
                 to={to}
                 className={({ isActive }) =>
-                  `font-medium ${isActive
-                    ? "text-blue border-b-2 border-blue"
-                    : "text-darkBlue"
+                  `font-medium ${
+                    isActive
+                      ? "text-blue border-b-2 border-blue"
+                      : "text-darkBlue"
                   }`
                 }
               >
@@ -79,9 +81,7 @@ const Navbar = () => {
           >
             <h6 className="hover:text-blue">Register</h6>
           </NavLink>
-          <button className="btn bg-blue hover:bg-darkBlue hover:-translate-y-1 transition-all duration-300">
-            <h6 className="text-white">Sign in</h6>
-          </button>
+          <PrimaryButton title={"Sign in"} />
 
           {/* Dark Mode Toggle */}
           <label className="swap swap-rotate text-darkBlue">

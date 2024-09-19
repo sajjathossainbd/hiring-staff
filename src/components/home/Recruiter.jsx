@@ -309,7 +309,7 @@ function Recruiter() {
         }
       />
 
-      <div className="relative">
+      <div className="relative sm:mt-6 max-sm:mt-8">
         <div className="absolute top-[-20px] right-[-5px] flex gap-2 z-10">
           <button className="swiper-button-prev-custom p-2 rounded-full bg-lightGray">
             <svg

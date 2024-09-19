@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import heroImage from "../../assets/home/banner.svg";
 import { Link } from "react-router-dom";
+import PrimaryButton from "../shared/PrimaryButton";
+import { FaSearch } from "react-icons/fa";
+
 
 const Banner = () => {
   const popularSearches = [
@@ -97,7 +100,6 @@ const Banner = () => {
   }, [dropdownRef, locationDropdownRef]);
 
   const handleSearch = () => {
-    // Create a copy of the searchData and modify values
     const updatedSearchData = {
       ...searchData,
       option: searchData.option === "Industry" ? null : searchData.option,
@@ -233,12 +235,7 @@ const Banner = () => {
               </div>
               {/* search button */}
               <div className="lg:w-1/4 lg:mb-0 mb-3 py-5 w-full">
-                <button
-                  className="w-full btn bg-blue hover:bg-darkBlue text-white"
-                  onClick={handleSearch} // Call the handleSearch function
-                >
-                  Search
-                </button>
+                <PrimaryButton onClickBtn={handleSearch} title={"Search"} icon={<FaSearch />} />
               </div>
             </div>
             {/* popular researches */}

@@ -51,7 +51,7 @@ const Pricing = () => {
 
                 </div>
             </div>
-            <div className='container mx-auto lg:mt-20 mt-10 px-2 p-0'>
+            <div className='container lg:mt-20 mt-10'>
                 <div className='text-center space-y-2'>
                     <h3>Frequently Asked Questions</h3>
                     <p className='text-18 max-w-2xl inline-block'>Aliquam a augue suscipit, luctus neque purus ipsum neque dolor primis a libero tempus, blandit and cursus varius and magnis sapien</p>

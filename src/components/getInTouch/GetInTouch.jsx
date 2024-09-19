@@ -1,10 +1,11 @@
 import contact from "../../assets/Get in Touch/contact-image.png";
+import box from "../../assets/Get in Touch/icon-email.svg";
 function GetInTouch() {
   return (
-    <>
+    <div className="container bg-red-0">
       <div className="grid lg:grid-cols-3 gap-4">
         <div className="lg:col-span-2">
-          <div className="max-w-4xl mx-auto p-4">
+          <div className=" mx-auto p-4 space-y-3">
             <p className="text-16 text-blue">Contact Us</p>
             <h2>Get in Touch</h2>
             <p className="text-16">
@@ -14,27 +15,21 @@ function GetInTouch() {
             </p>
           </div>
           <div>
-            <form className="max-w-4xl mx-auto p-4">
+            <form className=" mx-auto p-4">
               {/* Name and Company fields */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Enter your name
-                  </label>
                   <input
                     type="text"
                     placeholder="Enter your name"
-                    className="w-full px-4 py-2 bg-gray-100 rounded-md"
+                    className="w-full px-4 py-4 border border-lightGray text-14 focus:outline-none rounded-sm"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Company (optional)
-                  </label>
                   <input
                     type="text"
                     placeholder="Company (optional)"
-                    className="w-full px-4 py-2 bg-gray-100 rounded-md"
+                    className="w-full px-4 py-4 border border-lightGray text-14 focus:outline-none rounded-sm"
                   />
                 </div>
               </div>
@@ -42,36 +37,27 @@ function GetInTouch() {
               {/* Email and Phone fields */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Your email
-                  </label>
                   <input
                     type="email"
                     placeholder="Your email"
-                    className="w-full px-4 py-2 bg-gray-100 rounded-md"
+                    className="w-full px-4 py-4 border border-lightGray text-14 focus:outline-none rounded-sm"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Phone number
-                  </label>
                   <input
                     type="text"
                     placeholder="Phone number"
-                    className="w-full px-4 py-2 bg-gray-100 rounded-md"
+                    className="w-full px-4 py-4 border border-lightGray text-14 focus:outline-none rounded-sm"
                   />
                 </div>
               </div>
 
               {/* Message field */}
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Tell us about yourself
-                </label>
                 <textarea
                   placeholder="Tell us about yourself"
-                  rows="5"
-                  className="w-full px-4 py-2 bg-gray-100 rounded-md"
+                  rows="10"
+                  className="w-full px-4 py-4 border border-lightGray text-14 focus:outline-none rounded-md"
                 ></textarea>
               </div>
 
@@ -79,7 +65,7 @@ function GetInTouch() {
               <div className="mb-4">
                 <label className="flex items-center">
                   <input type="checkbox" className="mr-2" />
-                  <span className="text-sm text-gray-700">
+                  <span className="text-16 ">
                     By clicking contact us button, you agree to our terms and
                     policy
                   </span>
@@ -90,20 +76,22 @@ function GetInTouch() {
               <div>
                 <button
                   type="submit"
-                  className="flex items-center justify-center px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                  className="flex items-center justify-center px-6 py-4 text-16 font-bold tracking-wider bg-blue text-white rounded-md hover:bg-darkBlue"
                 >
-                  <span className="mr-2">📧</span>
+                  <span className="mr-2">
+                    <img src={box} alt="box" />
+                  </span>
                   Send Message
                 </button>
               </div>
             </form>
           </div>
         </div>
-        <div className="lg:col-span-1">
-          <img src={contact} alt="" />
+        <div className="lg:col-span-1 flex items-center justify-center">
+          <img src={contact} alt="image" />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

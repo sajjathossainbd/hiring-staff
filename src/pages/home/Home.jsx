@@ -1,3 +1,8 @@
+// import NewsBlog from "../../NewsBlog/NewsBlogCard";
+// import NewsBlogCard from "../../NewsBlogSection/NewsBlogCard";
+import NewsBlogSection from "../../NewsBlogSection/NewsBlogSection";
+import JobDayCard from "../jobCard/JobDayCard";
+
 function Home() {
   return (
     <div>
@@ -15,6 +20,12 @@ function Home() {
       <p className="text-lightGray-12">0 Vacancies</p>
       <h3>Browse by category</h3>
       <strong>Content Writer</strong>
+
+      {/* Jobs of the day*/}
+      <JobDayCard></JobDayCard>
+      {/* <NewsBlog></NewsBlog> */}
+      {/* <NewsBlogCard></NewsBlogCard> */}
+      <NewsBlogSection></NewsBlogSection>
     </div>
   );
 }

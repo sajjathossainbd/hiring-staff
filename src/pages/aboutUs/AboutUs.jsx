@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import Testimonial from "./Testimonial";
 
 function AboutUs() {
   return (
@@ -6,7 +7,7 @@ function AboutUs() {
       <Helmet>
         <title>Hiring Staff - About Us</title>
       </Helmet>
-      <p>About Us</p>
+      <Testimonial />
     </div>
   );
 }

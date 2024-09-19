@@ -1,4 +1,7 @@
 import { Helmet } from "react-helmet-async";
+import TinnyBanner from "../../components/shared/TinnyBanner";
+import contactBanner from "../../assets/contact/contact-banner.png"
+import GetInTouch from "../../components/getInTouch/GetInTouch";
 
 function ContactUs() {
   return (
@@ -6,7 +9,16 @@ function ContactUs() {
       <Helmet>
         <title>Hiring Staff - Contact Us</title>
       </Helmet>
-      <p>Contact Us</p>
+      <div>
+        <TinnyBanner
+          pathClass={"contact"}
+          title={"Contact Us"}
+          subTitle={"Get the latest news, updates and tips"}
+          img={contactBanner}
+          currentPath={"Contact Us"}
+        />
+      </div>
+      <GetInTouch/>
     </div>
   );
 }

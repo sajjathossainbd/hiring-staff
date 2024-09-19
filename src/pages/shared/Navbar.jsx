@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import logo from "../../assets/logo/hiring.png"
+import { useState, useRef, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import logo from "../../assets/logo/hiring.png";
 
 const Navbar = () => {
   const [dropDownState, setDropDownState] = useState(false);
@@ -13,9 +13,9 @@ const Navbar = () => {
       }
     };
 
-    document.addEventListener('mousedown', closeDropDown);
+    document.addEventListener("mousedown", closeDropDown);
     return () => {
-      document.removeEventListener('mousedown', closeDropDown);
+      document.removeEventListener("mousedown", closeDropDown);
     };
   }, []);
 
@@ -23,12 +23,13 @@ const Navbar = () => {
     { to: '/', label: 'Home' },
     { to: '/about', label: 'About' },
     { to: '/contact', label: 'Contact' },
+    { to: '/pricing', label: 'Pricing' },
   ];
 
   return (
-    <div className='backdrop-blur-sm sticky top-0 z-50 shadow'>
-      <nav className="container mx-auto flex items-center justify-between lg:px-0 px-3 py-3 text-white">
-        <div className="scale-100 cursor-pointer rounded-2xl py-2 text-xl font-semibold text-white">
+    <div className="backdrop-blur-sm sticky top-0 z-50 bg-[#f2f6fd]">
+      <nav className="container flex items-center justify-between text-white py-7">
+        <div className="scale-100 cursor-pointer rounded-2xl text-xl font-semibold text-white">
           <div className="flex items-center gap-2">
             <img className="lg:size-12 size-8" src={logo} alt="Hiring Stuff" />
             <h3>Hiring Stuff</h3>
@@ -38,11 +39,14 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <ul className="hidden md:flex items-center gap-7">
           {navLinks.map(({ to, label }) => (
-            <li key={to} className="group flex cursor-pointer flex-col pb-1">
+            <li key={to} className="group flex cursor-pointer flex-col pb-4">
               <NavLink
                 to={to}
                 className={({ isActive }) =>
-                  `font-medium ${isActive ? 'text-blue border-b-2 border-blue' : 'text-darkBlue'}`
+                  `font-medium ${isActive
+                    ? "text-blue border-b-2 border-blue"
+                    : "text-darkBlue"
+                  }`
                 }
               >
                 {label}
@@ -50,15 +54,15 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-        <div className='hidden items-center justify-between gap-10 md:flex'>
+        <div className="hidden items-center justify-between gap-10 md:flex">
           <NavLink
             to="/register"
-            className='underline hover:decoration-dotted hover:-translate-y-1 transition-all hover:text-blue'
+            className="underline hover:decoration-dotted hover:-translate-y-1 transition-all hover:text-blue"
           >
-            <h6 className='hover:text-blue'>Register</h6>
+            <h6 className="hover:text-blue">Register</h6>
           </NavLink>
-          <button className='btn bg-blue hover:bg-darkBlue hover:-translate-y-1 transition-all duration-300'>
-            <h6 className='text-white'>Sign in</h6>
+          <button className="btn bg-blue hover:bg-darkBlue hover:-translate-y-1 transition-all duration-300">
+            <h6 className="text-white">Sign in</h6>
           </button>
           <label className="swap swap-rotate text-darkBlue">
             <input type="checkbox" />
@@ -82,8 +86,23 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Dropdown Menu */}
-        <div ref={dropDownMenuRef} onClick={() => setDropDownState(!dropDownState)} className="relative flex md:hidden text-darkBlue">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="cursor-pointer">
+        <div
+          ref={dropDownMenuRef}
+          onClick={() => setDropDownState(!dropDownState)}
+          className="relative flex md:hidden text-darkBlue"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="cursor-pointer"
+          >
             <line x1="4" x2="20" y1="12" y2="12" />
             <line x1="4" x2="20" y1="6" y2="6" />
             <line x1="4" x2="20" y1="18" y2="18" />
@@ -93,13 +112,17 @@ const Navbar = () => {
               data-aos="slide-left"
               data-aos-offset="200"
               data-aos-duration="700"
-              className="z-10 bg-blue absolute right-0 top-12 flex w-[200px] flex-col rounded-lg text-base">
+              className="z-10 bg-blue absolute right-0 top-12 flex w-[200px] flex-col rounded-lg text-base"
+            >
               {navLinks.map(({ to, label }) => (
-                <li key={to} className="cursor-pointer px-6 py-2 text-darkBlue hover:bg-sky-600">
+                <li
+                  key={to}
+                  className="cursor-pointer px-6 py-2 text-darkBlue hover:bg-sky-600"
+                >
                   <NavLink
                     to={to}
                     className={({ isActive }) =>
-                      `${isActive ? 'text-white' : 'text-lightGray'}`
+                      `${isActive ? "text-white" : "text-lightGray"}`
                     }
                   >
                     {label}

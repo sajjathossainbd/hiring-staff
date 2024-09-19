@@ -78,7 +78,7 @@ const Testimonial = () => {
 
   return (
     <div className="py-20 container">
-      <div className="w-1/2 mx-auto text-center pb-12">
+      <div className="lg:w-1/2 mx-auto text-center pb-12">
         <SectionTitle
           title="Our Happy Customer"
           subTitle="
@@ -86,7 +86,6 @@ When it comes to choosing the right web hosting provider, we know how easy it is
         />
       </div>
       <Swiper
-        spaceBetween={30}
         pagination={{
           clickable: true,
         }}
@@ -114,7 +113,7 @@ When it comes to choosing the right web hosting provider, we know how easy it is
               <div className="flex flex-col gap-5">
                 <div className="flex gap-5 items-center">
                   <h5>{testimonial.context}</h5>
-                  <span> - </span>
+                  <span className="hidden lg:block">-</span>
                   <Rating rating={testimonial.rating} />
                 </div>
                 <p className="select-none">

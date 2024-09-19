@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [dropDownState, setDropDownState] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const dropDownMenuRef = useRef();
 
   useEffect(() => {
@@ -18,6 +19,18 @@ const Navbar = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [isDarkMode]);
+
+  const handleDarkModeToggle = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
   const navLinks = [
     { to: "/", label: "Home" },
     { to: "/about", label: "About" },
@@ -27,15 +40,17 @@ const Navbar = () => {
 
   return (
     <div className="backdrop-blur-sm sticky top-0 z-50 bg-lightBlue">
-      <nav className="container flex items-center justify-between text-white py-3">
-        <div className="scale-100 cursor-pointer rounded-2xl text-xl font-semibold text-white">
-          <div className="flex items-center gap-2">
-            <img
-              className=""
-              src="https://i.ibb.co.com/0rKvK9v/Hiring-Staff-Logo.png"
-              alt="Hiring Stuff"
-            />
-          </div>
+      <nav className="container flex items-center justify-between py-3">
+        <div className="scale-100 cursor-pointer rounded-2xl text-xl font-semibold text-darkBlue">
+          <Link to={"/"}>
+            <div className="flex items-center gap-2">
+              <img
+                className="lg:w-full w-44"
+                src="https://i.ibb.co/0rKvK9v/Hiring-Staff-Logo.png"
+                alt="Hiring Stuff"
+              />
+            </div>
+          </Link>
         </div>
 
         {/* Desktop Navigation */}
@@ -45,10 +60,9 @@ const Navbar = () => {
               <NavLink
                 to={to}
                 className={({ isActive }) =>
-                  `font-medium ${
-                    isActive
-                      ? "text-blue border-b-2 border-blue"
-                      : "text-darkBlue"
+                  `font-medium ${isActive
+                    ? "text-blue border-b-2 border-blue"
+                    : "text-darkBlue"
                   }`
                 }
               >
@@ -57,19 +71,23 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
+
         <div className="hidden items-center justify-between gap-10 md:flex">
           <NavLink
             to="/register"
-            className="underline hover:decoration-dotted hover:-translate-y-1 transition-all hover:text-blue"
+            className="underline hover:decoration-dotted hover:-translate-y-1 transition-all"
           >
             <h6 className="hover:text-blue">Register</h6>
           </NavLink>
           <button className="btn bg-blue hover:bg-darkBlue hover:-translate-y-1 transition-all duration-300">
             <h6 className="text-white">Sign in</h6>
           </button>
-          <label className="swap swap-rotate text-darkBlue">
-            <input type="checkbox" />
 
+          {/* Dark Mode Toggle */}
+          <label className="swap swap-rotate text-darkBlue">
+            <input type="checkbox" onChange={handleDarkModeToggle} />
+
+            {/* Sun Icon */}
             <svg
               className="swap-on h-10 w-10 fill-current"
               xmlns="http://www.w3.org/2000/svg"
@@ -78,6 +96,7 @@ const Navbar = () => {
               <path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
             </svg>
 
+            {/* Moon Icon */}
             <svg
               className="swap-off h-10 w-10 fill-current"
               xmlns="http://www.w3.org/2000/svg"
@@ -125,13 +144,28 @@ const Navbar = () => {
                   <NavLink
                     to={to}
                     className={({ isActive }) =>
-                      `${isActive ? "text-white" : "text-lightGray"}`
+                      `${isActive ? "text-white" : "text-darkBlue "}`
                     }
                   >
                     {label}
                   </NavLink>
                 </li>
               ))}
+              <li className="cursor-pointer px-6 py-2 text-darkBlue hover:bg-sky-600">
+                <NavLink
+                  to="/register"
+                  className={({ isActive }) =>
+                    `${isActive ? "text-white" : "text-darkBlue "}`
+                  }
+                >
+                  Register
+                </NavLink>
+              </li>
+              <li className="cursor-pointer px-6 py-2 text-darkBlue hover:bg-sky-600">
+                <Link to="/login">
+                  <button className="text-darkBlue">Sign in</button>
+                </Link>
+              </li>
             </ul>
           )}
         </div>

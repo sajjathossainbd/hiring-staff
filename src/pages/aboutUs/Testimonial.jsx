@@ -91,18 +91,18 @@ When it comes to choosing the right web hosting provider, we know how easy it is
         }}
         modules={[Pagination]}
         className="mySwiper min-h-[26rem] lg:min-h-96"
-        // Add responsive breakpoints
+        // responsive breakpoints
         breakpoints={{
           640: {
-            slidesPerView: 1, // 1 slide on small screens (mobile)
+            slidesPerView: 1, // small screens (mobile)
             spaceBetween: 20,
           },
           768: {
-            slidesPerView: 2, // 2 slides on medium screens (tablet)
+            slidesPerView: 2, // medium screens (tablet)
             spaceBetween: 30,
           },
           1024: {
-            slidesPerView: 3, // 3 slides on large screens (desktop)
+            slidesPerView: 3, // large screens (desktop)
             spaceBetween: 30,
           },
         }}

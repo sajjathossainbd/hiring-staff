@@ -1,5 +1,6 @@
-import contact from "../../assets/Get in Touch/contact-image.png";
 import box from "../../assets/Get in Touch/icon-email.svg";
+import GetInTouchImg from "../../assets/contact-us/get-in-touch.svg";
+
 function GetInTouch() {
   return (
     <div className="container bg-red-0">
@@ -88,7 +89,7 @@ function GetInTouch() {
           </div>
         </div>
         <div className="lg:col-span-1 flex items-center justify-center">
-          <img src={contact} alt="image" />
+          <img src={GetInTouchImg} alt="image" />
         </div>
       </div>
     </div>

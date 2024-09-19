@@ -1,12 +1,13 @@
 import TeamCard from "./TeamInfoCard";
-import Team1 from "./../../assets/team/team1.svg";
-import Team2 from "./../../assets/team/team2.svg";
-import Team3 from "./../../assets/team/team3.svg";
-import Team4 from "./../../assets/team/team4.svg";
-import Team5 from "./../../assets/team/team5.svg";
-import Team6 from "./../../assets/team/team6.svg";
-import Team7 from "./../../assets/team/team7.svg";
-import Team8 from "./../../assets/team/team8.svg";
+import Team1 from "./../../assets/home/team/team1.svg";
+import Team2 from "./../../assets/home/team/team2.svg";
+import Team3 from "./../../assets/home/team/team3.svg";
+import Team4 from "./../../assets/home/team/team4.svg";
+import Team5 from "./../../assets/home/team/team5.svg";
+import Team6 from "./../../assets/home/team/team6.svg";
+import Team7 from "./../../assets/home/team/team7.svg";
+import Team8 from "./../../assets/home/team/team8.svg";
+import SectionTitle from "../shared/SectionTitle";
 
 function MeetOurTeam() {
   const teamData = [
@@ -71,14 +72,7 @@ function MeetOurTeam() {
   return (
     <div className="container">
       <div className="flex flex-col items-center justify-center text-center">
-        <h4 className="uppercase text-lightGray">Our Company</h4>
-        <h3 className="mt-3 mb-2">Meet Our Team</h3>
-        <p className="text-14">
-          Uniquely leverage others seamless leadership skills through 24/365
-          methods <br /> of empowerment. Conveniently target high-quality action
-          items <br />
-          with professional alignments.
-        </p>
+        <SectionTitle title={"Meet Our Team"} subTitle={"Explore our company and get to know the talented team that drives our success. Each member is dedicated to innovation, excellence, and achieving outstanding results in every project we undertake."} subHeading={"Our Company"} />
       </div>
       <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-sm:grid-cols-1 gap-6 my-10">
         {teamData.map((member) => (

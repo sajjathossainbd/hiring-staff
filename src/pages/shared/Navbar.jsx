@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import logo from "../../assets/logo/hiring.png";
 
 const Navbar = () => {
   const [dropDownState, setDropDownState] = useState(false);
@@ -20,19 +19,22 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { to: '/', label: 'Home' },
-    { to: '/about', label: 'About' },
-    { to: '/contact', label: 'Contact' },
-    { to: '/pricing', label: 'Pricing' },
+    { to: "/", label: "Home" },
+    { to: "/about", label: "About" },
+    { to: "/contact", label: "Contact" },
+    { to: "/pricing", label: "Pricing" },
   ];
 
   return (
     <div className="backdrop-blur-sm sticky top-0 z-50 bg-lightBlue">
-      <nav className="container flex items-center justify-between text-white py-7">
+      <nav className="container flex items-center justify-between text-white py-3">
         <div className="scale-100 cursor-pointer rounded-2xl text-xl font-semibold text-white">
           <div className="flex items-center gap-2">
-            <img className="lg:size-12 size-8" src={logo} alt="Hiring Stuff" />
-            <h3>Hiring Stuff</h3>
+            <img
+              className=""
+              src="https://i.ibb.co.com/0rKvK9v/Hiring-Staff-Logo.png"
+              alt="Hiring Stuff"
+            />
           </div>
         </div>
 
@@ -43,9 +45,10 @@ const Navbar = () => {
               <NavLink
                 to={to}
                 className={({ isActive }) =>
-                  `font-medium ${isActive
-                    ? "text-blue border-b-2 border-blue"
-                    : "text-darkBlue"
+                  `font-medium ${
+                    isActive
+                      ? "text-blue border-b-2 border-blue"
+                      : "text-darkBlue"
                   }`
                 }
               >

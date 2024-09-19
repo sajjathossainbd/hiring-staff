@@ -3,7 +3,7 @@ import right from "../../assets/News Letter/undraw_newsletter_re_wrob.svg";
 import left from "../../assets/News Letter/undraw_connecting_teams_re_hno7.svg";
 function NewsLetter() {
   return (
-    <div className="container mx-auto rounded-2xl mt-12 p-0 px-2">
+    <div className="container rounded-2xl mt-12">
       <section className="w-[100%] mx-auto bg-blue rounded-2xl py-16 px-4 md:px-8">
         <div className=" mx-auto text-center px-0 md:px-8 lg:py-12 flex items-center justify-around">
           <div>

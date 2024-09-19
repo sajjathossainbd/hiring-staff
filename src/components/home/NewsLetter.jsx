@@ -20,7 +20,7 @@ function NewsLetter() {
                 placeholder="Enter your email"
                 className="w-full px-1 py-5 md:py-8 rounded-md focus:outline-none "
               />
-              <button className="w-32 absolute right-4 sm:w-auto bg-blue hover:bg-darkBlue text-white  px-6 py-3 md:py-4 rounded-md hover:bg-blue-700 hover:text-white transition">
+              <button className="w-24 md:w-32 absolute right-4  bg-blue hover:bg-darkBlue text-white  md:px-6 py-3 md:py-4 rounded-md hover:bg-blue-700 hover:text-white transition">
                 Subscribe
               </button>
             </form>

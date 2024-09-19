@@ -27,7 +27,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="backdrop-blur-sm sticky top-0 z-50 bg-[#f2f6fd]">
+    <div className="backdrop-blur-sm sticky top-0 z-50 bg-lightBlue">
       <nav className="container flex items-center justify-between text-white py-7">
         <div className="scale-100 cursor-pointer rounded-2xl text-xl font-semibold text-white">
           <div className="flex items-center gap-2">

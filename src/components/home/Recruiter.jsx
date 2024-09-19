@@ -1,5 +1,5 @@
-import RecruiterCard from "../../components/shared/RecruiterCard";
-import SectionTitle from "../../components/shared/SectionTitle";
+import RecruiterCard from "../shared/RecruiterCard";
+import SectionTitle from "../shared/SectionTitle";
 
 function Recruiter() {
   const topRecruiters = [
@@ -286,14 +286,14 @@ function Recruiter() {
   ];
 
   return (
-    <div className="container mx-auto">
+    <div className="container">
       <SectionTitle
         title={"Top Recruiters"}
         subTitle={
           "Discover your next career move, freelance gig, or internship"
         }
       />
-      <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-sm:grid-cols-2 px-4 gap-3 my-10">
+      <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-sm:grid-cols-1 gap-3 my-10">
         {topRecruiters.map((recruiter) => (
           <RecruiterCard key={recruiter.name} {...recruiter} />
         ))}

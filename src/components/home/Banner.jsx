@@ -107,8 +107,6 @@ const Banner = () => {
 
     // Log the updated search data
     console.log(updatedSearchData);
-
-    // Perform any other action, like sending the data to an API, etc.
   };
 
   return (
@@ -127,7 +125,7 @@ const Banner = () => {
               single day.
             </p>
             <div className="flex lg:flex-row flex-col items-center px-4 rounded-2xl bg-white">
-              {/* dropdown for industry */}
+              {/* Dropdown for "Who shot first?" */}
               <div
                 className="lg:w-1/4 lg:mb-0 mb-3 py-5 w-full lg:border-r-2 h-8 border-[#D2D4D7] relative flex items-center"
                 ref={dropdownRef}

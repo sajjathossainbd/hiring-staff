@@ -8,7 +8,7 @@ const GrowthSection = () => {
       <div className="container">
         <div className=" hero-content flex-col lg:flex-row w-full">
           <div className="relative  mx-auto py-12 px-4 lg:px-8">
-            {/* Background Image */}
+        
             <div className="relative">
               <img
                 src={imageCenter}
@@ -16,7 +16,7 @@ const GrowthSection = () => {
                 className="rounded-xl lg:w-[482px] lg:h-[435px] w-80 h-56"
               />
 
-              {/* First Overlapping Image */}
+              
               <div className="absolute -top-28 -left-44 hidden md:block">
                 <img
                   src={imageLeft}
@@ -25,7 +25,7 @@ const GrowthSection = () => {
                 />
               </div>
 
-              {/* Second Overlapping Image */}
+            
               <div className="absolute -bottom-44 -right-36 hidden md:block ">
                 <img
                   src={imageRight}

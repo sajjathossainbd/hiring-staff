@@ -77,7 +77,7 @@ const Testimonial = () => {
   ];
 
   return (
-    <div className="py-20 container mx-auto px-4">
+    <div className="py-20 container">
       <div className="w-1/2 mx-auto text-center pb-12">
         <SectionTitle
           title="Our Happy Customer"

@@ -1,4 +1,4 @@
-import Rating from "../../components/shared/Rating";
+import Rating from "../shared/Rating";
 import arrow from "../../assets/About-us/arrow.png";
 
 // Import Swiper React components
@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 
 // import required modules
 import { Pagination } from "swiper/modules";
-import SectionTitle from "../../components/shared/SectionTitle";
+import SectionTitle from "../shared/SectionTitle";
 
 const Testimonial = () => {
   const testimonials = [
@@ -77,7 +77,7 @@ const Testimonial = () => {
   ];
 
   return (
-    <div className="lg:pt-20 pt-10 container">
+    <div className="py-0 container">
       <div className="lg:w-1/2 mx-auto text-center pb-12">
         <SectionTitle
           title="Our Happy Customer"

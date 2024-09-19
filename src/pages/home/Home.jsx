@@ -6,6 +6,8 @@ import GrowthSection from "../../components/home/GrowthSection";
 import Recruiter from "../../components/home/Recruiter";
 import JobLocation from "../../components/home/JobLocation";
 import NewsLetter from "../../components/home/NewsLetter";
+import BlogSection from "../../components/home/BlogSection";
+import JobDayCard from "../jobCard/JobDayCard";
 
 function Home() {
   return (
@@ -16,9 +18,11 @@ function Home() {
       <Banner />
       <Category />
       <Hiring />
+      <JobDayCard />
       <GrowthSection />
       <Recruiter />
       <JobLocation />
+      <BlogSection />
       <NewsLetter />
     </div>
   );

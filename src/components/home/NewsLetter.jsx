@@ -1,6 +1,7 @@
 import email from "../../assets/News Letter/email.svg";
 import right from "../../assets/News Letter/undraw_newsletter_re_wrob.svg";
 import left from "../../assets/News Letter/undraw_connecting_teams_re_hno7.svg";
+import PrimaryButton from "../shared/PrimaryButton";
 
 function NewsLetter() {
   return (
@@ -11,19 +12,24 @@ function NewsLetter() {
             <img src={left} alt="img" className="w-52 hidden lg:block" />
           </div>
           <div>
-            <h3 className="text-white dark:text-darkText mb-4">New Things Will Always</h3>
-            <h3 className="text-white dark:text-darkText mb-8">Update Regularly</h3>
+            <h3 className="text-white dark:text-darkText mb-4">
+              New Things Will Always
+            </h3>
+            <h3 className="text-white dark:text-darkText mb-8">
+              Update Regularly
+            </h3>
 
             <form className="flex relative flex-col sm:flex-row items-center justify-center w-full gap-4 bg-white dark:bg-gray rounded-md lg:pl-4">
               <img src={email} alt="" className="hidden md:block" />
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="w-full px-1 py-5 md:py-8 rounded-md focus:outline-none dark:bg-gray dark:text-white"
+                className="w-full pl-4 py-5 md:py-8 rounded-md focus:outline-none dark:bg-gray dark:text-white"
               />
-              <button className="w-24 md:w-32 absolute right-4 bg-blue hover:bg-darkBlue text-white md:px-6 py-3 md:py-4 rounded-md hover:bg-blue-700 hover:text-white transition">
-                Subscribe
-              </button>
+
+              <div className="absolute right-4  md:px-6 py-3 md:py-4">
+                <PrimaryButton title={"Subscribe"} />
+              </div>
             </form>
           </div>
           <div>

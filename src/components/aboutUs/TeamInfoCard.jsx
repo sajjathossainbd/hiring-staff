@@ -11,7 +11,7 @@ function TeamInfoCard(member) {
   const { img, name, job, review, location } = member;
 
   return (
-    <div className="rounded-xl bg-white border border-[#D2D4D7] hover:-translate-y-1 hover:shadow-md hover: shadow-[#D2D4D7] transition-all duration-200  px-12 py-14 flex items-center justify-center flex-col text-center">
+    <div className="rounded-xl bg-white border border-[#D2D4D7] hover:-translate-y-1 hover:shadow-md hover: shadow-[#D2D4D7] transition-all duration-200  lg:p-12 md:p-10 sm:p-8 max-sm:p-8 flex items-center justify-center flex-col text-center">
       <img src={img} alt="" />
       <div className="mt-3">
         <h5>{name}</h5>

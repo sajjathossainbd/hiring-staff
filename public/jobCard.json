@@ -1,0 +1,283 @@
+[
+    {
+      "category": "Content Writer",
+      "job_title": "SEO Content Writer",
+      "job_type": "Full-time",
+      "job_post_time": "2024-09-15",
+      "job_description": "Create SEO-optimized content for websites and blogs to increase search engine visibility."
+    },
+    {
+      "category": "Content Writer",
+      "job_title": "Technical Writer",
+      "job_type": "Part-time",
+      "job_post_time": "2024-09-14",
+      "job_description": "Develop technical manuals and guides for software and hardware products."
+    },
+    {
+      "category": "Content Writer",
+      "job_title": "Copywriter",
+      "job_type": "Contract",
+      "job_post_time": "2024-09-13",
+      "job_description": "Write persuasive marketing copy for ads, brochures, and email campaigns."
+    },
+    {
+      "category": "Content Writer",
+      "job_title": "Blog Writer",
+      "job_type": "Freelance",
+      "job_post_time": "2024-09-12",
+      "job_description": "Write engaging blog posts on a variety of topics to attract and inform readers."
+    },
+    {
+      "category": "Content Writer",
+      "job_title": "Content Strategist",
+      "job_type": "Full-time",
+      "job_post_time": "2024-09-11",
+      "job_description": "Plan, create, and manage content strategies to drive brand awareness and engagement."
+    },
+    {
+      "category": "Finance",
+      "job_title": "Financial Analyst",
+      "job_type": "Full-time",
+      "job_post_time": "2024-09-15",
+      "job_description": "Analyze financial data to assist with decision-making and financial planning."
+    },
+    {
+      "category": "Finance",
+      "job_title": "Accountant",
+      "job_type": "Part-time",
+      "job_post_time": "2024-09-14",
+      "job_description": "Manage financial records and prepare financial statements for businesses."
+    },
+    {
+      "category": "Finance",
+      "job_title": "Investment Banker",
+      "job_type": "Contract",
+      "job_post_time": "2024-09-13",
+      "job_description": "Assist clients with raising capital, mergers, and acquisitions."
+    },
+    {
+      "category": "Finance",
+      "job_title": "Tax Consultant",
+      "job_type": "Freelance",
+      "job_post_time": "2024-09-12",
+      "job_description": "Provide expert advice on tax planning and compliance for individuals and businesses."
+    },
+    {
+      "category": "Finance",
+      "job_title": "Budget Analyst",
+      "job_type": "Full-time",
+      "job_post_time": "2024-09-11",
+      "job_description": "Evaluate budget proposals and financial reports to ensure efficient allocation of resources."
+    },
+    {
+      "category": "Human Resource",
+      "job_title": "HR Manager",
+      "job_type": "Full-time",
+      "job_post_time": "2024-09-15",
+      "job_description": "Oversee HR policies, employee relations, and recruitment efforts within the company."
+    },
+    {
+      "category": "Human Resource",
+      "job_title": "Recruiter",
+      "job_type": "Part-time",
+      "job_post_time": "2024-09-14",
+      "job_description": "Source and interview candidates to fill job vacancies in various departments."
+    },
+    {
+      "category": "Human Resource",
+      "job_title": "HR Consultant",
+      "job_type": "Contract",
+      "job_post_time": "2024-09-13",
+      "job_description": "Provide strategic advice on HR policies and processes to improve organizational effectiveness."
+    },
+    {
+      "category": "Human Resource",
+      "job_title": "HR Assistant",
+      "job_type": "Freelance",
+      "job_post_time": "2024-09-12",
+      "job_description": "Support HR activities, including record keeping, recruitment, and payroll processing."
+    },
+    {
+      "category": "Human Resource",
+      "job_title": "Training Coordinator",
+      "job_type": "Full-time",
+      "job_post_time": "2024-09-11",
+      "job_description": "Plan and deliver employee training programs to enhance skills and performance."
+    },
+    {
+      "category": "Market Research",
+      "job_title": "Market Analyst",
+      "job_type": "Full-time",
+      "job_post_time": "2024-09-15",
+      "job_description": "Conduct research to understand market trends and consumer behavior."
+    },
+    {
+      "category": "Market Research",
+      "job_title": "Survey Specialist",
+      "job_type": "Part-time",
+      "job_post_time": "2024-09-14",
+      "job_description": "Design and conduct surveys to collect market data."
+    },
+    {
+      "category": "Market Research",
+      "job_title": "Data Analyst",
+      "job_type": "Contract",
+      "job_post_time": "2024-09-13",
+      "job_description": "Analyze survey data to provide actionable market insights."
+    },
+    {
+      "category": "Market Research",
+      "job_title": "Consumer Researcher",
+      "job_type": "Freelance",
+      "job_post_time": "2024-09-12",
+      "job_description": "Study consumer preferences and behaviors to assist in product development."
+    },
+    {
+      "category": "Market Research",
+      "job_title": "Business Intelligence Analyst",
+      "job_type": "Full-time",
+      "job_post_time": "2024-09-11",
+      "job_description": "Analyze business data to provide strategic market insights."
+    },
+    {
+      "category": "Marketing & Sale",
+      "job_title": "Marketing Manager",
+      "job_type": "Full-time",
+      "job_post_time": "2024-09-15",
+      "job_description": "Develop and implement marketing strategies to promote products and services."
+    },
+    {
+      "category": "Marketing & Sale",
+      "job_title": "Sales Executive",
+      "job_type": "Part-time",
+      "job_post_time": "2024-09-14",
+      "job_description": "Identify and reach out to potential clients to increase sales."
+    },
+    {
+      "category": "Marketing & Sale",
+      "job_title": "Digital Marketing Specialist",
+      "job_type": "Contract",
+      "job_post_time": "2024-09-13",
+      "job_description": "Plan and execute digital marketing campaigns across various channels."
+    },
+    {
+      "category": "Marketing & Sale",
+      "job_title": "Sales Representative",
+      "job_type": "Freelance",
+      "job_post_time": "2024-09-12",
+      "job_description": "Sell products and services to clients and provide customer support."
+    },
+    {
+      "category": "Marketing & Sale",
+      "job_title": "Brand Manager",
+      "job_type": "Full-time",
+      "job_post_time": "2024-09-11",
+      "job_description": "Develop and maintain the brand image and identity across all marketing channels."
+    },
+    {
+      "category": "Retail & Products",
+      "job_title": "Retail Manager",
+      "job_type": "Full-time",
+      "job_post_time": "2024-09-15",
+      "job_description": "Oversee the daily operations of retail stores and ensure customer satisfaction."
+    },
+    {
+      "category": "Retail & Products",
+      "job_title": "Store Associate",
+      "job_type": "Part-time",
+      "job_post_time": "2024-09-14",
+      "job_description": "Assist customers and manage inventory in the retail store."
+    },
+    {
+      "category": "Retail & Products",
+      "job_title": "Product Specialist",
+      "job_type": "Contract",
+      "job_post_time": "2024-09-13",
+      "job_description": "Provide product knowledge and support to improve sales."
+    },
+    {
+      "category": "Retail & Products",
+      "job_title": "Merchandising Manager",
+      "job_type": "Freelance",
+      "job_post_time": "2024-09-12",
+      "job_description": "Plan and execute store merchandising strategies to enhance product displays."
+    },
+    {
+      "category": "Retail & Products",
+      "job_title": "Inventory Manager",
+      "job_type": "Full-time",
+      "job_post_time": "2024-09-11",
+      "job_description": "Manage stock levels and ensure efficient inventory control in the retail store."
+    },
+    {
+      "category": "Software",
+      "job_title": "Software Developer",
+      "job_type": "Full-time",
+      "job_post_time": "2024-09-15",
+      "job_description": "Design, develop, and maintain software applications."
+    },
+    {
+      "category": "Software",
+      "job_title": "UI/UX Designer",
+      "job_type": "Part-time",
+      "job_post_time": "2024-09-14",
+      "job_description": "Create user-friendly interfaces and enhance the user experience of software products."
+    },
+    {
+      "category": "Software",
+      "job_title": "DevOps Engineer",
+      "job_type": "Contract",
+      "job_post_time": "2024-09-13",
+      "job_description": "Implement and manage infrastructure for software deployment and scaling."
+    },
+    {
+      "category": "Software",
+      "job_title": "Quality Assurance Tester",
+      "job_type": "Freelance",
+      "job_post_time": "2024-09-12",
+      "job_description": "Test software applications for bugs and ensure quality standards are met."
+    },
+    {
+      "category": "Software",
+      "job_title": "Product Manager",
+      "job_type": "Full-time",
+      "job_post_time": "2024-09-11",
+      "job_description": "Oversee the development and launch of software products, ensuring they meet market needs."
+    },
+    {
+        "category": "Management",
+        "job_title": "Project Manager",
+        "job_type": "Full-time",
+        "job_post_time": "2024-09-15",
+        "job_description": "Oversee project planning, execution, and delivery, ensuring all phases meet quality standards and deadlines."
+      },
+      {
+        "category": "Management",
+        "job_title": "Operations Manager",
+        "job_type": "Full-time",
+        "job_post_time": "2024-09-14",
+        "job_description": "Manage daily operations, improve performance, and ensure efficient resource allocation within the organization."
+      },
+      {
+        "category": "Management",
+        "job_title": "Product Manager",
+        "job_type": "Part-time",
+        "job_post_time": "2024-09-13",
+        "job_description": "Lead the product development process, define product strategy, and align product goals with market needs."
+      },
+      {
+        "category": "Management",
+        "job_title": "Sales Manager",
+        "job_type": "Contract",
+        "job_post_time": "2024-09-12",
+        "job_description": "Develop sales strategies, oversee the sales team, and build relationships with key clients to drive revenue growth."
+      },
+      {
+        "category": "Management",
+        "job_title": "Marketing Manager",
+        "job_type": "Freelance",
+        "job_post_time": "2024-09-11",
+        "job_description": "Create marketing plans, coordinate promotional campaigns, and oversee market research to optimize brand presence."
+      }
+  ]
+  

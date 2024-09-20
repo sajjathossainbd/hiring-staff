@@ -19,23 +19,23 @@ const PricingCard = ({ category, price, description, service1, service2, service
                 <div className="divider my-5"></div>
                 <div className='space-y-4'>
                     <p className="flex items-center gap-2 text-darkBlue">
-                        <span className="bg-lightWhite text-gray p-2 rounded-full"><MdDone /></span>
+                        <span className="bg-lightBlue text-gray p-2 rounded-full"><MdDone /></span>
                         {service1}
                     </p>
                     <p className="flex items-center gap-2 text-darkBlue">
-                        <span className="bg-lightWhite text-gray p-2 rounded-full"><MdDone /></span>
+                        <span className="bg-lightBlue text-gray p-2 rounded-full"><MdDone /></span>
                         {service2}
                     </p>
                     <p className="flex items-center gap-2 text-darkBlue">
-                        <span className="bg-lightWhite text-gray p-2 rounded-full"><MdDone /></span>
+                        <span className="bg-lightBlue text-gray p-2 rounded-full"><MdDone /></span>
                         {service3}
                     </p>
                     <p className="flex items-center gap-2 text-darkBlue">
-                        <span className="bg-lightWhite text-gray p-2 rounded-full"><MdDone /></span>
+                        <span className="bg-lightBlue text-gray p-2 rounded-full"><MdDone /></span>
                         {service4}
                     </p>
                     <p className="flex items-center gap-2 text-darkBlue">
-                        <span className="bg-lightWhite text-gray p-2 rounded-full"><MdDone /></span>
+                        <span className="bg-lightBlue text-gray p-2 rounded-full"><MdDone /></span>
                         {service5}
                     </p>
                 </div>

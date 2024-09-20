@@ -45,7 +45,7 @@ function Category() {
   }
 
   return (
-    <div className="mx-2 container md:mx-auto">
+    <div className=" container mx-0 p-0 md:mx-auto">
       <SectionTitle
         title={"Browse by category"}
         subTitle={
@@ -54,10 +54,12 @@ function Category() {
       />
       <div>
         <Swiper
-          slidesPerView={1} // Show one slide at a time
+          slidesPerView={1}
           spaceBetween={30}
           loop={true}
-          pagination={{ type: "fraction" }}
+          pagination={{
+            clickable: true,
+          }}
           navigation={true}
           autoplay={{
             delay: 3000,
@@ -68,18 +70,17 @@ function Category() {
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={index}>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mx-auto mt-14 w-[95%] mb-8">
-                {/* Adjust for desired columns */}
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 md:gap-4 mx-14 mt-14   mb-10">
                 {slide.map((category, idx) => (
                   <div
                     key={idx}
-                    className="h-24 w-auto  bg-white border border-lightGray hover:border-gray rounded-lg shadowtext-center flex justify-center items-center gap-2 p-2 md:p-0"
+                    className="h-24 w-auto  bg-white border border-lightGray hover:border-gray rounded-lg shadowtext-center flex justify-center items-center gap-2 p-1 md:p-0"
                   >
-                    <div className="flex justify-center items-center">
-                      <img src={category.img} alt="" />
+                    <div className="flex justify-center items-center ">
+                      <img src={category.img} alt="img" />
                     </div>
                     <div>
-                      <h3 className="text-14">{category.name}</h3>
+                      <h3 className="text-12 md:text-14">{category.name}</h3>
                       <p className="text-12 mt-2">{category.jobs}</p>
                     </div>
                   </div>
@@ -87,6 +88,29 @@ function Category() {
               </div>
             </SwiperSlide>
           ))}
+
+          <style jsx>{`
+            .swiper-button-next,
+            .swiper-button-prev {
+              background-color: rgba(194, 217, 238, 0.8);
+              padding: 10px;
+              border-radius: 50%;
+              width: 30px;
+              height: 30px;
+            }
+
+            .swiper-button-next::after,
+            .swiper-button-prev::after {
+              font-size: 14px;
+              font-weight: 900;
+              color: rgba(149, 149, 242, 0.86);
+            }
+
+            .swiper-button-next:hover::after,
+            .swiper-button-prev:hover::after {
+              color: rgba(69, 69, 238, 0.86);
+            }
+          `}</style>
         </Swiper>
       </div>
     </div>

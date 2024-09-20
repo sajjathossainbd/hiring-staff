@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "topic": "Job Tips",
+        "title": "Ace Your Next Job Interview",
+        "description": "Expert tips to help you prepare for and succeed in your next job interview.",
+        "writer_name": "Sarah Collins",
+        "date": "2024-09-05",
+        "time_since_read": "2 weeks ago",
+        "image": "https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/img8-768x490.png"
+    },
+    {
+        "id": 2,
+        "topic": "Event",
+        "title": "Tech Career Fair 2024",
+        "description": "Join us for a virtual career fair featuring top tech companies looking for talent.",
+        "writer_name": "Career Hub",
+        "date": "2024-08-20",
+        "time_since_read": "1 month ago",
+        "image": "https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/05/img3-768x490.png"
+    },
+    {
+        "id": 3,
+        "topic": "Job Tips",
+        "title": "Building an Impressive Resume",
+        "description": "Learn how to craft a resume that stands out to potential employers.",
+        "writer_name": "John Doe",
+        "date": "2024-08-10",
+        "time_since_read": "1 month ago",
+        "image": "https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/04/img4-768x490.png"
+    },
+    {
+        "id": 4,
+        "topic": "Event",
+        "title": "Online Networking for Job Seekers",
+        "description": "A guide to effectively networking online to find your next job opportunity.",
+        "writer_name": "Networking Pros",
+        "date": "2024-07-25",
+        "time_since_read": "2 months ago",
+        "image": "https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/03/img-big1-404x257.png"
+    },
+    {
+        "id": 5,
+        "topic": "Job Tips",
+        "title": "Negotiating Your Job Offer",
+        "description": "Tips and strategies to help you negotiate your job offer confidently.",
+        "writer_name": "Michael Lee",
+        "date": "2024-07-05",
+        "time_since_read": "2 months ago",
+        "image": "https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2023/03/img-big2-404x257.png"
+    },
+    {
+        "id": 6,
+        "topic": "Event",
+        "title": "Career Development Workshop",
+        "description": "A workshop for professionals seeking to develop their skills and career growth.",
+        "writer_name": "Growth Hub",
+        "date": "2024-06-20",
+        "time_since_read": "3 months ago",
+        "image": "https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2023/03/img-big3-404x257.png"
+    },
+    {
+        "id": 7,
+        "topic": "Job Tips",
+        "title": "How to Write the Perfect Cover Letter",
+        "description": "A step-by-step guide to writing a compelling cover letter for your job application.",
+        "writer_name": "Emily Johnson",
+        "date": "2024-05-15",
+        "time_since_read": "4 months ago",
+        "image": "https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/03/img-big1-404x257.png"
+    },
+    {
+        "id": 8,
+        "topic": "Event, Job Tips",
+        "title": "Job Search Strategies Webinar",
+        "description": "An upcoming webinar on effective job search strategies in the current market.",
+        "writer_name": "Career Experts",
+        "date": "2024-04-10",
+        "time_since_read": "5 months ago",
+        "image": "https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/07/img-single-404x257.png"
+    }
+]

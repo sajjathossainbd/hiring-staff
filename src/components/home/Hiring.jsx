@@ -1,6 +1,7 @@
 import left from "../../assets/Hiring/bg-left-hiring.svg";
 import right from "../../assets/Hiring/bg-right-hiring.svg";
-import btn from "../../assets/Hiring/apply.svg";
+import PrimaryButton from "../shared/PrimaryButton";
+import { GoVerified } from "react-icons/go";
 function Hiring() {
   return (
     <div className="container mx-auto flex justify-center items-center mt-12">
@@ -20,16 +21,10 @@ function Hiring() {
               Let’s Work Together & Explore Opportunities
             </p>
           </div>
-          <div>
-            <button className="bg-blue hover:bg-darkBlue text-14 text-white border-none rounded-sm h-10 lg:h-14 w-32 lg:w-24">
-              <div className="flex  items-center lg:items-start justify-center">
-                <img src={btn} alt="icon" />
-                <div className="flex lg:flex-col">
-                  <span className="ml-2"> Apply</span>
-                  <span className="ml-1"> Now</span>
-                </div>
-              </div>
-            </button>
+          <div className="lg:mt-10">
+            <div className="flex  items-center lg:items-start justify-center mb-4 lg:mr-4">
+              <PrimaryButton icon={<GoVerified />} title={"Apply Now"} />
+            </div>
           </div>
         </div>
         <div className="hidden lg:block">

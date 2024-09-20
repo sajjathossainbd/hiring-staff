@@ -57,7 +57,7 @@ const Navbar = () => {
       {/* Desktop Navigation */}
       <ul className="hidden md:flex items-center lg:gap-7 md:gap-4 sm:gap-3">
         {navLinks.map(({ to, label }) => (
-          <li key={to} className="group flex cursor-pointer flex-col pb-4">
+          <li key={to} className="group flex cursor-pointer flex-col">
             <NavLink
               to={to}
               className={({ isActive }) =>

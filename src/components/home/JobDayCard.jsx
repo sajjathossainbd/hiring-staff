@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { IoBriefcaseOutline } from "react-icons/io5";
 import { WiTime7 } from "react-icons/wi";
-import SectionTitle from "../../components/shared/SectionTitle";
+import SectionTitle from "../shared/SectionTitle";
 
 const JobDayCard = () => {
   const [jobs, setJobs] = useState([]);
@@ -67,16 +67,16 @@ const JobDayCard = () => {
         />
 
         <div className="flex flex-wrap gap-4 justify-center mt-14">
-          <div className="flex flex-wrap gap-2 mb-5">
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-5">
             {categories.map((category, index) => (
               <button
                 key={index}
                 onClick={() => handleCategoryClick(category)}
-                className={`bg-blue border border-lightGray rounded-lg px-6 py-4 
+                className={`bg-blue border border-lightGray rounded-lg  px-4 py-2 lg:px-6 lg:py-4 
                                     ${
                                       activeCategory === category
                                         ? "text-white  bg-[#F8FAFF] border-blue"
-                                        : "bg-white text-blue border-[#B4C0E0]"
+                                        : "bg-white text-blue border-[#B4C0E0]  px-4 py-2 lg:px-6 lg:py-4"
                                     }`}
               >
                 <img
@@ -90,7 +90,7 @@ const JobDayCard = () => {
           </div>
 
           {/* Job List */}
-          <div className="grid gap-4 lg:grid-cols-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {filteredJobs.map((job, index) => (
               <div
                 key={index}

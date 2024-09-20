@@ -19,15 +19,19 @@ function NewsLetter() {
               Update Regularly
             </h3>
 
-            <form className="flex relative flex-col sm:flex-row items-center justify-center w-full gap-4 bg-white dark:bg-gray rounded-md lg:pl-4">
-              <img src={email} alt="" className="hidden md:block" />
+            <form className="flex relative flex-col sm:flex-row items-center justify-center w-full gap-4 bg-white dark:bg-gray rounded-md ">
+              <img
+                src={email}
+                alt="email box"
+                className="hidden md:block md:pl-4"
+              />
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="w-full pl-4 py-5 md:py-8 rounded-md focus:outline-none dark:bg-gray dark:text-white"
+                className="pl-3 md:pl-0 w-full py-5 md:py-6 rounded-md focus:outline-none dark:bg-gray dark:text-white"
               />
 
-              <div className="absolute right-4  md:px-6 py-3 md:py-4">
+              <div className="absolute right-2 md:right-4">
                 <PrimaryButton title={"Subscribe"} />
               </div>
             </form>

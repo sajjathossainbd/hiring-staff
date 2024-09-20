@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <div className="container">
       <footer className="footer text-base-content lg:mt-20 mt-10">
-        <aside className="space-y-3">
+        <aside className="space-y-3 mr-3">
           <div className="flex items-center gap-2">
             <img
               className="w-44"
@@ -50,16 +50,18 @@ const Footer = () => {
           <NavLink navTitle={"Privacy policy"} />
           <NavLink navTitle={"Terms"} />
         </nav>
-        <div className="space-y-3">
-          <h6 className="footer-title">Download App</h6>
-          <p className="max-w-52">
-            Download our Apps and get extra 15% Discount on your first Order…!
-          </p>
-          <div className="flex items-center gap-1">
-            <img src={appStore} alt="" />
-            <img src={googlePlay} alt="" />
+        <nav>
+          <div className="space-y-3">
+            <h6 className="footer-title">Download App</h6>
+            <p className="max-w-52">
+              Download our Apps and get extra 15% Discount on your first Order…!
+            </p>
+            <div className="flex lg:flex-row md:flex-col items-center gap-1">
+              <img src={appStore} alt="" />
+              <img src={googlePlay} alt="" />
+            </div>
           </div>
-        </div>
+        </nav>
       </footer>
 
       <div className="divider"></div>

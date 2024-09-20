@@ -91,24 +91,24 @@ When it comes to choosing the right web hosting provider, we know how easy it is
         }}
         modules={[Pagination]}
         className="mySwiper min-h-[26rem] lg:min-h-96"
-        // Add responsive breakpoints
+        // responsive breakpoints
         breakpoints={{
           640: {
-            slidesPerView: 1, // 1 slide on small screens (mobile)
+            slidesPerView: 1, // small screens (mobile)
             spaceBetween: 20,
           },
           768: {
-            slidesPerView: 2, // 2 slides on medium screens (tablet)
+            slidesPerView: 2, // medium screens (tablet)
             spaceBetween: 30,
           },
           1024: {
-            slidesPerView: 3, // 3 slides on large screens (desktop)
+            slidesPerView: 3, // large screens (desktop)
             spaceBetween: 30,
           },
         }}
       >
         {testimonials.map((testimonial, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide className="select-none" key={index}>
             <div className="border rounded-md border-[#EBEFFA] p-6 relative min-h-72 lg:min-h-52">
               <div className="flex flex-col gap-5">
                 <div className="flex gap-5 items-center">
@@ -116,7 +116,7 @@ When it comes to choosing the right web hosting provider, we know how easy it is
                   <span className="hidden lg:block">-</span>
                   <Rating rating={testimonial.rating} />
                 </div>
-                <p className="select-none">
+                <p>
                   {testimonial.description.split(" ").length > 25
                     ? testimonial.description
                       .split(" ")

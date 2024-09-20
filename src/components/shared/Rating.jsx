@@ -2,7 +2,6 @@ import { FaStar } from "react-icons/fa";
 const Rating = ({ rating }) => {
   //integer between 1 and 5
   const validRating = Math.min(5, Math.max(1, Math.floor(rating)));
-  console.log(validRating);
   return (
     <div className="rating flex gap-0">
       {[...Array(validRating)].map((_, index) => (

@@ -7,7 +7,7 @@ import Recruiter from "../../components/home/Recruiter";
 import JobLocation from "../../components/home/JobLocation";
 import NewsLetter from "../../components/home/NewsLetter";
 import BlogSection from "../../components/home/BlogSection";
-import JobDayCard from "../jobCard/JobDayCard";
+import JobDayCard from "../../components/home/JobDayCard";
 
 function Home() {
   return (

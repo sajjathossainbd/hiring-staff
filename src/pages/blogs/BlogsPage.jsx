@@ -1,7 +1,7 @@
 
 function BlogsPage() {
   return (
-    <div>BlogsPage</div>
+    <div className="container">BlogsPage</div>
   )
 }
 

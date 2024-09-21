@@ -82,11 +82,11 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "/singin",
+        path: "/sing-in",
         element: <Singin />,
       },
       {
-        path: "/rest-password",
+        path: "/reset-password",
         element: <ResetPassword />,
       },
     ],

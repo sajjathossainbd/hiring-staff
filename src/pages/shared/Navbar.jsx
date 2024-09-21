@@ -37,17 +37,21 @@ const Navbar = () => {
     { to: "/about", label: "About" },
     { to: "/contact", label: "Contact" },
     { to: "/pricing", label: "Pricing" },
+    { to: "/jobs-listing", label: "Jobs" },
+    { to: "/recruiters-listing", label: "Recruiters" },
+    { to: "/candidates-listing", label: "Candidates" },
+    { to: "/blogs", label: "Blogs" },
   ];
 
   return (
-    <nav className="max-w-screen-2xl mx-auto">
-      <div className="backdrop-blur-sm sticky top-0 z-50 bg-bgLightWhite">
-        <nav className="container flex items-center justify-between py-3 h-24">
+    <div className="backdrop-blur-sm sticky top-0 z-50">
+      <div className="bg-bgLightWhite">
+        <nav className="container flex items-center justify-between lg:py-3 h-16 lg:h-24">
           <div className="scale-100 cursor-pointer rounded-2xl text-xl font-semibold text-darkBlue">
             <Link to={"/"}>
               <div className="flex items-center gap-2">
                 <img
-                  className="lg:w-full w-44"
+                  className=" w-44 lg:w-full"
                   src="https://i.ibb.co/0rKvK9v/Hiring-Staff-Logo.png"
                   alt="Hiring Stuff"
                 />
@@ -56,16 +60,15 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center lg:gap-7 md:gap-4 sm:gap-3">
+          <ul className="hidden md:hidden lg:hidden xl:flex items-center lg:gap-3 md:gap-2 sm:gap-2">
             {navLinks.map(({ to, label }) => (
               <li key={to} className="group flex cursor-pointer flex-col">
                 <NavLink
                   to={to}
                   className={({ isActive }) =>
-                    `font-medium ${
-                      isActive
-                        ? "text-blue border-b-2 border-blue"
-                        : "text-darkBlue"
+                    `font-medium ${isActive
+                      ? "text-blue border-b-2 border-blue"
+                      : "text-darkBlue"
                     }`
                   }
                 >
@@ -75,7 +78,7 @@ const Navbar = () => {
             ))}
           </ul>
 
-          <div className="hidden lg:flex md:flex items-center lg:gap-5 md:gap-3">
+          <div className="hidden md:hidden lg:hidden xl:flex items-center lg:gap-5 md:gap-3">
             <NavLink
               to="/register"
               className="underline md:hidden lg:flex hover:decoration-dotted hover:-translate-y-1 transition-all"
@@ -112,7 +115,7 @@ const Navbar = () => {
           <div
             ref={dropDownMenuRef}
             onClick={() => setDropDownState(!dropDownState)}
-            className="relative flex md:hidden text-darkBlue"
+            className="relative flex lg:flex xl:hidden text-darkBlue"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -172,7 +175,7 @@ const Navbar = () => {
           </div>
         </nav>
       </div>
-    </nav>
+    </div>
   );
 };
 

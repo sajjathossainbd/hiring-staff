@@ -4,7 +4,7 @@ import fireworksImage from "/src/assets/recruiter/firework.svg";
 import Banner from "/src/assets/pricing/pricing-page-banner.png";
 
 const RecruitersListing = () => {
-  // State to track the selected alphabet
+  
   const [selectedLetter, setSelectedLetter] = useState("");
 
   const recruiters = [
@@ -50,7 +50,7 @@ const RecruitersListing = () => {
 
   return (
     <div className="container mx-auto p-4">
-      {/* Alphabet Filter */}
+
       <div>
         <div
           className="bg-cover bg-center mx-8 my-10"
@@ -68,8 +68,8 @@ const RecruitersListing = () => {
                     key={letter}
                     className={`px-4 py-2 rounded-lg ${
                       selectedLetter === letter
-                        ? "bg-blue-600 text-white"
-                        : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                        ? "bg-blue text-white"
+                        : "bg-lightGray text-gray-800 hover:bg-gray-300"
                     }`}
                     onClick={() => setSelectedLetter(letter)}
                   >
@@ -112,9 +112,9 @@ const RecruitersListing = () => {
                   </span>
                 ))}
               </div>
-              <span className="ml-2 text-gray-600">({recruiter.ratings})</span>
+              <span className="ml-2 ">({recruiter.ratings})</span>
             </div>
-            <p className="text-sm text-center text-gray-600 mt-2">
+            <p className=" text-center text-gray-600 mt-2">
               {recruiter.location}
             </p>
             <div className="mt-8 flex justify-center mb-8">

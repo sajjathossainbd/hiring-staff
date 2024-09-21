@@ -1,5 +1,5 @@
 function RecruitersListing() {
-  return <div>RecruitersListing</div>;
+  return <div className="container">RecruitersListing</div>;
 }
 
 export default RecruitersListing;

@@ -1,5 +1,12 @@
+
+
+
 function BlogDetails() {
-  return <div>BlogDetails</div>;
+  return (
+    <div className="container">
+      BlogDetails
+    </div>
+  );
 }
 
 export default BlogDetails;

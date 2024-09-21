@@ -110,7 +110,7 @@ const Banner = () => {
   };
 
   return (
-    <div className="max-w-screen-2xl mx-auto">
+    <section className="max-w-screen-2xl mx-auto">
       <div className="bg-banner-image bg-center bg-cover px-4 lg:pb-10">
         <div className="container">
           <div className="flex flex-col-reverse lg:flex-row lg:items-center justify-center gap-20">
@@ -264,7 +264,7 @@ const Banner = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

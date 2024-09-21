@@ -40,7 +40,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="max-w-screen-2xl mx-auto">
+    <nav className="max-w-screen-2xl mx-auto">
       <div className="backdrop-blur-sm sticky top-0 z-50 bg-lightBlue">
         <nav className="container flex items-center justify-between py-3 h-24">
           <div className="scale-100 cursor-pointer rounded-2xl text-xl font-semibold text-darkBlue">
@@ -172,7 +172,7 @@ const Navbar = () => {
           </div>
         </nav>
       </div>
-    </div>
+    </nav>
   );
 };
 

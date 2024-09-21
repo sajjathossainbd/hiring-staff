@@ -48,7 +48,7 @@ function Category() {
 
   return (
     <>
-      <div className="container px-0 sm:px-0 md:px-0 lg:px-0 xl:px-14">
+      <section className="container px-0 sm:px-0 md:px-0 lg:px-0 xl:px-14">
         <SectionTitle
           title={"Browse by category"}
           subTitle={
@@ -105,7 +105,7 @@ function Category() {
             `}</style>
           </Swiper>
         </div>
-      </div>
+      </section>
       <Hiring />
     </>
   );

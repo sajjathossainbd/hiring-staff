@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
-// tailwind.config.js
+
 export default {
-  darkMode: 'class',
+  darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
@@ -10,8 +10,11 @@ export default {
       },
       colors: {
         blue: "#3C65F5",
-        lightBlue: "#f2f6fd",
         darkBlue: "#05274F",
+        softBlue: "#E0E6F7",
+        softLightBlue: "#F8FAFF",
+        lightBlue: "#f2f6fd",
+
         gray: "#4F5E64",
         lightGray: "#A0Abb8",
         white: "#ffffff",

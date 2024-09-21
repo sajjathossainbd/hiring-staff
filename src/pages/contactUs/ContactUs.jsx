@@ -14,7 +14,7 @@ function ContactUs() {
         currentPath={"Contact Us"}
       />
       <div className="container">
-        <div className="lg:p-8 p-5 flex lg:flex-row flex-col lg:items-center lg:gap-0 justify-between bg-lightBlue rounded gap-7">
+        <div className="lg:p-8 p-5 flex lg:flex-row flex-col lg:items-center lg:gap-0 justify-between bg-bgLightWhite rounded gap-7">
           <div className="space-y-2 mr-16 ">
             <div className="flex items-center gap-2">
               <img

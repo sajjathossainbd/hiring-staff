@@ -3,7 +3,7 @@ function BlogCard(blog) {
   const { image, topics, description, writer_name, date, time_since_read } =
     blog;
   return (
-    <div className="border-[.5px] border-lightGray rounded-lg px-1 py-3">
+    <div className="border-[.5px] border-lightGray hover:border-blue rounded-lg px-1 py-3">
       <figure className="p-4">
         <img className="rounded-lg w-full" src={blog.image} alt="Blog" />
       </figure>

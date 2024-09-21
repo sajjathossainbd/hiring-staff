@@ -5,6 +5,18 @@ import Home from "../pages/home/Home";
 import AboutUs from "../pages/aboutUs/AboutUs";
 import ContactUs from "../pages/contactUs/ContactUs";
 import Pricing from "../pages/Pricing/Pricing";
+import JobsListing from "../pages/jobs/JobsListing";
+import JobDetails from "../pages/jobs/JobDetails";
+import RecruiterDetails from "../pages/recruiters/RecruiterDetails";
+import RecruitersListing from "../pages/recruiters/RecruitersListing";
+import CandidatesListing from "../pages/candidates/CandidatesListing";
+import CandidateDetails from "../pages/candidates/CandidateDetails";
+import CandidateProfile from "../pages/candidates/CandidateProfile";
+import BlogsPage from "../pages/blogs/BlogsPage";
+import BlogDetails from "../pages/blogs/BlogDetails";
+import Register from "../pages/authentication/Register";
+import Singin from "../pages/authentication/Singin";
+import ResetPassword from "../pages/authentication/ResetPassword";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +39,55 @@ const router = createBrowserRouter([
       {
         path: "/pricing",
         element: <Pricing />,
+      },
+      {
+        path: "/jobs-listing",
+        element: <JobsListing />,
+      },
+      {
+        path: "/job-details",
+        element: <JobDetails />,
+      },
+      {
+        path: "/recruiters-listing",
+        element: <RecruitersListing />,
+      },
+      {
+        path: "/recruiter-details",
+        element: <RecruiterDetails />,
+      },
+      {
+        path: "/candidates-listing",
+        element: <CandidatesListing />,
+      },
+      {
+        path: "/candidate-details",
+        element: <CandidateDetails />,
+      },
+      {
+        path: "/candidate-profile",
+        element: <CandidateProfile />,
+      },
+      {
+        path: "/blogs",
+        element: <BlogsPage />,
+      },
+      {
+        path: "/blog-details",
+        element: <BlogDetails />,
+      },
+
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/singin",
+        element: <Singin />,
+      },
+      {
+        path: "/rest-password",
+        element: <ResetPassword />,
       },
     ],
   },

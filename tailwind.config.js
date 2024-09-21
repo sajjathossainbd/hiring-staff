@@ -9,19 +9,26 @@ export default {
         "banner-image": "url('./src/assets/banner/bg-banner.svg')",
       },
       colors: {
+        // heading, button
         blue: "#3C65F5",
         darkBlue: "#05274F",
-        softBlue: "#E0E6F7",
-        softLightBlue: "#F8FAFF",
-        lightBlue: "#f2f6fd",
 
-        gray: "#4F5E64",
-        lightGray: "#A0Abb8",
+        // text -
+        gray: "#4F5E64", // paragraphs tags
+        lightGray: "#A0Abb8", //  halka light color
+
+        // background colors
+        bgLightBlue: "#F8FAFF",
+        bgDeepBlue: "E0E7F6",
+        bgLightWhite: "#f2f6fd",
+
+        // Other colors
         white: "#ffffff",
-        lightWhite: "#F9FBFF",
         black: "#000000",
-        darkBg: "#1A202C",
-        darkText: "#CBD5E0",
+       
+
+        softLightBlue: "#F8FAFF",
+ 
       },
     },
   },

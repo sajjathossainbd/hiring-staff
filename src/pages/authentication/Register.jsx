@@ -157,7 +157,7 @@ const Register = () => {
 
           <p className="mt-4 text-sm">
             Already have an account?{" "}
-            <Link to="/sing-in" className="text-blue underline">
+            <Link to="/sign-in" className="text-blue underline">
               Sign In
             </Link>
           </p>

@@ -77,15 +77,22 @@ const SignIn = () => {
                         )}
                     </div>
 
+                    <div className="flex justify-end">
+                        <Link to="/reset-password" className="text-blue underline text-sm">
+                            Forgot password?
+                        </Link>
+                    </div>
+
                     <PrimaryButton formSubmit={true} title={"Login"} />
 
                     <p className="mt-4 text-sm">
-                        Don’t have an account?{" "}
+                        Already have an account?{" "}
                         <Link to="/register" className="text-blue underline">
                             Register
                         </Link>
                     </p>
                 </form>
+
             </div>
         </div>
     );

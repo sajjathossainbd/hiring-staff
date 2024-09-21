@@ -12,7 +12,7 @@ function JobCategoryButton({
         ${
           activeCategory === categoryItem
             ? "text-white bg-blue" // Active category: white text on blue background
-            : "bg-[#F8FAFF] border-[.5px] border-lightGray hover:border-blue text-blue" // Default: text blue on light background
+            : "bg-bgLightBlue border-[.5px] border-lightGray hover:border-blue text-blue" // Default: text blue on light background
         }`}
     >
       <img

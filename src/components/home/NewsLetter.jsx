@@ -1,6 +1,6 @@
-import email from "../../assets/News Letter/email.svg";
-import right from "../../assets/News Letter/undraw_newsletter_re_wrob.svg";
-import left from "../../assets/News Letter/undraw_connecting_teams_re_hno7.svg";
+import email from "../../assets/home/news-letter/email.svg";
+import right from "../../assets/home/news-letter/undraw_newsletter_re_wrob.svg";
+import left from "../../assets/home/news-letter/undraw_connecting_teams_re_hno7.svg";
 import PrimaryButton from "../shared/PrimaryButton";
 
 function NewsLetter() {

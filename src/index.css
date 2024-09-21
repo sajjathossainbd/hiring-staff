@@ -63,8 +63,11 @@ body {
   .socialBorder {
     @apply outline outline-1 outline-lightGray p-1 rounded-full text-12 cursor-pointer;
   }
-  .boxBorderHover {
-    @apply border-[.5px] border-lightGray hover:border-blue hover:-translate-y-[3px] transition-all duration-500 cursor-pointer;
+  .boxBorderHoverBlue {
+    @apply border-[.5px] border-lightGray hover:border-blue hover:-translate-y-[3px] transition-all duration-500 cursor-pointer rounded-lg;
+  }
+  .boxBorderHoverGray {
+    @apply border-[.5px] border-lightGray hover:-translate-y-1 transition-all duration-500 cursor-pointer rounded-lg;
   }
 }
 

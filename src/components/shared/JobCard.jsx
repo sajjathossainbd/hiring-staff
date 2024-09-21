@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import { IoBriefcaseOutline } from "react-icons/io5";
 import { WiTime7 } from "react-icons/wi";
-import PrimaryButton from "../../shared/PrimaryButton";
-import SecondaryButton from "../../shared/SecondaryButton";
+import PrimaryButton from "./PrimaryButton";
+import SecondaryButton from "./SecondaryButton";
 
 function JobCard(job) {
   const { job_title, job_type, job_post_time, job_description } = job;

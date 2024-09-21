@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import SectionTitle from "../../shared/SectionTitle";
-import JobCard from "./JobCard";
 import JobCategoryButton from "./JobCategoryButton";
+import JobCard from "../../shared/JobCard";
 
 const JobsDay = () => {
   const [jobs, setJobs] = useState([]);

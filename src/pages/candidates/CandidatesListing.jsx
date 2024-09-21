@@ -1,5 +1,5 @@
 function CandidatesListing() {
-  return <div>CandidatesListing</div>;
+  return <div className="container">CandidatesListing</div>;
 }
 
 export default CandidatesListing;

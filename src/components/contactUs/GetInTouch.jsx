@@ -1,4 +1,4 @@
-import box from "../../assets/Get in Touch/icon-email.svg";
+import box from "../../assets/home/get-in-touch/icon-email.svg";
 import GetInTouchImg from "../../assets/contact-us/get-in-touch.svg";
 
 function GetInTouch() {

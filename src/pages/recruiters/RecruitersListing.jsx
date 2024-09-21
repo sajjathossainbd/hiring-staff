@@ -38,10 +38,10 @@ const RecruitersListing = () => {
     },
   ];
 
-  // Alphabet array to display for filtering
+  
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
-  // Filter recruiters based on selected letter
+
   const filteredRecruiters = selectedLetter
     ? recruiters.filter((recruiter) =>
         recruiter.brandName.toUpperCase().startsWith(selectedLetter)
@@ -82,7 +82,7 @@ const RecruitersListing = () => {
         </div>
       </div>
 
-      {/* Display filtered recruiters */}
+  
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {filteredRecruiters.map((recruiter, index) => (
           <div

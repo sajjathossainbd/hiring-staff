@@ -5,6 +5,7 @@ import Home from "../pages/home/Home";
 import AboutUs from "../pages/aboutUs/AboutUs";
 import ContactUs from "../pages/contactUs/ContactUs";
 import Pricing from "../pages/Pricing/Pricing";
+import RecruitersListing from "../pages/recruiters/RecruitersListing";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/recruiters",
+        element: <RecruitersListing/>,
       },
       {
         path: "/about",

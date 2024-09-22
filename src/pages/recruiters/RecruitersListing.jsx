@@ -1,44 +1,44 @@
-import { useState } from "react";
-import teslaimage from "/src/assets/recruiter/tasla.svg";
-import fireworksImage from "/src/assets/recruiter/firework.svg";
-import Banner from "/src/assets/pricing/pricing-page-banner.png";
+import { useEffect, useState } from "react";
 import RecruiterCard from "../../components/recruiter/RecruiterCard";
+import { Helmet } from "react-helmet-async";
+import RecruiterBrowser from "../../components/recruiter/RecruiterBrowser";
+import Filters from "../../components/recruiter/Filters";
+import Pagination from "../../components/recruiter/Pagination";
+
+
+
 
 const RecruitersListing = () => {
+  const [recruiters, setRecruiters] = useState([]);
   const [selectedLetter, setSelectedLetter] = useState("");
+  const [showCount, setShowCount] = useState(16); // show count
+  const [sortOrder, setSortOrder] = useState("default"); //sort order
+  const [currentPage, setCurrentPage] = useState(1); // Tracking current page
 
-  const recruiters = [
-    {
-      brandImage: teslaimage,
-      brandName: "Tesla",
-      ratings: 46,
-      location: "Chicago, US",
-      openJobs: 0,
-    },
-    {
-      brandImage: fireworksImage,
-      brandName: "Fireworks",
-      ratings: 38,
-      location: "Chicago, US",
-      openJobs: 0,
-    },
-    {
-      brandImage: teslaimage,
-      brandName: "Aceable, Inc.",
-      ratings: 50,
-      location: "Chicago, US",
-      openJobs: 0,
-    },
-    {
-      brandImage: fireworksImage,
-      brandName: "Ibotta, Inc.",
-      ratings: 48,
-      location: "Chicago, US",
-      openJobs: 2,
-    },
-  ];
+  useEffect(() => {
+    fetch('/recruiters.json')
+      .then((response) => response.json())
+      .then((data) => {
+        setRecruiters(data);
+      })
+      .catch((error) => console.error('Error fetching recruiters:', error));
+  }, []);
 
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
+  // Sorting logic
+  const sortRecruiters = () => {
+    if (sortOrder === "latest") {
+      return [...filteredRecruiters].sort(
+        (a, b) => new Date(b.date) - new Date(a.date)
+      );
+    } else if (sortOrder === "title") {
+      return [...filteredRecruiters].sort((a, b) =>
+        a.brandName.localeCompare(b.brandName)
+      );
+    }
+    return filteredRecruiters;
+  };
 
   const filteredRecruiters = selectedLetter
     ? recruiters.filter((recruiter) =>
@@ -46,42 +46,59 @@ const RecruitersListing = () => {
       )
     : recruiters;
 
-  return (
-    <div className="container">
-      <div
-        className="bg-cover bg-center py-10 rounded-lg mt-4"
-        style={{ backgroundImage: `url(${Banner})` }}
-      >
-        <div className="relative container mx-auto flex flex-col lg:flex-col gap-3 items-center justify-center">
-          <div>
-            <h3 className="flex justify-center">Browse Recruiters</h3>
-            <p>Browse through recruiters by name and see whos hiring</p>
-          </div>
-          <div className="flex items-center gap-2 px-3 py-1 rounded text-14">
-            <div className="flex flex-wrap gap-4 justify-center space-x-2 mt-4">
-              {alphabet.map((letter) => (
-                <button
-                  key={letter}
-                  className={`px-4 py-2 rounded-lg ${
-                    selectedLetter === letter
-                      ? "bg-blue text-white"
-                      : "bg-lightGray text-gray-800 hover:bg-gray-300"
-                  }`}
-                  onClick={() => setSelectedLetter(letter)}
-                >
-                  {letter}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+  const sortedRecruiters = sortRecruiters();
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
-        {filteredRecruiters.map((recruiter, index) => (
-          <RecruiterCard key={index} {...recruiter} />
+  // Calculate the total number of pages
+  const totalPages = Math.ceil(sortedRecruiters.length / showCount);
+
+  // Slice recruiters for the current page
+  const recruitersToShow = sortedRecruiters.slice(
+    (currentPage - 1) * showCount,
+    currentPage * showCount
+  );
+
+  // Pagination change handler
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  return (
+    <div className="container mx-auto">
+       <Helmet>
+        <title>Hiring Staff - Recruiters</title>
+      </Helmet>
+      {/* Banner Section & Recruiter Browser */}
+      <RecruiterBrowser 
+        alphabet={alphabet} 
+        selectedLetter={selectedLetter} 
+        setSelectedLetter={setSelectedLetter} 
+        setCurrentPage={setCurrentPage} 
+      />
+
+      {/* Filter and Sorting Section */}
+      <Filters 
+        showCount={showCount} 
+        setShowCount={setShowCount} 
+        setCurrentPage={setCurrentPage} 
+        sortOrder={sortOrder} 
+        setSortOrder={setSortOrder} 
+        currentPage={currentPage} 
+        sortedRecruiters={sortedRecruiters} 
+      />
+
+      {/* Recruiter listing */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {recruitersToShow.map((recruiter, index) => (
+          <RecruiterCard key={index} recruiter={recruiter} />
         ))}
       </div>
+
+      {/* Pagination*/}
+      <Pagination 
+        currentPage={currentPage} 
+        totalPages={totalPages} 
+        handlePageChange={handlePageChange} 
+      />
     </div>
   );
 };

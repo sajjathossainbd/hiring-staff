@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet-async";
 function CandidatesListing() {
   const candidates = [
     {
+      id: 1,
       name: "John Doe",
       language: "Python",
       ratings: 4.7,
@@ -19,6 +20,7 @@ function CandidatesListing() {
       img: "https://via.placeholder.com/150",
     },
     {
+      id: 2,
       name: "Sara White",
       language: "JavaScript",
       ratings: 4.5,
@@ -30,6 +32,7 @@ function CandidatesListing() {
       img: "https://via.placeholder.com/150",
     },
     {
+      id: 3,
       name: "Rahul Sharma",
       language: "Java",
       ratings: 4.9,
@@ -41,6 +44,7 @@ function CandidatesListing() {
       img: "https://via.placeholder.com/150",
     },
     {
+      id: 4,
       name: "Emily Davis",
       language: "PHP",
       ratings: 4.6,
@@ -52,6 +56,7 @@ function CandidatesListing() {
       img: "https://via.placeholder.com/150",
     },
     {
+      id: 5,
       name: "Mohammed Ali",
       language: "C#",
       ratings: 4.8,
@@ -63,6 +68,7 @@ function CandidatesListing() {
       img: "https://via.placeholder.com/150",
     },
     {
+      id: 6,
       name: "Li Wei",
       language: "Python",
       ratings: 4.7,
@@ -74,6 +80,7 @@ function CandidatesListing() {
       img: "https://via.placeholder.com/150",
     },
     {
+      id: 7,
       name: "Olga Petrova",
       language: "Ruby",
       ratings: 4.6,
@@ -85,6 +92,7 @@ function CandidatesListing() {
       img: "https://via.placeholder.com/150",
     },
     {
+      id: 8,
       name: "Carlos Mendoza",
       language: "PHP",
       ratings: 4.4,
@@ -96,6 +104,7 @@ function CandidatesListing() {
       img: "https://via.placeholder.com/150",
     },
     {
+      id: 9,
       name: "Akira Tanaka",
       language: "JavaScript",
       ratings: 4.5,
@@ -107,6 +116,7 @@ function CandidatesListing() {
       img: "https://via.placeholder.com/150",
     },
     {
+      id: 10,
       name: "Fatima Hassan",
       language: "Python",
       ratings: 4.9,
@@ -118,7 +128,7 @@ function CandidatesListing() {
       img: "https://via.placeholder.com/150",
     },
   ];
-
+  
   const alphabets = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -224,7 +234,7 @@ function CandidatesListing() {
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 mt-3">
         {displayedCandidates.length > 0 ? (
           displayedCandidates.map((candidate, index) => (
-            <CandidateCard key={index} candidate={candidate} />
+            <CandidateCard key={index} candidate={candidate} index={index} />
           ))
         ) : (
           <p className="text-center w-full">

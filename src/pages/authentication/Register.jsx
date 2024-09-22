@@ -1,9 +1,18 @@
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import PrimaryButton from "../../components/shared/PrimaryButton";
+import useAuth from "../../hooks/useAuth";
+import { updateProfile } from "firebase/auth";
+import toast from "react-hot-toast";
 
 const Register = () => {
+
+  const { registerUser, googleSignIn } = useAuth()
+  const navigate = useNavigate();
+  const location = useLocation();
+
+
   const {
     register,
     handleSubmit,
@@ -12,9 +21,60 @@ const Register = () => {
 
   const onSubmit = (data) => {
 
-    console.log(data);
+    const email = data.email
+    const password = data.password
+    const userName = data.userName
+    const photoUrl = data.photoUrl
+
+    const userInfo = {
+
+      email: email,
+      name: userName,
+      photo: photoUrl
+
+    }
+    console.log(userInfo);
+
+    // Sign up with email, password authentication 
+    registerUser(email, password)
+      .then((result) => {
+        updateProfile(result.user, {
+          displayName: userName,
+          photoURL: photoUrl,
+        })
+          .then(() => {
+            toast.success("Successfully register !")
+            navigate(location?.state ? location.state : '/')
+          })
+          .catch()
+      })
+      .catch(err => {
+        toast.error(err.message)
+      })
 
   };
+
+
+
+  // Sign in with google authentication 
+  const handleGoogleRegister = () => {
+
+    googleSignIn()
+      .then((result) => {
+
+        const userInfo = {
+          email: result.user?.email,
+          name: result.user?.displayName,
+          photo: result.user?.photoURL
+        }
+
+        console.log(userInfo);
+
+        toast.success("Successfully google register!")
+        navigate(location?.state ? location.state : '/')
+
+      })
+  }
 
 
   return (
@@ -24,7 +84,10 @@ const Register = () => {
           <p className="text-blue">Register</p>
           <h3>Start For Free Today</h3>
           <p>Access to all features, no credit card required</p>
-          <button className="flex items-center gap-2 justify-center font-medium py-2 w-full border rounded-lg hover:scale-95 transition-all duration-500">
+          <button
+            onClick={handleGoogleRegister}
+            type="button"
+            className="flex items-center gap-2 justify-center font-medium py-2 w-full border rounded-lg hover:scale-95 transition-all duration-500">
             <span className="text-xl">
               <FcGoogle />
             </span>{" "}
@@ -73,6 +136,22 @@ const Register = () => {
             )}
           </div>
 
+          <div>
+            <label htmlFor="photo" className="block text-left font-medium pb-1">
+              Photo URL*
+            </label>
+            <input
+              type="url"
+              id="photo"
+              placeholder="Photo URL"
+              className="input input-bordered w-full"
+              {...register("photoUrl", { required: "Photo link is required" })} />
+            {errors.username && (
+              <p className="text-red-500 text-sm">
+                {errors.username.message}
+              </p>
+            )}
+          </div>
           <div>
             <label htmlFor="username" className="block text-left font-medium pb-1">
               Username*

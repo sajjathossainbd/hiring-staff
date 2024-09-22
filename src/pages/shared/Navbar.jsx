@@ -1,11 +1,17 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import PrimaryButton from "../../components/shared/PrimaryButton";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
+
+
   const [dropDownState, setDropDownState] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const dropDownMenuRef = useRef();
+
+  const { user, logOut } = useAuth();
+
 
   useEffect(() => {
     const closeDropDown = (e) => {
@@ -34,14 +40,18 @@ const Navbar = () => {
 
   const navLinks = [
     { to: "/", label: "Home" },
-    { to: "/about", label: "About" },
-    { to: "/contact", label: "Contact" },
-    { to: "/pricing", label: "Pricing" },
     { to: "/jobs-listing", label: "Jobs" },
     { to: "/recruiters-listing", label: "Recruiters" },
     { to: "/candidates-listing", label: "Candidates" },
+    { to: "/about", label: "About" },
+    { to: "/contact", label: "Contact" },
+    { to: "/pricing", label: "Pricing" },
     { to: "/blogs", label: "Blogs" },
   ];
+
+  if (user) {
+    navLinks.push({ to: "/dashboard", label: "Dashboard" });
+  }
 
   return (
     <div className="backdrop-blur-sm sticky top-0 z-50">
@@ -79,15 +89,22 @@ const Navbar = () => {
           </ul>
 
           <div className="hidden md:hidden lg:hidden xl:flex items-center lg:gap-5 md:gap-3">
-            {/* <NavLink
-              to="/register"
-              className="underline md:hidden lg:flex hover:decoration-dotted hover:-translate-y-1 transition-all"
-            >
-              <h6 className="hover:text-blue">Register</h6>
-            </NavLink> */}
-            <div className="mr-5">
-              <PrimaryButton title={"Sign in"} />
-            </div>
+
+            {
+              user ?
+
+                <div className="mr-5">
+                  <PrimaryButton logout={true} onClickBtn={logOut} title={"Log out"} />
+                </div>
+
+                :
+                <Link to={"sign-in"}>
+                  <div className="mr-5">
+                    <PrimaryButton title={"Sign in"} />
+                  </div>
+                </Link>
+
+            }
 
             {/* Dark Mode Toggle */}
             <label className="swap swap-rotate text-darkBlue flex items-center">
@@ -155,21 +172,16 @@ const Navbar = () => {
                     </NavLink>
                   </li>
                 ))}
-                <li className="cursor-pointer px-6 py-2 text-darkBlue hover:bg-sky-600">
-                  <NavLink
-                    to="/register"
-                    className={({ isActive }) =>
-                      `${isActive ? "text-white" : "text-darkBlue"}`
-                    }
-                  >
-                    Register
-                  </NavLink>
-                </li>
-                <li className="cursor-pointer px-6 py-2 text-darkBlue hover:bg-sky-600">
-                  <Link to="/login">
-                    <button className="text-darkBlue">Sign in</button>
-                  </Link>
-                </li>
+                {user ?
+                  <li className="cursor-pointer px-6 py-2 text-darkBlue hover:bg-sky-600">
+                    <button onClick={logOut} className="text-red-500 font-semibold">Sign out</button>
+                  </li>
+                  :
+                  <li className="cursor-pointer px-6 py-2 text-darkBlue hover:bg-sky-600">
+                    <Link to="/sign-in">
+                      <button className="text-darkBlue font-semibold">Sign in</button>
+                    </Link>
+                  </li>}
               </ul>
             )}
           </div>

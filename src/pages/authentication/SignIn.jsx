@@ -1,9 +1,20 @@
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import PrimaryButton from "../../components/shared/PrimaryButton";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
+import { useEffect } from "react";
 
 const SignIn = () => {
+
+
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    const { signInUser, googleSignIn, user } = useAuth()
+
+
     const {
         register,
         handleSubmit,
@@ -11,8 +22,48 @@ const SignIn = () => {
     } = useForm();
 
     const onSubmit = (data) => {
-        console.log(data);
+
+        const email = data.email
+        const password = data.password
+
+
+        // Sign in with email,password authentication 
+        signInUser(email, password)
+            .then(() => {
+                toast.success("Successfully Login !")
+                navigate(location?.state ? location.state : "/")
+            })
+            .catch(() => {
+                toast.warn("User not found. Please check your password")
+            })
     };
+
+
+    // Sign in with google authentication 
+    const handleGoogleLogin = () => {
+        googleSignIn()
+            .then((result) => {
+
+                const userInfo = {
+                    email: result.user?.email,
+                    name: result.user?.displayName,
+                    photo: result.user?.photoURL
+                }
+
+                console.log(userInfo);
+
+                toast.success("Successfully Google Login !")
+                navigate(location?.state ? location.state : "/")
+
+
+            })
+    }
+
+    useEffect(() => {
+        if (user) {
+            navigate(location.state || "/")
+        }
+    }, [location.state, navigate, user])
 
     return (
         <div className="container">
@@ -21,7 +72,9 @@ const SignIn = () => {
                     <p className="text-blue">Login</p>
                     <h3>Welcome Back!</h3>
                     <p>Access your account by signing in</p>
-                    <button className="flex items-center gap-2 justify-center font-medium py-2 w-full border rounded-lg hover:scale-95 transition-all duration-500">
+                    <button
+                        onClick={handleGoogleLogin}
+                        className="flex items-center gap-2 justify-center font-medium py-2 w-full border rounded-lg hover:scale-95 transition-all duration-500">
                         <span className="text-xl">
                             <FcGoogle />
                         </span>{" "}

@@ -35,7 +35,7 @@ const Register = () => {
     }
     console.log(userInfo);
 
-    // Sign in with google authentication 
+    // Sign up with email, password authentication 
     registerUser(email, password)
       .then((result) => {
         updateProfile(result.user, {

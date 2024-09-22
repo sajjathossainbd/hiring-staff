@@ -35,12 +35,46 @@ const Register = () => {
     }
     console.log(userInfo);
 
-    
+    // Sign in with google authentication 
+    registerUser(email, password)
+      .then((result) => {
+        updateProfile(result.user, {
+          displayName: userName,
+          photoURL: photoUrl,
+        })
+          .then(() => {
+            toast.success("Successfully register !")
+            navigate(location?.state ? location.state : '/')
+          })
+          .catch()
+      })
+      .catch(err => {
+        toast.error(err.message)
+      })
+
   };
 
 
 
-  
+  // Sign in with google authentication 
+  const handleGoogleRegister = () => {
+
+    googleSignIn()
+      .then((result) => {
+
+        const userInfo = {
+          email: result.user?.email,
+          name: result.user?.displayName,
+          photo: result.user?.photoURL
+        }
+
+        console.log(userInfo);
+
+        toast.success("Successfully google register!")
+        navigate(location?.state ? location.state : '/')
+
+      })
+  }
 
 
   return (

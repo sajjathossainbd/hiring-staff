@@ -12,7 +12,12 @@
   "dependencies": {
     "aos": "^2.3.4",
     "axios": "^1.7.7",
+<<<<<<< HEAD
     "firebase": "^10.13.2",
+=======
+    "firebase": "^10.13.1",
+    "leaflet": "^1.9.4",
+>>>>>>> 90e835914de6b1ba2ba575e6706dbf04eacc6ebf
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -20,6 +25,7 @@
     "react-hook-form": "^7.53.0",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.3.0",
+    "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.26.2",
     "react-star-ratings": "^2.3.0",
     "sweetalert2": "^11.14.0",

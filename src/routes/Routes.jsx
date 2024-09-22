@@ -18,7 +18,6 @@ import Register from "../pages/authentication/Register";
 import SignIn from "../pages/authentication/SignIn";
 import ResetPassword from "../pages/authentication/ResetPassword";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -46,7 +45,7 @@ const router = createBrowserRouter([
         element: <JobsListing />,
       },
       {
-        path: "/job-details",
+        path: "/job-details/:id",
         element: <JobDetails />,
       },
       {

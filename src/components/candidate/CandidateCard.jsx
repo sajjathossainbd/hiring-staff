@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import { CiClock2, CiLocationOn } from "react-icons/ci";
-import { FaLocationArrow } from "react-icons/fa";
 import StarRatings from "react-star-ratings";
 
 function CandidateCard({ candidate }) {
@@ -14,7 +14,7 @@ function CandidateCard({ candidate }) {
     img,
   } = candidate;
   return (
-    <div className=" border border-lightGray rounded-lg overflow-hidden shadow-sm bg-bgLightBlue hover:bg-white hover:-translate-y-1 duration-300">
+    <div className=" border border-lightGray rounded-lg overflow-hidden shadow-sm  hover:-translate-y-1 duration-300">
       <div className="p-6">
         <div className="flex items-center">
           <img src={img} alt="Profile" className="w-16 h-16 rounded-full" />

@@ -5,7 +5,7 @@ import { Toaster } from "react-hot-toast";
 
 function Root() {
   return (
-    <div>
+    <div className="dark:bg-darkBlue">
       <Navbar />
       <Outlet />
       <Footer />

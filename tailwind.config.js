@@ -17,6 +17,12 @@ export default {
         gray: "#4F5E64", // paragraphs tags
         lightGray: "#A0Abb8", //  halka light color
 
+        // dark theme text color
+        lightText: "#E0E7F6",
+
+        // dark theme button color
+        lightBlue: "#3C65F5",
+
         // background colors
         bgLightBlue: "#F8FAFF",
         bgDeepBlue: "E0E7F6",

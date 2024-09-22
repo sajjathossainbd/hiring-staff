@@ -12,9 +12,10 @@ const Banner = () => {
   ];
 
   return (
-    <section>
-      <div className="bg-banner-image bg-center bg-cover px-4 lg:pb-10">
-        <div className="container">
+    <section className="">
+      {/* Banner Image Backround set class name - bg-banner-image bg-center bg-cover  */}
+      <div className="dark:bg-darkBlue px-4 lg:pb-10">
+        <div className="container ">
           <div className="flex flex-col-reverse lg:flex-row lg:items-center justify-center gap-20">
             <div className="lg:w-1/2 w-full flex flex-col gap-8">
               <h2>
@@ -33,9 +34,15 @@ const Banner = () => {
               <SearchByFilter />
               {/* popular researches */}
               <div>
-                <strong className="text-sm">Popular Researches: </strong>
+                <strong className="text-14 text-lightText">
+                  Popular Researches:{" "}
+                </strong>
                 {popularSearches.map((searches, index) => (
-                  <Link className="text-sm hover:underline" key={index} to={""}>
+                  <Link
+                    className="text-14 hover:underline text-lightText"
+                    key={index}
+                    to={""}
+                  >
                     {searches} ,
                   </Link>
                 ))}

@@ -2,7 +2,7 @@ function GrowthSectionCard(data) {
   const { title, subTitle,  targetCount } = data;
 
   return (
-    <div className="bg-white p-4 rounded-lg">
+    <div className="p-4 rounded-lg">
       <p className="font-medium text-gray-500 mb-2">
         {subTitle}
       </p>

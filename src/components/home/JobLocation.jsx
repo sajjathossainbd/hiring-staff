@@ -117,12 +117,12 @@ const JobLocation = () => {
                 alt=""
               />
               <div className="pt-3">
-                <h3 className="text-xl font-semibold">{job.country}</h3>
-                <div className="flex justify-between pt-2">
-                  <p className="text-gray-600 text-sm">
+                <h4 className="dark:text-darkBlue">{job.country}</h4>
+                <div className="flex justify-between pt-2 ">
+                  <p className="text-14 dark:text-gray">
                     {job.companies} companies
                   </p>
-                  <p className="text-gray-500 text-sm">
+                  <p className="text-14 dark:text-gray">
                     {job.vacancies > 0 ? job.vacancies + " vacancies" : "None"}
                   </p>
                 </div>

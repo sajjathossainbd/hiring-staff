@@ -1,5 +1,6 @@
-// RecruiterBrowser.js
-import React from 'react';
+/* eslint-disable react/prop-types */
+
+
 
 const RecruiterBrowser = ({ alphabet, selectedLetter, setSelectedLetter, setCurrentPage }) => {
   return (

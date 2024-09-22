@@ -1,4 +1,4 @@
-// Pagination.js
+
 
 
 const Pagination = ({ currentPage, totalPages, handlePageChange }) => {

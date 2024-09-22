@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import RecruiterCard from "../../components/recruiter/RecruiterCard";
-import Pagination from "./Pagination";
-import Filters from "./Filters";
+
 import { Helmet } from "react-helmet-async";
-import RecruiterBrowser from "./RecruiterBrowser";
+import RecruiterBrowser from "../../components/recruiter/RecruiterBrowser";
+import Filters from "../../components/recruiter/Filters";
+import Pagination from "../../components/recruiter/Pagination";
+
+
 
 
 

@@ -1,4 +1,5 @@
-// Filters.js
+/* eslint-disable react/prop-types */
+
 
 
 const Filters = ({ showCount, setShowCount, setCurrentPage, sortOrder, setSortOrder, currentPage, sortedRecruiters }) => {

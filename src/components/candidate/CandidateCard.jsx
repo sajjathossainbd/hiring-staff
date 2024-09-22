@@ -11,13 +11,13 @@ function CandidateCard({ candidate }) {
     ratings,
     about_me,
     skills,
-    location,
+    area,
     charge_per_hour,
     img,
   } = candidate;
   return (
     <div className=" border border-lightGray rounded-lg overflow-hidden shadow-sm bg-bgLightBlue hover:bg-white hover:-translate-y-1 duration-300">
-      <Link to={`/candidate-details/${id}`} state={{candidate}}>
+      <Link to={`/candidate-details/${id}`} state={{ candidate }}>
         <div className="p-6">
           <div className="flex items-center">
             <img src={img} alt="Profile" className="w-16 h-16 rounded-full" />
@@ -58,7 +58,7 @@ function CandidateCard({ candidate }) {
           <div className="mt-4 text-12 flex justify-between items-center">
             <span className="flex items-center gap-1">
               <CiLocationOn />
-              {location}
+              {area}
             </span>
             <span className="flex items-center gap-1">
               <CiClock2 />${charge_per_hour}/hour

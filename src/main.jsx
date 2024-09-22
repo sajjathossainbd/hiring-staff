@@ -8,12 +8,15 @@ import { HelmetProvider } from "react-helmet-async";
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import AuthProvider from "./contextProvider/AuthProvider.jsx";
 AOS.init();
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <HelmetProvider>
-      <RouterProvider router={router} />
-    </HelmetProvider>
+    <AuthProvider>
+      <HelmetProvider>
+        <RouterProvider router={router} />
+      </HelmetProvider>
+    </AuthProvider>
   </StrictMode>
 );

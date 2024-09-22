@@ -60,7 +60,7 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:hidden lg:hidden xl:flex items-center gap-7">
+          <ul className="hidden md:hidden lg:hidden xl:flex items-center gap-5">
             {navLinks.map(({ to, label }) => (
               <li key={to} className="group flex cursor-pointer flex-col">
                 <NavLink
@@ -79,12 +79,12 @@ const Navbar = () => {
           </ul>
 
           <div className="hidden md:hidden lg:hidden xl:flex items-center lg:gap-5 md:gap-3">
-            <NavLink
+            {/* <NavLink
               to="/register"
               className="underline md:hidden lg:flex hover:decoration-dotted hover:-translate-y-1 transition-all"
             >
               <h6 className="hover:text-blue">Register</h6>
-            </NavLink>
+            </NavLink> */}
             <div className="mr-5">
               <PrimaryButton title={"Sign in"} />
             </div>

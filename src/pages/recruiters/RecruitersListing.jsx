@@ -1,46 +1,43 @@
-import { useState } from "react";
-import teslaimage from "/src/assets/recruiter/tasla.svg";
-import fireworksImage from "/src/assets/recruiter/firework.svg";
-import Banner from "/src/assets/pricing/pricing-page-banner.png";
+import { useEffect, useState } from "react";
+import RecruiterCard from "../../components/recruiter/RecruiterCard";
+import Pagination from "./Pagination";
+import Filters from "./Filters";
+import { Helmet } from "react-helmet-async";
+import RecruiterBrowser from "./RecruiterBrowser";
+
+
 
 const RecruitersListing = () => {
-  
+  const [recruiters, setRecruiters] = useState([]);
   const [selectedLetter, setSelectedLetter] = useState("");
+  const [showCount, setShowCount] = useState(16); // show count
+  const [sortOrder, setSortOrder] = useState("default"); //sort order
+  const [currentPage, setCurrentPage] = useState(1); // Tracking current page
 
-  const recruiters = [
-    {
-      brandImage: teslaimage,
-      brandName: "Tesla",
-      ratings: 46,
-      location: "Chicago, US",
-      openJobs: 0,
-    },
-    {
-      brandImage: fireworksImage,
-      brandName: "Fireworks",
-      ratings: 38,
-      location: "Chicago, US",
-      openJobs: 0,
-    },
-    {
-      brandImage: teslaimage,
-      brandName: "Aceable, Inc.",
-      ratings: 50,
-      location: "Chicago, US",
-      openJobs: 0,
-    },
-    {
-      brandImage: fireworksImage,
-      brandName: "Ibotta, Inc.",
-      ratings: 48,
-      location: "Chicago, US",
-      openJobs: 2,
-    },
-  ];
+  useEffect(() => {
+    fetch('/recruiters.json')
+      .then((response) => response.json())
+      .then((data) => {
+        setRecruiters(data);
+      })
+      .catch((error) => console.error('Error fetching recruiters:', error));
+  }, []);
 
-  
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
+  // Sorting logic
+  const sortRecruiters = () => {
+    if (sortOrder === "latest") {
+      return [...filteredRecruiters].sort(
+        (a, b) => new Date(b.date) - new Date(a.date)
+      );
+    } else if (sortOrder === "title") {
+      return [...filteredRecruiters].sort((a, b) =>
+        a.brandName.localeCompare(b.brandName)
+      );
+    }
+    return filteredRecruiters;
+  };
 
   const filteredRecruiters = selectedLetter
     ? recruiters.filter((recruiter) =>
@@ -48,85 +45,59 @@ const RecruitersListing = () => {
       )
     : recruiters;
 
+  const sortedRecruiters = sortRecruiters();
+
+  // Calculate the total number of pages
+  const totalPages = Math.ceil(sortedRecruiters.length / showCount);
+
+  // Slice recruiters for the current page
+  const recruitersToShow = sortedRecruiters.slice(
+    (currentPage - 1) * showCount,
+    currentPage * showCount
+  );
+
+  // Pagination change handler
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto">
+       <Helmet>
+        <title>Hiring Staff - Recruiters</title>
+      </Helmet>
+      {/* Banner Section & Recruiter Browser */}
+      <RecruiterBrowser 
+        alphabet={alphabet} 
+        selectedLetter={selectedLetter} 
+        setSelectedLetter={setSelectedLetter} 
+        setCurrentPage={setCurrentPage} 
+      />
 
-      <div>
-        <div
-          className="bg-cover bg-center mx-8 my-10"
-          style={{ backgroundImage: `url(${Banner})` }}
-        >
-          <div className="relative container mx-auto flex flex-col lg:flex-col gap-3 items-center justify-center">
-            <div>
-              <h3 className="flex justify-center">Browse Recruiters</h3>
-              <p>Browse through recruiters by name and see who's hiring</p>
-            </div>
-            <div className="flex items-center gap-2 bg-white px-3 py-1 rounded text-14">
-              <div className="flex justify-center space-x-2 mb-4">
-                {alphabet.map((letter) => (
-                  <button
-                    key={letter}
-                    className={`px-4 py-2 rounded-lg ${
-                      selectedLetter === letter
-                        ? "bg-blue text-white"
-                        : "bg-lightGray text-gray-800 hover:bg-gray-300"
-                    }`}
-                    onClick={() => setSelectedLetter(letter)}
-                  >
-                    {letter}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Filter and Sorting Section */}
+      <Filters 
+        showCount={showCount} 
+        setShowCount={setShowCount} 
+        setCurrentPage={setCurrentPage} 
+        sortOrder={sortOrder} 
+        setSortOrder={setSortOrder} 
+        currentPage={currentPage} 
+        sortedRecruiters={sortedRecruiters} 
+      />
 
-  
+      {/* Recruiter listing */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {filteredRecruiters.map((recruiter, index) => (
-          <div
-            key={index}
-            className="w-5/6 p-4 border-[#B4C0E0] hover:-translate-y-1 hover:bg-[white] transition duration-300 bg-[#F8FAFF] shadow-md rounded-lg mx-auto"
-          >
-            <img
-              src={recruiter.brandImage}
-              alt={recruiter.brandName}
-              className="w-20 h-20 mx-auto mb-4 pt-8"
-            />
-            <h3 className="text-xl font-semibold text-center text-darkBlue hover:text-blue">
-              {recruiter.brandName}
-            </h3>
-            <div className="flex justify-center items-center mt-2">
-              <div className="text-yellow-500">
-                {Array.from({ length: 5 }, (_, index) => (
-                  <span
-                    key={index}
-                    className={`text-xl ${
-                      index < recruiter.ratings / 10
-                        ? "text-yellow-500"
-                        : "text-gray-300"
-                    }`}
-                  >
-                    ★
-                  </span>
-                ))}
-              </div>
-              <span className="ml-2 ">({recruiter.ratings})</span>
-            </div>
-            <p className=" text-center text-gray-600 mt-2">
-              {recruiter.location}
-            </p>
-            <div className="mt-8 flex justify-center mb-8">
-              <button className="bg-[#E0E6F7] hover:text-blue p-3 rounded-md text-darkBlue font-medium transition-all duration-500 text-14">
-                {recruiter.openJobs > 0
-                  ? `${recruiter.openJobs} Open Jobs`
-                  : "No Open Job"}
-              </button>
-            </div>
-          </div>
+        {recruitersToShow.map((recruiter, index) => (
+          <RecruiterCard key={index} recruiter={recruiter} />
         ))}
       </div>
+
+      {/* Pagination*/}
+      <Pagination 
+        currentPage={currentPage} 
+        totalPages={totalPages} 
+        handlePageChange={handlePageChange} 
+      />
     </div>
   );
 };

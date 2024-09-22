@@ -1,11 +1,19 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import PrimaryButton from "../../components/shared/PrimaryButton";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
+
+
   const [dropDownState, setDropDownState] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const dropDownMenuRef = useRef();
+
+  const { user, logOut } = useAuth();
+
+  // const [open, setOpen] = useState(false);
+  // const dropDownRef = useRef(null);
 
   useEffect(() => {
     const closeDropDown = (e) => {
@@ -43,6 +51,10 @@ const Navbar = () => {
     { to: "/blogs", label: "Blogs" },
   ];
 
+  if (user) {
+    navLinks.push({ to: "/dashboard", label: "Dashboard" });
+  }
+
   return (
     <div className="backdrop-blur-sm sticky top-0 z-50">
       <div className="bg-bgLightWhite">
@@ -79,13 +91,36 @@ const Navbar = () => {
           </ul>
 
           <div className="hidden md:hidden lg:hidden xl:flex items-center lg:gap-5 md:gap-3">
-            
-            <Link to={"sign-in"}>
-              <div className="mr-5">
-                <PrimaryButton title={"Sign in"} />
-              </div>
-            </Link>
 
+            {
+              user ?
+                // <div ref={dropDownRef} className="relative mx-2 w-fit text-black">
+                //   <button onClick={() => setOpen((prev) => !prev)}>
+                //     <img width={40} height={40} className="lg:w-12 w-10 border-2 border-blue rounded-full bg-slate-500 object-cover transition-transform duration-300 hover:scale-105 hover:opacity-80" src={user?.photoURL} alt="avatar" />
+                //   </button>
+                //   <ul className={`${open ? 'visible opacity-100 transition-opacity duration-300' : 'invisible opacity-0'} absolute right-0 top-12 z-50 w-48 rounded-sm bg-slate-200 shadow-lg`}>
+                //     <li className='hover:bg-slate-400 inter bg-slate-300 rounded-sm px-6 py-2'>
+                //       {user.displayName}
+                //     </li>
+                //     <li className='hover:bg-slate-300 inter rounded-sm px-6 py-2'>
+                //       <Link>Dashboard</Link>
+                //     </li>
+                //     <li className='text-red-500 inter hover:bg-red-600 hover:text-white rounded-sm px-6 py-2 cursor-pointer font-semibold' onClick={logOut}>LogOut</li>
+                //   </ul>
+                // </div>
+
+                <div className="mr-5">
+                  <PrimaryButton logout={true} onClickBtn={logOut} title={"Log out"} />
+                </div>
+
+                :
+                <Link to={"sign-in"}>
+                  <div className="mr-5">
+                    <PrimaryButton title={"Sign in"} />
+                  </div>
+                </Link>
+
+            }
 
             {/* Dark Mode Toggle */}
             <label className="swap swap-rotate text-darkBlue flex items-center">
@@ -153,21 +188,16 @@ const Navbar = () => {
                     </NavLink>
                   </li>
                 ))}
-                <li className="cursor-pointer px-6 py-2 text-darkBlue hover:bg-sky-600">
-                  <NavLink
-                    to="/register"
-                    className={({ isActive }) =>
-                      `${isActive ? "text-white" : "text-darkBlue"}`
-                    }
-                  >
-                    Register
-                  </NavLink>
-                </li>
-                <li className="cursor-pointer px-6 py-2 text-darkBlue hover:bg-sky-600">
-                  <Link to="/login">
-                    <button className="text-darkBlue">Sign in</button>
-                  </Link>
-                </li>
+                {user ?
+                  <li className="cursor-pointer px-6 py-2 text-darkBlue hover:bg-sky-600">
+                    <button onClick={logOut} className="text-red-500 font-semibold">Sign out</button>
+                  </li>
+                  :
+                  <li className="cursor-pointer px-6 py-2 text-darkBlue hover:bg-sky-600">
+                    <Link to="/sign-in">
+                      <button className="text-darkBlue font-semibold">Sign in</button>
+                    </Link>
+                  </li>}
               </ul>
             )}
           </div>

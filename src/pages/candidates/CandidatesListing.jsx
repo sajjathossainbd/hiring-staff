@@ -49,7 +49,7 @@ function CandidatesListing() {
       language: "PHP",
       ratings: 4.6,
       about_me:
-        "Full-stack PHP developer with extensive knowledge of Laravel and modern web technologies.",
+        "Full-stack PHP  developer with extensive knowledge of Laravel and modern web technologies.",
       skills: ["App Development", "Figma", "Adobe Photoshop", "Laravel"],
       area: "Sydney, Australia",
       charge_per_hour: 40,

@@ -3,6 +3,7 @@ import SectionTitle from "../../components/shared/SectionTitle";
 import CandidateCard from "./../../components/candidate/CandidateCard";
 import { BiArrowFromRight } from "react-icons/bi";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { Helmet } from "react-helmet-async";
 
 function CandidatesListing() {
   const candidates = [
@@ -121,7 +122,7 @@ function CandidatesListing() {
   const alphabets = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(3);
+  const [itemsPerPage, setItemsPerPage] = useState(8);
   const [sortBy, setSortBy] = useState("default");
   const [selectedLetter, setSelectedLetter] = useState("");
 
@@ -158,20 +159,23 @@ function CandidatesListing() {
   };
 
   return (
-    <div className="container mx-auto px-2">
-      <div className="bg-bgLightBlue p-12 py-12 space-y-6">
+    <div className="container mx-auto">
+      <Helmet>
+        <title>Hiring Staff - Candidates</title>
+      </Helmet>
+      <div className="bg-bgLightBlue p-4 md:px-24 md:py-8 space-y-6">
         <SectionTitle
           title={"Browse Candidates"}
           subTitle={
             "Browse top-rated professionals across various skills and locations, tailored to meet your project needs"
           }
         />
-        <div className="bg-white border border-lightGray rounded-md p-2 flex flex-wrap justify-center">
+        <div className="bg-white rounded-md p-1 md:p-3 flex flex-wrap justify-center">
           {alphabets.map((letter) => (
             <button
               key={letter}
               onClick={() => handleLetterClick(letter)}
-              className={`m-1 w-8 h-8 text-14 rounded-full hover:bg-softLightBlue ${
+              className={`m-1 w-8 h-8 text-18 rounded-full hover:bg-softLightBlue ${
                 selectedLetter === letter
                   ? "bg-bgLightBlue text-blue"
                   : " text-lightGray"
@@ -182,30 +186,42 @@ function CandidatesListing() {
           ))}
         </div>
       </div>
+      <div className="mt-12 flex items-center justify-between">
+        <div>
+          <p className="text-lightGray text-18">
+            Showing{" "}
+            {Math.min(
+              (currentPage - 1) * itemsPerPage + 1,
+              sortedCandidates.length
+            )}
+            – {Math.min(currentPage * itemsPerPage, sortedCandidates.length)} of{" "}
+            {sortedCandidates.length} results
+          </p>
+        </div>
+        <div className="flex md:justify-end mt-3 md:mt-0 gap-2">
+          <select
+            onChange={(e) => setItemsPerPage(Number(e.target.value))}
+            className="border border-lightGray px-2 py-1 rounded"
+          >
+            <option value="8">8 per page</option>
+            <option value="16">16 per page</option>
+            <option value="24">24 per page</option>
+          </select>
 
-      <div className="flex justify-end mt-10 gap-2">
-        <select
-          onChange={(e) => setItemsPerPage(Number(e.target.value))}
-          className="border border-lightGray px-2 py-1 rounded"
-        >
-          <option value="3">3 per page</option>
-          <option value="6">6 per page</option>
-          <option value="9">9 per page</option>
-        </select>
-
-        <select
-          onChange={(e) => setSortBy(e.target.value)}
-          className="border border-lightGray px-2 py-1 rounded "
-        >
-          <option value="default">Default</option>
-          <option value="latest">Latest</option>
-          <option value="title">Title</option>
-        </select>
+          <select
+            onChange={(e) => setSortBy(e.target.value)}
+            className="border border-lightGray px-2 py-1 rounded "
+          >
+            <option value="default">Default</option>
+            <option value="latest">Latest</option>
+            <option value="title">Title</option>
+          </select>
+        </div>
       </div>
       <hr className="text-lightGray mt-1" />
 
       {/* Candidate Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 mt-3">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 mt-3">
         {displayedCandidates.length > 0 ? (
           displayedCandidates.map((candidate, index) => (
             <CandidateCard key={index} candidate={candidate} />

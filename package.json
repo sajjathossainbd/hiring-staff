@@ -12,12 +12,7 @@
   "dependencies": {
     "aos": "^2.3.4",
     "axios": "^1.7.7",
-<<<<<<< HEAD
     "firebase": "^10.13.2",
-=======
-    "firebase": "^10.13.1",
-    "leaflet": "^1.9.4",
->>>>>>> 90e835914de6b1ba2ba575e6706dbf04eacc6ebf
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

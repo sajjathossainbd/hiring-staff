@@ -12,8 +12,6 @@ const Navbar = () => {
 
   const { user, logOut } = useAuth();
 
-  // const [open, setOpen] = useState(false);
-  // const dropDownRef = useRef(null);
 
   useEffect(() => {
     const closeDropDown = (e) => {
@@ -42,12 +40,12 @@ const Navbar = () => {
 
   const navLinks = [
     { to: "/", label: "Home" },
-    { to: "/about", label: "About" },
-    { to: "/contact", label: "Contact" },
-    { to: "/pricing", label: "Pricing" },
     { to: "/jobs-listing", label: "Jobs" },
     { to: "/recruiters-listing", label: "Recruiters" },
     { to: "/candidates-listing", label: "Candidates" },
+    { to: "/about", label: "About" },
+    { to: "/contact", label: "Contact" },
+    { to: "/pricing", label: "Pricing" },
     { to: "/blogs", label: "Blogs" },
   ];
 
@@ -94,20 +92,6 @@ const Navbar = () => {
 
             {
               user ?
-                // <div ref={dropDownRef} className="relative mx-2 w-fit text-black">
-                //   <button onClick={() => setOpen((prev) => !prev)}>
-                //     <img width={40} height={40} className="lg:w-12 w-10 border-2 border-blue rounded-full bg-slate-500 object-cover transition-transform duration-300 hover:scale-105 hover:opacity-80" src={user?.photoURL} alt="avatar" />
-                //   </button>
-                //   <ul className={`${open ? 'visible opacity-100 transition-opacity duration-300' : 'invisible opacity-0'} absolute right-0 top-12 z-50 w-48 rounded-sm bg-slate-200 shadow-lg`}>
-                //     <li className='hover:bg-slate-400 inter bg-slate-300 rounded-sm px-6 py-2'>
-                //       {user.displayName}
-                //     </li>
-                //     <li className='hover:bg-slate-300 inter rounded-sm px-6 py-2'>
-                //       <Link>Dashboard</Link>
-                //     </li>
-                //     <li className='text-red-500 inter hover:bg-red-600 hover:text-white rounded-sm px-6 py-2 cursor-pointer font-semibold' onClick={logOut}>LogOut</li>
-                //   </ul>
-                // </div>
 
                 <div className="mr-5">
                   <PrimaryButton logout={true} onClickBtn={logOut} title={"Log out"} />

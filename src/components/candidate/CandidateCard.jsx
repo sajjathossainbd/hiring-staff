@@ -1,5 +1,6 @@
 import { CiClock2, CiLocationOn } from "react-icons/ci";
 import { FaLocationArrow } from "react-icons/fa";
+import StarRatings from "react-star-ratings";
 
 function CandidateCard({ candidate }) {
   const {
@@ -23,18 +24,16 @@ function CandidateCard({ candidate }) {
           </div>
         </div>
 
-        <div className="flex items-center mt-3">
-          <div className="flex items-center">
-            {/* rating deu */}
-            <svg
-              className="w-5 h-5 text-yellow-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.562-.954L10 0l2.95 5.956 6.562.954-4.756 4.635L15.878 18 10 15z" />
-            </svg>
-          </div>
-          <span className="ml-2 text-sm text-gray-600">({ratings})</span>
+        <div className="mt-1 flex gap-[1px] text-14 items-center">
+          <StarRatings
+            rating={ratings}
+            starRatedColor="#ffd250"
+            numberOfStars={5}
+            name="rating"
+            starDimension="16px"
+            starSpacing="1px"
+          />
+          <p className="ml-2">{ratings}</p>
         </div>
 
         <p className="mt-4 text-gray-700 text-sm">{about_me.slice(0, 80)}...</p>
@@ -43,7 +42,7 @@ function CandidateCard({ candidate }) {
           {skills.map((skill, index) => (
             <button
               key={index}
-              className="bg-softLightBlue m-1 py-1 px-3 rounded-sm text-12"
+              className="bg-[#e1e6ff] m-1 py-1 px-2 rounded-md text-12"
             >
               {skill}
             </button>

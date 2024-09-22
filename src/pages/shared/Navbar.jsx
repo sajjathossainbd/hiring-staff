@@ -79,15 +79,13 @@ const Navbar = () => {
           </ul>
 
           <div className="hidden md:hidden lg:hidden xl:flex items-center lg:gap-5 md:gap-3">
-            {/* <NavLink
-              to="/register"
-              className="underline md:hidden lg:flex hover:decoration-dotted hover:-translate-y-1 transition-all"
-            >
-              <h6 className="hover:text-blue">Register</h6>
-            </NavLink> */}
-            <div className="mr-5">
-              <PrimaryButton title={"Sign in"} />
-            </div>
+            
+            <Link to={"sign-in"}>
+              <div className="mr-5">
+                <PrimaryButton title={"Sign in"} />
+              </div>
+            </Link>
+
 
             {/* Dark Mode Toggle */}
             <label className="swap swap-rotate text-darkBlue flex items-center">

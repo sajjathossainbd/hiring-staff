@@ -95,7 +95,6 @@ const SearchByFilter = () => {
       keyword: searchData.keyword === "" ? null : searchData.keyword,
     };
 
-    // Log the updated search data
     console.log(updatedSearchData);
   };
   return (

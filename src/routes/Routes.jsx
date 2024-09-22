@@ -15,7 +15,7 @@ import CandidateProfile from "../pages/candidates/CandidateProfile";
 import BlogsPage from "../pages/blogs/BlogsPage";
 import BlogDetails from "../pages/blogs/BlogDetails";
 import Register from "../pages/authentication/Register";
-import Singin from "../pages/authentication/Singin";
+import SignIn from "../pages/authentication/SignIn";
 import ResetPassword from "../pages/authentication/ResetPassword";
 
 
@@ -83,8 +83,8 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "/sing-in",
-        element: <Singin />,
+        path: "/sign-in",
+        element: <SignIn />,
       },
       {
         path: "/reset-password",

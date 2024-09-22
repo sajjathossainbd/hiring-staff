@@ -46,7 +46,7 @@ const Navbar = () => {
   return (
     <div className="backdrop-blur-sm sticky top-0 z-50">
       <div className="bg-bgLightWhite">
-        <nav className="container flex items-center justify-between lg:py-3 h-16 lg:h-24">
+        <nav className="container flex items-center justify-between lg:py-3 h-16 lg:h-20 xl:h-24">
           <div className="scale-100 cursor-pointer rounded-2xl text-xl font-semibold text-darkBlue">
             <Link to={"/"}>
               <div className="flex items-center gap-2">
@@ -60,7 +60,7 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:hidden lg:hidden xl:flex items-center lg:gap-3 md:gap-2 sm:gap-2">
+          <ul className="hidden md:hidden lg:hidden xl:flex items-center gap-5">
             {navLinks.map(({ to, label }) => (
               <li key={to} className="group flex cursor-pointer flex-col">
                 <NavLink
@@ -79,12 +79,12 @@ const Navbar = () => {
           </ul>
 
           <div className="hidden md:hidden lg:hidden xl:flex items-center lg:gap-5 md:gap-3">
-            <NavLink
+            {/* <NavLink
               to="/register"
               className="underline md:hidden lg:flex hover:decoration-dotted hover:-translate-y-1 transition-all"
             >
               <h6 className="hover:text-blue">Register</h6>
-            </NavLink>
+            </NavLink> */}
             <div className="mr-5">
               <PrimaryButton title={"Sign in"} />
             </div>
@@ -138,7 +138,7 @@ const Navbar = () => {
                 data-aos="slide-left"
                 data-aos-offset="200"
                 data-aos-duration="700"
-                className="z-10 bg-blue absolute right-0 top-12 flex w-[200px] flex-col rounded-lg text-base"
+                className="z-10 bg-blue absolute right-0 xl:top-10 lg:top-12 top-[44px] flex w-[200px] flex-col rounded-lg text-base"
               >
                 {navLinks.map(({ to, label }) => (
                   <li

@@ -15,7 +15,7 @@ function NewsLetter() {
             <h3 className="text-white mb-4">New Things Will Always</h3>
             <h3 className="text-white  mb-8">Update Regularly</h3>
 
-            <form className="flex relative flex-col sm:flex-row items-center justify-center w-full gap-4 bg-white dark:bg-gray rounded-md ">
+            <form className="flex relative flex-col sm:flex-row items-center justify-center w-full gap-4 bg-white rounded-md ">
               <img
                 src={email}
                 alt="email box"
@@ -24,7 +24,7 @@ function NewsLetter() {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="pl-3 md:pl-0 w-full py-5 md:py-6 rounded-md focus:outline-none dark:bg-gray dark:text-white"
+                className="pl-3 md:pl-0 w-full py-5 md:py-6 rounded-md focus:outline-none dark:bg-white"
               />
 
               <div className="absolute right-2 md:right-4">

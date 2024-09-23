@@ -1,7 +1,6 @@
 import { useState } from "react";
 import SectionTitle from "../../components/shared/SectionTitle";
 import CandidateCard from "./../../components/candidate/CandidateCard";
-import { BiArrowFromRight } from "react-icons/bi";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { Helmet } from "react-helmet-async";
 
@@ -221,7 +220,7 @@ function CandidatesListing() {
       <hr className="text-lightGray mt-1" />
 
       {/* Candidate Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 mt-3">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 mt-10">
         {displayedCandidates.length > 0 ? (
           displayedCandidates.map((candidate, index) => (
             <CandidateCard key={index} candidate={candidate} />

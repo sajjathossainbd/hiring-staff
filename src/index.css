@@ -63,11 +63,17 @@ body {
   .socialBorder {
     @apply outline outline-1 outline-lightGray p-1 rounded-full text-12 cursor-pointer;
   }
+
   .boxBorderHoverBlue {
     @apply border-[.5px] border-lightGray hover:border-blue hover:-translate-y-[3px] transition-all duration-500 cursor-pointer rounded-lg;
   }
+
   .boxBorderHoverGray {
     @apply border-[.5px] border-lightGray hover:-translate-y-1 transition-all duration-500 cursor-pointer rounded-lg;
+  }
+
+  nav {
+    @apply dark:text-lightText
   }
 }
 
@@ -79,11 +85,11 @@ body {
   h4,
   h5,
   h6 {
-    @apply text-darkBlue font-bold leading-[45px] sm:leading-[62px] md:leading-[62px] lg:leading-[52px] xl:leading-[60px];
+    @apply text-darkBlue font-bold leading-[45px] sm:leading-[62px] md:leading-[62px] lg:leading-[52px] xl:leading-[60px] dark:text-white;
   }
 
   h1 {
-    @apply  text-[40px] sm:text-[52px] md:text-[48px] lg:text-[52px] xl:text-5xl;
+    @apply text-[40px] sm:text-[52px] md:text-[48px] lg:text-[52px] xl:text-5xl;
   }
 
   h2 {
@@ -111,7 +117,7 @@ body {
   }
 
   p {
-    @apply text-gray leading-7;
+    @apply text-gray leading-7 dark:text-[#E0E7F6];
   }
 }
 

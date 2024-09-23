@@ -1,11 +1,8 @@
 /* eslint-disable react/prop-types */
 
-
-
 const RecruiterCard = ({ recruiter }) => {
-  
   return (
-    <div className="w-full p-4 border-[#B4C0E0] hover:-translate-y-1 transition duration-300 bg-[#F8FAFF] shadow-md rounded-lg mx-auto">
+    <div className="w-full p-4 hover:-translate-y-1 transition duration-300 border-lightGray shadow-md rounded-lg mx-auto">
       <img
         src={recruiter.brandImage}
         alt={recruiter.brandName}
@@ -21,8 +18,8 @@ const RecruiterCard = ({ recruiter }) => {
               key={index}
               className={` ${
                 index < recruiter.ratings / 10
-                  ? 'text-yellow-500'
-                  : 'text-gray-300'
+                  ? "text-yellow-500"
+                  : "text-gray-300"
               }`}
             >
               ★
@@ -36,7 +33,7 @@ const RecruiterCard = ({ recruiter }) => {
         <button className="bg-[#E0E6F7] hover:text-blue p-3 rounded-md text-darkBlue transition-all duration-500 text-14">
           {recruiter.openJobs > 0
             ? `${recruiter.openJobs} Open Jobs`
-            : 'No Open Job'}
+            : "No Open Job"}
         </button>
       </div>
     </div>

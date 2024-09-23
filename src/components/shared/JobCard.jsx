@@ -6,7 +6,7 @@ import SecondaryButton from "./SecondaryButton";
 function JobCard(job) {
   const { job_title, job_type, job_post_time, job_description } = job;
   return (
-    <div className="rounded-lg border border-[#B4C0E0] hover:-translate-y-1 hover:bg-[white] transition duration-300 bg-[#F8FAFF]">
+    <div className="rounded-lg border border-[#B4C0E0] hover:-translate-y-1 hover:bg-[white] transition duration-300 bg-[#F8FAFF] dark:bg-darkBlue">
       <div className="px-8 py-12">
         <h4 className="">{job.job_title}</h4>
         <div className="text-12  flex items-center">

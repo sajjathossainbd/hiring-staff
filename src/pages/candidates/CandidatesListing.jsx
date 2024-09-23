@@ -195,7 +195,7 @@ function CandidatesListing() {
           ))}
         </div>
       </div>
-      <div className="mt-12 flex items-center justify-between">
+      <div className="mt-12 flex flex-col md:flex-row items-start md:items-center md:justify-between">
         <div>
           <p className="text-lightGray text-18">
             Showing{" "}

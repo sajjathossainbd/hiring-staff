@@ -1,5 +1,7 @@
-import React, { useState } from "react";
 import { CiLocationOn, CiViewBoard } from "react-icons/ci";
+import { IoBagHandleOutline, IoPersonOutline } from "react-icons/io5";
+import { useLocation, useParams } from "react-router-dom";
+import StarRatings from "react-star-ratings";
 import {
   FaBriefcase,
   FaDollarSign,
@@ -10,10 +12,8 @@ import {
   FaMapMarkerAlt,
   FaPhoneAlt,
 } from "react-icons/fa";
-import { IoBagHandleOutline, IoPersonOutline } from "react-icons/io5";
-import { useLocation, useParams } from "react-router-dom";
-import StarRatings from "react-star-ratings";
-import PrimaryButton from "../../components/shared/PrimaryButton";
+import { useState } from "react";
+import PrimaryButton from "./../../components/shared/PrimaryButton";
 function CandidateDetails() {
   const { id } = useParams();
   const location = useLocation();

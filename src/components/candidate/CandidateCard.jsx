@@ -1,6 +1,4 @@
-/* eslint-disable react/prop-types */
 import { CiClock2, CiLocationOn } from "react-icons/ci";
-import { FaLocationArrow } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 

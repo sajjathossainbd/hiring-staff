@@ -57,7 +57,7 @@ const SignIn = () => {
 
                 console.log(userInfo);
 
-                toast.success("Successfully Google Login !")
+                toast.success("Successfully Google Login with role: recruiter")
                 navigate(location?.state ? location.state : "/")
 
 

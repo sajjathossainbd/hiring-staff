@@ -5,6 +5,9 @@ import PrimaryButton from "../../components/shared/PrimaryButton";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
+import { useState } from "react";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+
 
 const SignIn = () => {
 
@@ -13,6 +16,7 @@ const SignIn = () => {
     const navigate = useNavigate()
 
     const { signInUser, googleSignIn, user } = useAuth()
+    const [showPassword, setShowPassword] = useState(false)
 
 
     const {
@@ -107,13 +111,13 @@ const SignIn = () => {
                         )}
                     </div>
 
-                    <div>
+                    <div className="relative">
                         <label htmlFor="password" className="block text-left font-medium pb-1">
                             Password*
                         </label>
                         <input
                             id="password"
-                            type="password"
+                            type={showPassword ? "text" : "password"}
                             placeholder="Password"
                             {...register("password", {
                                 required: "Password is required",
@@ -125,6 +129,13 @@ const SignIn = () => {
                             })}
                             className="input input-bordered w-full"
                         />
+                        <span
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute text-18 top-11 right-5">
+                            {
+                                showPassword ? <FaRegEyeSlash /> : <FaRegEye />
+                            }
+                        </span>
                         {errors.password && (
                             <p className="text-red-500 text-sm">{errors.password.message}</p>
                         )}

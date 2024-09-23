@@ -51,7 +51,8 @@ const SignIn = () => {
                 const userInfo = {
                     email: result.user?.email,
                     name: result.user?.displayName,
-                    photo: result.user?.photoURL
+                    photo: result.user?.photoURL,
+                    role: "Recruiter",
                 }
 
                 console.log(userInfo);

@@ -27,14 +27,16 @@ const Register = () => {
 
     const email = data.email
     const password = data.password
-    const userName = data.userName
+    const name = data.fullName
     const photoUrl = data.photoUrl
+    const role = data.role
 
     const userInfo = {
 
       email: email,
-      name: userName,
-      photo: photoUrl
+      name: name,
+      photo: photoUrl,
+      role: role,
 
     }
     console.log(userInfo);
@@ -43,7 +45,7 @@ const Register = () => {
     registerUser(email, password)
       .then((result) => {
         updateProfile(result.user, {
-          displayName: userName,
+          displayName: name,
           photoURL: photoUrl,
         })
           .then(() => {
@@ -69,7 +71,8 @@ const Register = () => {
         const userInfo = {
           email: result.user?.email,
           name: result.user?.displayName,
-          photo: result.user?.photoURL
+          photo: result.user?.photoURL,
+          role: "Recruiter",
         }
 
         console.log(userInfo);
@@ -150,23 +153,6 @@ const Register = () => {
               placeholder="Photo URL"
               className="input input-bordered w-full"
               {...register("photoUrl", { required: "Photo link is required" })} />
-            {errors.username && (
-              <p className="text-red-500 text-sm">
-                {errors.username.message}
-              </p>
-            )}
-          </div>
-          <div>
-            <label htmlFor="username" className="block text-left font-medium pb-1">
-              Username*
-            </label>
-            <input
-              id="username"
-              type="text"
-              placeholder="Username"
-              {...register("username", { required: "Username is required" })}
-              className="input input-bordered w-full"
-            />
             {errors.username && (
               <p className="text-red-500 text-sm">
                 {errors.username.message}

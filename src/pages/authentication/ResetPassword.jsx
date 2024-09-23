@@ -1,16 +1,33 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import PrimaryButton from "../../components/shared/PrimaryButton";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const ResetPassword = () => {
+
+  const { resetPassword } = useAuth()
+
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+
+    const email = (data.email)
+
+    resetPassword(email)
+      .then(() => {
+
+        toast.success("Please check you email for reset password")
+        reset()
+
+      })
+
   };
 
   return (

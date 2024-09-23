@@ -28,7 +28,7 @@ function ContactUs() {
             </p>
             <p>Phone: (123) 456-7890</p>
             <p>Email: contact@jobbox.com</p>
-            <p className="text-blue text-14 tracking-widest uppercase">
+            <p className="text-blue text-14 tracking-widest uppercase hover:underline">
               View map
             </p>
           </div>

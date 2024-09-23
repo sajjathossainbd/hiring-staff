@@ -15,10 +15,12 @@ const TinnyBanner = ({ title, subTitle, currentPath }) => {
             <div className="relative container mx-auto flex lg:flex-row flex-col gap-3 items-center justify-between">
                 <div>
                     <h3
+                        className="dark:text-darkBlue"
                     >
                         {title}
                     </h3>
                     <p
+                        className="dark:text-darkBlue"
                     >
                         {subTitle}
                     </p>
@@ -27,9 +29,9 @@ const TinnyBanner = ({ title, subTitle, currentPath }) => {
                     <Link to={"/"} className="flex items-center gap-[3px] hover:text-darkBlue">
                         <IoHomeOutline /> Hiring Stuff
                     </Link>
-                    <p className="flex items-center gap-[2px]">
+                    <Link className="flex items-center gap-[2px] text-darkBlue">
                         <IoIosArrowForward /> {currentPath}
-                    </p>
+                    </Link>
                 </div>
             </div>
         </div>

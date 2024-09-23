@@ -143,7 +143,7 @@ function JobsListing() {
   return (
     <>
       <div className="container">
-        <div className="lg:py-16 lg:px-0 px-3 py-10 bg-bgLightWhite flex flex-col items-center rounded-3xl">
+        <div className="lg:py-16 lg:px-0 px-3 py-10 bg-bgLightWhite dark:bg-darkBlue flex flex-col items-center rounded-3xl">
           <div className="text-center pb-6">
             <h3>
               <span className="text-blue">22 Jobs</span> Available Now

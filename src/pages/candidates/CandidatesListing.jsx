@@ -162,7 +162,7 @@ function CandidatesListing() {
       <Helmet>
         <title>Hiring Staff - Candidates</title>
       </Helmet>
-      <div className="bg-bgLightBlue p-4 md:px-24 md:py-8 space-y-6">
+      <div className="bg-bgLightBlue dark:bg-darkBlue p-4 md:px-24 md:py-8 space-y-6">
         <SectionTitle
           title={"Browse Candidates"}
           subTitle={

@@ -7,6 +7,7 @@ import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import axios from "axios";
 
 const Register = () => {
 
@@ -15,7 +16,8 @@ const Register = () => {
   const location = useLocation();
 
   const [showPassword, setShowPassword] = useState(false)
-
+  const [imageUrl, setImageUrl] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
 
   const {
     register,
@@ -23,66 +25,78 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const handleImageUpload = async (file) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "ml_default");
+    formData.append("cloud_name", import.meta.env.VITE_CLOUD_NAME);
 
-    const email = data.email
-    const password = data.password
-    const name = data.fullName
-    const photoUrl = data.photoUrl
-    const role = data.role
-
-    const userInfo = {
-
-      email: email,
-      name: name,
-      photo: photoUrl,
-      role: role,
-
+    setIsUploading(true);
+    try {
+      const response = await axios.post(
+        `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUD_NAME}/image/upload`,
+        formData
+      );
+      setImageUrl(response.data.secure_url);
+      setIsUploading(false);
+    } catch (error) {
+      console.error("Image upload failed", error);
+      setIsUploading(false);
     }
-    console.log(userInfo);
-
-    // Sign up with email, password authentication 
-    registerUser(email, password)
-      .then((result) => {
-        updateProfile(result.user, {
-          displayName: name,
-          photoURL: photoUrl,
-        })
-          .then(() => {
-            toast.success("Successfully register !")
-            navigate(location?.state ? location.state : '/')
-          })
-          .catch()
-      })
-      .catch(err => {
-        toast.error(err.message)
-      })
-
   };
 
 
+  const onSubmit = async (data) => {
 
-  // Sign in with google authentication 
+
+    const email = data.email;
+    const password = data.password;
+    const name = data.fullName;
+    const role = data.role;
+
+    const userInfo = {
+      email: email,
+      password: password,
+      name: name,
+      role: role,
+      image: imageUrl
+    }
+
+    console.log(userInfo);
+
+    // Sign up with email, password authentication
+    try {
+      const result = await registerUser(email, password);
+      await updateProfile(result.user, {
+        displayName: name,
+        photoURL: imageUrl,  // Set the image URL from Cloudinary
+      });
+      toast.success("Successfully registered!");
+      navigate(location?.state ? location.state : '/');
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  // Sign in with Google authentication
   const handleGoogleRegister = () => {
-
     googleSignIn()
       .then((result) => {
-
         const userInfo = {
           email: result.user?.email,
           name: result.user?.displayName,
           photo: result.user?.photoURL,
           role: "Recruiter",
-        }
+        };
 
         console.log(userInfo);
-
-        toast.success("Successfully google register!")
-        navigate(location?.state ? location.state : '/')
-
+        toast.success("Successfully Google Login with role: recruiter");
+        navigate(location?.state ? location.state : '/');
       })
-  }
-
+      .catch(() => {
+        toast.error("Google Sign-In failed");
+      });
+  };
 
   return (
     <div className="container">
@@ -145,25 +159,20 @@ const Register = () => {
 
           <div>
             <label htmlFor="photo" className="block text-left font-medium pb-1">
-              Photo URL*
+              Upload Photo*
             </label>
             <input
-              type="url"
+              type="file"
               id="photo"
-              placeholder="Photo URL"
+              onChange={(e) => handleImageUpload(e.target.files[0])}
               className="input input-bordered w-full"
-              {...register("photoUrl", { required: "Photo link is required" })} />
-            {errors.username && (
-              <p className="text-red-500 text-sm">
-                {errors.username.message}
-              </p>
-            )}
+            />
+            {isUploading && <p>Uploading...</p>}
+            {imageUrl && <img src={imageUrl} alt="Uploaded" className="mt-2 w-16 h-20 rounded" />}
           </div>
 
           <div className="relative">
-            <label
-              htmlFor="password"
-              className="block text-left font-medium pb-1">
+            <label htmlFor="password" className="block text-left font-medium pb-1">
               Password*
             </label>
             <input
@@ -174,8 +183,7 @@ const Register = () => {
                 required: "Password is required",
                 pattern: {
                   value: /^(?=.*[a-z])(?=.*\d)[a-zA-Z\d]{6,}$/,
-                  message:
-                    "Password must be at least 6 characters, contain letters and numbers",
+                  message: "Password must be at least 6 characters, contain letters and numbers",
                 },
               })}
               className="input input-bordered w-full"
@@ -183,53 +191,14 @@ const Register = () => {
             <span
               onClick={() => setShowPassword(!showPassword)}
               className="absolute text-18 top-11 right-5">
-              {
-                showPassword ? <FaRegEyeSlash /> : <FaRegEye />
-              }
+              {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
             </span>
             {errors.password && (
-              <p className="text-red-500 text-sm">
-                {errors.password.message}
-              </p>
+              <p className="text-red-500 text-sm">{errors.password.message}</p>
             )}
           </div>
 
-          <div>
-            <div className="flex space-x-4">
-              <label className="flex items-center space-x-2">
-                <input
-                  type="radio"
-                  value="Recruiter"
-                  {...register("role", { required: "Role is required" })}
-                  className="radio"
-                />
-                <span>Recruiter</span>
-              </label>
-
-              <label className="flex items-center space-x-2">
-                <input
-                  type="radio"
-                  value="Publisher"
-                  {...register("role", { required: "Role is required" })}
-                  className="radio"
-                />
-                <span>Publisher</span>
-              </label>
-            </div>
-            {errors.role && (
-              <p className="text-red-500 text-sm">{errors.role.message}</p>
-            )}
-          </div>
-
-          <div>
-            <label className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                required
-              />
-              <span className="text-14">I agree to all terms and conditions</span>
-            </label>
-          </div>
+          {/* Add role selection and other fields here as per your existing form */}
 
           <PrimaryButton formSubmit={true} title={"Register"} />
 

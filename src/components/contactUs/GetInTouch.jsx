@@ -66,7 +66,7 @@ function GetInTouch() {
               <div className="mb-4">
                 <label className="flex items-center">
                   <input type="checkbox" className="mr-2" />
-                  <span className="text-16 ">
+                  <span className="text-16 dark:text-lightText">
                     By clicking contact us button, you agree to our terms and
                     policy
                   </span>

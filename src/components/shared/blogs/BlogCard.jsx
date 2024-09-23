@@ -12,7 +12,7 @@ function BlogCard(blog) {
         {blog.topics.map((topic, index) => (
           <p
             key={index}
-            className="text-blue font-bold text-14 px-2 py-3 badge badge-outline border-none rounded bg-[#E0E6F7]"
+            className="text-blue dark:text-blue font-bold text-14 px-2 py-3 badge badge-outline border-none rounded bg-[#E0E6F7]"
           >
             {topic}
           </p>

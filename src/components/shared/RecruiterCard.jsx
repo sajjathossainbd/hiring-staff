@@ -7,7 +7,7 @@ function RecruiterCard(recruiter) {
   const { img, name, review, location, open_jobs } = recruiter;
 
   return (
-    <div className="py-4 px-5 rounded-xl bg-white border border-[#D2D4D7] hover:-translate-y-1 hover:shadow-md hover: shadow-[#D2D4D7] transition-all duration-200 cursor-pointer lg:inline-block block">
+    <div className="py-4 px-5 rounded-xl border border-[#D2D4D7] hover:-translate-y-1 hover:shadow-md hover: shadow-[#D2D4D7] transition-all duration-200 cursor-pointer lg:inline-block block">
       <div className="flex gap-3">
         <img src={Tasla} alt="" />
         <div className="">

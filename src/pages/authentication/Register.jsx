@@ -5,12 +5,16 @@ import PrimaryButton from "../../components/shared/PrimaryButton";
 import useAuth from "../../hooks/useAuth";
 import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
+import { useState } from "react";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 const Register = () => {
 
   const { registerUser, googleSignIn } = useAuth()
   const navigate = useNavigate();
   const location = useLocation();
+
+  const [showPassword, setShowPassword] = useState(false)
 
 
   const {
@@ -23,14 +27,16 @@ const Register = () => {
 
     const email = data.email
     const password = data.password
-    const userName = data.userName
+    const name = data.fullName
     const photoUrl = data.photoUrl
+    const role = data.role
 
     const userInfo = {
 
       email: email,
-      name: userName,
-      photo: photoUrl
+      name: name,
+      photo: photoUrl,
+      role: role,
 
     }
     console.log(userInfo);
@@ -39,7 +45,7 @@ const Register = () => {
     registerUser(email, password)
       .then((result) => {
         updateProfile(result.user, {
-          displayName: userName,
+          displayName: name,
           photoURL: photoUrl,
         })
           .then(() => {
@@ -65,7 +71,8 @@ const Register = () => {
         const userInfo = {
           email: result.user?.email,
           name: result.user?.displayName,
-          photo: result.user?.photoURL
+          photo: result.user?.photoURL,
+          role: "Recruiter",
         }
 
         console.log(userInfo);
@@ -152,31 +159,16 @@ const Register = () => {
               </p>
             )}
           </div>
-          <div>
-            <label htmlFor="username" className="block text-left font-medium pb-1">
-              Username*
-            </label>
-            <input
-              id="username"
-              type="text"
-              placeholder="Username"
-              {...register("username", { required: "Username is required" })}
-              className="input input-bordered w-full"
-            />
-            {errors.username && (
-              <p className="text-red-500 text-sm">
-                {errors.username.message}
-              </p>
-            )}
-          </div>
 
-          <div>
-            <label htmlFor="password" className="block text-left font-medium pb-1">
+          <div className="relative">
+            <label
+              htmlFor="password"
+              className="block text-left font-medium pb-1">
               Password*
             </label>
             <input
               id="password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Password"
               {...register("password", {
                 required: "Password is required",
@@ -188,6 +180,13 @@ const Register = () => {
               })}
               className="input input-bordered w-full"
             />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute text-18 top-11 right-5">
+              {
+                showPassword ? <FaRegEyeSlash /> : <FaRegEye />
+              }
+            </span>
             {errors.password && (
               <p className="text-red-500 text-sm">
                 {errors.password.message}

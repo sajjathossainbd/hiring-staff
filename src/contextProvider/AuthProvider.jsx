@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.config";
 
@@ -29,11 +29,15 @@ const AuthProvider = ({ children }) => {
     }
 
 
+    const resetPassword = (email) => {
+        return sendPasswordResetEmail(auth, email)
+    }
+
+
     const logOut = () => {
         return signOut(auth)
     }
 
-    // toast.success("Your message has been sent successfully!")
 
 
 
@@ -64,6 +68,7 @@ const AuthProvider = ({ children }) => {
         signInUser,
         loading,
         googleSignIn,
+        resetPassword,
         logOut
     }
 

@@ -47,7 +47,7 @@ const Navbar = () => {
   ];
 
   if (user) {
-    navLinks.push({ to: "/dashboard", label: "Dashboard" });
+    navLinks.push({ to: "/dashboard/my-profile", label: "Dashboard" });
   }
 
   return (
@@ -81,10 +81,9 @@ const Navbar = () => {
                 <NavLink
                   to={to}
                   className={({ isActive }) =>
-                    `font-medium ${
-                      isActive
-                        ? "text-blue dark:text-white dark:border-white border-b-2 border-blue"
-                        : "text-darkBlue dark:text-lightText"
+                    `font-medium ${isActive
+                      ? "text-blue dark:text-white dark:border-white border-b-2 border-blue"
+                      : "text-darkBlue dark:text-lightText"
                     }`
                   }
                 >

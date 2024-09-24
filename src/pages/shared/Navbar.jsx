@@ -103,12 +103,12 @@ const Navbar = () => {
 
               <div ref={dropDownRef} className="relative mr-5 w-fit text-black">
                 <button onClick={() => setOpen((prev) => !prev)}>
-                  <img width={40} height={40} className="w-12 border-2 border-blue rounded-full lightGray object-cover transition-transform duration-300 hover:scale-105 hover:opacity-80" src={user?.photoURL} alt="avatar" />
+                  <img width={40} height={40} className="w-12 border-2 border-blue dark:border-white rounded-full lightGray object-cover transition-transform duration-300 hover:scale-105 hover:opacity-80" src={user?.photoURL} alt="avatar" />
                 </button>
                 <ul
                   className={`${open ? 'visible opacity-100 transition-opacity duration-300' : 'invisible opacity-0'} absolute right-0 top-12 z-50 w-60 rounded-sm bg-bgLightWhite dark:bg-darkBlue dark:text-white`}>
                   <li className='rounded-sm px-6 py-2 flex justify-center'>
-                    <img src={user?.photoURL} alt="" />
+                    <img className="rounded-full object-cover" src={user?.photoURL} alt="" />
                   </li>
                   <li className='rounded-sm px-6 py-2 text-center'>
                     {user?.displayName} <br />

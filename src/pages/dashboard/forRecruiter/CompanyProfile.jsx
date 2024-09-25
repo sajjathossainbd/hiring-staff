@@ -58,9 +58,9 @@ const CompanyProfile = () => {
         <hr className="my-6 text-lightGray" />
         <div>
           <div className="flex lg:flex-row flex-col-reverse lg:gap-6 gap-3 items-center">
-            <div className="lg:w-1/2 relative">
+            <div className="relative">
               <img
-                className="w-full object-cover rounded-md"
+                className="lg:w-96 object-cover rounded-md"
                 src="https://templates.envytheme.com/eeza/default/assets/images/my-profile.jpg"
                 alt="Company Profile"
               />
@@ -68,7 +68,7 @@ const CompanyProfile = () => {
                 <MdOutlineFileUpload className="text-lg" /> Upload Photo
               </button>
             </div>
-            <div className="lg:w-1/2">
+            <div>
               <p>
                 Please ensure the file size does not exceed 1MB, with minimum
                 dimensions of 450x450, and use .jpg or .png formats.

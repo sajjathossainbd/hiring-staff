@@ -19,7 +19,7 @@ const Dashboard = () => {
             <div className="flex lg:flex-row flex-col inter">
                 {/* Sidebar */}
                 <div className="relative lg:w-64 w-full">
-                    <div className="drawer lg:drawer-open">
+                    <div className="drawer lg:drawer-open z-20">
                         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                         <div className="drawer-content flex flex-col items-center justify-center">
                             <label htmlFor="my-drawer-2" className="btn bg-blue drawer-button lg:hidden mt-2 text-white rounded">Open Dashboard</label>

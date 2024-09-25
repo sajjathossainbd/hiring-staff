@@ -53,7 +53,6 @@ const SignIn = () => {
                     email: result.user?.email,
                     name: result.user?.displayName,
                     photo: result.user?.photoURL,
-                    role: "Recruiter",
                 }
 
                 axios.post("http://localhost:5000/users", userInfo)

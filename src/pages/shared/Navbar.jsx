@@ -115,7 +115,7 @@ const Navbar = () => {
                     <strong className="text-12 text-blue dark:text-white">{user?.email}</strong>
                   </li>
                   <li className='hover:bg-slate-300 inter rounded-sm px-6 py-2'>
-                    <Link to='/dashboard/my-profile'>Dashboard</Link>
+                    <Link to='/dashboard/dashboard-main'>Dashboard</Link>
                   </li>
                   <li className='text-red-500 hover:bg-red-600 hover:text-white rounded-sm px-6 py-2 cursor-pointer font-semibold' onClick={logOut}>Logout</li>
                 </ul>

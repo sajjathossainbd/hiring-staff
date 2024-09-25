@@ -10,7 +10,7 @@ import { NavLink, Outlet } from "react-router-dom";
 const Dashboard = () => {
 
 
-    const isRequiter = false;
+    const isRequiter = true;
     const isAdmin = false;
 
 
@@ -30,6 +30,16 @@ const Dashboard = () => {
 
                                 {isAdmin && (
                                     <>
+                                    <li>
+                                            <NavLink
+                                                to="/dashboard/dashboard-main"
+                                                className={({ isActive }) =>
+                                                    `flex items-center gap-2 py-2 px-4 rounded-md ${isActive ? 'border-l-4 border-blue text-blue' : 'hover:border-l-4 hover:border-blue'}`
+                                                }
+                                            >
+                                                <span className="flex gap-1 items-center"><ImProfile />Dashboard</span>
+                                            </NavLink>
+                                        </li>
                                         <li>
                                             <NavLink
                                                 to="/dashboard/manage-users"
@@ -45,6 +55,16 @@ const Dashboard = () => {
 
                                 {isRequiter && (
                                     <>
+                                        <li>
+                                            <NavLink
+                                                to="/dashboard/dashboard-main"
+                                                className={({ isActive }) =>
+                                                    `flex items-center gap-2 py-2 px-4 rounded-md ${isActive ? 'border-l-4 border-blue text-blue' : 'hover:border-l-4 hover:border-blue'}`
+                                                }
+                                            >
+                                                <span className="flex gap-1 items-center"><ImProfile />Dashboard</span>
+                                            </NavLink>
+                                        </li>
                                         <li>
                                             <NavLink
                                                 to="/dashboard/company-profile"
@@ -99,6 +119,16 @@ const Dashboard = () => {
                                 )}
                                 {!isAdmin && !isRequiter && (
                                     <>
+                                    <li>
+                                            <NavLink
+                                                to="/dashboard/dashboard-main"
+                                                className={({ isActive }) =>
+                                                    `flex items-center gap-2 py-2 px-4 rounded-md ${isActive ? 'border-l-4 border-blue text-blue' : 'hover:border-l-4 hover:border-blue'}`
+                                                }
+                                            >
+                                                <span className="flex gap-1 items-center"><ImProfile />Dashboard</span>
+                                            </NavLink>
+                                        </li>
                                         <li>
                                             <NavLink
                                                 to="/dashboard/my-resume"

@@ -27,6 +27,7 @@ import PostJob from "../pages/dashboard/forRecruiter/PostJob";
 import ManageJob from "../pages/dashboard/forRecruiter/ManageJob";
 import AllApplicants from "../pages/dashboard/forRecruiter/AllApplicants";
 import Shortlist from "../pages/dashboard/forRecruiter/Shortlist";
+import DashboardMain from "../pages/dashboard/DashboardMain";
 
 const router = createBrowserRouter([
   {
@@ -107,6 +108,10 @@ const router = createBrowserRouter([
     children: [
 
       // For all
+      {
+        path: "dashboard-main",
+        element: <DashboardMain />
+      },
       {
         path: "my-profile",
         element: <MyProfile />

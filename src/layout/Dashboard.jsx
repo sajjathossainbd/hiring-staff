@@ -8,7 +8,7 @@ import { VscGitStashApply } from "react-icons/vsc";
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
-  const isRequiter = false;
+  const isRequiter = true;
   const isAdmin = false;
 
   return (
@@ -26,7 +26,7 @@ const Dashboard = () => {
                 Open Dashboard
               </label>
             </div>
-            <div className="drawer-side">
+            <div className="drawer-side z-30">
               <label
                 htmlFor="my-drawer-2"
                 aria-label="close sidebar"

@@ -4,6 +4,7 @@ import DefaultInput from "../shared/DefaultInput";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { useState } from "react";
+import { FiSend } from "react-icons/fi";
 
 const CompanyProfile = () => {
   const [formData, setFormData] = useState({
@@ -43,7 +44,7 @@ const CompanyProfile = () => {
   };
 
   return (
-    <div className="py-5">
+    <div>
       <div>
         <TinnyHeading
           title="Company Profile"
@@ -52,11 +53,11 @@ const CompanyProfile = () => {
         />
       </div>
 
-      <div className="bg-softLightBlue py-6 lg:px-6 px-0 rounded-md">
+      <div className="bg-softLightBlue py-6 lg:px-6 px-2 rounded-md">
         <h5>Profile Details</h5>
         <hr className="my-6 text-lightGray" />
         <div>
-          <div className="flex lg:flex-row flex-col-reverse gap-6 items-center">
+          <div className="flex lg:flex-row flex-col-reverse lg:gap-6 gap-3 items-center">
             <div className="lg:w-1/2 relative">
               <img
                 className="w-full object-cover rounded-md"
@@ -77,7 +78,7 @@ const CompanyProfile = () => {
           <hr className="my-6 text-lightGray" />
           <form
             onSubmit={handleSubmit}
-            className="grid lg:grid-cols-6 md:grid-cols-1 gap-x-6 gap-y-4"
+            className="grid lg:grid-cols-6 md:grid-cols-1 gap-x-6 gap-y-4 text-14"
           >
             <div className="lg:col-span-3 md:col-span-6">
               <DefaultInput
@@ -137,6 +138,7 @@ const CompanyProfile = () => {
                 onChange={handleChange}
                 className="py-4 px-3 bg-bgLightWhite outline-none w-full border-lightGray rounded-md"
               >
+                <option selected>Select Team Size</option>
                 <option>10 - 20</option>
                 <option>20 - 50</option>
                 <option>200 - 300</option>
@@ -153,6 +155,7 @@ const CompanyProfile = () => {
                 onChange={handleChange}
                 className="py-4 px-3 bg-bgLightWhite outline-none w-full border-lightGray rounded-md"
               >
+                <option selected>Select Box</option>
                 <option>Banking</option>
                 <option>Categories</option>
                 <option>Digital & Creative</option>
@@ -193,6 +196,7 @@ const CompanyProfile = () => {
                 onChange={handleChange}
                 className="py-4 px-3 bg-bgLightWhite outline-none w-full border-lightGray rounded-md"
               >
+                <option selected>Select Country</option>
                 <option>Bangladesh</option>
                 <option>China</option>
                 <option>Germany</option>
@@ -209,6 +213,7 @@ const CompanyProfile = () => {
                 onChange={handleChange}
                 className="py-4 px-3 bg-bgLightWhite outline-none w-full border-lightGray rounded-md"
               >
+                <option selected>Select City</option>
                 <option>Dhaka</option>
                 <option>Chittagong</option>
                 <option>Khulna</option>
@@ -253,7 +258,7 @@ const CompanyProfile = () => {
               />
             </div>
             <div className="flex flex-col h-full lg:col-span-6 md:col-span-6">
-              <div className="label">
+              <div className="label pb-2">
                 <span className="font-semibold">Social Media Links</span>
               </div>
               <DefaultInput
@@ -285,9 +290,15 @@ const CompanyProfile = () => {
                 onChange={handleChange}
               />
             </div>
-            <button className="btn btn-primary lg:col-span-6 col-start-1 row-start-11 md:col-span-6">
-              Submit Now
-            </button>
+            <div className="group">
+              <button
+                type="submit"
+                className="btn btn-primary flex items-center px-5"
+              >
+                Submit Now
+                <FiSend className="ml-2 transition-transform duration-300 group-hover:rotate-45" />
+              </button>
+            </div>
           </form>
         </div>
       </div>

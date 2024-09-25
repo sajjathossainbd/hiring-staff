@@ -6,6 +6,7 @@ import { MdManageHistory, MdPlaylistAddCheck, MdPostAdd } from "react-icons/md";
 import { RxResume } from "react-icons/rx";
 import { VscGitStashApply } from "react-icons/vsc";
 import { NavLink, Outlet } from "react-router-dom";
+import DashboardFooter from "../pages/dashboard/shared/DashboardFooter";
 
 const Dashboard = () => {
   const isRequiter = true;
@@ -236,6 +237,8 @@ const Dashboard = () => {
         {/* Main Content */}
         <div className="bg-white flex-1 xl:p-10 lg:p-8 md:p-5 p-3">
           <Outlet />
+          {/* specific footer for every dashboard component */}
+          <DashboardFooter />
         </div>
       </div>
     </div>

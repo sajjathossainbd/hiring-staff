@@ -297,18 +297,17 @@ const PostJob = () => {
               onChange={handleChange}
             />
           </div>
-
-          {/* Submit Button */}
-          <div className="group">
+          <div className="col-span-6 flex justify-start">
             <button
               type="submit"
-              className="btn btn-primary flex items-center px-5"
+              className="btn btn-primary flex items-center justify-center px-5 group"
             >
-              Post Job
+              Submit Now
               <FiSend className="ml-2 transition-transform duration-300 group-hover:rotate-45" />
             </button>
           </div>
         </form>
+        {/* Submit Button */}
       </div>
     </div>
   );

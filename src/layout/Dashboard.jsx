@@ -10,8 +10,10 @@ import { NavLink, Outlet } from "react-router-dom";
 const Dashboard = () => {
 
 
-    const isRequiter = true;
-    const isAdmin = false;
+    const isRequiter = false;
+    const isAdmin = true;
+
+
 
 
     return (
@@ -19,7 +21,7 @@ const Dashboard = () => {
             <div className="flex lg:flex-row flex-col inter">
                 {/* Sidebar */}
                 <div className="relative lg:w-64 w-full">
-                    <div className="drawer lg:drawer-open">
+                    <div className="drawer lg:drawer-open z-20">
                         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                         <div className="drawer-content flex flex-col items-center justify-center">
                             <label htmlFor="my-drawer-2" className="btn bg-blue drawer-button lg:hidden mt-2 text-white rounded">Open Dashboard</label>
@@ -196,8 +198,8 @@ const Dashboard = () => {
                 <div className="bg-white flex-1 xl:p-10 lg:p-8 md:p-5 p-3">
                     <Outlet />
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 };
 

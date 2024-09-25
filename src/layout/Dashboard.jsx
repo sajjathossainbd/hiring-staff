@@ -30,7 +30,7 @@ const Dashboard = () => {
 
                                 {isAdmin && (
                                     <>
-                                    <li>
+                                        <li>
                                             <NavLink
                                                 to="/dashboard/dashboard-main"
                                                 className={({ isActive }) =>
@@ -119,7 +119,7 @@ const Dashboard = () => {
                                 )}
                                 {!isAdmin && !isRequiter && (
                                     <>
-                                    <li>
+                                        <li>
                                             <NavLink
                                                 to="/dashboard/dashboard-main"
                                                 className={({ isActive }) =>

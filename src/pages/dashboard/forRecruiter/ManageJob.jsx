@@ -86,7 +86,7 @@ const ManageJob = () => {
         path={"manage-jobs"}
         pathName={"Manage Jobs"}
       />
-      <div className="bg-softLightBlue py-6 lg:px-6 px-2 rounded-md">
+      <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
         <h5>Manage Jobs</h5>
         <hr className="my-6 text-lightGray" />
         {/* table */}
@@ -94,7 +94,7 @@ const ManageJob = () => {
           <table className="table text-sm">
             {/* head */}
             <thead>
-              <tr className="text-base">
+              <tr className="text-base dark:text-white">
                 <th>Title</th>
                 <th>Applications</th>
                 <th>Created & Expired</th>

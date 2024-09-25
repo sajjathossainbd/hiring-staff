@@ -53,22 +53,22 @@ const CompanyProfile = () => {
         />
       </div>
 
-      <div className="bg-softLightBlue py-6 lg:px-6 px-2 rounded-md">
+      <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
         <h5>Profile Details</h5>
         <hr className="my-6 text-lightGray" />
         <div>
           <div className="flex lg:flex-row flex-col-reverse lg:gap-6 gap-3 items-center">
-            <div className="lg:w-1/2 relative">
+            <div className="relative">
               <img
-                className="w-full object-cover rounded-md"
+                className="lg:w-96 object-cover rounded-md"
                 src="https://templates.envytheme.com/eeza/default/assets/images/my-profile.jpg"
                 alt="Company Profile"
               />
-              <button className="btn bg-white flex items-center absolute bottom-4 left-4">
+              <button className="btn bg-white dark:bg-darkBlue dark:text-white dark:border-none flex items-center absolute bottom-4 left-4">
                 <MdOutlineFileUpload className="text-lg" /> Upload Photo
               </button>
             </div>
-            <div className="lg:w-1/2">
+            <div>
               <p>
                 Please ensure the file size does not exceed 1MB, with minimum
                 dimensions of 450x450, and use .jpg or .png formats.
@@ -108,6 +108,7 @@ const CompanyProfile = () => {
                 defaultCountry="BD"
                 value={formData.phone}
                 onChange={handlePhoneChange}
+                className="rounded-md bg-bgLightWhite dark:bg-darkBlue dark:border dark:border-blue"
               />
             </div>
             {/* End */}
@@ -136,7 +137,7 @@ const CompanyProfile = () => {
               <select
                 name="teamSize"
                 onChange={handleChange}
-                className="py-4 px-3 bg-bgLightWhite outline-none w-full border-lightGray rounded-md"
+                className="py-4 px-3 bg-bgLightWhite dark:bg-darkBlue dark:border-blue dark:border outline-none w-full border-lightGray rounded-md"
               >
                 <option selected>Select Team Size</option>
                 <option>10 - 20</option>
@@ -153,7 +154,7 @@ const CompanyProfile = () => {
               <select
                 name="multipleSelect"
                 onChange={handleChange}
-                className="py-4 px-3 bg-bgLightWhite outline-none w-full border-lightGray rounded-md"
+                className="py-4 px-3 bg-bgLightWhite dark:bg-darkBlue dark:border-blue dark:border outline-none w-full border-lightGray rounded-md"
               >
                 <option selected>Select Box</option>
                 <option>Banking</option>
@@ -168,7 +169,7 @@ const CompanyProfile = () => {
               <select
                 name="allowInSearch"
                 onChange={handleChange}
-                className="py-4 px-3 bg-bgLightWhite outline-none w-full border-lightGray rounded-md"
+                className="py-4 px-3 bg-bgLightWhite dark:bg-darkBlue dark:border-blue dark:border outline-none w-full border-lightGray rounded-md"
               >
                 <option>Yes</option>
                 <option>No</option>
@@ -179,7 +180,7 @@ const CompanyProfile = () => {
                 <span className="font-semibold">About Company</span>
               </div>
               <textarea
-                className="w-full h-full p-2 resize-none py-4 rounded-md bg-bgLightWhite text-14 outline-none px-3 
+                className="w-full h-full p-2 resize-none py-4 rounded-md bg-bgLightWhite dark:bg-darkBlue dark:border-blue dark:border text-14 outline-none px-3 
                    focus:bg-white border border-bgLightWhite 
                    focus:border-blue placeholder:opacity-100 focus:placeholder:opacity-0 transition-all duration-500"
                 placeholder="Short description about company..."
@@ -194,7 +195,7 @@ const CompanyProfile = () => {
               <select
                 name="country"
                 onChange={handleChange}
-                className="py-4 px-3 bg-bgLightWhite outline-none w-full border-lightGray rounded-md"
+                className="py-4 px-3 bg-bgLightWhite dark:bg-darkBlue dark:border-blue dark:border outline-none w-full border-lightGray rounded-md"
               >
                 <option selected>Select Country</option>
                 <option>Bangladesh</option>
@@ -211,7 +212,7 @@ const CompanyProfile = () => {
               <select
                 name="city"
                 onChange={handleChange}
-                className="py-4 px-3 bg-bgLightWhite outline-none w-full border-lightGray rounded-md"
+                className="py-4 px-3 bg-bgLightWhite dark:bg-darkBlue dark:border-blue dark:border outline-none w-full border-lightGray rounded-md"
               >
                 <option selected>Select City</option>
                 <option>Dhaka</option>

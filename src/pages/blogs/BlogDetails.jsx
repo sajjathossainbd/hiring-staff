@@ -56,10 +56,10 @@ function BlogDetails() {
               src="https://secure.gravatar.com/avatar/bb00cf69a3ae5d10043a9e2d3db9b173?s=64&d=mm&r=g"
               alt=""
             />
-            <h5 className="text-14 mt-3 ml-2">{details.writer_name}</h5>
+            <h5 className="text-14 mt-4 ml-2">{details.writer_name}</h5>
           </div>
           <p className="text-12 mt-4">{details.date}</p>
-          <p className="mt-2">{details.time_since_read}</p>
+          <p className="lg:mt-4 mt-4 text-xs">{details.time_since_read}</p>
         </div>
         <p className="border-b-2 border-lightGray pb-8">{details.description_two}</p>
       </div>

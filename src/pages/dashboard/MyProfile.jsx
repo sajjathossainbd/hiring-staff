@@ -11,7 +11,7 @@ const MyProfile = () => {
 
   const onSubmit = async (data) => {
     const updatedData = {
-      // ...currentUser,
+      ...currentUser,
       name: data.name || currentUser?.name,
       photo: data.imageUrl || currentUser?.photo,
       role: data.role || currentUser?.role,

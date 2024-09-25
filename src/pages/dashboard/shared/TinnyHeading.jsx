@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const TinnyHeading = ({ title, path, pathName }) => {
   return (
-    <div className="flex lg:flex-row flex-col items-center gap-3 pb-8">
+    <div className="flex dark:text-white lg:flex-row flex-col items-center gap-3 pb-8">
       <h4>{title}</h4>
       <span className="lg:block hidden">|</span>
       <div className="breadcrumbs text-sm">

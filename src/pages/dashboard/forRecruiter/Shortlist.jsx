@@ -97,7 +97,7 @@ const Shortlist = () => {
         path="shortlist"
         pathName="Shorlisted Resumes"
       />
-      <div className="bg-softLightBlue py-6 lg:px-6 rounded-md">
+      <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 rounded-md">
         <h5>Shorlisted Resumes</h5>
         <hr className="my-6 text-lightGray" />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

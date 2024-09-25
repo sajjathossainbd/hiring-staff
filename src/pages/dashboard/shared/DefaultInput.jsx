@@ -19,9 +19,9 @@ const DefaultInput = ({
         value={value}
         onChange={onChange}
         name={name}
-        className="w-full py-4 rounded-md bg-bgLightWhite text-14 outline-none px-3 
-                   focus:bg-white border border-bgLightWhite 
-                   focus:border-blue placeholder:opacity-100 focus:placeholder:opacity-0 transition-all duration-500"
+        className="w-full py-4 rounded-md bg-bgLightWhite dark:bg-darkBlue text-14 outline-none px-3 
+                   focus:bg-white border border-bgLightWhite dark:border-blue
+                   focus:border-blue dark:focus:border-white placeholder:opacity-100 focus:placeholder:opacity-0 transition-all duration-500"
       />
     </div>
   );

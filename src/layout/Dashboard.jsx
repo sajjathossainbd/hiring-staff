@@ -27,13 +27,13 @@ const Dashboard = () => {
                 Open Dashboard
               </label>
             </div>
-            <div className="drawer-side">
+            <div className="drawer-side ">
               <label
                 htmlFor="my-drawer-2"
                 aria-label="close sidebar"
                 className="drawer-overlay"
               ></label>
-              <ul className="menu inter space-y-2 p-4 w-64 min-h-full bg-bgLightWhite dark:bg-darkBlue text-black font-semibold">
+              <ul className="menu inter space-y-2 p-4 w-64 min-h-full bg-bgLightWhite dark:bg-darkBlue text-black dark:text-white  font-semibold">
                 {isAdmin && (
                   <>
                     <li>
@@ -42,7 +42,7 @@ const Dashboard = () => {
                         className={({ isActive }) =>
                           `flex items-center gap-2 py-2 px-4 rounded-md ${
                             isActive
-                              ? "border-l-4 border-blue text-blue"
+                              ? "border-l-4 border-blue text-blue dark:text-lightBlue"
                               : "hover:border-l-4 hover:border-blue"
                           }`
                         }
@@ -59,7 +59,7 @@ const Dashboard = () => {
                         className={({ isActive }) =>
                           `flex items-center gap-2 py-2 px-4 rounded-md ${
                             isActive
-                              ? "border-l-4 border-blue text-blue"
+                              ? "border-l-4 border-blue text-blue dark:text-lightBlue"
                               : "hover:border-l-4 hover:border-blue"
                           }`
                         }
@@ -80,7 +80,7 @@ const Dashboard = () => {
                         className={({ isActive }) =>
                           `flex items-center gap-2 py-2 px-4 rounded-md ${
                             isActive
-                              ? "border-l-4 border-blue text-blue"
+                              ? "border-l-4 border-blue text-blue dark:text-lightBlue"
                               : "hover:border-l-4 hover:border-blue"
                           }`
                         }
@@ -97,7 +97,7 @@ const Dashboard = () => {
                         className={({ isActive }) =>
                           `flex items-center gap-2 py-2 px-4 rounded-md ${
                             isActive
-                              ? "border-l-4 border-blue text-blue"
+                              ? "border-l-4 border-blue text-blue dark:text-lightBlue"
                               : "hover:border-l-4 hover:border-blue"
                           }`
                         }
@@ -113,7 +113,7 @@ const Dashboard = () => {
                         className={({ isActive }) =>
                           `flex items-center gap-2 py-2 px-4 rounded-md ${
                             isActive
-                              ? "border-l-4 border-blue text-blue"
+                              ? "border-l-4 border-blue text-blue dark:text-lightBlue "
                               : "hover:border-l-4 hover:border-blue"
                           }`
                         }
@@ -129,7 +129,7 @@ const Dashboard = () => {
                         className={({ isActive }) =>
                           `flex items-center gap-2 py-2 px-4 rounded-md ${
                             isActive
-                              ? "border-l-4 border-blue text-blue"
+                              ? "border-l-4 border-blue text-blue dark:text-lightBlue"
                               : "hover:border-l-4 hover:border-blue"
                           }`
                         }
@@ -145,7 +145,7 @@ const Dashboard = () => {
                         className={({ isActive }) =>
                           `flex items-center gap-2 py-2 px-4 rounded-md ${
                             isActive
-                              ? "border-l-4 border-blue text-blue"
+                              ? "border-l-4 border-blue text-blue dark:text-lightBlue"
                               : "hover:border-l-4 hover:border-blue"
                           }`
                         }
@@ -161,7 +161,7 @@ const Dashboard = () => {
                         className={({ isActive }) =>
                           `flex items-center gap-2 py-2 px-4 rounded-md ${
                             isActive
-                              ? "border-l-4 border-blue text-blue"
+                              ? "border-l-4 border-blue text-blue dark:text-lightBlue"
                               : "hover:border-l-4 hover:border-blue"
                           }`
                         }
@@ -181,7 +181,7 @@ const Dashboard = () => {
                         className={({ isActive }) =>
                           `flex items-center gap-2 py-2 px-4 rounded-md ${
                             isActive
-                              ? "border-l-4 border-blue text-blue"
+                              ? "border-l-4 border-blue text-blue dark:text-lightBlue"
                               : "hover:border-l-4 hover:border-blue"
                           }`
                         }
@@ -198,7 +198,7 @@ const Dashboard = () => {
                         className={({ isActive }) =>
                           `flex items-center gap-2 px-4 hover:bg-transparent ${
                             isActive
-                              ? "border-l-4 border-blue text-blue"
+                              ? "border-l-4 border-blue text-blue dark:text-lightBlue"
                               : "hover:border-l-4 hover:border-blue"
                           }`
                         }
@@ -214,7 +214,7 @@ const Dashboard = () => {
                         className={({ isActive }) =>
                           `flex items-center gap-2 px-4 hover:bg-transparent ${
                             isActive
-                              ? "border-l-4 border-blue text-blue"
+                              ? "border-l-4 border-blue text-blue dark:text-lightBlue"
                               : "hover:border-l-4 hover:border-blue"
                           }`
                         }
@@ -232,7 +232,7 @@ const Dashboard = () => {
                         className={({ isActive }) =>
                           `flex items-center gap-2 px-4 hover:bg-transparent ${
                             isActive
-                              ? "border-l-4 border-blue text-blue"
+                              ? "border-l-4 border-blue text-blue dark:text-lightBlue"
                               : "hover:border-l-4 hover:border-blue"
                           }`
                         }
@@ -254,7 +254,7 @@ const Dashboard = () => {
                     className={({ isActive }) =>
                       `flex items-center gap-2 px-4 hover:bg-transparent ${
                         isActive
-                          ? "border-l-4 -py-3 border-blue text-blue"
+                          ? "border-l-4 -py-3 border-blue text-blue dark:text-lightBlue"
                           : "hover:border-l-4 hover:border-blue"
                       }`
                     }
@@ -271,7 +271,7 @@ const Dashboard = () => {
                     className={({ isActive }) =>
                       `flex items-center gap-2 py-2 px-4 hover:bg-transparent ${
                         isActive
-                          ? "border-blue text-blue"
+                          ? "border-blue text-blue dark:text-lightBlue"
                           : "hover:border-l-4 hover:border-blue"
                       }`
                     }
@@ -286,7 +286,7 @@ const Dashboard = () => {
           </div>
         </div>
         {/* Main Content */}
-        <div className="bg-white flex-1 xl:p-10 lg:p-8 md:p-5 p-3">
+        <div className="bg-white dark:bg-darkBlue flex-1 xl:p-10 lg:p-8 md:p-5 p-3">
           <Outlet />
           <DashboardFooter />
         </div>

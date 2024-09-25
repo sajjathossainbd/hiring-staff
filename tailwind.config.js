@@ -25,7 +25,7 @@ export default {
 
         // background colors
         bgLightBlue: "#F8FAFF",
-        bgDeepBlue: "E0E7F6",
+        bgDeepBlue: "#E0E7F6",
         bgLightWhite: "#f2f6fd",
 
         // Other colors

@@ -31,10 +31,8 @@ export default {
         // Other colors
         white: "#ffffff",
         black: "#000000",
-       
 
         softLightBlue: "#F8FAFF",
- 
       },
     },
   },

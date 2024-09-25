@@ -52,27 +52,33 @@ const Register = () => {
     const email = data.email;
     const password = data.password;
     const name = data.fullName;
-    const role = data.role;
 
     const userInfo = {
-      email: email,
-      password: password,
       name: name,
-      role: role,
+      email: email,
       image: imageUrl
     }
 
-    console.log(userInfo);
-
-    // Sign up with email, password authentication
     try {
       const result = await registerUser(email, password);
       await updateProfile(result.user, {
         displayName: name,
-        photoURL: imageUrl,  // Set the image URL from Cloudinary
-      });
-      toast.success("Successfully registered!");
-      navigate(location?.state ? location.state : '/');
+        photoURL: imageUrl,
+      })
+        .then(() => {
+          axios.post("http://localhost:5000/users", userInfo)
+            .then(res => {
+              if (res.data.insertedId) {
+                toast.success("Successfully registered!");
+                navigate(location?.state ? location.state : '/');
+              }
+            })
+        })
+        .catch(error => {
+          toast.error(error.message);
+        })
+
+
     } catch (error) {
       toast.error(error.message);
     }
@@ -82,16 +88,20 @@ const Register = () => {
   const handleGoogleRegister = () => {
     googleSignIn()
       .then((result) => {
+
+
         const userInfo = {
           email: result.user?.email,
           name: result.user?.displayName,
           photo: result.user?.photoURL,
-          role: "candidate",
         };
-
-        console.log(userInfo);
-        toast.success("Successfully Google Login with role: recruiter");
-        navigate(location?.state ? location.state : '/');
+        axios.post("http://localhost:5000/users", userInfo)
+          .then(res => {
+            if (res.data.insertedId) {
+              toast.success("Successfully Google Login");
+              navigate(location?.state ? location.state : '/');
+            }
+          })
       })
       .catch(() => {
         toast.error("Google Sign-In failed");

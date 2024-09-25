@@ -11,7 +11,7 @@ const Dashboard = () => {
 
 
     const isRequiter = false;
-    const isAdmin = true;
+    const isAdmin = false;
 
 
 

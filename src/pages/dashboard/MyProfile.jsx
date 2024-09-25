@@ -1,4 +1,4 @@
-import { BsUpload } from "react-icons/bs";
+import { BsFillSendFill, BsUpload } from "react-icons/bs";
 import PrimaryButton from "./../../components/shared/PrimaryButton";
 const MyProfile = () => {
   return (
@@ -189,7 +189,7 @@ const MyProfile = () => {
                 />
               </div>
             </div>
-            <PrimaryButton title={"Submit Now"}></PrimaryButton>
+            <PrimaryButton title={"Submit Now"} icon={<BsFillSendFill />}></PrimaryButton>
           </form>
         </div>
       </div>

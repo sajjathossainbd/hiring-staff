@@ -97,7 +97,7 @@ const AllApplicants = () => {
         path="all-applicants"
         pathName="All Applicants"
       />
-      <div className="bg-softLightBlue py-6 lg:px-6 rounded-md">
+      <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 rounded-md">
         <h5>Applicants</h5>
         <hr className="my-6 text-lightGray" />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

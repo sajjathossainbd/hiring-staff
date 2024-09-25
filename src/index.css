@@ -55,15 +55,20 @@ body {
 
 /* end */
 
-/* for phone number input */
+/* phone number input field */
+
 .PhoneInput {
-  background: #f2f6fd !important;
   padding: 0 16px;
 }
+
 .PhoneInputInput {
   padding: 15px;
   outline: none;
-  background: #f2f6fd !important;
+  background-color: transparent !important;
+}
+.PhoneInputCountrySelect {
+  background: #05274f !important;
+  color: white;
 }
 
 /* end */

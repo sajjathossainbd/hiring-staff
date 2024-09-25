@@ -119,15 +119,15 @@ When it comes to choosing the right web hosting provider, we know how easy it is
                 <p>
                   {testimonial.description.split(" ").length > 25
                     ? testimonial.description
-                      .split(" ")
-                      .slice(0, 25)
-                      .join(" ") + "..."
+                        .split(" ")
+                        .slice(0, 25)
+                        .join(" ") + "..."
                     : testimonial.description}
                 </p>
               </div>
               {/* arrow png */}
               <img
-                className="absolute top-[99%] left-10 bg-white"
+                className="absolute top-[99%] left-10 bg-white dark:bg-darkBlue"
                 src={arrow}
                 alt=""
               />

@@ -43,7 +43,7 @@ const PostJob = () => {
         path={"post-job"}
         pathName={"Post a New Job"}
       />
-      <div className="bg-softLightBlue py-6 lg:px-6 px-2 rounded-md">
+      <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
         <h5>Post Your Job</h5>
         <hr className="my-6 text-lightGray" />
 
@@ -66,7 +66,7 @@ const PostJob = () => {
               <span className="font-semibold">Job Description</span>
             </div>
             <textarea
-              className="w-full h-full p-2 resize-none py-4 rounded-md bg-bgLightWhite text-14 outline-none px-3 
+              className="w-full h-full p-2 resize-none py-4 rounded-md bg-bgLightWhite dark:bg-darkBlue dark:border-blue dark:border text-14 outline-none px-3 
                    focus:bg-white border border-bgLightWhite 
                    focus:border-blue placeholder:opacity-100 focus:placeholder:opacity-0 transition-all duration-500"
               placeholder="Job Description"
@@ -112,7 +112,7 @@ const PostJob = () => {
             <select
               name="jobType"
               onChange={handleChange}
-              className="py-4 px-3 bg-bgLightWhite outline-none w-full border-lightGray rounded-md"
+              className="py-4 px-3 bg-bgLightWhite dark:bg-darkBlue dark:border-blue dark:border outline-none w-full border-lightGray rounded-md"
             >
               <option value="">Select Job Type</option>
               <option>Banking</option>
@@ -129,7 +129,7 @@ const PostJob = () => {
             <select
               name="specialisms"
               onChange={handleChange}
-              className="py-4 px-3 bg-bgLightWhite outline-none w-full border-lightGray rounded-md"
+              className="py-4 px-3 bg-bgLightWhite dark:bg-darkBlue dark:border-blue dark:border outline-none w-full border-lightGray rounded-md"
             >
               <option value="">Select Specialisms</option>
               <option>Banking</option>
@@ -144,7 +144,7 @@ const PostJob = () => {
             <select
               name="offeredSalary"
               onChange={handleChange}
-              className="py-4 px-3 bg-bgLightWhite outline-none w-full border-lightGray rounded-md"
+              className="py-4 px-3 bg-bgLightWhite dark:bg-darkBlue dark:border-blue dark:border outline-none w-full border-lightGray rounded-md"
             >
               <option value="">Select Offered Salary</option>
               <option>$400</option>
@@ -162,7 +162,7 @@ const PostJob = () => {
             <select
               name="careerLevel"
               onChange={handleChange}
-              className="py-4 px-3 bg-bgLightWhite outline-none w-full border-lightGray rounded-md"
+              className="py-4 px-3 bg-bgLightWhite dark:bg-darkBlue dark:border-blue dark:border outline-none w-full border-lightGray rounded-md"
             >
               <option value="">Select Career Level</option>
               <option>Entry</option>
@@ -177,7 +177,7 @@ const PostJob = () => {
             <select
               name="experience"
               onChange={handleChange}
-              className="py-4 px-3 bg-bgLightWhite outline-none w-full border-lightGray rounded-md"
+              className="py-4 px-3 bg-bgLightWhite dark:bg-darkBlue dark:border-blue dark:border outline-none w-full border-lightGray rounded-md"
             >
               <option value="">Select Experience</option>
               <option>Less than 1 year</option>
@@ -194,7 +194,7 @@ const PostJob = () => {
             <select
               name="gender"
               onChange={handleChange}
-              className="py-4 px-3 bg-bgLightWhite outline-none w-full border-lightGray rounded-md"
+              className="py-4 px-3 bg-bgLightWhite dark:bg-darkBlue dark:border-blue dark:border outline-none w-full border-lightGray rounded-md"
             >
               <option value="">Select Gender</option>
               <option>Male</option>
@@ -209,7 +209,7 @@ const PostJob = () => {
             <select
               name="industry"
               onChange={handleChange}
-              className="py-4 px-3 bg-bgLightWhite outline-none w-full border-lightGray rounded-md"
+              className="py-4 px-3 bg-bgLightWhite dark:bg-darkBlue dark:border-blue dark:border outline-none w-full border-lightGray rounded-md"
             >
               <option value="">Select Industry</option>
               <option>Banking</option>
@@ -227,7 +227,7 @@ const PostJob = () => {
             <select
               name="qualification"
               onChange={handleChange}
-              className="py-4 px-3 bg-bgLightWhite outline-none w-full border-lightGray rounded-md"
+              className="py-4 px-3 bg-bgLightWhite dark:bg-darkBlue dark:border-blue dark:border outline-none w-full border-lightGray rounded-md"
             >
               <option value="">Select Qualification</option>
               <option>High School</option>
@@ -250,7 +250,7 @@ const PostJob = () => {
             <select
               name="country"
               onChange={handleChange}
-              className="py-4 px-3 bg-bgLightWhite outline-none w-full border-lightGray rounded-md"
+              className="py-4 px-3 bg-bgLightWhite dark:bg-darkBlue dark:border-blue dark:border outline-none w-full border-lightGray rounded-md"
             >
               <option value="">Select Country</option>
               <option>Bangladesh</option>
@@ -297,18 +297,17 @@ const PostJob = () => {
               onChange={handleChange}
             />
           </div>
-
-          {/* Submit Button */}
-          <div className="group">
+          <div className="col-span-6 flex justify-start">
             <button
               type="submit"
-              className="btn btn-primary flex items-center px-5"
+              className="btn btn-primary flex items-center justify-center px-5 group"
             >
-              Post Job
+              Submit Now
               <FiSend className="ml-2 transition-transform duration-300 group-hover:rotate-45" />
             </button>
           </div>
         </form>
+        {/* Submit Button */}
       </div>
     </div>
   );

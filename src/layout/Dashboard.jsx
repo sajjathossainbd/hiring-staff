@@ -10,7 +10,7 @@ import { NavLink, Outlet } from "react-router-dom";
 const Dashboard = () => {
 
 
-    const isRequiter = true;
+    const isRequiter = false;
     const isAdmin = false;
 
 

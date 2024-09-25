@@ -1,6 +1,5 @@
 import {
   FaMapMarkerAlt,
-  FaBookmark,
   FaEye,
   FaCheck,
   FaTimes,
@@ -57,7 +56,7 @@ const ShortlistedJobs = () => {
     <div>
       <h3 className="">Shortlisted jobs</h3>
 
-      <div className="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-6">
+      <div className="grid gap-3 grid-cols-1 md:grid-cols-2 mt-6">
         {jobs.map((job, idx) => (
           <div key={idx} className=" shadow-lg rounded-lg p-6 ">
             <div className="flex justify-between items-start">
@@ -67,7 +66,7 @@ const ShortlistedJobs = () => {
                   alt="Company Logo"
                   className="w-12 h-12 rounded-full"
                 />
-                <div className="ml-2">
+                <div className="ml-3">
                   <h5 className="">{job.jobTitle}</h5>
                   <div className="flex flex-wrap text-12 text-gray">
                     <span className="flex items-center mr-4 ">

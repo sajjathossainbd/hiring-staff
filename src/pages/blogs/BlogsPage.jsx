@@ -135,14 +135,14 @@ function BlogsPage() {
         {/* <div className="w-1/3 "> */}
         {/* Now changed */}
         <div className="w-full lg:w-1/3 space-y-10">
-          <div className="h-28 w-auto border border-lightGray rounded-lg relative">
-            <input type="text" placeholder="" className="h-16 w-[345px] mt-6 ml-10 border border-lightGray rounded-lg " />
+          <div className="lg:h-28 h-20 w-auto border border-lightGray rounded-lg relative">
+            <input type="text" placeholder="" className="lg:h-16 h-14 lg:w-[345px] w-[230px] lg:mt-6 mt-3  lg:ml-10 ml-7 border border-lightGray rounded-lg " />
             {/* <input type="text" placeholder="" className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none" /> */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
               fill="currentColor"
-              className="h-4 w-4 opacity-70 absolute top-12 right-12">
+              className="h-4 w-4 opacity-70 absolute lg:top-12 lg:right-12 top-7 right-7">
               <path
                 fillRule="evenodd"
                 d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
@@ -183,7 +183,7 @@ function BlogsPage() {
           {/* HIRING Part */}
           {/* <div className="border rounded-lg p-6 bg-[#F2F6FD] relative h-[600px] mt-10"> */}
           <div className="lg:h-[600px]  border border-lightGray hover:border-blue rounded-lg mt-10 shadow-sm ">
-            <div className="lg:h-[550px] h-[400px] lg:w-[400px] lg:m-auto m-5 border rounded-lg bg-[#F2F6FD] shadow-sm border-lightGray lg:pl-10 p-3  space-y-4 relative">
+            <div className="lg:h-[550px] h-[400px] lg:w-[400px] lg:m-auto m-5 lg:mt-5 border rounded-lg bg-[#F2F6FD] shadow-sm border-lightGray lg:pl-10 p-3  space-y-4 relative">
               <h3 className="text-[#B4C0E0] text-2xl font-light  pt-9">WE ARE <br /><span className="text-4xl font-extrabold text-[#66789C]">HIRING</span></h3>
               <p className="text-xs">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae architecto</p>
               <button className=" border-solid  text-xs px-2 py-2 rounded-md text-white bg-[#66789C] hover:text-[#66789C] hover:bg-white">Know More</button>

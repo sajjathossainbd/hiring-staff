@@ -5,7 +5,7 @@ const TinnyHeading = ({ title, path, pathName }) => {
   return (
     <div className="flex lg:flex-row flex-col items-center gap-3 pb-8">
       <h4>{title}</h4>
-      <span className="lg:visible hidden">|</span>
+      <span className="lg:block hidden">|</span>
       <div className="breadcrumbs text-sm">
         <ul>
           <li>

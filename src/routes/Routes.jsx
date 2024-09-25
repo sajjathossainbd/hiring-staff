@@ -17,6 +17,17 @@ import BlogDetails from "../pages/blogs/BlogDetails";
 import Register from "../pages/authentication/Register";
 import SignIn from "../pages/authentication/SignIn";
 import ResetPassword from "../pages/authentication/ResetPassword";
+import Dashboard from "../layout/Dashboard";
+import MyProfile from "../pages/dashboard/MyProfile";
+import MyResume from "../pages/dashboard/forCandidates/MyResume";
+import AppliedJobs from "../pages/dashboard/forCandidates/AppliedJobs";
+import ShortlistedJobs from "../pages/dashboard/forCandidates/ShortlistedJobs";
+import CompanyProfile from "../pages/dashboard/forRecruiter/CompanyProfile";
+import PostJob from "../pages/dashboard/forRecruiter/PostJob";
+import ManageJob from "../pages/dashboard/forRecruiter/ManageJob";
+import AllApplicants from "../pages/dashboard/forRecruiter/AllApplicants";
+import Shortlist from "../pages/dashboard/forRecruiter/Shortlist";
+import DashboardMain from "../pages/dashboard/DashboardMain";
 
 const router = createBrowserRouter([
   {
@@ -91,6 +102,59 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+
+      // For all
+      {
+        path: "dashboard-main",
+        element: <DashboardMain />
+      },
+      {
+        path: "my-profile",
+        element: <MyProfile />
+      },
+
+      // For Candidate
+      {
+        path: "my-resume",
+        element: <MyResume />
+      },
+      {
+        path: "applied-jobs",
+        element: <AppliedJobs />
+      },
+      {
+        path: "shortlisted-jobs",
+        element: <ShortlistedJobs />
+      },
+
+      // For Recruiter
+      {
+        path: "company-profile",
+        element: <CompanyProfile />
+      },
+      {
+        path: "post-job",
+        element: <PostJob />
+      },
+      {
+        path: "manage-jobs",
+        element: <ManageJob />
+      },
+      {
+        path: "all-applicants",
+        element: <AllApplicants />
+      },
+      {
+        path: "shortlist",
+        element: <Shortlist />
+      },
+
+    ]
+  }
 ]);
 
 export default router;

@@ -42,8 +42,8 @@ const RecruitersListing = () => {
 
   const filteredRecruiters = selectedLetter
     ? recruiters.filter((recruiter) =>
-        recruiter.brandName.toUpperCase().startsWith(selectedLetter)
-      )
+      recruiter.brandName.toUpperCase().startsWith(selectedLetter)
+    )
     : recruiters;
 
   const sortedRecruiters = sortRecruiters();
@@ -64,26 +64,26 @@ const RecruitersListing = () => {
 
   return (
     <div className="container mx-auto">
-       <Helmet>
+      <Helmet>
         <title>Hiring Staff - Recruiters</title>
       </Helmet>
       {/* Banner Section & Recruiter Browser */}
-      <RecruiterBrowser 
-        alphabet={alphabet} 
-        selectedLetter={selectedLetter} 
-        setSelectedLetter={setSelectedLetter} 
-        setCurrentPage={setCurrentPage} 
+      <RecruiterBrowser
+        alphabet={alphabet}
+        selectedLetter={selectedLetter}
+        setSelectedLetter={setSelectedLetter}
+        setCurrentPage={setCurrentPage}
       />
 
       {/* Filter and Sorting Section */}
-      <Filters 
-        showCount={showCount} 
-        setShowCount={setShowCount} 
-        setCurrentPage={setCurrentPage} 
-        sortOrder={sortOrder} 
-        setSortOrder={setSortOrder} 
-        currentPage={currentPage} 
-        sortedRecruiters={sortedRecruiters} 
+      <Filters
+        showCount={showCount}
+        setShowCount={setShowCount}
+        setCurrentPage={setCurrentPage}
+        sortOrder={sortOrder}
+        setSortOrder={setSortOrder}
+        currentPage={currentPage}
+        sortedRecruiters={sortedRecruiters}
       />
 
       {/* Recruiter listing */}
@@ -94,10 +94,10 @@ const RecruitersListing = () => {
       </div>
 
       {/* Pagination*/}
-      <Pagination 
-        currentPage={currentPage} 
-        totalPages={totalPages} 
-        handlePageChange={handlePageChange} 
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        handlePageChange={handlePageChange}
       />
     </div>
   );

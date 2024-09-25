@@ -86,7 +86,7 @@ const Register = () => {
           email: result.user?.email,
           name: result.user?.displayName,
           photo: result.user?.photoURL,
-          role: "Recruiter",
+          role: "candidate",
         };
 
         console.log(userInfo);

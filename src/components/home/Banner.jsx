@@ -34,12 +34,12 @@ const Banner = () => {
               <SearchByFilter />
               {/* popular researches */}
               <div>
-                <strong className="text-14 text-lightText">
+                <strong className="text-14 text-darkBlue dark:text-lightText">
                   Popular Researches:{" "}
                 </strong>
                 {popularSearches.map((searches, index) => (
                   <Link
-                    className="text-14 hover:underline text-lightText"
+                    className="text-14 hover:underline text-darkBlue dark:text-lightText"
                     key={index}
                     to={""}
                   >

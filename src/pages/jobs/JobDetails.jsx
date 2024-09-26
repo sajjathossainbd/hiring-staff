@@ -152,7 +152,7 @@ const JobDetails = () => {
   const { id } = useParams();
   const jobId = parseInt(id);
 
-  const jobPostArray = [
+  const jobs = [
     {
       id: 1,
       position: "Frontend Developer",
@@ -288,7 +288,7 @@ const JobDetails = () => {
     },
   ];
 
-  const dynamicJob = jobPostArray.find((item) => item.id === jobId);
+  const dynamicJob = jobs.find((item) => item.id === jobId);
 
   if (!dynamicJob) {
     return <p>Job not found</p>;

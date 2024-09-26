@@ -7,6 +7,10 @@ export default {
     extend: {
       backgroundImage: {
         "banner-image": "url('./src/assets/banner/bg-banner.svg')",
+        "tinny-banner-image-light":
+          "url('./src/assets/pricing/pricing-page-banner.png')",
+        "tinny-banner-image-dark":
+          "url('./src/assets/pricing/pricing-page-banner2.png')",
       },
       colors: {
         // heading, button

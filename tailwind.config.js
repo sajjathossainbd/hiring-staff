@@ -25,16 +25,14 @@ export default {
 
         // background colors
         bgLightBlue: "#F8FAFF",
-        bgDeepBlue: "E0E7F6",
+        bgDeepBlue: "#E0E7F6",
         bgLightWhite: "#f2f6fd",
 
         // Other colors
         white: "#ffffff",
         black: "#000000",
-       
 
         softLightBlue: "#F8FAFF",
- 
       },
     },
   },

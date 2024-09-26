@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { CiClock2, CiLocationOn } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import StarRatings from "react-star-ratings";
@@ -15,7 +16,7 @@ function CandidateCard({ candidate }) {
     img,
   } = candidate;
   return (
-    <div className=" border border-lightGray rounded-lg overflow-hidden shadow-sm bg-bgLightBlue hover:bg-white hover:-translate-y-1 duration-300">
+    <div className=" border border-lightGray rounded-lg overflow-hidden shadow-sm bg-bgLightBlue dark:bg-darkBlue dark:text-white hover:bg-white hover:-translate-y-1 duration-300">
       <Link to={`/candidate-details/${id}`} state={{ candidate }}>
         <div className="p-6">
           <div className="flex items-center">
@@ -46,7 +47,7 @@ function CandidateCard({ candidate }) {
             {skills.map((skill, index) => (
               <button
                 key={index}
-                className="bg-[#e1e6ff] m-1 py-1 px-2 rounded-md text-12"
+                className="bg-[#e1e6ff] dark:text-darkBlue m-1 py-1 px-2 rounded-md text-12"
               >
                 {skill}
               </button>

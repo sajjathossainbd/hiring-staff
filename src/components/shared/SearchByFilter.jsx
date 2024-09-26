@@ -98,13 +98,13 @@ const SearchByFilter = () => {
     console.log(updatedSearchData);
   };
   return (
-    <div className="flex lg:w-auto w-full lg:flex-row flex-col items-center px-4 rounded-2xl bg-white">
+    <div className="flex lg:w-auto w-full lg:flex-row flex-col items-center px-2 rounded-2xl bg-bgLightWhite dark:bg-blue">
       <div
         className="lg:w-1/4 lg:mb-0 mb-3 py-5 w-full lg:border-r-2 h-8 border-[#D2D4D7] relative flex items-center"
         ref={dropdownRef}
       >
         <div
-          className="select rounded-none w-full cursor-pointer flex items-center"
+          className="select dark:bg-blue bg-bgLightWhite dark:text-white rounded-none w-full cursor-pointer flex items-center"
           onClick={toggleDropdown}
         >
           {searchData.option}
@@ -116,7 +116,7 @@ const SearchByFilter = () => {
             data-aos="fade-down"
             data-aos-offset="200"
             data-aos-duration="500"
-            className="absolute lg:top-14 top-8 z-10 bg-white w-full mt-1 max-h-48 overflow-y-auto overflow-x-hidden px-1"
+            className="absolute lg:top-14 top-8 z-10 w-full mt-1 max-h-48 overflow-y-auto overflow-x-hidden px-1 bg-white"
           >
             <input
               type="text"
@@ -151,7 +151,7 @@ const SearchByFilter = () => {
         ref={locationDropdownRef}
       >
         <div
-          className="select rounded-none w-full cursor-pointer flex items-center"
+          className="select rounded-none dark:bg-blue bg-bgLightWhite dark:text-white w-full cursor-pointer flex items-center"
           onClick={toggleLocationDropdown}
         >
           {searchData.location}
@@ -162,7 +162,7 @@ const SearchByFilter = () => {
             data-aos="fade-down"
             data-aos-offset="200"
             data-aos-duration="500"
-            className="absolute lg:top-14 top-8 z-10 bg-white w-full mt-1 max-h-48 overflow-y-auto overflow-x-hidden px-1"
+            className="absolute lg:top-14 top-8 z-10 w-full mt-1 max-h-48 overflow-y-auto overflow-x-hidden px-1 bg-white"
           >
             <input
               type="text"
@@ -193,7 +193,7 @@ const SearchByFilter = () => {
       {/* keywords search */}
       <div className="lg:w-1/4 lg:mb-0 mb-3 py-5 w-full">
         <input
-          className="h-full outline-none px-4 rounded-none w-full flex items-center text-sm text-[#1F2937] placeholder-[#1F2937]"
+          className="h-full outline-none dark:bg-blue bg-bgLightWhite px-4 rounded-none w-full flex items-center text-sm dark:text-white placeholder-lightGray"
           type="text"
           name="keywords"
           id="keywords"

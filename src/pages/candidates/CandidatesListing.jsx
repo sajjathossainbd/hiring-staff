@@ -179,15 +179,15 @@ function CandidatesListing() {
             "Browse top-rated professionals across various skills and locations, tailored to meet your project needs"
           }
         />
-        <div className="bg-white rounded-md p-1 md:p-3 flex flex-wrap justify-center">
+        <div className="bg-bgLightWhite dark:bg-darkBlue rounded-md p-1 md:p-3 flex flex-wrap justify-center">
           {alphabets.map((letter) => (
             <button
               key={letter}
               onClick={() => handleLetterClick(letter)}
               className={`m-1 w-8 h-8 text-18 rounded-full hover:bg-softLightBlue ${
                 selectedLetter === letter
-                  ? "bg-bgLightBlue text-blue"
-                  : " text-lightGray"
+                  ? "bg-bgLightBlue text-blue dark:bg-blue dark:text-white"
+                  : " text-lightGray bg-white"
               }`}
             >
               {letter}

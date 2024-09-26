@@ -300,11 +300,11 @@ const JobDetails = () => {
     <div className="container">
       <div>
         <img
-          className=" lg:h-[400px] rounded-3xl object-cover w-full mb-10 overflow-hidden"
+          className="lg:h-[400px] rounded-3xl object-cover w-full mb-10 overflow-hidden"
           src={dynamicJob.image}
           alt={dynamicJob.position}
         />
-        <div className="flex lg:flex-row flex-col gap-10">
+        <div className="flex lg:flex-row flex-col gap-10 dark:text-white">
           <div className="lg:w-8/12 w-full">
             <h3 className="pt-4 pb-2">{dynamicJob.position}</h3>
             <div className="flex gap-16 text-sm">
@@ -314,13 +314,18 @@ const JobDetails = () => {
             <hr className="border-0 h-px bg-lightGray mt-3 mb-12" />
             <h4 className="pt-4 pb-2">{`Welcome to the ${dynamicJob.company}`}</h4>
             <p>
-              The <strong className="text-16">{dynamicJob.company}</strong>{" "}
+              The{" "}
+              <strong className="text-16 dark:text-white">
+                {dynamicJob.company}
+              </strong>{" "}
               envisions creating a trusted platform that fosters productive and
               healthy enterprises in an ever-evolving digital landscape. As work
               patterns shift and the demand for organizational resilience grows,
               we seek a{" "}
-              <strong className="text-16">{dynamicJob.position}</strong> who
-              embodies creativity and a passion for illustrative design and
+              <strong className="text-16 dark:text-white">
+                {dynamicJob.position}
+              </strong>{" "}
+              who embodies creativity and a passion for illustrative design and
               typography.
             </p>
             <h4 className="pt-4 pb-2">Ideal Candidate Profile</h4>

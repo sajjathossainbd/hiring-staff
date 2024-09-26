@@ -87,23 +87,25 @@ const ShortlistedJobs = () => {
               <GoBookmark className=" hover:text-blue cursor-pointer" />
             </div>
 
-            <div className="mt-4 text-12 flex space-x-2">
-              <span className="bg-red-100 text-red-500  px-3 py-1 rounded-full">
-                {job.tags[0]}
-              </span>
-              <span className="bg-green-100 text-green-500 px-3 py-1 rounded-full">
-                {job.tags[1]}
-              </span>
-              <span className="bg-bgLightBlue text-lightBlue px-3 py-1 rounded-full">
-                {job.tags[2]}
-              </span>
-            </div>
+            <div className="mt-5 flex xl:flex-row flex-col gap-5 items-center justify-between">
+              <div className="text-12 flex space-x-2">
+                <span className="bg-red-100 text-red-500  px-3 py-1 rounded-full">
+                  {job.tags[0]}
+                </span>
+                <span className="bg-green-100 text-green-500 px-3 py-1 rounded-full">
+                  {job.tags[1]}
+                </span>
+                <span className="bg-bgLightBlue text-lightBlue px-3 py-1 rounded-full">
+                  {job.tags[2]}
+                </span>
+              </div>
 
-            <div className="mt-4 flex space-x-4 text-gray">
-              <FaEye className="hover:text-blue cursor-pointer" />
-              <FaCheck className="hover:text-green-500 cursor-pointer" />
-              <FaTimes className="hover:text-red-500 cursor-pointer" />
-              <FaTrash className="hover:text-red-500 cursor-pointer" />
+              <div className="flex space-x-4 text-gray">
+                <FaEye className="hover:text-blue cursor-pointer" />
+                <FaCheck className="hover:text-green-500 cursor-pointer" />
+                <FaTimes className="hover:text-red-500 cursor-pointer" />
+                <FaTrash className="hover:text-red-500 cursor-pointer" />
+              </div>
             </div>
           </div>
         ))}

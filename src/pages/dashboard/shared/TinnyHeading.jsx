@@ -12,7 +12,7 @@ const TinnyHeading = ({ title, path, pathName }) => {
             <Link to={"/"}>Home</Link>
           </li>
           <li>
-            <Link to={"/dashboard"}>Dashboard</Link>
+            <Link to={"/dashboard/dashboard-main"}>Dashboard</Link>
           </li>
           <li>
             <Link to={`/dashboard/${path}`}>{pathName}</Link>

@@ -112,7 +112,7 @@ const Navbar = () => {
                   </li>
                   <li className='rounded-sm px-6 py-2 text-center'>
                     {user?.displayName} <br />
-                    <strong className="text-12 text-blue dark:text-white">{user?.email}</strong>
+                    <strong className="text-[11px] text-blue dark:text-white">{user?.email}</strong>
                   </li>
                   <li className='hover:bg-slate-300 inter rounded-sm px-6 py-2'>
                     <Link to='/dashboard/dashboard-main'>Dashboard</Link>

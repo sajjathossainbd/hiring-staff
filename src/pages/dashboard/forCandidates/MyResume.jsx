@@ -67,7 +67,7 @@ const MyResume = () => {
                 htmlFor="address"
                 className="block text-gray font-bold mb-2"
               >
-                Adress
+                Address
               </label>
               <input
                 id="address"
@@ -114,9 +114,9 @@ const MyResume = () => {
             />
           </div>
 
-          <h4>Education</h4>
+          <h4>Education:</h4>
           {/* title and degree */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 mt-2">
             <div className="mb-4">
               <label htmlFor="title" className="block text-gray font-bold mb-2">
                 Title
@@ -172,9 +172,9 @@ const MyResume = () => {
             </div>
           </div>
 
-          <h4>Skill</h4>
+          <h4>Skill:</h4>
           {/* title and exprrience */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 mt-2">
             <div className="mb-4">
               <label htmlFor="title" className="block text-gray font-bold mb-2">
                 Title
@@ -201,9 +201,9 @@ const MyResume = () => {
               />
             </div>
           </div>
-          <h4>Social Links</h4>
+          <h4>Social Links:</h4>
           {/* social */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 mt-2">
             <div className="mb-4">
               <label htmlFor="fb" className="block text-gray font-bold mb-2">
                 Facebook URL

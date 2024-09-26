@@ -262,34 +262,36 @@ const CompanyProfile = () => {
               <div className="label pb-2">
                 <span className="font-semibold">Social Media Links</span>
               </div>
-              <DefaultInput
-                label={"Facebook URL"}
-                type={"url"}
-                placeholder={"Facebook URL"}
-                name="facebookUrl"
-                onChange={handleChange}
-              />
-              <DefaultInput
-                label={"Twitter URL"}
-                type={"url"}
-                placeholder={"Twitter URL"}
-                name="twitterUrl"
-                onChange={handleChange}
-              />
-              <DefaultInput
-                label={"LinkedIn URL"}
-                type={"url"}
-                placeholder={"LinkedIn URL"}
-                name="linkedinUrl"
-                onChange={handleChange}
-              />
-              <DefaultInput
-                label={"Instagram URL"}
-                type={"url"}
-                placeholder={"Instagram URL"}
-                name="instagramUrl"
-                onChange={handleChange}
-              />
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-5">
+                <DefaultInput
+                  label={"Facebook URL"}
+                  type={"url"}
+                  placeholder={"Facebook URL"}
+                  name="facebookUrl"
+                  onChange={handleChange}
+                />
+                <DefaultInput
+                  label={"Twitter URL"}
+                  type={"url"}
+                  placeholder={"Twitter URL"}
+                  name="twitterUrl"
+                  onChange={handleChange}
+                />
+                <DefaultInput
+                  label={"LinkedIn URL"}
+                  type={"url"}
+                  placeholder={"LinkedIn URL"}
+                  name="linkedinUrl"
+                  onChange={handleChange}
+                />
+                <DefaultInput
+                  label={"Instagram URL"}
+                  type={"url"}
+                  placeholder={"Instagram URL"}
+                  name="instagramUrl"
+                  onChange={handleChange}
+                />
+              </div>
             </div>
             <div className="group">
               <button

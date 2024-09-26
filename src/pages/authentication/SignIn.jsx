@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import axios from "axios";
 
 
 const SignIn = () => {
@@ -52,13 +53,15 @@ const SignIn = () => {
                     email: result.user?.email,
                     name: result.user?.displayName,
                     photo: result.user?.photoURL,
-                    role: "Recruiter",
                 }
 
-                console.log(userInfo);
-
-                toast.success("Successfully Google Login with role: recruiter")
-                navigate(location?.state ? location.state : "/")
+                axios.post("http://localhost:5000/users", userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            toast.success("Successfully Google Login");
+                            navigate(location?.state ? location.state : '/');
+                        }
+                    })
 
 
             })

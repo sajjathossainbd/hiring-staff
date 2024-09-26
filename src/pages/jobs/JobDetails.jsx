@@ -152,7 +152,7 @@ const JobDetails = () => {
   const { id } = useParams();
   const jobId = parseInt(id);
 
-  const jobPostArray = [
+  const jobs = [
     {
       id: 1,
       position: "Frontend Developer",
@@ -288,7 +288,7 @@ const JobDetails = () => {
     },
   ];
 
-  const dynamicJob = jobPostArray.find((item) => item.id === jobId);
+  const dynamicJob = jobs.find((item) => item.id === jobId);
 
   if (!dynamicJob) {
     return <p>Job not found</p>;
@@ -306,23 +306,24 @@ const JobDetails = () => {
         />
         <div className="flex lg:flex-row flex-col gap-10">
           <div className="lg:w-8/12 w-full">
-            <h3 className="pt-4">{dynamicJob.position}</h3>
+            <h3 className="pt-4 pb-2">{dynamicJob.position}</h3>
             <div className="flex gap-16 text-sm">
               <p>Type: {dynamicJob.type}</p>
               <p>Posted: {dynamicJob.posted}</p>
             </div>
             <hr className="border-0 h-px bg-lightGray mt-3 mb-12" />
-            <h3 className="py-4">{`Welcome to the ${dynamicJob.company}`}</h3>
+            <h4 className="pt-4 pb-2">{`Welcome to the ${dynamicJob.company}`}</h4>
             <p>
-              The <h4 className="inline-block">AliStudio Design team</h4>{" "}
+              The <strong className="text-16">{dynamicJob.company}</strong>{" "}
               envisions creating a trusted platform that fosters productive and
               healthy enterprises in an ever-evolving digital landscape. As work
               patterns shift and the demand for organizational resilience grows,
-              we seek a <h4 className="inline-block">{dynamicJob.position}</h4>{" "}
-              who embodies creativity and a passion for illustrative design and
+              we seek a{" "}
+              <strong className="text-16">{dynamicJob.position}</strong> who
+              embodies creativity and a passion for illustrative design and
               typography.
             </p>
-            <h3 className="py-4">Ideal Candidate Profile</h3>
+            <h4 className="pt-4 pb-2">Ideal Candidate Profile</h4>
             <ul>
               <li>
                 Portfolio showcasing polished end-to-end customer journeys.
@@ -350,15 +351,15 @@ const JobDetails = () => {
                 experiences.
               </li>
               <li>
-                A Bachelor’s Degree in Design (or a related field) or equivalent
-                professional experience.
+                A Bachelor&apos;s Degree in Design (or a related field) or
+                equivalent professional experience.
               </li>
               <li>
                 Proficiency in design tools such as Figma, Photoshop,
                 Illustrator, and Sketch.
               </li>
             </ul>
-            <h3 className="py-4">Preferred Experience</h3>
+            <h4 className="pt-4 pb-2">Preferred Experience</h4>
             <ul>
               <li>
                 Designing user experiences for enterprise software/services.
@@ -371,25 +372,25 @@ const JobDetails = () => {
                 geographies.
               </li>
             </ul>
-            <h3 className="py-4">Key Responsibilities</h3>
+            <h4 className="pt-4 pb-2">Key Responsibilities</h4>
             <ul>
               <li>
-                <h4 className="inline-block">Product Knowledge:</h4> Gain a deep
+                <h6 className="inline-block">Product Knowledge:</h6> Gain a deep
                 understanding of the technology and features relevant to your
                 assigned product area.
               </li>
               <li>
-                <h4 className="inline-block">Research:</h4> Provide insights
+                <h6 className="inline-block">Research:</h6> Provide insights
                 that demonstrate human and business impact for our products.
               </li>
               <li>
-                <h4 className="inline-block">Deliverables:</h4> Create essential
+                <h6 className="inline-block">Deliverables:</h6> Create essential
                 deliverables (competitive analyses, user flows, low-fidelity
                 wireframes, high-fidelity mockups, prototypes, etc.) that
                 effectively solve user problems.
               </li>
               <li>
-                <h4 className="inline-block">Communication:</h4> Clearly convey
+                <h6 className="inline-block">Communication:</h6> Clearly convey
                 the results of UX activities to the design team and
                 cross-functional partners, simplifying complex concepts.
               </li>
@@ -419,7 +420,7 @@ const JobDetails = () => {
                 </Marker>
               </MapContainer>
               <div className="contact-info">
-                <h3 className="mb-6 mt-2">Contact Us</h3>
+                <h4 className="mb-3 mt-2">Contact Us</h4>
                 <p>
                   <h5 className="inline-block">Address:</h5>
                   <br />
@@ -440,7 +441,7 @@ const JobDetails = () => {
               <h4 className="pb-7">Similar Jobs</h4>
               {array.map((arr, index) => (
                 <div
-                  className="border-t-[1px] border-t-lightGray py-4"
+                  className="border-t-[1px] border-t-lightGray pt-4 pb-2"
                   key={index}
                 >
                   <div className="flex gap-5 items-center">
@@ -450,7 +451,7 @@ const JobDetails = () => {
                       alt=""
                     />
                     <div>
-                      <h4 className="pb-2">{arr.position}</h4>
+                      <h5 className="pb-1">{arr.position}</h5>
                       <div className="flex justify-between">
                         <p className="text-sm">{arr.type}</p>
                         <p className="text-sm">{arr.posted}</p>

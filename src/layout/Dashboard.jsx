@@ -10,13 +10,8 @@ import DashboardFooter from "../pages/dashboard/shared/DashboardFooter";
 import { FaUserCog } from "react-icons/fa";
 
 const Dashboard = () => {
-
-
   const isRequiter = false;
   const isAdmin = true;
-
-
-
 
   return (
     <div>
@@ -26,32 +21,53 @@ const Dashboard = () => {
           <div className="drawer lg:drawer-open z-20">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col items-center justify-center">
-              <label htmlFor="my-drawer-2" className="btn bg-blue drawer-button lg:hidden mt-2 text-white rounded">Open Dashboard</label>
+              <label
+                htmlFor="my-drawer-2"
+                className="btn bg-blue drawer-button lg:hidden mt-2 text-white rounded"
+              >
+                Open Dashboard
+              </label>
             </div>
             <div className="drawer-side">
-              <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
+              <label
+                htmlFor="my-drawer-2"
+                aria-label="close sidebar"
+                className="drawer-overlay"
+              ></label>
               <ul className="menu inter space-y-2 p-4 w-64 min-h-full bg-bgLightWhite dark:bg-darkBlue text-black font-semibold">
-
                 {isAdmin && (
                   <>
                     <li>
                       <NavLink
                         to="/dashboard/dashboard-main"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive ? 'border-l-4 border-blue text-blue' : 'hover:border-l-4 hover:border-blue'}`
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue"
+                              : "hover:border-l-4 hover:border-blue"
+                          }`
                         }
                       >
-                        <span className="flex gap-1 items-center"><ImProfile />Dashboard</span>
+                        <span className="flex gap-1 items-center">
+                          <ImProfile />
+                          Dashboard
+                        </span>
                       </NavLink>
                     </li>
                     <li>
                       <NavLink
                         to="/dashboard/manage-users"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive ? 'border-l-4 border-blue text-blue' : 'hover:border-l-4 hover:border-blue'}`
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue"
+                              : "hover:border-l-4 hover:border-blue"
+                          }`
                         }
                       >
-                        <span className="flex gap-1 items-center"><FaUserCog /> Manage User</span>
+                        <span className="flex gap-1 items-center">
+                          <FaUserCog /> Manage User
+                        </span>
                       </NavLink>
                     </li>
                   </>
@@ -63,60 +79,97 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/dashboard-main"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive ? 'border-l-4 border-blue text-blue' : 'hover:border-l-4 hover:border-blue'}`
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue"
+                              : "hover:border-l-4 hover:border-blue"
+                          }`
                         }
                       >
-                        <span className="flex gap-1 items-center"><ImProfile />Dashboard</span>
+                        <span className="flex gap-1 items-center">
+                          <ImProfile />
+                          Dashboard
+                        </span>
                       </NavLink>
                     </li>
                     <li>
                       <NavLink
                         to="/dashboard/company-profile"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive ? 'border-l-4 border-blue text-blue' : 'hover:border-l-4 hover:border-blue'}`
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue"
+                              : "hover:border-l-4 hover:border-blue"
+                          }`
                         }
                       >
-                        <span className="flex gap-1 items-center"><ImProfile /> Company Profile</span>
+                        <span className="flex gap-1 items-center">
+                          <ImProfile /> Company Profile
+                        </span>
                       </NavLink>
                     </li>
                     <li>
                       <NavLink
                         to="/dashboard/post-job"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive ? 'border-l-4 border-blue text-blue' : 'hover:border-l-4 hover:border-blue'}`
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue"
+                              : "hover:border-l-4 hover:border-blue"
+                          }`
                         }
                       >
-                        <span className="flex gap-1 items-center"><MdPostAdd /> Post Job</span>
+                        <span className="flex gap-1 items-center">
+                          <MdPostAdd /> Post Job
+                        </span>
                       </NavLink>
                     </li>
                     <li>
                       <NavLink
                         to="/dashboard/manage-jobs"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive ? 'border-l-4 border-blue text-blue' : 'hover:border-l-4 hover:border-blue'}`
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue"
+                              : "hover:border-l-4 hover:border-blue"
+                          }`
                         }
                       >
-                        <span className="flex gap-1 items-center"><MdManageHistory /> Manage Jobs</span>
+                        <span className="flex gap-1 items-center">
+                          <MdManageHistory /> Manage Jobs
+                        </span>
                       </NavLink>
                     </li>
                     <li>
                       <NavLink
                         to="/dashboard/all-applicants"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive ? 'border-l-4 border-blue text-blue' : 'hover:border-l-4 hover:border-blue'}`
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue"
+                              : "hover:border-l-4 hover:border-blue"
+                          }`
                         }
                       >
-                        <span className="flex gap-1 items-center"><VscGitStashApply /> All Applicants</span>
+                        <span className="flex gap-1 items-center">
+                          <VscGitStashApply /> All Applicants
+                        </span>
                       </NavLink>
                     </li>
                     <li>
                       <NavLink
                         to="/dashboard/shortlist"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive ? 'border-l-4 border-blue text-blue' : 'hover:border-l-4 hover:border-blue'}`
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue"
+                              : "hover:border-l-4 hover:border-blue"
+                          }`
                         }
                       >
-                        <span className="flex gap-1 items-center"><MdPlaylistAddCheck /> Shortlist</span>
+                        <span className="flex gap-1 items-center">
+                          <MdPlaylistAddCheck /> Shortlist
+                        </span>
                       </NavLink>
                     </li>
                   </>
@@ -127,40 +180,67 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/dashboard-main"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive ? 'border-l-4 border-blue text-blue' : 'hover:border-l-4 hover:border-blue'}`
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue"
+                              : "hover:border-l-4 hover:border-blue"
+                          }`
                         }
                       >
-                        <span className="flex gap-1 items-center"><ImProfile />Dashboard</span>
+                        <span className="flex gap-1 items-center">
+                          <ImProfile />
+                          Dashboard
+                        </span>
                       </NavLink>
                     </li>
                     <li>
                       <NavLink
                         to="/dashboard/my-resume"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 px-4 hover:bg-transparent ${isActive ? 'border-l-4 border-blue text-blue' : 'hover:border-l-4 hover:border-blue'}`
+                          `flex items-center gap-2 px-4 hover:bg-transparent ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue"
+                              : "hover:border-l-4 hover:border-blue"
+                          }`
                         }
                       >
-                        <span className="flex gap-1 items-center"><RxResume /> My Resume</span>
+                        <span className="flex gap-1 items-center">
+                          <RxResume /> My Resume
+                        </span>
                       </NavLink>
                     </li>
                     <li>
                       <NavLink
                         to="/dashboard/applied-jobs"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 px-4 hover:bg-transparent ${isActive ? 'border-l-4 border-blue text-blue' : 'hover:border-l-4 hover:border-blue'}`
+                          `flex items-center gap-2 px-4 hover:bg-transparent ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue"
+                              : "hover:border-l-4 hover:border-blue"
+                          }`
                         }
                       >
-                        <span className="flex gap-1 items-center"> <VscGitStashApply />Applied Jobs</span>
+                        <span className="flex gap-1 items-center">
+                          {" "}
+                          <VscGitStashApply />
+                          Applied Jobs
+                        </span>
                       </NavLink>
                     </li>
                     <li>
                       <NavLink
                         to="/dashboard/shortlisted-jobs"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 px-4 hover:bg-transparent ${isActive ? 'border-l-4 border-blue text-blue' : 'hover:border-l-4 hover:border-blue'}`
+                          `flex items-center gap-2 px-4 hover:bg-transparent ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue"
+                              : "hover:border-l-4 hover:border-blue"
+                          }`
                         }
                       >
-                        <span className="flex gap-1 items-center"><FaArrowUpShortWide /> Shortlisted Jobs</span>
+                        <span className="flex gap-1 items-center">
+                          <FaArrowUpShortWide /> Shortlisted Jobs
+                        </span>
                       </NavLink>
                     </li>
                   </>
@@ -173,11 +253,16 @@ const Dashboard = () => {
                   <NavLink
                     to="/dashboard/my-profile"
                     className={({ isActive }) =>
-                      `flex items-center gap-2 px-4 hover:bg-transparent ${isActive ? 'border-l-4 -py-3 border-blue text-blue' : 'hover:border-l-4 hover:border-blue'
+                      `flex items-center gap-2 px-4 hover:bg-transparent ${
+                        isActive
+                          ? "border-l-4 -py-3 border-blue text-blue"
+                          : "hover:border-l-4 hover:border-blue"
                       }`
                     }
                   >
-                    <span className="flex gap-1 items-center"><CgProfile /> My Profile</span>
+                    <span className="flex gap-1 items-center">
+                      <CgProfile /> My Profile
+                    </span>
                   </NavLink>
                 </li>
 
@@ -185,13 +270,18 @@ const Dashboard = () => {
                   <NavLink
                     to="/"
                     className={({ isActive }) =>
-                      `flex items-center gap-2 py-2 px-4 hover:bg-transparent ${isActive ? 'border-blue text-blue' : 'hover:border-l-4 hover:border-blue'}`
+                      `flex items-center gap-2 py-2 px-4 hover:bg-transparent ${
+                        isActive
+                          ? "border-blue text-blue"
+                          : "hover:border-l-4 hover:border-blue"
+                      }`
                     }
                   >
-                    <span className="flex gap-1 items-center"><IoHomeOutline /> Home</span>
+                    <span className="flex gap-1 items-center">
+                      <IoHomeOutline /> Home
+                    </span>
                   </NavLink>
                 </li>
-
               </ul>
             </div>
           </div>
@@ -201,8 +291,8 @@ const Dashboard = () => {
           <Outlet />
           <DashboardFooter />
         </div>
-      </div >
-    </div >
+      </div>
+    </div>
   );
 };
 

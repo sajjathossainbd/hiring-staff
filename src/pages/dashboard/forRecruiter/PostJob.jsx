@@ -2,6 +2,8 @@ import { useState } from "react";
 import DefaultInput from "../shared/DefaultInput";
 import TinnyHeading from "../shared/TinnyHeading";
 import { FiSend } from "react-icons/fi";
+import toast from "react-hot-toast";
+import axios from "axios";
 const PostJob = () => {
   // State object to handle form data
   const [formData, setFormData] = useState({
@@ -31,9 +33,16 @@ const PostJob = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    try {
+      const res = await axios.post("http://localhost:5000/jobs", formData);
+      if (res.data.insertedId) {
+        toast.success("Job submitted successfully");
+      }
+    } catch (error) {
+      toast.error("Job already exists");
+    }
   };
 
   return (

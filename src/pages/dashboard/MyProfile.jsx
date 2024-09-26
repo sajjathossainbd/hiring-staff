@@ -9,9 +9,11 @@ const MyProfile = () => {
   const { currentUser, refetch } = useCurrentUser();
   const { register, handleSubmit } = useForm();
 
+
+
   const onSubmit = async (data) => {
+
     const updatedData = {
-      ...currentUser,
       name: data.name || currentUser?.name,
       photo: data.imageUrl || currentUser?.photo,
       role: data.role || currentUser?.role,
@@ -26,7 +28,6 @@ const MyProfile = () => {
       github: data.github || currentUser?.github,
     };
 
-    console.log(updatedData);
 
     try {
       const res = await axios.patch(`http://localhost:5000/users/profile/${currentUser.email}`, updatedData);
@@ -84,7 +85,7 @@ const MyProfile = () => {
                 <input
                   id="name"
                   type="text"
-                  defaultValue={currentUser?.name}
+                  placeholder={currentUser?.name}
                   {...register("name")}
                   className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
                 />
@@ -97,7 +98,7 @@ const MyProfile = () => {
                   disabled
                   id="email"
                   type="email"
-                  defaultValue={currentUser?.email}
+                  placeholder={currentUser?.email}
                   {...register("email")}
                   className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
                 />
@@ -151,7 +152,7 @@ const MyProfile = () => {
               <textarea
                 id="about"
                 rows="5"
-                placeholder={currentUser?.about?.slice(0, 50)}
+                placeholder={currentUser?.about}
                 {...register("about")}
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
               />

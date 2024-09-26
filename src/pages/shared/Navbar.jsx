@@ -2,10 +2,13 @@ import { useState, useRef, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import PrimaryButton from "../../components/shared/PrimaryButton";
 import useAuth from "../../hooks/useAuth";
+import useCurrentUser from "../../hooks/useCurrentUser";
 
 const Navbar = () => {
 
   const { user, logOut } = useAuth();
+
+  const { currentUser } = useCurrentUser()
 
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -103,15 +106,15 @@ const Navbar = () => {
 
               <div ref={dropDownRef} className="relative mr-5 w-fit text-black">
                 <button onClick={() => setOpen((prev) => !prev)}>
-                  <img width={40} height={40} className="w-12 border-2 border-blue dark:border-white rounded-full lightGray object-cover transition-transform duration-300 hover:scale-105 hover:opacity-80" src={user?.photoURL} alt="avatar" />
+                  <img width={40} height={40} className="w-12 border-2 border-blue dark:border-white rounded-full lightGray object-cover transition-transform duration-300 hover:scale-105 hover:opacity-80" src={currentUser?.photo}  alt="avatar" />
                 </button>
                 <ul
                   className={`${open ? 'visible opacity-100 transition-opacity duration-300' : 'invisible opacity-0'} absolute right-0 top-12 z-50 w-60 rounded-sm bg-bgLightWhite dark:bg-darkBlue dark:text-white`}>
                   <li className='rounded-sm px-6 py-2 flex justify-center'>
-                    <img className="rounded-full object-cover" src={user?.photoURL} alt="" />
+                    <img className="rounded-full object-cover" src={currentUser?.photo} alt="" />
                   </li>
                   <li className='rounded-sm px-6 py-2 text-center'>
-                    {user?.displayName} <br />
+                    {currentUser?.name} <br />
                     <strong className="text-[11px] text-blue dark:text-white">{user?.email}</strong>
                   </li>
                   <li className='hover:bg-slate-300 inter rounded-sm px-6 py-2'>

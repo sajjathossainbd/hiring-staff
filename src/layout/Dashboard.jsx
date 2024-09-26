@@ -7,6 +7,7 @@ import { RxResume } from "react-icons/rx";
 import { VscGitStashApply } from "react-icons/vsc";
 import { NavLink, Outlet } from "react-router-dom";
 import DashboardFooter from "../pages/dashboard/shared/DashboardFooter";
+import { FaUserCog } from "react-icons/fa";
 
 const Dashboard = () => {
 
@@ -50,7 +51,7 @@ const Dashboard = () => {
                           `flex items-center gap-2 py-2 px-4 rounded-md ${isActive ? 'border-l-4 border-blue text-blue' : 'hover:border-l-4 hover:border-blue'}`
                         }
                       >
-                        <span className="flex gap-1 items-center">Manage User</span>
+                        <span className="flex gap-1 items-center"><FaUserCog /> Manage User</span>
                       </NavLink>
                     </li>
                   </>

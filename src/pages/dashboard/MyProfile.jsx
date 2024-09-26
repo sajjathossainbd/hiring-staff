@@ -71,10 +71,13 @@ const MyProfile = () => {
               </label>
               <select
                 defaultValue={currentUser?.role || ""}
+                disabled={currentUser?.role === 'admin'}
                 id="role"
                 {...register("role")}
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
               >
+                <option>Select role</option>
+                <option value="admin">Admin</option>
                 <option value="candidate">Candidate</option>
                 <option value="recruiter">Recruiter</option>
               </select>

@@ -118,7 +118,7 @@ const Register = () => {
           <button
             onClick={handleGoogleRegister}
             type="button"
-            className="flex items-center gap-2 justify-center font-medium py-2 w-full border rounded-lg hover:scale-95 transition-all duration-500">
+            className="flex items-center gap-2 justify-center font-medium py-2 w-full border rounded-lg hover:scale-95 transition-all duration-500 dark:text-white">
             <span className="text-xl">
               <FcGoogle />
             </span>{" "}
@@ -126,7 +126,7 @@ const Register = () => {
           </button>
         </div>
 
-        <div className="divider my-7">Or continue with</div>
+        <div className="divider my-7 dark:text-white">Or continue with</div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>

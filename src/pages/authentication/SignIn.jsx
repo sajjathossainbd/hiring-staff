@@ -94,7 +94,7 @@ const SignIn = () => {
                     <p>Access your account by signing in</p>
                     <button
                         onClick={handleGoogleLogin}
-                        className="flex items-center gap-2 justify-center font-medium py-2 w-full border rounded-lg hover:scale-95 transition-all duration-500">
+                        className="flex items-center gap-2 justify-center font-medium py-2 w-full border rounded-lg hover:scale-95 transition-all duration-500 dark:text-white">
                         <span className="text-xl">
                             <FcGoogle />
                         </span>{" "}
@@ -102,7 +102,7 @@ const SignIn = () => {
                     </button>
                 </div>
 
-                <div className="divider my-7">Or continue with</div>
+                <div className="divider my-7 dark:text-white">Or continue with</div>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     <div>
@@ -172,8 +172,8 @@ const SignIn = () => {
                     </p>
                 </form>
 
-                <div className="mt-7 bg-bgDeepBlue px-10 py-5 rounded-md">
-                    <p>Login Credentials</p>
+                <div className="mt-7 bg-bgDeepBlue dark:bg-softLightBlue px-10 py-5 rounded-md">
+                    <p className="dark:text-black">Login Credentials</p>
                     <div className="mt-5 flex flex-col gap-5 items-center justify-center">
                         <div className="flex gap-5 items-center">
                             <button

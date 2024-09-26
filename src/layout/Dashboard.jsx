@@ -2,7 +2,7 @@ import { CgProfile } from "react-icons/cg";
 import { FaArrowUpShortWide } from "react-icons/fa6";
 import { ImProfile } from "react-icons/im";
 import { IoHomeOutline } from "react-icons/io5";
-import { MdManageHistory, MdPlaylistAddCheck, MdPostAdd } from "react-icons/md";
+import { MdManageHistory, MdOutlineAnalytics, MdPlaylistAddCheck, MdPostAdd } from "react-icons/md";
 import { RxResume } from "react-icons/rx";
 import { VscGitStashApply } from "react-icons/vsc";
 import { NavLink, Outlet } from "react-router-dom";
@@ -10,7 +10,7 @@ import DashboardFooter from "../pages/dashboard/shared/DashboardFooter";
 import { FaUserCog } from "react-icons/fa";
 
 const Dashboard = () => {
-  const isRequiter = true;
+  const isRequiter = false;
   const isAdmin = false;
 
   return (
@@ -67,6 +67,22 @@ const Dashboard = () => {
                       >
                         <span className="flex gap-1 items-center">
                           <FaUserCog /> Manage User
+                        </span>
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/admin-analytics"
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue dark:text-blue"
+                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          }`
+                        }
+                      >
+                        <span className="flex gap-1 items-center">
+                        <MdOutlineAnalytics /> Admin Analytics
                         </span>
                       </NavLink>
                     </li>

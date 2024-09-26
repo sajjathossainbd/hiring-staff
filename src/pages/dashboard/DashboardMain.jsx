@@ -1,7 +1,11 @@
+import { SiImessage } from "react-icons/si";
 import useAuth from "../../hooks/useAuth";
 import DashboardCard from "./shared/DashboardCard";
 import TinnyHeading from "./shared/TinnyHeading";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { IoBagRemoveOutline } from "react-icons/io5";
+import { MdPlaylistAddCheck } from "react-icons/md";
+import { VscGitStashApply } from "react-icons/vsc";
 
 const DashboardMain = () => {
 
@@ -63,10 +67,10 @@ const DashboardMain = () => {
                 pathName="Dashboard Main"
             />
             <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-5">
-                <DashboardCard title={'Posted Jobs'} quantity={'100'} />
-                <DashboardCard title={'All Applications'} quantity={'500'} />
-                <DashboardCard title={'Message'} quantity={'1000'} />
-                <DashboardCard title={'Shortlisted'} quantity={'50'} />
+                <DashboardCard logo={<IoBagRemoveOutline />} title={'Posted Jobs'} quantity={'100'} />
+                <DashboardCard logo={<VscGitStashApply />} title={'All Applications'} quantity={'500'} />
+                <DashboardCard logo={<SiImessage />} title={'Message'} quantity={'1000'} />
+                <DashboardCard logo={<MdPlaylistAddCheck />} title={'Shortlisted'} quantity={'50'} />
             </div>
             <div style={{ height: '400px' }} className="mt-10">
                 <ResponsiveContainer width="100%" height="100%">

@@ -10,14 +10,14 @@ const PrivateRoute = ({ children }) => {
 
     if (loading) {
         return <div className="flex lg:h-[500px] justify-center items-center lg:mt-20 mx-auto">
-            hello
+            <span className="loading loading-spinner loading-lg"></span>
         </div>
     }
 
     if (user) {
         return children
     }
-    return <Navigate to="/login" state={location?.pathname || "/"}></Navigate>
+    return <Navigate to="/sign-in" state={location?.pathname || "/"}></Navigate>
 };
 
 

@@ -5,10 +5,9 @@ import useAuth from "../../hooks/useAuth";
 import useCurrentUser from "../../hooks/useCurrentUser";
 
 const Navbar = () => {
-
   const { user, logOut } = useAuth();
 
-  const { currentUser } = useCurrentUser()
+  const { currentUser } = useCurrentUser();
 
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -19,7 +18,6 @@ const Navbar = () => {
   // profile dropdown
   const [open, setOpen] = useState(false);
   const dropDownRef = useRef();
-
 
   useEffect(() => {
     const closeDropDown = (e) => {
@@ -57,7 +55,6 @@ const Navbar = () => {
     { to: "/blogs", label: "Blogs" },
   ];
 
-
   return (
     <div className="backdrop-blur-sm sticky top-0 z-50">
       <div className="bg-bgLightWhite dark:bg-darkBlue">
@@ -89,9 +86,10 @@ const Navbar = () => {
                 <NavLink
                   to={to}
                   className={({ isActive }) =>
-                    `font-medium ${isActive
-                      ? "text-blue dark:text-white dark:border-white border-b-2 border-blue"
-                      : "text-darkBlue dark:text-lightText"
+                    `font-medium ${
+                      isActive
+                        ? "text-blue dark:text-white dark:border-white border-b-2 border-blue"
+                        : "text-darkBlue dark:text-lightText"
                     }`
                   }
                 >
@@ -103,24 +101,45 @@ const Navbar = () => {
 
           <div className="hidden md:hidden lg:hidden xl:flex items-center lg:gap-5 md:gap-3">
             {user ? (
-
               <div ref={dropDownRef} className="relative mr-5 w-fit text-black">
                 <button onClick={() => setOpen((prev) => !prev)}>
-                  <img width={40} height={40} className="w-12 border-2 border-blue dark:border-white rounded-full lightGray object-cover transition-transform duration-300 hover:scale-105 hover:opacity-80" src={currentUser?.photo}  alt="avatar" />
+                  <img
+                    width={40}
+                    height={40}
+                    className="w-12 border-2 border-blue dark:border-white rounded-full lightGray object-cover transition-transform duration-300 hover:scale-105 hover:opacity-80"
+                    src={currentUser?.photo}
+                    alt="avatar"
+                  />
                 </button>
                 <ul
-                  className={`${open ? 'visible opacity-100 transition-opacity duration-300' : 'invisible opacity-0'} absolute right-0 top-12 z-50 w-60 rounded-sm bg-bgLightWhite dark:bg-darkBlue dark:text-white`}>
-                  <li className='rounded-sm px-6 py-2 flex justify-center'>
-                    <img className="rounded-full object-cover" src={currentUser?.photo} alt="" />
+                  className={`${
+                    open
+                      ? "visible opacity-100 transition-opacity duration-300"
+                      : "invisible opacity-0"
+                  } absolute right-0 top-12 z-50 w-60 rounded-sm bg-bgLightWhite dark:bg-darkBlue dark:text-white`}
+                >
+                  <li className="rounded-sm px-6 py-2 flex justify-center">
+                    <img
+                      className="rounded-full object-cover"
+                      src={currentUser?.photo}
+                      alt=""
+                    />
                   </li>
-                  <li className='rounded-sm px-6 py-2 text-center'>
+                  <li className="rounded-sm px-6 py-2 text-center">
                     {currentUser?.name} <br />
-                    <strong className="text-[11px] text-blue dark:text-white">{user?.email}</strong>
+                    <strong className="text-[11px] text-blue dark:text-white">
+                      {user?.email}
+                    </strong>
                   </li>
-                  <li className='hover:bg-slate-300 inter rounded-sm px-6 py-2'>
-                    <Link to='/dashboard/dashboard-main'>Dashboard</Link>
+                  <li className="hover:bg-slate-300 inter rounded-sm px-6 py-2">
+                    <Link to="/dashboard/dashboard-main">Dashboard</Link>
                   </li>
-                  <li className='text-red-500 hover:bg-red-600 hover:text-white rounded-sm px-6 py-2 cursor-pointer font-semibold' onClick={logOut}>Logout</li>
+                  <li
+                    className="text-red-500 hover:bg-red-600 hover:text-white rounded-sm px-6 py-2 cursor-pointer font-semibold"
+                    onClick={logOut}
+                  >
+                    Logout
+                  </li>
                 </ul>
               </div>
             ) : (
@@ -158,7 +177,7 @@ const Navbar = () => {
           <div
             ref={dropDownMenuRef}
             onClick={() => setDropDownState(!dropDownState)}
-            className="relative flex lg:flex xl:hidden text-darkBlue"
+            className="relative flex lg:flex xl:hidden text-darkBlue dark:text-white"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -181,7 +200,7 @@ const Navbar = () => {
                 data-aos="slide-left"
                 data-aos-offset="200"
                 data-aos-duration="700"
-                className="z-10 bg-blue absolute right-0 xl:top-10 lg:top-12 top-[44px] flex w-[200px] flex-col rounded-lg text-base"
+                className="z-10 bg-blue dark:bg-white absolute right-0 xl:top-10 lg:top-12 top-[44px] flex w-[200px] flex-col rounded-lg text-base"
               >
                 {navLinks.map(({ to, label }) => (
                   <li
@@ -200,7 +219,7 @@ const Navbar = () => {
                 ))}
                 <li className="cursor-pointer px-6 py-2 text-darkBlue hover:bg-sky-600">
                   <NavLink
-                    to={'/dashboard/my-profile'}
+                    to={"/dashboard/my-profile"}
                     className={({ isActive }) =>
                       `${isActive ? "text-white" : "text-darkBlue"}`
                     }

@@ -1,23 +1,42 @@
-// tailwind.config.js
+/* eslint-disable no-undef */
+
 export default {
-  darkMode: 'class',
+  darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       backgroundImage: {
         "banner-image": "url('./src/assets/banner/bg-banner.svg')",
+        "tinny-banner-image-light":
+          "url('./src/assets/pricing/pricing-page-banner.png')",
+        "tinny-banner-image-dark":
+          "url('./src/assets/pricing/pricing-page-banner2.png')",
       },
       colors: {
+        // heading, button
         blue: "#3C65F5",
-        lightBlue: "#f2f6fd",
         darkBlue: "#05274F",
-        gray: "#4F5E64",
-        lightGray: "#A0Abb8",
+
+        // text -
+        gray: "#4F5E64", // paragraphs tags
+        lightGray: "#A0Abb8", //  halka light color
+
+        // dark theme text color
+        lightText: "#E0E7F6",
+
+        // dark theme button color
+        lightBlue: "#3C65F5",
+
+        // background colors
+        bgLightBlue: "#F8FAFF",
+        bgDeepBlue: "#E0E7F6",
+        bgLightWhite: "#f2f6fd",
+
+        // Other colors
         white: "#ffffff",
-        lightWhite: "#F9FBFF",
         black: "#000000",
-        darkBg: "#1A202C",
-        darkText: "#CBD5E0",
+
+        softLightBlue: "#F8FAFF",
       },
     },
   },

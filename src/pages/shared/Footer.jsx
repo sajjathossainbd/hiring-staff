@@ -10,7 +10,7 @@ const Footer = () => {
         <aside className="space-y-3 mr-3">
           <div className="flex items-center gap-2">
             <img
-              className="w-44"
+              className="w-44 dark:bg-bgDeepBlue"
               src="https://i.ibb.co.com/0rKvK9v/Hiring-Staff-Logo.png"
               alt=""
             />

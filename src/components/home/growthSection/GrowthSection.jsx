@@ -1,8 +1,8 @@
 import imageLeft from "/src/assets/logo/growthSection/Card_1.png";
 import imageRight from "/src/assets/logo/growthSection/Card_2.png";
+import PrimaryButton from "../../shared/PrimaryButton";
+import perfectMatch from "./../../../assets/home/perfect-match.svg";
 import CounterSection from "./CounterSection";
-import PrimaryButton from "../shared/PrimaryButton";
-import perfectMatch from "./../../assets/home/perfect-match.svg";
 
 const GrowthSection = () => {
   return (
@@ -57,7 +57,7 @@ const GrowthSection = () => {
         </div>
       </div>
       <div>
-        <CounterSection></CounterSection>
+        <CounterSection />
       </div>
     </div>
   );

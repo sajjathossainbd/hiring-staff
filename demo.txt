@@ -12,3 +12,24 @@
     ------
     primary-color: 3C65F5
     secondary-color: 05274F
+
+    Ayub khan 
+    vs code project run code .....
+
+    git pull origin dev
+    yarn
+    yarn dev
+
+    vs code command........
+
+    step 1: invitation accepted
+    step 2: git clone repository-link (default clone main branch)
+    step 3: git pull origin dev (dev branch code local)
+    step 4: git checkout -b branch-name (exa: kawser-frontend)
+    step 5: write a code
+    step 6: git add .
+    step 7: git commit -m 'add a new feauted: banner section create'
+    step 8: git push origin branch-name (second time - git push)
+    step 9: pull request (github open click button "compare & pull request")
+    step 10: dev <= your-branch (select)
+    step 11: "create pull request" button click

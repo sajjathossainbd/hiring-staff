@@ -1,10 +1,10 @@
-import left from "../../assets/Hiring/bg-left-hiring.svg";
-import right from "../../assets/Hiring/bg-right-hiring.svg";
-import PrimaryButton from "../shared/PrimaryButton";
+import left from "../../../assets/home/hiring/bg-left-hiring.svg";
+import right from "../../../assets/home/hiring/bg-right-hiring.svg";
 import { GoVerified } from "react-icons/go";
+import PrimaryButton from "../../shared/PrimaryButton";
 function Hiring() {
   return (
-    <div className="container mx-auto flex justify-center items-center mt-12">
+    <div className="container flex justify-center items-center pt-0">
       <div className="flex w-[90%] justify-evenly items-center border border-lightGray rounded-md flex-col lg:flex-row p-5 space-y-3 shadow-md lg:gap-3">
         <div className="hidden lg:block">
           <img src={left} alt="left img" />

@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-const MyResume = () => {
-  return (
-    <div>
-      <h3>Resume section</h3>
-=======
 import { BsFillSendFill } from "react-icons/bs";
 import PrimaryButton from "../../../components/shared/PrimaryButton";
 
@@ -270,7 +264,6 @@ const MyResume = () => {
           ></PrimaryButton>
         </form>
       </div>
->>>>>>> c5ab41fe92c88429c4cbdecae435b3a4bfef5f9f
     </div>
   );
 };

@@ -2,16 +2,38 @@ import { CgProfile } from "react-icons/cg";
 import { FaArrowUpShortWide } from "react-icons/fa6";
 import { ImProfile } from "react-icons/im";
 import { IoHomeOutline } from "react-icons/io5";
-import { MdManageHistory, MdPlaylistAddCheck, MdPostAdd } from "react-icons/md";
+import { MdManageHistory, MdOutlineAnalytics, MdPlaylistAddCheck, MdPostAdd } from "react-icons/md";
 import { RxResume } from "react-icons/rx";
 import { VscGitStashApply } from "react-icons/vsc";
 import { NavLink, Outlet } from "react-router-dom";
 import DashboardFooter from "../pages/dashboard/shared/DashboardFooter";
 import { FaUserCog } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import useCurrentUser from "../hooks/useCurrentUser";
+import useAuth from "../hooks/useAuth";
+import { IoIosLogOut } from "react-icons/io";
 
 const Dashboard = () => {
-  const isRequiter = true;
-  const isAdmin = false;
+
+  const { logOut } = useAuth()
+  const [admin, setAdmin] = useState(false)
+  const [recruiter, setRecruiter] = useState(false)
+
+  const { currentUser } = useCurrentUser()
+
+  useEffect(() => {
+    if (currentUser?.role === "admin") {
+      setAdmin(true);
+    } else {
+      setAdmin(false);
+    }
+
+    if (currentUser?.role === "recruiter") {
+      setRecruiter(true);
+    } else {
+      setRecruiter(false);
+    }
+  }, [currentUser]);
 
   return (
     <div>
@@ -35,16 +57,15 @@ const Dashboard = () => {
                 className="drawer-overlay"
               ></label>
               <ul className="menu inter space-y-2 p-4 w-64 min-h-full bg-bgLightWhite dark:bg-darkBlue text-black font-semibold">
-                {isAdmin && (
+                {admin && (
                   <>
                     <li>
                       <NavLink
                         to="/dashboard/dashboard-main"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${
-                            isActive
-                              ? "border-l-4 border-blue text-blue dark:text-blue"
-                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive
+                            ? "border-l-4 border-blue text-blue dark:text-blue"
+                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -58,10 +79,9 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/manage-users"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${
-                            isActive
-                              ? "border-l-4 border-blue text-blue dark:text-blue"
-                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive
+                            ? "border-l-4 border-blue text-blue dark:text-blue"
+                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -70,19 +90,33 @@ const Dashboard = () => {
                         </span>
                       </NavLink>
                     </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/admin-analytics"
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive
+                            ? "border-l-4 border-blue text-blue dark:text-blue"
+                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          }`
+                        }
+                      >
+                        <span className="flex gap-1 items-center">
+                          <MdOutlineAnalytics /> Admin Analytics
+                        </span>
+                      </NavLink>
+                    </li>
                   </>
                 )}
 
-                {isRequiter && (
+                {recruiter && (
                   <>
                     <li>
                       <NavLink
                         to="/dashboard/dashboard-main"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${
-                            isActive
-                              ? "border-l-4 border-blue text-blue dark:text-blue"
-                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive
+                            ? "border-l-4 border-blue text-blue dark:text-blue"
+                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -96,10 +130,9 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/company-profile"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${
-                            isActive
-                              ? "border-l-4 border-blue text-blue dark:text-blue"
-                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive
+                            ? "border-l-4 border-blue text-blue dark:text-blue"
+                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -112,10 +145,9 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/post-job"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${
-                            isActive
-                              ? "border-l-4 border-blue text-blue dark:text-blue"
-                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive
+                            ? "border-l-4 border-blue text-blue dark:text-blue"
+                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -128,10 +160,9 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/manage-jobs"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${
-                            isActive
-                              ? "border-l-4 border-blue text-blue dark:text-blue"
-                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive
+                            ? "border-l-4 border-blue text-blue dark:text-blue"
+                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -144,10 +175,9 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/all-applicants"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${
-                            isActive
-                              ? "border-l-4 border-blue text-blue dark:text-blue"
-                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive
+                            ? "border-l-4 border-blue text-blue dark:text-blue"
+                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -160,10 +190,9 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/shortlist"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${
-                            isActive
-                              ? "border-l-4 border-blue text-blue dark:text-blue"
-                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive
+                            ? "border-l-4 border-blue text-blue dark:text-blue"
+                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -174,16 +203,15 @@ const Dashboard = () => {
                     </li>
                   </>
                 )}
-                {!isAdmin && !isRequiter && (
+                {!admin && !recruiter && (
                   <>
                     <li>
                       <NavLink
                         to="/dashboard/dashboard-main"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${
-                            isActive
-                              ? "border-l-4 border-blue text-blue dark:text-blue"
-                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive
+                            ? "border-l-4 border-blue text-blue dark:text-blue"
+                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -197,10 +225,9 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/my-resume"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 px-4 hover:bg-transparent ${
-                            isActive
-                              ? "border-l-4 border-blue text-blue dark:text-blue"
-                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 px-4 hover:bg-transparent ${isActive
+                            ? "border-l-4 border-blue text-blue dark:text-blue"
+                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -213,10 +240,9 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/applied-jobs"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 px-4 hover:bg-transparent ${
-                            isActive
-                              ? "border-l-4 border-blue text-blue dark:text-blue"
-                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 px-4 hover:bg-transparent ${isActive
+                            ? "border-l-4 border-blue text-blue dark:text-blue"
+                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -231,10 +257,9 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/shortlisted-jobs"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 px-4 hover:bg-transparent ${
-                            isActive
-                              ? "border-l-4 border-blue text-blue dark:text-blue"
-                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 px-4 hover:bg-transparent ${isActive
+                            ? "border-l-4 border-blue text-blue dark:text-blue"
+                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -253,10 +278,9 @@ const Dashboard = () => {
                   <NavLink
                     to="/dashboard/my-profile"
                     className={({ isActive }) =>
-                      `flex items-center gap-2 px-4 hover:bg-transparent ${
-                        isActive
-                          ? "border-l-4 border-blue text-blue dark:text-blue"
-                          : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                      `flex items-center gap-2 px-4 hover:bg-transparent ${isActive
+                        ? "border-l-4 border-blue text-blue dark:text-blue"
+                        : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                       }`
                     }
                   >
@@ -270,10 +294,9 @@ const Dashboard = () => {
                   <NavLink
                     to="/"
                     className={({ isActive }) =>
-                      `flex items-center gap-2 py-2 px-4 hover:bg-transparent ${
-                        isActive
-                          ? "border-l-4 border-blue text-blue dark:text-blue"
-                          : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                      `flex items-center gap-2 py-2 px-4 hover:bg-transparent ${isActive
+                        ? "border-l-4 border-blue text-blue dark:text-blue"
+                        : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                       }`
                     }
                   >
@@ -281,6 +304,14 @@ const Dashboard = () => {
                       <IoHomeOutline /> Home
                     </span>
                   </NavLink>
+                </li>
+                <li>
+                  <button
+                    onClick={logOut}
+                    className="text-red-500"
+                  >
+                    <IoIosLogOut /> Sign out
+                  </button>
                 </li>
               </ul>
             </div>

@@ -29,6 +29,8 @@ import AllApplicants from "../pages/dashboard/forRecruiter/AllApplicants";
 import Shortlist from "../pages/dashboard/forRecruiter/Shortlist";
 import DashboardMain from "../pages/dashboard/DashboardMain";
 import ManageUsers from "../pages/dashboard/forAdmin/ManageUsers";
+import AdminAnalytics from "../pages/dashboard/forAdmin/AdminAnalytics";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -105,7 +107,9 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: <PrivateRoute>
+      <Dashboard />
+    </PrivateRoute>,
     children: [
 
       // For all
@@ -119,6 +123,10 @@ const router = createBrowserRouter([
       },
 
       // For admin
+      {
+        path: "admin-analytics",
+        element: <AdminAnalytics />
+      },
       {
         path: "manage-users",
         element: <ManageUsers />

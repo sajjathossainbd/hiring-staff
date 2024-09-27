@@ -9,51 +9,42 @@ import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import axios from "axios";
 
-
 const SignIn = () => {
-
-
-    const location = useLocation()
-    const navigate = useNavigate()
-
-    const { signInUser, googleSignIn, user } = useAuth()
-    const [showPassword, setShowPassword] = useState(false)
-
+    const location = useLocation();
+    const navigate = useNavigate();
+    const { signInUser, googleSignIn, user } = useAuth();
+    const [showPassword, setShowPassword] = useState(false);
 
     const {
         register,
         handleSubmit,
+        setValue,
         formState: { errors },
     } = useForm();
 
     const onSubmit = (data) => {
+        const email = data.email;
+        const password = data.password;
 
-        const email = data.email
-        const password = data.password
-
-
-        // Sign in with email,password authentication 
         signInUser(email, password)
             .then(() => {
-                toast.success("Successfully Login !")
-                navigate(location?.state ? location.state : "/")
+                toast.success("Successfully Login !");
+                navigate(location?.state ? location.state : "/");
             })
             .catch(() => {
-                toast.warn("User not found. Please check your password")
-            })
+                toast.warn("User not found. Please check your password");
+            });
     };
 
-
-    // Sign in with google authentication 
+    // Sign in with Google authentication 
     const handleGoogleLogin = () => {
         googleSignIn()
             .then((result) => {
-
                 const userInfo = {
                     email: result.user?.email,
                     name: result.user?.displayName,
                     photo: result.user?.photoURL,
-                }
+                };
 
                 axios.post("http://localhost:5000/users", userInfo)
                     .then(res => {
@@ -61,17 +52,38 @@ const SignIn = () => {
                             toast.success("Successfully Google Login");
                             navigate(location?.state ? location.state : '/');
                         }
-                    })
-
-
-            })
-    }
+                    });
+            });
+    };
 
     useEffect(() => {
         if (user) {
-            navigate(location.state || "/")
+            navigate(location.state || "/");
         }
-    }, [location.state, navigate, user])
+    }, [location.state, navigate, user]);
+
+    // Auto-fill function
+    const handleRoleLogin = (role) => {
+        let email = '';
+        const password = 'aaaaa1';
+
+        switch (role) {
+            case 'admin':
+                email = 'admin@gmail.com';
+                break;
+            case 'recruiter':
+                email = 'recruiter@gmail.com';
+                break;
+            case 'candidate':
+                email = 'candidate@gmail.com';
+                break;
+            default:
+                break;
+        }
+
+        setValue('email', email);
+        setValue('password', password);
+    };
 
     return (
         <div className="container">
@@ -82,7 +94,7 @@ const SignIn = () => {
                     <p>Access your account by signing in</p>
                     <button
                         onClick={handleGoogleLogin}
-                        className="flex items-center gap-2 justify-center font-medium py-2 w-full border rounded-lg hover:scale-95 transition-all duration-500">
+                        className="flex items-center gap-2 justify-center font-medium py-2 w-full border rounded-lg hover:scale-95 transition-all duration-500 dark:text-white">
                         <span className="text-xl">
                             <FcGoogle />
                         </span>{" "}
@@ -90,7 +102,7 @@ const SignIn = () => {
                     </button>
                 </div>
 
-                <div className="divider my-7">Or continue with</div>
+                <div className="divider my-7 dark:text-white">Or continue with</div>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     <div>
@@ -127,8 +139,7 @@ const SignIn = () => {
                                 required: "Password is required",
                                 pattern: {
                                     value: /^(?=.*[a-z])(?=.*\d)[a-zA-Z\d]{6,}$/,
-                                    message:
-                                        "Password must be at least 6 characters, contain letters and numbers",
+                                    message: "Password must be at least 6 characters, contain letters and numbers",
                                 },
                             })}
                             className="input input-bordered w-full"
@@ -161,6 +172,31 @@ const SignIn = () => {
                     </p>
                 </form>
 
+                <div className="mt-7 bg-bgDeepBlue dark:bg-softLightBlue px-10 py-5 rounded-md">
+                    <p className="dark:text-black">Login Credentials</p>
+                    <div className="mt-5 flex flex-col gap-5 items-center justify-center">
+                        <div className="flex gap-5 items-center">
+                            <button
+                                className="border-2 border-blue text-blue font-semibold py-1 px-4"
+                                onClick={() => handleRoleLogin('admin')}
+                            >
+                                Admin Login
+                            </button>
+                            <button
+                                className="border-2 border-blue text-blue font-semibold py-1 px-4"
+                                onClick={() => handleRoleLogin('recruiter')}
+                            >
+                                Recruiter Login
+                            </button>
+                        </div>
+                        <button
+                            className="border-2 border-blue text-blue font-semibold py-1 px-4"
+                            onClick={() => handleRoleLogin('candidate')}
+                        >
+                            Candidates Login
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     );

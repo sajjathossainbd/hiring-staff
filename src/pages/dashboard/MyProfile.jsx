@@ -4,9 +4,11 @@ import useCurrentUser from "../../hooks/useCurrentUser";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
+import useAuth from "../../hooks/useAuth";
 
 const MyProfile = () => {
   const { currentUser, refetch } = useCurrentUser();
+  const { user } = useAuth()
   const { register, handleSubmit } = useForm();
 
 
@@ -53,7 +55,7 @@ const MyProfile = () => {
         <div className="flex flex-col md:flex-row items-center gap-3">
           <div>
             <img
-              src={currentUser?.photo}
+              src={currentUser?.photo || user?.photoURL}
               alt="Profile Photo"
               className="rounded-md xl:size-96 size-72 object-cover"
             />
@@ -68,10 +70,14 @@ const MyProfile = () => {
                 I am a:
               </label>
               <select
+                defaultValue={currentUser?.role || ""}
+                disabled={currentUser?.role === 'admin'}
                 id="role"
                 {...register("role")}
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
               >
+                <option>Select role</option>
+                <option value="admin">Admin</option>
                 <option value="candidate">Candidate</option>
                 <option value="recruiter">Recruiter</option>
               </select>
@@ -112,7 +118,7 @@ const MyProfile = () => {
               <input
                 id="imageUrl"
                 type="url"
-                placeholder={currentUser?.photo}
+                placeholder={currentUser?.photo || user?.photoURL}
                 {...register("imageUrl")}
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
               />

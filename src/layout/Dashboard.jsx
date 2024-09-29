@@ -336,9 +336,11 @@ const Dashboard = () => {
         {/* Main Content */}
         <div className="bg-white flex-1 xl:p-10 lg:p-8 md:p-5 p-3 dark:bg-darkBlue">
           <Outlet />
-          <DashboardFooter />
+         
         </div>
+       
       </div>
+      <DashboardFooter/>
     </div>
   );
 };

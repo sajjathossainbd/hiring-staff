@@ -59,7 +59,7 @@ const PricingCard = ({
           to={{
             pathname: linkTo,
           }}
-          state={{ category }}
+          state={{ price, category }}
           className="btn text-16 text-blue bg-white font-semibold mt-7 w-full border border-blue hover:text-white hover:-translate-y-1 group-hover:bg-blue group-hover:text-white duration-900"
         >
           Choose Plan

@@ -3,18 +3,21 @@ import BlogSection from "../../components/home/BlogSection";
 import NewsLetter from "../../components/home/NewsLetter";
 import JobCard from "../../components/shared/JobCard";
 import SearchByFilter from "../../components/shared/SearchByFilter";
-// import { useEffect, useState } from "react";
-// import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchJobsListing } from "../../features/jobs/jobsListing/jobsListingSlice";
 
 function JobsListing() {
-  // const [jobs, setJobs] = useState([])
+  const dispatch = useDispatch();
+  const { jobsListing, isLoading, isError, error } = useSelector(
+    (state) => state.jobsListing
+  );
 
-  // // Fetch jobs
-  // useEffect(() => {
-  //   axios.get("http://localhost:5000/jobs")
-  //     .then(res => setJobs(res.data))
-  //     .catch(err => console.error(err));
-  // }, []);
+  console.log(jobsListing);
+
+  useEffect(() => {
+    dispatch(fetchJobsListing());
+  }, [dispatch]);
   const jobs = [
     {
       id: 1,

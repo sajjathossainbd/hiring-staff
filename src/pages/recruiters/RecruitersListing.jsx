@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 import RecruiterCard from "../../components/recruiter/RecruiterCard";
 import { Helmet } from "react-helmet-async";
-import RecruiterBrowser from "../../components/recruiter/RecruiterBrowser";
-import Filters from "../../components/recruiter/Filters";
 import Pagination from "../../components/recruiter/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecruitersListing } from "../../features/recruiters/recruitersListing/recruitersListingSlice";

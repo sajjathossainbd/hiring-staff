@@ -3,8 +3,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-
-
 function BlogDetails() {
   const { id } = useParams();
   const [details, setDetails] = useState(null);
@@ -31,7 +29,6 @@ function BlogDetails() {
     return <p>No blog found for this ID.</p>;
   }
 
-
   return (
     <div className="container pt-0">
       <div>
@@ -42,7 +39,7 @@ function BlogDetails() {
           {details.topics.map((topic, index) => (
             <p
               key={index}
-              className="text-blue font-bold text-14 px-2 py-3 badge badge-outline border-none rounded bg-[#E0E6F7] space-y-3 m-auto"
+              className="text-blue font-bold text-14 px-2 py-3 badge badge-outline border-none rounded bg-[#E0E6F7] dark:bg-blue dark:text-white space-y-3 m-auto"
             >
               {topic}
             </p>
@@ -61,7 +58,9 @@ function BlogDetails() {
           <p className="text-12 mt-4">{details.date}</p>
           <p className="lg:mt-4 mt-4 text-xs">{details.time_since_read}</p>
         </div>
-        <p className="border-b-2 border-lightGray pb-8">{details.description_two}</p>
+        <p className="border-b-2 border-lightGray pb-8">
+          {details.description_two}
+        </p>
       </div>
       <div className="container bg-red-0">
         <div className="grid lg:grid-cols-3 gap-4">
@@ -70,7 +69,8 @@ function BlogDetails() {
               {/* <p className="text-16 text-blue">Contact Us</p> */}
               <h2>Leave a Comment</h2>
               <p className="text-16">
-                Your email address will not be published. Required fields are marked *{" "}
+                Your email address will not be published. Required fields are
+                marked *{" "}
               </p>
             </div>
             <div>

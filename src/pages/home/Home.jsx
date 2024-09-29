@@ -1,4 +1,3 @@
-import { Helmet } from "react-helmet-async";
 import Banner from "../../components/home/Banner";
 import Recruiter from "../../components/home/Recruiter";
 import JobLocation from "../../components/home/JobLocation";
@@ -11,9 +10,6 @@ import GrowthSection from "../../components/home/growthSection/GrowthSection";
 function Home() {
   return (
     <div>
-      <Helmet>
-        <title>Hiring Staff - Homepage</title>
-      </Helmet>
       <Banner />
       <Category />
       <JobsDay />

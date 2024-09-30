@@ -13,50 +13,6 @@ const Navbar = () => {
 
   const { currentUser } = useCurrentUser();
 
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  // hamburger dropdown
- 
-
-  // profile dropdown
-  const [open, setOpen] = useState(false);
-  const dropDownRef = useRef();
-
-  useEffect(() => {
-    const closeDropDown = (e) => {
-      if (!dropDownMenuRef.current.contains(e.target)) {
-        setDropDownState(false);
-      }
-    };
-
-    document.addEventListener("mousedown", closeDropDown);
-    return () => {
-      document.removeEventListener("mousedown", closeDropDown);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [isDarkMode]);
-
-  const handleDarkModeToggle = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
-  const navLinks = [
-    { to: "/", label: "Home" },
-    { to: "/jobs-listing", label: "Jobs" },
-    { to: "/recruiters-listing", label: "Recruiters" },
-    { to: "/candidates-listing", label: "Candidates" },
-    { to: "/about", label: "About" },
-    { to: "/contact", label: "Contact" },
-    { to: "/pricing", label: "Pricing" },
-    { to: "/blogs", label: "Blogs" },
-  ];
 
   return (
     <div className="backdrop-blur-sm sticky top-0 z-50">

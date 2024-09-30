@@ -4,25 +4,23 @@ import { Helmet } from "react-helmet-async";
 import RecruiterBrowser from "../../components/recruiter/RecruiterBrowser";
 import Filters from "../../components/recruiter/Filters";
 import Pagination from "../../components/recruiter/Pagination";
-
-
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllRecruiters } from "../../features/recruiters/allRecruiters/allRecruitersSlice";
 const RecruitersListing = () => {
-  const [recruiters, setRecruiters] = useState([]);
   const [selectedLetter, setSelectedLetter] = useState("");
   const [showCount, setShowCount] = useState(16); // show count
   const [sortOrder, setSortOrder] = useState("default"); //sort order
   const [currentPage, setCurrentPage] = useState(1); // Tracking current page
 
+  const dispatch = useDispatch();
+  const { recruiters, isLoading, isError, error } = useSelector(
+    (state) => state.recruiters
+  );
   useEffect(() => {
-    fetch('/recruiters.json')
-      .then((response) => response.json())
-      .then((data) => {
-        setRecruiters(data);
-      })
-      .catch((error) => console.error('Error fetching recruiters:', error));
-  }, []);
+    dispatch(fetchAllRecruiters());
+  }, [dispatch]);
+
+  console.log(recruiters, isLoading);
 
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
@@ -42,8 +40,8 @@ const RecruitersListing = () => {
 
   const filteredRecruiters = selectedLetter
     ? recruiters.filter((recruiter) =>
-      recruiter.brandName.toUpperCase().startsWith(selectedLetter)
-    )
+        recruiter.brandName.toUpperCase().startsWith(selectedLetter)
+      )
     : recruiters;
 
   const sortedRecruiters = sortRecruiters();

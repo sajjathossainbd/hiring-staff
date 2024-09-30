@@ -17,7 +17,7 @@ function AboutUs() {
       />
       <AboutOurCommunity />
       <MeetOurTeam />
-      <Testimonial />
+        <Testimonial />
     </div>
   );
 }

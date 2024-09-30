@@ -57,7 +57,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/paymentForm",
-        element: <PaymentForm />,
+        element: <PrivateRoute>
+          <PaymentForm />
+        </PrivateRoute>,
       },
       {
         path: "/jobs-listing",

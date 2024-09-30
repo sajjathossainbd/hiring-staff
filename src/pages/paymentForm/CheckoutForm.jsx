@@ -13,6 +13,14 @@ const CheckoutForm = ({ price, category }) => {
     const { currentUser } = useCurrentUser();
     const [clientSecret, setClientSecret] = useState('');
     const [error, setError] = useState('');
+    const [existPlan, setExistPlan] = useState()
+
+
+    useEffect(() => {
+        if (currentUser?.plan == category) {
+            setExistPlan(true)
+        }
+    }, [category, currentUser?.plan])
 
     useEffect(() => {
         if (price > 0) {
@@ -72,7 +80,6 @@ const CheckoutForm = ({ price, category }) => {
         if (confirmError) {
             setError(confirmError.message);
         } else if (paymentIntent.status === 'succeeded') {
-
             const paymentDetails = {
                 name: currentUser.name,
                 email: currentUser.email,
@@ -83,22 +90,31 @@ const CheckoutForm = ({ price, category }) => {
                 transactionId: paymentIntent.id,
             };
 
-            const res = await axiosInstance.post("/payment-history", paymentDetails);
-            console.log(res.data);
-            if (res.data.insertedId) {
-                Swal.fire({
-                    title: "Payment Complete",
-                    text: "Your payment was successful!",
-                    icon: "success",
-                });
+            try {
+                const res = await axiosInstance.post("/payment-history", paymentDetails);
+                console.log(res.data);
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        title: "Payment Complete",
+                        text: "Your payment was successful!",
+                        icon: "success",
+                    });
 
-                elements.getElement(CardElement).clear();
-
+                    elements.getElement(CardElement).clear();
+                } else if (res.data.error) {
+                    Swal.fire({
+                        title: "Payment Failed",
+                        text: res.data.error,
+                        icon: "error",
+                    });
+                }
+            } catch (error) {
+                setError("You already have a plan in this category.");
+                console.log(error);
             }
-
-
         }
     };
+
 
 
 
@@ -112,8 +128,8 @@ const CheckoutForm = ({ price, category }) => {
                         style: {
                             base: {
                                 fontSize: '14px',
-                                color: '#333',
-                                '::placeholder': { color: '#999' },
+                                color: '#000',
+                                '::placeholder': { color: '#000' },
                             },
                             invalid: { color: '#FF6347' },
                         },
@@ -121,9 +137,9 @@ const CheckoutForm = ({ price, category }) => {
                 />
             </div>
             <button
-                className="w-full py-3 px-6 text-white bg-gradient-to-r from-blue to-purple-500 rounded-lg hover:from-blue-500 hover:to-purple-400 transition-transform transform hover:scale-105 disabled:opacity-50"
+                className={`w-full py-3 px-6 text-white bg-gradient-to-r from-blue to-purple-500 rounded-lg hover:from-blue-500 hover:to-purple-400 transition-transform transform hover:scale-105 disabled:opacity-50 ${existPlan ? "hover:scale-100" : ""}`}
                 type="submit"
-                disabled={!stripe || !clientSecret}
+                disabled={!stripe || !clientSecret || existPlan}
             >
                 Pay ${price}
             </button>

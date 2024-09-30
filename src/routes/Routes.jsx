@@ -32,6 +32,7 @@ import ManageUsers from "../pages/dashboard/forAdmin/ManageUsers";
 import AdminAnalytics from "../pages/dashboard/forAdmin/AdminAnalytics";
 import PrivateRoute from "./PrivateRoute";
 import PaymentForm from "../pages/paymentForm/PaymentForm";
+import AllPaymentHistory from "../pages/dashboard/forAdmin/AllPaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -137,6 +138,10 @@ const router = createBrowserRouter([
       {
         path: "manage-users",
         element: <ManageUsers />
+      },
+      {
+        path: "all-payment-history",
+        element: <AllPaymentHistory />
       },
 
       // For Candidate

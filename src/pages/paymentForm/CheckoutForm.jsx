@@ -85,6 +85,8 @@ const CheckoutForm = ({ price, category }) => {
                 email: currentUser.email,
                 photo: currentUser.photo,
                 category: category,
+                date: new Date().toLocaleDateString(),
+                status: "pending",
                 price: price,
                 paymentType: "Stripe",
                 transactionId: paymentIntent.id,

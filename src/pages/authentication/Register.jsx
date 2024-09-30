@@ -29,12 +29,12 @@ const Register = () => {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", "ml_default");
-    formData.append("cloud_name", import.meta.env.VITE_CLOUD_NAME);
+    formData.append("cloud_name", import.meta.env.VITE_CLOUDINARY_API_KEY);
 
     setIsUploading(true);
     try {
       const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUD_NAME}/image/upload`,
+        `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_API_KEY}/image/upload`,
         formData
       );
       setImageUrl(response.data.secure_url);

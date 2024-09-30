@@ -18,7 +18,6 @@ import hiring from "../../assets/home/hiring/bg-right-hiring.svg";
 
 function BlogsPage() {
   const [contents, setContents] = useState([]);
-  // const [newsContents, setNewsContents] = useState([])
 
   useEffect(() => {
     fetch("/newsBlog.json")
@@ -36,14 +35,13 @@ function BlogsPage() {
     <div className="">
       {/* <div className=""> */}
       <Helmet>
-        <title>Hiring Staff - About Us</title>
+        <title>Hiring Staff - Blogs</title>
       </Helmet>
       <TinnyBanner
         title={"Blog"}
         subTitle={"Get the latest news, updates and tips"}
         currentPath={"Blog"}
       />
-      {/* bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)] ,,,,,linear-gradient(to right, #151515, rgba(21, 21, 21, 0)*/}
 
       {/* <div className="container grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 "> */}
       {/* changed now */}

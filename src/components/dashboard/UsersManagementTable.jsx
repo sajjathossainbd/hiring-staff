@@ -1,18 +1,13 @@
 import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 import axiosInstance from "../../utils/axios";
+import useAllUsers from "../../hooks/useAllUsers"
 
 const UsersManagementTable = () => {
 
-    const { refetch, data: users = [] } = useQuery({
-        queryKey: ["users"],
-        queryFn: async () => {
-            const res = await axios.get("http://localhost:5000/users");
-            return res.data;
-        }
-    });
+
+    const {users , refetch} = useAllUsers()
 
     const handleDelete = id => {
         Swal.fire({

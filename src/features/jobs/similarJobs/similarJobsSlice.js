@@ -11,8 +11,8 @@ const initialState = {
 // async thunk
 export const fetchSimilarJobs = createAsyncThunk(
   "similarJobs/fetchSimilarJobs",
-  async ({ jobs, id }) => {
-    const similarJobs = await getSimilarJobs({ jobs, id });
+  async ({ category }) => {
+    const similarJobs = await getSimilarJobs({ category });
     return similarJobs;
   }
 );

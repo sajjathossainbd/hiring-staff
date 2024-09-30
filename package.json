@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@reduxjs/toolkit": "^2.2.7",
     "@stripe/react-stripe-js": "^2.8.0",
     "@stripe/stripe-js": "^4.5.0",
@@ -17,6 +18,7 @@
     "aos": "^2.3.4",
     "axios": "^1.7.7",
     "cloudinary": "^2.5.0",
+    "emailjs-com": "^3.2.0",
     "firebase": "^10.13.2",
     "leaflet": "^1.9.4",
     "prop-types": "^15.8.1",

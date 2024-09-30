@@ -76,34 +76,40 @@ const CheckoutForm = ({ price }) => {
                 text: "Your payment was successful!",
                 icon: "success",
             });
+
+            elements.getElement(CardElement).clear();
+
         }
     };
 
 
-    useEffect(() => {
-        console.log("Current Client Secret:", clientSecret); // This should show the correct client secret
-    }, [clientSecret]);
 
 
 
     return (
-        <form onSubmit={handleSubmit}>
-            <CardElement
-                options={{
-                    style: {
-                        base: {
-                            fontSize: '16px',
-                            color: '#424770',
-                            '::placeholder': { color: '#aab7c4' },
+        <form onSubmit={handleSubmit} className="space-y-6 mt-4">
+            <div className="lg:p-4 p-2 border-2 border-gray-300 rounded-md shadow-sm">
+                <CardElement
+                    options={{
+                        style: {
+                            base: {
+                                fontSize: '14px',
+                                color: '#333',
+                                '::placeholder': { color: '#999' },
+                            },
+                            invalid: { color: '#FF6347' },
                         },
-                        invalid: { color: '#9e2146' },
-                    },
-                }}
-            />
-            <button className="btn btn-primary mt-4" type="submit" disabled={!stripe || !clientSecret}>
+                    }}
+                />
+            </div>
+            <button
+                className="w-full py-3 px-6 text-white bg-gradient-to-r from-blue to-purple-500 rounded-lg hover:from-blue-500 hover:to-purple-400 transition-transform transform hover:scale-105 disabled:opacity-50"
+                type="submit"
+                disabled={!stripe || !clientSecret}
+            >
                 Pay ${price}
             </button>
-            {error && <p className="text-sm text-red-700 my-2">{error}</p>}
+            {error && <p className="text-sm text-red-600 my-2">{error}</p>}
         </form>
     );
 };

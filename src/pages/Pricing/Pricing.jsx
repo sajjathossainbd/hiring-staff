@@ -3,10 +3,14 @@ import FaqCard from "../../components/shared/FaqCard";
 import NewsLetter from "../../components/home/NewsLetter";
 import TinnyBanner from "../../components/shared/TinnyBanner";
 import Testimonial from "../../components/aboutUs/Testimonial";
+import { Helmet } from "react-helmet-async";
 
 const Pricing = () => {
   return (
     <div>
+      <Helmet>
+        <title>Hiring Staff - Pricing</title>
+      </Helmet>
       <TinnyBanner
         title={"Pricing"}
         subTitle={"Pricing built to suit teams of all sizes."}

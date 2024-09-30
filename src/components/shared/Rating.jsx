@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { FaStar } from "react-icons/fa";
 const Rating = ({ rating }) => {
   //integer between 1 and 5

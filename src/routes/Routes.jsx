@@ -31,6 +31,7 @@ import DashboardMain from "../pages/dashboard/DashboardMain";
 import ManageUsers from "../pages/dashboard/forAdmin/ManageUsers";
 import AdminAnalytics from "../pages/dashboard/forAdmin/AdminAnalytics";
 import PrivateRoute from "./PrivateRoute";
+import PaymentForm from "../pages/paymentForm/PaymentForm";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,12 @@ const router = createBrowserRouter([
       {
         path: "/pricing",
         element: <Pricing />,
+      },
+      {
+        path: "/paymentForm",
+        element: <PrivateRoute>
+          <PaymentForm />
+        </PrivateRoute>,
       },
       {
         path: "/jobs-listing",

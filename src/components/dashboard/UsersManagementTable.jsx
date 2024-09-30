@@ -64,24 +64,24 @@ const UsersManagementTable = () => {
                                     <div className="flex items-center gap-3">
                                         <div>
                                             <div className="font-bold mb-2 lg:text-base text-sm">
-                                                {user.name}
+                                                {user?.name}
                                             </div>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <span className="text-blue">{user.email}</span>
+                                    <span className="text-blue">{user?.email}</span>
                                 </td>
                                 <td>
-                                    {user.linkedin}
+                                    <a target="_blank" href={user?.linkedin}>Linkedin</a>
                                 </td>
                                 <td>
-                                    <span className="text-blue">{user.role}</span>
+                                    <span className="text-blue">{user?.role}</span>
                                 </td>
                                 <td className="flex gap-2">
                                     <div className="tooltip" data-tip="Delete">
                                         <button
-                                            onClick={() => handleDelete(user._id)}
+                                            onClick={() => handleDelete(user?._id)}
                                             className="btn rounded-full text-blue hover:text-white hover:bg-blue">
                                             <RiDeleteBin6Line />
                                         </button>

@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import useCurrentUser from "../../hooks/useCurrentUser";
 import axios from "axios";
 import Swal from "sweetalert2";
+import axiosInstance from "../../utils/axios";
 
-const CheckoutForm = ({ price }) => {
+const CheckoutForm = ({ price, category }) => {
     console.log(price);
     const stripe = useStripe();
     const elements = useElements();
@@ -71,13 +72,30 @@ const CheckoutForm = ({ price }) => {
         if (confirmError) {
             setError(confirmError.message);
         } else if (paymentIntent.status === 'succeeded') {
-            Swal.fire({
-                title: "Payment Complete",
-                text: "Your payment was successful!",
-                icon: "success",
-            });
 
-            elements.getElement(CardElement).clear();
+            const paymentDetails = {
+                name: currentUser.name,
+                email: currentUser.email,
+                photo: currentUser.photo,
+                category: category,
+                price: price,
+                paymentType: "Stripe",
+                transactionId: paymentIntent.id,
+            };
+
+            const res = await axiosInstance.post("/payment-history", paymentDetails);
+            console.log(res.data);
+            if (res.data.insertedId) {
+                Swal.fire({
+                    title: "Payment Complete",
+                    text: "Your payment was successful!",
+                    icon: "success",
+                });
+
+                elements.getElement(CardElement).clear();
+
+            }
+
 
         }
     };

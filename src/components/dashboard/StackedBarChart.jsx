@@ -1,15 +1,5 @@
-import {
-    LineChart,
-    Line,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    Legend,
-    AreaChart,
-    Area,
-    ResponsiveContainer,
-} from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+
 
 const StackedBarChart = () => {
 
@@ -21,25 +11,25 @@ const StackedBarChart = () => {
             amt: 2400,
         },
         {
-            name: 'Apply',
+            name: 'Candidates',
             uv: 3000,
             pv: 1398,
             amt: 2210,
         },
         {
-            name: 'Jobs',
+            name: 'Recruiters',
             uv: 2000,
             pv: 9800,
             amt: 2290,
         },
         {
-            name: 'Recruiters',
+            name: 'Jobs',
             uv: 2780,
             pv: 3908,
             amt: 2000,
         },
         {
-            name: 'Candidates',
+            name: 'Apply',
             uv: 1890,
             pv: 4800,
             amt: 2181,
@@ -60,57 +50,28 @@ const StackedBarChart = () => {
 
 
     return (
-        <div style={{ width: '100%' }} className="mt-10">
-            <h4 className="mt-5">A areaChart of admin analytics</h4>
-
-            <div className="mt-7">
-                <ResponsiveContainer width="100%" height={200}>
-                    <LineChart
-                        width={500}
-                        height={200}
-                        data={data}
-                        syncId="anyId"
-                        margin={{
-                            top: 10,
-                            right: 30,
-                            left: 0,
-                            bottom: 0,
-                        }}
-                    >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        <Line type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
-                    </LineChart>
+        <div style={{ height: '400px' }} className="mt-10">
+            <ResponsiveContainer width="100%" height="100%">
+                <BarChart
+                    width={500}
+                    height={300}
+                    data={data}
+                    margin={{
+                        top: 20,
+                        right: 30,
+                        left: 20,
+                        bottom: 5,
+                    }}
+                >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
                     <Legend />
-                </ResponsiveContainer>
-            </div>
-
-            <div className="mt-7">
-                <ResponsiveContainer width="100%" height={200}>
-                    <AreaChart
-                        width={500}
-                        height={200}
-                        data={data}
-                        syncId="anyId"
-                        margin={{
-                            top: 10,
-                            right: 30,
-                            left: 0,
-                            bottom: 0,
-                        }}
-                    >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        <Area type="monotone" dataKey="pv" stroke="#82ca9d" fill="#82ca9d" />
-                    </AreaChart>
-                </ResponsiveContainer>
-            </div>
+                    <Bar dataKey="pv" stackId="a" fill="#8884d8" />
+                    <Bar dataKey="uv" stackId="a" fill="#82ca9d" />
+                </BarChart>
+            </ResponsiveContainer>
         </div>
     );
 };

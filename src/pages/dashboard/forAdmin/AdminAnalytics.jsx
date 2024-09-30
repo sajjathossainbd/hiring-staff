@@ -4,7 +4,7 @@ import TinnyHeading from "../shared/TinnyHeading";
 import { IoBagRemoveOutline } from "react-icons/io5";
 import { VscGitStashApply } from "react-icons/vsc";
 import { MdPlaylistAddCheck } from "react-icons/md";
-import StackedBarChart from "../../../components/dashboard/StackedBarChart";
+import AreaCharts from "../../../components/dashboard/AreaChart";
 
 
 const AdminAnalytics = () => {
@@ -23,7 +23,7 @@ const AdminAnalytics = () => {
                 <DashboardCard logo={<VscGitStashApply />} title={'All Applications'} quantity={'1000'} />
                 <DashboardCard logo={<MdPlaylistAddCheck />} title={'Shortlisted'} quantity={'50'} />
             </div>
-            <StackedBarChart />
+            <AreaCharts />
         </div>
     );
 };

@@ -11,7 +11,7 @@ const store = configureStore({
     jobDetails: jobDetailsReducer,
     similarJobs: similarReducer,
     jobsFilter: jobsFilterReducer,
-    recruitersListing: recruitersListingReducer
+    recruitersListing: recruitersListingReducer,
   },
 });
 

@@ -58,9 +58,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/paymentForm",
-        element: <PrivateRoute>
-          <PaymentForm />
-        </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <PaymentForm />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/jobs-listing",
@@ -75,7 +77,7 @@ const router = createBrowserRouter([
         element: <RecruitersListing />,
       },
       {
-        path: "/recruiter-details",
+        path: "/recruiters-listing/:id",
         element: <RecruiterDetails />,
       },
       {
@@ -115,73 +117,77 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <PrivateRoute>
-      <Dashboard />
-    </PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
     children: [
-
       // For all
       {
         path: "dashboard-main",
-        element: <DashboardMain />
+        element: <DashboardMain />,
       },
       {
         path: "my-profile",
-        element: <MyProfile />
+        element: <MyProfile />,
       },
 
       // For admin
       {
         path: "admin-analytics",
-        element: <AdminAnalytics />
+        element: <AdminAnalytics />,
       },
       {
         path: "manage-users",
-        element: <ManageUsers />
+        element: <ManageUsers />,
       },
       {
         path: "all-payment-history",
-        element: <AllPaymentHistory />
+        element: <AllPaymentHistory />,
+      },
+      {
+        path: "all-payment-history/:page",
+        element: <AllPaymentHistory />,
       },
 
       // For Candidate
       {
         path: "my-resume",
-        element: <MyResume />
+        element: <MyResume />,
       },
       {
         path: "applied-jobs",
-        element: <AppliedJobs />
+        element: <AppliedJobs />,
       },
       {
         path: "shortlisted-jobs",
-        element: <ShortlistedJobs />
+        element: <ShortlistedJobs />,
       },
 
       // For Recruiter
       {
         path: "company-profile",
-        element: <CompanyProfile />
+        element: <CompanyProfile />,
       },
       {
         path: "post-job",
-        element: <PostJob />
+        element: <PostJob />,
       },
       {
         path: "manage-jobs",
-        element: <ManageJob />
+        element: <ManageJob />,
       },
       {
         path: "all-applicants",
-        element: <AllApplicants />
+        element: <AllApplicants />,
       },
       {
         path: "shortlist",
-        element: <Shortlist />
+        element: <Shortlist />,
       },
-
-    ]
-  }
+    ],
+  },
 ]);
 
 export default router;

@@ -32,7 +32,7 @@ const SignIn = () => {
         navigate(location?.state ? location.state : "/");
       })
       .catch(() => {
-        toast.warn("User not found. Please check your password");
+        toast.error("User not found. Please check your password");
       });
   };
 

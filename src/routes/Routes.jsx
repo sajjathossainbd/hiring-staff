@@ -33,6 +33,7 @@ import AdminAnalytics from "../pages/dashboard/forAdmin/AdminAnalytics";
 import PrivateRoute from "./PrivateRoute";
 import PaymentForm from "../pages/paymentForm/PaymentForm";
 import AllPaymentHistory from "../pages/dashboard/forAdmin/AllPaymentHistory";
+import MyPayments from "../pages/dashboard/MyPayments";
 
 const router = createBrowserRouter([
   {
@@ -131,6 +132,10 @@ const router = createBrowserRouter([
       {
         path: "my-profile",
         element: <MyProfile />,
+      },
+      {
+        path: "my-payments",
+        element: <MyPayments />,
       },
 
       // For admin

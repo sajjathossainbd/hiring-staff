@@ -17,7 +17,7 @@ const RecruitersListing = () => {
   const { recruitersListing: recruiters, isLoading, isError, error } = useSelector(
     (state) => state.recruitersListing
   );
- 
+
 
   const [recruiters, setRecruiters] = useState([]);
   const [selectedLetter, setSelectedLetter] = useState("");
@@ -52,8 +52,8 @@ const RecruitersListing = () => {
 
   const filteredRecruiters = selectedLetter
     ? recruiters.filter((recruiter) =>
-        recruiter.brandName.toUpperCase().startsWith(selectedLetter)
-      )
+      recruiter.brandName.toUpperCase().startsWith(selectedLetter)
+    )
     : recruiters;
 
   const sortedRecruiters = sortRecruiters();

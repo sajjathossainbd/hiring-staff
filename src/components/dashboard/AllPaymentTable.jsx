@@ -103,25 +103,25 @@ const AllPaymentTable = () => {
           <tbody>
             {paymentHistory.payments.map((payment) => (
               <tr key={payment._id}>
-                <td>{payment.name}</td>
-                <td>{payment.email}</td>
-                <td>{payment.category}</td>
+                <td>{payment?.name}</td>
+                <td>{payment?.email}</td>
+                <td>{payment?.category}</td>
                 <td>
                   <span className="text-blue">${payment.price}</span>
                 </td>
-                <td>{payment.date}</td>
-                <td>{payment.paymentType}</td>
-                <td>{payment.transactionId}</td>
+                <td>{payment?.date}</td>
+                <td>{payment?.paymentType}</td>
+                <td>{payment?.transactionId}</td>
                 <td>
                   <select
-                    defaultValue={payment.status}
+                    defaultValue={payment?.status}
                     onChange={(e) =>
-                      handleUpdateStatus(e.target.value, payment._id)
+                      handleUpdateStatus(e.target.value, payment?._id)
                     }
                     className="select select-bordered w-full"
                   >
                     <option value="select">Select</option>
-                    <option value="approve">Approved</option>
+                    <option value="approved">Approved</option>
                     <option value="pending">Pending</option>
                   </select>
                 </td>

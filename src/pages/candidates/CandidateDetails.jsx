@@ -96,7 +96,7 @@ function CandidateDetails() {
         <div className="absolute -bottom-9 left-0 p-4">
           <div className="flex items-center space-x-4">
             <img
-              src="https://via.placeholder.com/100"
+              src={img}
               alt="Profile"
               className="w-20 h-20 border border-white rounded-full "
             />
@@ -144,7 +144,7 @@ function CandidateDetails() {
             }`}
             onClick={() => setActiveTab("about")}
           >
-            <CiViewBoard /> About Us
+            <CiViewBoard /> About Me
           </button>
           <button
             className={`px-4 py-2 flex items-center gap-2 ${
@@ -154,7 +154,7 @@ function CandidateDetails() {
             }`}
             onClick={() => setActiveTab("recruitment")}
           >
-            <IoBagHandleOutline /> Recruitments
+            <IoBagHandleOutline /> Experience 
           </button>
           <button
             className={`px-4 py-2 flex items-center gap-2 ${

@@ -16,6 +16,11 @@ function CandidatesListing() {
       skills: ["App Development", "Adobe XD", "Figma", "Django"],
       area: "New York, USA",
       charge_per_hour: 50,
+      experience_years: 5,
+      expected_salary: "$80k - $90k",
+      education_level: "Bachelor's Degree in Computer Science",
+      phone: "+1 555-1234",
+      email: "johndoe@example.com",
       img: "https://via.placeholder.com/150",
     },
     {
@@ -28,6 +33,11 @@ function CandidatesListing() {
       skills: ["App Development", "Figma", "Tailwind CSS", "Node.js"],
       area: "London, UK",
       charge_per_hour: 45,
+      experience_years: 4,
+      expected_salary: "$70k - $80k",
+      education_level: "Master's Degree in Software Engineering",
+      phone: "+44 20 7946 0958",
+      email: "sarawhite@example.com",
       img: "https://via.placeholder.com/150",
     },
     {
@@ -40,6 +50,11 @@ function CandidatesListing() {
       skills: ["Spring Boot", "Adobe Illustrator", "Microservices"],
       area: "Bangalore, India",
       charge_per_hour: 60,
+      experience_years: 7,
+      expected_salary: "$85k - $95k",
+      education_level: "Bachelor's Degree in Information Technology",
+      phone: "+91 9876543210",
+      email: "rahulsharma@example.com",
       img: "https://via.placeholder.com/150",
     },
     {
@@ -48,10 +63,15 @@ function CandidatesListing() {
       language: "PHP",
       ratings: 4.6,
       about_me:
-        "Full-stack PHP  developer with extensive knowledge of Laravel and modern web technologies.",
+        "Full-stack PHP developer with extensive knowledge of Laravel and modern web technologies.",
       skills: ["App Development", "Figma", "Adobe Photoshop", "Laravel"],
       area: "Sydney, Australia",
       charge_per_hour: 40,
+      experience_years: 4,
+      expected_salary: "$60k - $70k",
+      education_level: "Bachelor's Degree in Computer Engineering",
+      phone: "+61 412 345 678",
+      email: "emilydavis@example.com",
       img: "https://via.placeholder.com/150",
     },
     {
@@ -64,6 +84,11 @@ function CandidatesListing() {
       skills: ["App Development", "Unity 3D", "Adobe Premiere Pro"],
       area: "Dubai, UAE",
       charge_per_hour: 55,
+      experience_years: 6,
+      expected_salary: "$75k - $85k",
+      education_level: "Bachelor's Degree in Computer Science",
+      phone: "+971 50 123 4567",
+      email: "mohammedali@example.com",
       img: "https://via.placeholder.com/150",
     },
     {
@@ -76,6 +101,11 @@ function CandidatesListing() {
       skills: ["App Development", "TensorFlow", "Figma", "Adobe XD"],
       area: "Shanghai, China",
       charge_per_hour: 52,
+      experience_years: 5,
+      expected_salary: "$82k - $92k",
+      education_level: "Master's Degree in Data Science",
+      phone: "+86 21 1234 5678",
+      email: "liwei@example.com",
       img: "https://via.placeholder.com/150",
     },
     {
@@ -88,6 +118,11 @@ function CandidatesListing() {
       skills: ["App Development", "Figma", "Adobe Illustrator", "PostgreSQL"],
       area: "Moscow, Russia",
       charge_per_hour: 50,
+      experience_years: 6,
+      expected_salary: "$80k - $90k",
+      education_level: "Bachelor's Degree in Computer Science",
+      phone: "+7 495 123-4567",
+      email: "olgapetrova@example.com",
       img: "https://via.placeholder.com/150",
     },
     {
@@ -100,6 +135,11 @@ function CandidatesListing() {
       skills: ["App Development", "Adobe XD", "Laravel", "MySQL"],
       area: "Mexico City, Mexico",
       charge_per_hour: 42,
+      experience_years: 3,
+      expected_salary: "$60k - $70k",
+      education_level: "Bachelor's Degree in Computer Science",
+      phone: "+52 55 1234 5678",
+      email: "carlosmendoza@example.com",
       img: "https://via.placeholder.com/150",
     },
     {
@@ -112,6 +152,11 @@ function CandidatesListing() {
       skills: ["App Development", "Adobe XD", "Figma", "React", "Vue.js"],
       area: "Tokyo, Japan",
       charge_per_hour: 48,
+      experience_years: 4,
+      expected_salary: "$68k - $78k",
+      education_level: "Bachelor's Degree in Software Engineering",
+      phone: "+81 3 1234 5678",
+      email: "akiratanka@example.com",
       img: "https://via.placeholder.com/150",
     },
     {
@@ -124,9 +169,15 @@ function CandidatesListing() {
       skills: ["App Development", "Pandas", "Figma", "Adobe Premiere Pro"],
       area: "Cairo, Egypt",
       charge_per_hour: 50,
+      experience_years: 5,
+      expected_salary: "$78k - $88k",
+      education_level: "Bachelor's Degree in Computer Science",
+      phone: "+20 2 1234 5678",
+      email: "fatimahassan@example.com",
       img: "https://via.placeholder.com/150",
     },
   ];
+  
 
   const alphabets = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
 

@@ -29,7 +29,7 @@ const SignIn = () => {
     signInUser(email, password)
       .then(() => {
         toast.success("Successfully Login !");
-        navigate(location?.state ? location.state : "/");
+        navigate(location?.state ? location.state : "/dashboard/dashboard-main");
       })
       .catch(() => {
         toast.error("User not found. Please check your password");

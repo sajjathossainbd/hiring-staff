@@ -1,10 +1,4 @@
-import {
-  FaMapMarkerAlt,
-  FaEye,
-  FaCheck,
-  FaTimes,
-  FaTrash,
-} from "react-icons/fa";
+import { FaMapMarkerAlt, FaTrash } from "react-icons/fa";
 import { FaWarehouse } from "react-icons/fa6";
 import { GoBookmark } from "react-icons/go";
 
@@ -58,7 +52,10 @@ const ShortlistedJobs = () => {
 
       <div className="grid gap-3 grid-cols-1 md:grid-cols-2 mt-6">
         {jobs.map((job, idx) => (
-          <div key={idx} className=" shadow-lg rounded-lg p-6 ">
+          <div
+            key={idx}
+            className=" shadow-md hover:-translate-y-1 duration-200 bg-bgLightBlue rounded-lg p-6 "
+          >
             <div className="flex justify-between items-start">
               <div className="flex items-center">
                 <img
@@ -84,10 +81,10 @@ const ShortlistedJobs = () => {
                 </div>
               </div>
 
-              <GoBookmark className=" hover:text-blue cursor-pointer" />
+              <GoBookmark className="text-blue" />
             </div>
 
-            <div className="mt-5 flex xl:flex-row flex-col gap-5 items-center justify-between">
+            <div className="mt-5 flex  flex-row   gap-5 items-center justify-between">
               <div className="text-12 flex space-x-2">
                 <span className="bg-red-100 text-red-500  px-3 py-1 rounded-full">
                   {job.tags[0]}
@@ -95,15 +92,11 @@ const ShortlistedJobs = () => {
                 <span className="bg-green-100 text-green-500 px-3 py-1 rounded-full">
                   {job.tags[1]}
                 </span>
-                <span className="bg-bgLightBlue text-lightBlue px-3 py-1 rounded-full">
+                <span className="bg-lightText text-lightBlue px-3 py-1 rounded-full">
                   {job.tags[2]}
                 </span>
               </div>
-
-              <div className="flex space-x-4 text-gray">
-                <FaEye className="hover:text-blue cursor-pointer" />
-                <FaCheck className="hover:text-green-500 cursor-pointer" />
-                <FaTimes className="hover:text-red-500 cursor-pointer" />
+              <div className="  space-x-4 text-gray">
                 <FaTrash className="hover:text-red-500 cursor-pointer" />
               </div>
             </div>

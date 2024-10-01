@@ -58,9 +58,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/paymentForm",
-        element: <PrivateRoute>
-          <PaymentForm />
-        </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <PaymentForm />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/jobs-listing",
@@ -142,7 +144,11 @@ const router = createBrowserRouter([
       },
       {
         path: "all-payment-history",
-        element: <AllPaymentHistory />
+        element: <AllPaymentHistory />,
+      },
+      {
+        path: "all-payment-history/:page",
+        element: <AllPaymentHistory />,
       },
 
       // For Candidate

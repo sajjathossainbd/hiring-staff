@@ -85,7 +85,7 @@ const AllPaymentTable = () => {
       <hr className="my-6 text-lightGray" />
       {isLoading && <div>Loading...</div>}
       {/* Table */}
-      <div className="overflow-x-auto flex flex-col justify-between lg:h-[500px]">
+      <div className="overflow-x-auto flex flex-col justify-between lg:h-[550px]">
         <table className="table text-sm">
           {/* Head */}
           <thead>

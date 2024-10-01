@@ -143,6 +143,10 @@ const router = createBrowserRouter([
         element: <ManageUsers />,
       },
       {
+        path: "manage-users/:page",
+        element: <ManageUsers />,
+      },
+      {
         path: "all-payment-history",
         element: <AllPaymentHistory />,
       },

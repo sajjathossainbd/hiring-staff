@@ -6,7 +6,7 @@ const initialState = {
 };
 
 const jobsFilterSlice = createSlice({
-  name: "category",
+  name: "jobsFilter",
   initialState,
   reducers: {
     categorySelected: (state, action) => {

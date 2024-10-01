@@ -32,7 +32,7 @@ const SignIn = () => {
         navigate(location?.state ? location.state : "/");
       })
       .catch(() => {
-        toast.warn("User not found. Please check your password");
+        toast.error("User not found. Please check your password");
       });
   };
 
@@ -176,7 +176,7 @@ const SignIn = () => {
           </p>
         </form>
 
-        <div className="mt-7 bg-bgDeepBlue dark:bg-softLightBlue px-10 py-5 rounded-md">
+        <div className="mt-7  px-10 py-5 rounded-md">
           <p className="dark:text-black">Login Credentials</p>
           <div className="mt-5 flex flex-col gap-5 items-center justify-center">
             <div className="flex gap-5 items-center">

@@ -1,6 +1,7 @@
-/* eslint-disable react/prop-types */
+import { Link } from "react-router-dom";
 import { MdDone } from "react-icons/md";
 
+/* eslint-disable react/prop-types */
 const PricingCard = ({
   category,
   price,
@@ -10,6 +11,7 @@ const PricingCard = ({
   service3,
   service4,
   service5,
+  linkTo,
 }) => {
   return (
     <div className="group border border-lightGray hover:shadow p-7 lg:p-10 rounded-xl">
@@ -53,9 +55,15 @@ const PricingCard = ({
             {service5}
           </p>
         </div>
-        <button className="btn text-16 text-blue bg-white font-semibold mt-7 w-full border border-blue hover:text-white hover:-translate-y-1 group-hover:bg-blue group-hover:text-white duration-900">
+        <Link
+          to={{
+            pathname: linkTo,
+          }}
+          state={{ price, category }}
+          className="btn text-16 text-blue bg-white font-semibold mt-7 w-full border border-blue hover:text-white hover:-translate-y-1 group-hover:bg-blue group-hover:text-white duration-900"
+        >
           Choose Plan
-        </button>
+        </Link>
       </div>
     </div>
   );

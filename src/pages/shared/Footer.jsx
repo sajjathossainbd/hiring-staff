@@ -2,18 +2,15 @@ import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
 import appStore from "../../assets/footer-images/app-store.svg";
 import googlePlay from "../../assets/footer-images/google-play.svg";
 import NavLink from "../../components/shared/NavLink";
+import LogoBlack from "../../components/ui/LogoBlack";
 
 const Footer = () => {
   return (
     <div className="container">
       <footer className="footer text-base-content lg:mt-20 mt-10">
         <aside className="space-y-3 mr-3">
-          <div className="flex items-center gap-2">
-            <img
-              className="w-44 dark:bg-bgDeepBlue"
-              src="https://i.ibb.co.com/0rKvK9v/Hiring-Staff-Logo.png"
-              alt=""
-            />
+          <div className="text-6">
+            <LogoBlack size="medium" />
           </div>
           <p className="max-w-72">
             Hiring Stuff is the heart of the design community and the best

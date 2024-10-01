@@ -10,7 +10,7 @@ const Navbar = () => {
         <nav className="container flex items-center justify-between lg:py-3 h-16 lg:h-20 xl:h-24">
           <LogoWhite size="large" />
           <JobSearchBox />
-          <div className="">
+          <div className="flex items-center gap-4">
             <SinginLogout />
             <DarkLightMode />
           </div>

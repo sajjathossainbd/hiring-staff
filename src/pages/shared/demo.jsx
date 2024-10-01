@@ -1,17 +1,15 @@
-import { useState, useRef, useEffect } from "react";
+
 import { Link, NavLink } from "react-router-dom";
-import PrimaryButton from "../../components/shared/PrimaryButton";
 import useAuth from "../../hooks/useAuth";
 import useCurrentUser from "../../hooks/useCurrentUser";
 import ProfileDropDown from "../../components/navbar/ProfileDropDown";
-import DesktopNav from "../../components/navbar/DesktopNavItems";
 import DesktopNavItems from "../../components/navbar/DesktopNavItems";
 import MobileNavItems from "../../components/navbar/MobileNavItems";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
 
-  const { currentUser } = useCurrentUser();
+ 
 
 
   return (

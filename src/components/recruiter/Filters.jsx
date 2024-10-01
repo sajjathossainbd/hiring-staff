@@ -1,15 +1,23 @@
 /* eslint-disable react/prop-types */
 
-
-
-const Filters = ({ showCount, setShowCount, setCurrentPage, sortOrder, setSortOrder, currentPage, sortedRecruiters }) => {
+const Filters = ({
+  showCount,
+  setShowCount,
+  setCurrentPage,
+  sortOrder,
+  setSortOrder,
+  currentPage,
+  sortedRecruiters,
+}) => {
   return (
     <div className="flex md:justify-between flex-col md:flex-row items-center border-b-2 border-[#F8FAFF] pb-2 mb-4">
       {/* Left Side - Showing results */}
       <div>
         <p className="text-lightGray">
-          Showing {Math.min((currentPage - 1) * showCount + 1, sortedRecruiters.length)}– 
-          {Math.min(currentPage * showCount, sortedRecruiters.length)} of {sortedRecruiters.length} results
+          Showing{" "}
+          {Math.min((currentPage - 1) * showCount + 1, sortedRecruiters.length)}
+          –{Math.min(currentPage * showCount, sortedRecruiters.length)} of{" "}
+          {sortedRecruiters.length} results
         </p>
       </div>
 

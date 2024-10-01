@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 
+import { Link } from "react-router-dom";
+
 const RecruiterCard = ({ recruiter }) => {
   return (
     <div className="w-full p-4 hover:-translate-y-1 transition duration-300 border-lightGray shadow-md rounded-lg mx-auto">
@@ -30,11 +32,14 @@ const RecruiterCard = ({ recruiter }) => {
       </div>
       <p className="text-center text-lightGray mt-2">{recruiter.location}</p>
       <div className="mt-8 flex justify-center mb-8">
-        <button className="bg-[#E0E6F7] hover:text-blue p-3 rounded-md text-darkBlue transition-all duration-500 text-14">
+        <Link
+          to={`/recruiters-listing/${recruiter._id}`}
+          className="bg-[#E0E6F7] hover:text-blue p-3 rounded-md text-darkBlue transition-all duration-500 text-14"
+        >
           {recruiter.openJobs > 0
             ? `${recruiter.openJobs} Open Jobs`
             : "No Open Job"}
-        </button>
+        </Link>
       </div>
     </div>
   );

@@ -68,9 +68,10 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/dashboard-main"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive
-                            ? "border-l-4 border-blue text-blue dark:text-blue"
-                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue dark:text-blue"
+                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -84,9 +85,10 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/manage-users"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive
-                            ? "border-l-4 border-blue text-blue dark:text-blue"
-                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue dark:text-blue"
+                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -99,9 +101,10 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/all-payment-history"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive
-                            ? "border-l-4 border-blue text-blue dark:text-blue"
-                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue dark:text-blue"
+                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -114,9 +117,10 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/admin-analytics"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive
-                            ? "border-l-4 border-blue text-blue dark:text-blue"
-                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue dark:text-blue"
+                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -134,9 +138,10 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/dashboard-main"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive
-                            ? "border-l-4 border-blue text-blue dark:text-blue"
-                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue dark:text-blue"
+                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -150,9 +155,10 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/company-profile"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive
-                            ? "border-l-4 border-blue text-blue dark:text-blue"
-                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue dark:text-blue"
+                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -165,9 +171,10 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/post-job"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive
-                            ? "border-l-4 border-blue text-blue dark:text-blue"
-                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue dark:text-blue"
+                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -180,9 +187,10 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/manage-jobs"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive
-                            ? "border-l-4 border-blue text-blue dark:text-blue"
-                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue dark:text-blue"
+                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -195,9 +203,10 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/all-applicants"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive
-                            ? "border-l-4 border-blue text-blue dark:text-blue"
-                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue dark:text-blue"
+                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -210,9 +219,10 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/shortlist"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive
-                            ? "border-l-4 border-blue text-blue dark:text-blue"
-                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue dark:text-blue"
+                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -229,9 +239,10 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/dashboard-main"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive
-                            ? "border-l-4 border-blue text-blue dark:text-blue"
-                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue dark:text-blue"
+                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -245,9 +256,10 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/my-resume"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 px-4 hover:bg-transparent ${isActive
-                            ? "border-l-4 border-blue text-blue dark:text-blue"
-                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 px-4 hover:bg-transparent ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue dark:text-blue"
+                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -260,9 +272,10 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/applied-jobs"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 px-4 hover:bg-transparent ${isActive
-                            ? "border-l-4 border-blue text-blue dark:text-blue"
-                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 px-4 hover:bg-transparent ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue dark:text-blue"
+                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -277,9 +290,10 @@ const Dashboard = () => {
                       <NavLink
                         to="/dashboard/shortlisted-jobs"
                         className={({ isActive }) =>
-                          `flex items-center gap-2 px-4 hover:bg-transparent ${isActive
-                            ? "border-l-4 border-blue text-blue dark:text-blue"
-                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          `flex items-center gap-2 px-4 hover:bg-transparent ${
+                            isActive
+                              ? "border-l-4 border-blue text-blue dark:text-blue"
+                              : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                           }`
                         }
                       >
@@ -298,9 +312,10 @@ const Dashboard = () => {
                   <NavLink
                     to="/dashboard/my-profile"
                     className={({ isActive }) =>
-                      `flex items-center gap-2 px-4 hover:bg-transparent ${isActive
-                        ? "border-l-4 border-blue text-blue dark:text-blue"
-                        : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                      `flex items-center gap-2 px-4 hover:bg-transparent ${
+                        isActive
+                          ? "border-l-4 border-blue text-blue dark:text-blue"
+                          : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                       }`
                     }
                   >
@@ -314,9 +329,10 @@ const Dashboard = () => {
                   <NavLink
                     to="/"
                     className={({ isActive }) =>
-                      `flex items-center gap-2 py-2 px-4 hover:bg-transparent ${isActive
-                        ? "border-l-4 border-blue text-blue dark:text-blue"
-                        : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                      `flex items-center gap-2 py-2 px-4 hover:bg-transparent ${
+                        isActive
+                          ? "border-l-4 border-blue text-blue dark:text-blue"
+                          : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
                       }`
                     }
                   >
@@ -337,9 +353,7 @@ const Dashboard = () => {
         {/* Main Content */}
         <div className="bg-white flex-1 xl:p-10 lg:p-8 md:p-5 p-3 dark:bg-darkBlue">
           <Outlet />
-
         </div>
-
       </div>
       <DashboardFooter />
     </div>

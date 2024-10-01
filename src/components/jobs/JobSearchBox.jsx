@@ -24,7 +24,7 @@ function JobSearchBox() {
   return (
     <form
       onSubmit={handeSubmit}
-      className="flex relative flex-col sm:flex-row items-center justify-center gap-4 bg-white rounded-md w-6/12"
+      className="hidden md:flex lg:flex relative flex-col sm:flex-row items-center justify-center gap-4 bg-white rounded-md lg:w-6/12 md:w-5/12"
     >
       <CiSearch className="size-8 text-blue ml-6" />
 

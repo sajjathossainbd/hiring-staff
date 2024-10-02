@@ -14,13 +14,17 @@ const RecruiterJobsCard = ({
 }) => {
   return (
     <div className="md:p-10 p-5  bg-bgLightWhite dark:bg-darkBlue dark:border dark:border-blue container rounded-xl">
-      <div className="flex md:flex-row flex-col items-start md:justify-between justify-center">
+      <div className="flex md:flex-row flex-col items-center md:justify-between justify-center">
         <div className="flex md:flex-row flex-col items-center gap-5">
-          <img className="object-cover" src={recruiterImage} alt="" />
+          <img
+            className="object-cover h-20 w-auto rounded-md"
+            src={recruiterImage}
+            alt=""
+          />
           <div className="flex flex-col gap-2">
             <div className="flex md:flex-row flex-col items-center gap-2">
               <h4>{position}</h4>
-              <span className="bg-bgDeepBlue px-2 rounded-3xl text-14">
+              <span className="bg-bgDeepBlue px-2 rounded-md text-14">
                 {jobType}
               </span>
             </div>
@@ -38,7 +42,7 @@ const RecruiterJobsCard = ({
           </div>
         </div>
         <div className="flex md:flex-row flex-row-reverse gap-5">
-          <button>
+          <button className="btn btn-outline btn-primary border-none bg-bgLightBlue">
             <FaRegBookmark className="text-xl dark:text-white" />
           </button>
           <SecondaryButton title={"Apply Now"} />

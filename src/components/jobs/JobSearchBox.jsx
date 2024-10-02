@@ -31,7 +31,7 @@ function JobSearchBox() {
       <input
         type="text"
         placeholder="Job Title, Keywords"
-        className="pl-3 md:pl-0 w-full py-5 md:py-6 rounded-md focus:outline-none dark:bg-white"
+        className="pl-3 md:pl-0 w-full py-4 md:py-4 rounded-md focus:outline-none dark:bg-white"
         value={input}
         onChange={(event) => setInput(event.target.value)}
       />

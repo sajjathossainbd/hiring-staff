@@ -7,6 +7,8 @@ import recruiterDetailsReducer from "../features/recruiters/recruiterDetails/rec
 import recruitersListingReducer from "../features/recruiters/recruitersListing/recruitersListingSlice";
 import candidatesListingReducer from "../features/candidates/candidatesListing/candidatesListingSlice";
 import candidateDetailsReducer from "../features/candidates/candidateDetails/candidateDetailsSlice";
+import blogsListingReducer from "../features/blogs/blogsListing/blogsListingSlice";
+import blogDetailsReducer from "../features/blogs/blogDetails/blogDetailsSlice";
 
 const store = configureStore({
   reducer: {
@@ -23,6 +25,10 @@ const store = configureStore({
     // Candidates
     candidatesListing: candidatesListingReducer,
     candidateDetails: candidateDetailsReducer,
+
+    // Blogs
+    blogsListing: blogsListingReducer,
+    blogDetails: blogDetailsReducer,
   },
 });
 

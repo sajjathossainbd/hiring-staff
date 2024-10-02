@@ -5,6 +5,8 @@ import similarReducer from "../features/jobs/similarJobs/similarJobsSlice";
 import jobsFilterReducer from "../features/jobs/jobsFilter/jobsFilterSlice";
 import recruiterDetailsReducer from "../features/recruiters/recruiterDetails/recruiterDetailsSlice";
 import recruitersListingReducer from "../features/recruiters/recruitersListing/recruitersListingSlice";
+import candidatesListingReducer from "../features/candidates/candidatesListing/candidatesListingSlice";
+import candidateDetailsReducer from "../features/candidates/candidateDetails/candidateDetailsSlice";
 
 const store = configureStore({
   reducer: {
@@ -17,6 +19,10 @@ const store = configureStore({
     // Recruiters
     recruitersListing: recruitersListingReducer,
     recruiterDetails: recruiterDetailsReducer,
+
+    // Candidates
+    candidatesListing: candidatesListingReducer,
+    candidateDetails: candidateDetailsReducer,
   },
 });
 

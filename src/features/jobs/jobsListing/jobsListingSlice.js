@@ -11,8 +11,8 @@ const initialState = {
 // async thunk
 export const fetchJobsListing = createAsyncThunk(
   "jobsListing/fetchJobsListing",
-  async () => {
-    const jobsListing = await getJobsListing();
+  async (search) => {
+    const jobsListing = await getJobsListing(search);
     return jobsListing;
   }
 );

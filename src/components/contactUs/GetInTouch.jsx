@@ -3,7 +3,8 @@ import GetInTouchImg from "../../assets/contact-us/get-in-touch.svg";
 import emailjs from '@emailjs/browser';
 import { useRef } from "react";
 import { send } from "emailjs-com";
-import { toast } from "react-hot-toast";
+import toast from "react-hot-toast";
+
 
 function GetInTouch() {
   const form = useRef();

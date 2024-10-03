@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-
+import bannerImage from "/src/assets/gallery/pexels-goumbik-590016.jpg"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchJobDetails } from "../../features/jobs/jobsDetails/jobDetailsSlice";
@@ -17,7 +17,13 @@ const JobDetails = () => {
     error,
   } = useSelector((state) => state.jobDetails);
 
-  const { image, position, type, posted, company } = job;
+<<<<<<< HEAD
+  const { image, position, type, posted, company } = job || {};
+  console.log(job);
+=======
+  const { job_title, description, job_category, education, salary_range, job_type, location,application_deadline, date_posted, company_email, posted} = job || {};
+   console.log(job);
+>>>>>>> a822ef5b043b0331ccbe71624282fc5cea330bfd
 
   useEffect(() => {
     dispatch(fetchJobDetails(id));
@@ -29,34 +35,49 @@ const JobDetails = () => {
   if (!isLoading && isError)
     content = <div className="col-span-12">{error}</div>;
 
-  if (!isLoading && !isError && !job?._id) {
+  if (!isLoading && !isError && !job?.
+    _id) {
     content = <NoFoundData title={"No Job Found!"} />;
+  }
+
+<<<<<<< HEAD
+  if (!isLoading && !isError && job?.id) {
+    content = (
+      <div>
+        <h1>Jobs</h1>
+      </div>
+    );
+=======
+  if (!isLoading && !isError && job?._id) {
+    content = <div></div>;
+>>>>>>> a822ef5b043b0331ccbe71624282fc5cea330bfd
   }
 
   return (
     <div className="container">
+      {content}
+
+      {/* update dynamic date */}
+<<<<<<< HEAD
+=======
       <div>
         <img
           className="lg:h-[400px] rounded-3xl object-cover w-full mb-10 overflow-hidden"
-          src={image}
-          alt={position}
+          src={bannerImage}
+          alt={job_category}
         />
         <div className="flex lg:flex-row flex-col gap-10 dark:text-white">
           <div className="lg:w-8/12 w-full">
-            <h3 className="pt-4 pb-2">{position}</h3>
+            <h3 className="pt-4 pb-2">{job_title}</h3>
             <div className="flex gap-16 text-sm">
-              <p>Type: {type}</p>
-              <p>Posted: {posted}</p>
+              <p>Type: {job_type}</p>
+              <p>Posted: {date_posted}</p>
             </div>
             <hr className="border-0 h-px bg-lightGray mt-3 mb-12" />
-            <h4 className="pt-4 pb-2">{`Welcome to the ${company}`}</h4>
             <p>
-              The <strong className="text-16 dark:text-white">{company}</strong>{" "}
-              envisions creating a trusted platform that fosters productive and
-              healthy enterprises in an ever-evolving digital landscape. As work
-              patterns shift and the demand for organizational resilience grows,
-              we seek a{" "}
-              <strong className="text-16 dark:text-white">{position}</strong>{" "}
+              {description}
+             
+              <strong className="text-16 dark:text-white">{job_title}</strong>{" "}
               who embodies creativity and a passion for illustrative design and
               typography.
             </p>
@@ -147,6 +168,7 @@ const JobDetails = () => {
           </div>
         </div>
       </div>
+>>>>>>> a822ef5b043b0331ccbe71624282fc5cea330bfd
     </div>
   );
 };

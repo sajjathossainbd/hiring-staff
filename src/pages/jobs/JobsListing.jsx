@@ -17,22 +17,27 @@ function JobsListing() {
     error,
   } = useSelector((state) => state.jobsListing);
 
+
+  const { search } = useSelector((state) => state.jobsFilter);
+
   useEffect(() => {
-    dispatch(fetchJobsListing());
-  }, [dispatch]);
+    dispatch(fetchJobsListing(search));
+  }, [dispatch, search]);
 
   let content = null;
+
   if (isLoading) content = <Loading />;
 
   if (!isLoading && isError)
     content = <div className="col-span-12">{error}</div>;
 
   if (!isLoading && !isError && jobs?.length === 0) {
-    content = <NoFoundData title="No Videos Found!" />;
+    content = <NoFoundData title="No Jobs Found!" />;
   }
+
   if (!isLoading && !isError && jobs?.length > 0) {
     content = (
-      <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 ">
+      <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
         {jobs.map((job) => (
           <JobCard key={job._id} job={job} />
         ))}

@@ -1,6 +1,6 @@
 const ContactInfoCard = ({ icon, title, titleAnswer, link }) => {
   return (
-    <div className="flex gap-4 items-center">
+    <div className="dark:text-white flex gap-4 items-center">
       <div className="text-3xl">{icon}</div>
       <div className="flex flex-col">
         <p className="font-medium text-[13px]">{title}</p>

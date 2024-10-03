@@ -4,7 +4,7 @@ import RecruiterJobsCard from "./RecruiterJobsCard";
 
 const OpenPosition = forwardRef((props, ref) => {
   return (
-    <div ref={ref} className="container">
+    <div ref={ref}>
       {" "}
       <div>
         <h4 className="mb-10">Open Position (20)</h4>

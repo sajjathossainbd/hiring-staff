@@ -43,7 +43,7 @@ const RecruiterJobsCard = ({
         </div>
         <div className="flex md:flex-row flex-row-reverse gap-5">
           <button className="btn btn-outline btn-primary border-none bg-bgLightBlue">
-            <FaRegBookmark className="text-xl dark:text-white" />
+            <FaRegBookmark className="text-xl" />
           </button>
           <SecondaryButton title={"Apply Now"} />
         </div>

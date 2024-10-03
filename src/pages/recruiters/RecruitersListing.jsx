@@ -41,8 +41,7 @@ function RecruitersListing() {
   }
   return (
     <div className="container">
-      <h1>Recruiter Listing</h1>
-
+      <h3 className="mb-6 md:mb-10">Recruiter Listing</h3>
       {/* Recruiter Listing Content */}
       {content}
     </div>

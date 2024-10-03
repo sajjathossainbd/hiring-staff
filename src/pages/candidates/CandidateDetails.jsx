@@ -19,7 +19,7 @@ function CandidateDetails() {
 
   // data destructuring
   const { first_name, last_name } = candidate || {};
-
+  console.log(candidate);
   useEffect(() => {
     dispatch(fetchCandidateDetails(id));
   }, [dispatch, id]);

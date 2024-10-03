@@ -85,7 +85,7 @@ const AllPaymentTable = () => {
       <hr className="my-6 text-lightGray" />
       {isLoading && <div>Loading...</div>}
       {/* Table */}
-      <div className="overflow-x-auto flex flex-col justify-between lg:h-[500px]">
+      <div className="overflow-x-auto flex flex-col justify-between lg:h-[550px]">
         <table className="table text-sm">
           {/* Head */}
           <thead>
@@ -103,25 +103,25 @@ const AllPaymentTable = () => {
           <tbody>
             {paymentHistory.payments.map((payment) => (
               <tr key={payment._id}>
-                <td>{payment.name}</td>
-                <td>{payment.email}</td>
-                <td>{payment.category}</td>
+                <td>{payment?.name}</td>
+                <td>{payment?.email}</td>
+                <td>{payment?.category}</td>
                 <td>
                   <span className="text-blue">${payment.price}</span>
                 </td>
-                <td>{payment.date}</td>
-                <td>{payment.paymentType}</td>
-                <td>{payment.transactionId}</td>
+                <td>{payment?.date}</td>
+                <td>{payment?.paymentType}</td>
+                <td>{payment?.transactionId}</td>
                 <td>
                   <select
-                    defaultValue={payment.status}
+                    defaultValue={payment?.status}
                     onChange={(e) =>
-                      handleUpdateStatus(e.target.value, payment._id)
+                      handleUpdateStatus(e.target.value, payment?._id)
                     }
                     className="select select-bordered w-full"
                   >
                     <option value="select">Select</option>
-                    <option value="approve">Approved</option>
+                    <option value="approved">Approved</option>
                     <option value="pending">Pending</option>
                   </select>
                 </td>

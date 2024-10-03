@@ -4,6 +4,8 @@ import { fetchBlogsListing } from "../../features/blogs/blogsListing/blogsListin
 import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
 import BlogCard from "../../components/shared/blogs/BlogCard";
+import { Helmet } from "react-helmet-async";
+import TinnyBanner from "../../components/shared/TinnyBanner";
 
 function BlogsPage() {
   const dispatch = useDispatch();
@@ -32,7 +34,7 @@ function BlogsPage() {
 
   if (!isLoading && !isError && blogs?.length > 0) {
     content = (
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 mt-10">
         {blogs.map((blog) => (
           <BlogCard key={blog._id} blog={blog} />
         ))}
@@ -40,14 +42,22 @@ function BlogsPage() {
     );
   }
 
-  // console.log(blogs);
+  console.log(blogs);
   return (
-    <div className="container">
-      <h1>Blogs Page</h1>
-
-      {/* Blog Card Content*/}
-      {content}
-    </div>
+    <>
+      <Helmet>
+        <title>Hiring Staff - Blogs</title>
+      </Helmet>
+      <TinnyBanner
+        title={"Blogs"}
+        subTitle={"Explore our latest tech articles and insights."}
+        currentPath={"blogs"}
+      />
+      <div className="container">
+        {/* Blog Card Content*/}
+        {content}
+      </div>
+    </>
   );
 }
 

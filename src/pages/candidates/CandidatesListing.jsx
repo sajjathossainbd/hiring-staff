@@ -28,7 +28,7 @@ function CandidatesListing() {
     content = <div className="col-span-12">{error}</div>;
 
   if (!isLoading && !isError && candidates?.length === 0) {
-    content = <NoFoundData title="No Jobs Found!" />;
+    content = <NoFoundData title="No Candidates Found!" />;
   }
 
   if (!isLoading && !isError && candidates?.length > 0) {
@@ -49,10 +49,10 @@ function CandidatesListing() {
         <title>Hiring Staff - Candidates</title>
       </Helmet>
       <div className="">
+        <h1>Candidate Listing</h1>
+
         {/* Candidate Card */}
         {content}
-
-        {/* alada alada component khule ay file rakhe diben - output dekhar jonnu console.log koren*/}
       </div>
     </div>
   );

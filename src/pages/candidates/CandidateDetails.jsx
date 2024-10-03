@@ -31,7 +31,7 @@ function CandidateDetails() {
     content = <div className="col-span-12">{error}</div>;
 
   if (!isLoading && !isError && !candidate?._id) {
-    content = <NoFoundData title={"No Job Found!"} />;
+    content = <NoFoundData title={"No Candidate Found!"} />;
   }
 
   if (!isLoading && !isError && candidate?.id) {
@@ -53,6 +53,7 @@ function CandidateDetails() {
     <div className="container">
       <h1>Condate Deteils</h1>
 
+      {/* Candidate Details Content */}
       {content}
     </div>
   );

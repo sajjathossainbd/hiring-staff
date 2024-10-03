@@ -27,7 +27,7 @@ function RecruitersListing() {
     content = <div className="col-span-12">{error}</div>;
 
   if (!isLoading && !isError && recruiters?.length === 0) {
-    content = <NoFoundData title="No Jobs Found!" />;
+    content = <NoFoundData title="No Recruiters Found!" />;
   }
 
   if (!isLoading && !isError && recruiters?.length > 0) {
@@ -43,7 +43,7 @@ function RecruitersListing() {
     <div className="container">
       <h1>Recruiter Listing</h1>
 
-      {/* Recruiter Listing Card */}
+      {/* Recruiter Listing Content */}
       {content}
     </div>
   );

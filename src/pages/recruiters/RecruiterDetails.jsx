@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -30,7 +31,7 @@ function RecruiterDetails() {
     content = <div className="col-span-12">{error}</div>;
 
   if (!isLoading && !isError && !recruiter?._id) {
-    content = <NoFoundData title={"No Job Found!"} />;
+    content = <NoFoundData title={"No Recruiter Found!"} />;
   }
 
   if (!isLoading && !isError && recruiter?.id) {
@@ -51,6 +52,7 @@ function RecruiterDetails() {
     <div className="container">
       <h1>Recruiter Deteils</h1>
 
+      {/* Recruiter Details Content */}
       {content}
     </div>
   );

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import bannerImage from "/src/assets/gallery/pexels-goumbik-590016.jpg"
+import bannerImage from "/src/assets/gallery/pexels-goumbik-590016.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchJobDetails } from "../../features/jobs/jobsDetails/jobDetailsSlice";
@@ -17,13 +17,9 @@ const JobDetails = () => {
     error,
   } = useSelector((state) => state.jobDetails);
 
-<<<<<<< HEAD
-  const { image, position, type, posted, company } = job || {};
+  const { job_title, description, job_category, job_type, date_posted } =
+    job || {};
   console.log(job);
-=======
-  const { job_title, description, job_category, education, salary_range, job_type, location,application_deadline, date_posted, company_email, posted} = job || {};
-   console.log(job);
->>>>>>> a822ef5b043b0331ccbe71624282fc5cea330bfd
 
   useEffect(() => {
     dispatch(fetchJobDetails(id));
@@ -35,22 +31,16 @@ const JobDetails = () => {
   if (!isLoading && isError)
     content = <div className="col-span-12">{error}</div>;
 
-  if (!isLoading && !isError && !job?.
-    _id) {
+  if (!isLoading && !isError && !job?._id) {
     content = <NoFoundData title={"No Job Found!"} />;
   }
 
-<<<<<<< HEAD
   if (!isLoading && !isError && job?.id) {
     content = (
       <div>
         <h1>Jobs</h1>
       </div>
     );
-=======
-  if (!isLoading && !isError && job?._id) {
-    content = <div></div>;
->>>>>>> a822ef5b043b0331ccbe71624282fc5cea330bfd
   }
 
   return (
@@ -58,8 +48,6 @@ const JobDetails = () => {
       {content}
 
       {/* update dynamic date */}
-<<<<<<< HEAD
-=======
       <div>
         <img
           className="lg:h-[400px] rounded-3xl object-cover w-full mb-10 overflow-hidden"
@@ -76,8 +64,9 @@ const JobDetails = () => {
             <hr className="border-0 h-px bg-lightGray mt-3 mb-12" />
             <p>
               {description}
-             
-              <strong className="text-16 dark:text-white">{job_title}</strong>{" "}
+              <strong className="text-16 dark:text-white">
+                {job_title}
+              </strong>{" "}
               who embodies creativity and a passion for illustrative design and
               typography.
             </p>
@@ -168,7 +157,6 @@ const JobDetails = () => {
           </div>
         </div>
       </div>
->>>>>>> a822ef5b043b0331ccbe71624282fc5cea330bfd
     </div>
   );
 };

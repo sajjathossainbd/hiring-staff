@@ -39,7 +39,7 @@ function Blogblog() {
     content = (
       <div>
         <div className="flex justify-center">
-          <img className="xl:h-96 lg:h-80 md:h-60 sm:h-40 h-28 w-full object-cover rounded-2xl" src={blog?.url} alt="" />
+          <img className="xl:h-96 lg:h-80 md:h-60 sm:h-40 h-28 w-full object-center rounded-2xl" src={blog?.url} alt="" />
         </div>
         <div className="mx-auto space-y-4 container">
           <div className="flex items-center flex-wrap px-4 gap-2 mt-2">

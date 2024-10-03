@@ -17,7 +17,8 @@ const JobDetails = () => {
     error,
   } = useSelector((state) => state.jobDetails);
 
-  const { image, position, type, posted, company } = job;
+  const { image, position, type, posted, company } = job || {};
+  // console.log(job);
 
   useEffect(() => {
     dispatch(fetchJobDetails(id));
@@ -29,12 +30,19 @@ const JobDetails = () => {
   if (!isLoading && isError)
     content = <div className="col-span-12">{error}</div>;
 
-  if (!isLoading && !isError && !job?._id) {
+  if (!isLoading && !isError && !job?.id) {
     content = <NoFoundData title={"No Job Found!"} />;
+  }
+
+  if (!isLoading && !isError && job?.id) {
+    content = <div></div>;
   }
 
   return (
     <div className="container">
+      {content}
+
+      {/* update dynamic date */}
       <div>
         <img
           className="lg:h-[400px] rounded-3xl object-cover w-full mb-10 overflow-hidden"

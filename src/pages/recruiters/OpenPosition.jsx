@@ -6,8 +6,9 @@ const OpenPosition = forwardRef((props, ref) => {
   return (
     <div ref={ref} className="container">
       {" "}
-      {/* Attach the ref */}
-      <h4 className="mb-10">Open Position 20</h4>
+      <div>
+        <h4 className="mb-10">Open Position (20)</h4>
+      </div>
       {/* Open position list */}
       <div className="flex flex-col gap-6">
         <RecruiterJobsCard

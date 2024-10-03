@@ -36,15 +36,15 @@ const RecruiterDetails = () => {
             src="https://www.reliancedigital.in/wp-content/uploads/2017/11/prgramming_banner.jpg"
             alt=""
           />
-          <div className="relative left-1/2 -translate-x-1/2 top-full -translate-y-1/2 border border-lightGray flex items-center justify-between lg:w-4/5 py-3 px-6 bg-white rounded-xl">
-            <div className="flex items-center">
+          <div className="lg:relative lg:left-1/2 lg:-translate-x-1/2 lg:top-full lg:-translate-y-1/2 border border-lightGray flex lg:flex-row flex-col items-center justify-between  lg:w-4/5 py-3 px-6 bg-white rounded-xl lg:mt-0 mt-6">
+            <div className="flex lg:flex-row flex-col items-center justify-center">
               <img
                 className="h-28 w-28"
                 src="https://marketplace.canva.com/EAFaFUz4aKo/2/0/1600w/canva-yellow-abstract-cooking-fire-free-logo-JmYWTjUsE-Q.jpg"
                 alt=""
               />
-              <div>
-                <h3 className="lg:pb-2">Company Name</h3>
+              <div className="flex flex-col items-center lg:items-baseline lg:mb-0 mb-3">
+                <h3 className="lg:pb-2 md:pb-4 pb-1">Company Name</h3>
                 <h4>Agro Based Industry</h4>
               </div>
             </div>
@@ -55,9 +55,9 @@ const RecruiterDetails = () => {
             {/* Call scroll function */}
           </div>
         </div>
-        <div className="flex">
-          <div className="lg:w-3/5">
-            <h4 className="mb-6">Company Description</h4>
+        <div className="lg:flex gap-10">
+          <div className="lg:w-3/5 mt-6 lg:mt-0">
+            <h4 className="lg:mb-6 mb-2">Company Description</h4>
             <p>
               Nerdware was founded in 2004, and we have accomplished so much
               over the years. To create a world where the tasks will created by
@@ -67,21 +67,23 @@ const RecruiterDetails = () => {
               encourage our community to achieve great technical skills and
               experience.
             </p>
-            <div className="mt-10">
-              <div className="flex items-center gap-4">
+            <div className="lg:mt-10 mt-6 lg:mb-0 mb-6">
+              <div className="flex lg:flex-row flex-col items-center gap-4">
                 <p className="font-semibold">Share This Profile: </p>
-                <SocialIconButton
-                  icon={<FaSquareFacebook className="h-6 w-6" />}
-                  media={"Facebook"}
-                />
-                <SocialIconButton
-                  icon={<FaSquareFacebook className="h-6 w-6" />}
-                  media={"Instagram"}
-                />
-                <SocialIconButton
-                  icon={<FaSquareFacebook className="h-6 w-6" />}
-                  media={"Twitter"}
-                />
+                <div className="flex lg:flex-row flex-col gap-3 items-center">
+                  <SocialIconButton
+                    icon={<FaSquareFacebook className="h-6 w-6" />}
+                    media={"Facebook"}
+                  />
+                  <SocialIconButton
+                    icon={<FaSquareFacebook className="h-6 w-6" />}
+                    media={"Instagram"}
+                  />
+                  <SocialIconButton
+                    icon={<FaSquareFacebook className="h-6 w-6" />}
+                    media={"Twitter"}
+                  />
+                </div>
               </div>
             </div>
           </div>

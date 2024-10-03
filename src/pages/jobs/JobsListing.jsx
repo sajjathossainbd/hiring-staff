@@ -17,6 +17,7 @@ function JobsListing() {
     error,
   } = useSelector((state) => state.jobsListing);
 
+
   const { search } = useSelector((state) => state.jobsFilter);
 
   useEffect(() => {

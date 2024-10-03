@@ -1,60 +1,59 @@
-import RecruiterJobsCard from "./RecruiterJobsCard";
-import { fetchAllRecruiters } from "../../features/recruiters/allRecruiters/allRecruitersSlice";
-import { useDispatch, useSelector } from "react-redux";
+/* eslint-disable no-unused-vars */
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import Loading from "../../components/ui/Loading";
+import NoFoundData from "../../components/ui/NoFoundData";
+import { fetchRecruiterDetails } from "../../features/recruiters/recruiterDetails/recruiterDetailsSlice";
 
 function RecruiterDetails() {
-  const { id } = useParams();
   const dispatch = useDispatch();
+  const { id } = useParams();
 
-  const { recruiters, isLoading, isError, error } = useSelector(
-    (state) => state.recruiters
-  );
+  const {
+    recruiterDetails: recruiter,
+    isLoading,
+    isError,
+    error,
+  } = useSelector((state) => state.recruiterDetails);
+
+  // data destructuring
+  const { _id, name } = recruiter || {};
 
   useEffect(() => {
-    dispatch(fetchAllRecruiters());
-  }, [dispatch]);
+    dispatch(fetchRecruiterDetails(id));
+  }, [dispatch, id]);
 
-  const recruiterData = recruiters?.find((item) => item._id === id);
+  let content = null;
+  if (isLoading) content = <Loading />;
 
-  if (!isLoading && !recruiterData) {
-    return <div>Recruiter not found</div>;
+  if (!isLoading && isError)
+    content = <div className="col-span-12">{error}</div>;
+
+  if (!isLoading && !isError && !recruiter?._id) {
+    content = <NoFoundData title={"No Recruiter Found!"} />;
   }
 
-  const { brandName, brandImage, companyMotive, openJobs } =
-    recruiterData || {};
+  if (!isLoading && !isError && recruiter?.id) {
+    content = (
+      <div>
+        {/* 
+    
+        1. recruiter juto data acche database thake,shob akhane rakhben
+        2. judi bashi boro hy jai tahole alada compoent create korte paren
+        
+        */}
+      </div>
+    );
+  }
 
+  // console.log(recruiter);
   return (
     <div className="container">
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <>
-          <div className="text-center pb-10">
-            <h4 className="flex items-center justify-center gap-2">
-              <img className="h-5 w-auto" src={brandImage} alt="" />
-              {brandName} offers career opportunities.
-            </h4>
-            <p className="py-1 mt-1 px-5 rounded-3xl bg-bgLightBlue dark:bg-blue dark:text-white inline-block">
-              {companyMotive}
-            </p>
-          </div>
+      <h1>Recruiter Deteils</h1>
 
-          <div className="flex flex-col gap-4">
-            <RecruiterJobsCard
-              recruiterImage={
-                "https://jobpilot.templatecookie.com/dummy-data/images/companies/company-logo-12.png"
-              }
-              position={"Frontend Developer"}
-              jobType={"Full Time"}
-              locations={"Dhaka, Bangladesh"}
-              salary={"1000 - 4000"}
-              dates={"10/30/40"}
-            />
-          </div>
-        </>
-      )}
+      {/* Recruiter Details Content */}
+      {content}
     </div>
   );
 }

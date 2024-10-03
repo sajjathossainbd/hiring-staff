@@ -5,7 +5,8 @@ import useCurrentUser from "../../hooks/useCurrentUser";
 
 function SinginLogout() {
   const { user, logOut } = useAuth();
-  const { currentUser } = useCurrentUser()
+  const { currentUser } = useCurrentUser();
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -33,8 +34,14 @@ function SinginLogout() {
           >
             <div className="">
               <div className="relative">
-                <img className="w-30 rounded-full" src={currentUser?.photo} />
-                <span className="top-[-1px] left-8 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
+                <div className="w-30 h-30 rounded-full overflow-hidden flex items-center justify-center">
+                  <img
+                    className="w-full h-full object-cover"
+                    src={currentUser?.photo}
+                    alt="User photo"
+                  />
+                  <span className="top-[-1px] left-8 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
+                </div>
               </div>
             </div>
           </div>

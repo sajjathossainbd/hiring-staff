@@ -1,12 +1,18 @@
 import { useEffect } from "react";
+import RecruiterCard from "../../components/recruiter/RecruiterCard";
+import { Helmet } from "react-helmet-async";
+import Pagination from "../../components/recruiter/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecruitersListing } from "../../features/recruiters/recruitersListing/recruitersListingSlice";
 import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
-import RecruiterCard from "../../components/recruiter/RecruiterCard";
 
-function RecruitersListing() {
+const RecruitersListing = () => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchRecruitersListing());
+  }, [dispatch]);
 
   const {
     recruitersListing: recruiters,
@@ -15,12 +21,7 @@ function RecruitersListing() {
     error,
   } = useSelector((state) => state.recruitersListing);
 
-  useEffect(() => {
-    dispatch(fetchRecruitersListing());
-  }, [dispatch]);
-
   let content = null;
-
   if (isLoading) content = <Loading />;
 
   if (!isLoading && isError)
@@ -39,14 +40,25 @@ function RecruitersListing() {
       </div>
     );
   }
-  return (
-    <div className="container">
-      <h1>Recruiter Listing</h1>
 
-      {/* Recruiter Listing Content */}
+  return (
+    <div className="container mx-auto">
+      <Helmet>
+        <title>Hiring Staff - Recruiters</title>
+      </Helmet>
+      {/* Banner Section & Recruiter Browser */}
+      {/* <RecruiterBrowser /> */}
+
+      {/* Filter and Sorting Section */}
+      {/* <Filters /> */}
+
+      {/* Recruiter listing */}
       {content}
+
+      {/* Pagination */}
+      <Pagination />
     </div>
   );
-}
+};
 
 export default RecruitersListing;

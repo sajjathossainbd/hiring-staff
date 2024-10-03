@@ -17,7 +17,7 @@ export const fetchRecruitersListing = createAsyncThunk(
   }
 );
 
-const recruitersListingSlice = createSlice({
+const RecruitersListingSlice = createSlice({
   name: "recruitersListing",
   initialState,
   extraReducers: (builder) => {
@@ -39,4 +39,4 @@ const recruitersListingSlice = createSlice({
   },
 });
 
-export default recruitersListingSlice.reducer;
+export default RecruitersListingSlice.reducer;

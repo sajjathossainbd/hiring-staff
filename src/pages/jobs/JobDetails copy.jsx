@@ -18,7 +18,11 @@ const JobDetails = () => {
   } = useSelector((state) => state.jobDetails);
 
   const { image, position, type, posted, company } = job || {};
+<<<<<<< HEAD
   // console.log(job);
+=======
+   console.log(job);
+>>>>>>> a822ef5b043b0331ccbe71624282fc5cea330bfd
 
   useEffect(() => {
     dispatch(fetchJobDetails(id));
@@ -35,11 +39,15 @@ const JobDetails = () => {
   }
 
   if (!isLoading && !isError && job?.id) {
+<<<<<<< HEAD
     content = (
       <div>
         <h1>Jobs</h1>
       </div>
     );
+=======
+    content = <div></div>;
+>>>>>>> a822ef5b043b0331ccbe71624282fc5cea330bfd
   }
 
   return (

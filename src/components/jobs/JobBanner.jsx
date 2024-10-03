@@ -8,8 +8,7 @@ function JobBanner() {
           <span className="text-blue">225 Jobs</span> Available Now
         </h3>
         <p className="max-w-4xl">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
-          repellendus magni, atque delectus molestias quis
+        Find the perfect job that fits your skills and aspirations. Browse through our latest job openings and take the next step in your career.
         </p>
       </div>
       {/* search filter */}

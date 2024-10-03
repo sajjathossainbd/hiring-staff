@@ -17,8 +17,13 @@ const JobDetails = () => {
     error,
   } = useSelector((state) => state.jobDetails);
 
+<<<<<<< HEAD
+  const { image, position, type, posted, company } = job || {};
+  console.log(job);
+=======
   const { job_title, description, job_category, education, salary_range, job_type, location,application_deadline, date_posted, company_email, posted} = job || {};
    console.log(job);
+>>>>>>> a822ef5b043b0331ccbe71624282fc5cea330bfd
 
   useEffect(() => {
     dispatch(fetchJobDetails(id));
@@ -35,8 +40,17 @@ const JobDetails = () => {
     content = <NoFoundData title={"No Job Found!"} />;
   }
 
+<<<<<<< HEAD
+  if (!isLoading && !isError && job?.id) {
+    content = (
+      <div>
+        <h1>Jobs</h1>
+      </div>
+    );
+=======
   if (!isLoading && !isError && job?._id) {
     content = <div></div>;
+>>>>>>> a822ef5b043b0331ccbe71624282fc5cea330bfd
   }
 
   return (
@@ -44,6 +58,8 @@ const JobDetails = () => {
       {content}
 
       {/* update dynamic date */}
+<<<<<<< HEAD
+=======
       <div>
         <img
           className="lg:h-[400px] rounded-3xl object-cover w-full mb-10 overflow-hidden"
@@ -152,6 +168,7 @@ const JobDetails = () => {
           </div>
         </div>
       </div>
+>>>>>>> a822ef5b043b0331ccbe71624282fc5cea330bfd
     </div>
   );
 };

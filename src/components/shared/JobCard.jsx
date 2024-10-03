@@ -6,35 +6,29 @@ import SkillsButton from "./SkillsButton";
 import { Link } from "react-router-dom";
 
 function JobCard({ job }) {
-  const {
-    _id,
-    position,
-    type,
-    posted,
-    jobDescription,
-    skills = [],
-  } = job || {};
+  const { _id, job_title, job_type, date_posted, description, job_category } =
+    job || {};
+
+  console.log(job);
 
   return (
     <div className="rounded-lg border border-[#B4C0E0] hover:-translate-y-1 hover:bg-[white] transition duration-300 bg-[#F8FAFF] dark:bg-darkBlue">
       <div className="px-8 py-12">
-        <h4 className="">{position}</h4>
+        <h4 className="">{job_title}</h4>
         <div className="text-12  flex gap-3 items-center">
           <p className="flex items-center  gap-2 text-lightGray">
-            <IoBriefcaseOutline /> {type}
+            <IoBriefcaseOutline /> {job_type}
           </p>
           <p className="flex items-center gap-2 text-lightGray">
             <WiTime7 />
-            {posted}
+            {date_posted}
           </p>
         </div>
 
-        <p className="text-14 mt-4">{jobDescription}</p>
+        <p className="text-14 mt-4">{description}</p>
         <div className="mt-6">
-          <div className="flex flex-wrap gap-2">
-            {skills.map((skill, index) => (
-              <SkillsButton key={index} skill={skill} />
-            ))}
+          <div className="">
+            <SkillsButton skill={job_category} />
           </div>
           <div className="mt-8 flex justify-end">
             <Link to={`/job-details/${_id}`}>

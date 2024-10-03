@@ -17,9 +17,8 @@ function JobsListing() {
     error,
   } = useSelector((state) => state.jobsListing);
 
+
   const { search } = useSelector((state) => state.jobsFilter);
-  console.log(search);
-  
 
   useEffect(() => {
     dispatch(fetchJobsListing(search));

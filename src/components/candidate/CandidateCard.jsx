@@ -2,7 +2,8 @@
 import { Link } from "react-router-dom";
 
 function CandidateCard({ candidate }) {
-  const { _id } = candidate;
+  // data destructuring
+  const { _id } = candidate || {};
 
   // console.log(candidate);
   return (

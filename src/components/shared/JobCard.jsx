@@ -9,7 +9,7 @@ function JobCard({ job }) {
   const { _id, job_title, job_type, date_posted, description, job_category } =
     job || {};
 
-  console.log(job);
+  // console.log(job);
 
   return (
     <div className="rounded-lg border border-[#B4C0E0] hover:-translate-y-1 hover:bg-[white] transition duration-300 bg-[#F8FAFF] dark:bg-darkBlue">

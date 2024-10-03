@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -15,6 +16,9 @@ function CandidateDetails() {
     isError,
     error,
   } = useSelector((state) => state.candidateDetails);
+
+  // data destructuring
+  const { first_name, last_name } = candidate || {};
 
   useEffect(() => {
     dispatch(fetchCandidateDetails(id));

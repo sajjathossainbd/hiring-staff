@@ -17,8 +17,8 @@ const JobDetails = () => {
     error,
   } = useSelector((state) => state.jobDetails);
 
-  const { image, position, type, posted, company } = job;
-  console.log(job);
+  const { image, position, type, posted, company } = job || {};
+  // console.log(job);
 
   useEffect(() => {
     dispatch(fetchJobDetails(id));

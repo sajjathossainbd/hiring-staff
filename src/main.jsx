@@ -14,6 +14,7 @@ import "aos/dist/aos.css";
 import AuthProvider from "./contextProvider/AuthProvider.jsx";
 import { Provider } from "react-redux";
 import store from "./app/store.js";
+
 AOS.init();
 
 createRoot(document.getElementById("root")).render(

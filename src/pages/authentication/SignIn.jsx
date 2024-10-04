@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import axios from "axios";
+import axiosInstance from "../../utils/axios";
 
 const SignIn = () => {
   const location = useLocation();
@@ -45,7 +45,7 @@ const SignIn = () => {
         photo: result.user?.photoURL,
       };
 
-      axios.post("http://localhost:5000/users", userInfo).then((res) => {
+      axiosInstance.post("/users", userInfo).then((res) => {
         if (res.data.insertedId) {
           toast.success("Successfully Google Login");
           navigate(

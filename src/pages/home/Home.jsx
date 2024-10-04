@@ -4,7 +4,6 @@ import JobLocation from "../../components/home/JobLocation";
 import NewsLetter from "../../components/home/NewsLetter";
 import BlogSection from "../../components/home/BlogSection";
 import Category from "../../components/home/category/Category";
-import JobsDay from "../../components/home/jobsDay/JobsDay";
 import GrowthSection from "../../components/home/growthSection/GrowthSection";
 
 function Home() {
@@ -12,7 +11,7 @@ function Home() {
     <div>
       <Banner />
       <Category />
-      <JobsDay />
+      {/* <JobsDay /> */}
       <GrowthSection />
       <Recruiter />
       <JobLocation />

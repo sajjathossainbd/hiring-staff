@@ -42,7 +42,7 @@ function BlogsPage() {
     );
   }
 
-  console.log(blogs);
+  // console.log(blogs);
   return (
     <>
       <Helmet>

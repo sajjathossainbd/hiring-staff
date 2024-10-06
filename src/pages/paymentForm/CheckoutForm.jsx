@@ -12,7 +12,7 @@ const CheckoutForm = ({ price, category }) => {
   const { currentUser } = useCurrentUser();
   const [clientSecret, setClientSecret] = useState("");
   const [error, setError] = useState("");
-  const [existPlan, setExistPlan] = useState();
+  const [existPlan, setExistPlan] = useState(false);
 
   useEffect(() => {
     if (currentUser?.plan == category) {

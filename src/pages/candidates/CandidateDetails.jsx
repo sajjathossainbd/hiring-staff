@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import { useEffect, useState } from "react";
+ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchCandidateDetails } from "../../features/candidates/candidateDetails/candidateDetailsSlice";
@@ -21,7 +20,7 @@ function CandidateDetails() {
     error,
   } = useSelector((state) => state.candidateDetails);
 
-  // data destructuring
+ 
   const {
     _id,
     first_name,
@@ -36,8 +35,11 @@ function CandidateDetails() {
     cover_letter,
     resume,
     education,
-    experience,
+    company_experience,
     skills,
+    special_profession,
+    about_me,
+    experience_year,
   } = candidate || {};
 
   useEffect(() => {
@@ -84,10 +86,10 @@ function CandidateDetails() {
                 <CiLocationOn /> <span className="">{location?.city}</span>
               </p>
             </div>
-            <h5 className="text-lightGray">Javascript</h5>
+            <h5 className="text-lightGray">{special_profession}</h5>
             <div className="mt-1 flex gap-[1px] text-14 items-center">
               <StarRatings
-                rating={4}
+                rating={4}  
                 starRatedColor="#ffd250"
                 numberOfStars={5}
                 name="rating"
@@ -96,6 +98,7 @@ function CandidateDetails() {
               />
               <p className="ml-2">{"4"}</p>
             </div>
+            <p className="text-gray">{about_me}</p>
           </div>
           <div>
             <button className="bg-blue text-white text-18 px-4 md:px-6 py-3 md:py-5 rounded flex items-center space-x-2">
@@ -107,30 +110,33 @@ function CandidateDetails() {
 
         <hr className="text-lightGray mt-4" />
 
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1     mt-6">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 mt-6">
           <div className="flex flex-col gap-8 lg:pr-5">
-            {/* education */}
+            {/* Education */}
             <div>
-              <h4 className=" text-gray mb-4">Education</h4>
-              <p>
-                <span className="font-bold">Degree: </span>{" "}
-                {education?.[0]?.degree}
-              </p>
-              <p>
-                <span className="font-bold">Graduation Year: </span>{" "}
-                {education?.[0]?.graduation_year}
-              </p>
-              <p>
-                <span className="font-bold">Institution: </span>{" "}
-                {education?.[0]?.institution}
-              </p>
+              <h4 className="text-gray mb-4">Education</h4>
+              {education?.map((edu, index) => (
+                <div key={index}>
+                  <p>
+                    <span className="font-bold">Degree: </span> {edu.degree}
+                  </p>
+                  <p>
+                    <span className="font-bold">Graduation Year: </span>{" "}
+                    {edu.graduation_year}
+                  </p>
+                  <p>
+                    <span className="font-bold">Institution: </span>{" "}
+                    {edu.institution}
+                  </p>
+                </div>
+              ))}
             </div>
-            {/* experience */}
+            {/* Experience */}
             <div>
               <h4 className="text-gray mb-4">Experience</h4>
-              <div className="ml-3 ">
-                {experience?.map((exp, idx) => (
-                  <div key={exp.idx} className="   mt-3">
+              <div className="ml-3">
+                {company_experience?.map((exp, idx) => (
+                  <div key={idx} className="mt-3">
                     <h4>{idx + 1}.</h4>
                     <p>
                       <span className="font-bold">Title: </span> {exp.job_title}
@@ -156,9 +162,9 @@ function CandidateDetails() {
             </div>
           </div>
           <div className="flex flex-col gap-8 mt-3 md:mt-0 lg:pl-5">
-            {/* skill */}
+            {/* Skills */}
             <div>
-              <h4 className=" text-gray mb-4">Skills</h4>
+              <h4 className="text-gray mb-4">Skills</h4>
               <div className="flex gap-2 flex-wrap ml-3">
                 {skills?.map((skill) => (
                   <button
@@ -170,19 +176,21 @@ function CandidateDetails() {
                 ))}
               </div>
             </div>
-            {/* certification */}
+            {/* Certifications */}
             <div>
-              <h4 className=" text-gray mb-4">Certifications</h4>
-              {certifications.map((c, idx) => (
+              <h4 className="text-gray mb-4">Certifications</h4>
+              {certifications?.map((c, idx) => (
                 <div key={idx} className="flex items-center gap-2 ml-3">
                   <h5>{idx + 1}.</h5>
-                  <p>{c}</p>
+                  <p>
+                    {c.name} - {c.certification_source}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
-          {/* overview */}
-          <div className="lg:col-span-1 md:col-span-2 sm:col-span-1  mt-6 lg:mt-0 lg:pl-5">
+          {/* Overview */}
+          <div className="lg:col-span-1 md:col-span-2 sm:col-span-1 mt-6 lg:mt-0 lg:pl-5">
             <Overview candidate={candidate} />
           </div>
         </div>
@@ -190,12 +198,9 @@ function CandidateDetails() {
     );
   }
 
-  // console.log(candidate);
-
   return (
     <div className="container">
-      {/* Candidate Details Content */}
-      {content}
+       {content}
     </div>
   );
 }

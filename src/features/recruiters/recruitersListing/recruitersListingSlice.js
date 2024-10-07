@@ -1,30 +1,30 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getRecruitersListing } from "./recruitersListingAPI";
 
-const initialState = {
-  recruitersListing: [],
-  isLoading: false,
-  isError: false,
-  error: "",
-};
-
-// async thunk
 export const fetchRecruitersListing = createAsyncThunk(
-  "recruitersListing/fetchRecruitersListing",
+  "recruiters/fetchListing",
   async () => {
-    const recruitersListing = await getRecruitersListing();
-    return recruitersListing;
+    const response = await fetch(
+      `http://localhost:5000/recruiters`
+    );
+    const data = await response.json();
+    return data.recruiters; // Assuming response structure
   }
 );
 
-const RecruitersListingSlice = createSlice({
+const recruitersListingSlice = createSlice({
   name: "recruitersListing",
-  initialState,
+  initialState: {
+    recruitersListing: [],
+    isLoading: false,
+    isError: false,
+    error: null,
+  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchRecruitersListing.pending, (state) => {
-        state.isError = false;
         state.isLoading = true;
+        state.isError = false;
       })
       .addCase(fetchRecruitersListing.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -32,11 +32,10 @@ const RecruitersListingSlice = createSlice({
       })
       .addCase(fetchRecruitersListing.rejected, (state, action) => {
         state.isLoading = false;
-        state.recruitersListing = [];
         state.isError = true;
-        state.error = action.error?.message;
+        state.error = action.error.message;
       });
   },
 });
 
-export default RecruitersListingSlice.reducer;
+export default recruitersListingSlice.reducer;

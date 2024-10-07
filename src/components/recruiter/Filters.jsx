@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 const Filters = ({
   showCount,
   setShowCount,
@@ -7,7 +5,7 @@ const Filters = ({
   sortOrder,
   setSortOrder,
   currentPage,
-  sortedRecruiters,
+  sortedRecruitersLength = 0, // Default to 0 if undefined
 }) => {
   return (
     <div className="flex md:justify-between flex-col md:flex-row items-center border-b-2 border-[#F8FAFF] pb-2 mb-4">
@@ -15,9 +13,9 @@ const Filters = ({
       <div>
         <p className="text-lightGray">
           Showing{" "}
-          {Math.min((currentPage - 1) * showCount + 1, sortedRecruiters.length)}
-          –{Math.min(currentPage * showCount, sortedRecruiters.length)} of{" "}
-          {sortedRecruiters.length} results
+          {Math.min((currentPage - 1) * showCount + 1, sortedRecruitersLength)}
+          –{Math.min(currentPage * showCount, sortedRecruitersLength)} of{" "}
+          {sortedRecruitersLength} results
         </p>
       </div>
 

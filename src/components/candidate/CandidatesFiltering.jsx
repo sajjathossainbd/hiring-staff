@@ -20,14 +20,16 @@ function CandidatesFiltering() {
 
   const [educationOptions, setEducationOptions] = useState([]);
 
-  const [filters, setFilters] = useState({
+  const initialFilters = {
     profession: "",
     location: "",
     skills: "",
     experience: "",
     education: "",
     jobType: "",
-  });
+  };
+
+  const [filters, setFilters] = useState(initialFilters);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   useEffect(() => {
@@ -55,6 +57,11 @@ function CandidatesFiltering() {
 
   const applyFilters = () => {
     dispatch(fetchCandidatesListing(filters));
+  };
+
+  const resetFilters = () => {
+    setFilters(initialFilters); // Reset filters to initial state
+    dispatch(fetchCandidatesListing(initialFilters)); // Fetch all candidates
   };
 
   const toggleFilter = () => {
@@ -216,6 +223,13 @@ function CandidatesFiltering() {
             className="bg-blue text-white px-4 py-2 rounded-lg w-full hover:bg-lightBlue transition duration-300"
           >
             Apply Filter
+          </button>
+
+          <button
+            onClick={resetFilters}
+            className="bg-gray text-white px-4 py-2 rounded"
+          >
+            Reset Filters
           </button>
         </div>
 

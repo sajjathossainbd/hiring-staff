@@ -1,5 +1,3 @@
- 
-
 import { useEffect, useState } from "react";
 import {
   FaSearch,
@@ -9,16 +7,18 @@ import {
 } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { fetchCandidatesListing } from "../../features/candidates/candidatesListing/candidatesListingSlice";
- 
+import axiosInstance from "../../utils/axios";
+import axios from "axios";
+
 function CandidatesFiltering() {
   const dispatch = useDispatch();
-  
-   const [professions, setProfessions] = useState([]);
-   const [skills, setSkills] = useState([]);
-   const [locations, setLocations] = useState([]);
-   const [experience, setExperience] = useState([]);
 
-   const [educationOptions, setEducationOptions] = useState([]);
+  const [professions, setProfessions] = useState([]);
+  const [skills, setSkills] = useState([]);
+  const [locations, setLocations] = useState([]);
+  const [experience, setExperience] = useState([]);
+
+  const [educationOptions, setEducationOptions] = useState([]);
 
   const [filters, setFilters] = useState({
     profession: "",
@@ -33,7 +33,8 @@ function CandidatesFiltering() {
   useEffect(() => {
     const fetchFilterData = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/candidates/unique');  
+        const { data } = await axiosInstance.get("/candidates/unique");
+
         setProfessions(data.professions);
         setSkills(data.skills);
         setLocations(data.cities);
@@ -43,6 +44,7 @@ function CandidatesFiltering() {
         console.error("Error fetching filter data", error);
       }
     };
+
     fetchFilterData();
   }, []);
 
@@ -52,7 +54,7 @@ function CandidatesFiltering() {
   };
 
   const applyFilters = () => {
-    dispatch(fetchCandidatesListing(filters));  
+    dispatch(fetchCandidatesListing(filters));
   };
 
   const toggleFilter = () => {
@@ -64,23 +66,27 @@ function CandidatesFiltering() {
       <div className="relative">
         {/* Search Bar */}
         <div className="flex flex-col lg:flex-row items-center justify-center lg:space-x-4 space-y-3 lg:space-y-0 p-4 bg-lightText shadow-lg rounded-lg">
-          
-          {/* Profession */}
+          {/* Profession   */}
           <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
             <FaLayerGroup className="text-blue" />
-            <select
+            <input
+              type="text"
               name="profession"
               onChange={handleFilterChange}
+              list="professions-list"
+              placeholder="Select or Enter Profession"
               className="focus:outline-none w-full lg:w-auto bg-white text-gray"
-            >
-              <option value="">Select Profession</option>
-              <option value="Software Engineer">Software Engineer</option>
-              <option value="Designer">Designer</option>
-              <option value="Project Manager">Project Manager</option>
-            </select>
+            />
+            <datalist id="professions-list">
+              {professions.map((profession) => (
+                <option key={profession} value={profession}>
+                  {profession}
+                </option>
+              ))}
+            </datalist>
           </div>
 
-          {/* Location Input */}
+          {/* Location   */}
           <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
             <FaMapMarkerAlt className="text-blue" />
             <input
@@ -88,8 +94,14 @@ function CandidatesFiltering() {
               name="location"
               onChange={handleFilterChange}
               placeholder="Enter Location"
+              list="locations"
               className="focus:outline-none w-full lg:w-auto bg-white text-gray"
             />
+            <datalist id="locations">
+              {locations.map((location) => (
+                <option key={location} value={location} />
+              ))}
+            </datalist>
           </div>
 
           {/* Filter Button */}
@@ -128,91 +140,60 @@ function CandidatesFiltering() {
           {/* Skills */}
           <div className="mb-4">
             <label className="block text-gray mb-2">Skills</label>
-            <select
+            <input
+              type="text"
               name="skills"
               onChange={handleFilterChange}
+              list="skills-list"
+              placeholder="Select or Enter Skills"
               className="w-full border border-lightGray rounded-lg px-3 py-2"
-            >
-              <option value="">Select Skill</option>
-              <option value="JavaScript">JavaScript</option>
-              <option value="React">React</option>
-              <option value="Node.js">Node.js</option>
-            </select>
+            />
+            <datalist id="skills-list">
+              {skills.map((skill) => (
+                <option key={skill} value={skill}>
+                  {skill}
+                </option>
+              ))}
+            </datalist>
           </div>
 
           {/* Experience */}
           <div className="mb-4">
             <label className="block text-gray mb-2">Experience</label>
             <div className="space-y-2">
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="experience"
-                  value=""
-                  className="mr-2"
-                  onChange={handleFilterChange}
-                />
-                All
-              </label>
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="experience"
-                  value="Fresher"
-                  className="mr-2"
-                  onChange={handleFilterChange}
-                />
-                Fresher
-              </label>
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="experience"
-                  value="1 Year"
-                  className="mr-2"
-                  onChange={handleFilterChange}
-                />
-                1 Year
-              </label>
-              {/* Add more options as needed */}
+              {experience.map((experience) => (
+                <label key={experience} className="flex items-center">
+                  <input
+                    type="radio"
+                    name="experience"
+                    value={experience}
+                    className="mr-2"
+                    onChange={handleFilterChange}
+                  />
+                  {experience || "All"}
+                </label>
+              ))}
             </div>
           </div>
 
           {/* Education */}
           <div className="mb-4">
             <label className="block text-gray mb-2">Education</label>
-            <div className="space-y-2">
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="education"
-                  value=""
-                  className="mr-2"
-                  onChange={handleFilterChange}
-                />
-                All
-              </label>
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="education"
-                  value="High School"
-                  className="mr-2"
-                  onChange={handleFilterChange}
-                />
-                High School
-              </label>
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="education"
-                  value="Intermediate"
-                  className="mr-2"
-                  onChange={handleFilterChange}
-                />
-                Intermediate
-              </label>
-            </div>
+            <input
+              type="text"
+              name="education"
+              onChange={handleFilterChange}
+              list="education-list"
+              placeholder="Select or Enter Education Level"
+              className="w-full border border-lightGray rounded-lg px-3 py-2"
+            />
+            <datalist id="education-list">
+              {educationOptions.map((education) => (
+                <option key={education} value={education}>
+                  {education}
+                </option>
+              ))}
+            </datalist>
           </div>
 
           {/* Job Type */}
@@ -230,7 +211,6 @@ function CandidatesFiltering() {
             </select>
           </div>
 
-          {/* Apply Filter Button */}
           <button
             onClick={applyFilters}
             className="bg-blue text-white px-4 py-2 rounded-lg w-full hover:bg-lightBlue transition duration-300"
@@ -239,7 +219,6 @@ function CandidatesFiltering() {
           </button>
         </div>
 
-        {/* Overlay (for closing filter panel when clicking outside) */}
         {isFilterOpen && (
           <div
             className="fixed inset-0 bg-black opacity-50"

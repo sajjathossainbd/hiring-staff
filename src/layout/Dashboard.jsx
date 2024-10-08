@@ -61,7 +61,7 @@ const Dashboard = () => {
                 aria-label="close sidebar"
                 className="drawer-overlay"
               ></label>
-              <ul className="menu inter space-y-2 p-4 w-64 min-h-full bg-bgLightWhite dark:bg-darkBlue text-black font-semibold">
+              <ul className="menu inter space-y-2 p-4 w-64 h-screen bg-bgLightWhite dark:bg-darkBlue text-black font-semibold fixed top-0 overflow-y-auto">
                 {admin && (
                   <>
                     <li>
@@ -92,6 +92,21 @@ const Dashboard = () => {
                       >
                         <span className="flex gap-1 items-center">
                           <FaUserCog /> Manage User
+                        </span>
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/manage-all-jobs"
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 py-2 px-4 rounded-md ${isActive
+                            ? "border-l-4 border-blue text-blue dark:text-blue"
+                            : "hover:border-l-4 hover:border-blue dark:hover:text-blue dark:text-bgDeepBlue"
+                          }`
+                        }
+                      >
+                        <span className="flex gap-1 items-center">
+                          <MdPostAdd /> Manage Jobs
                         </span>
                       </NavLink>
                     </li>
@@ -352,9 +367,9 @@ const Dashboard = () => {
         {/* Main Content */}
         <div className="bg-white flex-1 xl:p-10 lg:p-8 md:p-5 p-3 dark:bg-darkBlue">
           <Outlet />
+          <DashboardFooter />
         </div>
       </div>
-      <DashboardFooter />
     </div>
   );
 };

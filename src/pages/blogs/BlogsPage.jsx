@@ -28,14 +28,14 @@ function BlogsPage() {
   if (!isLoading && isError)
     content = <div className="col-span-12">{error}</div>;
 
-  if (!isLoading && !isError && blogs?.length === 0) {
+  if (!isLoading && !isError && blogs?.blogs?.length === 0) {
     content = <NoFoundData title="No Blogs Found!" />;
   }
 
-  if (!isLoading && !isError && blogs?.length > 0) {
+  if (!isLoading && !isError && blogs?.blogs?.length > 0) {
     content = (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 mt-10">
-        {blogs.map((blog) => (
+        {blogs?.blogs?.map((blog) => (
           <BlogCard key={blog._id} blog={blog} />
         ))}
       </div>

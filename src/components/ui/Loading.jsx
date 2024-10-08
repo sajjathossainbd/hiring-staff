@@ -1,5 +1,10 @@
+import Lottie from "lottie-react";
+import loading from "../../../public/loading.json"
+
 function Loading() {
-  return <div className="col-span-12 min-h-screen">Loading...</div>;
+  return <div className="flex lg:h-[400px] justify-center items-center lg:mt-20 mx-auto">
+    <Lottie animationData={loading} ></Lottie>
+  </div>;
 }
 
 export default Loading;

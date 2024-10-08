@@ -14,7 +14,7 @@ const MyProfile = () => {
   const onSubmit = async (data) => {
     const updatedData = {
       name: data.name || currentUser?.name,
-      photo: data.imageUrl || currentUser?.photo,
+      image: data.imageUrl || currentUser?.photo,
       role: data.role || currentUser?.role,
       about: data.about || currentUser?.about,
       phone: data.phone || currentUser?.phone,
@@ -76,7 +76,6 @@ const MyProfile = () => {
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
               >
                 <option>Select role</option>
-                <option value="admin">Admin</option>
                 <option value="candidate">Candidate</option>
                 <option value="recruiter">Recruiter</option>
               </select>

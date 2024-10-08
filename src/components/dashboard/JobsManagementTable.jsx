@@ -78,23 +78,6 @@ const JobsManagementTable = () => {
                         ))}
                     </tbody>
                 </table>
-                {/* <div className="join mx-auto block">
-          <button
-            className="join-item btn"
-            onClick={() => handlePageChange("previous")}
-            disabled={currentPage <= 1}
-          >
-            «
-          </button>
-          <button className="join-item btn disabled">{`${currentPage} of ${totalPages}`}</button>
-          <button
-            className="join-item btn"
-            onClick={() => handlePageChange("next")}
-            disabled={currentPage >= totalPages}
-          >
-            »
-          </button>
-        </div> */}
             </div>
         </div>
     );

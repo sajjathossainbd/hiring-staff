@@ -29,8 +29,8 @@ const DashboardMain = () => {
                 pathName="Dashboard Main"
             />
             <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-5">
-                <DashboardCard logo={<IoBagRemoveOutline />} title={'Posted Jobs'} quantity={jobs?.totalJobs} />
-                <DashboardCard logo={<VscGitStashApply />} title={'All Applications'} quantity={'50'} />
+                <DashboardCard logo={<IoBagRemoveOutline />} title={'Jobs'} quantity={jobs?.totalJobs} />
+                <DashboardCard logo={<VscGitStashApply />} title={'Applications'} quantity={'50'} />
                 <DashboardCard logo={<SiImessage />} title={'Message'} quantity={'100'} />
                 <DashboardCard logo={<MdPlaylistAddCheck />} title={'Shortlisted'} quantity={'5'} />
             </div>

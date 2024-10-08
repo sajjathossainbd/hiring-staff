@@ -4,6 +4,7 @@ import axiosInstance from "../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../ui/Loading";
+import { CardPagination } from "../shared/CardPagination";
 
 const UsersManagementTable = () => {
   const navigate = useNavigate();
@@ -58,6 +59,7 @@ const UsersManagementTable = () => {
 
   const handleUpdateRole = (name, role, id) => {
     axiosInstance.patch(`/users/profile/role/${id}`, { role }).then((res) => {
+      console.log(res.data);
       if (res.data.modifiedCount > 0) {
         Swal.fire({
           position: "center",
@@ -71,12 +73,12 @@ const UsersManagementTable = () => {
     });
   };
 
-  const handlePageChange = (direction) => {
-    const newPage = direction === "next" ? currentPage + 1 : currentPage - 1;
-    if (newPage >= 1 && newPage <= totalPages) {
-      navigate(`/dashboard/manage-users/${newPage}`);
-    }
-  };
+  // const handlePageChange = (direction) => {
+  //   const newPage = direction === "next" ? currentPage + 1 : currentPage - 1;
+  //   if (newPage >= 1 && newPage <= totalPages) {
+  //     navigate(`/dashboard/manage-users/${newPage}`);
+  //   }
+  // };
 
   return (
     <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
@@ -134,23 +136,11 @@ const UsersManagementTable = () => {
             ))}
           </tbody>
         </table>
-        <div className="join mx-auto block">
-          <button
-            className="join-item btn"
-            onClick={() => handlePageChange("previous")}
-            disabled={currentPage <= 1}
-          >
-            «
-          </button>
-          <button className="join-item btn disabled">{`${currentPage} of ${totalPages}`}</button>
-          <button
-            className="join-item btn"
-            onClick={() => handlePageChange("next")}
-            disabled={currentPage >= totalPages}
-          >
-            »
-          </button>
-        </div>
+        <CardPagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={(newPage) => navigate(`/dashboard/manage-users/${newPage}`)}
+        />
       </div>
     </div>
   );

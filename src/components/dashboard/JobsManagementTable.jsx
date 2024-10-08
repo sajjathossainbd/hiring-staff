@@ -27,7 +27,7 @@ const JobsManagementTable = () => {
             confirmButtonText: "Yes, delete it!",
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosInstance.delete(`/delete/${id}`).then((res) => {
+                axiosInstance.delete(`/jobs/delete/${id}`).then((res) => {
                     if (res.data.deletedCount > 0) {
                         Swal.fire("Deleted!", "Job has been deleted.", "success");
                         refetch();

@@ -73,12 +73,6 @@ const UsersManagementTable = () => {
     });
   };
 
-  // const handlePageChange = (direction) => {
-  //   const newPage = direction === "next" ? currentPage + 1 : currentPage - 1;
-  //   if (newPage >= 1 && newPage <= totalPages) {
-  //     navigate(`/dashboard/manage-users/${newPage}`);
-  //   }
-  // };
 
   return (
     <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">

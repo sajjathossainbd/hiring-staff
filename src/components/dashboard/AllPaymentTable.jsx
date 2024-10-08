@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../ui/Loading";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { CardPagination } from "../shared/CardPagination";
 
 const AllPaymentTable = () => {
   const navigate = useNavigate();
@@ -47,13 +48,6 @@ const AllPaymentTable = () => {
   const totalDocuments = paymentHistory.totalDocuments || 0;
   const totalPages = Math.ceil(totalDocuments / limit) || 1;
 
-  // Navigate to the next or previous page
-  const handlePageChange = (direction) => {
-    const newPage = direction === "next" ? currentPage + 1 : currentPage - 1;
-    if (newPage >= 1 && newPage <= totalPages) {
-      navigate(`/dashboard/all-payment-history/${newPage}`);
-    }
-  };
 
   // delete payment history
   const handleDelete = (id) => {
@@ -161,25 +155,11 @@ const AllPaymentTable = () => {
           </tbody>
         </table>
         {/* Pagination Controls */}
-        <div className="join mx-auto">
-          <button
-            className="join-item btn"
-            onClick={() => handlePageChange("previous")}
-            disabled={currentPage <= 1}
-            aria-label="Previous Page"
-          >
-            «
-          </button>
-          <button className="join-item btn disabled">{`${currentPage} of ${totalPages}`}</button>
-          <button
-            className="join-item btn"
-            onClick={() => handlePageChange("next")}
-            disabled={currentPage >= totalPages}
-            aria-label="Next Page"
-          >
-            »
-          </button>
-        </div>
+        <CardPagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={(newPage) => navigate(`/dashboard/all-payment-history/${newPage}`)}
+        />
       </div>
     </div>
   );

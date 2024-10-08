@@ -17,10 +17,6 @@ function Blogblog() {
     error,
   } = useSelector((state) => state.blogDetails);
 
-  // data destructuring
-  // const { title } = blog || {};
-
-
   useEffect(() => {
     dispatch(fetchBlogDetails(id));
   }, [dispatch, id]);
@@ -35,11 +31,18 @@ function Blogblog() {
     content = <NoFoundData title={"No Blog Found!"} />;
   }
 
+  // data destructuring
+  // const { _id, title } = blog || {};
+
   if (!isLoading && !isError && blog?._id) {
     content = (
       <div>
         <div className="flex justify-center">
-          <img className="xl:h-96 lg:h-80 md:h-60 sm:h-40 h-28 w-full object-center rounded-2xl" src={blog?.url} alt="" />
+          <img
+            className="xl:h-96 lg:h-80 md:h-60 sm:h-40 h-28 w-full object-center rounded-2xl"
+            src={blog?.url}
+            alt=""
+          />
         </div>
         <div className="mx-auto space-y-4 container">
           <div className="flex items-center flex-wrap px-4 gap-2 mt-2">
@@ -62,11 +65,12 @@ function Blogblog() {
               />
               <h5 className="text-14 mt-4 ml-2">{blog?.author}</h5>
             </div>
-            <p className="text-12 mt-4"><span className="font-semibold">Published: </span>{blog?.date_published}</p>
+            <p className="text-12 mt-4">
+              <span className="font-semibold">Published: </span>
+              {blog?.date_published}
+            </p>
           </div>
-          <p className="border-b-2 border-lightGray pb-8">
-            {blog?.content}
-          </p>
+          <p className="border-b-2 border-lightGray pb-8">{blog?.content}</p>
         </div>
         <BlogCommentSection />
       </div>

@@ -2,22 +2,19 @@ import { BsFillSendFill } from "react-icons/bs";
 import PrimaryButton from "./../../components/shared/PrimaryButton";
 import useCurrentUser from "../../hooks/useCurrentUser";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
+import axiosInstance from "../../utils/axios";
 
 const MyProfile = () => {
   const { currentUser, refetch } = useCurrentUser();
-  const { user } = useAuth()
+  const { user } = useAuth();
   const { register, handleSubmit } = useForm();
 
-
-
   const onSubmit = async (data) => {
-
     const updatedData = {
       name: data.name || currentUser?.name,
-      photo: data.imageUrl || currentUser?.photo,
+      image: data.imageUrl || currentUser?.photo,
       role: data.role || currentUser?.role,
       about: data.about || currentUser?.about,
       phone: data.phone || currentUser?.phone,
@@ -30,9 +27,11 @@ const MyProfile = () => {
       github: data.github || currentUser?.github,
     };
 
-
     try {
-      const res = await axios.patch(`http://localhost:5000/users/profile/${currentUser.email}`, updatedData);
+      const res = await axiosInstance.patch(
+        `/users/profile/${currentUser.email}`,
+        updatedData
+      );
       console.log(res.data);
       if (res.data.modifiedCount > 0) {
         toast.success("Your data has been updated");
@@ -71,13 +70,12 @@ const MyProfile = () => {
               </label>
               <select
                 defaultValue={currentUser?.role || ""}
-                disabled={currentUser?.role === 'admin'}
+                disabled={currentUser?.role === "admin"}
                 id="role"
                 {...register("role")}
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
               >
                 <option>Select role</option>
-                <option value="admin">Admin</option>
                 <option value="candidate">Candidate</option>
                 <option value="recruiter">Recruiter</option>
               </select>
@@ -85,7 +83,10 @@ const MyProfile = () => {
             {/* Name and Email */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div className="mb-4">
-                <label htmlFor="name" className="block text-gray font-bold mb-2">
+                <label
+                  htmlFor="name"
+                  className="block text-gray font-bold mb-2"
+                >
                   Name
                 </label>
                 <input
@@ -97,7 +98,10 @@ const MyProfile = () => {
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="email" className="block text-gray font-bold mb-2">
+                <label
+                  htmlFor="email"
+                  className="block text-gray font-bold mb-2"
+                >
                   Email
                 </label>
                 <input
@@ -112,7 +116,10 @@ const MyProfile = () => {
             </div>
             {/* Image URL Field */}
             <div className="mb-4">
-              <label htmlFor="imageUrl" className="block text-gray font-bold mb-2">
+              <label
+                htmlFor="imageUrl"
+                className="block text-gray font-bold mb-2"
+              >
                 Image URL
               </label>
               <input
@@ -126,7 +133,10 @@ const MyProfile = () => {
             {/* Additional fields (phone, website, etc.) */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div className="mb-4">
-                <label htmlFor="phone" className="block text-gray font-bold mb-2">
+                <label
+                  htmlFor="phone"
+                  className="block text-gray font-bold mb-2"
+                >
                   Phone
                 </label>
                 <input
@@ -138,7 +148,10 @@ const MyProfile = () => {
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="site" className="block text-gray font-bold mb-2">
+                <label
+                  htmlFor="site"
+                  className="block text-gray font-bold mb-2"
+                >
                   Website
                 </label>
                 <input
@@ -166,7 +179,10 @@ const MyProfile = () => {
             {/* Address */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div className="mb-4">
-                <label htmlFor="country" className="block text-gray font-bold mb-2">
+                <label
+                  htmlFor="country"
+                  className="block text-gray font-bold mb-2"
+                >
                   Country
                 </label>
                 <input
@@ -178,7 +194,10 @@ const MyProfile = () => {
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="city" className="block text-gray font-bold mb-2">
+                <label
+                  htmlFor="city"
+                  className="block text-gray font-bold mb-2"
+                >
                   City
                 </label>
                 <input
@@ -205,7 +224,10 @@ const MyProfile = () => {
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="twitter" className="block text-gray font-bold mb-2">
+                <label
+                  htmlFor="twitter"
+                  className="block text-gray font-bold mb-2"
+                >
                   Twitter URL
                 </label>
                 <input
@@ -219,7 +241,10 @@ const MyProfile = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div className="mb-4">
-                <label htmlFor="linkedin" className="block text-gray font-bold mb-2">
+                <label
+                  htmlFor="linkedin"
+                  className="block text-gray font-bold mb-2"
+                >
                   LinkedIn URL
                 </label>
                 <input
@@ -231,7 +256,10 @@ const MyProfile = () => {
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="github" className="block text-gray font-bold mb-2">
+                <label
+                  htmlFor="github"
+                  className="block text-gray font-bold mb-2"
+                >
                   GitHub URL
                 </label>
                 <input

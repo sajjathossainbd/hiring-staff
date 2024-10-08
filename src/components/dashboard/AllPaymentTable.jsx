@@ -3,6 +3,7 @@ import axiosInstance from "../../utils/axios";
 import Swal from "sweetalert2";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../ui/Loading";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const AllPaymentTable = () => {
   const navigate = useNavigate();
@@ -54,6 +55,28 @@ const AllPaymentTable = () => {
     }
   };
 
+  // delete payment history
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosInstance.delete(`/payment-history/${id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            Swal.fire("Deleted!", "Payment has been deleted.", "success");
+            refetch();
+          }
+        });
+      }
+    });
+  };
+
   // Update payment status
   const handleUpdateStatus = async (status, id) => {
     try {
@@ -64,7 +87,7 @@ const AllPaymentTable = () => {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Payment Approved",
+          title: "Payment Status Updated",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -98,6 +121,7 @@ const AllPaymentTable = () => {
               <th>Payment Method</th>
               <th>Transaction Id</th>
               <th>Status</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -124,6 +148,13 @@ const AllPaymentTable = () => {
                     <option value="approved">Approved</option>
                     <option value="pending">Pending</option>
                   </select>
+                </td><td>
+                  <button
+                    onClick={() => handleDelete(payment?._id)}
+                    className="btn rounded-full text-blue hover:text-white hover:bg-blue"
+                  >
+                    <RiDeleteBin6Line />
+                  </button>
                 </td>
               </tr>
             ))}

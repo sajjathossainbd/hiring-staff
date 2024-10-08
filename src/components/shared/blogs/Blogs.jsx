@@ -1,22 +1,9 @@
-import { useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
 import BlogCard from "./BlogCard";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-function Blogs() {
-  const [blogs, setBlogs] = useState([]);
-
-  useEffect(() => {
-    fetch("/newsBlog.json")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.length) {
-          setBlogs(data);
-        }
-      })
-      .catch((err) => console.error("Error fetching blogs:", err));
-  }, []);
-
+function Blogs({ blogs }) {
   return (
     <div className="relative mt-10">
       <div className="absolute top-[-50px] right-0 flex gap-2 z-10">
@@ -81,7 +68,7 @@ function Blogs() {
       >
         {blogs.map((blog) => (
           <SwiperSlide key={blog.id}>
-            <BlogCard key={blog.id} {...blog} />
+            <BlogCard key={blog._id} blog={blog} />
           </SwiperSlide>
         ))}
       </Swiper>

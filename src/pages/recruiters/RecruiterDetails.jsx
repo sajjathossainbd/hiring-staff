@@ -27,10 +27,10 @@ function RecruiterDetails() {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  // for navigate on open jobs
-  const openPositionRef = useRef(null); // Create a reference for OpenPosition
+  
+  const openPositionRef = useRef(null); // Create a reference for 
 
-  // Scroll to OpenPosition function
+
   const scrollToOpenPosition = () => {
     if (openPositionRef.current) {
       openPositionRef.current.scrollIntoView({

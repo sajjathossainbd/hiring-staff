@@ -8,14 +8,14 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import axios from "axios";
+import axiosInstance from "../../utils/axios";
 
 const Register = () => {
-
-  const { registerUser, googleSignIn } = useAuth()
+  const { registerUser, googleSignIn } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
   const [imageUrl, setImageUrl] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
 
@@ -29,26 +29,23 @@ const Register = () => {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", "ml_default");
-    formData.append("cloud_name", import.meta.env.VITE_CLOUDINARY_API_KEY);
+    formData.append("cloud_name", import.meta.env.VITE_CLOUD_NAME);
 
     setIsUploading(true);
     try {
       const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_API_KEY}/image/upload`,
+        `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUD_NAME}/image/upload`,
         formData
       );
       setImageUrl(response.data.secure_url);
-      setIsUploading(false);
     } catch (error) {
       console.error("Image upload failed", error);
+    } finally {
       setIsUploading(false);
     }
   };
 
-
   const onSubmit = async (data) => {
-
-
     const email = data.email;
     const password = data.password;
     const name = data.fullName;
@@ -56,8 +53,8 @@ const Register = () => {
     const userInfo = {
       name: name,
       email: email,
-      image: imageUrl
-    }
+      image: imageUrl,
+    };
 
     try {
       const result = await registerUser(email, password);
@@ -66,19 +63,17 @@ const Register = () => {
         photoURL: imageUrl,
       })
         .then(() => {
-          axios.post("http://localhost:5000/users", userInfo)
-            .then(res => {
-              if (res.data.insertedId) {
-                toast.success("Successfully registered!");
-                navigate(location?.state ? location.state : '/');
-              }
-            })
+          axiosInstance.post("/users", userInfo).then((res) => {
+            console.log(res.data);
+            if (res.data.insertId) {
+              toast.success("Successfully registered!");
+              navigate(location?.state ? location.state : "/");
+            }
+          });
         })
-        .catch(error => {
+        .catch((error) => {
           toast.error(error.message);
-        })
-
-
+        });
     } catch (error) {
       toast.error(error.message);
     }
@@ -88,20 +83,17 @@ const Register = () => {
   const handleGoogleRegister = () => {
     googleSignIn()
       .then((result) => {
-
-
         const userInfo = {
           email: result.user?.email,
           name: result.user?.displayName,
           photo: result.user?.photoURL,
         };
-        axios.post("http://localhost:5000/users", userInfo)
-          .then(res => {
-            if (res.data.insertedId) {
-              toast.success("Successfully Google Login");
-              navigate(location?.state ? location.state : '/');
-            }
-          })
+        axiosInstance.post("/users", userInfo).then((res) => {
+          if (res.data.insertedId) {
+            toast.success("Successfully Google Login");
+            navigate(location?.state ? location.state : "/");
+          }
+        });
       })
       .catch(() => {
         toast.error("Google Sign-In failed");
@@ -118,7 +110,8 @@ const Register = () => {
           <button
             onClick={handleGoogleRegister}
             type="button"
-            className="flex items-center gap-2 justify-center font-medium py-2 w-full border rounded-lg hover:scale-95 transition-all duration-500 dark:text-white">
+            className="flex items-center gap-2 justify-center font-medium py-2 w-full border rounded-lg hover:scale-95 transition-all duration-500 dark:text-white"
+          >
             <span className="text-xl">
               <FcGoogle />
             </span>{" "}
@@ -130,7 +123,10 @@ const Register = () => {
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <label htmlFor="fullName" className="block text-left font-medium pb-1">
+            <label
+              htmlFor="fullName"
+              className="block text-left font-medium pb-1"
+            >
               Full Name*
             </label>
             <input
@@ -178,11 +174,20 @@ const Register = () => {
               className="input input-bordered w-full"
             />
             {isUploading && <p>Uploading...</p>}
-            {imageUrl && <img src={imageUrl} alt="Uploaded" className="mt-2 w-16 h-20 rounded" />}
+            {imageUrl && (
+              <img
+                src={imageUrl}
+                alt="Uploaded"
+                className="mt-2 w-20 rounded"
+              />
+            )}
           </div>
 
           <div className="relative">
-            <label htmlFor="password" className="block text-left font-medium pb-1">
+            <label
+              htmlFor="password"
+              className="block text-left font-medium pb-1"
+            >
               Password*
             </label>
             <input
@@ -193,14 +198,16 @@ const Register = () => {
                 required: "Password is required",
                 pattern: {
                   value: /^(?=.*[a-z])(?=.*\d)[a-zA-Z\d]{6,}$/,
-                  message: "Password must be at least 6 characters, contain letters and numbers",
+                  message:
+                    "Password must be at least 6 characters, contain letters and numbers",
                 },
               })}
               className="input input-bordered w-full"
             />
             <span
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute text-18 top-11 right-5">
+              className="absolute text-18 top-11 right-5"
+            >
               {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
             </span>
             {errors.password && (

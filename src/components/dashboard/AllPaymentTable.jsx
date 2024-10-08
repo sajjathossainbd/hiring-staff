@@ -151,7 +151,7 @@ const AllPaymentTable = () => {
                 </td><td>
                   <button
                     onClick={() => handleDelete(payment?._id)}
-                    className="btn rounded-full text-blue hover:text-white hover:bg-blue"
+                    className="btn rounded-full text-red-600 hover:text-white hover:bg-blue"
                   >
                     <RiDeleteBin6Line />
                   </button>

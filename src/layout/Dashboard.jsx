@@ -61,7 +61,7 @@ const Dashboard = () => {
                 aria-label="close sidebar"
                 className="drawer-overlay"
               ></label>
-              <ul className="menu inter space-y-2 p-4 w-64 h-screen bg-bgLightWhite dark:bg-darkBlue text-black font-semibold fixed top-0 overflow-y-auto">
+              <ul className="menu inter space-y-2 p-4 w-64 h-full bg-bgLightWhite dark:bg-darkBlue text-black font-semibold fixed top-0 overflow-y-auto">
                 {admin && (
                   <>
                     <li>
@@ -365,7 +365,7 @@ const Dashboard = () => {
           </div>
         </div>
         {/* Main Content */}
-        <div className="bg-white flex-1 xl:p-10 lg:p-8 md:p-5 p-3 dark:bg-darkBlue">
+        <div className="bg-white z-10 flex-1 xl:p-10 lg:p-8 md:p-5 p-3 dark:bg-darkBlue">
           <Outlet />
           <DashboardFooter />
         </div>

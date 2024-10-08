@@ -227,7 +227,7 @@ function CandidatesFiltering() {
 
           <button
             onClick={resetFilters}
-            className="bg-gray text-white px-4 py-2 rounded"
+            className="bg-gray text-white px-4 w-full mt-2 py-2 rounded-lg"
           >
             Reset Filters
           </button>

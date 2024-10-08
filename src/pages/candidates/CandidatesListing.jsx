@@ -38,7 +38,7 @@ function CandidatesListing() {
   if (isLoading) content = <Loading />;
 
   if (!isLoading && isError)
-    content = <div className="col-span-12">{error}</div>;
+    content = <NoFoundData title="No Candidates Found!" />;
 
   if (!isLoading && !isError && candidates?.candidates?.length === 0) {
     content = <NoFoundData title="No Candidates Found!" />;
@@ -47,18 +47,7 @@ function CandidatesListing() {
   if (!isLoading && !isError && candidates?.candidates?.length > 0) {
     content = (
       <div>
-        <div className="bg-bgLightBlue dark:bg-darkBlue p-4 md:px-24 md:py-8 space-y-6">
-          <SectionTitle
-            title={"Browse Candidates"}
-            subTitle={
-              "Browse top-rated professionals across various skills and locations, tailored to meet your project needs"
-            }
-          />
-          {/* all filtering goese here */}
-          <div>
-            <CandidatesFiltering onFilterChange={handleFilterChange} />
-          </div>
-        </div>
+   
 
         {/* candidate card */}
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 mt-10">
@@ -94,6 +83,20 @@ function CandidatesListing() {
       <Helmet>
         <title>Hiring Staff - Candidates</title>
       </Helmet>
+
+      <div className="bg-bgLightBlue dark:bg-darkBlue p-4 md:px-24 md:py-8 space-y-6">
+          <SectionTitle
+            title={"Browse Candidates"}
+            subTitle={
+              "Browse top-rated professionals across various skills and locations, tailored to meet your project needs"
+            }
+          />
+          {/* all filtering goese here */}
+          <div>
+            <CandidatesFiltering onFilterChange={handleFilterChange} />
+          </div>
+        </div>
+
       <div className="">{content}</div>
     </div>
   );

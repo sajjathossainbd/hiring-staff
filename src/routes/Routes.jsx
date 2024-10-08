@@ -66,9 +66,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/jobs-listing/:page",
+        element: <JobsListing />,
+      },
+      {
         path: "/jobs-listing",
         element: <JobsListing />,
       },
+
       {
         path: "/job-details/:id",
         element: <JobDetails />,

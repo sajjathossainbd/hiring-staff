@@ -40,11 +40,13 @@ function JobDetails() {
     lastDateToApply,
   } = job || {};
 
-  const { name, logo, location = {} } = recruiter || {};
+  const { name, logo, location = {}, company_id } = recruiter || {};
   useEffect(() => {
     dispatch(fetchJobDetails(id));
-    dispatch(fetchRecruiterDetails(id));
   }, [dispatch, id]);
+  useEffect(() => {
+    dispatch(fetchRecruiterDetails(company_id));
+  }, [dispatch, company_id]);
 
   let content = null;
   if (isLoading) content = <Loading />;

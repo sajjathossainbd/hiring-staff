@@ -41,7 +41,6 @@ function SinginLogout() {
                     alt="User photo"
                   />
                 </div>
-                {/* <span className="top-[-1px] left-8 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span> */}
               </div>
             </div>
           </div>

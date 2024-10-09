@@ -156,7 +156,7 @@ const Dashboard = () => {
                 </>
               )}
 
-              {/* Links for users without admin or recruiter roles */}
+              {/* Links for Candidates */}
               {!admin && !recruiter && (
                 <>
                   <li>

@@ -31,9 +31,7 @@ function BlogCard({ blog }) {
                 alt=""
               />
               <div>
-                <h5 className="lg:text-14 text-xs">
-                  {blog?.author}
-                </h5>
+                <h5 className="lg:text-14 text-xs">{blog?.author}</h5>
                 <p className="lg:text-12 text-[11px] lg:mt-1">
                   {blog?.date_published}
                 </p>

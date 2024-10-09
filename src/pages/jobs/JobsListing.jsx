@@ -68,7 +68,7 @@ function JobsListing() {
   };
   return (
     <>
-      <div className="container flex flex-col justify-center">
+      <div classNzame="container flex flex-col justify-center">
         {/* Jobs Banner */}
         <JobBanner totalJobs={totalJobs} />
 

@@ -10,7 +10,7 @@ function SimilarJobs() {
     posted: "10/10/23",
   };
   return (
-    <button className="btn h-auto block text-start bg-white border rounded-xl border-bgDeepBlue p-4 hover:bg-bgLightWhite hover:border-bgLightWhite">
+    <button className="btn h-auto block text-start bg-white dark:bg-darkBlue border rounded-xl border-bgDeepBlue p-4 hover:bg-bgLightWhite hover:border-bgLightWhite">
       <div className="flex justify-end font-medium text-[13px]">2 days ago</div>
       <div>
         <div className="flex gap-5 items-start">
@@ -24,7 +24,7 @@ function SimilarJobs() {
             <div className="flex items-center gap-x-2 text-14 mt-1">
               <span className="text-blue font-medium">Company Name</span>
               <GoDotFill className="text-[8px] text-gray" />
-              <div className="flex items-center gap-x-1">
+              <div className="flex items-center gap-x-1 dark:text-white">
                 <CiLocationOn />
                 <span>Dhaka , Bangladesh</span>
               </div>

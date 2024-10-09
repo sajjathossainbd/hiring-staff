@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import Loading from "../components/ui/Loading";
 
 
 const PrivateRoute = ({ children }) => {
@@ -9,9 +10,7 @@ const PrivateRoute = ({ children }) => {
     const { user, loading } = useAuth()
 
     if (loading) {
-        return <div className="flex lg:h-[500px] justify-center items-center lg:mt-20 mx-auto">
-            <span className="loading loading-spinner loading-lg"></span>
-        </div>
+        return <Loading/>
     }
 
     if (user) {

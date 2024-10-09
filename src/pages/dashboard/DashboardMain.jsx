@@ -1,43 +1,23 @@
-import { SiImessage } from "react-icons/si";
-import DashboardCard from "./shared/DashboardCard";
-import TinnyHeading from "./shared/TinnyHeading";
-import { IoBagRemoveOutline } from "react-icons/io5";
-import { MdPlaylistAddCheck } from "react-icons/md";
-import { VscGitStashApply } from "react-icons/vsc";
-import StackedBarChart from "../../components/dashboard/StackedBarChart";
-import { useQuery } from "@tanstack/react-query";
-import axiosInstance from "../../utils/axios";
+import AdminAnalytics from "./forAdmin/AdminAnalytics";
 import useCurrentUser from "../../hooks/useCurrentUser";
+import CandidatesAnalytics from "./forCandidates/CandidatesAnalytics";
+import RecruitersAnalytics from "./forRecruiter/RecruitersAnalytics";
 
 const DashboardMain = () => {
 
-    const { currenUser } = useCurrentUser()
+    const { currentUser } = useCurrentUser()
 
-    const { data: jobs, } = useQuery({
-        queryKey: ['jobs'],
-        queryFn: async () => {
-            const res = await axiosInstance.get("/jobs");
-            return res.data;
-        },
-    });
+    if (currentUser?.role === 'admin') {
+        return <AdminAnalytics />
+    }
 
-    return (
-        <div>
-            <TinnyHeading
-                title={currenUser?.displayName}
-                path="dashboard-main"
-                pathName="Dashboard Main"
-            />
-            <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-5">
-                <DashboardCard logo={<IoBagRemoveOutline />} title={'Posted Jobs'} quantity={jobs?.totalJobs} />
-                <DashboardCard logo={<VscGitStashApply />} title={'All Applications'} quantity={'50'} />
-                <DashboardCard logo={<SiImessage />} title={'Message'} quantity={'100'} />
-                <DashboardCard logo={<MdPlaylistAddCheck />} title={'Shortlisted'} quantity={'5'} />
-            </div>
+    if (currentUser?.role === 'recruiter') {
+        return <RecruitersAnalytics />
+    }
 
-            <StackedBarChart />
-        </div >
-    );
+    if (currentUser?.role === 'candidate') {
+        return <CandidatesAnalytics />
+    }
 };
 
 export default DashboardMain;

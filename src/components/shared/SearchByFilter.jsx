@@ -1,214 +1,112 @@
-import { useEffect, useRef, useState } from "react";
-import PrimaryButton from "../shared/PrimaryButton";
-import { FaSearch } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setJobTitle,
+  setCategory,
+  setLocation,
+} from "../../features/jobs/jobsFilter/filterSlice";
+import Dropdown from "./Dropdown";
+import { PiLineVerticalThin } from "react-icons/pi";
+import { useEffect } from "react";
+import { fetchJobCategories } from "../../features/jobs/filterCollection/categories/jobCategoriesSlice";
+import { fetchJobLocations } from "../../features/jobs/filterCollection/location/jobLocationsSlice";
+import { fetchJobsListing } from "../../features/jobs/jobsListing/jobsListingSlice";
+import { useNavigate } from "react-router-dom";
 const SearchByFilter = () => {
-  const [searchData, setSearchData] = useState({
-    option: "Industry",
-    location: "Location",
-    keyword: "",
-  });
-
-  const [isOpen, setIsOpen] = useState(false);
-  const [isLocationOpen, setIsLocationOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [locationSearchTerm, setLocationSearchTerm] = useState("");
-
-  const dropdownRef = useRef(null);
-  const locationDropdownRef = useRef(null);
-
-  const options = [
-    "Han Solo",
-    "Content Writer",
-    "Luke Skywalker",
-    "Leia Organa",
-  ];
-  const locations = ["New York", "Los Angeles", "Chicago", "Houston", "Dallas"];
-
-  // Filter options based on search term
-  const filteredOptions = options.filter((option) =>
-    option.toLowerCase().includes(searchTerm.toLowerCase())
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { JobTitle, AllCategory, Location } = useSelector(
+    (state) => state.filters
   );
+  const { categories } = useSelector((state) => state.jobCategories);
+  const { locations } = useSelector((state) => state.jobLocations);
 
-  const filteredLocations = locations.filter((location) =>
-    location.toLowerCase().includes(locationSearchTerm.toLowerCase())
-  );
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-    setSearchTerm("");
-  };
-
-  const toggleLocationDropdown = () => {
-    setIsLocationOpen(!isLocationOpen);
-    setLocationSearchTerm("");
-  };
-
-  const handleSelect = (option) => {
-    setSearchData((prevData) => ({
-      ...prevData,
-      option: option,
-    }));
-    setIsOpen(false);
-  };
-
-  const handleLocationSelect = (location) => {
-    setSearchData((prevData) => ({
-      ...prevData,
-      location: location,
-    }));
-    setIsLocationOpen(false);
-  };
-
-  const handleKeywordChange = (e) => {
-    setSearchData((prevData) => ({
-      ...prevData,
-      keyword: e.target.value,
-    }));
-  };
-
-  // Close dropdown when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-      if (
-        locationDropdownRef.current &&
-        !locationDropdownRef.current.contains(event.target)
-      ) {
-        setIsLocationOpen(false);
-      }
-    };
+    dispatch(fetchJobCategories());
+    dispatch(fetchJobLocations());
+  }, [dispatch]);
 
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [dropdownRef, locationDropdownRef]);
-
-  const handleSearch = () => {
-    const updatedSearchData = {
-      ...searchData,
-      option: searchData.option === "Industry" ? null : searchData.option,
-      location: searchData.location === "Location" ? null : searchData.location,
-      keyword: searchData.keyword === "" ? null : searchData.keyword,
-    };
-
-    console.log(updatedSearchData);
+  // Job Title input
+  const handleJobTitleChange = (e) => {
+    dispatch(setJobTitle(e.target.value));
   };
+
+  // Category and Location
+  const handleSelectChange = (selected, dropdown) => {
+    if (dropdown === "AllCategory") {
+      dispatch(setCategory(selected));
+    } else if (dropdown === "Location") {
+      dispatch(setLocation(selected));
+    }
+  };
+
+  // Find Jobs function
+  const showFilter = async () => {
+    try {
+      const filters = {
+        category: AllCategory,
+        job_title: JobTitle,
+        job_location: Location,
+      };
+      navigate("/jobs-listing/1");
+      dispatch(fetchJobsListing(filters));
+    } catch (error) {
+      console.error("Error fetching filtered jobs:", error);
+    }
+  };
+
   return (
-    <div className="flex lg:w-auto w-full lg:flex-row flex-col items-center px-2 rounded-2xl bg-bgLightWhite dark:bg-blue">
-      <div
-        className="lg:w-1/4 lg:mb-0 mb-3 py-5 w-full lg:border-r-2 h-8 border-[#D2D4D7] relative flex items-center"
-        ref={dropdownRef}
-      >
-        <div
-          className="select dark:bg-blue bg-bgLightWhite dark:text-white rounded-none w-full cursor-pointer flex items-center"
-          onClick={toggleDropdown}
-        >
-          {searchData.option}
-        </div>
-
-        {/* dropdown for industry */}
-        {isOpen && (
-          <div
-            data-aos="fade-down"
-            data-aos-offset="200"
-            data-aos-duration="500"
-            className="absolute lg:top-14 top-8 z-10 w-full mt-1 max-h-48 overflow-y-auto overflow-x-hidden px-1 bg-white"
+    <div className="bg-white md:p-2 p-5 rounded-2xl w-full md:w-auto">
+      <div className="flex items-center md:flex-row flex-col md:gap-0 gap-3">
+        {/* Job title input */}
+        <label className="flex items-center py-2 rounded-md px-3 md:w-40 md:border-none border border-[#cfdefc]">
+          <input
+            type="text"
+            className="outline-none w-full text-14 text-[#818896] placeholder:text-[#818896] placeholder:font-medium"
+            placeholder="Search"
+            value={JobTitle}
+            onChange={handleJobTitleChange}
+          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            className="h-4 w-4 opacity-70"
           >
-            <input
-              type="text"
-              className="rounded-md outline-none border w-full p-2"
-              placeholder="Search..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              autoFocus
+            <path
+              fillRule="evenodd"
+              d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+              clipRule="evenodd"
             />
-            <ul>
-              {filteredOptions.length > 0 ? (
-                filteredOptions.map((option) => (
-                  <li
-                    key={option}
-                    className="p-2 hover:bg-gray-200 cursor-pointer text-sm"
-                    onClick={() => handleSelect(option)}
-                  >
-                    {option}
-                  </li>
-                ))
-              ) : (
-                <li className="p-2 text-gray-500">No options found</li>
-              )}
-            </ul>
-          </div>
-        )}
-      </div>
+          </svg>
+        </label>
 
-      {/* Dropdown for Location */}
-      <div
-        className="lg:w-1/4 lg:mb-0 mb-3 py-5 w-full lg:border-r-2 h-8 border-[#D2D4D7] relative flex items-center"
-        ref={locationDropdownRef}
-      >
-        <div
-          className="select rounded-none dark:bg-blue bg-bgLightWhite dark:text-white w-full cursor-pointer flex items-center"
-          onClick={toggleLocationDropdown}
+        {/* Vertical line */}
+        <PiLineVerticalThin className="md:block hidden" />
+
+        {/* Categories Dropdown */}
+        <Dropdown
+          options={categories}
+          onChange={(selected) => handleSelectChange(selected, "AllCategory")}
+          placeholder={AllCategory || "All Category"}
+        />
+
+        {/* Vertical line */}
+        <PiLineVerticalThin className="md:block hidden" />
+
+        {/* Locations Dropdown */}
+        <Dropdown
+          options={locations}
+          onChange={(selected) => handleSelectChange(selected, "Location")}
+          placeholder={Location || "All Location"}
+        />
+
+        {/* Search button */}
+        <button
+          onClick={showFilter}
+          className="btn btn-primary bg-blue text-white font-medium w-36"
         >
-          {searchData.location}
-        </div>
-
-        {isLocationOpen && (
-          <div
-            data-aos="fade-down"
-            data-aos-offset="200"
-            data-aos-duration="500"
-            className="absolute lg:top-14 top-8 z-10 w-full mt-1 max-h-48 overflow-y-auto overflow-x-hidden px-1 bg-white"
-          >
-            <input
-              type="text"
-              className="rounded-md outline-none border w-full p-2"
-              placeholder="Search location..."
-              value={locationSearchTerm}
-              onChange={(e) => setLocationSearchTerm(e.target.value)}
-              autoFocus
-            />
-            <ul>
-              {filteredLocations.length > 0 ? (
-                filteredLocations.map((location) => (
-                  <li
-                    key={location}
-                    className="p-2 hover:bg-gray-200 cursor-pointer text-sm"
-                    onClick={() => handleLocationSelect(location)}
-                  >
-                    {location}
-                  </li>
-                ))
-              ) : (
-                <li className="p-2 text-gray-500">No locations found</li>
-              )}
-            </ul>
-          </div>
-        )}
-      </div>
-      {/* keywords search */}
-      <div className="lg:w-1/4 lg:mb-0 mb-3 py-5 w-full">
-        <input
-          className="h-full outline-none dark:bg-blue bg-bgLightWhite px-4 rounded-none w-full flex items-center text-sm dark:text-white placeholder-lightGray"
-          type="text"
-          name="keywords"
-          id="keywords"
-          placeholder="Keyword"
-          value={searchData.keyword}
-          onChange={handleKeywordChange}
-        />
-      </div>
-      {/* search button */}
-      <div className="lg:w-1/4 lg:mb-0 mb-3 py-5 w-full">
-        <PrimaryButton
-          onClickBtn={handleSearch}
-          title={"Search"}
-          icon={<FaSearch />}
-        />
+          Find Jobs
+        </button>
       </div>
     </div>
   );

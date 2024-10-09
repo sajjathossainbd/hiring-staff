@@ -37,7 +37,7 @@ function SinginLogout() {
                 <div className="w-30 h-30 rounded-full overflow-hidden flex items-center justify-center">
                   <img
                     className="w-full rounded-full h-full object-cover"
-                    src={currentUser?.image}
+                    src={`${currentUser?.image || user?.image ? currentUser?.image : "https://i.ibb.co.com/30FCMBq/default-profile.jpg"}`}
                     alt="User photo"
                   />
                 </div>

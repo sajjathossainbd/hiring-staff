@@ -26,9 +26,10 @@ function MobileNavItems({ navLinks }) {
               <NavLink
                 to={to}
                 className={({ isActive }) =>
-                  `font-medium ${isActive
-                    ? "text-white dark:border-white border-b-2 border-blue"
-                    : "text-darkBlue dark:text-lightText"
+                  `font-medium ${
+                    isActive
+                      ? "text-white dark:border-white border-b-2 border-blue"
+                      : "text-darkBlue dark:text-lightText"
                   }`
                 }
               >

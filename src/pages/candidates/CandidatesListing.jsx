@@ -7,6 +7,7 @@ import NoFoundData from "../../components/ui/NoFoundData";
 import CandidateCard from "../../components/candidate/CandidateCard";
 import SectionTitle from "../../components/shared/SectionTitle";
 import CandidatesFiltering from "../../components/candidate/candidatesFiltering";
+import Pagination from "../../components/candidate/Pagination";
 
 function CandidatesListing() {
   const dispatch = useDispatch();
@@ -47,8 +48,6 @@ function CandidatesListing() {
   if (!isLoading && !isError && candidates?.candidates?.length > 0) {
     content = (
       <div>
-   
-
         {/* candidate card */}
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 mt-10">
           {candidates?.candidates?.map((candidate) => (
@@ -58,19 +57,12 @@ function CandidatesListing() {
 
         {/* Pagination Controls */}
         <div className="flex justify-center mt-4">
-          {Array.from({ length: totalPages }, (_, index) => (
-            <button
-              key={index + 1}
-              onClick={() => handlePageChange(index + 1)}
-              className={`mx-1 px-3 py-1 rounded-md ${
-                currentPage === index + 1
-                  ? "bg-blue text-white"
-                  : "bg-lightGray"
-              }`}
-            >
-              {index + 1}
-            </button>
-          ))}
+         
+          <Pagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+          />
         </div>
       </div>
     );
@@ -84,18 +76,25 @@ function CandidatesListing() {
         <title>Hiring Staff - Candidates</title>
       </Helmet>
 
-      <div className="bg-bgLightBlue dark:bg-darkBlue p-4 md:px-24 md:py-8 space-y-6">
-          <SectionTitle
-            title={"Browse Candidates"}
-            subTitle={
-              "Browse top-rated professionals across various skills and locations, tailored to meet your project needs"
-            }
-          />
-          {/* all filtering goese here */}
-          <div>
-            <CandidatesFiltering onFilterChange={handleFilterChange} />
-          </div>
+      <div className="lg:py-16 lg:px-0 px-3 py-10 bg-bgLightWhite dark:bg-darkBlue flex flex-col items-center rounded-3xl">
+        <div className="text-center pb-6">
+          <h3>
+            <span className="text-blue">
+              {candidates.totalCandidates} Candidates
+            </span>{" "}
+            Available Now
+          </h3>
+
+          <p className="md:max-w-xl text-14 mt-3">
+            Browse top-rated professionals across various skills and locations,
+            tailored to meet your project needs.
+          </p>
         </div>
+
+        <div>
+          <CandidatesFiltering onFilterChange={handleFilterChange} />
+        </div>
+      </div>
 
       <div className="">{content}</div>
     </div>

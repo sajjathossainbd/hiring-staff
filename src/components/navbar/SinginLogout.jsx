@@ -48,7 +48,7 @@ function SinginLogout() {
           {dropdownOpen && (
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-md px-4 py-6 z-[1] mt-3 w-52 shadow gap-1 "
+              className="menu menu-sm dropdown-content bg-white dark:bg-darkBlue rounded-md px-4 py-6 z-[1] mt-3 w-52 shadow gap-1 "
             >
               <li>
                 <Link

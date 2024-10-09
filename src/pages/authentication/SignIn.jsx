@@ -43,6 +43,7 @@ const SignIn = () => {
         email: result.user?.email,
         name: result.user?.displayName,
         photo: result.user?.photoURL,
+        role: "candidate"
       };
 
       axiosInstance.post("/users", userInfo).then((res) => {

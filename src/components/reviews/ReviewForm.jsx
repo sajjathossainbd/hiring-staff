@@ -74,7 +74,8 @@ const ReviewForm = () => {
                 </div>
                 <div className="flex flex-col w-full">
                     <textarea
-                        rows="1"
+                        rows="2"
+                        required
                         {...register("message")}
                         placeholder="Message..."
                         className="p-4 rounded-md border resize-none text-black "
@@ -88,13 +89,14 @@ const ReviewForm = () => {
                             Leave feedback
                         </button>
                     ) : (
+
                         <button
                             disabled
                             type="submit"
                             onClick={handleSubmit(onSubmit)}
                             className="py-4 btn my-8 font-semibold rounded-md dark:text-white dark:bg-violet-600 text-white bg-blue"
                         >
-                            Leave feedback
+                            Please login first
                         </button>
                     )}
                 </div>

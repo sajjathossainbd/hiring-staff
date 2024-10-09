@@ -161,7 +161,7 @@ const Dashboard = () => {
                   <li>
                     <NavLink
                       to="/dashboard/my-resume"
-                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white${isActive ? "bg-blue text-white" : ""}`}
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white ${isActive ? "bg-blue text-white" : ""}`}
                     >
                       <RxResume /> My Resume
                     </NavLink>
@@ -169,7 +169,7 @@ const Dashboard = () => {
                   <li>
                     <NavLink
                       to="/dashboard/applied-jobs"
-                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white${isActive ? "bg-blue text-white" : ""}`}
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white ${isActive ? "bg-blue text-white" : ""}`}
                     >
                       <VscGitStashApply /> Applied Jobs
                     </NavLink>
@@ -177,7 +177,7 @@ const Dashboard = () => {
                   <li>
                     <NavLink
                       to="/dashboard/shortlisted-jobs"
-                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white${isActive ? "bg-blue text-white" : ""}`}
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white ${isActive ? "bg-blue text-white" : ""}`}
                     >
                       <FaArrowUpShortWide /> Shortlisted Jobs
                     </NavLink>

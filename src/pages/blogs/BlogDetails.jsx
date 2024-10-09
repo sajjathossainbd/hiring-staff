@@ -31,9 +31,6 @@ function Blogblog() {
     content = <NoFoundData title={"No Blog Found!"} />;
   }
 
-  // data destructuring
-  // const { _id, title } = blog || {};
-
   if (!isLoading && !isError && blog?._id) {
     content = (
       <div>

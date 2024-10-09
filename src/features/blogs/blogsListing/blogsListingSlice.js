@@ -3,8 +3,6 @@ import { getBlogsListing } from "./blogsListingAPI";
 
 const initialState = {
   blogsListing: [],
-  currentPage: 1,
-  totalPages: 1,
   isLoading: false,
   isError: false,
   error: "",
@@ -13,8 +11,8 @@ const initialState = {
 // async thunk
 export const fetchBlogsListing = createAsyncThunk(
   "blogsListing/fetchBlogsListing",
-  async ({ page = 1, limit = 5, title = "", tags = "" }) => {
-    const blogsListing = await getBlogsListing(page, limit, title, tags);
+  async ({ page, limit, query }) => {
+    const blogsListing = await getBlogsListing(page, limit, query);
     return blogsListing;
   }
 );
@@ -30,9 +28,7 @@ const BlogsListingSlice = createSlice({
       })
       .addCase(fetchBlogsListing.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.blogsListing = action.payload.blogs;
-        state.currentPage = action.payload.currentPage;
-        state.totalPages = action.payload.totalPages;
+        state.blogsListing = action.payload;
       })
       .addCase(fetchBlogsListing.rejected, (state, action) => {
         state.isLoading = false;

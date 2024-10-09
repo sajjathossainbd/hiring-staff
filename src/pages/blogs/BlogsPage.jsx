@@ -15,28 +15,18 @@ function BlogsPage() {
     isLoading,
     isError,
     error,
-    currentPage,
-    totalPages
   } = useSelector((state) => state.blogsListing);
 
+  const [searchQuery, setSearchQuery] = useState("");
   const [page, setPage] = useState(1);
-  const [limit] = useState(5);
-  const [searchTitle, setSearchTitle] = useState("");
-  const [searchTags, setSearchTags] = useState("");
+  const limit = 3;
 
   useEffect(() => {
-    dispatch(fetchBlogsListing({ page, limit, title: searchTitle, tags: searchTags }));
-  }, [dispatch, page, limit, searchTitle, searchTags]);
+    dispatch(fetchBlogsListing({ page, limit, query: searchQuery }));
+  }, [dispatch, page, searchQuery]);
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    setPage(1);
-    dispatch(fetchBlogsListing({ page, limit, title: searchTitle, tags: searchTags }));
-  };
-
-  const handlePageChange = (newPage) => {
-    setPage(newPage);
-  };
+  const totalPages = blogs.totalPages;
+  const pages = [...Array(totalPages).keys()].map(i => i + 1);
 
   let content = null;
 
@@ -49,18 +39,16 @@ function BlogsPage() {
     content = <NoFoundData title="No Blogs Found!" />;
   }
 
-  // if (!isLoading && !isError && blogs?.blogs?.length > 0) {
-  if (!isLoading && !isError && blogs?.length > 0) {
+
+  if (!isLoading && !isError && blogs?.blogs?.length > 0) {
     content = (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 mt-10">
-        {/* {blogs?.blogs?.map((blog) => ( */}
-        {blogs?.map((blog) => (
+        {blogs?.blogs?.map((blog) => (
           <BlogCard key={blog._id} blog={blog} />
         ))}
       </div>
     );
   }
-
   // console.log(blogs);
   return (
     <>
@@ -73,38 +61,35 @@ function BlogsPage() {
         currentPath={"blogs"}
       />
       <div className="container">
-        {/* Search and Filter Form */}
-        <form onSubmit={handleSearch} className="my-4 flex gap-2">
+        {/* Search and Filter */}
+        <div className="flex justify-center my-4">
           <input
             type="text"
-            placeholder="Search by Title"
-            value={searchTitle}
-            onChange={(e) => setSearchTitle(e.target.value)}
-            className="p-2 border rounded"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search"
+            className="border rounded p-2"
           />
-          <input
-            type="text"
-            placeholder="Filter by Tags"
-            value={searchTags}
-            onChange={(e) => setSearchTags(e.target.value)}
-            className="p-2 border rounded"
-          />
-          <button type="submit" className="p-2 bg-blue-500 text-white rounded">Search</button>
-        </form>
+        </div>
+
         {/* Blog Card Content*/}
         {content}
 
         {/* Pagination */}
-        <div className="flex justify-center mt-4">
-          {Array.from({ length: totalPages }).map((_, index) => (
+        <div className="flex justify-center mt-4 gap-3">
+          {page > 1 && <button className="text-blue" onClick={() => setPage(page - 1)}>Previous</button>}
+
+          {pages.map((p) => (
             <button
-              key={index}
-              onClick={() => handlePageChange(index + 1)}
-              className={`px-3 py-1 mx-1 ${index + 1 === page ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+              key={p}
+              onClick={() => setPage(p)}
+              className={`mx-1 ${page === p ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}
             >
-              {index + 1}
+              {p}
             </button>
           ))}
+
+          {page < totalPages && <button className="text-blue" onClick={() => setPage(page + 1)}>Next</button>}
         </div>
       </div>
     </>

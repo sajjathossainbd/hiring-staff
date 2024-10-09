@@ -19,10 +19,13 @@ function JobsListing() {
     isLoading,
     isError,
   } = useSelector((state) => state.jobsListing);
+ 
   // Fetch jobs
   const { JobTitle, AllCategory, Location } = useSelector(
     (state) => state.filters
   );
+
+  console.log(Location, AllCategory);
   useEffect(() => {
     const filters = {
       category: AllCategory,
@@ -68,7 +71,7 @@ function JobsListing() {
   };
   return (
     <>
-      <div className="container flex flex-col justify-center">
+      <div classNzame="container flex flex-col justify-center">
         {/* Jobs Banner */}
         <JobBanner totalJobs={totalJobs} />
 

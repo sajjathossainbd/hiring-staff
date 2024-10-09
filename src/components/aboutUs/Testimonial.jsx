@@ -11,78 +11,30 @@ import "swiper/css/pagination";
 // import required modules
 import { Pagination } from "swiper/modules";
 import SectionTitle from "../shared/SectionTitle";
+import { useEffect, useState } from "react";
+import axiosInstance from "../../utils/axios";
 
 const Testimonial = () => {
-  const testimonials = [
-    {
-      name: "Jacob Johns",
-      role: "Businessman",
-      rating: 4,
-      description:
-        "Jacob Johns provided exceptional business consultancy. His insights helped streamline our operations and increase profitability.",
-      image:
-        "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg",
-      context: "company",
-    },
-    {
-      name: "Emily Smith",
-      role: "Software Engineer",
-      rating: 5,
-      description:
-        "Emily Smith’s software development skills are outstanding. She delivered high-quality code and met all project deadlines.",
-      image:
-        "https://caricom.org/wp-content/uploads/Floyd-Morris-Remake-1024x879-1.jpg",
-      context: "candidate",
-    },
-    {
-      name: "Michael Brown",
-      role: "Designer",
-      rating: 5,
-      description:
-        "Michael Brown’s design work exceeded our expectations. His creativity and attention to detail were crucial to our project’s success.",
-      image:
-        "https://www.verywellmind.com/thmb/c3eqPSs3v_VgoD0xSIyZYHLJ3OE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1311372339-af583a5aa2ab46a1b884b961daca5232.jpg",
-      context: "company",
-    },
-    {
-      name: "Sarah Johnson",
-      role: "Marketing Specialist",
-      rating: 3,
-      description:
-        "Sarah Johnson’s marketing strategies significantly improved our brand visibility and engagement. Her expertise is invaluable.",
-      image:
-        "https://images.squarespace-cdn.com/content/v1/5c7c30767980b31affc87b09/1602396079712-4JS2RJYHTAP5OXOUQ1SB/image-asset.jpeg",
-      context: "company", // Indicates that this testimonial is for a company
-    },
-    {
-      name: "James Wilson",
-      role: "Project Manager",
-      rating: 4,
-      description:
-        "James Wilson demonstrated exceptional project management skills. His leadership ensured that our projects were completed on time and within budget Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi exercitationem fugit.",
-      image:
-        "https://pbs.twimg.com/profile_images/1701342738216550400/nSJtOyum_400x400.jpg",
-      context: "job", // Indicates that this testimonial is for a job
-    },
-    {
-      name: "Olivia Martinez",
-      role: "HR Specialist",
-      rating: 4.3,
-      description:
-        "Olivia Martinez’s expertise in HR helped us build a stronger, more cohesive team. Her support and guidance were crucial for our growth.",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgfTvKmQZl3ojuF0C4gijNXjYZPGvmmpsxSg&s",
-      context: "job", // Indicates that this testimonial is for a job
-    },
-  ];
+
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    axiosInstance.get('/reviews')
+      .then(res => {
+        setReviews(res.data);
+      });
+  }, []);
+
+  if (reviews.length === 0) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="py-0 container">
       <div className="lg:w-1/2 mx-auto text-center pb-12">
         <SectionTitle
           title="Our Happy Customer"
-          subTitle="
-When it comes to choosing the right web hosting provider, we know how easy it is to get overwhelmed with the number."
+          subTitle="When it comes to choosing the right web hosting provider, we know how easy it is to get overwhelmed with the number."
         />
       </div>
       <Swiper
@@ -107,22 +59,22 @@ When it comes to choosing the right web hosting provider, we know how easy it is
           },
         }}
       >
-        {testimonials.map((testimonial, index) => (
+        {reviews?.map((review, index) => (
           <SwiperSlide className="select-none" key={index}>
             <div className="border rounded-md border-[#EBEFFA] p-6 relative min-h-72 lg:min-h-52">
               <div className="flex flex-col gap-5">
                 <div className="flex gap-5 items-center">
-                  <h5>{testimonial.context}</h5>
+                  <h5>{review.role}</h5>
                   <span className="hidden lg:block">-</span>
-                  <Rating rating={testimonial.rating} />
+                  <Rating rating={review?.reviewData.rating} />
                 </div>
                 <p>
-                  {testimonial.description.split(" ").length > 25
-                    ? testimonial.description
-                        .split(" ")
-                        .slice(0, 25)
-                        .join(" ") + "..."
-                    : testimonial.description}
+                  {review.reviewData.message.split(" ").length > 25
+                    ? review.reviewData.message
+                      .split(" ")
+                      .slice(0, 25)
+                      .join(" ") + "..."
+                    : review.reviewData.message}
                 </p>
               </div>
               {/* arrow png */}
@@ -137,12 +89,12 @@ When it comes to choosing the right web hosting provider, we know how easy it is
             <div className="flex gap-4 items-center pt-8 relative left-7">
               <img
                 className="h-14 w-14 rounded-full object-cover"
-                src={testimonial.image}
-                alt={testimonial.name}
+                src={review.image}
+                alt={review.name}
               />
               <div className="flex flex-col gap-1">
-                <h5>{testimonial.name}</h5>
-                <span className="text-sm">{testimonial.role}</span>
+                <h5>{review.name}</h5>
+                <span className="text-sm">{review.role}</span>
               </div>
             </div>
           </SwiperSlide>

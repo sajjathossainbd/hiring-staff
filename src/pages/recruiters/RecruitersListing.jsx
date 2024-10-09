@@ -13,12 +13,27 @@ function RecruitersListing() {
     isLoading,
     isError,
     error,
+
   } = useSelector((state) => state.recruitersListing);
 
   useEffect(() => {
     dispatch(fetchRecruitersListing());
   }, [dispatch]);
 
+  // const { JobTitle, AllCategory, Location } = useSelector(
+  //   (state) => state.filters
+  // );
+  // useEffect(() => {
+  //   const filters = {
+  //     category: AllCategory,
+  //     job_title: JobTitle,
+  //     job_location: Location,
+  //     page: page,
+  //     limit,
+  //   };
+  //   dispatch(fetchJobsListing(filters));
+  // }, [page]);
+  
   let content = null;
 
   if (isLoading) content = <Loading />;
@@ -26,19 +41,20 @@ function RecruitersListing() {
   if (!isLoading && isError)
     content = <div className="col-span-12">{error}</div>;
 
-  if (!isLoading && !isError && recruiters?.length === 0) {
+  if (!isLoading && !isError && recruiters?.data?.length === 0) {
     content = <NoFoundData title="No Recruiters Found!" />;
   }
 
-  if (!isLoading && !isError && recruiters?.length > 0) {
+  if (!isLoading && !isError && recruiters?.data?.length > 0) {
     content = (
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {recruiters.map((recruiter) => (
+        {recruiters?.data?.map((recruiter) => (
           <RecruiterCard key={recruiter._id} recruiter={recruiter} />
         ))}
       </div>
     );
   }
+  console.log(recruiters)
   return (
     <div className="container">
       <h3 className="mb-6 md:mb-10">Recruiter Listing</h3>
@@ -46,6 +62,7 @@ function RecruitersListing() {
       {content}
     </div>
   );
+  
 }
 
 export default RecruitersListing;

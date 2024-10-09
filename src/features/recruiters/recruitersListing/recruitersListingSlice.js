@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getRecruitersListing } from "./recruitersListingAPI";
 
+// Define the initial state
 const initialState = {
   recruitersListing: [],
   isLoading: false,
@@ -8,15 +9,16 @@ const initialState = {
   error: "",
 };
 
-// async thunk
+// Async thunk to fetch recruiters with parameters
 export const fetchRecruitersListing = createAsyncThunk(
   "recruitersListing/fetchRecruitersListing",
-  async () => {
-    const recruitersListing = await getRecruitersListing();
+  async (params) => {
+    const recruitersListing = await getRecruitersListing(params);
     return recruitersListing;
   }
 );
 
+// Create the slice
 const RecruitersListingSlice = createSlice({
   name: "recruitersListing",
   initialState,
@@ -39,4 +41,5 @@ const RecruitersListingSlice = createSlice({
   },
 });
 
+// Export the reducer
 export default RecruitersListingSlice.reducer;

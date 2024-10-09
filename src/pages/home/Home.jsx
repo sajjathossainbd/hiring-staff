@@ -5,6 +5,7 @@ import NewsLetter from "../../components/home/NewsLetter";
 import BlogSection from "../../components/home/BlogSection";
 import Category from "../../components/home/category/Category";
 import GrowthSection from "../../components/home/growthSection/GrowthSection";
+import Reviews from "../../components/reviews/Reviews";
 
 function Home() {
   return (
@@ -17,6 +18,7 @@ function Home() {
       <JobLocation />
       <BlogSection />
       <NewsLetter />
+      <Reviews />
     </div>
   );
 }

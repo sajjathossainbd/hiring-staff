@@ -34,6 +34,7 @@ import PrivateRoute from "./PrivateRoute";
 import PaymentForm from "../pages/paymentForm/PaymentForm";
 import AllPaymentHistory from "../pages/dashboard/forAdmin/AllPaymentHistory";
 import MyPayments from "../pages/dashboard/MyPayments";
+import ManageJobs from "../pages/dashboard/forAdmin/ManageJobs";
 
 const router = createBrowserRouter([
   {
@@ -151,6 +152,10 @@ const router = createBrowserRouter([
       {
         path: "manage-users",
         element: <ManageUsers />,
+      },
+      {
+        path: "manage-all-jobs",
+        element: <ManageJobs />,
       },
       {
         path: "manage-users/:page",

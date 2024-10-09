@@ -6,7 +6,7 @@ import { fetchJobsListing } from "../../features/jobs/jobsListing/jobsListingSli
 import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
 import JobBanner from "../../components/jobs/JobBanner";
-import { useNavigate, useParams } from "react-router-dom";
+import { ScrollRestoration, useNavigate, useParams } from "react-router-dom";
 
 function JobsListing() {
   const dispatch = useDispatch();
@@ -99,6 +99,7 @@ function JobsListing() {
         )}
       </div>
       <NewsLetter />
+      <ScrollRestoration />
     </>
   );
 }

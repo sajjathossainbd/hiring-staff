@@ -36,10 +36,11 @@ const AdminAnalytics = () => {
                 pathName="Admin Analytics"
             />
 
-            <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-5">
-                <DashboardCard logo={<FaUsers />} title={'All Users'} quantity={users?.users.length} />
-                <DashboardCard logo={<IoBagRemoveOutline />} title={'All Jobs'} quantity={jobs?.totalJobs} />
-                <DashboardCard logo={<VscGitStashApply />} title={'All Applications'} quantity={'1000'} />
+            <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5">
+                <DashboardCard logo={<FaUsers />} title={'Users'} quantity={users?.users.length} />
+                <DashboardCard logo={<IoBagRemoveOutline />} title={'Jobs'} quantity={jobs?.totalJobs} />
+                <DashboardCard logo={<VscGitStashApply />} title={'Applications'} quantity={'1000'} />
+                <DashboardCard logo={<VscGitStashApply />} title={'Recruiters'} quantity={'100'} />
                 <DashboardCard logo={<MdPlaylistAddCheck />} title={'Shortlisted'} quantity={'50'} />
             </div>
             <AreaCharts />

@@ -84,14 +84,20 @@ function CandidatesListing() {
         <title>Hiring Staff - Candidates</title>
       </Helmet>
 
-      <div className="bg-bgLightBlue dark:bg-darkBlue p-4 md:px-24 md:py-8 space-y-6">
-          <SectionTitle
-            title={"Browse Candidates"}
-            subTitle={
-              "Browse top-rated professionals across various skills and locations, tailored to meet your project needs"
-            }
-          />
-          {/* all filtering goese here */}
+      <div className="lg:py-16 lg:px-0 px-3 py-10 bg-bgLightWhite dark:bg-darkBlue flex flex-col items-center rounded-3xl">
+      <div className="text-center pb-6">
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <h3>
+            <span className="text-blue">{candidates.totalCandidates} Candidates</span> Available Now
+          </h3>
+        )}
+        <p className="md:max-w-xl text-14 mt-3">
+        Browse top-rated professionals across various skills and locations, tailored to meet your project needs.
+        </p>
+      </div>
+        
           <div>
             <CandidatesFiltering onFilterChange={handleFilterChange} />
           </div>

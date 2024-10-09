@@ -14,13 +14,13 @@ function FilterSidePanel({
 }) {
   return (
     <>
-      {/* Filter Side Panel */}
+      {/* Side Panel */}
       <div
-        className={`fixed z-50 top-0 left-0 h-full bg-white shadow-lg w-64 p-5 transition-transform transform ${
+        className={`fixed z-50 top-0 left-0 h-full bg-white dark:bg-darkBlue shadow-lg w-64 p-5 overflow-y-scroll transition-transform transform ${
           isFilterOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        {/* Close Button */}
+        {/* Close */}
         <button className="text-gray hover:text-lightGray" onClick={toggleFilter}>
           &times;
         </button>
@@ -28,7 +28,7 @@ function FilterSidePanel({
 
         {/* Skills */}
         <div className="mb-4">
-          <label className="block text-gray mb-2">Skills</label>
+          <label className="block text-gray dark:text-white mb-2">Skills</label>
           <input
             type="text"
             name="skills"
@@ -48,10 +48,10 @@ function FilterSidePanel({
 
         {/* Experience */}
         <div className="mb-4">
-          <label className="block text-gray mb-2">Experience</label>
+          <label className="block text-gray dark:text-white mb-2">Experience</label>
           <div className="space-y-2">
             {experience.map((exp) => (
-              <label key={exp} className="flex items-center">
+              <label key={exp} className="flex items-center dark:text-white">
                 <input
                   type="radio"
                   name="experience"
@@ -67,7 +67,7 @@ function FilterSidePanel({
 
         {/* Education */}
         <div className="mb-4">
-          <label className="block text-gray mb-2">Education</label>
+          <label className="block text-gray dark:text-white mb-2">Education</label>
           <input
             type="text"
             name="education"
@@ -87,7 +87,7 @@ function FilterSidePanel({
 
         {/* Job Type */}
         <div className="mb-4">
-          <label className="block text-gray mb-2">Job Type</label>
+          <label className="block text-gray dark:text-white mb-2">Job Type</label>
           <select
             name="jobType"
             onChange={handleFilterChange}
@@ -102,7 +102,7 @@ function FilterSidePanel({
 
         <button
           onClick={applyFilters}
-          className="bg-blue text-white px-4 py-2 rounded-lg w-full hover:bg-lightBlue transition duration-300"
+          className="bg-blue  text-white px-4 py-2 rounded-lg w-full hover:bg-lightBlue transition duration-300"
         >
           Apply Filter
         </button>

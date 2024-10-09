@@ -1,14 +1,18 @@
+import { useState } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 import axiosInstance from "../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../ui/Loading";
+import { CardPagination } from "../shared/CardPagination";
+import { GoArrowRight } from "react-icons/go";
 
 const UsersManagementTable = () => {
   const navigate = useNavigate();
   const { page = 1 } = useParams();
   const limit = 5;
+  const [selectedUser, setSelectedUser] = useState(null);
 
   // Fetch users with pagination
   const fetchUsers = async (currentPage, limit) => {
@@ -71,11 +75,9 @@ const UsersManagementTable = () => {
     });
   };
 
-  const handlePageChange = (direction) => {
-    const newPage = direction === "next" ? currentPage + 1 : currentPage - 1;
-    if (newPage >= 1 && newPage <= totalPages) {
-      navigate(`/dashboard/manage-users/${newPage}`);
-    }
+  const handleDetailsClick = (user) => {
+    setSelectedUser(user);
+    document.getElementById('my_modal_3').showModal();
   };
 
   return (
@@ -88,7 +90,7 @@ const UsersManagementTable = () => {
             <tr className="text-base dark:text-white">
               <th>Name</th>
               <th>Email</th>
-              <th>Linkedin</th>
+              <th>Details</th>
               <th>Role</th>
               <th>Action</th>
             </tr>
@@ -101,13 +103,7 @@ const UsersManagementTable = () => {
                   <span className="text-blue">{user.email}</span>
                 </td>
                 <td>
-                  <a
-                    className="hover:text-blue hover:underline"
-                    target="_blank"
-                    href={user.linkedin}
-                  >
-                    Linkedin
-                  </a>
+                  <button className="bg-[#E0E6F7] hover:bg-blue hover:text-[white] p-3 rounded-md text-blue font-medium  transition-all duration-500 text-14 flex gap-1 items-center" onClick={() => handleDetailsClick(user)}>View <GoArrowRight className="text-lg" /></button>
                 </td>
                 <td>
                   <select
@@ -125,7 +121,7 @@ const UsersManagementTable = () => {
                 <td>
                   <button
                     onClick={() => handleDelete(user._id)}
-                    className="btn rounded-full text-blue hover:text-white hover:bg-blue"
+                    className="btn rounded-full text-red-600 hover:text-white hover:bg-blue"
                   >
                     <RiDeleteBin6Line />
                   </button>
@@ -134,24 +130,85 @@ const UsersManagementTable = () => {
             ))}
           </tbody>
         </table>
-        <div className="join mx-auto block">
-          <button
-            className="join-item btn"
-            onClick={() => handlePageChange("previous")}
-            disabled={currentPage <= 1}
-          >
-            «
-          </button>
-          <button className="join-item btn disabled">{`${currentPage} of ${totalPages}`}</button>
-          <button
-            className="join-item btn"
-            onClick={() => handlePageChange("next")}
-            disabled={currentPage >= totalPages}
-          >
-            »
-          </button>
-        </div>
+        <CardPagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={(newPage) => navigate(`/dashboard/manage-users/${newPage}`)}
+        />
       </div>
+
+      {/* DaisyUI Modal */}
+      <dialog id="my_modal_3" className="modal">
+
+        <div className="modal-box p-6 bg-white rounded-lg shadow-lg max-w-md mx-auto">
+          <form method="dialog">
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 hover:bg-gray-200 transition-colors">✕</button>
+          </form>
+          <h2 className="font-bold text-2xl mb-4 text-gray-800 text-center">
+            User Details - <span className="text-blue">{selectedUser?.name}</span>
+          </h2>
+          {selectedUser && (
+            <div className="mt-4">
+              <div className="mb-2">
+                <span className="font-semibold text-gray-700">Plan:</span>
+                <span className="ml-2 text-gray-600">{selectedUser?.plan}</span>
+              </div>
+              <div className="mb-2">
+                <span className="font-semibold text-gray-700">Email:</span>
+                <strong className="ml-2 text-blue">{selectedUser?.email}</strong>
+              </div>
+              <div className="mb-2">
+                <span className="font-semibold text-gray-700">Role:</span>
+                <span className="ml-2 text-gray-600">{selectedUser?.role}</span>
+              </div>
+              <div className="mb-2">
+                <span className="font-semibold text-gray-700">About:</span>
+                <span className="ml-2 text-gray-500">{selectedUser?.about}</span>
+              </div>
+              <div className="mb-2">
+                <span className="font-semibold text-gray-700">Address:</span>
+                <span className="ml-2 text-gray-600">{selectedUser?.city}, {selectedUser?.country}</span>
+              </div>
+              <div className="mb-2">
+                <span className="font-semibold text-gray-700">Phone:</span>
+                <span className="ml-2 text-gray-600">{selectedUser?.phone}</span>
+              </div>
+              <div className="mb-2">
+                <span className="font-semibold text-gray-700">Website:</span>
+                <span className="ml-2">
+                  <a target="_blank" rel="noopener noreferrer" className="text-blue hover:underline" href={selectedUser?.website}>view</a>
+                </span>
+              </div>
+              <div className="mb-2">
+                <span className="font-semibold text-gray-700">LinkedIn:</span>
+                <span className="ml-2">
+                  <a target="_blank" rel="noopener noreferrer" className="text-blue hover:underline" href={selectedUser?.linkedin}>view</a>
+                </span>
+              </div>
+              <div className="mb-2">
+                <span className="font-semibold text-gray-700">GitHub:</span>
+                <span className="ml-2">
+                  <a target="_blank" rel="noopener noreferrer" className="text-blue hover:underline" href={selectedUser?.github}>view</a>
+                </span>
+              </div>
+              <div className="mb-2">
+                <span className="font-semibold text-gray-700">Facebook:</span>
+                <span className="ml-2">
+                  <a target="_blank" rel="noopener noreferrer" className="text-blue hover:underline" href={selectedUser?.facebook}>view</a>
+                </span>
+              </div>
+              <div className="mb-2">
+                <span className="font-semibold text-gray-700">Twitter:</span>
+                <span className="ml-2">
+                  <a target="_blank" rel="noopener noreferrer" className="text-blue hover:underline" href={selectedUser?.twitter}>view</a>
+                </span>
+              </div>
+            </div>
+          )}
+        </div>
+
+
+      </dialog>
     </div>
   );
 };

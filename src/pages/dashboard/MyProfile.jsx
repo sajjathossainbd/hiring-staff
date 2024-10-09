@@ -53,7 +53,7 @@ const MyProfile = () => {
       <div className="mt-6">
         {/* Profile photo */}
         <div className="flex flex-col items-center">
-          <div className="relative w-full h-36 md:h-44 lg:h-60 xl:h-72 bg-cover bg-center border-4 border-bgDeepBlue rounded-xl" style={{ backgroundImage: `url(${currentUser?.coverImage || 'https://i.ibb.co.com/RYKv5vT/default-cover.jpg'})` }}>
+          <div className="relative w-full h-36 md:h-44 lg:h-60 xl:h-72 bg-cover bg-center border-4 border-bgDeepBlue rounded-xl" style={{ backgroundImage: `url(${currentUser?.coverImage || 'https://i.ibb.co.com/mBcjQj6/download-1.jpg'})` }}>
             <div className="absolute inset-0 bg-black opacity-40 rounded-xl"></div>
           </div>
 

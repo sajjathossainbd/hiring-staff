@@ -64,7 +64,8 @@ const Register = () => {
       })
         .then(() => {
           axiosInstance.post("/users", userInfo).then((res) => {
-            if (res.data.insertedId) {
+            console.log(res.data);
+            if (res.data.insertId) {
               toast.success("Successfully registered!");
               navigate(location?.state ? location.state : "/");
             }

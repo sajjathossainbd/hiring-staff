@@ -35,10 +35,12 @@ function JobsListing() {
     content = <NoFoundData title="No Jobs Found!" />;
   }
 
-  if (!isLoading && !isError && jobs?.length > 0) {
+  console.log(jobs);
+
+  if (!isLoading && !isError && jobs?.jobs?.length > 0) {
     content = (
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
-        {jobs.map((job) => (
+        {jobs?.jobs.map((job) => (
           <JobCard key={job._id} job={job} />
         ))}
       </div>

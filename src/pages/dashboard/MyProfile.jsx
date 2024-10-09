@@ -14,7 +14,7 @@ const MyProfile = () => {
   const onSubmit = async (data) => {
     const updatedData = {
       name: data.name || currentUser?.name,
-      photo: data.imageUrl || currentUser?.photo,
+      image: data.imageUrl || currentUser?.image,
       role: data.role || currentUser?.role,
       about: data.about || currentUser?.about,
       phone: data.phone || currentUser?.phone,
@@ -54,7 +54,7 @@ const MyProfile = () => {
         <div className="flex flex-col md:flex-row items-center gap-3">
           <div>
             <img
-              src={currentUser?.photo || user?.photoURL}
+              src={currentUser?.image || user?.photoURL}
               alt="Profile Photo"
               className="rounded-md xl:size-96 size-72 object-cover"
             />
@@ -75,8 +75,7 @@ const MyProfile = () => {
                 {...register("role")}
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
               >
-                <option>Select role</option>
-                <option value="admin">Admin</option>
+                <option disabled>Select role</option>
                 <option value="candidate">Candidate</option>
                 <option value="recruiter">Recruiter</option>
               </select>
@@ -126,7 +125,7 @@ const MyProfile = () => {
               <input
                 id="imageUrl"
                 type="url"
-                placeholder={currentUser?.photo || user?.photoURL}
+                placeholder={currentUser?.image || user?.photoURL}
                 {...register("imageUrl")}
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
               />

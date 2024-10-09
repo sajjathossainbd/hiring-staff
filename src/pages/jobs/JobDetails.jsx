@@ -1,5 +1,4 @@
 import { ScrollRestoration, useParams } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchJobDetails } from "../../features/jobs/jobsDetails/jobDetailsSlice";
@@ -21,12 +20,9 @@ function JobDetails() {
     isError,
     error,
   } = useSelector((state) => state.jobDetails);
-  const {
-    recruiterDetails: recruiter,
-    isLoading: recruitersDetailsLoading,
-    isError: recruitersDetailsIsError,
-    error: recruitersDetailserror,
-  } = useSelector((state) => state.recruiterDetails);
+  const { recruiterDetails: recruiter } = useSelector(
+    (state) => state.recruiterDetails
+  );
 
   const {
     description = [],

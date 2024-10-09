@@ -18,8 +18,8 @@ const MyPaymentsTable = ({ data }) => {
                             <th>Category</th>
                             <th>Price</th>
                             <th>Date</th>
-                            <th>Payment Method</th>
-                            <th>Transaction Id</th>
+                            <th>Method</th>
+                            <th>Transaction</th>
                             <th>Status</th>
                         </tr>
                     </thead>

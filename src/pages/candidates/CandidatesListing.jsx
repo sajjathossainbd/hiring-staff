@@ -5,9 +5,8 @@ import { fetchCandidatesListing } from "../../features/candidates/candidatesList
 import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
 import CandidateCard from "../../components/candidate/CandidateCard";
-import SectionTitle from "../../components/shared/SectionTitle";
-import CandidatesFiltering from "../../components/candidate/candidatesFiltering";
 import Pagination from "../../components/candidate/Pagination";
+import CandidatesFiltering from "../../components/candidate/CandidatesFiltering";
 
 function CandidatesListing() {
   const dispatch = useDispatch();
@@ -17,7 +16,6 @@ function CandidatesListing() {
     candidatesListing: candidates,
     isLoading,
     isError,
-    error,
     totalPages,
     currentPage,
   } = useSelector((state) => state.candidatesListing);
@@ -57,7 +55,6 @@ function CandidatesListing() {
 
         {/* Pagination Controls */}
         <div className="flex justify-center mt-4">
-         
           <Pagination
             totalPages={totalPages}
             currentPage={currentPage}

@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import {
-  FaSearch,
-  FaFilter,
   FaMapMarkerAlt,
   FaLayerGroup,
   FaSlidersH,

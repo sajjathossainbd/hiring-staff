@@ -47,10 +47,9 @@ function JobDetails() {
   const { name, logo, location = {} } = recruiter || {};
   useEffect(() => {
     dispatch(fetchJobDetails(id));
-    dispatch(fetchRecruiterDetails("670210fdfce2b7a500c44e63"));
+    dispatch(fetchRecruiterDetails(id));
   }, [dispatch, id]);
 
-  console.log(name);
   let content = null;
   if (isLoading && recruitersDetailsLoading) content = <Loading />;
 

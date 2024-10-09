@@ -112,8 +112,8 @@ const AllPaymentTable = () => {
               <th>Category</th>
               <th>Price</th>
               <th>Date</th>
-              <th>Payment Method</th>
-              <th>Transaction Id</th>
+              <th>Method</th>
+              <th>Transaction</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -136,7 +136,7 @@ const AllPaymentTable = () => {
                     onChange={(e) =>
                       handleUpdateStatus(e.target.value, payment?._id)
                     }
-                    className="select select-bordered w-full"
+                    className="select dark:bg-darkBlue select-bordered w-full"
                   >
                     <option value="select">Select</option>
                     <option value="approved">Approved</option>

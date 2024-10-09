@@ -91,6 +91,10 @@ const router = createBrowserRouter([
         element: <CandidatesListing />,
       },
       {
+        path: "/candidates-listing/:page",
+        element: <CandidatesListing />,
+      },
+      {
         path: "/candidate-details/:id",
         element: <CandidateDetails />,
       },

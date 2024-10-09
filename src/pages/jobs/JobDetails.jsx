@@ -5,7 +5,12 @@ import { useEffect } from "react";
 import { fetchJobDetails } from "../../features/jobs/jobsDetails/jobDetailsSlice";
 import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
-
+import { CiBadgeDollar } from "react-icons/ci";
+import { GoDotFill } from "react-icons/go";
+import { CiLocationOn } from "react-icons/ci";
+import { FaBookmark } from "react-icons/fa";
+import SimilarJobs from "../../components/jobs/SimilarJobs";
+// import { fetchRecruiterDetails } from "../../features/recruiters/recruiterDetails/recruiterDetailsSlice";
 function JobDetails() {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -16,146 +21,145 @@ function JobDetails() {
     isError,
     error,
   } = useSelector((state) => state.jobDetails);
+  // const {
+  //   recruiterDetails: recruiter,
+  //   isLoading: recruitersDetailsLoading,
+  //   isError: recruitersDetailsIsError,
+  //   error: recruitersDetailserror,
+  // } = useSelector((state) => state.recruiterDetails);
 
-  const { image, position, type, posted, company } = job || {};
-  // console.log(job);
+  const {
+    description = [],
+    job_type,
+    job_location,
+    postedDate,
+    requirements = [],
+    responsibilities = [],
+    education,
+    tags,
+    jobTitle,
+    company_email,
+    min_salary,
+    max_salary,
+    lastDateToApply,
+  } = job || {};
 
+  // const { name, logo, industry, website, phone, email, location, ceo } =
+  //   recruiter || {};
   useEffect(() => {
     dispatch(fetchJobDetails(id));
+    // dispatch(fetchRecruiterDetails(id));
   }, [dispatch, id]);
 
+  console.log(name);
   let content = null;
   if (isLoading) content = <Loading />;
 
   if (!isLoading && isError)
     content = <div className="col-span-12">{error}</div>;
 
-  if (!isLoading && !isError && !job?.id) {
+  if (!isLoading && !isError && !job?._id) {
     content = <NoFoundData title={"No Job Found!"} />;
   }
 
-  if (!isLoading && !isError && job?.id) {
-    content = <div></div>;
-  }
-  return (
-    <div className="container">
-      {content}
-
-      {/* update dynamic date */}
-      <div>
-        <img
-          className="lg:h-[400px] rounded-3xl object-cover w-full mb-10 overflow-hidden"
-          src={image}
-          alt={position}
-        />
-        <div className="flex lg:flex-row flex-col gap-10 dark:text-white">
-          <div className="lg:w-8/12 w-full">
-            <h3 className="pt-4 pb-2">{position}</h3>
-            <div className="flex gap-16 text-sm">
-              <p>Type: {type}</p>
-              <p>Posted: {posted}</p>
+  if (!isLoading && !isError && job?._id) {
+    content = (
+      <>
+        <div className="flex gap-16">
+          <div className="md:w-2/3">
+            <p>{postedDate}</p>
+            <div className="flex justify-between">
+              <div>
+                <h4 className="mb-5">{jobTitle}</h4>
+                <div className="flex items-center gap-2">
+                  <img
+                    src="https://jobpilot.templatecookie.com/dummy-data/images/companies/company-logo-01.jpg"
+                    alt=""
+                  />
+                  <div className="flex flex-col gap-2">
+                    <div className="flex items-center gap-x-2">
+                      <span className="text-blue font-medium">Neuro Tech</span>
+                      <GoDotFill className="text-[8px] text-gray" />
+                      <div className="flex items-center gap-x-1">
+                        <CiLocationOn />
+                        <span>Dhaka , Bangladesh</span>
+                      </div>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="px-2 py-1 bg-bgLightWhite text-14 font-medium rounded-md">
+                        {job_type}
+                      </span>
+                      <span className="px-2 py-1 bg-bgLightWhite text-14 font-medium rounded-md">
+                        {job_location}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex gap-x-2">
+                <button className="btn btn-primary bg-blue text-white font-medium px-6 min-h-[2.8rem] h-[2.8rem] rounded-xl">
+                  Apply Now
+                </button>
+                <button className="btn btn-primary btn-outline min-h-[2.8rem] h-[2.8rem] px-3 border-bgDeepBlue text-blue rounded-xl text-lg">
+                  <FaBookmark />
+                </button>
+              </div>
             </div>
-            <hr className="border-0 h-px bg-lightGray mt-3 mb-12" />
-            <h4 className="pt-4 pb-2">{`Welcome to the ${company}`}</h4>
-            <p>
-              The <strong className="text-16 dark:text-white">{company}</strong>{" "}
-              envisions creating a trusted platform that fosters productive and
-              healthy enterprises in an ever-evolving digital landscape. As work
-              patterns shift and the demand for organizational resilience grows,
-              we seek a{" "}
-              <strong className="text-16 dark:text-white">{position}</strong>{" "}
-              who embodies creativity and a passion for illustrative design and
-              typography.
-            </p>
-            <h4 className="pt-4 pb-2">Ideal Candidate Profile</h4>
-            <ul>
-              <li>
-                Portfolio showcasing polished end-to-end customer journeys.
-              </li>
-              <li>
-                5+ years of industry experience in interactive and/or visual
-                design.
-              </li>
-              <li>
-                Excellent interpersonal skills and a collaborative spirit.
-              </li>
-              <li>
-                Aware of trends in mobile, communications, and collaboration.
-              </li>
-              <li>
-                Ability to produce highly polished design prototypes, mockups,
-                and communication artifacts.
-              </li>
-              <li>
-                Proficiency in scoping, estimating efforts, and prioritizing
-                tasks independently.
-              </li>
-              <li>
-                Proven history of influencing product delivery and user
-                experiences.
-              </li>
-              <li>
-                A Bachelor&apos;s Degree in Design (or a related field) or
-                equivalent professional experience.
-              </li>
-              <li>
-                Proficiency in design tools such as Figma, Photoshop,
-                Illustrator, and Sketch.
-              </li>
-            </ul>
-            <h4 className="pt-4 pb-2">Preferred Experience</h4>
-            <ul>
-              <li>
-                Designing user experiences for enterprise software/services.
-              </li>
-              <li>
-                Applying established design principles and interaction patterns.
-              </li>
-              <li>
-                Influencing design thinking across diverse teams and
-                geographies.
-              </li>
-            </ul>
-            <h4 className="pt-4 pb-2">Key Responsibilities</h4>
-            <ul>
-              <li>
-                <h6 className="inline-block">Product Knowledge:</h6> Gain a deep
-                understanding of the technology and features relevant to your
-                assigned product area.
-              </li>
-              <li>
-                <h6 className="inline-block">Research:</h6> Provide insights
-                that demonstrate human and business impact for our products.
-              </li>
-              <li>
-                <h6 className="inline-block">Deliverables:</h6> Create essential
-                deliverables (competitive analyses, user flows, low-fidelity
-                wireframes, high-fidelity mockups, prototypes, etc.) that
-                effectively solve user problems.
-              </li>
-              <li>
-                <h6 className="inline-block">Communication:</h6> Clearly convey
-                the results of UX activities to the design team and
-                cross-functional partners, simplifying complex concepts.
-              </li>
-            </ul>
-            <p>
-              Join us in shaping the future of digital design and enhancing user
-              experiences at Jthemes!
-            </p>
+            <div className="mt-7">
+              <h5 className="mb-2">About this role</h5>
+              {description.map((descrip, index) => (
+                <span key={index}>{descrip}</span>
+              ))}
+            </div>
+            <div className="mt-7">
+              <h5 className="mb-2">Requirement</h5>
+              <ul>
+                {requirements.map((requirement, index) => (
+                  <li className="flex items-center gap-x-1" key={index}>
+                    <GoDotFill className="text-[10px] text-gray" />
+                    {requirement}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="mt-7">
+              <h5 className="mb-2">Responsibility</h5>
+              <ul>
+                {responsibilities.map((responsibility, index) => (
+                  <li key={index} className="flex items-center gap-x-1">
+                    <GoDotFill className="text-[10px] text-gray" />
+                    {responsibility}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="mt-7">
+              <h5 className="mb-2">Education</h5>
+              <p className="flex items-center gap-x-1">
+                <GoDotFill className="text-[10px] text-gray" />
+                {education}
+              </p>
+            </div>
+            <div className="mt-7">
+              <h5 className="mb-2">Salary</h5>
+              <p className="flex items-center gap-x-1">
+                <CiBadgeDollar className="text-lg text-gray" />${min_salary} -{" "}
+                {max_salary}
+              </p>
+            </div>
           </div>
-          <div className="lg:w-4/12 flex flex-col gap-10 w-full">
-            {/* Map Componet */}
-            {/* Similar Jobs */}
-            <div className="border border-lightGray p-6 rounded-xl">
-              <h4 className="pb-7">Similar Jobs</h4>
-              {/*  */}
-            </div>
+          <div className="md:w-1/3 flex flex-col gap-3">
+            <h4 className="mb-4">Similar Jobs</h4>
+            <SimilarJobs />
+            <SimilarJobs />
+            <SimilarJobs />
+            <SimilarJobs />
           </div>
         </div>
-      </div>
-    </div>
-  );
+      </>
+    );
+  }
+  return <div className="container">{content}</div>;
 }
 
 export default JobDetails;

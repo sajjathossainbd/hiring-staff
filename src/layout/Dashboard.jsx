@@ -4,7 +4,6 @@ import { ImProfile } from "react-icons/im";
 import { IoHomeOutline } from "react-icons/io5";
 import {
   MdManageHistory,
-  MdOutlineAnalytics,
   MdOutlinePayment,
   MdPlaylistAddCheck,
   MdPostAdd,
@@ -89,14 +88,6 @@ const Dashboard = () => {
                       className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
                       <MdOutlinePayment /> All Payments
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/dashboard/admin-analytics"
-                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
-                    >
-                      <MdOutlineAnalytics /> Admin Analytics
                     </NavLink>
                   </li>
                 </>

@@ -24,8 +24,8 @@ function JobDetails() {
   const {
     recruiterDetails: recruiter,
     isLoading: recruitersDetailsLoading,
-    // isError: recruitersDetailsIsError,
-    // error: recruitersDetailserror,
+    isError: recruitersDetailsIsError,
+    error: recruitersDetailserror,
   } = useSelector((state) => state.recruiterDetails);
 
   const {
@@ -51,7 +51,7 @@ function JobDetails() {
   }, [dispatch, id]);
 
   let content = null;
-  if (isLoading && recruitersDetailsLoading) content = <Loading />;
+  if (isLoading) content = <Loading />;
 
   if (!isLoading && isError)
     content = <div className="col-span-12">{error}</div>;

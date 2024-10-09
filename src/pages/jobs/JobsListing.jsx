@@ -23,6 +23,8 @@ function JobsListing() {
   const { JobTitle, AllCategory, Location } = useSelector(
     (state) => state.filters
   );
+
+  console.log(Location, AllCategory);
   useEffect(() => {
     const filters = {
       category: AllCategory,

@@ -94,7 +94,7 @@ const UsersManagementTable = () => {
             </tr>
           </thead>
           <tbody>
-            {usersData.users.map((user) => (
+            {usersData?.users.map((user) => (
               <tr key={user._id}>
                 <td>{user.name}</td>
                 <td>

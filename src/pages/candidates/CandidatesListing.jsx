@@ -57,7 +57,7 @@ function CandidatesListing() {
 
         {/* Pagination Controls */}
         <div className="flex justify-center mt-4">
-          {/* Pagination Component */}
+         
           <Pagination
             totalPages={totalPages}
             currentPage={currentPage}

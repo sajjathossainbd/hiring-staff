@@ -3,6 +3,8 @@ import axiosInstance from "../../utils/axios";
 import Swal from "sweetalert2";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../ui/Loading";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { CardPagination } from "../shared/CardPagination";
 
 const AllPaymentTable = () => {
   const navigate = useNavigate();
@@ -46,12 +48,27 @@ const AllPaymentTable = () => {
   const totalDocuments = paymentHistory.totalDocuments || 0;
   const totalPages = Math.ceil(totalDocuments / limit) || 1;
 
-  // Navigate to the next or previous page
-  const handlePageChange = (direction) => {
-    const newPage = direction === "next" ? currentPage + 1 : currentPage - 1;
-    if (newPage >= 1 && newPage <= totalPages) {
-      navigate(`/dashboard/all-payment-history/${newPage}`);
-    }
+
+  // delete payment history
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosInstance.delete(`/payment-history/${id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            Swal.fire("Deleted!", "Payment has been deleted.", "success");
+            refetch();
+          }
+        });
+      }
+    });
   };
 
   // Update payment status
@@ -64,7 +81,7 @@ const AllPaymentTable = () => {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Payment Approved",
+          title: "Payment Status Updated",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -98,6 +115,7 @@ const AllPaymentTable = () => {
               <th>Payment Method</th>
               <th>Transaction Id</th>
               <th>Status</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -124,31 +142,24 @@ const AllPaymentTable = () => {
                     <option value="approved">Approved</option>
                     <option value="pending">Pending</option>
                   </select>
+                </td><td>
+                  <button
+                    onClick={() => handleDelete(payment?._id)}
+                    className="btn rounded-full text-red-600 hover:text-white hover:bg-blue"
+                  >
+                    <RiDeleteBin6Line />
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
         {/* Pagination Controls */}
-        <div className="join mx-auto">
-          <button
-            className="join-item btn"
-            onClick={() => handlePageChange("previous")}
-            disabled={currentPage <= 1}
-            aria-label="Previous Page"
-          >
-            «
-          </button>
-          <button className="join-item btn disabled">{`${currentPage} of ${totalPages}`}</button>
-          <button
-            className="join-item btn"
-            onClick={() => handlePageChange("next")}
-            disabled={currentPage >= totalPages}
-            aria-label="Next Page"
-          >
-            »
-          </button>
-        </div>
+        <CardPagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={(newPage) => navigate(`/dashboard/all-payment-history/${newPage}`)}
+        />
       </div>
     </div>
   );

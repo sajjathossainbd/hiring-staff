@@ -6,13 +6,15 @@ const initialState = {
   isLoading: false,
   isError: false,
   error: "",
+  totalPages: 0,
+  currentPage: 1,
 };
 
 // async thunk
 export const fetchCandidatesListing = createAsyncThunk(
   "candidatesListing/fetchCandidatesListing",
-  async () => {
-    const candidatesListing = await getCandidatesListing();
+  async (filters) => {
+    const candidatesListing = await getCandidatesListing(filters);
     return candidatesListing;
   }
 );
@@ -29,6 +31,8 @@ const CandidatesListingSlice = createSlice({
       .addCase(fetchCandidatesListing.fulfilled, (state, action) => {
         state.isLoading = false;
         state.candidatesListing = action.payload;
+        state.totalPages = action.payload.totalPages;
+        state.currentPage = action.payload.currentPage;
       })
       .addCase(fetchCandidatesListing.rejected, (state, action) => {
         state.isLoading = false;

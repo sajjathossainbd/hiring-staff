@@ -1,26 +1,84 @@
+import { useState } from "react";
 import { BsFillSendFill } from "react-icons/bs";
 import PrimaryButton from "../../../components/shared/PrimaryButton";
+import ResumeTemplate from "../../../components/dashboard/ResumeTemplate";
 
 const MyResume = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    birth: "",
+    address: "",
+    gender: "",
+    description: "",
+    education: { title: "", degree: "", institute: "", year: "" },
+    skill: { title: "", experience: "" },
+    socialLinks: { facebook: "", twitter: "", linkedin: "", github: "" },
+  });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleEducationChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      education: { ...prevData.education, [name]: value },
+    }));
+  };
+
+  const handleSkillChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      skill: { ...prevData.skill, [name]: value },
+    }));
+  };
+
+  const handleSocialChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      socialLinks: { ...prevData.socialLinks, [name]: value },
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
+  if (submitted) {
+    return <ResumeTemplate data={formData} />;
+  }
+
   return (
     <div>
       <h3>My Resume</h3>
 
-      {/* Resume */}
       <div className="mt-8">
-        <form>
+        <form onSubmit={handleSubmit}>
           <h4>Basic Information</h4>
-          {/* name and emal */}
+          {/* name and email */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
             <div className="mb-4">
               <label htmlFor="name" className="block text-gray font-bold mb-2">
                 Name
               </label>
               <input
+                name="name"
                 id="name"
                 type="text"
                 placeholder="Name"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+                onChange={handleChange}
               />
             </div>
             <div className="mb-4">
@@ -28,10 +86,12 @@ const MyResume = () => {
                 Email
               </label>
               <input
+                name="email"
                 id="email"
                 type="email"
                 placeholder="Email Address"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -42,10 +102,12 @@ const MyResume = () => {
                 Date of Birth
               </label>
               <input
+                name="birth"
                 id="birth"
-                type="number"
+                type="text"
                 placeholder="Date of Birth"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+                onChange={handleChange}
               />
             </div>
             <div className="mb-4">
@@ -53,39 +115,39 @@ const MyResume = () => {
                 Phone
               </label>
               <input
+                name="phone"
                 id="phone"
-                type="phone"
+                type="text"
                 placeholder="+880-"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+                onChange={handleChange}
               />
             </div>
           </div>
           {/* address and gender */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div className="mb-4">
-              <label
-                htmlFor="address"
-                className="block text-gray font-bold mb-2"
-              >
+              <label htmlFor="address" className="block text-gray font-bold mb-2">
                 Address
               </label>
               <input
+                name="address"
                 id="address"
                 type="text"
-                placeholder="Date of Birth"
+                placeholder="Address"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+                onChange={handleChange}
               />
             </div>
             <div className="mb-4">
-              <label
-                htmlFor="gender"
-                className="block text-gray font-bold mb-2"
-              >
+              <label htmlFor="gender" className="block text-gray font-bold mb-2">
                 Gender
               </label>
               <select
+                name="gender"
                 id="gender"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+                onChange={handleChange}
               >
                 <option value="" disabled selected>
                   Select your gender
@@ -98,19 +160,16 @@ const MyResume = () => {
           </div>
           {/* description */}
           <div className="mb-4">
-            <label
-              htmlFor="description"
-              className="block text-gray font-bold mb-2"
-            >
+            <label htmlFor="description" className="block text-gray font-bold mb-2">
               Description
             </label>
-
             <textarea
+              name="description"
               id="description"
-              type="text"
               rows="5"
               placeholder="Short description about you.."
               className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+              onChange={handleChange}
             />
           </div>
 
@@ -118,45 +177,45 @@ const MyResume = () => {
           {/* title and degree */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 mt-2">
             <div className="mb-4">
-              <label htmlFor="title" className="block text-gray font-bold mb-2">
+              <label htmlFor="educationTitle" className="block text-gray font-bold mb-2">
                 Title
               </label>
               <input
-                id="Title"
+                name="title"
+                id="educationTitle"
                 type="text"
                 placeholder="Education title"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+                onChange={handleEducationChange}
               />
             </div>
             <div className="mb-4">
-              <label
-                htmlFor="degree"
-                className="block text-gray font-bold mb-2"
-              >
+              <label htmlFor="degree" className="block text-gray font-bold mb-2">
                 Degree
               </label>
               <input
+                name="degree"
                 id="degree"
                 type="text"
                 placeholder="Degree"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+                onChange={handleEducationChange}
               />
             </div>
           </div>
           {/* institute and year */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div className="mb-4">
-              <label
-                htmlFor="institute"
-                className="block text-gray font-bold mb-2"
-              >
+              <label htmlFor="institute" className="block text-gray font-bold mb-2">
                 Institute
               </label>
               <input
+                name="institute"
                 id="institute"
                 type="text"
                 placeholder="Institute"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+                onChange={handleEducationChange}
               />
             </div>
             <div className="mb-4">
@@ -164,96 +223,102 @@ const MyResume = () => {
                 Year
               </label>
               <input
+                name="year"
                 id="year"
                 type="text"
                 placeholder="Year"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+                onChange={handleEducationChange}
               />
             </div>
           </div>
 
           <h4>Skill:</h4>
-          {/* title and exprrience */}
+          {/* title and experience */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 mt-2">
             <div className="mb-4">
-              <label htmlFor="title" className="block text-gray font-bold mb-2">
+              <label htmlFor="skillTitle" className="block text-gray font-bold mb-2">
                 Title
               </label>
               <input
-                id="Title"
+                name="title"
+                id="skillTitle"
                 type="text"
-                placeholder="Title"
+                placeholder="Skill Title"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+                onChange={handleSkillChange}
               />
             </div>
             <div className="mb-4">
-              <label
-                htmlFor="experience"
-                className="block text-gray font-bold mb-2"
-              >
+              <label htmlFor="experience" className="block text-gray font-bold mb-2">
                 Experience
               </label>
               <input
+                name="experience"
                 id="experience"
                 type="text"
-                placeholder="Experience"
+                placeholder="Experience Level"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+                onChange={handleSkillChange}
               />
             </div>
           </div>
+
           <h4>Social Links:</h4>
-          {/* social */}
+          {/* Social Links */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 mt-2">
             <div className="mb-4">
-              <label htmlFor="fb" className="block text-gray font-bold mb-2">
+              <label htmlFor="facebook" className="block text-gray font-bold mb-2">
                 Facebook URL
               </label>
               <input
-                id="fb"
+                name="facebook"
+                id="facebook"
                 type="text"
                 placeholder="Facebook URL"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+                onChange={handleSocialChange}
               />
             </div>
             <div className="mb-4">
-              <label
-                htmlFor="twitter"
-                className="block text-gray font-bold mb-2"
-              >
+              <label htmlFor="twitter" className="block text-gray font-bold mb-2">
                 Twitter URL
               </label>
               <input
+                name="twitter"
                 id="twitter"
                 type="text"
                 placeholder="Twitter URL"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+                onChange={handleSocialChange}
               />
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div className="mb-4">
-              <label htmlFor="fb" className="block text-gray font-bold mb-2">
-                Linkedin URL
+              <label htmlFor="linkedin" className="block text-gray font-bold mb-2">
+                LinkedIn URL
               </label>
               <input
+                name="linkedin"
                 id="linkedin"
                 type="text"
-                placeholder="Linkedin URL"
+                placeholder="LinkedIn URL"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+                onChange={handleSocialChange}
               />
             </div>
             <div className="mb-4">
-              <label
-                htmlFor="github"
-                className="block text-gray font-bold mb-2"
-              >
+              <label htmlFor="github" className="block text-gray font-bold mb-2">
                 GitHub URL
               </label>
               <input
+                name="github"
                 id="github"
                 type="text"
-                placeholder="GItHub URL"
+                placeholder="GitHub URL"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+                onChange={handleSocialChange}
               />
             </div>
           </div>
@@ -261,7 +326,7 @@ const MyResume = () => {
           <PrimaryButton
             title={"Submit Now"}
             icon={<BsFillSendFill />}
-          ></PrimaryButton>
+          />
         </form>
       </div>
     </div>

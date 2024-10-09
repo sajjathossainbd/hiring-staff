@@ -29,20 +29,18 @@ const Register = () => {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", "ml_default");
-    formData.append("cloud_name", import.meta.env.VITE_CLOUDINARY_API_KEY);
+    formData.append("cloud_name", import.meta.env.VITE_CLOUD_NAME);
 
     setIsUploading(true);
     try {
       const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/${
-          import.meta.env.VITE_CLOUDINARY_API_KEY
-        }/image/upload`,
+        `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUD_NAME}/image/upload`,
         formData
       );
       setImageUrl(response.data.secure_url);
-      setIsUploading(false);
     } catch (error) {
       console.error("Image upload failed", error);
+    } finally {
       setIsUploading(false);
     }
   };
@@ -66,7 +64,8 @@ const Register = () => {
       })
         .then(() => {
           axiosInstance.post("/users", userInfo).then((res) => {
-            if (res.data.insertedId) {
+            console.log(res.data);
+            if (res.data.insertId) {
               toast.success("Successfully registered!");
               navigate(location?.state ? location.state : "/");
             }
@@ -179,7 +178,7 @@ const Register = () => {
               <img
                 src={imageUrl}
                 alt="Uploaded"
-                className="mt-2 w-16 h-20 rounded"
+                className="mt-2 w-20 rounded"
               />
             )}
           </div>

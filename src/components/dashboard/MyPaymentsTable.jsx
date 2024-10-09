@@ -9,7 +9,7 @@ const MyPaymentsTable = ({ data }) => {
             <h5>My Payments</h5>
             <hr className="my-6 text-lightGray" />
             {/* table */}
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto lg:h-[550px]">
                 <table className="table text-sm">
                     {/* head */}
                     <thead>

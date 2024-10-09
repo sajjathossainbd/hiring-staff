@@ -1,11 +1,15 @@
-import { useParams } from "react-router-dom";
-
+import { ScrollRestoration, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchJobDetails } from "../../features/jobs/jobsDetails/jobDetailsSlice";
 import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
-import { CiBadgeDollar } from "react-icons/ci";
+import { GoDotFill } from "react-icons/go";
+import { CiLocationOn } from "react-icons/ci";
+import { FaBookmark } from "react-icons/fa";
+import { FiDollarSign } from "react-icons/fi";
+import SimilarJobs from "../../components/jobs/SimilarJobs";
+import { fetchRecruiterDetails } from "../../features/recruiters/recruiterDetails/recruiterDetailsSlice";
 function JobDetails() {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -16,15 +20,19 @@ function JobDetails() {
     isError,
     error,
   } = useSelector((state) => state.jobDetails);
+  const { recruiterDetails: recruiter } = useSelector(
+    (state) => state.recruiterDetails
+  );
+
   const {
-    description,
+    description = [],
     job_type,
     job_location,
     postedDate,
-    requirements,
-    responsibilities,
+    requirements = [],
+    responsibilities = [],
     education,
-    tags,
+    tags = [],
     jobTitle,
     company_email,
     min_salary,
@@ -32,9 +40,13 @@ function JobDetails() {
     lastDateToApply,
   } = job || {};
 
+  const { name, logo, location = {}, company_id } = recruiter || {};
   useEffect(() => {
     dispatch(fetchJobDetails(id));
   }, [dispatch, id]);
+  useEffect(() => {
+    dispatch(fetchRecruiterDetails(company_id));
+  }, [dispatch, company_id]);
 
   let content = null;
   if (isLoading) content = <Loading />;
@@ -49,88 +61,139 @@ function JobDetails() {
   if (!isLoading && !isError && job?._id) {
     content = (
       <>
-        <div className="container">
-          {content}
-
-          {/* update dynamic date */}
-          <div>
-            {/* <img
-              className="lg:h-[400px] rounded-3xl object-cover w-full mb-10 overflow-hidden"
-              src={image}
-              alt={position}
-            /> */}
-            <div className="flex lg:flex-row flex-col gap-10 dark:text-white">
-              <div className="lg:w-8/12 w-full">
-                <h3 className="pt-4 pb-2">{jobTitle}</h3>
-                <div className="flex gap-16 text-sm">
-                  <p>Type: {job_type}</p>
-                  <p>Posted: {postedDate}</p>
-                </div>
-                <hr className="border-0 h-px bg-lightGray mt-3 mb-12" />
-                {/* <h4 className="pt-4 pb-2">{`Welcome to the ${company}`}</h4> */}
-                {description.map((des, index) => {
-                  return <span key={index}>{des}</span>;
-                })}
-                <h4 className="pt-4 pb-2">Ideal Candidate Profile</h4>
-                <ul>
-                  {requirements.map((req, index) => {
-                    return <li key={index}>{req}</li>;
-                  })}
-                </ul>
-                <h4 className="pt-4 pb-2">Key Responsibilities</h4>
-                <ul>
-                  {responsibilities.map((respon, index) => {
-                    return <li key={index}>{respon}</li>;
-                  })}
-                </ul>
-                <h4 className="pt-4 pb-2">Salary</h4>
-                <p className="flex gap-x-1 items-center">
-                  <CiBadgeDollar /> ${min_salary} - {max_salary}
-                </p>
-                <h4 className="pt-4 pb-2">Last Date To Apply</h4>
-                <p>{lastDateToApply}</p>
-                <h4 className="pt-4 pb-2">Job Location</h4>
-                <p>{job_location}</p>
-                <h4 className="pt-4 pb-2">Key Education</h4>
-                <p>{education}</p>
-                <h4 className="pt-4 pb-2">Contact Us</h4>
-                <p>
-                  Contact Us For any Query{" "}
-                  <span className="text-blue hover:border-b">
-                    {company_email}
-                  </span>
-                </p>
-                <p className="mt-10">
-                  Join us in shaping the future of digital design and enhancing
-                  user experiences at Jthemes!
-                </p>
-                <div className="mt-4 md:flex gap-x-2">
-                  Tags:{" "}
-                  {tags.map((tag, index) => (
-                    <div
-                      key={index}
-                      className="badge p-4 badge-neutral badge-outline md:m-0 m-1"
-                    >
-                      {tag}
+        <div className="lg:flex gap-16 dark:text-white">
+          <div className="lg:w-2/3 w-full">
+            <div className="lg:flex justify-between">
+              <div>
+                <h3 className="mb-5">{jobTitle}</h3>
+                <div className="flex flex-col lg:flex-row items-center gap-2">
+                  <img
+                    className="h-20 w-auto object-cover rounded-full"
+                    src={logo}
+                    alt={name}
+                  />
+                  <div className="flex flex-col gap-2">
+                    <div className="flex lg:flex-row flex-col items-center gap-x-2">
+                      <span className="text-blue font-medium">{name}</span>
+                      <GoDotFill className="text-[8px] text-graylg:block hidden" />
+                      <div className="flex items-center gap-x-1">
+                        <CiLocationOn />
+                        <span>
+                          {location.city} , {location.country}
+                        </span>
+                      </div>
                     </div>
-                  ))}
+                    <div className="flex lg:justify-start justify-center gap-2 mt-1">
+                      <span className="px-2 py-1 dark:bg-blue bg-bgLightWhite text-14 font-medium rounded-md">
+                        {job_type}
+                      </span>
+                      <span className="px-2 py-1 dark:bg-blue bg-bgLightWhite text-14 font-medium rounded-md">
+                        {job_location}
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              <div className="lg:w-4/12 flex flex-col gap-10 w-full">
-                {/* Similar Jobs */}
-                <div className="border border-lightGray p-6 rounded-xl">
-                  <h4 className="pb-7">Similar Jobs</h4>
-                  {/*  */}
+              <div>
+                <div className="flex flex-col items-center lg:flex-row gap-x-2">
+                  <button className="btn btn-primary bg-blue text-white font-medium px-6 min-h-[2.8rem] h-[2.8rem] rounded-xl my-3">
+                    Apply Now
+                  </button>
+                  <button className="btn btn-primary btn-outline min-h-[2.8rem] h-[2.8rem] px-3 border-bgDeepBlue text-blue dark:text-white rounded-xl text-lg">
+                    <FaBookmark />
+                  </button>
+                </div>
+                <div className="mt-3">
+                  <p className="lg:text-right text-14 font-medium">
+                    <span className="font-bold">Posted Date :</span>{" "}
+                    {postedDate}
+                  </p>
+                  <p className="lg:text-right text-14 font-medium">
+                    <span className="font-bold">Deadline :</span>{" "}
+                    {lastDateToApply}
+                  </p>
                 </div>
               </div>
             </div>
+            <div className="mt-7">
+              <h5 className="mb-2">About this role</h5>
+              {description.map((descrip, index) => (
+                <span key={index}>{descrip}</span>
+              ))}
+            </div>
+            <div className="mt-7">
+              <h5 className="mb-2">Requirement</h5>
+              <ul>
+                {requirements.map((requirement, index) => (
+                  <li className="flex items-center gap-x-1" key={index}>
+                    <GoDotFill className="text-[10px] text-gray" />
+                    {requirement}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="mt-7">
+              <h5 className="mb-2">Responsibility</h5>
+              <ul>
+                {responsibilities.map((responsibility, index) => (
+                  <li key={index} className="flex items-center gap-x-1">
+                    <GoDotFill className="text-[10px] text-gray" />
+                    {responsibility}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="mt-7">
+              <h5 className="mb-2">Education</h5>
+              <p className="flex items-center gap-x-1">
+                <GoDotFill className="text-[10px] text-gray" />
+                {education}
+              </p>
+            </div>
+            <div className="mt-7">
+              <h5 className="mb-2">Salary</h5>
+              <p className="flex items-center">
+                <FiDollarSign className="text-lg text-gray dark:text-white" />
+                {min_salary} -{" "}
+                <FiDollarSign className="text-lg text-gray dark:text-white" />
+                {max_salary}
+              </p>
+            </div>
+            <div className="bg-bgLightBlue dark:bg-darkBlue  p-8 rounded-md mt-10">
+              <div className="text-14 ">
+                Tags :{" "}
+                {tags.map((tag, index) => (
+                  <p
+                    className="px-2 bg-bgDeepBlue dark:bg-blue inline-block mr-2 lg:mb-0 mb-2 rounded-md"
+                    key={index}
+                  >
+                    {tag}
+                  </p>
+                ))}
+              </div>
+              <div className="pt-4">
+                <p className="text-14">
+                  Have a query? Drop us a line at{" "}
+                  <span className="font-medium text-blue hover:border-b text-base">
+                    {company_email}
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="lg:w-1/3 w-full flex flex-col gap-5">
+            <h4 className="mb-4">Similar Jobs</h4>
+            <SimilarJobs />
+            <SimilarJobs />
+            <SimilarJobs />
+            <SimilarJobs />
           </div>
         </div>
+        <ScrollRestoration />
       </>
     );
   }
-  return <>{content}</>;
+  return <div className="container">{content}</div>;
 }
 
 export default JobDetails;

@@ -1,7 +1,6 @@
 import AdminAnalytics from "./forAdmin/AdminAnalytics";
 import useCurrentUser from "../../hooks/useCurrentUser";
 import CandidatesAnalytics from "./forCandidates/CandidatesAnalytics";
-import RecruitersAnalytics from "./forRecruiter/RecruitersAnalytics";
 
 const DashboardMain = () => {
 
@@ -12,7 +11,7 @@ const DashboardMain = () => {
     }
 
     if (currentUser?.role === 'recruiter') {
-        return <RecruitersAnalytics />
+        return  <CandidatesAnalytics />
     }
 
     if (currentUser?.role === 'candidate') {

@@ -65,8 +65,6 @@ function CandidatesListing() {
     );
   }
 
-  // console.log(candidates);
-
   return (
     <div className="container">
       <Helmet>

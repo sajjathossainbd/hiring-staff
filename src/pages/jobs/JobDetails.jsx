@@ -35,18 +35,17 @@ function JobDetails() {
     tags = [],
     jobTitle,
     company_email,
+    company_id: companyId,
     min_salary,
     max_salary,
     lastDateToApply,
   } = job || {};
 
-  const { name, logo, location = {}, company_id } = recruiter || {};
+  const { name, logo, location = {} } = recruiter || {};
   useEffect(() => {
     dispatch(fetchJobDetails(id));
-  }, [dispatch, id]);
-  useEffect(() => {
-    dispatch(fetchRecruiterDetails(company_id));
-  }, [dispatch, company_id]);
+    dispatch(fetchRecruiterDetails(companyId));
+  }, [dispatch, id, companyId]);
 
   let content = null;
   if (isLoading) content = <Loading />;
@@ -182,11 +181,61 @@ function JobDetails() {
             </div>
           </div>
           <div className="lg:w-1/3 w-full flex flex-col gap-5">
-            <h4 className="mb-4">Similar Jobs</h4>
-            <SimilarJobs />
-            <SimilarJobs />
-            <SimilarJobs />
-            <SimilarJobs />
+            <h4>Similar Jobs</h4>
+            <SimilarJobs
+              jobtitle="Backend Developer"
+              brandImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgvTeWRrJgLhsN_lEF4Rxrui-QIj2rpp08aA&s"
+              type="Part-time"
+              howManyDatesAgo="5"
+              company="EcoPower Tech"
+              city="Chittagong"
+              country="Bangladesh"
+              jobLocation="Hybrid"
+            />
+
+            <SimilarJobs
+              jobtitle="UI/UX Designer"
+              brandImage="https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/15/4a/b3/154ab355-8fe7-4875-73e5-d5866d364bf5/AppIcon-0-0-1x_U007ephone-0-0-85-220.png/512x512bb.jpg"
+              type="Freelance"
+              howManyDatesAgo="1"
+              company="Creative Solutions"
+              city="Sylhet"
+              country="Bangladesh"
+              jobLocation="On-site"
+            />
+
+            <SimilarJobs
+              jobtitle="Data Scientist"
+              brandImage="https://storage.googleapis.com/clean-finder-353810/$qkjniiWz1m1KFwWqceooH3EihTivYkC5DKS0BjQpVZi8Mlh0iidn98"
+              type="Contract"
+              howManyDatesAgo="7"
+              company="InnoData"
+              city="Dhaka"
+              country="Bangladesh"
+              jobLocation="On-site"
+            />
+
+            <SimilarJobs
+              jobtitle="Fullstack Developer"
+              brandImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA70aBkvx5IaAsyjlrr1u49qnqzTrwIY6-JA&s"
+              type="Full-time"
+              howManyDatesAgo="3"
+              company="TechXpert"
+              city="Rajshahi"
+              country="Bangladesh"
+              jobLocation="Remote"
+            />
+
+            <SimilarJobs
+              jobtitle="Project Manager"
+              brandImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4rgSTwQ9TL6SnSSNmeH7VQiEGf7a32Wu-1A&s"
+              type="Remote"
+              howManyDatesAgo="10"
+              company="BizTech Solutions"
+              city="Khulna"
+              country="Bangladesh"
+              jobLocation="Remote"
+            />
           </div>
         </div>
         <ScrollRestoration />

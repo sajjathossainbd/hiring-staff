@@ -10,6 +10,8 @@ body {
   font-family: "Plus Jakarta Sans", sans-serif;
   overflow-x: hidden;
 }
+
+
 /* for ratings */
 .rating {
   display: flex;

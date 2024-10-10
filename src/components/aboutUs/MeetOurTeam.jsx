@@ -1,8 +1,4 @@
 import TeamCard from "./TeamInfoCard";
-import Team3 from "./../../assets/home/team/team3.svg";
-import Team4 from "./../../assets/home/team/team4.svg";
-import Team5 from "./../../assets/home/team/team5.svg";
-import Team6 from "./../../assets/home/team/team6.svg";
 import SectionTitle from "../shared/SectionTitle";
 
 function MeetOurTeam() {
@@ -30,8 +26,8 @@ function MeetOurTeam() {
       linkedin: "https://www.linkedin.com/in/kawser-ferdous-safi/",
     },
     {
-      img: Team3,
-      name: "Michael Johnson",
+      img: "https://i.ibb.co.com/CmNZ8L6/aybu.jpg",
+      name: "Aybu Khan",
       role: "UX Designer",
       review: 4.8,
       location: "Austin, TX",
@@ -41,8 +37,8 @@ function MeetOurTeam() {
       linkedin: "",
     },
     {
-      img: Team4,
-      name: "Emily Davis",
+      img: "https://i.ibb.co.com/K6TYsBJ/israfil.jpg",
+      name: "Israfil Hossain",
       role: "Marketing Specialist",
       review: 4.6,
       location: "Los Angeles, CA",
@@ -52,8 +48,8 @@ function MeetOurTeam() {
       linkedin: "",
     },
     {
-      img: Team5,
-      name: "David Lee",
+      img: "https://i.ibb.co.com/gVtYqj5/mushfic.jpg",
+      name: "Mushfic Rahman",
       role: "Data Scientist",
       review: 4.9,
       location: "Chicago, IL",
@@ -63,8 +59,8 @@ function MeetOurTeam() {
       linkedin: "",
     },
     {
-      img: Team6,
-      name: "Sarah Wilson",
+      img: "https://i.ibb.co.com/6nZJcqv/elias.jpg",
+      name: "Elias Ebrahim",
       role: "DevOps Engineer",
       review: 4.3,
       location: "Seattle, WA",

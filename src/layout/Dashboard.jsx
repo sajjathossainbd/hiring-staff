@@ -18,6 +18,7 @@ import useCurrentUser from "../hooks/useCurrentUser";
 import useAuth from "../hooks/useAuth";
 import { IoIosLogOut } from "react-icons/io";
 import { HiOutlineBriefcase } from "react-icons/hi";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
   const { logOut } = useAuth();
@@ -32,6 +33,9 @@ const Dashboard = () => {
 
   return (
     <div className="flex lg:flex-row flex-col inter bg-gray-100">
+      <Helmet>
+        <title>Hiring Staff - Dashboard</title>
+      </Helmet>
       {/* Sidebar */}
       <div className="relative lg:w-64 w-full shadow-lg">
         <div className="drawer lg:drawer-open z-20">

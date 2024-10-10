@@ -34,7 +34,7 @@ function JobsListing() {
       limit,
     };
     dispatch(fetchJobsListing(filters));
-  }, [page]);
+  }, [AllCategory, JobTitle, Location, dispatch, page]);
 
   let content = null;
 

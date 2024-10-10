@@ -24,6 +24,7 @@ function JobDetails() {
     (state) => state.recruiterDetails
   );
 
+
   const {
     description = [],
     job_type,

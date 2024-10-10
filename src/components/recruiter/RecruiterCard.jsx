@@ -6,7 +6,7 @@ const RecruiterCard = ({ recruiter }) => {
   const { _id, name, logo, location } = recruiter || {};
 
   return (
-    <div className="w-full p-4 hover:-translate-y-1 transition duration-300 border-lightGray shadow-md rounded-lg mx-auto">
+    <div className="w-full p-4 border hover:-translate-y-1 transition duration-300 border-lightGray shadow-md rounded-lg mx-auto">
       <img src={logo} alt={name} className="w-auto h-20 mx-auto mb-4 pt-8" />
       <h4 className="font-semibold text-center text-darkBlue hover:text-blue">
         {name}

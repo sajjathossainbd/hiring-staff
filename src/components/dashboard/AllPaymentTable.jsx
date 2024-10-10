@@ -48,7 +48,6 @@ const AllPaymentTable = () => {
   const totalDocuments = paymentHistory.totalDocuments || 0;
   const totalPages = Math.ceil(totalDocuments / limit) || 1;
 
-
   // delete payment history
   const handleDelete = (id) => {
     Swal.fire({
@@ -142,7 +141,8 @@ const AllPaymentTable = () => {
                     <option value="approved">Approved</option>
                     <option value="pending">Pending</option>
                   </select>
-                </td><td>
+                </td>
+                <td>
                   <button
                     onClick={() => handleDelete(payment?._id)}
                     className="btn rounded-full text-red-600 hover:text-white hover:bg-blue"
@@ -158,7 +158,9 @@ const AllPaymentTable = () => {
         <CardPagination
           currentPage={currentPage}
           totalPages={totalPages}
-          onPageChange={(newPage) => navigate(`/dashboard/all-payment-history/${newPage}`)}
+          onPageChange={(newPage) =>
+            navigate(`/dashboard/all-payment-history/${newPage}`)
+          }
         />
       </div>
     </div>

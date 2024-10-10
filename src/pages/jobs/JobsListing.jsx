@@ -19,13 +19,12 @@ function JobsListing() {
     isLoading,
     isError,
   } = useSelector((state) => state.jobsListing);
- 
+
   // Fetch jobs
   const { JobTitle, AllCategory, Location } = useSelector(
     (state) => state.filters
   );
 
-  console.log(Location, AllCategory);
   useEffect(() => {
     const filters = {
       category: AllCategory,
@@ -71,7 +70,7 @@ function JobsListing() {
   };
   return (
     <>
-      <div classNzame="container flex flex-col justify-center">
+      <div className="container flex flex-col justify-center">
         {/* Jobs Banner */}
         <JobBanner totalJobs={totalJobs} />
 
@@ -82,7 +81,7 @@ function JobsListing() {
         {jobs?.jobs && (
           <div className="join mx-auto">
             <button
-              className="join-item btn"
+              className="join-item btn dark:bg-white"
               onClick={() => handlePageChange("previous")}
               disabled={currentPage <= 1}
               aria-label="Previous Page"
@@ -91,7 +90,7 @@ function JobsListing() {
             </button>
             <button className="join-item btn disabled">{`${currentPage} of ${totalPages}`}</button>
             <button
-              className="join-item btn"
+              className="join-item btn dark:bg-white"
               onClick={() => handlePageChange("next")}
               disabled={currentPage >= totalPages}
               aria-label="Next Page"

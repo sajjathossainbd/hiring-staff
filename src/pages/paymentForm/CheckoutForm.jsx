@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import axiosInstance from "../../utils/axios";
 
 const CheckoutForm = ({ price, category }) => {
-  console.log(price);
+
   const stripe = useStripe();
   const elements = useElements();
   const { currentUser } = useCurrentUser();
@@ -25,7 +25,6 @@ const CheckoutForm = ({ price, category }) => {
       axiosInstance
         .post("/create-payment-intent", { price })
         .then((res) => {
-          console.log("Payment Intent Response:", res.data); // Verify the response format
           if (res.data && res.data.clientSecret) {
             setClientSecret(res.data.clientSecret);
           } else {
@@ -97,7 +96,6 @@ const CheckoutForm = ({ price, category }) => {
           "/payment-history",
           paymentDetails
         );
-        console.log(res.data);
         if (res.data.insertedId) {
           Swal.fire({
             title: "Payment Complete",

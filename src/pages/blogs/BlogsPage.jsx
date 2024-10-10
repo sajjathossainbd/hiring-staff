@@ -49,7 +49,6 @@ function BlogsPage() {
       </div>
     );
   }
-  // console.log(blogs);
   return (
     <>
       <Helmet>

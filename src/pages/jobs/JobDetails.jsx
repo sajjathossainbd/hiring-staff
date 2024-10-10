@@ -10,6 +10,7 @@ import { FaBookmark } from "react-icons/fa";
 import { FiDollarSign } from "react-icons/fi";
 import SimilarJobs from "../../components/jobs/SimilarJobs";
 import { fetchRecruiterDetails } from "../../features/recruiters/recruiterDetails/recruiterDetailsSlice";
+import ApplyJob from "../../components/jobs/ApplyJob";
 function JobDetails() {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -95,9 +96,27 @@ function JobDetails() {
               </div>
               <div>
                 <div className="flex flex-col items-center lg:flex-row gap-x-2">
-                  <button className="btn btn-primary bg-blue text-white font-medium px-6 min-h-[2.8rem] h-[2.8rem] rounded-xl my-3">
+                  {/*modal for aplly job */}
+                  <button
+                    className="btn border-none btn-primary bg-blue text-white font-medium px-6 min-h-[2.8rem] h-[2.8rem] rounded-xl my-3"
+                    onClick={() =>
+                      document.getElementById("my_modal_3").showModal()
+                    }
+                  >
                     Apply Now
                   </button>
+                  <dialog id="my_modal_3" className="modal">
+                    <div className="modal-box max-w-xl">
+                      <form method="dialog">
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                          ✕
+                        </button>
+                      </form>
+                      <h3 className="font-bold text-lg">{jobTitle}</h3>
+                      <ApplyJob job={job} />
+                    </div>
+                  </dialog>
+
                   <button className="btn btn-primary btn-outline min-h-[2.8rem] h-[2.8rem] px-3 border-bgDeepBlue text-blue dark:text-white rounded-xl text-lg">
                     <FaBookmark />
                   </button>

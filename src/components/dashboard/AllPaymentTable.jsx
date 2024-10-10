@@ -119,7 +119,7 @@ const AllPaymentTable = () => {
             </tr>
           </thead>
           <tbody>
-            {paymentHistory?.map((payment) => (
+            {paymentHistory?.payments?.map((payment) => (
               <tr key={payment._id}>
                 <td>{payment?.name}</td>
                 <td>{payment?.email}</td>

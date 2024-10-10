@@ -17,12 +17,10 @@ function GetInTouch() {
         publicKey: '028PSjl2WRnGl2zgy',
       })
       .then(
-        (result) => {
-          console.log(result.text);
+        () => {
           toast.success('Email sent successfully!');
         },
-        (error) => {
-          console.log(error.text);
+        () => {
           toast.error('Failed to send email. Please try again.');
         }
       );

@@ -25,7 +25,6 @@ function JobsListing() {
     (state) => state.filters
   );
 
-  // console.log(Location, AllCategory);s
   useEffect(() => {
     const filters = {
       category: AllCategory,

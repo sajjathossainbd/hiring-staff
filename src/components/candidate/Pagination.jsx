@@ -14,7 +14,7 @@ function Pagination({ totalPages, currentPage, onPageChange }) {
   return (
     <div className="flex justify-center mt-4">
       <button
-        className={`join-item btn rounded-r-none ${
+        className={`join-item btn dark:bg-white rounded-r-none ${
           currentPage <= 1 ? "btn-disabled" : ""
         }`}
         onClick={() => handlePageChange(currentPage - 1)}
@@ -29,7 +29,7 @@ function Pagination({ totalPages, currentPage, onPageChange }) {
       </button>
 
       <button
-        className={`join-item btn rounded-l-none ${
+        className={`join-item btn dark:bg-white rounded-l-none ${
           currentPage >= totalPages ? "btn-disabled" : ""
         }`}
         onClick={() => handlePageChange(currentPage + 1)}

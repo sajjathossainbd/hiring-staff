@@ -65,7 +65,7 @@ function CandidatesListing() {
     );
   }
 
-  console.log(candidates);
+  // console.log(candidates);
 
   return (
     <div className="container">

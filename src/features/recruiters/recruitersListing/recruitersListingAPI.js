@@ -1,27 +1,25 @@
 import axios from "./../../../utils/axios";
 
-
-export const getRecruitersListing = async (params) => {
+export const getRecruitersListing = async (filters) => {
   const {
-    page = 1,
-    limit = 10,
-    search = '',
-    location = '',
-    industry = '',
-    organization = '',
-    teamSize = ''
-  } = params || {}; // Fallback to an empty object if params is undefined
-
-  const queryParams = new URLSearchParams({
+    search = "",
+    location = "",
+    industry = "",
+    numberOfEmployees = "",
     page,
     limit,
-    search,
-    location,
-    industry,
-    organization,
-    teamSize,
-  }).toString();
+  } = filters || {}; // Fallback to an empty object if params is undefined
 
-  const response = await axios.get(`/recruiters?${queryParams}`);
+  const response = await axios.get("/recruiters", {
+    params: {
+      search,
+      location,
+      industry,
+      numberOfEmployees,
+      page,
+      limit,
+    },
+  });
+
   return response.data;
 };

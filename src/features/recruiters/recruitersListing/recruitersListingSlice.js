@@ -7,13 +7,15 @@ const initialState = {
   isLoading: false,
   isError: false,
   error: "",
+  totalPages: 0,
+  currentPage: 1,
 };
 
 // Async thunk to fetch recruiters with parameters
 export const fetchRecruitersListing = createAsyncThunk(
   "recruitersListing/fetchRecruitersListing",
-  async (params) => {
-    const recruitersListing = await getRecruitersListing(params);
+  async (filters) => {
+    const recruitersListing = await getRecruitersListing(filters);
     return recruitersListing;
   }
 );

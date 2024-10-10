@@ -19,16 +19,17 @@ function MobileNavItems({ navLinks }) {
           data-aos="slide-right"
           data-aos-offset="200"
           data-aos-duration="700"
-          className="z-50 bg-blue dark:bg-white absolute left-0 top-10 flex w-[250px] flex-col rounded-lg text-base p-5 space-y-5"
+          className="z-50 bg-bgLightBlue dark:bg-blue absolute left-0 top-10 flex w-[250px] flex-col rounded-lg text-base p-5 space-y-5"
         >
           {navLinks.map(({ to, label }) => (
             <li key={to} className="group flex cursor-pointer flex-col">
               <NavLink
                 to={to}
                 className={({ isActive }) =>
-                  `font-medium ${isActive
-                    ? "text-white dark:border-white border-b-2 border-blue"
-                    : "text-darkBlue dark:text-lightText"
+                  `font-medium ${
+                    isActive
+                      ? "text-blue dark:border-white dark:text-white border-b-2 border-blue"
+                      : "text-darkBlue dark:text-lightText"
                   }`
                 }
               >

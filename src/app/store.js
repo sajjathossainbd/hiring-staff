@@ -9,15 +9,19 @@ import candidatesListingReducer from "../features/candidates/candidatesListing/c
 import candidateDetailsReducer from "../features/candidates/candidateDetails/candidateDetailsSlice";
 import blogsListingReducer from "../features/blogs/blogsListing/blogsListingSlice";
 import blogDetailsReducer from "../features/blogs/blogDetails/blogDetailsSlice";
-
+import filterReducer from "../features/jobs/jobsFilter/filterSlice";
+import jobCategoriesReducer from "../features/jobs/filterCollection/categories/jobCategoriesSlice";
+import jobLocationsReducer from "../features/jobs/filterCollection/location/jobLocationsSlice";
 const store = configureStore({
   reducer: {
     // Jobs
     jobsListing: jobsListingReducer,
+    jobLocations: jobLocationsReducer,
+    jobCategories: jobCategoriesReducer,
     jobDetails: jobDetailsReducer,
     similarJobs: similarReducer,
     jobsFilter: jobsFilterReducer,
-
+    filters: filterReducer,
     // Recruiters
     recruitersListing: recruitersListingReducer,
     recruiterDetails: recruiterDetailsReducer,

@@ -29,7 +29,6 @@ import AllApplicants from "../pages/dashboard/forRecruiter/AllApplicants";
 import Shortlist from "../pages/dashboard/forRecruiter/Shortlist";
 import DashboardMain from "../pages/dashboard/DashboardMain";
 import ManageUsers from "../pages/dashboard/forAdmin/ManageUsers";
-import AdminAnalytics from "../pages/dashboard/forAdmin/AdminAnalytics";
 import PrivateRoute from "./PrivateRoute";
 import PaymentForm from "../pages/paymentForm/PaymentForm";
 import AllPaymentHistory from "../pages/dashboard/forAdmin/AllPaymentHistory";
@@ -67,9 +66,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/jobs-listing/:page",
+        element: <JobsListing />,
+      },
+      {
         path: "/jobs-listing",
         element: <JobsListing />,
       },
+
       {
         path: "/job-details/:id",
         element: <JobDetails />,
@@ -84,6 +88,10 @@ const router = createBrowserRouter([
       },
       {
         path: "/candidates-listing",
+        element: <CandidatesListing />,
+      },
+      {
+        path: "/candidates-listing/:page",
         element: <CandidatesListing />,
       },
       {
@@ -140,10 +148,6 @@ const router = createBrowserRouter([
       },
 
       // For admin
-      {
-        path: "admin-analytics",
-        element: <AdminAnalytics />,
-      },
       {
         path: "manage-users",
         element: <ManageUsers />,

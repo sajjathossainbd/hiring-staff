@@ -15,6 +15,7 @@ const MyProfile = () => {
     const updatedData = {
       name: data.name || currentUser?.name,
       image: data.imageUrl || currentUser?.image,
+      coverImage: data.coverImageUrl || currentUser?.coverImage,
       role: data.role || currentUser?.role,
       about: data.about || currentUser?.about,
       phone: data.phone || currentUser?.phone,
@@ -51,12 +52,16 @@ const MyProfile = () => {
 
       <div className="mt-6">
         {/* Profile photo */}
-        <div className="flex flex-col md:flex-row items-center gap-3">
-          <div>
+        <div className="flex flex-col items-center">
+          <div className="relative w-full h-36 md:h-44 lg:h-60 xl:h-72 bg-cover bg-center border-4 border-bgDeepBlue rounded-xl" style={{ backgroundImage: `url(${currentUser?.coverImage || 'https://i.ibb.co.com/mBcjQj6/download-1.jpg'})` }}>
+            <div className="absolute inset-0 bg-black opacity-40 rounded-xl"></div>
+          </div>
+
+          <div className="mt-[-40px] lg:mt-[-100px] md:mt-[-70px] -left-20 z-50">
             <img
               src={currentUser?.image || user?.photoURL}
               alt="Profile Photo"
-              className="rounded-md xl:size-96 size-72 object-cover"
+              className="rounded-full xl:h-52 lg:h-44 md:h-32 h-20 xl:w-52 lg:w-44 md:w-32 w-20 object-cover border-4 border-bgDeepBlue"
             />
           </div>
         </div>
@@ -120,13 +125,28 @@ const MyProfile = () => {
                 htmlFor="imageUrl"
                 className="block text-gray font-bold mb-2"
               >
-                Image URL
+                Profile Image URL
               </label>
               <input
                 id="imageUrl"
                 type="url"
                 placeholder={currentUser?.image || user?.photoURL}
                 {...register("imageUrl")}
+                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                htmlFor="imageUrl"
+                className="block text-gray font-bold mb-2"
+              >
+                Cover Image URL
+              </label>
+              <input
+                id="imageUrl"
+                type="url"
+                placeholder={currentUser?.coverImage}
+                {...register("coverImageUrl")}
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
               />
             </div>

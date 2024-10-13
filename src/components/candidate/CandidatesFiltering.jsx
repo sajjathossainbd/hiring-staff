@@ -7,8 +7,9 @@ import {
 import { useDispatch } from "react-redux";
 import { fetchCandidatesListing } from "../../features/candidates/candidatesListing/candidatesListingSlice";
 import axiosInstance from "../../utils/axios";
-import FilterSidePanel from "./FilterSidePanel";
+
 import { PiLineVerticalThin } from "react-icons/pi";
+import FilterSidePanel from "./FilterSidePanel";
 
 function CandidatesFiltering() {
   const dispatch = useDispatch();

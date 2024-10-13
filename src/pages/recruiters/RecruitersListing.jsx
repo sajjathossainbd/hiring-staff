@@ -19,19 +19,17 @@ function RecruitersListing() {
     isLoading,
     isError,
     error,
-    totalPages,
-    currentPage,
+    // totalPages,
+    // currentPage,
   } = useSelector((state) => state.recruitersListing);
 
   useEffect(() => {
     dispatch(fetchRecruitersListing(filters));
   }, [dispatch, filters]);
-  const handleFilterChange = (newFilters) => {
-    setFilters({ ...newFilters, page: 1 });
-  };
-  const handlePageChange = (newPage) => {
-    setFilters((prev) => ({ ...prev, page: newPage }));
-  };
+ 
+  // const handlePageChange = (newPage) => {
+  //   setFilters((prev) => ({ ...prev, page: newPage }));
+  // };
 
   let content = null;
 
@@ -54,7 +52,7 @@ function RecruitersListing() {
         </div>
 
         {/* Pagination Controls */}
-        <div className="flex justify-center mt-4">
+        {/* <div className="flex justify-center mt-4">
           {Array.from({ length: totalPages }, (_, index) => (
             <button
               key={index + 1}
@@ -68,7 +66,7 @@ function RecruitersListing() {
               {index + 1}
             </button>
           ))}
-        </div>
+        </div> */}
       </div>
     );
     
@@ -88,7 +86,7 @@ function RecruitersListing() {
 
         {/* All filtering options */}
         <div>
-          <Filter onFilterChange={handleFilterChange} />
+        <Filter setFilters={setFilters} />
         </div>
       </div>
 

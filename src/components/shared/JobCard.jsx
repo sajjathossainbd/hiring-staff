@@ -17,7 +17,7 @@ function JobCard({ job }) {
     job_location,
   } = job || {};
 
-  console.log(job);
+  // console.log(job);
 
   return (
     <div className="rounded-lg border border-[#e2e5ef] hover:-translate-y-1 hover:bg-[white] transition duration-300 bg-[#F8FAFF] dark:bg-darkBlue">

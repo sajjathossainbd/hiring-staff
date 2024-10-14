@@ -1,7 +1,4 @@
-import {
-  FaMapMarkerAlt,
-  FaTrash,
-} from "react-icons/fa";
+import { FaMapMarkerAlt, FaTrash } from "react-icons/fa";
 import { FaWarehouse } from "react-icons/fa6";
 import axiosInstance from "../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
@@ -11,37 +8,32 @@ import Swal from "sweetalert2";
 // import { GoBookmark } from "react-icons/go";
 
 const AppliedJobs = () => {
-
   const { currentUser } = useCurrentUser();
+   
 
-  const { data: jobs = [], isLoading, error, refetch } = useQuery({
-    queryKey: ['jobs'],
+  const userId = currentUser?._id;
+
+  const {
+    data: appliedJobs = [],
+    isLoading,
+    error,
+    refetch,
+  } = useQuery({
+    queryKey: ["appliedJobs", userId],
     queryFn: async () => {
-      const res = await axiosInstance.get("/jobs");
+      const res = await axiosInstance.get(`/jobs/applied-jobs/${userId}`);
       return res.data;
     },
+    enabled: !!userId,
   });
-
-  const filterJobs = (jobs) => {
-
-    if (!currentUser || !currentUser.email) {
-      return [];
-    }
-
-    return jobs?.jobs?.filter((job) =>
-      job.appliers && job.appliers.some((applicant) => applicant.email === currentUser.email)
-    );
-  };
-
-  // Filtered applied jobs
-  const appliedJobs = filterJobs(jobs);
+ 
 
   if (isLoading) {
     return <Loading />;
   }
 
   if (error) {
-    return <p>Error loading jobs: {error.message}</p>;
+    return <p>Error loading jobs: {error.message} || No Applied Jobs</p>;
   }
 
   const handleDelete = async (id) => {
@@ -56,36 +48,42 @@ const AppliedJobs = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await axiosInstance.delete(`/jobs/applications/delete/${id}`, {
+          const res = await axiosInstance.delete("/jobs/applied-jobs/delete", {
             data: { email: currentUser?.email },
           });
+        
 
-          if (res.data.modifiedCount > 0) {
-            Swal.fire("Deleted!", "Your application has been deleted.", "success");
+          if (res.data.deletedCount === 1) {
+            Swal.fire(
+              "Deleted!",
+              "Your application has been deleted.",
+              "success"
+            );
             refetch();
           } else {
             Swal.fire("Error", "No application found to delete.", "error");
           }
-
         } catch (error) {
           console.error("Failed to delete application:", error);
-          Swal.fire("Error", "Failed to delete your application. Please try again.", "error");
+          Swal.fire(
+            "Error",
+            "Failed to delete your application. Please try again.",
+            "error"
+          );
         }
       }
     });
   };
 
-
-
   return (
     <div>
       <h3>My Applied jobs</h3>
 
-      <div className="grid gap-3 grid-cols-1 md:grid-cols-2 mt-6">
+      <div className="grid gap-3 grid-cols-1 md:grid-cols-3 mt-6">
         {appliedJobs?.map((job, idx) => (
           <div
             key={idx}
-            className=" shadow-md bg-bgLightBlue hover:-translate-y-1 duration-200 rounded-lg p-6 "
+            className=" shadow-md bg-bgLightBlue hover:-translate-y-1 duration-200 rounded-lg p-6 overflow-auto"
           >
             <div>
               <div className="flex items-center">
@@ -97,16 +95,9 @@ const AppliedJobs = () => {
                 <div className="ml-3">
                   <h5 className="">{job.jobTitle}</h5>
                   <div className="flex flex-wrap text-12 text-gray">
-                    <span className="flex items-center mr-4 ">
+                    <span className="flex items-center mr-4 flex-wrap ">
                       <FaWarehouse className="mr-1 text-lightBlue" />{" "}
-                      {job.job_type}
-                    </span>
-                    <span className="flex items-center mr-4">
-                      <FaMapMarkerAlt className="mr-1 text-lightBlue" />{" "}
-                      {job.lastDateToApply}
-                    </span>
-                    <span>
-                      <span className="text-lightBlue">$ </span> {job.min_salary} - {job.max_salary}
+                      {job.company_email}
                     </span>
                   </div>
                 </div>
@@ -114,16 +105,13 @@ const AppliedJobs = () => {
             </div>
 
             <div className="mt-5 flex items-center justify-between">
-              <div className="text-12 flex space-x-2">
-                <span className="bg-red-100 text-red-500  px-3 py-1 rounded-full">
-                  {job?.tags[0]}
-                </span>
-                <span className="bg-green-100 text-green-500 px-3 py-1 rounded-full">
-                  {job?.tags[1]}
-                </span>
-                <span className="bg-lightText text-lightBlue px-3 py-1 rounded-full">
-                  {job?.tags[2]}
-                </span>
+              <div className=" ">
+                <p className="text-12">
+                  Applied on:
+                  <span className="bg-green-100 text-green-500 px-3 py-1 rounded-full">
+                    {job?.appliedDate}
+                  </span>
+                </p>
               </div>
 
               <div className="flex space-x-4 text-gray">

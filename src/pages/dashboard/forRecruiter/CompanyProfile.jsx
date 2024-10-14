@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TinnyHeading from "../shared/TinnyHeading";
 import DefaultInput from "../shared/DefaultInput";
 import PhoneInput from "react-phone-number-input";
@@ -7,8 +7,9 @@ import { FiSend } from "react-icons/fi";
 import "react-phone-number-input/style.css";
 import axiosInstance from "../../../utils/axios";
 import toast from "react-hot-toast";
+import useCurrentUser from "../../../hooks/useCurrentUser";
+import { useQuery } from "@tanstack/react-query";
 
-// Reusable Select Component
 const SelectInput = ({ label, name, options, onChange, value }) => (
   <div className="lg:col-span-3 md:col-span-6">
     <label className="font-semibold">{label}</label>
@@ -28,7 +29,18 @@ const SelectInput = ({ label, name, options, onChange, value }) => (
 );
 
 const CompanyProfile = () => {
+  const { currentUser } = useCurrentUser();
 
+  const { data: currentRecruiter } = useQuery({
+    queryKey: ["currentRecruiter", currentUser?.email],
+    queryFn: async () => {
+      const res = await axiosInstance.get(
+        `/recruiters/currentRecruiter/${currentUser?.email}`
+      );
+      return res.data;
+    },
+    enabled: !!currentUser?.email,
+  });
 
   const [formData, setFormData] = useState({
     name: "",
@@ -37,7 +49,7 @@ const CompanyProfile = () => {
     industry: "",
     website: "",
     phone: "",
-    email: "",
+    email: currentUser?.email || "",
     latitude: "",
     longitude: "",
     address: "",
@@ -59,6 +71,16 @@ const CompanyProfile = () => {
 
   const [certification, setCertification] = useState("");
   const [award, setAward] = useState("");
+
+  // Populate formData with recruiter data once it's available
+  useEffect(() => {
+    if (currentRecruiter) {
+      setFormData((prev) => ({
+        ...prev,
+        ...currentRecruiter,
+      }));
+    }
+  }, [currentRecruiter]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -87,15 +109,11 @@ const CompanyProfile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     axiosInstance.post("/recruiters", formData).then((res) => {
       if (res.data.insertId) {
         toast.success("Successfully Added recruiter!");
-
-        console.log(res.data);
       }
     });
-
   };
 
   return (
@@ -157,13 +175,6 @@ const CompanyProfile = () => {
               className="rounded-md bg-bgLightWhite dark:bg-darkBlue"
             />
           </div>
-          <DefaultInput
-            label="Email"
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
           <DefaultInput
             label="CEO"
             type="text"
@@ -305,6 +316,7 @@ const CompanyProfile = () => {
             value={formData.twitter}
             onChange={handleChange}
           />
+          {/* Add more fields like this as needed */}
           <div className="lg:col-span-6 flex justify-end">
             <button
               type="submit"

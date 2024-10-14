@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const RecruiterCard = ({ recruiter }) => {
   // data destructuring
-  const { _id, name, logo, location } = recruiter || {};
+  const { _id, name, logo, address,  } = recruiter || {};
 
   return (
     <div className="w-full p-4 border hover:-translate-y-1 transition duration-300 border-lightGray shadow-md rounded-lg mx-auto">
@@ -28,7 +28,7 @@ const RecruiterCard = ({ recruiter }) => {
         </div>
         <span className="ml-2">({recruiter.ratings})</span>
       </div> */}
-      <p className="text-center text-lightGray mt-2">{`${location.address},${location.country}`}</p>
+      <p className="text-center text-lightGray mt-2">{`${location?.address},${location?.country}`}</p>
       <div className="mt-8 flex justify-center mb-8">
         {/* <Link
           to={`/recruiters-listing/${recruiter._id}`}

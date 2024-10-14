@@ -87,7 +87,7 @@ const MyProfile = () => {
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
               >
                 <option disabled >Select role</option>
-                <option >Admin</option>
+                <option disabled >Admin</option>
                 <option value="candidate">Candidate</option>
                 <option value="recruiter">Recruiter</option>
               </select>

@@ -28,12 +28,12 @@ const DefaultInput = ({
 };
 
 DefaultInput.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   type: PropTypes.string,
   placeholder: PropTypes.string,
   value: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
+  name: PropTypes.string,
 };
 
 export default DefaultInput;

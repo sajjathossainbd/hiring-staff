@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DefaultInput from "../shared/DefaultInput";
 import TinnyHeading from "../shared/TinnyHeading";
 import { FiSend } from "react-icons/fi";
 import toast from "react-hot-toast";
 import axiosInstance from "../../../utils/axios";
+import useCurrentUser from "../../../hooks/useCurrentUser";
 
 const PostJob = () => {
+
+  const { currentUser } = useCurrentUser();
+
+
   const [formData, setFormData] = useState({
     company_email: "",
     company_id: "",
@@ -23,6 +28,15 @@ const PostJob = () => {
     education: "",
     tags: "",
   });
+
+  useEffect(() => {
+    if (currentUser?.email) {
+      setFormData((prevData) => ({
+        ...prevData,
+        company_email: currentUser.email,
+      }));
+    }
+  }, [currentUser]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -57,16 +71,6 @@ const PostJob = () => {
               type="text"
               placeholder="Enter Job Title"
               name="jobTitle"
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="col-span-6">
-            <DefaultInput
-              label="Company Email"
-              type="email"
-              placeholder="Enter Company Email"
-              name="company_email"
               onChange={handleChange}
             />
           </div>

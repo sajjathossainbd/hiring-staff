@@ -28,7 +28,6 @@ function ApplyJob({ job }) {
       resume: data.resume,
       availability: data.availability,
     };
-    console.log(applicationData);
 
     try {
       const response = await axiosInstance.post(

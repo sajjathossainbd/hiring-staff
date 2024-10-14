@@ -13,33 +13,38 @@ function ApplyJob({ job }) {
     formState: { errors },
   } = useForm();
   const { currentUser } = useCurrentUser();
-
-  const { _id } = job;
+  const { _id: jobId, jobTitle, company_email, company_id } = job;
 
   const onSubmit = async (data) => {
     const applicationData = {
-      name: currentUser?.name,
-
-      email: currentUser?.email,
+      jobId,
+      jobTitle,
+      company_email,
+      company_id,
+      applicantId: currentUser?._id,
+      applicantName: currentUser?.name,
+      applicantEmail: currentUser?.email,
       coverLetter: data.coverLetter,
       resume: data.resume,
       availability: data.availability,
     };
+    console.log(applicationData);
 
     try {
-      const response = await axiosInstance.patch(
-        `/jobs/applications/${_id}`,
+      const response = await axiosInstance.post(
+        `/jobs/applied-jobs`,
         applicationData
       );
-      if (response.data.modifiedCount > 0) {
+
+      if (response.status === 201) {
         toast.success("Application submitted successfully!");
         reset();
       } else {
-        toast.error("No changes made to the application.");
+        toast.error("Failed to submit the application.");
       }
     } catch (error) {
-      toast.error("Failed to submit application.");
-      console.error(error);
+      toast.error("Error submitting the application.");
+      console.error("Error submitting application:", error);
     }
   };
 

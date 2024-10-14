@@ -34,7 +34,7 @@ function JobCard({ job }) {
           </p>
         </div>
 
-        <p className="text-14 my-3">{description[0]}</p>
+        <p className="text-14 my-3">{description}</p>
         <div className="flex justify-between">
           <p className="text-[13px] flex items-center gap-x-1">
             <CiBadgeDollar className="text-lg" />

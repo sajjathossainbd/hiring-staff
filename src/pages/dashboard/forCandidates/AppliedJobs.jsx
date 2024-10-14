@@ -1,4 +1,4 @@
-import { FaMapMarkerAlt, FaTrash } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 import { FaWarehouse } from "react-icons/fa6";
 import axiosInstance from "../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 
 const AppliedJobs = () => {
   const { currentUser } = useCurrentUser();
-   
+
 
   const userId = currentUser?._id;
 
@@ -26,7 +26,7 @@ const AppliedJobs = () => {
     },
     enabled: !!userId,
   });
- 
+
 
   if (isLoading) {
     return <Loading />;
@@ -48,10 +48,10 @@ const AppliedJobs = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await axiosInstance.delete("/jobs/applied-jobs/delete", {
+          const res = await axiosInstance.delete(`/jobs/applied-jobs/delete/${id}`, {
             data: { email: currentUser?.email },
           });
-        
+
 
           if (res.data.deletedCount === 1) {
             Swal.fire(

@@ -110,10 +110,10 @@ const Dashboard = () => {
                   </li>
                   <li>
                     <NavLink
-                      to="/dashboard/company-profile"
+                      to="/dashboard/recruiter-profile"
                       className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
-                      <ImProfile /> Company Profile
+                      <ImProfile /> Recruiter Profile
                     </NavLink>
                   </li>
                   <li>

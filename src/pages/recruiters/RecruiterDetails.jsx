@@ -57,7 +57,8 @@ function RecruiterDetails() {
     phone,
     email,
     map,
-    location,
+    country,
+    address,
     ceo,
     businessType,
     annualRevenue,
@@ -66,7 +67,8 @@ function RecruiterDetails() {
     numberOfEmployees,
     certifications,
     awards,
-    socialProfiles,
+    linkedin,
+    twitter,
   } = recruiter || {};
 
   useEffect(() => {
@@ -123,11 +125,11 @@ function RecruiterDetails() {
               <h5 className="mb-4">Follow us on :</h5>
               <div className="flex gap-3">
                 <SocialIcon
-                  link={socialProfiles.linkedin}
+                  link={linkedin}
                   mediaName={<FaLinkedin />}
                 />
                 <SocialIcon
-                  link={socialProfiles.twitter}
+                  link={twitter}
                   mediaName={<FaTwitter />}
                 />
               </div>
@@ -184,7 +186,7 @@ function RecruiterDetails() {
                 <ContactInfoCard
                   icon={<IoLocationOutline />}
                   title="LOCATION"
-                  titleAnswer={`${location.address}, ${location.country}`}
+                  titleAnswer={`${address}, ${country}`}
                 />
               </div>
             </div>

@@ -1,308 +1,331 @@
-import { MdOutlineFileUpload } from "react-icons/md";
+/* eslint-disable react/prop-types */
+import { useState, useEffect } from "react";
 import TinnyHeading from "../shared/TinnyHeading";
 import DefaultInput from "../shared/DefaultInput";
-import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-import { useState } from "react";
 import { FiSend } from "react-icons/fi";
+import "react-phone-number-input/style.css";
+import axiosInstance from "../../../utils/axios";
+import toast from "react-hot-toast";
+import useCurrentUser from "../../../hooks/useCurrentUser";
+import { useQuery } from "@tanstack/react-query";
+
+const SelectInput = ({ label, name, options, onChange, value }) => (
+  <div className="lg:col-span-3 md:col-span-6">
+    <label className="font-semibold">{label}</label>
+    <select
+      name={name}
+      value={value}
+      onChange={onChange}
+      className="py-4 px-3 bg-bgLightWhite dark:bg-darkBlue dark:border-blue outline-none w-full border-lightGray rounded-md"
+    >
+      {options.map((option, index) => (
+        <option key={index} value={option}>
+          {option}
+        </option>
+      ))}
+    </select>
+  </div>
+);
 
 const CompanyProfile = () => {
+  const { currentUser } = useCurrentUser();
+
+  const { data: currentRecruiter } = useQuery({
+    queryKey: ["currentRecruiter", currentUser?.email],
+    queryFn: async () => {
+      const res = await axiosInstance.get(
+        `/recruiters/currentRecruiter/${currentUser?.email}`
+      );
+      return res.data;
+    },
+    enabled: !!currentUser?.email,
+  });
+
   const [formData, setFormData] = useState({
-    companyName: "",
-    email: "",
+    name: "",
+    logo: "",
+    description: "",
+    industry: "",
     website: "",
-    estSince: "",
-    teamSize: "10 - 20",
-    multipleSelect: "Banking",
-    allowInSearch: "Yes",
-    aboutCompany: "",
-    country: "Bangladesh",
-    city: "Dhaka",
-    completeAddress: "",
-    findOnMap: "",
+    phone: "",
+    email: currentUser?.email || "",
     latitude: "",
     longitude: "",
-    facebookUrl: "",
-    twitterUrl: "",
-    linkedinUrl: "",
-    instagramUrl: "",
-    phone: "",
+    address: "",
+    zip: "",
+    city: "",
+    state: "",
+    country: "",
+    ceo: "",
+    businessType: "",
+    annualRevenue: "",
+    foundedYear: "",
+    companySizeCategory: "",
+    numberOfEmployees: "",
+    certifications: [],
+    awards: [],
+    linkedin: "",
+    twitter: "",
   });
+
+  const [certification, setCertification] = useState("");
+  const [award, setAward] = useState("");
+
+  // Populate formData with recruiter data once it's available
+  useEffect(() => {
+    if (currentRecruiter) {
+      setFormData((prev) => ({
+        ...prev,
+        ...currentRecruiter,
+      }));
+    }
+  }, [currentRecruiter]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handlePhoneChange = (value) => {
-    setFormData({ ...formData, phone: value });
+    setFormData((prev) => ({ ...prev, phone: value }));
+  };
+
+  const handleAddCertification = () => {
+    setFormData((prev) => ({
+      ...prev,
+      certifications: [...prev.certifications, certification],
+    }));
+    setCertification("");
+  };
+
+  const handleAddAward = () => {
+    setFormData((prev) => ({
+      ...prev,
+      awards: [...prev.awards, award],
+    }));
+    setAward("");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    axiosInstance.post("/recruiters", formData).then((res) => {
+      if (res.data.insertId) {
+        toast.success("Successfully Added recruiter!");
+      }
+    });
   };
 
   return (
     <div>
-      <div>
-        <TinnyHeading
-          title="Company Profile"
-          path="company-profile"
-          pathName="Company Profile"
-        />
-      </div>
-
+      <TinnyHeading
+        title="Company Profile"
+        path="company-profile"
+        pathName="Company Profile"
+      />
       <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
         <h5>Profile Details</h5>
         <hr className="my-6 text-lightGray" />
-        <div>
-          <div className="flex lg:flex-row flex-col-reverse lg:gap-6 gap-3 items-center">
-            <div className="relative">
-              <img
-                className="lg:w-96 object-cover rounded-md"
-                src="https://templates.envytheme.com/eeza/default/assets/images/my-profile.jpg"
-                alt="Company Profile"
+        <form
+          onSubmit={handleSubmit}
+          className="grid lg:grid-cols-6 md:grid-cols-1 gap-x-6 gap-y-4 text-14"
+        >
+          <DefaultInput
+            label="Company Name"
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+          />
+          <DefaultInput
+            label="Logo URL"
+            type="url"
+            name="logo"
+            value={formData.logo}
+            onChange={handleChange}
+          />
+          <textarea
+            className="lg:col-span-6 p-3 bg-bgLightWhite dark:bg-darkBlue rounded-md"
+            placeholder="Short description about the company..."
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+          />
+          <SelectInput
+            label="Industry"
+            name="industry"
+            options={["FinTech", "Banking", "Education"]}
+            value={formData.industry}
+            onChange={handleChange}
+          />
+          <DefaultInput
+            label="Website"
+            type="url"
+            name="website"
+            value={formData.website}
+            onChange={handleChange}
+          />
+          <div className="lg:col-span-3">
+            <label className="font-semibold">Phone</label>
+            <PhoneInput
+              international
+              defaultCountry="ES"
+              value={formData.phone}
+              onChange={handlePhoneChange}
+              className="rounded-md bg-bgLightWhite dark:bg-darkBlue"
+            />
+          </div>
+          <DefaultInput
+            label="CEO"
+            type="text"
+            name="ceo"
+            value={formData.ceo}
+            onChange={handleChange}
+          />
+          <SelectInput
+            label="Business Type"
+            name="businessType"
+            options={["Private", "Public"]}
+            value={formData.businessType}
+            onChange={handleChange}
+          />
+          <DefaultInput
+            label="Annual Revenue"
+            type="text"
+            name="annualRevenue"
+            value={formData.annualRevenue}
+            onChange={handleChange}
+          />
+          <DefaultInput
+            label="Founded Year"
+            type="text"
+            name="foundedYear"
+            value={formData.foundedYear}
+            onChange={handleChange}
+          />
+          <SelectInput
+            label="Company Size Category"
+            name="companySizeCategory"
+            options={["Small", "Medium", "Large"]}
+            value={formData.companySizeCategory}
+            onChange={handleChange}
+          />
+          <DefaultInput
+            label="Number of Employees"
+            type="number"
+            name="numberOfEmployees"
+            value={formData.numberOfEmployees}
+            onChange={handleChange}
+          />
+          <DefaultInput
+            label="Address"
+            type="text"
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+          />
+          <DefaultInput
+            label="City"
+            type="text"
+            name="city"
+            value={formData.city}
+            onChange={handleChange}
+          />
+          <DefaultInput
+            label="State"
+            type="text"
+            name="state"
+            value={formData.state}
+            onChange={handleChange}
+          />
+          <DefaultInput
+            label="Country"
+            type="text"
+            name="country"
+            value={formData.country}
+            onChange={handleChange}
+          />
+          <DefaultInput
+            label="Latitude"
+            type="text"
+            name="latitude"
+            value={formData.latitude}
+            onChange={handleChange}
+          />
+          <DefaultInput
+            label="Longitude"
+            type="text"
+            name="longitude"
+            value={formData.longitude}
+            onChange={handleChange}
+          />
+          <DefaultInput
+            label="Zip Code"
+            type="zip"
+            name="zip"
+            value={formData.zip}
+            onChange={handleChange}
+          />
+          <div className="lg:col-span-6">
+            <label className="font-semibold">Certifications</label>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={certification}
+                onChange={(e) => setCertification(e.target.value)}
+                className="w-full"
               />
-              <button className="btn bg-white dark:bg-darkBlue dark:text-white dark:border-none flex items-center absolute bottom-4 left-4">
-                <MdOutlineFileUpload className="text-lg" /> Upload Photo
+              <button
+                type="button"
+                onClick={handleAddCertification}
+                className="btn bg-blue text-white"
+              >
+                Add
               </button>
-            </div>
-            <div>
-              <p>
-                Please ensure the file size does not exceed 1MB, with minimum
-                dimensions of 450x450, and use .jpg or .png formats.
-              </p>
             </div>
           </div>
-          <hr className="my-6 text-lightGray" />
-          <form
-            onSubmit={handleSubmit}
-            className="grid lg:grid-cols-6 md:grid-cols-1 gap-x-6 gap-y-4 text-14"
-          >
-            <div className="lg:col-span-3 md:col-span-6">
-              <DefaultInput
-                label={"Company name (optional)"}
-                type={"text"}
-                placeholder={"Company name (optional)"}
-                name="companyName"
-                onChange={handleChange}
+          <div className="lg:col-span-6">
+            <label className="font-semibold">Awards</label>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={award}
+                onChange={(e) => setAward(e.target.value)}
+                className="w-full"
               />
-            </div>
-            <div className="lg:col-span-3 md:col-span-6">
-              <DefaultInput
-                label={"Email address"}
-                type={"email"}
-                placeholder={"Email address"}
-                name="email"
-                onChange={handleChange}
-              />
-            </div>
-            {/* Phone number */}
-            <div className="lg:col-span-3 md:col-span-6">
-              <div className="label">
-                <span className="font-semibold">Phone</span>
-              </div>
-              <PhoneInput
-                international
-                defaultCountry="BD"
-                value={formData.phone}
-                onChange={handlePhoneChange}
-                className="rounded-md bg-bgLightWhite dark:bg-darkBlue dark:border dark:border-blue"
-              />
-            </div>
-            {/* End */}
-            <div className="lg:col-span-3 md:col-span-6">
-              <DefaultInput
-                label={"Website"}
-                type={"url"}
-                placeholder={"Website"}
-                name="website"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="lg:col-span-3 md:col-span-6">
-              <DefaultInput
-                label={"Est. Since"}
-                type={"text"}
-                placeholder={"12.08.2024"}
-                name="estSince"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="lg:col-span-3 md:col-span-6">
-              <div className="label">
-                <span className="font-semibold">Team Size</span>
-              </div>
-              <select
-                name="teamSize"
-                onChange={handleChange}
-                className="py-4 px-3 bg-bgLightWhite dark:bg-darkBlue dark:border-blue dark:border outline-none w-full border-lightGray rounded-md"
-              >
-                <option selected>Select Team Size</option>
-                <option>10 - 20</option>
-                <option>20 - 50</option>
-                <option>200 - 300</option>
-                <option>300 - 350</option>
-                <option>500 - 1000</option>
-              </select>
-            </div>
-            <div className="lg:col-span-3 md:col-span-6">
-              <div className="label">
-                <span className="font-semibold">Multiple Select Boxes</span>
-              </div>
-              <select
-                name="multipleSelect"
-                onChange={handleChange}
-                className="py-4 px-3 bg-bgLightWhite dark:bg-darkBlue dark:border-blue dark:border outline-none w-full border-lightGray rounded-md"
-              >
-                <option selected>Select Box</option>
-                <option>Banking</option>
-                <option>Categories</option>
-                <option>Digital & Creative</option>
-              </select>
-            </div>
-            <div className="lg:col-span-3 md:col-span-6">
-              <div className="label">
-                <span className="font-semibold">Allow In Search & Listing</span>
-              </div>
-              <select
-                name="allowInSearch"
-                onChange={handleChange}
-                className="py-4 px-3 bg-bgLightWhite dark:bg-darkBlue dark:border-blue dark:border outline-none w-full border-lightGray rounded-md"
-              >
-                <option>Yes</option>
-                <option>No</option>
-              </select>
-            </div>
-            <div className="flex flex-col h-full lg:col-span-6 md:col-span-6">
-              <div className="label">
-                <span className="font-semibold">About Company</span>
-              </div>
-              <textarea
-                className="w-full h-full p-2 resize-none py-4 rounded-md bg-bgLightWhite dark:bg-darkBlue dark:border-blue dark:border text-14 outline-none px-3 
-                   focus:bg-white border border-bgLightWhite 
-                   focus:border-blue placeholder:opacity-100 focus:placeholder:opacity-0 transition-all duration-500"
-                placeholder="Short description about company..."
-                name="aboutCompany"
-                onChange={handleChange}
-              ></textarea>
-            </div>
-            <div className="lg:col-span-3 md:col-span-6">
-              <div className="label">
-                <span className="font-semibold">Country</span>
-              </div>
-              <select
-                name="country"
-                onChange={handleChange}
-                className="py-4 px-3 bg-bgLightWhite dark:bg-darkBlue dark:border-blue dark:border outline-none w-full border-lightGray rounded-md"
-              >
-                <option selected>Select Country</option>
-                <option>Bangladesh</option>
-                <option>China</option>
-                <option>Germany</option>
-                <option>United Arab Emirates</option>
-                <option>Australia</option>
-              </select>
-            </div>
-            <div className="lg:col-span-3 md:col-span-6">
-              <div className="label">
-                <span className="font-semibold">City</span>
-              </div>
-              <select
-                name="city"
-                onChange={handleChange}
-                className="py-4 px-3 bg-bgLightWhite dark:bg-darkBlue dark:border-blue dark:border outline-none w-full border-lightGray rounded-md"
-              >
-                <option selected>Select City</option>
-                <option>Dhaka</option>
-                <option>Chittagong</option>
-                <option>Khulna</option>
-                <option>Rajshahi</option>
-                <option>Barisal</option>
-              </select>
-            </div>
-            <div className="lg:col-span-6 md:col-span-6">
-              <DefaultInput
-                label={"Complete Address"}
-                type={"text"}
-                placeholder={"Complete Address"}
-                name="completeAddress"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="lg:col-span-2 md:col-span-6">
-              <DefaultInput
-                label={"Find On Map"}
-                type={"text"}
-                placeholder={"Find On Map"}
-                name="findOnMap"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="lg:col-span-2 md:col-span-6">
-              <DefaultInput
-                label={"Latitude"}
-                type={"text"}
-                placeholder={"Latitude"}
-                name="latitude"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="lg:col-span-2 md:col-span-6">
-              <DefaultInput
-                label={"Longitude"}
-                type={"text"}
-                placeholder={"Longitude"}
-                name="longitude"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="flex flex-col h-full lg:col-span-6 md:col-span-6">
-              <div className="label pb-2">
-                <span className="font-semibold">Social Media Links</span>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-5">
-                <DefaultInput
-                  label={"Facebook URL"}
-                  type={"url"}
-                  placeholder={"Facebook URL"}
-                  name="facebookUrl"
-                  onChange={handleChange}
-                />
-                <DefaultInput
-                  label={"Twitter URL"}
-                  type={"url"}
-                  placeholder={"Twitter URL"}
-                  name="twitterUrl"
-                  onChange={handleChange}
-                />
-                <DefaultInput
-                  label={"LinkedIn URL"}
-                  type={"url"}
-                  placeholder={"LinkedIn URL"}
-                  name="linkedinUrl"
-                  onChange={handleChange}
-                />
-                <DefaultInput
-                  label={"Instagram URL"}
-                  type={"url"}
-                  placeholder={"Instagram URL"}
-                  name="instagramUrl"
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-            <div className="group">
               <button
-                type="submit"
-                className="btn btn-primary flex items-center px-5"
+                type="button"
+                onClick={handleAddAward}
+                className="btn bg-blue text-white"
               >
-                Submit Now
-                <FiSend className="ml-2 transition-transform duration-300 group-hover:rotate-45" />
+                Add
               </button>
             </div>
-          </form>
-        </div>
+          </div>
+          <DefaultInput
+            label="LinkedIn"
+            type="url"
+            name="linkedin"
+            value={formData.linkedin}
+            onChange={handleChange}
+          />
+          <DefaultInput
+            label="Twitter"
+            type="url"
+            name="twitter"
+            value={formData.twitter}
+            onChange={handleChange}
+          />
+          {/* Add more fields like this as needed */}
+          <div className="lg:col-span-6 flex justify-end">
+            <button
+              type="submit"
+              className="btn bg-blue text-white px-6 py-3 flex items-center"
+            >
+              <FiSend className="mr-2" /> Submit
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

@@ -6,11 +6,12 @@ import axiosInstance from "../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
 import useCurrentUser from "../../../hooks/useCurrentUser";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 const ManageJob = () => {
 
   const { currentUser } = useCurrentUser();
 
-  const { data: myJobs } = useQuery({
+  const { data: myJobs, refetch } = useQuery({
     queryKey: ["myJobs", currentUser?.email],
     queryFn: async () => {
       const res = await axiosInstance.get(`/jobs/email/${currentUser.email}`);
@@ -19,7 +20,26 @@ const ManageJob = () => {
     enabled: !!currentUser?.email,
   });
 
-
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosInstance.delete(`/jobs/delete/${id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            Swal.fire("Deleted!", "Job has been deleted.", "success");
+            refetch();
+          }
+        });
+      }
+    });
+  };
 
   return (
     <div>
@@ -78,7 +98,9 @@ const ManageJob = () => {
                   </td>
                   <td>
                     <div className="tooltip" data-tip="Delete">
-                      <button className="btn rounded-full text-blue hover:text-white hover:bg-blue">
+                      <button
+                        onClick={() => handleDelete(job?._id)}
+                        className="btn rounded-full text-blue hover:text-white hover:bg-blue">
                         <RiDeleteBin6Line />
                       </button>
                     </div>

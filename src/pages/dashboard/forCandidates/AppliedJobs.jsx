@@ -5,11 +5,11 @@ import { useQuery } from "@tanstack/react-query";
 import useCurrentUser from "../../../hooks/useCurrentUser";
 import Loading from "../../../components/ui/Loading";
 import Swal from "sweetalert2";
+import TinnyHeading from "../shared/TinnyHeading";
 // import { GoBookmark } from "react-icons/go";
 
 const AppliedJobs = () => {
   const { currentUser } = useCurrentUser();
-
 
   const userId = currentUser?._id;
 
@@ -26,7 +26,6 @@ const AppliedJobs = () => {
     },
     enabled: !!userId,
   });
-
 
   if (isLoading) {
     return <Loading />;
@@ -48,10 +47,12 @@ const AppliedJobs = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await axiosInstance.delete(`/jobs/applied-jobs/delete/${id}`, {
-            data: { email: currentUser?.email },
-          });
-
+          const res = await axiosInstance.delete(
+            `/jobs/applied-jobs/delete/${id}`,
+            {
+              data: { email: currentUser?.email },
+            }
+          );
 
           if (res.data.deletedCount === 1) {
             Swal.fire(
@@ -60,8 +61,6 @@ const AppliedJobs = () => {
               "success"
             );
             refetch();
-          } else {
-            Swal.fire("Error", "No application found to delete.", "error");
           }
         } catch (error) {
           console.error("Failed to delete application:", error);
@@ -77,13 +76,17 @@ const AppliedJobs = () => {
 
   return (
     <div>
-      <h3>My Applied jobs</h3>
+      <TinnyHeading
+        title={"Applied Jobs"}
+        path={"applied-jobs"}
+        pathName={"Applied Jobs"}
+      />
 
-      <div className="grid gap-3 grid-cols-1 md:grid-cols-3 mt-6">
+      <div className="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-6">
         {appliedJobs?.map((job, idx) => (
           <div
             key={idx}
-            className=" shadow-md bg-bgLightBlue hover:-translate-y-1 duration-200 rounded-lg p-6 overflow-auto"
+            className=" shadow-md bg-bgLightBlue hover:-translate-y-1 duration-200 rounded-lg p-6 overflow-auto cursor-pointer"
           >
             <div>
               <div className="flex items-center">

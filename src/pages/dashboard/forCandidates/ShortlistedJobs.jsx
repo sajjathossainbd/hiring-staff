@@ -1,6 +1,7 @@
 import { FaMapMarkerAlt, FaTrash } from "react-icons/fa";
 import { FaWarehouse } from "react-icons/fa6";
 import { GoBookmark } from "react-icons/go";
+import TinnyHeading from "../shared/TinnyHeading";
 
 const ShortlistedJobs = () => {
   const jobs = [
@@ -48,13 +49,17 @@ const ShortlistedJobs = () => {
 
   return (
     <div>
-      <h3 className="">Shortlisted jobs</h3>
+      <TinnyHeading
+        title={"Shortlisted Jobs"}
+        path={"shortlisted-jobs"}
+        pathName={"Shortlisted Jobs"}
+      />
 
       <div className="grid gap-3 grid-cols-1 md:grid-cols-2 mt-6">
         {jobs.map((job, idx) => (
           <div
             key={idx}
-            className=" shadow-md hover:-translate-y-1 duration-200 bg-bgLightBlue rounded-lg p-6 "
+            className=" shadow-md hover:-translate-y-1 duration-200 bg-bgLightBlue rounded-lg p-6 cursor-pointer"
           >
             <div className="flex justify-between items-start">
               <div className="flex items-center">

@@ -1,4 +1,5 @@
 import React from "react";
+import Dropdown from "../shared/DropdownCandidate";
 
 function FilterSidePanel({
   filters,
@@ -21,45 +22,55 @@ function FilterSidePanel({
         }`}
       >
         {/* Close */}
-        <button className="text-gray hover:text-lightGray" onClick={toggleFilter}>
+        <button
+          className="text-gray hover:text-lightGray"
+          onClick={toggleFilter}
+        >
           &times;
         </button>
         <h4 className="mb-4">Filter</h4>
 
         {/* Skills */}
         <div className="mb-4">
-          <label className="block text-gray dark:text-white mb-2">Skills</label>
-          <input
-            type="text"
-            name="skills"
-            onChange={handleFilterChange}
-            list="skills-list"
-            placeholder="Select or Enter Skills"
-            className="w-full border border-lightGray rounded-lg px-3 py-2"
-          />
-          <datalist id="skills-list">
-            {skills.map((skill) => (
-              <option key={skill} value={skill}>
-                {skill}
-              </option>
-            ))}
-          </datalist>
+          <h6 className="block text-gray dark:text-white mb-2">Skills</h6>
+          <div className="border border-lightGray rounded-md p-1">
+            <Dropdown
+              options={skills}
+              placeholder="Skills"
+              onChange={(option) => handleFilterChange("skills", option)}
+            />
+          </div>
         </div>
 
         {/* Experience */}
         <div className="mb-4">
-          <label className="block text-gray dark:text-white mb-2">Experience</label>
+          <h6 className="block text-gray dark:text-white mb-2">Experience</h6>
           <div className="space-y-2">
+            <label className="flex items-center">
+              <input
+                type="radio"
+                name="experience"
+                value=""
+                className="mr-2"
+                onChange={(e) =>
+                  handleFilterChange("experience", e.target.value)
+                }
+              />
+              All
+            </label>
+
             {experience.map((exp) => (
-              <label key={exp} className="flex items-center dark:text-white">
+              <label key={exp} className="flex items-center">
                 <input
                   type="radio"
                   name="experience"
                   value={exp}
                   className="mr-2"
-                  onChange={handleFilterChange}
+                  onChange={(e) =>
+                    handleFilterChange("experience", e.target.value)
+                  }
                 />
-                {exp || "All"}
+                {exp}
               </label>
             ))}
           </div>
@@ -67,30 +78,24 @@ function FilterSidePanel({
 
         {/* Education */}
         <div className="mb-4">
-          <label className="block text-gray dark:text-white mb-2">Education</label>
-          <input
-            type="text"
-            name="education"
-            onChange={handleFilterChange}
-            list="education-list"
-            placeholder="Select or Enter Education Level"
-            className="w-full border border-lightGray rounded-lg px-3 py-2"
-          />
-          <datalist id="education-list">
-            {educationOptions.map((education) => (
-              <option key={education} value={education}>
-                {education}
-              </option>
-            ))}
-          </datalist>
+          <h6 className="block text-gray dark:text-white mb-2">Education</h6>
+          <div className="border border-lightGray rounded-md p-1">
+            <Dropdown
+              options={educationOptions}
+              placeholder="Educations"
+              onChange={(option) => handleFilterChange("education", option)}
+            />
+          </div>
         </div>
 
         {/* Job Type */}
         <div className="mb-4">
-          <label className="block text-gray dark:text-white mb-2">Job Type</label>
+          <label className="block text-gray dark:text-white mb-2">
+            Job Type
+          </label>
           <select
             name="jobType"
-            onChange={handleFilterChange}
+            onChange={(e) => handleFilterChange("jobType", e.target.value)}
             className="w-full border border-lightGray rounded-lg px-3 py-2"
           >
             <option value="">Select Job Type</option>
@@ -114,7 +119,7 @@ function FilterSidePanel({
           Reset Filters
         </button>
       </div>
- 
+
       {isFilterOpen && (
         <div
           className="fixed inset-0 bg-black opacity-50"

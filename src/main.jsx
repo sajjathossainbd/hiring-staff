@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Toaster } from "react-hot-toast";
 import "./index.css";
+import "./custom.css";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/Routes.jsx";
 import { HelmetProvider } from "react-helmet-async";

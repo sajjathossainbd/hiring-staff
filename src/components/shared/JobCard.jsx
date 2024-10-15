@@ -19,7 +19,7 @@ function JobCard({ job }) {
   } = job || {};
 
   return (
-    <div className="rounded-lg border border-[#e2e5ef] hover:-translate-y-1 hover:bg-[white] transition duration-300 bg-[#F8FAFF] dark:bg-darkBlue">
+    <div className="boxBorderHoverBlue hover:bg-[white]  bg-bgLightBlue dark:bg-darkBlue">
       <div className="md:p-5 p-3">
         {/* Recruiter Information */}
         <div className="">
@@ -31,6 +31,8 @@ function JobCard({ job }) {
           <h6 className="font-normal pt-2">Golosoft LLC</h6>
           <h4 className="mb-3">{jobTitle}</h4>
         </div>
+
+        {/* Button Information */}
         <div className="flex lg:justify-between md:justify-between sm:justify-start lg:gap-y-2 md:gap-y-4 sm:gap-6 max-sm:gap-4 items-center mt-6 flex-wrap">
           <MiniBtn
             value={job_location}
@@ -49,15 +51,18 @@ function JobCard({ job }) {
           />
         </div>
 
-        <p className="text-14 my-3">{description[0]}</p>
-        <div className="flex justify-between">
-          <p className="text-[13px] flex items-center gap-x-1">
-            <CiBadgeDollar className="text-lg" />
-            {min_salary} - {max_salary}
-          </p>
-          <p className="flex items-center gap-x-1 text-[13px]">
-            <WiTime7 className="text-lg" /> {postedDate}
-          </p>
+        {/* Description And Price */}
+        <div className="">
+          <p className="text-14 my-3">{description[0]}</p>
+          <div className="flex justify-between">
+            <p className="text-[13px] flex items-center gap-x-1">
+              <CiBadgeDollar className="text-lg" />
+              {min_salary} - {max_salary}
+            </p>
+            <p className="flex items-center gap-x-1 text-[13px]">
+              <WiTime7 className="text-lg" /> {postedDate}
+            </p>
+          </div>
         </div>
 
         {/* Apply Button And Favourite Icon */}

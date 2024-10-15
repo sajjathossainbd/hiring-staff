@@ -18,6 +18,8 @@ import useCurrentUser from "../hooks/useCurrentUser";
 import useAuth from "../hooks/useAuth";
 import { IoIosLogOut } from "react-icons/io";
 import { HiOutlineBriefcase } from "react-icons/hi";
+import { Helmet } from "react-helmet-async";
+import { FcApproval } from "react-icons/fc";
 
 const Dashboard = () => {
   const { logOut } = useAuth();
@@ -32,6 +34,9 @@ const Dashboard = () => {
 
   return (
     <div className="flex lg:flex-row flex-col inter bg-gray-100">
+      <Helmet>
+        <title>Hiring Staff - Dashboard</title>
+      </Helmet>
       {/* Sidebar */}
       <div className="relative lg:w-64 w-full shadow-lg">
         <div className="drawer lg:drawer-open z-20">
@@ -106,10 +111,10 @@ const Dashboard = () => {
                   </li>
                   <li>
                     <NavLink
-                      to="/dashboard/company-profile"
+                      to="/dashboard/recruiter-profile"
                       className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
-                      <ImProfile /> Company Profile
+                      <ImProfile /> Recruiter Profile
                     </NavLink>
                   </li>
                   <li>
@@ -180,6 +185,14 @@ const Dashboard = () => {
                       className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
                       <FaArrowUpShortWide /> Shortlisted Jobs
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/dashboard/selected-jobs"
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
+                    >
+                      <FcApproval /> Selected Jobs
                     </NavLink>
                   </li>
                 </>

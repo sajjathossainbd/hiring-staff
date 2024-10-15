@@ -1,0 +1,62 @@
+/* for ratings */
+.rating {
+    display: flex;
+    align-items: center;
+}
+
+.star {
+    font-size: 1.5rem;
+    color: #f5c518;
+    /* Gold color for stars */
+}
+
+.star.full {
+    color: #f5c518;
+    /* Gold color for filled stars */
+}
+
+.star.empty {
+    color: #e0e0e0;
+    /* Light gray color for empty stars */
+}
+
+/* end */
+
+/* swiper pagination bullet */
+.swiper-pagination {
+    margin-top: 100px;
+}
+
+.swiper-pagination-bullet {
+    height: 8px !important;
+    width: 8px !important;
+    border-radius: 10px !important;
+}
+
+.swiper-pagination-bullet-active {
+    height: 8px !important;
+    width: 12px !important;
+    border-radius: 10px !important;
+    background-color: #3c65f5 !important;
+}
+
+/* end */
+
+/* phone number input field */
+
+.PhoneInput {
+    padding: 0 16px;
+}
+
+.PhoneInputInput {
+    padding: 15px;
+    outline: none;
+    background-color: transparent !important;
+}
+
+.PhoneInputCountrySelect {
+    background: #05274f !important;
+    color: white;
+}
+
+/* end */

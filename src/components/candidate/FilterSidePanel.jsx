@@ -1,58 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import axios from "axios";
-import { fetchCandidatesListing } from "../../features/candidates/candidatesListing/candidatesListingSlice";
+import React from "react";
 
-const FilterSidePanel = ({ isFilterOpen, toggleFilter, setFilters }) => {
-  const dispatch = useDispatch();
-  const [industries, setIndustries] = useState([]);
-  const [countries, setCountries] = useState([]);
-  const [cities, setCities] = useState([]);
-  const [teamSizes, setTeamSizes] = useState([]);
-  const [selectedIndustry, setSelectedIndustry] = useState("");
-  const [selectedCountry, setSelectedCountry] = useState("");
-  const [selectedCity, setSelectedCity] = useState("");
-  const [selectedTeamSize, setSelectedTeamSize] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
-
-  // Fetch unique data for filters on component mount
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:5000/recruiters/unique"
-        );
-        const { industries, countries, cities, teamSizes } = response.data.uniqueData;
-        setIndustries(industries);
-        setCountries(countries);
-        setCities(cities);
-        setTeamSizes(teamSizes);
-      } catch (error) {
-        console.error("Error fetching filter data", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  // Handle the filter submission
-  const handleFilterChange = () => {
-    setFilters({
-      industry: selectedIndustry,
-      country: selectedCountry,
-      city: selectedCity,
-      teamSize: selectedTeamSize,
-      search: searchTerm,
-    });
-    dispatch(fetchCandidatesListing({
-      industry: selectedIndustry,
-      country: selectedCountry,
-      city: selectedCity,
-      teamSize: selectedTeamSize,
-      search: searchTerm,
-    }));
-  };
-
+function FilterSidePanel({
+  filters,
+  professions,
+  skills,
+  experience,
+  educationOptions,
+  isFilterOpen,
+  toggleFilter,
+  handleFilterChange,
+  applyFilters,
+  resetFilters,
+}) {
   return (
     <>
       {/* Side Panel */}
@@ -65,95 +24,97 @@ const FilterSidePanel = ({ isFilterOpen, toggleFilter, setFilters }) => {
         <button className="text-gray hover:text-lightGray" onClick={toggleFilter}>
           &times;
         </button>
-        <h4 className="mb-4">Filter Candidates</h4>
+        <h4 className="mb-4">Filter</h4>
 
-        {/* Search Input */}
-        <input
-          type="text"
-          placeholder="Search Companies..."
-          className="border p-2 mb-4 w-full"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+        {/* Skills */}
+        <div className="mb-4">
+          <label className="block text-gray dark:text-white mb-2">Skills</label>
+          <input
+            type="text"
+            name="skills"
+            onChange={handleFilterChange}
+            list="skills-list"
+            placeholder="Select or Enter Skills"
+            className="w-full border border-lightGray rounded-lg px-3 py-2"
+          />
+          <datalist id="skills-list">
+            {skills.map((skill) => (
+              <option key={skill} value={skill}>
+                {skill}
+              </option>
+            ))}
+          </datalist>
+        </div>
 
-        {/* Industry Dropdown */}
-        <select
-          className="border p-2 mb-4 w-full"
-          value={selectedIndustry}
-          onChange={(e) => {
-            setSelectedIndustry(e.target.value);
-            handleFilterChange();
-          }}
-        >
-          <option value="">Select Industry</option>
-          {industries.map((industry, index) => (
-            <option key={index} value={industry}>
-              {industry}
-            </option>
-          ))}
-        </select>
+        {/* Experience */}
+        <div className="mb-4">
+          <label className="block text-gray dark:text-white mb-2">Experience</label>
+          <div className="space-y-2">
+            {experience.map((exp) => (
+              <label key={exp} className="flex items-center dark:text-white">
+                <input
+                  type="radio"
+                  name="experience"
+                  value={exp}
+                  className="mr-2"
+                  onChange={handleFilterChange}
+                />
+                {exp || "All"}
+              </label>
+            ))}
+          </div>
+        </div>
 
-        {/* Country Dropdown */}
-        <select
-          className="border p-2 mb-4 w-full"
-          value={selectedCountry}
-          onChange={(e) => {
-            setSelectedCountry(e.target.value);
-            setSelectedCity(""); // Reset city when country changes
-            handleFilterChange();
-          }}
-        >
-          <option value="">Select Country</option>
-          {countries.map((country, index) => (
-            <option key={index} value={country}>
-              {country}
-            </option>
-          ))}
-        </select>
+        {/* Education */}
+        <div className="mb-4">
+          <label className="block text-gray dark:text-white mb-2">Education</label>
+          <input
+            type="text"
+            name="education"
+            onChange={handleFilterChange}
+            list="education-list"
+            placeholder="Select or Enter Education Level"
+            className="w-full border border-lightGray rounded-lg px-3 py-2"
+          />
+          <datalist id="education-list">
+            {educationOptions.map((education) => (
+              <option key={education} value={education}>
+                {education}
+              </option>
+            ))}
+          </datalist>
+        </div>
 
-        {/* City Dropdown */}
-        <select
-          className="border p-2 mb-4 w-full"
-          value={selectedCity}
-          onChange={(e) => {
-            setSelectedCity(e.target.value);
-            handleFilterChange();
-          }}
-        >
-          <option value="">Select City</option>
-          {cities.map((city, index) => (
-            <option key={index} value={city}>
-              {city}
-            </option>
-          ))}
-        </select>
+        {/* Job Type */}
+        <div className="mb-4">
+          <label className="block text-gray dark:text-white mb-2">Job Type</label>
+          <select
+            name="jobType"
+            onChange={handleFilterChange}
+            className="w-full border border-lightGray rounded-lg px-3 py-2"
+          >
+            <option value="">Select Job Type</option>
+            <option value="Remote">Remote</option>
+            <option value="On-Site">On-Site</option>
+            <option value="Hybrid">Hybrid</option>
+          </select>
+        </div>
 
-        {/* Team Size Dropdown */}
-        <select
-          className="border p-2 mb-4 w-full"
-          value={selectedTeamSize}
-          onChange={(e) => {
-            setSelectedTeamSize(e.target.value);
-            handleFilterChange();
-          }}
-        >
-          <option value="">Select Team Size</option>
-          {teamSizes.map((size, index) => (
-            <option key={index} value={size}>
-              {size} Employees
-            </option>
-          ))}
-        </select>
-
-        {/* Apply Filters Button */}
         <button
-          onClick={handleFilterChange}
-          className="bg-blue-500 text-white px-4 py-2 rounded w-full"
+          onClick={applyFilters}
+          className="bg-blue  text-white px-4 py-2 rounded-lg w-full hover:bg-lightBlue transition duration-300"
         >
-          Search
+          Apply Filter
+        </button>
+
+        <button
+          onClick={resetFilters}
+          className="bg-gray text-white px-4 w-full mt-2 py-2 rounded-lg"
+        >
+          Reset Filters
         </button>
       </div>
-
+ 
       {isFilterOpen && (
         <div
           className="fixed inset-0 bg-black opacity-50"
@@ -162,6 +123,6 @@ const FilterSidePanel = ({ isFilterOpen, toggleFilter, setFilters }) => {
       )}
     </>
   );
-};
+}
 
 export default FilterSidePanel;

@@ -83,6 +83,10 @@ const router = createBrowserRouter([
         element: <RecruitersListing />,
       },
       {
+        path: "/recruiters-listing/:page",
+        element: <RecruitersListing />,
+      },
+      {
         path: "/recruiter-details/:id",
         element: <RecruiterDetails />,
       },

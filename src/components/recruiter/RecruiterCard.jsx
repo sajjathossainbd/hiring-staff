@@ -28,7 +28,7 @@ const RecruiterCard = ({ recruiter }) => {
         </div>
         <span className="ml-2">({recruiter.ratings})</span>
       </div> */}
-      <p className="text-center text-lightGray mt-2">{`${location.address},${location.country}`}</p>
+      <p className="text-center text-lightGray mt-2">{`${location?.city},${location?.country}`}</p>
       <div className="mt-8 flex justify-center mb-8">
         {/* <Link
           to={`/recruiters-listing/${recruiter._id}`}

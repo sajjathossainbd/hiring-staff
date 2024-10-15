@@ -33,7 +33,6 @@ const MyProfile = () => {
         `/users/profile/${currentUser.email}`,
         updatedData
       );
-      console.log(res.data);
       if (res.data.modifiedCount > 0) {
         toast.success("Your data has been updated");
         refetch();

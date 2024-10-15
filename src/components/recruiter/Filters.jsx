@@ -1,40 +1,43 @@
 import { useEffect, useState } from "react";
-import { FaMapMarkerAlt, FaLayerGroup, FaSlidersH } from "react-icons/fa";
+import { FaMapMarkerAlt, FaLayerGroup, FaSlidersH, FaPeopleArrows } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { fetchRecruitersListing } from "../../features/recruiters/recruitersListing/recruitersListingSlice";
 import axiosInstance from "../../utils/axios";
-
 import { PiLineVerticalThin } from "react-icons/pi";
-import FilterSidePanel from "../candidate/FilterSidePanel";
+
 
 function RecruitersFiltering() {
   const dispatch = useDispatch();
 
   const [industries, setIndustries] = useState([]);
-  const [locations, setLocations] = useState([]);
+  const [locations, setLocations] = useState([]); // This will be used for cities
   const [teamSizes, setTeamSizes] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); // Loading state
 
-  
   const initialFilters = {
     industry: "",
+    location: "",
     country: "",
     city: "",
     teamSize: "",
   };
-
+console.log(initialFilters)
   const [filters, setFilters] = useState(initialFilters);
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  // const [isFilterOpen, setIsFilterOpen] = useState(false);
 
+  // Fetch unique industries, locations, and team sizes from the API
   useEffect(() => {
     const fetchFilterData = async () => {
       try {
         const { data } = await axiosInstance.get("/recruiters/unique");
-        console.log(data); // Log the response data to check its structure
-        setIndustries(data.industries || []); // Default to an empty array if undefined
-        setLocations(data.locations || []); // Default to an empty array if undefined
-        setTeamSizes(data.teamSizes || []); // Default to an empty array if undefined
+        console.log("Full API Response:", data); // Log the full response
+        setIndustries(data.uniqueData.industries || []);
+        setLocations(data.uniqueData.cities || []); // Set cities from JSON
+        setTeamSizes(data.uniqueData.teamSizes || []);
+        setIsLoading(false); // Stop loading after data is fetched
       } catch (error) {
         console.error("Error fetching filter data", error);
+        setIsLoading(false); // Stop loading even if there's an error
       }
     };
 
@@ -43,31 +46,26 @@ function RecruitersFiltering() {
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
-    setFilters({ ...filters, [name]: value });
+    setFilters((prevFilters) => ({ ...prevFilters, [name]: value }));
   };
 
   const applyFilters = () => {
+    console.log("Filters before applying:", filters); 
     dispatch(fetchRecruitersListing(filters));
   };
 
-  const resetFilters = () => {
-    setFilters(initialFilters);
-    dispatch(fetchRecruitersListing(initialFilters));
-  };
 
-  const toggleFilter = () => {
-    setIsFilterOpen(!isFilterOpen);
-  };
 
-  if (!industries || !locations || !teamSizes) {
-    return <div>Loading...</div>; // or some kind of loading spinner
+  // Render Loading state
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
   return (
     <div>
       <div className="relative bg-white md:p-2 p-5 rounded-2xl w-full">
         {/* Search Bar */}
-        <div className="flex items-center md:flex-row flex-col md:gap-2 gap-3">
+        <div className="flex items-center md:flex-row flex-col md:gap-2 gap-3 justify-center">
           {/* Industry */}
           <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
             <FaLayerGroup className="text-blue" />
@@ -90,63 +88,55 @@ function RecruitersFiltering() {
 
           <PiLineVerticalThin className="lg:block hidden" />
 
-          {/* Location */}
+
+          {/* City Input */}
           <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
-            <FaMapMarkerAlt className="text-blue" />
+          <FaMapMarkerAlt className="text-blue" />
             <input
               type="text"
-              name="country"
+              name="city"
               onChange={handleFilterChange}
-              placeholder="Enter Country"
-              list="locations"
+              placeholder="Enter City"
+              list="cities-list"
               className="focus:outline-none w-full lg:w-auto bg-white text-gray"
             />
-            <datalist id="locations">
-              {locations.map((location) => (
-                <option key={location} value={location} />
+            <datalist id="cities-list">
+              {locations.map((city) => (
+                <option key={city} value={city} />
               ))}
             </datalist>
           </div>
 
-          <PiLineVerticalThin className="lg:block hidden" />
 
+          <PiLineVerticalThin className="lg:block hidden" />
           {/* Team Size */}
           <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
+       
             <input
               type="text"
               name="teamSize"
               onChange={handleFilterChange}
               placeholder="Enter Team Size"
+              list="team-sizes-list"
               className="focus:outline-none w-full lg:w-auto bg-white text-gray"
             />
+            <datalist id="team-sizes-list">
+              {teamSizes.map((size) => (
+                <option key={size} value={size} />
+              ))}
+            </datalist>
           </div>
 
-          {/* Filter Button */}
-          <button onClick={toggleFilter} className="rounded-md text-blue text-18 pr-2">
-            <FaSlidersH />
-          </button>
-
-          {/* Search Button */}
+         
           <button
             onClick={applyFilters}
             className="btn btn-primary border-none bg-blue text-white font-medium w-full md:w-36"
           >
             Search
           </button>
-        </div>
 
-        {/* Side Panel (Optional, you can customize this as needed) */}
-        <FilterSidePanel
-          filters={filters}
-          industries={industries}
-          locations={locations}
-          teamSizes={teamSizes}
-          isFilterOpen={isFilterOpen}
-          toggleFilter={toggleFilter}
-          handleFilterChange={handleFilterChange}
-          applyFilters={applyFilters}
-          resetFilters={resetFilters}
-        />
+         
+        </div>
       </div>
     </div>
   );

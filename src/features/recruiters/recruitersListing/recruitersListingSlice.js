@@ -33,6 +33,8 @@ const RecruitersListingSlice = createSlice({
       .addCase(fetchRecruitersListing.fulfilled, (state, action) => {
         state.isLoading = false;
         state.recruitersListing = action.payload;
+        state.totalPages = action.payload.totalPages;
+        state.currentPage = action.payload.currentPage;
       })
       .addCase(fetchRecruitersListing.rejected, (state, action) => {
         state.isLoading = false;

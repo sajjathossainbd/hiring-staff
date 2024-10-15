@@ -5,37 +5,36 @@ import { fetchRecruitersListing } from "../../features/recruiters/recruitersList
 import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
 import RecruiterCard from "../../components/recruiter/RecruiterCard";
-import SectionTitle from "../../components/shared/SectionTitle";
 import Filter from "../../components/recruiter/Filters";
-
-
+import Pagination from "../../components/recruiter/Pagination";
 
 function RecruitersListing() {
   const dispatch = useDispatch();
-  const [filters, setFilters] = useState({});
+  const [filters, setFilters] = useState({ page: 1 }); // Initialize with page 1
 
   const {
     recruitersListing: recruiters,
     isLoading,
     isError,
     error,
-    // totalPages,
-    // currentPage,
+    totalPages,
+    currentPage,
   } = useSelector((state) => state.recruitersListing);
 
+  // Fetch recruiters whenever filters change
   useEffect(() => {
     dispatch(fetchRecruitersListing(filters));
   }, [dispatch, filters]);
- 
-  // const handlePageChange = (newPage) => {
-  //   setFilters((prev) => ({ ...prev, page: newPage }));
-  // };
+  
+  const handlePageChange = (newPage) => {
+    setFilters((prev) => ({ ...prev, page: newPage }));
+  };
 
   let content = null;
 
   if (isLoading) content = <Loading />;
 
-  if (!isLoading && isError) content = <NoFoundData title="No Recruiters Found!" />;
+  if (!isLoading && isError) content = <NoFoundData title="No Recruiters Found!" message={error} />;
 
   if (!isLoading && !isError && recruiters?.data?.length === 0) {
     content = <NoFoundData title="No Recruiters Found!" />;
@@ -51,47 +50,44 @@ function RecruitersListing() {
           ))}
         </div>
 
-        {/* Pagination Controls */}
-        {/* <div className="flex justify-center mt-4">
-          {Array.from({ length: totalPages }, (_, index) => (
-            <button
-              key={index + 1}
-              onClick={() => handlePageChange(index + 1)}
-              className={`mx-1 px-3 py-1 rounded-md ${
-                currentPage === index + 1
-                  ? "bg-blue text-white"
-                  : "bg-lightGray"
-              }`}
-            >
-              {index + 1}
-            </button>
-          ))}
-        </div> */}
+        {/* Pagination Component */}
+        <Pagination
+          totalPages={totalPages}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
       </div>
     );
-    
   }
-  console.log(recruiters)
+
   return (
     <div className="container">
       <Helmet>
         <title>Hiring Staff - Recruiters</title>
       </Helmet>
 
-      <div className="bg-bgLightBlue dark:bg-darkBlue p-4 md:px-24 md:py-8 space-y-6">
-        <SectionTitle
-          title={"Browse Recruiters"}
-          subTitle={"Browse top-rated recruiters across various industries and locations, tailored to meet your hiring needs"}
-        />
+      <div className="lg:py-16 lg:px-0 px-3 py-10 bg-bgLightWhite dark:bg-darkBlue flex flex-col items-center rounded-3xl">
+        <div className="text-center pb-6">
+          <h3>
+            <span className="text-blue">
+              {recruiters.totalDocuments} Recruiters
+            </span>{" "}
+            Available Now
+          </h3>
 
-        {/* All filtering options */}
+          <p className="md:max-w-xl text-14 mt-3">
+            Browse top-rated recruiters across various locations,
+            tailored to meet your project needs.
+          </p>
+        </div>
+
         <div>
-        <Filter setFilters={setFilters} />
+          <Filter  />
         </div>
       </div>
 
       {/* Content (Loading, No data, Recruiters listing) */}
-      <div className="">{content}</div>
+      <div>{content}</div>
     </div>
   );
 }

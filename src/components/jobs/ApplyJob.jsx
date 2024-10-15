@@ -5,7 +5,7 @@ import useCurrentUser from "./../../hooks/useCurrentUser";
 import axiosInstance from "../../utils/axios";
 import toast from "react-hot-toast";
 
-function ApplyJob({ job }) {
+function ApplyJob({ job, onClose }) {
   const {
     register,
     handleSubmit,
@@ -38,8 +38,7 @@ function ApplyJob({ job }) {
       if (response.status === 201) {
         toast.success("Application submitted successfully!");
         reset();
-      } else {
-        toast.error("Failed to submit the application.");
+        onClose();
       }
     } catch (error) {
       toast.error("Error submitting the application.");
@@ -50,7 +49,7 @@ function ApplyJob({ job }) {
   return (
     <>
       <form
-        className=" p-2 bg-white rounded-lg"
+        className="p-2 bg-white rounded-lg"
         onSubmit={handleSubmit(onSubmit)}
       >
         {/* Cover Letter Section */}
@@ -60,7 +59,7 @@ function ApplyJob({ job }) {
             {...register("coverLetter", {
               required: "Cover letter is required",
             })}
-            className="w-full p-3  rounded-md focus:outline-none bg-lightText "
+            className="w-full p-3 rounded-md focus:outline-none bg-lightText"
             rows="4"
             placeholder={`${currentUser.name}, Your cover letter`}
           ></textarea>
@@ -115,7 +114,7 @@ function ApplyJob({ job }) {
           <input
             type="text"
             placeholder="Google Drive Link"
-            className="block w-full text-14  rounded-md outline-none py-2 px-3 bg-lightText"
+            className="block w-full text-14 rounded-md outline-none py-2 px-3 bg-lightText"
             {...register("resume")}
           />
         </div>

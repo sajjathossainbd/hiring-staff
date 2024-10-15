@@ -11,18 +11,51 @@ import axiosInstance from "../../../utils/axios";
 import Swal from "sweetalert2";
 
 const AllApplicants = () => {
-
-
   const { currentUser } = useCurrentUser();
 
   const { data: allAppliedJobs, refetch } = useQuery({
     queryKey: ["myJobs", currentUser?.email],
     queryFn: async () => {
-      const res = await axiosInstance.get(`/jobs/applied-jobs/email/${currentUser.email}`);
+      const res = await axiosInstance.get(
+        `/jobs/applied-jobs/email/${currentUser.email}`
+      );
       return res.data;
     },
     enabled: !!currentUser?.email,
   });
+
+  // Handle shortlist or reject action
+  const handleUpdateStatus = async (id, action) => {
+    const updateData = action === "shortlist"
+      ? { shortlist: "approved" }
+      : { reject: true };
+
+    try {
+      const res = await axiosInstance.patch(
+        `/jobs/applied-jobs/update/${id}`,
+        updateData
+      );
+
+      if (res.data.updatedCount) {
+        const statusText = action === "shortlist" ? "Shortlisted" : "Rejected";
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `This application is now ${statusText}.`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        refetch();
+      }
+    } catch (error) {
+      console.error("Error updating status:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong! Please try again.",
+      });
+    }
+  };
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -62,7 +95,6 @@ const AllApplicants = () => {
               className="flex lg:flex-row flex-col justify-between border border-lightGray rounded-lg hover:border-gray transition-all duration-200 lg:p-6 p-3 pb-6"
             >
               <div className="flex lg:flex-row flex-col gap-5">
-
                 <div className="flex flex-col gap-2 justify-center">
                   <span className="font-bold">{person?.applicantName}</span>
                   <span className="text-sm font-medium text-blue">
@@ -88,23 +120,32 @@ const AllApplicants = () => {
               <div className="flex lg:justify-normal justify-center gap-2 lg:pt-0 pt-6">
                 <div className="tooltip" data-tip="Resume">
                   <button className="btn rounded-full text-blue hover:text-white hover:bg-blue">
-                    <FaRegEye />
+                    <a target="_blank" href={person?.resume}>
+                      <FaRegEye />
+                    </a>
                   </button>
                 </div>
                 <div className="tooltip" data-tip="Shortlist">
-                  <button className="btn rounded-full text-blue hover:text-white hover:bg-blue">
+                  <button
+                    onClick={() => handleUpdateStatus(person?._id, "shortlist")}
+                    className="btn rounded-full text-blue hover:text-white hover:bg-blue"
+                  >
                     <IoCheckmark />
                   </button>
                 </div>
                 <div className="tooltip" data-tip="Reject">
-                  <button className="btn rounded-full text-blue hover:text-white hover:bg-blue">
+                  <button
+                    onClick={() => handleUpdateStatus(person?._id, "reject")}
+                    className="btn rounded-full text-blue hover:text-white hover:bg-blue"
+                  >
                     <RxCross2 />
                   </button>
                 </div>
                 <div className="tooltip" data-tip="Delete">
                   <button
                     onClick={() => handleDelete(person?._id)}
-                    className="btn rounded-full text-blue hover:text-white hover:bg-blue">
+                    className="btn rounded-full text-blue hover:text-white hover:bg-blue"
+                  >
                     <RiDeleteBin6Line />
                   </button>
                 </div>

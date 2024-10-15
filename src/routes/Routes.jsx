@@ -22,7 +22,7 @@ import MyProfile from "../pages/dashboard/MyProfile";
 import MyResume from "../pages/dashboard/forCandidates/MyResume";
 import AppliedJobs from "../pages/dashboard/forCandidates/AppliedJobs";
 import ShortlistedJobs from "../pages/dashboard/forCandidates/ShortlistedJobs";
-import CompanyProfile from "../pages/dashboard/forRecruiter/CompanyProfile";
+import RecruiterProfile from "../pages/dashboard/forRecruiter/RecruiterProfile";
 import PostJob from "../pages/dashboard/forRecruiter/PostJob";
 import ManageJob from "../pages/dashboard/forRecruiter/ManageJob";
 import AllApplicants from "../pages/dashboard/forRecruiter/AllApplicants";
@@ -34,6 +34,7 @@ import PaymentForm from "../pages/paymentForm/PaymentForm";
 import AllPaymentHistory from "../pages/dashboard/forAdmin/AllPaymentHistory";
 import MyPayments from "../pages/dashboard/MyPayments";
 import ManageJobs from "../pages/dashboard/forAdmin/ManageJobs";
+import SelectedJobs from "../pages/dashboard/forCandidates/SelectedJobs";
 
 const router = createBrowserRouter([
   {
@@ -186,11 +187,15 @@ const router = createBrowserRouter([
         path: "shortlisted-jobs",
         element: <ShortlistedJobs />,
       },
+      {
+        path: "selected-jobs",
+        element: <SelectedJobs />,
+      },
 
       // For Recruiter
       {
-        path: "company-profile",
-        element: <CompanyProfile />,
+        path: "recruiter-profile",
+        element: <RecruiterProfile />,
       },
       {
         path: "post-job",

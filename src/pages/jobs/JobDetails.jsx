@@ -5,11 +5,12 @@ import { fetchJobDetails } from "../../features/jobs/jobsDetails/jobDetailsSlice
 import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
 import { GoDotFill } from "react-icons/go";
-import { CiLocationOn } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa";
 import { FiDollarSign } from "react-icons/fi";
 import SimilarJobs from "../../components/jobs/SimilarJobs";
 import { fetchRecruiterDetails } from "../../features/recruiters/recruiterDetails/recruiterDetailsSlice";
+import ApplyJob from "../../components/jobs/ApplyJob";
+import { CiMail } from "react-icons/ci";
 function JobDetails() {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -24,13 +25,13 @@ function JobDetails() {
     (state) => state.recruiterDetails
   );
 
+
   const {
-    description = [],
+    description,
     job_type,
-    job_location,
     postedDate,
-    requirements = [],
-    responsibilities = [],
+    requirements,
+    responsibilities,
     education,
     tags = [],
     jobTitle,
@@ -41,7 +42,7 @@ function JobDetails() {
     lastDateToApply,
   } = job || {};
 
-  const { name, logo, location = {} } = recruiter || {};
+  const { name, logo, } = recruiter || {};
   useEffect(() => {
     dispatch(fetchJobDetails(id));
     dispatch(fetchRecruiterDetails(companyId));
@@ -75,19 +76,14 @@ function JobDetails() {
                     <div className="flex lg:flex-row flex-col items-center gap-x-2">
                       <span className="text-blue font-medium">{name}</span>
                       <GoDotFill className="text-[8px] text-graylg:block hidden" />
-                      <div className="flex items-center gap-x-1">
-                        <CiLocationOn />
-                        <span>
-                          {location.city} , {location.country}
-                        </span>
-                      </div>
                     </div>
                     <div className="flex lg:justify-start justify-center gap-2 mt-1">
                       <span className="px-2 py-1 dark:bg-blue bg-bgLightWhite text-14 font-medium rounded-md">
                         {job_type}
                       </span>
-                      <span className="px-2 py-1 dark:bg-blue bg-bgLightWhite text-14 font-medium rounded-md">
-                        {job_location}
+                      <span className="px-2 py-1 dark:bg-blue bg-bgLightWhite text-14 font-medium rounded-md flex items-center gap-2">
+                        <CiMail className="text-lg" />
+                        {job?.company_email}
                       </span>
                     </div>
                   </div>
@@ -95,9 +91,27 @@ function JobDetails() {
               </div>
               <div>
                 <div className="flex flex-col items-center lg:flex-row gap-x-2">
-                  <button className="btn btn-primary bg-blue text-white font-medium px-6 min-h-[2.8rem] h-[2.8rem] rounded-xl my-3">
+                  {/*modal for aplly job */}
+                  <button
+                    className="btn border-none btn-primary bg-blue text-white font-medium px-6 min-h-[2.8rem] h-[2.8rem] rounded-xl my-3"
+                    onClick={() =>
+                      document.getElementById("my_modal_3").showModal()
+                    }
+                  >
                     Apply Now
                   </button>
+                  <dialog id="my_modal_3" className="modal">
+                    <div className="modal-box max-w-xl">
+                      <form method="dialog">
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                          ✕
+                        </button>
+                      </form>
+                      <h3 className="font-bold text-lg">{jobTitle}</h3>
+                      <ApplyJob job={job} />
+                    </div>
+                  </dialog>
+
                   <button className="btn btn-primary btn-outline min-h-[2.8rem] h-[2.8rem] px-3 border-bgDeepBlue text-blue dark:text-white rounded-xl text-lg">
                     <FaBookmark />
                   </button>
@@ -116,30 +130,18 @@ function JobDetails() {
             </div>
             <div className="mt-7">
               <h5 className="mb-2">About this role</h5>
-              {description.map((descrip, index) => (
-                <span key={index}>{descrip}</span>
-              ))}
+              {description}
             </div>
             <div className="mt-7">
               <h5 className="mb-2">Requirement</h5>
               <ul>
-                {requirements.map((requirement, index) => (
-                  <li className="flex items-center gap-x-1" key={index}>
-                    <GoDotFill className="text-[10px] text-gray" />
-                    {requirement}
-                  </li>
-                ))}
+                {requirements}
               </ul>
             </div>
             <div className="mt-7">
               <h5 className="mb-2">Responsibility</h5>
               <ul>
-                {responsibilities.map((responsibility, index) => (
-                  <li key={index} className="flex items-center gap-x-1">
-                    <GoDotFill className="text-[10px] text-gray" />
-                    {responsibility}
-                  </li>
-                ))}
+                {responsibilities}
               </ul>
             </div>
             <div className="mt-7">
@@ -161,14 +163,7 @@ function JobDetails() {
             <div className="bg-bgLightBlue dark:bg-darkBlue  p-8 rounded-md mt-10">
               <div className="text-14 ">
                 Tags :{" "}
-                {tags.map((tag, index) => (
-                  <p
-                    className="px-2 bg-bgDeepBlue dark:bg-blue inline-block mr-2 lg:mb-0 mb-2 rounded-md"
-                    key={index}
-                  >
-                    {tag}
-                  </p>
-                ))}
+                {tags}
               </div>
               <div className="pt-4">
                 <p className="text-14">

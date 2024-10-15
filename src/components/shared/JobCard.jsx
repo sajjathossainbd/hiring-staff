@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { CiBookmark, CiLocationOn } from "react-icons/ci";
 import { CiBadgeDollar } from "react-icons/ci";
 import MiniBtn from "../ui/MiniBtn";
+import { GoArrowRight } from "react-icons/go";
+import { LiaBuffer } from "react-icons/lia";
 function JobCard({ job }) {
   const {
     _id,
@@ -48,7 +50,7 @@ function JobCard({ job }) {
           />
           <MiniBtn
             value={"Featured"}
-            icon={<IoBriefcaseOutline />}
+            icon={<LiaBuffer />}
             style="bg-softGreen text-blue"
           />
         </div>
@@ -61,7 +63,7 @@ function JobCard({ job }) {
               <CiBadgeDollar className="text-lg" />
               {min_salary} - {max_salary}
             </p>
-            <p className="flex items-center gap-x-1 text-[13px]">
+            <p className="flex items-center gap-x-1 text-14">
               <WiTime7 className="text-lg" /> {postedDate}
             </p>
           </div>
@@ -71,7 +73,7 @@ function JobCard({ job }) {
         <div className="mt-10 flex justify-between items-center">
           <div className="">
             <Link to={`/job-details/${_id}`}>
-              <SecondaryButton title={"Apply Now"} />
+              <SecondaryButton title={"Apply Now"} icon={<GoArrowRight />} />
             </Link>
           </div>
           <div className="hover:bg-bgDeepBlue p-2 rounded-md hover:text-blue text-gray cursor-pointer hover:font-bold">

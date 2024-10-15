@@ -114,7 +114,7 @@ function Recruiter() {
           modules={[Pagination, Navigation]}
           className="mySwiper"
         >
-          {recruitersInSlides.map((recruitersGroup, index) => (
+          {recruitersInSlides?.map((recruitersGroup, index) => (
             <SwiperSlide key={index}>{content}</SwiperSlide>
           ))}
         </Swiper>

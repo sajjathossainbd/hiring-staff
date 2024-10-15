@@ -34,6 +34,7 @@ import PaymentForm from "../pages/paymentForm/PaymentForm";
 import AllPaymentHistory from "../pages/dashboard/forAdmin/AllPaymentHistory";
 import MyPayments from "../pages/dashboard/MyPayments";
 import ManageJobs from "../pages/dashboard/forAdmin/ManageJobs";
+import SelectedJobs from "../pages/dashboard/forCandidates/SelectedJobs";
 
 const router = createBrowserRouter([
   {
@@ -181,6 +182,10 @@ const router = createBrowserRouter([
       {
         path: "shortlisted-jobs",
         element: <ShortlistedJobs />,
+      },
+      {
+        path: "selected-jobs",
+        element: <SelectedJobs />,
       },
 
       // For Recruiter

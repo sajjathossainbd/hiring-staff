@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FaMapMarkerAlt, FaLayerGroup, FaSlidersH, FaPeopleArrows } from "react-icons/fa";
+import { FaMapMarkerAlt, FaLayerGroup } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { fetchRecruitersListing } from "../../features/recruiters/recruitersListing/recruitersListingSlice";
 import axiosInstance from "../../utils/axios";

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react"; // Import useState at the top
 
 function FilterLeftPanel({

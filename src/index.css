@@ -22,7 +22,7 @@ body {
   }
 
   .boxBorderHoverBlue {
-    @apply border-[.5px] border-lightGray hover:border-blue hover:-translate-y-[3px] transition-all duration-500 cursor-pointer rounded-lg;
+    @apply border-[.5px] border-bgDeepBlue hover:border-blue hover:-translate-y-[3px] transition-all duration-500 rounded-lg;
   }
 
   .boxBorderHoverGray {

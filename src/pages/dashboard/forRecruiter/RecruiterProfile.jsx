@@ -42,6 +42,7 @@ const RecruiterProfile = () => {
     enabled: !!currentUser?.email,
   });
 
+
   const [formData, setFormData] = useState({
     name: "",
     logo: "",
@@ -49,7 +50,7 @@ const RecruiterProfile = () => {
     industry: "",
     website: "",
     phone: "",
-    email: currentUser?.email || "",
+    email: currentUser?.email,
     latitude: "",
     longitude: "",
     address: "",

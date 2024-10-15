@@ -28,7 +28,7 @@ const SelectInput = ({ label, name, options, onChange, value }) => (
   </div>
 );
 
-const CompanyProfile = () => {
+const RecruiterProfile = () => {
   const { currentUser } = useCurrentUser();
 
   const { data: currentRecruiter } = useQuery({
@@ -120,7 +120,7 @@ const CompanyProfile = () => {
     <div>
       <TinnyHeading
         title="Company Profile"
-        path="company-profile"
+        path="recruiter-profile"
         pathName="Company Profile"
       />
       <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
@@ -331,4 +331,4 @@ const CompanyProfile = () => {
   );
 };
 
-export default CompanyProfile;
+export default RecruiterProfile;

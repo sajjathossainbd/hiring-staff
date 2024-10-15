@@ -1,22 +1,26 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getRecruitersListing } from "./recruitersListingAPI";
 
+// Define the initial state
 const initialState = {
   recruitersListing: [],
   isLoading: false,
   isError: false,
   error: "",
+  totalPages: 0,
+  currentPage: 1,
 };
 
-// async thunk
+// Async thunk to fetch recruiters with parameters
 export const fetchRecruitersListing = createAsyncThunk(
   "recruitersListing/fetchRecruitersListing",
-  async () => {
-    const recruitersListing = await getRecruitersListing();
+  async (filters) => {
+    const recruitersListing = await getRecruitersListing(filters);
     return recruitersListing;
   }
 );
 
+// Create the slice
 const RecruitersListingSlice = createSlice({
   name: "recruitersListing",
   initialState,
@@ -29,6 +33,8 @@ const RecruitersListingSlice = createSlice({
       .addCase(fetchRecruitersListing.fulfilled, (state, action) => {
         state.isLoading = false;
         state.recruitersListing = action.payload;
+        state.totalPages = action.payload.totalPages;
+        state.currentPage = action.payload.currentPage;
       })
       .addCase(fetchRecruitersListing.rejected, (state, action) => {
         state.isLoading = false;
@@ -39,4 +45,5 @@ const RecruitersListingSlice = createSlice({
   },
 });
 
+// Export the reducer
 export default RecruitersListingSlice.reducer;

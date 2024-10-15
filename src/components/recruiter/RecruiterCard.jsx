@@ -11,6 +11,24 @@ const RecruiterCard = ({ recruiter }) => {
       <h4 className="font-semibold text-center text-darkBlue hover:text-blue">
         {name}
       </h4>
+      {/* <div className="flex justify-center items-center mt-2">
+        <div className="text-yellow-500">
+          {Array.from({ length: 5 }, (_, index) => (
+            <span
+              key={index}
+              className={` ${
+                index < recruiter.ratings / 10
+                  ? "text-yellow-500"
+                  : "text-gray-300"
+              }`}
+            >
+              ★
+            </span>
+          ))}
+        </div>
+        <span className="ml-2">({recruiter.ratings})</span>
+      </div> */}
+      <p className="text-center text-lightGray mt-2">{`${location?.city},${location?.country}`}</p>
       
       <p className="text-center text-lightGray mt-2">{`${address},${country}`}</p>
       <div className="mt-8 flex justify-center mb-8">

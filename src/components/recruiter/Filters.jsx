@@ -1,67 +1,145 @@
-/* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
+import { FaMapMarkerAlt, FaLayerGroup, FaSlidersH, FaPeopleArrows } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { fetchRecruitersListing } from "../../features/recruiters/recruitersListing/recruitersListingSlice";
+import axiosInstance from "../../utils/axios";
+import { PiLineVerticalThin } from "react-icons/pi";
 
-const Filters = ({
-  showCount,
-  setShowCount,
-  setCurrentPage,
-  sortOrder,
-  setSortOrder,
-  currentPage,
-  sortedRecruiters,
-}) => {
+
+function RecruitersFiltering() {
+  const dispatch = useDispatch();
+
+  const [industries, setIndustries] = useState([]);
+  const [locations, setLocations] = useState([]); // This will be used for cities
+  const [teamSizes, setTeamSizes] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); // Loading state
+
+  const initialFilters = {
+    industry: "",
+    location: "",
+    country: "",
+    city: "",
+    teamSize: "",
+  };
+console.log(initialFilters)
+  const [filters, setFilters] = useState(initialFilters);
+  // const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  // Fetch unique industries, locations, and team sizes from the API
+  useEffect(() => {
+    const fetchFilterData = async () => {
+      try {
+        const { data } = await axiosInstance.get("/recruiters/unique");
+        console.log("Full API Response:", data); // Log the full response
+        setIndustries(data.uniqueData.industries || []);
+        setLocations(data.uniqueData.cities || []); // Set cities from JSON
+        setTeamSizes(data.uniqueData.teamSizes || []);
+        setIsLoading(false); // Stop loading after data is fetched
+      } catch (error) {
+        console.error("Error fetching filter data", error);
+        setIsLoading(false); // Stop loading even if there's an error
+      }
+    };
+
+    fetchFilterData();
+  }, []);
+
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    setFilters((prevFilters) => ({ ...prevFilters, [name]: value }));
+  };
+
+  const applyFilters = () => {
+    console.log("Filters before applying:", filters); 
+    dispatch(fetchRecruitersListing(filters));
+  };
+
+
+
+  // Render Loading state
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div className="flex md:justify-between flex-col md:flex-row items-center border-b-2 border-[#F8FAFF] pb-2 mb-4">
-      {/* Left Side - Showing results */}
-      <div>
-        <p className="text-lightGray">
-          Showing{" "}
-          {Math.min((currentPage - 1) * showCount + 1, sortedRecruiters.length)}
-          –{Math.min(currentPage * showCount, sortedRecruiters.length)} of{" "}
-          {sortedRecruiters.length} results
-        </p>
-      </div>
+    <div>
+      <div className="relative bg-white md:p-2 p-5 rounded-2xl w-full">
+        {/* Search Bar */}
+        <div className="flex items-center md:flex-row flex-col md:gap-2 gap-3 justify-center">
+          {/* Industry */}
+          <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
+            <FaLayerGroup className="text-blue" />
+            <input
+              type="text"
+              name="industry"
+              onChange={handleFilterChange}
+              list="industries-list"
+              placeholder="Select or Enter Industry"
+              className="focus:outline-none w-full lg:w-auto bg-white text-gray"
+            />
+            <datalist id="industries-list">
+              {industries.map((industry) => (
+                <option key={industry} value={industry}>
+                  {industry}
+                </option>
+              ))}
+            </datalist>
+          </div>
 
-      {/* Right Side - Filters */}
-      <div className="flex gap-4 items-center">
-        {/* Show count filter */}
-        <div className="flex items-center">
-          <label htmlFor="show" className="mr-2 text-lightGray">
-            Show:
-          </label>
-          <select
-            id="show"
-            value={showCount}
-            onChange={(e) => {
-              setShowCount(Number(e.target.value));
-              setCurrentPage(1); // Reset to the first page after changing show count
-            }}
-            className="border border-[#F8FAFF] rounded-md p-1"
-          >
-            <option value="8">8</option>
-            <option value="16">16</option>
-            <option value="24">24</option>
-          </select>
-        </div>
+          <PiLineVerticalThin className="lg:block hidden" />
 
-        {/* Sorting filter */}
-        <div className="flex items-center">
-          <label htmlFor="sort" className="mr-2 text-lightGray">
-            Sort by:
-          </label>
-          <select
-            id="sort"
-            value={sortOrder}
-            onChange={(e) => setSortOrder(e.target.value)}
-            className="border border-[#F8FAFF] rounded-md p-1"
+
+          {/* City Input */}
+          <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
+          <FaMapMarkerAlt className="text-blue" />
+            <input
+              type="text"
+              name="city"
+              onChange={handleFilterChange}
+              placeholder="Enter City"
+              list="cities-list"
+              className="focus:outline-none w-full lg:w-auto bg-white text-gray"
+            />
+            <datalist id="cities-list">
+              {locations.map((city) => (
+                <option key={city} value={city} />
+              ))}
+            </datalist>
+          </div>
+
+
+          <PiLineVerticalThin className="lg:block hidden" />
+          {/* Team Size */}
+          <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
+       
+            <input
+              type="text"
+              name="teamSize"
+              onChange={handleFilterChange}
+              placeholder="Enter Team Size"
+              list="team-sizes-list"
+              className="focus:outline-none w-full lg:w-auto bg-white text-gray"
+            />
+            <datalist id="team-sizes-list">
+              {teamSizes.map((size) => (
+                <option key={size} value={size} />
+              ))}
+            </datalist>
+          </div>
+
+         
+          <button
+            onClick={applyFilters}
+            className="btn btn-primary border-none bg-blue text-white font-medium w-full md:w-36"
           >
-            <option value="default">Default Sorting</option>
-            <option value="latest">Sort by Latest</option>
-            <option value="title">Sort by Title</option>
-          </select>
+            Search
+          </button>
+
+         
         </div>
       </div>
     </div>
   );
-};
+}
 
-export default Filters;
+export default RecruitersFiltering;

@@ -21,9 +21,6 @@ function RecruitersListing() {
     currentPage,
   } = useSelector((state) => state.recruitersListing);
 
-  console.log(recruiters.totalDocuments);
-
-  // Fetch recruiters whenever filters change
   useEffect(() => {
     dispatch(fetchRecruitersListing(filters));
   }, [dispatch, filters]);
@@ -39,30 +36,30 @@ function RecruitersListing() {
   if (!isLoading && isError)
     content = <NoFoundData title="No Recruiters Found!" message={error} />;
 
-  if (!isLoading && !isError && recruiters?.data?.length === 0) {
+  if (!isLoading && !isError && recruiters?.recruiters?.length === 0) {
     content = <NoFoundData title="No Recruiters Found!" />;
   }
 
-  if (!isLoading && !isError && recruiters?.data?.length > 0) {
+  if (!isLoading && !isError && recruiters?.recruiters?.length > 0) {
     content = (
       <div>
         {/* Recruiter Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 mt-10">
-          {recruiters?.data?.map((recruiter) => (
+          {recruiters?.recruiters?.map((recruiter) => (
             <RecruiterCard key={recruiter._id} recruiter={recruiter} />
           ))}
         </div>
 
         {/* Pagination Component */}
         <Pagination
-          totalPages={totalPages}
-          currentPage={currentPage}
+          totalPages={recruiters?.totalPages}
+          currentPage={recruiters?.currentPage}
           onPageChange={handlePageChange}
         />
       </div>
     );
   }
-
+  console.log(recruiters);
   return (
     <div className="container">
       <Helmet>
@@ -73,7 +70,7 @@ function RecruitersListing() {
         <div className="text-center pb-6">
           <h3>
             <span className="text-blue">
-              {recruiters.totalDocuments} Recruiters
+              {recruiters.totalRecruiters} Recruiters
             </span>
             Available Now
           </h3>

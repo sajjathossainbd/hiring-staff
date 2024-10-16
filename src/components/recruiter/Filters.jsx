@@ -15,8 +15,6 @@ function RecruitersFiltering() {
 
   const initialFilters = {
     industry: "",
-    location: "",
-    country: "",
     city: "",
     teamSize: "",
   };
@@ -26,9 +24,9 @@ function RecruitersFiltering() {
     const fetchFilterData = async () => {
       try {
         const { data } = await axiosInstance.get("/recruiters/unique");
-        setIndustries(data.uniqueData.industries || []);
-        setLocations(data.uniqueData.cities || []);
-        setTeamSizes(data.uniqueData.teamSizes || []);
+        setIndustries(data.industries || []);
+        setLocations(data.cities || []);
+        setTeamSizes(data.teamSizes || []);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching filter data", error);
@@ -45,7 +43,6 @@ function RecruitersFiltering() {
   };
 
   const applyFilters = () => {
-    console.log("Filters before applying:", filters);
     dispatch(fetchRecruitersListing(filters));
   };
 
@@ -67,7 +64,7 @@ function RecruitersFiltering() {
               name="industry"
               onChange={handleFilterChange}
               list="industries-list"
-              placeholder="Select or Enter Industry"
+              placeholder="Enter Industry"
               className="focus:outline-none w-full lg:w-auto bg-white text-gray"
             />
             <datalist id="industries-list">

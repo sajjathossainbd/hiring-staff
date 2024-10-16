@@ -1,6 +1,4 @@
-import { FaMapMarkerAlt, FaTrash } from "react-icons/fa";
 import { FaWarehouse } from "react-icons/fa6";
-import { GoBookmark } from "react-icons/go";
 import TinnyHeading from "../shared/TinnyHeading";
 import useCurrentUser from "../../../hooks/useCurrentUser";
 import { useQuery } from "@tanstack/react-query";
@@ -9,7 +7,7 @@ import axiosInstance from "../../../utils/axios";
 const ShortlistedJobs = () => {
   const { currentUser } = useCurrentUser();
 
-  const { data: shortlistAppliedJobs, refetch } = useQuery({
+  const { data: shortlistAppliedJobs } = useQuery({
     queryKey: ["shortlistAppliedJobs", currentUser?.email],
     queryFn: async () => {
       const res = await axiosInstance.get(
@@ -36,11 +34,6 @@ const ShortlistedJobs = () => {
           >
             <div>
               <div className="flex items-center">
-                <img
-                  src={job.logoUrl || "	https://via.placeholder.com/50"}
-                  alt="Company Logo"
-                  className="w-12 h-12 rounded-full"
-                />
                 <div className="ml-3">
                   <h5 className="">{job.jobTitle}</h5>
                   <div className="flex flex-wrap text-12 text-gray">

@@ -26,7 +26,7 @@ function MeetOurTeam() {
       linkedin: "https://www.linkedin.com/in/kawser-ferdous-safi/",
     },
     {
-      img: "https://i.ibb.co.com/61yLCPv/ayub.jpg",
+      img: "https://i.ibb.co.com/BL5Gg20/ayub-khan-vai-modified.png",
       name: "Aybu Khan",
       role: "Full Stack Developer",
       review: 4.8,

@@ -21,9 +21,7 @@ function RecruitersFiltering() {
     teamSize: "",
   };
   const [filters, setFilters] = useState(initialFilters);
-  // const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  // Fetch unique industries, locations, and team sizes from the API
   useEffect(() => {
     const fetchFilterData = async () => {
       try {

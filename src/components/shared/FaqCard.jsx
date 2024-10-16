@@ -4,7 +4,7 @@ import { IoMdArrowForward } from "react-icons/io";
 
 const FaqCard = ({ title, description }) => {
     return (
-        <div className='lg:p-8 p-4 border border-lightGray rounded-lg space-y-4 group hover:-translate-y-1 transition-all hover:shadow-sm'>
+        <div className='lg:p-8 p-4 boxBorderHoverBlue'>
             <h4>{title}</h4>
             <p>
                 {description}

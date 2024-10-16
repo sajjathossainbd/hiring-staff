@@ -5,15 +5,12 @@ import { fetchRecruitersListing } from "../../features/recruiters/recruitersList
 import axiosInstance from "../../utils/axios";
 import { PiLineVerticalThin } from "react-icons/pi";
 
-
 function RecruitersFiltering() {
   const dispatch = useDispatch();
 
   const [industries, setIndustries] = useState([]);
-  const [locations, setLocations] = useState([]); // This will be used for cities
+  const [locations, setLocations] = useState([]);
   const [teamSizes, setTeamSizes] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // Loading state
-
   const initialFilters = {
     industry: "",
     location: "",
@@ -22,20 +19,16 @@ function RecruitersFiltering() {
     teamSize: "",
   };
   const [filters, setFilters] = useState(initialFilters);
-  // const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  // Fetch unique industries, locations, and team sizes from the API
   useEffect(() => {
     const fetchFilterData = async () => {
       try {
         const { data } = await axiosInstance.get("/recruiters/unique");
         setIndustries(data.uniqueData.industries || []);
-        setLocations(data.uniqueData.cities || []); 
+        setLocations(data.uniqueData.cities || []);
         setTeamSizes(data.uniqueData.teamSizes || []);
-        setIsLoading(false); 
       } catch (error) {
         console.error("Error fetching filter data", error);
-        setIsLoading(false);
       }
     };
 
@@ -48,16 +41,9 @@ function RecruitersFiltering() {
   };
 
   const applyFilters = () => {
-    console.log("Filters before applying:", filters); 
+    console.log("Filters before applying:", filters);
     dispatch(fetchRecruitersListing(filters));
   };
-
-
-
-  // Render Loading state
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div>
@@ -86,10 +72,9 @@ function RecruitersFiltering() {
 
           <PiLineVerticalThin className="lg:block hidden" />
 
-
           {/* City Input */}
           <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
-          <FaMapMarkerAlt className="text-blue" />
+            <FaMapMarkerAlt className="text-blue" />
             <input
               type="text"
               name="city"
@@ -105,11 +90,9 @@ function RecruitersFiltering() {
             </datalist>
           </div>
 
-
           <PiLineVerticalThin className="lg:block hidden" />
           {/* Team Size */}
           <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
-       
             <input
               type="text"
               name="teamSize"
@@ -125,15 +108,12 @@ function RecruitersFiltering() {
             </datalist>
           </div>
 
-         
           <button
             onClick={applyFilters}
             className="btn btn-primary border-none bg-blue text-white font-medium w-full md:w-36"
           >
             Search
           </button>
-
-         
         </div>
       </div>
     </div>

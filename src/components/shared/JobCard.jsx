@@ -3,11 +3,12 @@ import { IoBriefcaseOutline } from "react-icons/io5";
 import { WiTime7 } from "react-icons/wi";
 import SecondaryButton from "./SecondaryButton";
 import { Link } from "react-router-dom";
-import { CiBookmark, CiLocationOn } from "react-icons/ci";
+import { CiLocationOn } from "react-icons/ci";
 import { CiBadgeDollar } from "react-icons/ci";
 import MiniBtn from "../ui/MiniBtn";
 import { GoArrowRight } from "react-icons/go";
 import { LiaBuffer } from "react-icons/lia";
+import BookmarkBtn from "../ui/BookmarkBtn";
 function JobCard({ job }) {
   const {
     _id,
@@ -78,8 +79,8 @@ function JobCard({ job }) {
               <SecondaryButton title={"Apply Now"} icon={<GoArrowRight />} />
             </Link>
           </div>
-          <div className="hover:bg-bgDeepBlue p-2 rounded-md hover:text-blue text-gray cursor-pointer hover:font-bold">
-            <CiBookmark className="text-2xl" />
+          <div className="">
+            <BookmarkBtn />
           </div>
         </div>
       </div>

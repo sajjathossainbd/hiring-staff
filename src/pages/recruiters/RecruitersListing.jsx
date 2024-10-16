@@ -10,7 +10,7 @@ import Pagination from "../../components/recruiter/Pagination";
 
 function RecruitersListing() {
   const dispatch = useDispatch();
-  const [filters, setFilters] = useState({ page: 1 }); // Initialize with page 1
+  const [filters, setFilters] = useState({ page: 1 }); 
 
   const {
     recruitersListing: recruiters,
@@ -86,7 +86,6 @@ function RecruitersListing() {
         </div>
       </div>
 
-      {/* Content (Loading, No data, Recruiters listing) */}
       <div>{content}</div>
     </div>
   );

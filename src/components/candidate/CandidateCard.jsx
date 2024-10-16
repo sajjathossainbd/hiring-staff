@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { CiBookmark, CiClock2, CiLocationOn } from "react-icons/ci";
+import { CiClock2, CiLocationOn } from "react-icons/ci";
 import { MdOutlineVerified } from "react-icons/md";
 import { LiaBuffer } from "react-icons/lia";
 import { Link } from "react-router-dom";
@@ -7,6 +7,7 @@ import StarRatings from "react-star-ratings";
 import MiniBtn from "../ui/MiniBtn";
 import SecondaryButton from "../shared/SecondaryButton";
 import { BsSendArrowUp } from "react-icons/bs";
+import BookmarkBtn from "../ui/BookmarkBtn";
 
 function CandidateCard({ candidate }) {
   const {
@@ -102,8 +103,8 @@ function CandidateCard({ candidate }) {
               <SecondaryButton title={"Hire Me"} icon={<BsSendArrowUp />} />
             </Link>
           </div>
-          <div className="hover:bg-bgDeepBlue p-2 rounded-md hover:text-blue text-gray cursor-pointer hover:font-bold">
-            <CiBookmark className="text-2xl" />
+          <div className="">
+            <BookmarkBtn />
           </div>
         </div>
       </div>

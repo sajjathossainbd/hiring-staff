@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import MiniBtn from "../ui/MiniBtn";
-import { CiBookmark, CiLocationOn, CiMoneyBill } from "react-icons/ci";
+import { CiLocationOn, CiMoneyBill } from "react-icons/ci";
 import { HiOutlineBriefcase } from "react-icons/hi";
 import { RiNumbersLine } from "react-icons/ri";
 import StarRatings from "react-star-ratings";
 import SecondaryButton from "../shared/SecondaryButton";
 import { GoArrowRight } from "react-icons/go";
+import BookmarkBtn from "../ui/BookmarkBtn";
 
 const RecruiterCard = ({ recruiter }) => {
   // data destructuring
@@ -26,13 +27,16 @@ const RecruiterCard = ({ recruiter }) => {
       <div className="md:p-5 p-3 flex flex-col justify-between h-full">
         {/* Recruiter Info */}
         <div className="">
-          <img src={logo} alt={name} className="w-20 rounded-full" />
-          <h4 className="">{name}</h4>
-          <p className="text-12 mt-1 border-solid border-[1px] inline-block rounded-full py-1 px-5 border-lightGray">
-            {industry}
-          </p>
+          {/* Recruiter logo, name, industry */}
+          <div className="">
+            <img src={logo} alt={name} className="w-20 rounded-full" />
+            <h4 className="">{name}</h4>
+            <p className="text-12 mt-1 border-solid border-[1px] inline-block rounded-full py-1 px-5 border-lightGray">
+              {industry}
+            </p>
+          </div>
 
-          {/* Button */}
+          {/* Recruiter Button */}
           <div className="flex gap-6 mt-6">
             <MiniBtn
               value={`${location?.state}, ${location?.country}`}
@@ -72,8 +76,6 @@ const RecruiterCard = ({ recruiter }) => {
               <RiNumbersLine className="text-lg" /> {companySizeCategory} Size
             </p>
           </div>
-
-          {/*  */}
         </div>
 
         {/* View More Button And Favourite Icon */}
@@ -83,8 +85,8 @@ const RecruiterCard = ({ recruiter }) => {
               <SecondaryButton title={"View Profile"} icon={<GoArrowRight />} />
             </Link>
           </div>
-          <div className="hover:bg-bgDeepBlue p-2 rounded-md hover:text-blue text-gray cursor-pointer hover:font-bold">
-            <CiBookmark className="text-2xl" />
+          <div className="">
+            <BookmarkBtn />
           </div>
         </div>
       </div>

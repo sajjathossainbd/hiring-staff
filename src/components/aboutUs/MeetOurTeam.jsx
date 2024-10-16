@@ -26,7 +26,7 @@ function MeetOurTeam() {
       linkedin: "https://www.linkedin.com/in/kawser-ferdous-safi/",
     },
     {
-      img: "https://i.ibb.co.com/CmNZ8L6/aybu.jpg",
+      img: "https://i.ibb.co.com/BL5Gg20/ayub-khan-vai-modified.png",
       name: "Aybu Khan",
       role: "UX Designer",
       review: 4.8,

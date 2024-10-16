@@ -26,7 +26,6 @@ function RecruitersFiltering() {
     const fetchFilterData = async () => {
       try {
         const { data } = await axiosInstance.get("/recruiters/unique");
-        console.log("Full API Response:", data);
         setIndustries(data.uniqueData.industries || []);
         setLocations(data.uniqueData.cities || []);
         setTeamSizes(data.uniqueData.teamSizes || []);

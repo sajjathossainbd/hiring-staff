@@ -1,9 +1,9 @@
 import { CiSearch } from "react-icons/ci";
-import PrimaryButton from "../shared/PrimaryButton";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useMatch, useNavigate } from "react-router-dom";
 import { searched } from "../../features/jobs/jobsFilter/jobsFilterSlice";
+import PrimaryBtn from "../ui/PrimaryBtn";
 
 function JobSearchBox() {
   const dispatch = useDispatch();
@@ -31,13 +31,13 @@ function JobSearchBox() {
       <input
         type="text"
         placeholder="Job Title, Keywords"
-        className="pl-3 md:pl-0 w-full py-4 md:py-3 rounded-md focus:outline-none dark:bg-white"
+        className="w-full py-5 rounded-md focus:outline-none dark:bg-white"
         value={input}
         onChange={(event) => setInput(event.target.value)}
       />
 
       <div className="absolute right-1">
-        <PrimaryButton title={"Search"} />
+        <PrimaryBtn title={"Search"} />
       </div>
     </form>
   );

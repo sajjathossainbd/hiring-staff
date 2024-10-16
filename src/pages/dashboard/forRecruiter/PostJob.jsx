@@ -5,12 +5,18 @@ import { FiSend } from "react-icons/fi";
 import toast from "react-hot-toast";
 import axiosInstance from "../../../utils/axios";
 import useCurrentUser from "../../../hooks/useCurrentUser";
+import axios from "axios";
 
 const PostJob = () => {
-
   const { currentUser } = useCurrentUser();
+  const [candidateEmails, setCandidateEmails] = useState();
+  // console.log(candidateEmails);
 
-
+  useEffect(() => {
+    axiosInstance.get("/users/candidate-emails").then((res) => {
+      setCandidateEmails(res.data.candidateEmails);
+    });
+  }, []);
   const [formData, setFormData] = useState({
     company_email: "",
     company_id: "",
@@ -27,8 +33,15 @@ const PostJob = () => {
     responsibilities: "",
     education: "",
     tags: "",
+    candidateEmails
   });
-
+// console.log(formData);
+useEffect(() => {
+  setFormData((prevFormData) => ({
+    ...prevFormData,
+    candidateEmails: candidateEmails, 
+  }));
+}, [candidateEmails]);
   useEffect(() => {
     if (currentUser?.email) {
       setFormData((prevData) => ({
@@ -59,12 +72,19 @@ const PostJob = () => {
 
   return (
     <div>
-      <TinnyHeading title="Post a New Job" path="post-job" pathName="Post a New Job" />
+      <TinnyHeading
+        title="Post a New Job"
+        path="post-job"
+        pathName="Post a New Job"
+      />
       <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
         <h5>Post Your Job</h5>
         <hr className="my-6 text-lightGray" />
 
-        <form onSubmit={handleSubmit} className="grid grid-cols-6 gap-4 text-14">
+        <form
+          onSubmit={handleSubmit}
+          className="grid grid-cols-6 gap-4 text-14"
+        >
           <div className="col-span-6">
             <DefaultInput
               label="Job Title"

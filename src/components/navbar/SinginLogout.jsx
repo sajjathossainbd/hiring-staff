@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useCurrentUser from "../../hooks/useCurrentUser";
-
+import { PiSignInFill } from "react-icons/pi";
 function SinginLogout() {
   const { user, logOut } = useAuth();
   const { currentUser } = useCurrentUser();
@@ -37,7 +37,11 @@ function SinginLogout() {
                 <div className="w-30 h-30 rounded-full overflow-hidden flex items-center justify-center">
                   <img
                     className="w-full rounded-full h-full object-cover"
-                    src={`${currentUser?.image || user?.image ? currentUser?.image : "https://i.ibb.co.com/30FCMBq/default-profile.jpg"}`}
+                    src={`${
+                      currentUser?.image || user?.image
+                        ? currentUser?.image
+                        : "https://i.ibb.co.com/30FCMBq/default-profile.jpg"
+                    }`}
                     alt="User photo"
                   />
                 </div>
@@ -80,8 +84,8 @@ function SinginLogout() {
         </div>
       ) : (
         <Link to="/sign-in">
-          <button className="text-blue bg-white font-semibold py-4 px-8 rounded-md text-18 tracking-wide">
-            Sign in
+          <button className="btn-primary text-blue bg-white font-medium py-2 px-8 rounded-md text-18 tracking-wide flex items-center gap-2 mt-1">
+            Sign in <PiSignInFill />
           </button>
         </Link>
       )}

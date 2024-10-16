@@ -11,6 +11,8 @@ function RecruitersFiltering() {
   const [industries, setIndustries] = useState([]);
   const [locations, setLocations] = useState([]);
   const [teamSizes, setTeamSizes] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   const initialFilters = {
     industry: "",
     location: "",
@@ -24,11 +26,14 @@ function RecruitersFiltering() {
     const fetchFilterData = async () => {
       try {
         const { data } = await axiosInstance.get("/recruiters/unique");
+        console.log("Full API Response:", data);
         setIndustries(data.uniqueData.industries || []);
         setLocations(data.uniqueData.cities || []);
         setTeamSizes(data.uniqueData.teamSizes || []);
+        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching filter data", error);
+        setIsLoading(false);
       }
     };
 
@@ -44,6 +49,11 @@ function RecruitersFiltering() {
     console.log("Filters before applying:", filters);
     dispatch(fetchRecruitersListing(filters));
   };
+
+  // Render Loading state
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>

@@ -21,8 +21,6 @@ function JobCard({ job }) {
     job_location,
   } = job || {};
 
-  // console.log(job);
-
   return (
     <div className="boxBorderHoverBlue hover:bg-[white]  bg-bgLightBlue dark:bg-darkBlue">
       <div className="md:p-5 p-3 flex flex-col justify-between h-full">

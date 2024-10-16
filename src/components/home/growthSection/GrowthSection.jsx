@@ -21,15 +21,15 @@ const GrowthSection = () => {
                 <img
                   src={imageLeft}
                   alt="Overlay 1"
-                  className="w-[390px] h-[324px] rounded-lg "
+                  className="w-[390px] h-[324px] rounded-lg box"
                 />
               </div>
 
-              <div className="absolute -bottom-44 -right-36 hidden md:block ">
+              <div className="absolute -bottom-44 -right-36 hidden md:block">
                 <img
                   src={imageRight}
                   alt="Overlay 2"
-                  className="w-[335px] h-[366px] rounded-lg object-cover"
+                  className="w-[335px] h-[366px] rounded-lg object-cover box"
                 />
               </div>
             </div>

@@ -66,7 +66,7 @@ function CandidatesListing() {
       </div>
     );
   }
-
+console.log(candidates);
   return (
     <div className="container">
       <Helmet>

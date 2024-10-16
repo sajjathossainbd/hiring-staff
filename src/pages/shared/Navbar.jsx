@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <div className="backdrop-blur-sm sticky top-0 z-20">
       <div className="bg-blue dark:bg-darkBlue">
-        <nav className="container flex items-center justify-between py-5">
+        <nav className="container flex items-center justify-between py-4">
           <LogoWhite size="large" />
 
           <JobSearchBox />

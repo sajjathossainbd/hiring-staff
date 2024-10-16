@@ -1,7 +1,6 @@
 import SearchByFilter from "../../shared/SearchByFilter";
-// import BannerImg from "../../../SVG/BannerImg";
 import PopularSearch from "./PopularSearch";
-import bannerImg from "../../../assets/home/banner/bg_banner.svg";
+import bannerImg from "../../../assets/home/banner/banner-3.svg";
 
 const Banner = () => {
   return (
@@ -12,13 +11,6 @@ const Banner = () => {
           <div className="lg:w-1/2 w-full flex flex-col gap-8 ">
             {/* title and subtitle */}
             <div className="">
-              {/* <h2 className="lg:leading-[55px] md:leading-[50px] sm:leading-10">
-                Accelerate Your Hiring with
-                Our
-                <br className="lg:block hidden" />
-                <span className="text-blue"> Job Search </span>
-                Solutions
-              </h2> */}
               <h2 className="lg:leading-[55px] md:leading-[50px] sm:leading-10">
                 The <span className="text-blue">Easiest</span> Way To Get
                 <br className="lg:block hidden" /> Your New Job.
@@ -36,10 +28,8 @@ const Banner = () => {
           </div>
           {/* Banner Right - Image */}
           <div className="lg:w-1/2 w-10/12 flex justify-center">
-            {/* image component */}
-            {/* <BannerImg /> */}
             <img
-              className="h-full w-auto object-cover p-20 box"
+              className="h-full object-cover ml-auto animate-updown"
               src={bannerImg}
               alt=""
             />

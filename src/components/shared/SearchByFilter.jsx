@@ -11,6 +11,7 @@ import { fetchJobCategories } from "../../features/jobs/filterCollection/categor
 import { fetchJobLocations } from "../../features/jobs/filterCollection/location/jobLocationsSlice";
 import { fetchJobsListing } from "../../features/jobs/jobsListing/jobsListingSlice";
 import { useNavigate } from "react-router-dom";
+import PrimaryBtn from "../ui/PrimaryBtn";
 const SearchByFilter = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -55,7 +56,7 @@ const SearchByFilter = () => {
   };
 
   return (
-    <div className="bg-bgLightWhite md:p-2 p-5 rounded-2xl w-full md:w-auto">
+    <div className="bg-bgLightWhite md:p-2 p-5 rounded-2xl ">
       <div className="flex items-center md:flex-row flex-col md:gap-0 gap-3">
         {/* Job title input */}
         <label className="flex items-center py-2 rounded-md px-3 md:w-40 md:border-none border border-[#cfdefc]">
@@ -101,11 +102,8 @@ const SearchByFilter = () => {
         />
 
         {/* Search button */}
-        <button
-          onClick={showFilter}
-          className="btn btn-primary bg-blue text-white font-medium w-36"
-        >
-          Find Jobs
+        <button onClick={showFilter} className="w-auto">
+          <PrimaryBtn title={"Find Jobs"} />
         </button>
       </div>
     </div>

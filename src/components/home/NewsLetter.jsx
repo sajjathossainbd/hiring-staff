@@ -1,7 +1,7 @@
 import email from "../../assets/home/news-letter/email.svg";
 import right from "../../assets/home/news-letter/undraw_newsletter_re_wrob.svg";
 import left from "../../assets/home/news-letter/undraw_connecting_teams_re_hno7.svg";
-import PrimaryButton from "../shared/PrimaryButton";
+import PrimaryBtn from "../ui/PrimaryBtn";
 
 function NewsLetter() {
   return (
@@ -28,7 +28,8 @@ function NewsLetter() {
               />
 
               <div className="absolute right-2 md:right-4">
-                <PrimaryButton title={"Subscribe"} />
+                <PrimaryBtn title={"Subscribe"} />
+                
               </div>
             </form>
           </div>

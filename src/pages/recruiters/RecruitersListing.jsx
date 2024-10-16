@@ -10,7 +10,7 @@ import Pagination from "../../components/recruiter/Pagination";
 
 function RecruitersListing() {
   const dispatch = useDispatch();
-  const [filters, setFilters] = useState({ page: 1 }); 
+  const [filters, setFilters] = useState({ page: 1 });
 
   const {
     recruitersListing: recruiters,
@@ -21,11 +21,13 @@ function RecruitersListing() {
     currentPage,
   } = useSelector((state) => state.recruitersListing);
 
+  console.log(recruiters.totalDocuments);
+
   // Fetch recruiters whenever filters change
   useEffect(() => {
     dispatch(fetchRecruitersListing(filters));
   }, [dispatch, filters]);
-  
+
   const handlePageChange = (newPage) => {
     setFilters((prev) => ({ ...prev, page: newPage }));
   };
@@ -34,7 +36,8 @@ function RecruitersListing() {
 
   if (isLoading) content = <Loading />;
 
-  if (!isLoading && isError) content = <NoFoundData title="No Recruiters Found!" message={error} />;
+  if (!isLoading && isError)
+    content = <NoFoundData title="No Recruiters Found!" message={error} />;
 
   if (!isLoading && !isError && recruiters?.data?.length === 0) {
     content = <NoFoundData title="No Recruiters Found!" />;
@@ -71,18 +74,18 @@ function RecruitersListing() {
           <h3>
             <span className="text-blue">
               {recruiters.totalDocuments} Recruiters
-            </span>{" "}
+            </span>
             Available Now
           </h3>
 
           <p className="md:max-w-xl text-14 mt-3">
-            Browse top-rated recruiters across various locations,
-            tailored to meet your project needs.
+            Browse top-rated recruiters across various locations, tailored to
+            meet your project needs.
           </p>
         </div>
 
         <div>
-          <Filter  />
+          <Filter />
         </div>
       </div>
 

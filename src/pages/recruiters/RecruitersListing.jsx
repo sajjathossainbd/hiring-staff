@@ -7,6 +7,8 @@ import NoFoundData from "../../components/ui/NoFoundData";
 import RecruiterCard from "../../components/recruiter/RecruiterCard";
 import Filter from "../../components/recruiter/Filters";
 import Pagination from "../../components/recruiter/Pagination";
+import Lottie from "lottie-react";
+import multipleLineDraw from "./../../../public/multiline-repet.json";
 
 function RecruitersListing() {
   const dispatch = useDispatch();
@@ -66,7 +68,10 @@ function RecruitersListing() {
         <title>Hiring Staff - Recruiters</title>
       </Helmet>
 
-      <div className="lg:py-16 lg:px-0 px-3 py-10 bg-bgLightWhite dark:bg-darkBlue flex flex-col items-center rounded-3xl">
+      <div className="lg:py-16 lg:px-0 px-3 py-10 bg-bgLightWhite dark:bg-darkBlue flex flex-col items-center rounded-xl relative">
+        <div className="h-0 absolute top-24 lg:block md:block sm:none  ">
+          <Lottie animationData={multipleLineDraw}></Lottie>
+        </div>
         <div className="text-center pb-6">
           <h3>
             <span className="text-blue">

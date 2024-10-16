@@ -71,8 +71,8 @@ function CandidatesFiltering() {
       <div className="relative bg-white  md:p-2 p-5 rounded-lg w-full">
         {/* Search Bar */}
         <div className="flex items-center md:flex-row flex-col md:gap-2 gap-3">
+          
           {/* Profession   */}
-
           <div className="flex items-center px-3">
             <FaLayerGroup className="text-blue" />
             <Dropdown

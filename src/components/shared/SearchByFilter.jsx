@@ -56,13 +56,13 @@ const SearchByFilter = () => {
   };
 
   return (
-    <div className="bg-bgLightWhite md:p-2 p-5 rounded-2xl w-full">
-      <div className="flex items-center md:flex-row flex-col md:gap-0 gap-3">
+    <div className="relative bg-white  md:p-2 p-5 rounded-lg">
+      <div className="flex items-center md:flex-row flex-col md:gap-2 gap-3">
         {/* Job title input */}
         <label className="flex items-center py-2 rounded-md px-3 md:w-40 md:border-none border border-[#cfdefc]">
           <input
             type="text"
-            className="outline-none w-full text-14 bg-bgLightWhite text-[#818896] placeholder:text-[#818896] placeholder:font-medium"
+            className="outline-none w-full text-14 placeholder:font-medium"
             placeholder="Search"
             value={JobTitle}
             onChange={handleJobTitleChange}

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const RecruiterCard = ({ recruiter }) => {
   // data destructuring
-  const { _id, name, logo, address, country } = recruiter || {};
+  const { _id, name, logo, address, country, location } = recruiter || {};
 
   return (
     <div className="boxBorderHoverBlue  overflow-hidden hover:bg-[white]  bg-bgLightBlue dark:bg-darkBlue">

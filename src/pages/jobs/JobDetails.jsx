@@ -1,6 +1,6 @@
 import { ScrollRestoration, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchJobDetails } from "../../features/jobs/jobsDetails/jobDetailsSlice";
 import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
@@ -14,6 +14,10 @@ import { CiMail } from "react-icons/ci";
 function JobDetails() {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpen = () => setIsOpen(true);
+  const handleClose = () => setIsOpen(false);
 
   const {
     jobDetails: job,
@@ -24,7 +28,6 @@ function JobDetails() {
   const { recruiterDetails: recruiter } = useSelector(
     (state) => state.recruiterDetails
   );
-
 
   const {
     description,
@@ -42,7 +45,7 @@ function JobDetails() {
     lastDateToApply,
   } = job || {};
 
-  const { name, logo, } = recruiter || {};
+  const { name, logo } = recruiter || {};
   useEffect(() => {
     dispatch(fetchJobDetails(id));
     dispatch(fetchRecruiterDetails(companyId));
@@ -94,23 +97,27 @@ function JobDetails() {
                   {/*modal for aplly job */}
                   <button
                     className="btn border-none btn-primary bg-blue text-white font-medium px-6 min-h-[2.8rem] h-[2.8rem] rounded-xl my-3"
-                    onClick={() =>
-                      document.getElementById("my_modal_3").showModal()
-                    }
+                    onClick={handleOpen}
                   >
                     Apply Now
                   </button>
-                  <dialog id="my_modal_3" className="modal">
-                    <div className="modal-box max-w-xl">
-                      <form method="dialog">
-                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                          ✕
-                        </button>
-                      </form>
-                      <h3 className="font-bold text-lg">{jobTitle}</h3>
-                      <ApplyJob job={job} />
-                    </div>
-                  </dialog>
+                  {isOpen && (
+                    <dialog id="my_modal_3" className="modal" open>
+                      <div className="modal-box max-w-xl">
+                        <form method="dialog">
+                          <button
+                            type="button"
+                            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                            onClick={handleClose}
+                          >
+                            ✕
+                          </button>
+                        </form>
+                        <h3 className="font-bold text-lg">{jobTitle}</h3>
+                        <ApplyJob job={job} onClose={handleClose} />
+                      </div>
+                    </dialog>
+                  )}
 
                   <button className="btn btn-primary btn-outline min-h-[2.8rem] h-[2.8rem] px-3 border-bgDeepBlue text-blue dark:text-white rounded-xl text-lg">
                     <FaBookmark />
@@ -134,15 +141,11 @@ function JobDetails() {
             </div>
             <div className="mt-7">
               <h5 className="mb-2">Requirement</h5>
-              <ul>
-                {requirements}
-              </ul>
+              <ul>{requirements}</ul>
             </div>
             <div className="mt-7">
               <h5 className="mb-2">Responsibility</h5>
-              <ul>
-                {responsibilities}
-              </ul>
+              <ul>{responsibilities}</ul>
             </div>
             <div className="mt-7">
               <h5 className="mb-2">Education</h5>
@@ -161,10 +164,7 @@ function JobDetails() {
               </p>
             </div>
             <div className="bg-bgLightBlue dark:bg-darkBlue  p-8 rounded-md mt-10">
-              <div className="text-14 ">
-                Tags :{" "}
-                {tags}
-              </div>
+              <div className="text-14 ">Tags : {tags}</div>
               <div className="pt-4">
                 <p className="text-14">
                   Have a query? Drop us a line at{" "}

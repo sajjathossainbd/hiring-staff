@@ -29,7 +29,6 @@ export const getJobsListing = async ({
     const url = `/jobs?${queryParams.toString()}`;
 
     const response = await axiosInstance.get(url);
-
     return response.data;
   } catch (error) {
     console.log(error.message);

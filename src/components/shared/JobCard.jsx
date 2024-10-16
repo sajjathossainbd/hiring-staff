@@ -14,7 +14,7 @@ function JobCard({ job }) {
     jobTitle,
     job_type,
     postedDate,
-    description,
+    description = [],
     min_salary,
     max_salary,
     job_location,

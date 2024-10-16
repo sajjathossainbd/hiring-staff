@@ -6,7 +6,6 @@ import useCurrentUser from "../../../hooks/useCurrentUser";
 import Loading from "../../../components/ui/Loading";
 import Swal from "sweetalert2";
 import TinnyHeading from "../shared/TinnyHeading";
-// import { GoBookmark } from "react-icons/go";
 
 const AppliedJobs = () => {
   const { currentUser } = useCurrentUser();
@@ -81,6 +80,7 @@ const AppliedJobs = () => {
         path={"applied-jobs"}
         pathName={"Applied Jobs"}
       />
+
 
       <div className="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-6">
         {appliedJobs?.map((job, idx) => (

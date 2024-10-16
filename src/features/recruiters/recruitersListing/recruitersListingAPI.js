@@ -1,7 +1,7 @@
 import axiosInstance from "../../../utils/axios";
 
 export const getRecruitersListing = async (filters) => {
-  const { search = "", location = "", industry = "", teamSize = "", city = "", page = 1, limit = 3 } = filters || {};
+  const { search = "", location = "", industry = "", teamSize = "", city = "", page = 1, limit = 9 } = filters || {};
 
 
   const queryParams = {};

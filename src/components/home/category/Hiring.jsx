@@ -5,6 +5,7 @@ import PrimaryBtn from "../../ui/PrimaryBtn";
 function Hiring() {
   return (
     <div className="container flex justify-center items-center pt-0">
+      {/* Hiring Inof */}
       <div className="flex w-[90%] justify-evenly items-center border border-bgDeepBlue rounded-lg shadow-sm flex-col lg:flex-row p-5 space-y-3 lg:gap-3">
         <div className="hidden lg:block">
           <img src={left} alt="left img" />

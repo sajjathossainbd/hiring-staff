@@ -6,6 +6,7 @@ import axiosInstance from "../../utils/axios";
 import FilterSidePanel from "./FilterSidePanel";
 import { PiLineVerticalThin } from "react-icons/pi";
 import Dropdown from "../shared/DropdownCandidate";
+import PrimaryBtn from "../ui/PrimaryBtn";
 
 function CandidatesFiltering() {
   const dispatch = useDispatch();
@@ -67,7 +68,7 @@ function CandidatesFiltering() {
 
   return (
     <div>
-      <div className="relative bg-white  md:p-2 p-5 rounded-2xl w-full">
+      <div className="relative bg-white  md:p-2 p-5 rounded-lg w-full">
         {/* Search Bar */}
         <div className="flex items-center md:flex-row flex-col md:gap-2 gap-3">
           {/* Profession   */}
@@ -106,9 +107,9 @@ function CandidatesFiltering() {
           {/* Search Button */}
           <button
             onClick={applyFilters}
-            className="btn btn-primary border-none bg-blue text-white font-medium w-full md:w-36"
+            className=" text-white font-medium w-full md:w-36"
           >
-            Search
+            <PrimaryBtn title={"Search"} />
           </button>
         </div>
 

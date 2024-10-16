@@ -21,7 +21,6 @@ function RecruitersFiltering() {
     city: "",
     teamSize: "",
   };
-console.log(initialFilters)
   const [filters, setFilters] = useState(initialFilters);
   // const [isFilterOpen, setIsFilterOpen] = useState(false);
 
@@ -30,14 +29,13 @@ console.log(initialFilters)
     const fetchFilterData = async () => {
       try {
         const { data } = await axiosInstance.get("/recruiters/unique");
-        console.log("Full API Response:", data); // Log the full response
         setIndustries(data.uniqueData.industries || []);
-        setLocations(data.uniqueData.cities || []); // Set cities from JSON
+        setLocations(data.uniqueData.cities || []); 
         setTeamSizes(data.uniqueData.teamSizes || []);
-        setIsLoading(false); // Stop loading after data is fetched
+        setIsLoading(false); 
       } catch (error) {
         console.error("Error fetching filter data", error);
-        setIsLoading(false); // Stop loading even if there's an error
+        setIsLoading(false);
       }
     };
 

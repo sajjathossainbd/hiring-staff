@@ -44,7 +44,7 @@ function RecruitersListing() {
     content = (
       <div>
         {/* Recruiter Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 mt-10">
           {recruiters?.data?.map((recruiter) => (
             <RecruiterCard key={recruiter._id} recruiter={recruiter} />
           ))}

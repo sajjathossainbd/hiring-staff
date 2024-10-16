@@ -15,7 +15,6 @@ const BlogSection = () => {
     isError,
     error,
   } = useSelector((state) => state.blogsListing);
-
   useEffect(() => {
     dispatch(fetchBlogsListing());
   }, [dispatch]);
@@ -32,9 +31,7 @@ const BlogSection = () => {
   }
 
   if (!isLoading && !isError && blogs?.length > 0) {
-    content = (
-      <Blogs blogs={blogs}/>
-    );
+    content = <Blogs blogs={blogs} />;
   }
   return (
     <section className="container">

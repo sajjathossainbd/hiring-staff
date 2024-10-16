@@ -1,7 +1,7 @@
 function CategoryCard(category) {
   const { img, name, jobs } = category;
   return (
-    <div className="boxBorderHoverBlue py-5 px-4 rounded-lg shadowtext-center flex justify-center items-center gap-2">
+    <div className="boxBorderHoverBlue py-5 px-4 rounded-lg shadow-sm text-center flex justify-center items-center gap-2 cursor-pointer">
       <div className="flex justify-center items-center ">
         <img src={img} alt="img" />
       </div>

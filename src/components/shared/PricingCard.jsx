@@ -14,7 +14,7 @@ const PricingCard = ({
   linkTo,
 }) => {
   return (
-    <div className="group border border-lightGray hover:shadow p-7 lg:p-10 rounded-xl">
+    <div className="boxBorderHoverBlue p-7 lg:p-10">
       <div>
         <h3>{category}</h3>
         <h1 className="text-blue flex items-baseline my-4">
@@ -60,7 +60,7 @@ const PricingCard = ({
             pathname: linkTo,
           }}
           state={{ price, category }}
-          className="btn text-16 text-blue bg-white font-semibold mt-7 w-full border border-blue hover:text-white hover:-translate-y-1 group-hover:bg-blue group-hover:text-white duration-900"
+          className="btn text-16 text-blue bg-white font-semibold mt-7 w-full border border-blue hover:text-white hover:-translate-y-1 hover:bg-blue  duration-900"
         >
           Choose Plan
         </Link>

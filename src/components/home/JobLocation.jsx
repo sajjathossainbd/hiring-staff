@@ -109,19 +109,17 @@ const JobLocation = () => {
           return (
             <div
               key={index}
-              className={`${colSpan} ${colStart} ${rowStart} p-4 rounded-xl bg-white dark:bg-darkBlue border border-[#D2D4D7] hover:-translate-y-1 hover:shadow-md hover: shadow-[#D2D4D7] transition-all duration-200 cursor-pointer`}
+              className={`${colSpan} ${colStart} ${rowStart} p-4 rounded-xl bg-white dark:bg-darkBlue border border-[#D2D4D7] hover:-translate-y-1 hover:shadow-sm hover:shadow-[#D2D4D7] transition-all duration-200 cursor-pointer`}
             >
               <img
-                className="h-72 w-full object-cover rounded-xl"
+                className="h-72 w-full object-cover rounded-lg"
                 src={job.img}
                 alt=""
               />
               <div className="pt-3">
                 <h4 className="">{job.country}</h4>
                 <div className="flex justify-between pt-2 ">
-                  <p className="text-14">
-                    {job.companies} companies
-                  </p>
+                  <p className="text-14">{job.companies} companies</p>
                   <p className="text-14">
                     {job.vacancies > 0 ? job.vacancies + " vacancies" : "None"}
                   </p>

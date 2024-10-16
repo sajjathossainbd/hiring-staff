@@ -27,9 +27,9 @@ const AppliedJobs = () => {
     enabled: !!userId,
   });
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  // if (isLoading) {
+  //   return <Loading />;
+  // }
 
   if (error) {
     return <p>Error loading jobs: {error.message} || No Applied Jobs</p>;
@@ -81,6 +81,7 @@ const AppliedJobs = () => {
         path={"applied-jobs"}
         pathName={"Applied Jobs"}
       />
+     
 
       <div className="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-6">
         {appliedJobs?.map((job, idx) => (

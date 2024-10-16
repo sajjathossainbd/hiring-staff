@@ -1,8 +1,8 @@
 import imageLeft from "/src/assets/logo/growthSection/Card_1.png";
 import imageRight from "/src/assets/logo/growthSection/Card_2.png";
-import PrimaryButton from "../../shared/PrimaryButton";
 import perfectMatch from "./../../../assets/home/perfect-match.svg";
 import CounterSection from "./CounterSection";
+import PrimaryBtn from "../../ui/PrimaryBtn";
 
 const GrowthSection = () => {
   return (
@@ -48,7 +48,7 @@ const GrowthSection = () => {
               companies globally. Your ideal job is waiting for you.
             </p>
             <div className="flex items-center gap-3">
-              <PrimaryButton title={"Search Jobs"} />
+              <PrimaryBtn title={"Search Jobs"} />
               <a className="ml-2 lg:ml-4 cursor-pointer hover:underline">
                 Learn more
               </a>

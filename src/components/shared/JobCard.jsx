@@ -9,7 +9,7 @@ import MiniBtn from "../ui/MiniBtn";
 import { GoArrowRight } from "react-icons/go";
 import { LiaBuffer } from "react-icons/lia";
 import BookmarkBtn from "../ui/BookmarkBtn";
-function JobCard({ job }) {
+function JobCard({ job, recruiterName, recruiterLogo }) {
   const {
     _id,
     jobTitle,
@@ -20,22 +20,20 @@ function JobCard({ job }) {
     max_salary,
     job_location,
   } = job || {};
-
   return (
     <div className="boxBorderHoverBlue hover:bg-[white]  bg-bgLightBlue dark:bg-darkBlue">
       <div className="md:p-5 p-3 flex flex-col justify-between h-full">
         <div className="">
           {/* Recruiter Information */}
-          <div className="">
+          <div>
             <img
-              className="w-20"
-              src="https://finestwp.co/demos/html/jobcamp/image/l1/png/feature-brand-1.png"
+              className="w-20 h-auto rounded-full"
+              src={recruiterLogo}
               alt=""
             />
-            <h6 className="font-normal pt-2">Golosoft LLC</h6>
+            <h6 className="font-normal pt-2">{recruiterName}</h6>
             <h4 className="mb-3">{jobTitle}</h4>
           </div>
-
           {/* Button Information */}
           <div className="flex lg:justify-between md:justify-between sm:justify-start lg:gap-y-2 md:gap-y-4 sm:gap-6 max-sm:gap-4 items-center mt-6 flex-wrap">
             <MiniBtn
@@ -54,7 +52,6 @@ function JobCard({ job }) {
               style="bg-softGreen text-blue"
             />
           </div>
-
           {/* Description And Price */}
           <div className="">
             <p className="text-14 my-3">{description[0]}</p>

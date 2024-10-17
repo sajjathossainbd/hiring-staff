@@ -49,10 +49,15 @@ const GrowthSection = () => {
               companies globally. Your ideal job is waiting for you.
             </p>
             <div className="flex items-center gap-3">
-              <Link to={"jobs-listing"}><PrimaryBtn title={"Search Jobs"} /></Link>
-              <a className="ml-2 lg:ml-4 cursor-pointer hover:underline">
-                <Link to={"blogs"}>Learn more</Link>
-              </a>
+              <Link to={"jobs-listing"}>
+                <PrimaryBtn title={"Search Jobs"} />
+              </Link>
+              <Link
+                className="ml-2 lg:ml-4 cursor-pointer hover:underline"
+                to={"blogs"}
+              >
+                Learn more
+              </Link>
             </div>
           </div>
         </div>

@@ -3,7 +3,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 import axiosInstance from "../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "../ui/Loading";
 import { CardPagination } from "../shared/CardPagination";
 import { GoArrowRight } from "react-icons/go";
@@ -179,13 +179,13 @@ const UsersManagementTable = () => {
               <div className="mb-3">
                 <span className="font-semibold text-gray-700">Resume:</span>
                 <span className="ml-2">
-                  <a target="_blank" rel="noopener noreferrer" className="text-blue hover:underline" href={selectedUser?.resume}>view</a>
+                  <Link target="_blank" rel="noopener noreferrer" className="text-blue hover:underline" href={selectedUser?.resume}>view</Link>
                 </span>
               </div>
               <div className="mb-3">
                 <span className="font-semibold text-gray-700">Cover Letter:</span>
                 <span className="ml-2">
-                  <a target="_blank" rel="noopener noreferrer" className="text-blue hover:underline" href={selectedUser?.cover_letter}>view</a>
+                  <Link target="_blank" rel="noopener noreferrer" className="text-blue hover:underline" href={selectedUser?.cover_letter}>view</Link>
                 </span>
               </div>
               <div className="mb-3">

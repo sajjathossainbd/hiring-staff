@@ -35,7 +35,7 @@ function JobsListing() {
       limit,
     };
     dispatch(fetchJobsListing(filters));
-  }, [dispatch, page]);
+  }, [AllCategory, JobTitle, Location, dispatch, page]);
 
   // Fetch recruiter details for each job
   useEffect(() => {

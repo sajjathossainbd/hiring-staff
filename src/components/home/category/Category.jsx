@@ -30,9 +30,15 @@ function Category() {
   };
 
   const itemsPerSlide = 10;
-  const slides = [];
-  for (let i = 0; i < categories.length; i += itemsPerSlide) {
-    slides.push(categories.slice(i, i + itemsPerSlide));
+  let slides = [];
+
+  const duplicateSlides =
+    categories.length < itemsPerSlide
+      ? [...categories, ...categories]
+      : categories;
+
+  for (let i = 0; i < duplicateSlides.length; i += itemsPerSlide) {
+    slides.push(duplicateSlides.slice(i, i + itemsPerSlide));
   }
 
   // Calculate job counts per category
@@ -58,9 +64,11 @@ function Category() {
         />
         <div>
           <Swiper
-            slidesPerView={1}
+            slidesPerView={
+              categories.length < itemsPerSlide ? categories.length : 1
+            }
             spaceBetween={30}
-            loop={true}
+            loop={categories.length > itemsPerSlide}
             pagination={{
               clickable: true,
             }}

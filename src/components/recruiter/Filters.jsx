@@ -1,67 +1,101 @@
-/* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
+import { FaMapMarkerAlt, FaLayerGroup } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { fetchRecruitersListing } from "../../features/recruiters/recruitersListing/recruitersListingSlice";
+import axiosInstance from "../../utils/axios";
+import { PiLineVerticalThin } from "react-icons/pi";
+import PrimaryBtn from "../ui/PrimaryBtn";
+import Dropdown from "../shared/DropdownCandidate";
 
-const Filters = ({
-  showCount,
-  setShowCount,
-  setCurrentPage,
-  sortOrder,
-  setSortOrder,
-  currentPage,
-  sortedRecruiters,
-}) => {
+function RecruitersFiltering() {
+  const dispatch = useDispatch();
+
+  const [industries, setIndustries] = useState([]);
+  const [locations, setLocations] = useState([]);
+  const [teamSizes, setTeamSizes] = useState([]);
+
+  const initialFilters = {
+    industry: "",
+    city: "",
+    teamSize: "",
+  };
+  const [filters, setFilters] = useState(initialFilters);
+
+  useEffect(() => {
+    const fetchFilterData = async () => {
+      try {
+        const { data } = await axiosInstance.get("/recruiters/unique");
+        setIndustries(data.industries || []);
+        setLocations(data.cities || []);
+        setTeamSizes(data.teamSizes || []);
+      } catch (error) {
+        console.error("Error fetching filter data", error);
+      }
+    };
+
+    fetchFilterData();
+  }, []);
+
+  const handleFilterChange = (name, value) => {
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [name]: value,
+    }));
+  };
+
+  const applyFilters = () => {
+    dispatch(fetchRecruitersListing(filters));
+  };
+
   return (
-    <div className="flex md:justify-between flex-col md:flex-row items-center border-b-2 border-[#F8FAFF] pb-2 mb-4">
-      {/* Left Side - Showing results */}
-      <div>
-        <p className="text-lightGray">
-          Showing{" "}
-          {Math.min((currentPage - 1) * showCount + 1, sortedRecruiters.length)}
-          –{Math.min(currentPage * showCount, sortedRecruiters.length)} of{" "}
-          {sortedRecruiters.length} results
-        </p>
-      </div>
+    <div>
+      <div className="relative bg-white shadow-md border border-bgLightBlue md:p-2 p-5 rounded-lg w-full">
+        {/* Search Bar */}
+        <div className="flex items-center md:flex-row flex-col md:gap-2 gap-3 justify-center">
+          {/* Industry */}
+          <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
+            <FaLayerGroup className="text-blue" />
+            <Dropdown
+              options={industries}
+              placeholder="Select a industry"
+              onChange={(option) => handleFilterChange("industry", option)}
+            />
+          </div>
 
-      {/* Right Side - Filters */}
-      <div className="flex gap-4 items-center">
-        {/* Show count filter */}
-        <div className="flex items-center">
-          <label htmlFor="show" className="mr-2 text-lightGray">
-            Show:
-          </label>
-          <select
-            id="show"
-            value={showCount}
-            onChange={(e) => {
-              setShowCount(Number(e.target.value));
-              setCurrentPage(1); // Reset to the first page after changing show count
-            }}
-            className="border border-[#F8FAFF] rounded-md p-1"
-          >
-            <option value="8">8</option>
-            <option value="16">16</option>
-            <option value="24">24</option>
-          </select>
-        </div>
+          <PiLineVerticalThin className="lg:block hidden" />
 
-        {/* Sorting filter */}
-        <div className="flex items-center">
-          <label htmlFor="sort" className="mr-2 text-lightGray">
-            Sort by:
-          </label>
-          <select
-            id="sort"
-            value={sortOrder}
-            onChange={(e) => setSortOrder(e.target.value)}
-            className="border border-[#F8FAFF] rounded-md p-1"
+          {/* City Input */}
+          <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
+            <FaMapMarkerAlt className="text-blue" />
+            <Dropdown
+              options={locations}
+              placeholder="Select a industry"
+              onChange={(option) => handleFilterChange("city", option)}
+            />
+          </div>
+
+          <PiLineVerticalThin className="lg:block hidden" />
+          {/* Team Size */}
+          <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
+            
+            <Dropdown
+              options={teamSizes}
+              placeholder="Select a number"
+              onChange={(option) => handleFilterChange("teamSize", option)}
+            />
+          </div>
+
+          {/* Search Button */}
+          <button
+            onClick={applyFilters}
+            className=" text-white font-medium w-full md:w-36"
           >
-            <option value="default">Default Sorting</option>
-            <option value="latest">Sort by Latest</option>
-            <option value="title">Sort by Title</option>
-          </select>
+            <PrimaryBtn title={"Search"} />
+          </button>
         </div>
       </div>
     </div>
   );
-};
+}
 
-export default Filters;
+export default RecruitersFiltering;

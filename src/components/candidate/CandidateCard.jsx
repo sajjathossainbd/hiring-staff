@@ -1,6 +1,13 @@
+/* eslint-disable react/prop-types */
 import { CiClock2, CiLocationOn } from "react-icons/ci";
+import { MdOutlineVerified } from "react-icons/md";
+import { LiaBuffer } from "react-icons/lia";
 import { Link } from "react-router-dom";
 import StarRatings from "react-star-ratings";
+import MiniBtn from "../ui/MiniBtn";
+import SecondaryButton from "../shared/SecondaryButton";
+import { BsSendArrowUp } from "react-icons/bs";
+import BookmarkBtn from "../ui/BookmarkBtn";
 
 function CandidateCard({ candidate }) {
   const {
@@ -16,9 +23,11 @@ function CandidateCard({ candidate }) {
   } = candidate || {};
 
   return (
-    <div className="border border-lightGray rounded-lg overflow-hidden shadow-sm bg-bgLightBlue dark:bg-darkBlue dark:text-white hover:bg-white hover:-translate-y-1 duration-300">
-      <Link to={`/candidate-details/${_id}`}>
-        <div className="p-6">
+    <div className="boxBorderHoverBlue  overflow-hidden hover:bg-[white]  bg-bgLightBlue dark:bg-darkBlue">
+      <div className="p-6 flex flex-col justify-between h-full">
+        {/* Card Information */}
+        <div className="">
+          {/* Candidate Personal Info */}
           <div className="flex items-center">
             <img
               src={photo_url}
@@ -32,34 +41,50 @@ function CandidateCard({ candidate }) {
               <p className="text-gray">{special_profession}</p>
             </div>
           </div>
-
-          <div className="mt-1 flex gap-[1px] text-14 items-center">
-            <StarRatings
-              rating={4}
-              starRatedColor="#ffd250"
-              numberOfStars={5}
-              name="rating"
-              starDimension="16px"
-              starSpacing="1px"
-            />
-            <p className="ml-2">4</p>
+          {/* Featured And Top Rated */}
+          <div className="mt-6">
+            <div className="flex items-center gap-4">
+              <MiniBtn
+                value={"Top Rated"}
+                icon={<MdOutlineVerified />}
+                style="bg-softGreen text-blue"
+              />
+              <MiniBtn
+                value={"Featured"}
+                icon={<LiaBuffer />}
+                style="bg-softGreen text-green"
+              />
+            </div>
+            <div className="mt-[3px] flex gap-[1px] text-14 items-center">
+              <StarRatings
+                rating={4}
+                starRatedColor="#ffd250"
+                numberOfStars={5}
+                name="rating"
+                starDimension="16px"
+                starSpacing="1px"
+              />
+              <p className="ml-2 text-blue">4.5 Rating</p>
+            </div>
           </div>
 
-          <p className="mt-4 text-gray-700 text-sm">
-            {about_me?.slice(0, 80)}...
-          </p>
-          <div className="mt-4 flex flex-wrap">
-            {skills.map((skill, index) => (
-              <button
-                key={index}
-                className="bg-[#e1e6ff] dark:text-darkBlue m-1 py-1 px-1 rounded-md text-12"
-              >
-                {skill}
-              </button>
-            ))}
+          {/* Description and Skills */}
+          <div className="">
+            <p className="mt-4 text-14">{about_me?.slice(0, 80)}...</p>
+            <div className="mt-4 flex flex-wrap gap-3">
+              {skills.map((skill, index) => (
+                <MiniBtn
+                  key={index}
+                  value={skill}
+                  icon={""}
+                  style=" bg-bgDeepBlue dark:text-darkBlue text-[8px]"
+                />
+              ))}
+            </div>
           </div>
-          <hr className="border-lightGray mt-2" />
-          <div className="mt-4 text-12 flex justify-between items-center">
+
+          {/* City and Expression */}
+          <div className="mt-4 text-14 flex justify-between items-center">
             <span className="flex items-center gap-1">
               <CiLocationOn />
               {location.city}, {location.state}
@@ -70,7 +95,19 @@ function CandidateCard({ candidate }) {
             </span>
           </div>
         </div>
-      </Link>
+
+        {/* Hire Button and Favourite Icon */}
+        <div className="mt-6 flex justify-between items-center">
+          <div className="">
+            <Link to={`/candidate-details/${_id}`}>
+              <SecondaryButton title={"Hire Me"} icon={<BsSendArrowUp />} />
+            </Link>
+          </div>
+          <div className="">
+            <BookmarkBtn />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

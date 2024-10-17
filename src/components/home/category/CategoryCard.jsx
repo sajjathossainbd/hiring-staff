@@ -1,16 +1,16 @@
-function CategoryCard(category) {
-  const { img, name, jobs } = category;
+/* eslint-disable react/prop-types */
+const CategoryCard = ({ categoryName, jobCount, onCategoryClick }) => {
   return (
-    <div className="boxBorderHoverBlue py-5 px-4 rounded-lg shadowtext-center flex justify-center items-center gap-2">
-      <div className="flex justify-center items-center ">
-        <img src={img} alt="img" />
-      </div>
+    <div
+      className="boxBorderHoverBlue py-5 px-4 rounded-lg shadow-sm text-center flex justify-center items-center gap-2 cursor-pointer bg-bgLightBlue"
+      onClick={() => onCategoryClick(categoryName)}
+    >
       <div>
-        <h3 className="text-12 md:text-14">{name}</h3>
-        <p className="text-12 mt-2">{jobs}</p>
+        <h3 className="text-12 md:text-14">{categoryName}</h3>
+        <p className="text-sm text-gray-500">{jobCount} jobs available</p>
       </div>
     </div>
   );
-}
+};
 
 export default CategoryCard;

@@ -13,19 +13,28 @@ const MyProfile = () => {
 
   const onSubmit = async (data) => {
     const updatedData = {
-      name: data.name || currentUser?.name,
-      image: data.imageUrl || currentUser?.image,
-      coverImage: data.coverImageUrl || currentUser?.coverImage,
       role: data.role || currentUser?.role,
-      about: data.about || currentUser?.about,
-      phone: data.phone || currentUser?.phone,
-      website: data.website || currentUser?.website,
-      country: data.country || currentUser?.country,
-      city: data.city || currentUser?.city,
-      facebook: data.facebook || currentUser?.facebook,
-      linkedin: data.linkedin || currentUser?.linkedin,
-      twitter: data.twitter || currentUser?.twitter,
-      github: data.github || currentUser?.github,
+      first_name: data.first_name || currentUser?.first_name,
+      last_name: data.last_name || currentUser?.last_name,
+      email: currentUser?.email, // Email should be fetched from currentUser
+      special_profession: data.special_profession || currentUser?.special_profession,
+      experience_year: data.experience_year || currentUser?.experience_year,
+      coverImage: data.coverImageUrl || currentUser?.coverImage,
+      phone_number: data.phone_number || currentUser?.phone_number,
+      image: data.image || currentUser?.photo_url,
+      resume: data.resume || currentUser?.resume,
+      cover_letter: data.cover_letter || currentUser?.cover_letter,
+      skills: data.skills.split(",").map(skill => skill.trim()) || currentUser?.skills,
+      education: currentUser?.education, // Assuming education remains unchanged
+      company_experience: currentUser?.company_experience, // Assuming company experience remains unchanged
+      certifications: currentUser?.certifications, // Assuming certifications remain unchanged
+      location: {
+        city: data.city || currentUser?.location?.city,
+        state: data.state || currentUser?.location?.state,
+        country: data.country || currentUser?.location?.country,
+      },
+      about_me: data.about_me || currentUser?.about_me,
+      job_type: data.job_type || currentUser?.job_type,
     };
 
     try {
@@ -50,7 +59,6 @@ const MyProfile = () => {
       <h3>My Profile</h3>
 
       <div className="mt-6">
-        {/* Profile photo */}
         <div className="flex flex-col items-center">
           <div className="relative w-full h-36 md:h-44 lg:h-60 xl:h-72 bg-cover bg-center border-4 border-bgDeepBlue rounded-xl" style={{ backgroundImage: `url(${currentUser?.coverImage || 'https://i.ibb.co.com/mBcjQj6/download-1.jpg'})` }}>
             <div className="absolute inset-0 bg-black opacity-40 rounded-xl"></div>
@@ -64,76 +72,111 @@ const MyProfile = () => {
             />
           </div>
         </div>
-        {/* Profile form */}
+
         <div className="mt-6">
           <form onSubmit={handleSubmit(onSubmit)}>
-            {/* Candidate/Recruiter Select */}
             <div className="mb-4">
               <label htmlFor="role" className="block text-gray font-bold mb-2">
                 I am a:
               </label>
               <select
-                defaultValue={currentUser?.role || ""}
+                defaultValue={currentUser?.role}
                 disabled={currentUser?.role === "admin"}
                 id="role"
                 {...register("role")}
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
               >
-                <option disabled>Select role</option>
+                <option disabled >Select role</option>
+                <option disabled >Admin</option>
                 <option value="candidate">Candidate</option>
                 <option value="recruiter">Recruiter</option>
               </select>
             </div>
-            {/* Name and Email */}
+            {/* First and Last Name */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div className="mb-4">
-                <label
-                  htmlFor="name"
-                  className="block text-gray font-bold mb-2"
-                >
-                  Name
-                </label>
+                <label htmlFor="first_name" className="block text-gray font-bold mb-2">First Name</label>
                 <input
-                  id="name"
+                  id="first_name"
                   type="text"
-                  placeholder={currentUser?.name}
-                  {...register("name")}
+                  placeholder={currentUser?.first_name}
+                  {...register("first_name")}
                   className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
                 />
               </div>
               <div className="mb-4">
-                <label
-                  htmlFor="email"
-                  className="block text-gray font-bold mb-2"
-                >
-                  Email
-                </label>
+                <label htmlFor="last_name" className="block text-gray font-bold mb-2">Last Name</label>
                 <input
-                  disabled
-                  id="email"
-                  type="email"
-                  placeholder={currentUser?.email}
-                  {...register("email")}
+                  id="last_name"
+                  type="text"
+                  placeholder={currentUser?.last_name}
+                  {...register("last_name")}
                   className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
                 />
               </div>
             </div>
-            {/* Image URL Field */}
+
+            {/* Email */}
             <div className="mb-4">
-              <label
-                htmlFor="imageUrl"
-                className="block text-gray font-bold mb-2"
-              >
-                Profile Image URL
-              </label>
+              <label htmlFor="email" className="block text-gray font-bold mb-2">Email</label>
               <input
-                id="imageUrl"
-                type="url"
-                placeholder={currentUser?.image || user?.photoURL}
-                {...register("imageUrl")}
+                disabled
+                id="email"
+                type="email"
+                value={currentUser?.email}
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
               />
             </div>
+
+            {/* Special Profession */}
+            <div className="mb-4">
+              <label htmlFor="special_profession" className="block text-gray font-bold mb-2">Special Profession</label>
+              <input
+                id="special_profession"
+                type="text"
+                placeholder={currentUser?.special_profession}
+                {...register("special_profession")}
+                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+              />
+            </div>
+
+            {/* Experience Years */}
+            <div className="mb-4">
+              <label htmlFor="experience_year" className="block text-gray font-bold mb-2">Years of Experience</label>
+              <input
+                id="experience_year"
+                type="number"
+                placeholder={currentUser?.experience_year}
+                {...register("experience_year")}
+                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+              />
+            </div>
+
+            {/* Phone Number */}
+            <div className="mb-4">
+              <label htmlFor="phone_number" className="block text-gray font-bold mb-2">Phone Number</label>
+              <input
+                id="phone_number"
+                type="tel"
+                placeholder={currentUser?.phone_number}
+                {...register("phone_number")}
+                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+              />
+            </div>
+
+            {/* Photo URL */}
+            <div className="mb-4">
+              <label htmlFor="photo_url" className="block text-gray font-bold mb-2">Profile Photo URL</label>
+              <input
+                id="photo_url"
+                type="url"
+                placeholder={currentUser?.image}
+                {...register("image")}
+                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+              />
+            </div>
+
+            {/* Cover Image URL */}
             <div className="mb-4">
               <label
                 htmlFor="imageUrl"
@@ -149,147 +192,104 @@ const MyProfile = () => {
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
               />
             </div>
-            {/* Additional fields (phone, website, etc.) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <div className="mb-4">
-                <label
-                  htmlFor="phone"
-                  className="block text-gray font-bold mb-2"
-                >
-                  Phone
-                </label>
-                <input
-                  id="phone"
-                  type="number"
-                  placeholder={currentUser?.phone}
-                  {...register("phone")}
-                  className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
-                />
-              </div>
-              <div className="mb-4">
-                <label
-                  htmlFor="site"
-                  className="block text-gray font-bold mb-2"
-                >
-                  Website
-                </label>
-                <input
-                  id="site"
-                  type="url"
-                  placeholder={currentUser?.website}
-                  {...register("website")}
-                  className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
-                />
-              </div>
-            </div>
-            {/* Bio */}
+
+            {/* Resume URL */}
             <div className="mb-4">
-              <label htmlFor="about" className="block text-gray font-bold mb-2">
-                About Yourself
-              </label>
-              <textarea
-                id="about"
-                rows="5"
-                placeholder={currentUser?.about}
-                {...register("about")}
+              <label htmlFor="resume" className="block text-gray font-bold mb-2">Resume URL</label>
+              <input
+                id="resume"
+                type="url"
+                placeholder={currentUser?.resume}
+                {...register("resume")}
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
               />
             </div>
-            {/* Address */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+
+            {/* Cover Letter URL */}
+            <div className="mb-4">
+              <label htmlFor="cover_letter" className="block text-gray font-bold mb-2">Cover Letter URL</label>
+              <input
+                id="cover_letter"
+                type="url"
+                placeholder={currentUser?.cover_letter}
+                {...register("cover_letter")}
+                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+              />
+            </div>
+
+            {/* Skills */}
+            <div className="mb-4">
+              <label htmlFor="skills" className="block text-gray font-bold mb-2">Skills (comma-separated)</label>
+              <input
+                id="skills"
+                type="text"
+                placeholder={currentUser?.skills?.join(", ")}
+                {...register("skills")}
+                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+              />
+            </div>
+
+            {/* Location */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
               <div className="mb-4">
-                <label
-                  htmlFor="country"
-                  className="block text-gray font-bold mb-2"
-                >
-                  Country
-                </label>
-                <input
-                  id="country"
-                  type="text"
-                  placeholder={currentUser?.country}
-                  {...register("country")}
-                  className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
-                />
-              </div>
-              <div className="mb-4">
-                <label
-                  htmlFor="city"
-                  className="block text-gray font-bold mb-2"
-                >
-                  City
-                </label>
+                <label htmlFor="city" className="block text-gray font-bold mb-2">City</label>
                 <input
                   id="city"
                   type="text"
-                  placeholder={currentUser?.city}
+                  placeholder={currentUser?.location?.city}
                   {...register("city")}
                   className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
                 />
               </div>
-            </div>
-            {/* Social Media Links */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div className="mb-4">
-                <label htmlFor="fb" className="block text-gray font-bold mb-2">
-                  Facebook URL
-                </label>
+                <label htmlFor="state" className="block text-gray font-bold mb-2">State</label>
                 <input
-                  id="fb"
-                  type="url"
-                  placeholder={currentUser?.facebook}
-                  {...register("facebook")}
+                  id="state"
+                  type="text"
+                  placeholder={currentUser?.location?.state}
+                  {...register("state")}
                   className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
                 />
               </div>
               <div className="mb-4">
-                <label
-                  htmlFor="twitter"
-                  className="block text-gray font-bold mb-2"
-                >
-                  Twitter URL
-                </label>
+                <label htmlFor="country" className="block text-gray font-bold mb-2">Country</label>
                 <input
-                  id="twitter"
-                  type="url"
-                  placeholder={currentUser?.twitter}
-                  {...register("twitter")}
+                  id="country"
+                  type="text"
+                  placeholder={currentUser?.location?.country}
+                  {...register("country")}
                   className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
                 />
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <div className="mb-4">
-                <label
-                  htmlFor="linkedin"
-                  className="block text-gray font-bold mb-2"
-                >
-                  LinkedIn URL
-                </label>
-                <input
-                  id="linkedin"
-                  type="url"
-                  placeholder={currentUser?.linkedin}
-                  {...register("linkedin")}
-                  className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
-                />
-              </div>
-              <div className="mb-4">
-                <label
-                  htmlFor="github"
-                  className="block text-gray font-bold mb-2"
-                >
-                  GitHub URL
-                </label>
-                <input
-                  id="github"
-                  type="url"
-                  placeholder={currentUser?.github}
-                  {...register("github")}
-                  className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
-                />
-              </div>
+
+            {/* About Me */}
+            <div className="mb-4">
+              <label htmlFor="about_me" className="block text-gray font-bold mb-2">About Me</label>
+              <textarea
+                id="about_me"
+                rows="4"
+                placeholder={currentUser?.about_me}
+                {...register("about_me")}
+                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+              />
             </div>
+
+            {/* Job Type */}
+            <div className="mb-4">
+              <label htmlFor="job_type" className="block text-gray font-bold mb-2">Job Type</label>
+              <select
+                defaultValue={currentUser?.job_type || "remote"}
+                id="job_type"
+                {...register("job_type")}
+                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+              >
+                <option value="remote">Remote</option>
+                <option value="onsite">Onsite</option>
+                <option value="hybrid">Hybrid</option>
+              </select>
+            </div>
+
             {/* Submit Button */}
             <PrimaryButton title={"Update Now"} icon={<BsFillSendFill />} />
           </form>

@@ -7,6 +7,8 @@ import NoFoundData from "../../components/ui/NoFoundData";
 import CandidateCard from "../../components/candidate/CandidateCard";
 import Pagination from "../../components/candidate/Pagination";
 import CandidatesFiltering from "../../components/candidate/CandidatesFiltering";
+import Lottie from "lottie-react";
+import multipleLineDraw from "./../../../public/multiline-repet.json";
 
 function CandidatesListing() {
   const dispatch = useDispatch();
@@ -47,7 +49,7 @@ function CandidatesListing() {
     content = (
       <div>
         {/* candidate card */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 mt-10">
           {candidates?.candidates?.map((candidate) => (
             <CandidateCard key={candidate._id} candidate={candidate} />
           ))}
@@ -64,14 +66,16 @@ function CandidatesListing() {
       </div>
     );
   }
-
   return (
     <div className="container">
       <Helmet>
         <title>Hiring Staff - Candidates</title>
       </Helmet>
 
-      <div className="lg:py-16 lg:px-0 px-3 py-10 bg-bgLightWhite dark:bg-darkBlue flex flex-col items-center rounded-3xl">
+      <div className="lg:py-14 lg:px-0 px-3 py-10 bg-bgLightWhite dark:bg-darkBlue flex flex-col items-center rounded-xl relative">
+        <div className="h-0 absolute top-24 lg:block md:block sm:none  ">
+          <Lottie animationData={multipleLineDraw}></Lottie>
+        </div>
         <div className="text-center pb-6">
           <h3>
             <span className="text-blue">
@@ -86,7 +90,7 @@ function CandidatesListing() {
           </p>
         </div>
 
-        <div>
+        <div className="mb-4">
           <CandidatesFiltering onFilterChange={handleFilterChange} />
         </div>
       </div>

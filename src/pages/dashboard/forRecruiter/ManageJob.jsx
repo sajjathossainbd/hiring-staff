@@ -1,84 +1,46 @@
 import TinnyHeading from "../shared/TinnyHeading";
-import { CiLocationOn } from "react-icons/ci";
-import { FaRegEye } from "react-icons/fa6";
-import { IoCheckmark } from "react-icons/io5";
-import { RxCross2 } from "react-icons/rx";
+import { FaArrowRight, FaRegEye } from "react-icons/fa6";
+import { CiMail } from "react-icons/ci";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import axiosInstance from "../../../utils/axios";
+import { useQuery } from "@tanstack/react-query";
+import useCurrentUser from "../../../hooks/useCurrentUser";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 const ManageJob = () => {
-  const jobListings = [
-    {
-      jobTitle: "Product Designer",
-      address: "32, Wales Street, New York, USA",
-      appliedCount: "5+ Applied",
-      startDate: "November 27, 2020",
-      endDate: "December 25, 2024",
-      status: "Active",
+
+  const { currentUser } = useCurrentUser();
+
+  const { data: myJobs, refetch } = useQuery({
+    queryKey: ["myJobs", currentUser?.email],
+    queryFn: async () => {
+      const res = await axiosInstance.get(`/jobs/email/${currentUser.email}`);
+      return res.data;
     },
-    {
-      jobTitle: "Software Engineer",
-      address: "45, Ocean Avenue, San Francisco, USA",
-      appliedCount: "10+ Applied",
-      startDate: "January 15, 2021",
-      endDate: "February 20, 2024",
-      status: "Active",
-    },
-    {
-      jobTitle: "UX/UI Designer",
-      address: "15, Park Lane, Chicago, USA",
-      appliedCount: "3+ Applied",
-      startDate: "March 01, 2022",
-      endDate: "December 10, 2024",
-      status: "Active",
-    },
-    {
-      jobTitle: "Data Scientist",
-      address: "89, Elm Street, Boston, USA",
-      appliedCount: "8+ Applied",
-      startDate: "April 18, 2021",
-      endDate: "November 30, 2024",
-      status: "Active",
-    },
-    {
-      jobTitle: "Frontend Developer",
-      address: "67, Maple Street, Austin, USA",
-      appliedCount: "15+ Applied",
-      startDate: "June 10, 2021",
-      endDate: "October 15, 2024",
-      status: "Active",
-    },
-    {
-      jobTitle: "Software Engineer",
-      address: "45, Ocean Avenue, San Francisco, USA",
-      appliedCount: "10+ Applied",
-      startDate: "January 15, 2021",
-      endDate: "February 20, 2024",
-      status: "Active",
-    },
-    {
-      jobTitle: "UX/UI Designer",
-      address: "15, Park Lane, Chicago, USA",
-      appliedCount: "3+ Applied",
-      startDate: "March 01, 2022",
-      endDate: "December 10, 2024",
-      status: "Active",
-    },
-    {
-      jobTitle: "Data Scientist",
-      address: "89, Elm Street, Boston, USA",
-      appliedCount: "8+ Applied",
-      startDate: "April 18, 2021",
-      endDate: "November 30, 2024",
-      status: "Active",
-    },
-    {
-      jobTitle: "Frontend Developer",
-      address: "67, Maple Street, Austin, USA",
-      appliedCount: "15+ Applied",
-      startDate: "June 10, 2021",
-      endDate: "October 15, 2024",
-      status: "Active",
-    },
-  ];
+    enabled: !!currentUser?.email,
+  });
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosInstance.delete(`/jobs/delete/${id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            Swal.fire("Deleted!", "Job has been deleted.", "success");
+            refetch();
+          }
+        });
+      }
+    });
+  };
+
   return (
     <div>
       <TinnyHeading
@@ -98,54 +60,47 @@ const ManageJob = () => {
                 <th>Title</th>
                 <th>Applications</th>
                 <th>Created & Expired</th>
-                <th>Status</th>
+                <th>Details</th>
                 <th>Action</th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
-              {jobListings.map((job, index) => (
+              {myJobs?.map((job, index) => (
                 <tr key={index}>
                   <td>
                     <div className="flex items-center gap-3">
                       <div>
                         <div className="font-bold mb-2 lg:text-base text-sm">
-                          {job.jobTitle}
+                          {job?.jobTitle}
                         </div>
-                        <div className="text-14 flex items-center">
-                          <CiLocationOn className="text-lg" />
-                          {job.address}
+                        <div className="text-14 flex gap-1 items-center">
+                          <CiMail className="text-lg" />
+                          {job?.company_email}
                         </div>
                       </div>
                     </div>
                   </td>
                   <td>
-                    <span className="text-blue">{job.appliedCount}</span>
+                    <span className="text-blue">{job?.appliedCount}</span>
                   </td>
                   <td>
-                    {job.startDate} - {job.endDate}
+                    {job?.postedDate} <FaArrowRight /> {job?.lastDateToApply}
                   </td>
                   <td>
-                    <span className="text-blue">{job.status}</span>
-                  </td>
-                  <td className="flex gap-2">
                     <div className="tooltip" data-tip="View">
-                      <button className="btn rounded-full text-blue hover:text-white hover:bg-blue">
-                        <FaRegEye />
-                      </button>
+
+                      <Link to={`/job-details/${job?._id}`}>
+                        <button className="btn rounded-full text-blue hover:text-white hover:bg-blue">
+                          <FaRegEye />
+                        </button>
+                      </Link>
                     </div>
-                    <div className="tooltip" data-tip="Approve">
-                      <button className="btn rounded-full text-blue hover:text-white hover:bg-blue">
-                        <IoCheckmark />
-                      </button>
-                    </div>
-                    <div className="tooltip" data-tip="Reject">
-                      <button className="btn rounded-full text-blue hover:text-white hover:bg-blue">
-                        <RxCross2 />
-                      </button>
-                    </div>
+                  </td>
+                  <td>
                     <div className="tooltip" data-tip="Delete">
-                      <button className="btn rounded-full text-blue hover:text-white hover:bg-blue">
+                      <button
+                        onClick={() => handleDelete(job?._id)}
+                        className="btn rounded-full text-blue hover:text-white hover:bg-blue">
                         <RiDeleteBin6Line />
                       </button>
                     </div>

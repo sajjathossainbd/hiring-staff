@@ -17,6 +17,11 @@ export default {
         blue: "#3C65F5",
         darkBlue: "#05274F",
 
+        green: "#0EA12F",
+        softGreen: "#E6F7EA ",
+
+        orange: "#FB5F1D",
+
         // text -
         gray: "#4F5E64", // paragraphs tags
         lightGray: "#A0Abb8", //  halka light color

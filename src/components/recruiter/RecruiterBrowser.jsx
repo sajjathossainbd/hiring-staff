@@ -25,7 +25,7 @@ const RecruiterBrowser = ({
                 }`}
                 onClick={() => {
                   setSelectedLetter(letter);
-                  setCurrentPage(1); // Reset to the first page after filtering
+                  setCurrentPage(1);
                 }}
               >
                 {letter}

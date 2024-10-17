@@ -1,46 +1,96 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
+import MiniBtn from "../ui/MiniBtn";
+import { CiLocationOn, CiMoneyBill } from "react-icons/ci";
+import { HiOutlineBriefcase } from "react-icons/hi";
+import { RiNumbersLine } from "react-icons/ri";
+import StarRatings from "react-star-ratings";
+import SecondaryButton from "../shared/SecondaryButton";
+import { GoArrowRight } from "react-icons/go";
+import BookmarkBtn from "../ui/BookmarkBtn";
 
 const RecruiterCard = ({ recruiter }) => {
   // data destructuring
-  const { _id, name, logo, location } = recruiter || {};
+  const {
+    _id,
+    name,
+    industry,
+    description,
+    annualRevenue,
+    companySizeCategory,
+    logo,
+    ratings,
+    openJobs,
+    location = {},
+  } = recruiter || {};
 
   return (
-    <div className="w-full p-4 border hover:-translate-y-1 transition duration-300 border-lightGray shadow-md rounded-lg mx-auto">
-      <img src={logo} alt={name} className="w-auto h-20 mx-auto mb-4 pt-8" />
-      <h4 className="font-semibold text-center text-darkBlue hover:text-blue">
-        {name}
-      </h4>
-      {/* <div className="flex justify-center items-center mt-2">
-        <div className="text-yellow-500">
-          {Array.from({ length: 5 }, (_, index) => (
-            <span
-              key={index}
-              className={` ${
-                index < recruiter.ratings / 10
-                  ? "text-yellow-500"
-                  : "text-gray-300"
-              }`}
-            >
-              ★
-            </span>
-          ))}
+    <div className="boxBorderHoverBlue  overflow-hidden hover:bg-[white]  bg-bgLightBlue dark:bg-darkBlue">
+      <div className="md:p-5 p-3 flex flex-col justify-between h-full">
+        {/* Recruiter Info */}
+        <div className="">
+          {/* Recruiter logo, name, industry */}
+          <div className="">
+            <img src={logo} alt={name} className="w-20 rounded-full" />
+            <h4 className="">{name}</h4>
+            <p className="text-12 mt-1 border-solid border-[1px] inline-block rounded-full py-1 px-5 border-lightGray">
+              {industry}
+            </p>
+          </div>
+
+          {/* Recruiter Button */}
+          <div className="flex gap-6 mt-6">
+            <MiniBtn
+              value={`${location?.state}, ${location?.country}`}
+              icon={<CiLocationOn />}
+              style="bg-softGreen text-green"
+            />
+            <MiniBtn
+              value={`${openJobs} Open Job`}
+              icon={<HiOutlineBriefcase />}
+              style="bg-softGreen text-blue"
+            />
+          </div>
+
+          {/* Rating */}
+          <div className="mt-[3px] flex gap-[1px] text-14 items-center">
+            <StarRatings
+              rating={ratings}
+              starRatedColor="#ffd250"
+              numberOfStars={5}
+              name="rating"
+              starDimension="16px"
+              starSpacing="1px"
+            />
+            <p className="ml-2 text-blue">{ratings} Rating</p>
+          </div>
+
+          {/* Description */}
+          <p className="mt-3">{description?.slice(0, 90)}...</p>
+
+          {/* Revenue and Size */}
+          <div className="flex justify-between mt-2">
+            <p className="text-12 flex items-center gap-x-1 capitalize">
+              <CiMoneyBill className="text-lg" />
+              {annualRevenue} Yearly Revenue
+            </p>
+            <p className="flex items-center gap-x-1 text-12">
+              <RiNumbersLine className="text-lg" /> {companySizeCategory} Size
+            </p>
+          </div>
         </div>
-        <span className="ml-2">({recruiter.ratings})</span>
-      </div> */}
-      <p className="text-center text-lightGray mt-2">{`${location.address},${location.country}`}</p>
-      <div className="mt-8 flex justify-center mb-8">
-        {/* <Link
-          to={`/recruiters-listing/${recruiter._id}`}
-          className="bg-[#E0E6F7] hover:text-blue p-3 rounded-md text-darkBlue transition-all duration-500 text-14"
-        >
-          {recruiter.openJobs > 0
-            ? `${recruiter.openJobs} Open Jobs`
-            : "No Open Job"}
-        </Link> */}
-        <Link to={`/recruiter-details/${_id}`}>
-          <button className="btn">Visit</button>
-        </Link>
+
+        {/* View More Button And Favourite Icon */}
+        <div className="mt-8 flex justify-between items-center">
+          <div className="">
+            <Link to={`/recruiter-details/${_id}`}>
+              <SecondaryButton title={"View Profile"} icon={<GoArrowRight />} />
+            </Link>
+          </div>
+          <div className="">
+            <BookmarkBtn />
+          </div>
+        </div>
       </div>
     </div>
   );

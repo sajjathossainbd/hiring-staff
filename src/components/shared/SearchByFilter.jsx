@@ -56,7 +56,7 @@ const SearchByFilter = () => {
   };
 
   return (
-    <div className="relative bg-white  md:p-2 p-5 rounded-lg">
+    <div className="relative bg-white border shadow-md border-bgLightBlue md:p-2 p-5 rounded-lg">
       <div className="flex items-center md:flex-row flex-col md:gap-2 gap-3">
         {/* Job title input */}
         <label className="flex items-center py-2 rounded-md px-3 md:w-32  md:border-none border border-[#cfdefc]">
@@ -102,8 +102,8 @@ const SearchByFilter = () => {
         />
 
         {/* Search button */}
-        <button onClick={showFilter} className="w-auto">
-          <PrimaryBtn title={"Filter"} />
+        <button onClick={showFilter} className="w-40">
+          <PrimaryBtn title={"Search Jobs"} />
         </button>
       </div>
     </div>

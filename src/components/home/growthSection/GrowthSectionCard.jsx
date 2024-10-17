@@ -21,7 +21,7 @@ function GrowthSectionCard(data) {
 
     return () => {
       if (ref.current) {
-        observer.unobserve(ref.current); // Clean up observer on unmount
+        observer.unobserve(ref.current);
       }
     };
   }, []);

@@ -1,7 +1,4 @@
-import RecruiterCard from "../shared/RecruiterCard";
 import SectionTitle from "../shared/SectionTitle";
-import { Navigation, Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -10,10 +7,9 @@ import Loading from "../ui/Loading";
 import NoFoundData from "../ui/NoFoundData";
 import { useEffect } from "react";
 import { fetchRecruitersListing } from "../../features/recruiters/recruitersListing/recruitersListingSlice";
-import PrimaryBtnBlue from "../ui/PrimaryBtnBlue";
-import { MdNoteAdd } from "react-icons/md";
-import PrimaryBtnWhite from "../ui/PrimaryBtnWhite";
-import { FaRegUser } from "react-icons/fa6";
+import TopRecruiterCard from "../shared/TopRecruiterCard";
+import { Link } from "react-router-dom";
+import PrimaryBtn from "../ui/PrimaryBtn";
 
 function Recruiter() {
   const dispatch = useDispatch();
@@ -24,6 +20,8 @@ function Recruiter() {
     isError,
     error,
   } = useSelector((state) => state.recruitersListing);
+
+  const recrutiersData = recruiters?.recruiters?.slice(0, 6) || [];
 
   useEffect(() => {
     dispatch(fetchRecruitersListing());
@@ -36,107 +34,42 @@ function Recruiter() {
   if (!isLoading && isError)
     content = <div className="col-span-12">{error}</div>;
 
-  if (!isLoading && !isError && recruiters?.length === 0) {
+  if (!isLoading && !isError && recrutiersData?.length === 0) {
     content = <NoFoundData title="No Recruiters Found!" />;
   }
 
-  if (!isLoading && !isError && recruiters?.length > 0) {
+  if (!isLoading && !isError && recrutiersData.length > 0) {
     content = (
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {recruiters.map((recruiter) => (
-          <RecruiterCard key={recruiter._id} recruiter={recruiter} />
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6">
+        {recrutiersData.map((recruiter, index) => (
+          <TopRecruiterCard
+            key={`${recruiter._id}-${index}`}
+            recruiter={recruiter}
+          />
         ))}
       </div>
     );
   }
 
-  const chunkArray = (arr, size) => {
-    const chunked = [];
-    for (let i = 0; i < arr.length; i += size) {
-      chunked.push(arr.slice(i, i + size));
-    }
-    return chunked;
-  };
-
-  const recruitersInSlides = chunkArray(recruiters, 12);
-
   return (
-    <div className="container">
-      <SectionTitle
-        title={"Top Recruiters"}
-        subTitle={
-          "Discover your next career move, freelance gig, or internship"
-        }
-      />
+    <div className="bg-bgLightBlue">
+      <div className="container">
+        <SectionTitle
+          title={"Top Recruiters"}
+          subTitle={
+            "Discover your next career move, freelance gig, or internship"
+          }
+        />
 
-      {/* Recruiter */}
-      <PrimaryBtnBlue title="Order Now" icon={<MdNoteAdd />} />
-      <PrimaryBtnWhite title="Create Your Profile" icon={<FaRegUser />} />
-
-      <div className="relative sm:mt-6 max-sm:mt-8">
-        <div className="absolute top-[-50px] right-[-5px] flex gap-2 z-10">
-          <button className="swiper-button-prev-custom p-2 rounded-full bg-lightGray">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-[15px] h-[15px] text-white"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 19.5L8.25 12l7.5-7.5"
-              />
-            </svg>
-          </button>
-          <button className="swiper-button-next-custom bg-lightGray p-2 rounded-full">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-[15px] h-[15px] text-white"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M8.25 4.5L15.75 12l-7.5 7.5"
-              />
-            </svg>
-          </button>
+        <div className="mt-10">
+          <div className="">{content}</div>
+          <Link
+            to={"/recruiters-listing"}
+            className="mt-16 flex items-center justify-center"
+          >
+            <PrimaryBtn title="All Recruiter" />
+          </Link>
         </div>
-
-        <Swiper
-          slidesPerView={1}
-          spaceBetween={30}
-          loop={recruitersInSlides.length > 1}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={{
-            nextEl: ".swiper-button-next-custom",
-            prevEl: ".swiper-button-prev-custom",
-          }}
-          modules={[Pagination, Navigation]}
-          className="mySwiper"
-        >
-          {recruitersInSlides.length > 0 ? (
-            recruitersInSlides.map((recruitersGroup, index) => (
-              <SwiperSlide key={index}>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                  {recruitersGroup.map((recruiter) => (
-                    <RecruiterCard key={recruiter._id} recruiter={recruiter} />
-                  ))}
-                </div>
-              </SwiperSlide>
-            ))
-          ) : (
-            <SwiperSlide>{content}</SwiperSlide>
-          )}
-        </Swiper>
       </div>
     </div>
   );

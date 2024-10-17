@@ -103,7 +103,7 @@ const SearchByFilter = () => {
 
         {/* Search button */}
         <button onClick={showFilter} className="w-auto">
-          <PrimaryBtn title={"Find Jobs"} />
+          <PrimaryBtn title={"Filter"} />
         </button>
       </div>
     </div>

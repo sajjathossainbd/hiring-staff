@@ -42,7 +42,7 @@ function JobsListing() {
 
   if (!isLoading && isError) content = <NoFoundData title="No Jobs Found!" />;
 
-  if (!isLoading && !isError && jobs.length === 0) {
+  if (!isError && jobs.length === 0) {
     content = <NoFoundData title="No Jobs Found!" />;
   }
 

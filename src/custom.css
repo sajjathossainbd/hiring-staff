@@ -66,7 +66,7 @@
   top: 0px;
   left: 0px;
   position: relative;
-  animation: customMove 3s ease-in-out infinite; /* Reduced duration for quicker smoothness */
+  animation: customMove 3s linear infinite;
 }
 
 @keyframes customMove {
@@ -74,7 +74,7 @@
     top: 0px; /* Starting position */
   }
   50% {
-    top: 10px; /* Mid-point movement */
+    top: 7px; /* Mid-point movement */
   }
   100% {
     top: 0px; /* Return to starting position */

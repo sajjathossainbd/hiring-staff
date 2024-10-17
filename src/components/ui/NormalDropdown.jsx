@@ -1,10 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useState, useRef, useEffect } from "react";
 import { FiChevronDown } from "react-icons/fi";
-const Dropdown = ({ options, placeholder = "Select an option", onChange }) => {
+
+const NormalDropdown = ({ dynamicOptions, placeholderData }) => {
+  const [placeholder, setPlaceholder] = useState(placeholderData);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(placeholder);
   const dropdownRef = useRef(null);
+
   const toggleDropdown = () => {
     setIsOpen((prev) => !prev);
   };
@@ -27,45 +30,35 @@ const Dropdown = ({ options, placeholder = "Select an option", onChange }) => {
       setSelectedOption(placeholder);
     } else {
       setSelectedOption(option);
-      onChange(option, selectedOption);
+      setPlaceholder(option);
     }
     setIsOpen(false);
   };
 
   return (
-    <div className="relative inline-block text-left w-40" ref={dropdownRef}>
-      <div className=" flex items-center">
-        <button
-          onClick={toggleDropdown}
-          className="flex items-center justify-center w-full py-2 text-sm font-medium rounded-md text-[#818896]"
-          aria-haspopup="true"
-          aria-expanded={isOpen}
-        >
-          <span className="font-medium">{selectedOption}</span>
-          <div className="flex items-center">
-            <FiChevronDown
-              className={`ml-2 mt-[2px] transition-transform ${
-                isOpen ? "rotate-180" : ""
-              }`}
-            />
-          </div>
-        </button>
-      </div>
+    <div className="relative inline-block text-left " ref={dropdownRef}>
+      <button
+        onClick={toggleDropdown}
+        className="flex items-center justify-center w-full py-2 text-16 font-medium rounded-md"
+        aria-haspopup="true"
+        aria-expanded={isOpen}
+      >
+        <span>{selectedOption}</span>
+        <FiChevronDown
+          className={`ml-2 transition-transform ${isOpen ? "rotate-180" : ""}`}
+        />
+      </button>
 
       {isOpen && (
-        <div
-          className="absolute top-[130%] z-10 md:min-w-36 w-48 bg-white mt-2 origin-top-right rounded-md"
-          role="menu"
-        >
+        <div className="absolute z-10 w-48 bg-white mt-2 origin-top-right rounded-md shadow-lg">
           <div className="py-1">
-            {options.map((option) => (
+            {dynamicOptions.map((option) => (
               <button
                 key={option}
                 onClick={() => handleOptionClick(option)}
-                className={`block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 focus:bg-blue-200 focus:outline-none ${
+                className={`block w-full text-left px-4 py-2 text-16 text-darkBlue ${
                   option === selectedOption ? "bg-blue-200" : ""
                 }`}
-                role="menuitem"
               >
                 {option}
               </button>
@@ -77,4 +70,4 @@ const Dropdown = ({ options, placeholder = "Select an option", onChange }) => {
   );
 };
 
-export default Dropdown;
+export default NormalDropdown;

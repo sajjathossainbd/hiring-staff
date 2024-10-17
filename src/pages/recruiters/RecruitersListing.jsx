@@ -7,6 +7,8 @@ import NoFoundData from "../../components/ui/NoFoundData";
 import RecruiterCard from "../../components/recruiter/RecruiterCard";
 import Filter from "../../components/recruiter/Filters";
 import Pagination from "../../components/recruiter/Pagination";
+import Lottie from "lottie-react";
+import multipleLineDraw from "./../../../public/multiline-repet.json";
 
 function RecruitersListing() {
   const dispatch = useDispatch();
@@ -39,43 +41,46 @@ function RecruitersListing() {
   if (!isLoading && isError)
     content = <NoFoundData title="No Recruiters Found!" message={error} />;
 
-  if (!isLoading && !isError && recruiters?.length === 0) {
+  if (!isLoading && !isError && recruiters?.recruiters?.length === 0) {
     content = <NoFoundData title="No Recruiters Found!" />;
   }
 
-  if (!isLoading && !isError && recruiters?.length > 0) {
+  if (!isLoading && !isError && recruiters?.recruiters?.length > 0) {
     content = (
       <div>
         {/* Recruiter Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 mt-10">
-          {recruiters?.map((recruiter) => (
+          {recruiters?.recruiters?.map((recruiter) => (
             <RecruiterCard key={recruiter._id} recruiter={recruiter} />
           ))}
         </div>
 
         {/* Pagination Component */}
         <Pagination
-          totalPages={totalPages}code
-          currentPage={currentPage}
+          totalPages={recruiters?.totalPages}
+          currentPage={recruiters?.currentPage}
           onPageChange={handlePageChange}
         />
       </div>
     );
   }
-
+  console.log(recruiters);
   return (
     <div className="container">
       <Helmet>
         <title>Hiring Staff - Recruiters</title>
       </Helmet>
 
-      <div className="lg:py-16 lg:px-0 px-3 py-10 bg-bgLightWhite dark:bg-darkBlue flex flex-col items-center rounded-3xl">
+      <div className="lg:py-16 lg:px-0 px-3 py-10 bg-bgLightWhite dark:bg-darkBlue flex flex-col items-center rounded-xl relative">
+        <div className="h-0 absolute top-24 lg:block md:block sm:none  ">
+          <Lottie animationData={multipleLineDraw}></Lottie>
+        </div>
         <div className="text-center pb-6">
           <h3>
             <span className="text-blue">
-              {recruiters.totalDocuments} Recruiters
+              {recruiters.totalRecruiters} Recruiters
             </span>
-            Available Now
+            {" "}Available Now
           </h3>
 
           <p className="md:max-w-xl text-14 mt-3">

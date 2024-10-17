@@ -1,33 +1,47 @@
 /* eslint-disable react/prop-types */
 
 import { Link } from "react-router-dom";
+import MiniBtn from "../../ui/MiniBtn";
+import BookmarkBtn from "../../ui/BookmarkBtn";
+import PrimaryBtn from "../../ui/PrimaryBtn";
 
 function BlogCard({ blog }) {
-  const { _id } = blog || {};
+  const { url, content, title } = blog || {};
 
   return (
-    <div>
-      <Link
-        to={`/blog-details/${blog?._id}`}
-        key={_id}
-        className=" border-lightGray hover:border-blue rounded-lg px-1 py-3  hover:-translate-y-1 transition duration-300 h-[600px] md:h-[500px] lg:h-[611px] w-full"
-      >
-        <figure className="p-4">
+    <div className="boxBorderHoverBlue p-5">
+      <div className="flex flex-col justify-between">
+        <figure className="">
           <img
-            className="rounded-lg size-48 w-full"
-            src={blog?.url}
+            className="rounded-md size-48 object-cover w-full"
+            src={url}
             alt="Blog"
           />
         </figure>
-        <div className="card-body p-4 gap-1 mt-3">
-          <h4 className="hover:text-blue line-clamp-2">{blog?.title}</h4>
-          <p className="mt-1 text-14">{blog?.content.slice(0, 100)}</p>
+        <div className="mt-4">
+          {/* Category and bookmark */}
+          <div className="flex items-center justify-between">
+            <div className="flex gap-2">
+              <MiniBtn value={"Tech"} icon="" style="bg-softGreen text-green" />
+              <MiniBtn
+                value={"Career"}
+                icon=""
+                style="bg-softGreen text-blue"
+              />
+            </div>
+            <BookmarkBtn />
+          </div>
 
+          {/* Title and Contnet */}
+          <h4 className="line-clamp-2">{title}</h4>
+          <p className="mt-1 text-14">{content.slice(0, 100)}</p>
+
+          {/* Author */}
           <div className="flex justify-between items-end mt-6">
             <div className="flex items-center gap-4">
               <img
                 className="lg:w-12 w-8 lg:h-12 h-8 rounded-full"
-                src="https://secure.gravatar.com/avatar/bb00cf69a3ae5d10043a9e2d3db9b173?s=64&d=mm&r=g"
+                src="https://i.ibb.co.com/pZmRm0T/mushfiq.jpg"
                 alt=""
               />
               <div>
@@ -39,7 +53,15 @@ function BlogCard({ blog }) {
             </div>
           </div>
         </div>
-      </Link>
+
+        {/* Read More */}
+        <Link
+          to={`/blog-details/${blog?._id}`}
+          className="mt-10 flex items-end justify-end"
+        >
+          <PrimaryBtn title={"Read More"} />
+        </Link>
+      </div>
     </div>
   );
 }

@@ -2,9 +2,11 @@ import left from "../../../assets/home/hiring/bg-left-hiring.svg";
 import right from "../../../assets/home/hiring/bg-right-hiring.svg";
 import { GoVerified } from "react-icons/go";
 import PrimaryBtn from "../../ui/PrimaryBtn";
+import { Link } from "react-router-dom";
 function Hiring() {
   return (
     <div className="container flex justify-center items-center pt-0">
+      {/* Hiring Inof */}
       <div className="flex w-[90%] justify-evenly items-center border border-bgDeepBlue rounded-lg shadow-sm flex-col lg:flex-row p-5 space-y-3 lg:gap-3">
         <div className="hidden lg:block">
           <img src={left} alt="left img" />
@@ -26,7 +28,7 @@ function Hiring() {
               <div className=""></div>
             </div>
           </div>
-          <PrimaryBtn icon={<GoVerified />} title={"Apply Now"} />
+          <Link to={"/jobs-listing"}><PrimaryBtn icon={<GoVerified />} title={"Apply Now"} /></Link>
         </div>
 
         <div className="hidden lg:block">

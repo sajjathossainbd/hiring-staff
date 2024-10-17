@@ -23,33 +23,25 @@ function Category() {
     dispatch(fetchJobCategories());
     dispatch(fetchJobsListing());
   }, [dispatch]);
+  console.log("Jobs:", jobs?.jobs); // Log jobs data
   const jobsData = jobs?.jobs || [];
+
   const handleCategoryClick = (categoryName) => {
     dispatch(setCategory(categoryName));
     navigate("/jobs-listing/1");
   };
 
   const itemsPerSlide = 10;
-  let slides = [];
-
-  const duplicateSlides =
-    categories.length < itemsPerSlide
-      ? [...categories, ...categories]
-      : categories;
-
-  for (let i = 0; i < duplicateSlides.length; i += itemsPerSlide) {
-    slides.push(duplicateSlides.slice(i, i + itemsPerSlide));
+  const slides = [];
+  for (let i = 0; i < categories.length; i += itemsPerSlide) {
+    slides.push(categories.slice(i, i + itemsPerSlide));
   }
 
   // Calculate job counts per category
   const jobCounts = categories.reduce((acc, category) => {
-    // Ensure category is a valid string before proceeding
-    if (category && typeof category === "string") {
-      acc[category] = jobsData.filter(
-        (job) =>
-          job.category && job.category.toLowerCase() === category.toLowerCase()
-      ).length;
-    }
+    acc[category] = jobsData.filter(
+      (job) => job.category.toLowerCase() === category.toLowerCase()
+    ).length;
     return acc;
   }, {});
 
@@ -64,11 +56,9 @@ function Category() {
         />
         <div>
           <Swiper
-            slidesPerView={
-              categories.length < itemsPerSlide ? categories.length : 1
-            }
+            slidesPerView={1}
             spaceBetween={30}
-            loop={categories.length > itemsPerSlide}
+            loop={true}
             pagination={{
               clickable: true,
             }}

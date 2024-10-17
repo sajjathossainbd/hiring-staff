@@ -60,6 +60,10 @@ function JobsListing() {
 
   if (!isLoading && isError) content = <NoFoundData title="No Jobs Found!" />;
 
+  if (!isError && jobs.length === 0) {
+    content = <NoFoundData title="No Jobs Found!" />;
+  }
+
   if (!isLoading && !isError && jobs?.jobs?.length > 0) {
     content = (
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">

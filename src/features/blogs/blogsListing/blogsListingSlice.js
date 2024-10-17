@@ -11,7 +11,7 @@ const initialState = {
 // async thunk
 export const fetchBlogsListing = createAsyncThunk(
   "blogsListing/fetchBlogsListing",
-  async ({ page, limit, query }) => {
+  async ({ page = 1, limit = 10, query = "" }) => {
     const blogsListing = await getBlogsListing(page, limit, query);
     return blogsListing;
   }

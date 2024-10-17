@@ -3,7 +3,7 @@
 import { Link } from "react-router-dom";
 import MiniBtn from "../../ui/MiniBtn";
 import BookmarkBtn from "../../ui/BookmarkBtn";
-import PrimaryBtn from "../../ui/PrimaryBtn";
+import PrimaryBtnBlue from "../../ui/PrimaryBtnBlue";
 
 function BlogCard({ blog }) {
   const { url, content, title } = blog || {};
@@ -59,7 +59,7 @@ function BlogCard({ blog }) {
           to={`/blog-details/${blog?._id}`}
           className="mt-10 flex items-end justify-end"
         >
-          <PrimaryBtn title={"Read More"} />
+          <PrimaryBtnBlue title={"Read More"} />
         </Link>
       </div>
     </div>

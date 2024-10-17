@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import { CiLocationOn } from "react-icons/ci";
 import StarRatings from "react-star-ratings";
 

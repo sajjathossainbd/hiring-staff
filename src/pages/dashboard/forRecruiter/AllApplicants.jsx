@@ -9,6 +9,7 @@ import useCurrentUser from "../../../hooks/useCurrentUser";
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../../utils/axios";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const AllApplicants = () => {
   const { currentUser } = useCurrentUser();
@@ -120,9 +121,9 @@ const AllApplicants = () => {
               <div className="flex lg:justify-normal justify-center gap-2 lg:pt-0 pt-6">
                 <div className="tooltip" data-tip="Resume">
                   <button className="btn rounded-full text-blue hover:text-white hover:bg-blue">
-                    <a target="_blank" href={person?.resume}>
+                    <Link href={person?.resume}>
                       <FaRegEye />
-                    </a>
+                    </Link>
                   </button>
                 </div>
                 <div className="tooltip" data-tip="Shortlist">

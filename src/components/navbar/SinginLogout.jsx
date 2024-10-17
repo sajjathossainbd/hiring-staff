@@ -72,12 +72,15 @@ function SinginLogout() {
                 </Link>
               </li>
               <li>
-                <a className="text-16 py-2">Settings</a>
+                <Link className="text-16 py-2">Settings</Link>
               </li>
               <li>
-                <a className="justify-between text-16 py-2F" onClick={logOut}>
+                <Link
+                  className="justify-between text-16 py-2F"
+                  onClick={logOut}
+                >
                   Logout
-                </a>
+                </Link>
               </li>
             </ul>
           )}

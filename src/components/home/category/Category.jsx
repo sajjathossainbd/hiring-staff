@@ -11,19 +11,21 @@ import { useEffect } from "react";
 import { fetchJobCategories } from "../../../features/jobs/jobCategories/jobCategoriesAPI";
 import { setCategory } from "../../../features/jobs/jobsFilter/filterSlice";
 import { useNavigate } from "react-router-dom";
+import { fetchJobsListing } from "../../../features/jobs/jobsListing/jobsListingSlice";
 
 function Category() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { categories } = useSelector((state) => state.jobCategories);
 
+  const { jobsListing: jobs } = useSelector((state) => state.jobsListing);
+  const { categories } = useSelector((state) => state.jobCategories);
   useEffect(() => {
     dispatch(fetchJobCategories());
+    dispatch(fetchJobsListing());
   }, [dispatch]);
-
+  const jobsData = jobs?.jobs || [];
   const handleCategoryClick = (categoryName) => {
     dispatch(setCategory(categoryName));
-
     navigate("/jobs-listing/1");
   };
 
@@ -33,13 +35,25 @@ function Category() {
     slides.push(categories.slice(i, i + itemsPerSlide));
   }
 
+  // Calculate job counts per category
+  const jobCounts = categories.reduce((acc, category) => {
+    // Ensure category is a valid string before proceeding
+    if (category && typeof category === "string") {
+      acc[category] = jobsData.filter(
+        (job) =>
+          job.category && job.category.toLowerCase() === category.toLowerCase()
+      ).length;
+    }
+    return acc;
+  }, {});
+
   return (
     <div className="bg-bgLightBlue pb-6">
       <section className="container px-0 sm:px-0 md:px-0 lg:px-0 xl:px-14">
         <SectionTitle
           title={"Browse by category"}
           subTitle={
-            "Find the job that’s perfect for you. about 800+ new jobs everyday"
+            "Find the job that’s perfect for you. About 800+ new jobs every day"
           }
         />
         <div>
@@ -65,6 +79,7 @@ function Category() {
                     <CategoryCard
                       key={idx}
                       categoryName={category}
+                      jobCount={jobCounts[category] || 0} // Pass job count
                       onCategoryClick={handleCategoryClick}
                     />
                   ))}

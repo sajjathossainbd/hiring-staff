@@ -9,22 +9,25 @@ import Hiring from "./Hiring";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchJobCategories } from "../../../features/jobs/jobCategories/jobCategoriesAPI";
+import { setCategory } from "../../../features/jobs/jobsFilter/filterSlice";
+import { useNavigate } from "react-router-dom";
 
 function Category() {
   const dispatch = useDispatch();
-
-  // Select categories from the Redux store
+  const navigate = useNavigate();
   const { categories } = useSelector((state) => state.jobCategories);
 
-  // Fetch categories on component mount
   useEffect(() => {
     dispatch(fetchJobCategories());
   }, [dispatch]);
 
-  // Items per slide
-  const itemsPerSlide = 10;
+  const handleCategoryClick = (categoryName) => {
+    dispatch(setCategory(categoryName));
 
-  // Create slides from the categories array
+    navigate("/jobs-listing/1");
+  };
+
+  const itemsPerSlide = 10;
   const slides = [];
   for (let i = 0; i < categories.length; i += itemsPerSlide) {
     slides.push(categories.slice(i, i + itemsPerSlide));
@@ -59,7 +62,11 @@ function Category() {
               <SwiperSlide key={index}>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 md:gap-4 mx-14 mt-14 mb-10">
                   {slide.map((category, idx) => (
-                    <CategoryCard key={idx} categoryName={category} />
+                    <CategoryCard
+                      key={idx}
+                      categoryName={category}
+                      onCategoryClick={handleCategoryClick}
+                    />
                   ))}
                 </div>
               </SwiperSlide>

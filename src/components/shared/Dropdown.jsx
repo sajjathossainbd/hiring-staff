@@ -33,7 +33,7 @@ const Dropdown = ({ options, placeholder = "Select an option", onChange }) => {
   };
 
   return (
-    <div className="relative inline-block text-left" ref={dropdownRef}>
+    <div className="relative inline-block text-left w-40" ref={dropdownRef}>
       <div className=" flex items-center">
         <button
           onClick={toggleDropdown}

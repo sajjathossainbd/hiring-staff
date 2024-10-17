@@ -10,6 +10,10 @@ import Loading from "../ui/Loading";
 import NoFoundData from "../ui/NoFoundData";
 import { useEffect } from "react";
 import { fetchRecruitersListing } from "../../features/recruiters/recruitersListing/recruitersListingSlice";
+import PrimaryBtnBlue from "../ui/PrimaryBtnBlue";
+import { MdNoteAdd } from "react-icons/md";
+import PrimaryBtnWhite from "../ui/PrimaryBtnWhite";
+import { FaRegUser } from "react-icons/fa6";
 
 function Recruiter() {
   const dispatch = useDispatch();
@@ -45,6 +49,7 @@ function Recruiter() {
       </div>
     );
   }
+
   const chunkArray = (arr, size) => {
     const chunked = [];
     for (let i = 0; i < arr.length; i += size) {
@@ -56,13 +61,17 @@ function Recruiter() {
   const recruitersInSlides = chunkArray(recruiters, 12);
 
   return (
-    <div className=" container">
+    <div className="container">
       <SectionTitle
         title={"Top Recruiters"}
         subTitle={
           "Discover your next career move, freelance gig, or internship"
         }
       />
+
+      {/* Recruiter */}
+      <PrimaryBtnBlue title="Order Now" icon={<MdNoteAdd />} />
+      <PrimaryBtnWhite title="Create Your Profile" icon={<FaRegUser />} />
 
       <div className="relative sm:mt-6 max-sm:mt-8">
         <div className="absolute top-[-50px] right-[-5px] flex gap-2 z-10">
@@ -103,7 +112,7 @@ function Recruiter() {
         <Swiper
           slidesPerView={1}
           spaceBetween={30}
-          loop={true}
+          loop={recruitersInSlides.length > 1}
           pagination={{
             clickable: true,
           }}
@@ -114,9 +123,19 @@ function Recruiter() {
           modules={[Pagination, Navigation]}
           className="mySwiper"
         >
-          {recruitersInSlides?.map((recruitersGroup, index) => (
-            <SwiperSlide key={index}>{content}</SwiperSlide>
-          ))}
+          {recruitersInSlides.length > 0 ? (
+            recruitersInSlides.map((recruitersGroup, index) => (
+              <SwiperSlide key={index}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                  {recruitersGroup.map((recruiter) => (
+                    <RecruiterCard key={recruiter._id} recruiter={recruiter} />
+                  ))}
+                </div>
+              </SwiperSlide>
+            ))
+          ) : (
+            <SwiperSlide>{content}</SwiperSlide>
+          )}
         </Swiper>
       </div>
     </div>

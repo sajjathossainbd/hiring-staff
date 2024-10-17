@@ -58,7 +58,7 @@ const BlogSection = () => {
             to={"/blogs"}
             className="mt-16 flex items-center justify-center"
           >
-            <PrimaryBtn title="All Blgos" />
+            <PrimaryBtn title="More Blgos" />
           </Link>
         </div>
       </div>

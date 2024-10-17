@@ -7,9 +7,10 @@ import { Link } from "react-router-dom";
 
 const GrowthSection = () => {
   return (
-    <div>
+    <div className="bg-bgLightBlue">
       <div className="container">
         <div className=" hero-content flex flex-col lg:flex-row">
+          {/* image */}
           <div className="relative  mx-auto py-12 px-4 lg:px-8 lg:w-5/12">
             <div className="relative">
               <img
@@ -35,36 +36,34 @@ const GrowthSection = () => {
               </div>
             </div>
           </div>
+          {/* information */}
           <div className=" w-full lg:w-5/12">
-            <h1 className="text-2xl lg:text-4xl font-bold text-lightGray">
-              Million&apos;s Of Jobs.
-            </h1>
-            <h1 className="text-3xl lg:text-5xl font-bold w-full text-darkBlue py-2">
-              Choose the <span className="text-blue">Perfect Match </span>for
-              You
-            </h1>
-            <p className="py-6">
-              Explore all available job openings online. Receive a customized
-              salary estimate just for you. Access reviews on more than 600,000
-              companies globally. Your ideal job is waiting for you.
-            </p>
-            <div className="flex items-center gap-3">
-              <Link to={"jobs-listing"}>
-                <PrimaryBtn title={"Search Jobs"} />
-              </Link>
-              <Link
-                className="ml-2 lg:ml-4 cursor-pointer hover:underline"
-                to={"blogs"}
-              >
-                Learn more
-              </Link>
+            <div className="">
+              <h1 className="text-2xl lg:text-4xl font-bold text-lightGray">
+                Million&apos;s Of Jobs.
+              </h1>
+              <h1 className="text-3xl lg:text-5xl font-bold w-full text-darkBlue py-2">
+                Choose the <span className="text-blue">Perfect Match </span>for
+                You
+              </h1>
+              <div className="flex items-center gap-3 mt-6">
+                <Link to={"jobs-listing"}>
+                  <PrimaryBtn title={"Search Jobs"} />
+                </Link>
+                <Link
+                  className="ml-2 lg:ml-4 cursor-pointer hover:underline"
+                  to={"blogs"}
+                >
+                  Learn more
+                </Link>
+              </div>
             </div>
+            <CounterSection />
           </div>
+          {/*  */}
         </div>
       </div>
-      <div>
-        <CounterSection />
-      </div>
+      <div></div>
     </div>
   );
 };

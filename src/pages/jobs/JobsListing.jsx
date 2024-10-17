@@ -68,7 +68,7 @@ function JobsListing() {
     content = (
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
         {jobs?.jobs?.map((job) => {
-          const recruiter = recruitersData[job.company_id]; // Get recruiter details for this job
+          const recruiter = recruitersData[job.company_id];
 
           return (
             <JobCard

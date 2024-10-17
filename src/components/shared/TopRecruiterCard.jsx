@@ -15,7 +15,7 @@ function TopRecruiterCard({ recruiter }) {
   const { _id, name, industry, logo, location = {} } = recruiter || {};
 
   return (
-    <div className="boxBorderHoverBlue  overflow-hidden hover:bg-[white]  bg-white dark:bg-darkBlue p-2">
+    <div className="boxBorderHoverBlue  overflow-hidden hover:bg-[white]  bg-bgLightBlue dark:bg-darkBlue p-2">
       <div className="md:p-5 p-3 flex flex-col justify-between h-full">
         {/* Recruiter Info */}
         <div className="">

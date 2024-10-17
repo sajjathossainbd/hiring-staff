@@ -5,13 +5,13 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import CategoryCard from "./CategoryCard";
-import Hiring from "./Hiring";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchJobCategories } from "../../../features/jobs/jobCategories/jobCategoriesAPI";
 import { setCategory } from "../../../features/jobs/jobsFilter/filterSlice";
 import { useNavigate } from "react-router-dom";
 import { fetchJobsListing } from "../../../features/jobs/jobsListing/jobsListingSlice";
+import Hiring from "./Hiring";
 
 function Category() {
   const dispatch = useDispatch();
@@ -23,7 +23,6 @@ function Category() {
     dispatch(fetchJobCategories());
     dispatch(fetchJobsListing());
   }, [dispatch]);
-  console.log("Jobs:", jobs?.jobs); // Log jobs data
   const jobsData = jobs?.jobs || [];
 
   const handleCategoryClick = (categoryName) => {
@@ -37,7 +36,7 @@ function Category() {
     slides.push(categories.slice(i, i + itemsPerSlide));
   }
 
-  // Calculate job counts per category
+
   const jobCounts = categories.reduce((acc, category) => {
     acc[category] = jobsData.filter(
       (job) => job.category.toLowerCase() === category.toLowerCase()
@@ -46,7 +45,7 @@ function Category() {
   }, {});
 
   return (
-    <div className="bg-bgLightBlue pb-6">
+    <div className=" pb-6">
       <section className="container px-0 sm:px-0 md:px-0 lg:px-0 xl:px-14">
         <SectionTitle
           title={"Browse by category"}

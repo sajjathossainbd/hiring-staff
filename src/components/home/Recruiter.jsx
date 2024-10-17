@@ -52,7 +52,7 @@ function Recruiter() {
   }
 
   return (
-    <div className="bg-bgLightBlue">
+    <div className="">
       <div className="container">
         <SectionTitle
           title={"Top Recruiters"}
@@ -67,7 +67,7 @@ function Recruiter() {
             to={"/recruiters-listing"}
             className="mt-16 flex items-center justify-center"
           >
-            <PrimaryBtn title="All Recruiter" />
+            <PrimaryBtn title="More Recruiter" />
           </Link>
         </div>
       </div>

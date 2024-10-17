@@ -4,17 +4,18 @@ import bannerImg from "../../../assets/home/banner/banner-3.svg";
 import Lottie from "lottie-react";
 import UpDownDrawLine from "./../../../../public/up-down-draw-line.json";
 import BannerCountDown from "./BannerCountDown";
+import TodayNewJobs from "../jobs/TodayNewJobs";
 
 const Banner = () => {
   return (
     <section className="dark:bg-darkBlue px-4 lg:pb-10">
-      <div className="container">
+      <div className="container pt-0">
         <div className="flex flex-col-reverse lg:flex-row lg:justify-between justify-center items-center gap-16 w-full lg:py-10">
           {/* Banner Left - Content */}
           <div className="lg:w-1/2 w-full flex flex-col gap-8 ">
             {/* title and subtitle */}
             <div className="">
-              <h2 className="lg:leading-[55px] md:leading-[50px] sm:leading-10 relative">
+              <h2 className="lg:leading-[58px] md:leading-[50px] sm:leading-10 relative">
                 <div className="absolute w-44 bottom-10 left-[82px]">
                   <Lottie animationData={UpDownDrawLine}></Lottie>
                 </div>
@@ -42,8 +43,11 @@ const Banner = () => {
           </div>
         </div>
       </div>
-      <div className="container">
+      <div className="container pt-0">
         <BannerCountDown />
+      </div>
+      <div className="mt-10">
+        <TodayNewJobs />
       </div>
     </section>
   );

@@ -29,15 +29,15 @@ function GrowthSectionCard(data) {
   return (
     <motion.div
       ref={ref}
-      className="px-4 py-8  h-full boxBorderHoverBlue"
+      className=""
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0.8 }}
       transition={{ duration: 0.5 }}
     >
-      <h3 className="text-xl font-bold text-darkBlue">{title}</h3>
-      <h1 className="text-blue mt-4">
+      <p className="text-16 font-bold text-darkBlue">{title}</p>
+      <h3 className="text-blue mt-4">
         {isVisible ? <CountUp end={targetCount} duration={2} /> : "0"}+
-      </h1>
+      </h3>
     </motion.div>
   );
 }

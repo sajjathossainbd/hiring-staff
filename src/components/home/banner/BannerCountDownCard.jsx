@@ -36,20 +36,20 @@ function BannerCountDownCard({ data }) {
       transition={{ duration: 0.5 }}
     >
       {/* Icon */}
-      <div className="text-5xl font-normal text-blue bg-bgDeepBlue p-4 rounded-md group-hover:bg-blue group-hover:text-white transition-all duration-800">
+      <div className="text-5xl font-normal text-blue bg-bgDeepBlue p-3 rounded-md group-hover:bg-blue group-hover:text-white transition-all duration-800">
         {icon}
       </div>
 
       {/* Text content */}
       <div className="flex flex-col gap-2 text-xl">
         {isVisible ? (
-          <h3>
+          <h4>
             <CountUp end={number} duration={2} />+
-          </h3>
+          </h4>
         ) : (
           <h4>0+</h4>
         )}
-        <p>{title}</p>
+        <p className="text-14">{title}</p>
       </div>
     </motion.div>
   );

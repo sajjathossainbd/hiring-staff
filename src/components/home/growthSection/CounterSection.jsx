@@ -27,8 +27,8 @@ const CounterSection = () => {
   ];
 
   return (
-    <div className="container">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-8 md:gap-4 sm:gap-3 text-center">
+    <div className="mt-6">
+      <div className="grid grid-cols-2 gap-y-6 gap-x-16">
         {growthSectionData.map((data) => (
           <GrowthSectionCard key={data.title} {...data} />
         ))}

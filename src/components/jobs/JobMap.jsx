@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Map from "../shared/Map";
 
 function JobMap() {
@@ -25,7 +26,7 @@ function JobMap() {
         </p>
         <p>
           <strong>Email:</strong>{" "}
-          <a href="mailto:contact@Evara.com">contact@Evara.com</a>
+          <Link to="mailto:contact@Evara.com">contact@Evara.com</Link>
         </p>
       </div>
     </div>

@@ -1,7 +1,6 @@
 import GetInTouchImg from "../../assets/contact-us/get-in-touch.svg";
 import emailjs from "@emailjs/browser";
 import { useRef } from "react";
-import { send } from "emailjs-com";
 import { MdOutlineMail } from "react-icons/md";
 import toast from "react-hot-toast";
 import PrimaryBtn from "../ui/PrimaryBtn";
@@ -104,7 +103,7 @@ function GetInTouch() {
 
               {/* Submit Button */}
               <div>
-                <button type="submit" value={send}>
+                <button type="submit">
                   <PrimaryBtn title={"Send Message"} icon={<MdOutlineMail />} />
                 </button>
               </div>

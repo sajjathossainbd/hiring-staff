@@ -6,9 +6,8 @@ import BookmarkBtn from "../../ui/BookmarkBtn";
 import SecondaryButton from "../../shared/SecondaryButton";
 import { GoArrowRight } from "react-icons/go";
 
-/* eslint-disable no-unused-vars */
 // eslint-disable-next-line react/prop-types
-function JobCardHorizontal({ key, job, recruiterName, recruiterLogo }) {
+function JobCardHorizontal({ job, recruiterLogo }) {
   const { _id, jobTitle, job_type, max_salary, min_salary, postedDate } =
     job || {};
 
@@ -42,7 +41,6 @@ function JobCardHorizontal({ key, job, recruiterName, recruiterLogo }) {
           </div>
         </div>
       </div>
-      {/* Apply Button And Favourite Icon */}
       <div className="flex justify-between items-center">
         <div className="flex gap-6">
           <div className="">

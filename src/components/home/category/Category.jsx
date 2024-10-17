@@ -19,10 +19,12 @@ function Category() {
 
   const { jobsListing: jobs } = useSelector((state) => state.jobsListing);
   const { categories } = useSelector((state) => state.jobCategories);
+
   useEffect(() => {
     dispatch(fetchJobCategories());
     dispatch(fetchJobsListing());
   }, [dispatch]);
+
   const jobsData = jobs?.jobs || [];
 
   const handleCategoryClick = (categoryName) => {
@@ -36,13 +38,16 @@ function Category() {
     slides.push(categories.slice(i, i + itemsPerSlide));
   }
 
-
+  // Calculate job counts per category
   const jobCounts = categories.reduce((acc, category) => {
     acc[category] = jobsData.filter(
       (job) => job.category.toLowerCase() === category.toLowerCase()
     ).length;
     return acc;
   }, {});
+
+  // Conditionally disable loop based on number of slides
+  const shouldLoop = slides.length > 1;
 
   return (
     <div className=" pb-6">
@@ -57,7 +62,7 @@ function Category() {
           <Swiper
             slidesPerView={1}
             spaceBetween={30}
-            loop={true}
+            loop={shouldLoop} // Conditionally enable loop
             pagination={{
               clickable: true,
             }}

@@ -22,10 +22,7 @@ function RecruitersListing() {
     totalPages,
     currentPage,
   } = useSelector((state) => state.recruitersListing);
- console.log(recruiters)
-  console.log(recruiters.length);
 
-  // Fetch recruiters whenever filters change
   useEffect(() => {
     dispatch(fetchRecruitersListing(filters));
   }, [dispatch, filters]);
@@ -50,8 +47,8 @@ function RecruitersListing() {
       <div>
         {/* Recruiter Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 mt-10">
-          {recruiters?.recruiters?.map((recruiter) => (
-            <RecruiterCard key={recruiter._id} recruiter={recruiter} />
+          {recruiters?.recruiters?.map((recruiter, index) => (
+            <RecruiterCard key={`${recruiter._id}-${index}`} recruiter={recruiter} />
           ))}
         </div>
 
@@ -64,7 +61,7 @@ function RecruitersListing() {
       </div>
     );
   }
-  console.log(recruiters);
+
   return (
     <div className="container">
       <Helmet>
@@ -72,20 +69,19 @@ function RecruitersListing() {
       </Helmet>
 
       <div className="lg:py-16 lg:px-0 px-3 py-10 bg-bgLightWhite dark:bg-darkBlue flex flex-col items-center rounded-xl relative">
-        <div className="h-0 absolute top-24 lg:block md:block sm:none  ">
+        <div className="h-0 absolute top-24 lg:block md:block sm:none">
           <Lottie animationData={multipleLineDraw}></Lottie>
         </div>
         <div className="text-center pb-6">
           <h3>
             <span className="text-blue">
-              {recruiters.totalRecruiters} Recruiters
-            </span>
-            {" "}Available Now
+              {recruiters?.totalRecruiters || 0} Recruiters
+            </span>{" "}
+            Available Now
           </h3>
 
           <p className="md:max-w-xl text-14 mt-3">
-            Browse top-rated recruiters across various locations, tailored to
-            meet your project needs.
+            Browse top-rated recruiters across various locations, tailored to meet your project needs.
           </p>
         </div>
 

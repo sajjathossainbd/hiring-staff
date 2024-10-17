@@ -19,6 +19,8 @@ const RecruiterCard = ({ recruiter }) => {
     annualRevenue,
     companySizeCategory,
     logo,
+    ratings,
+    openJobs,
     location = {},
   } = recruiter || {};
 
@@ -44,7 +46,7 @@ const RecruiterCard = ({ recruiter }) => {
               style="bg-softGreen text-green"
             />
             <MiniBtn
-              value={"4 Open Job"}
+              value={`${openJobs} Open Job`}
               icon={<HiOutlineBriefcase />}
               style="bg-softGreen text-blue"
             />
@@ -53,14 +55,14 @@ const RecruiterCard = ({ recruiter }) => {
           {/* Rating */}
           <div className="mt-[3px] flex gap-[1px] text-14 items-center">
             <StarRatings
-              rating={4}
+              rating={ratings}
               starRatedColor="#ffd250"
               numberOfStars={5}
               name="rating"
               starDimension="16px"
               starSpacing="1px"
             />
-            <p className="ml-2 text-blue">4.5 Rating</p>
+            <p className="ml-2 text-blue">{ratings} Rating</p>
           </div>
 
           {/* Description */}

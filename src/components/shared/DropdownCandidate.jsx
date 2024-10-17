@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import { useState, useRef, useEffect } from "react";
 import { FiChevronDown } from "react-icons/fi";
 
 const Dropdown = ({
   options,
-  placeholder = "Select ",
+  placeholder = "Select",
   onChange,
   neutralOption = "All",
 }) => {
@@ -29,22 +30,11 @@ const Dropdown = ({
     };
   }, []);
 
-  // const handleOptionClick = (option) => {
-  //   if (option === neutralOption) {
-  //     setSelectedOption(placeholder);
-  //     onChange("");
-  //   } else {
-  //     setSelectedOption(option);
-  //     onChange(option);
-  //   }
-  //   setIsOpen(false);
-  // };
-
   const handleOptionClick = (option) => {
     if (option === neutralOption) {
       setSelectedOption(placeholder);
       onChange("");
-    } else if (typeof option === "object") {
+    } else if (typeof option === "object" && option !== null) {
       setSelectedOption(option.label); // Set the label as the selected option
       onChange(option); // Pass the entire object to the parent
     } else {
@@ -54,36 +44,27 @@ const Dropdown = ({
     setIsOpen(false);
   };
 
-
-
-
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
   const filteredOptions = options.filter((option) => {
-    const valueToFilter = option.label !== undefined ? option.label : option;
+    if (!option) return false; 
+    const valueToFilter = typeof option === "object" ? option.label : option;
     return valueToFilter
       .toString()
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
   });
-  
-
-  // const filteredOptions = options.filter((option) =>
-  //   option.label.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
-  
 
   return (
     <div className="relative inline-block text-left w-full" ref={dropdownRef}>
       <div className="w-full flex items-center">
-        {/* Dropdown Toggle */}
         <button
           onClick={toggleDropdown}
-          className="flex items-center justify-between w-full py-2 px-3 text-14 text-gray bg-white   focus:outline-none   "
+          className="flex items-center justify-between w-full py-2 px-3 text-14 text-gray bg-white focus:outline-none"
         >
-          <div className="flex items-center min-w-32 ">{selectedOption}</div>
+          <div className="flex items-center min-w-32">{selectedOption}</div>
           <FiChevronDown
             className={`ml-2 transition-transform ${
               isOpen ? "rotate-180" : ""
@@ -94,21 +75,19 @@ const Dropdown = ({
 
       {isOpen && (
         <div
-          className="absolute z-10 w-full bg-white border border-lightGray rounded-md mt-1 shadow-lg max-h-60  overflow-y-scroll "
+          className="absolute z-10 w-full bg-white border border-lightGray rounded-md mt-1 shadow-lg max-h-60 overflow-y-scroll"
           role="menu"
         >
-          {/* Search Input */}
           <div className="p-2">
             <input
               type="text"
               value={searchTerm}
               onChange={handleSearchChange}
               placeholder="Search..."
-              className="w-full px-3 py-2 border border-lightGray rounded-md focus:outline-none  "
+              className="w-full px-3 py-2 border border-lightGray rounded-md focus:outline-none"
             />
           </div>
 
-          {/* Dropdown Options */}
           <div className="py-1">
             <button
               onClick={() => handleOptionClick(neutralOption)}
@@ -120,18 +99,15 @@ const Dropdown = ({
               {neutralOption}
             </button>
 
-            {/* Filtered Options */}
             {filteredOptions.length > 0 ? (
               filteredOptions.map((option) => (
                 <button
-                  key={option}
+                  key={typeof option === "object" ? option.id : option} // Use a unique identifier if option is an object
                   onClick={() => handleOptionClick(option)}
-                  className={`block w-full text-left px-4 py-2 text-sm text-gray hover:bg-lightText focus:outline-none ${
-                    option === selectedOption ? "" : ""
-                  }`}
+                  className={`block w-full text-left px-4 py-2 text-sm text-gray hover:bg-lightText focus:outline-none`}
                   role="menuitem"
                 >
-                  {option}
+                  {typeof option === "object" ? option.label : option}
                 </button>
               ))
             ) : (

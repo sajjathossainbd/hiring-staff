@@ -22,7 +22,10 @@ function RecruitersListing() {
     totalPages,
     currentPage,
   } = useSelector((state) => state.recruitersListing);
+ console.log(recruiters)
+  console.log(recruiters.length);
 
+  // Fetch recruiters whenever filters change
   useEffect(() => {
     dispatch(fetchRecruitersListing(filters));
   }, [dispatch, filters]);
@@ -77,7 +80,7 @@ function RecruitersListing() {
             <span className="text-blue">
               {recruiters.totalRecruiters} Recruiters
             </span>
-            Available Now
+            {" "}Available Now
           </h3>
 
           <p className="md:max-w-xl text-14 mt-3">

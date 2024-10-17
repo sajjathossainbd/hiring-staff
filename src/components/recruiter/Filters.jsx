@@ -5,6 +5,7 @@ import { fetchRecruitersListing } from "../../features/recruiters/recruitersList
 import axiosInstance from "../../utils/axios";
 import { PiLineVerticalThin } from "react-icons/pi";
 import PrimaryBtn from "../ui/PrimaryBtn";
+import Dropdown from "../shared/DropdownCandidate";
 
 function RecruitersFiltering() {
   const dispatch = useDispatch();
@@ -35,9 +36,11 @@ function RecruitersFiltering() {
     fetchFilterData();
   }, []);
 
-  const handleFilterChange = (e) => {
-    const { name, value } = e.target;
-    setFilters((prevFilters) => ({ ...prevFilters, [name]: value }));
+  const handleFilterChange = (name, value) => {
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [name]: value,
+    }));
   };
 
   const applyFilters = () => {
@@ -52,21 +55,11 @@ function RecruitersFiltering() {
           {/* Industry */}
           <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
             <FaLayerGroup className="text-blue" />
-            <input
-              type="text"
-              name="industry"
-              onChange={handleFilterChange}
-              list="industries-list"
-              placeholder="Enter Industry"
-              className="focus:outline-none w-full lg:w-auto bg-white text-gray"
+            <Dropdown
+              options={industries}
+              placeholder="Select a industry"
+              onChange={(option) => handleFilterChange("industry", option)}
             />
-            <datalist id="industries-list">
-              {industries.map((industry) => (
-                <option key={industry} value={industry}>
-                  {industry}
-                </option>
-              ))}
-            </datalist>
           </div>
 
           <PiLineVerticalThin className="lg:block hidden" />
@@ -74,37 +67,22 @@ function RecruitersFiltering() {
           {/* City Input */}
           <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
             <FaMapMarkerAlt className="text-blue" />
-            <input
-              type="text"
-              name="city"
-              onChange={handleFilterChange}
-              placeholder="Enter City"
-              list="cities-list"
-              className="focus:outline-none w-full lg:w-auto bg-white text-gray"
+            <Dropdown
+              options={locations}
+              placeholder="Select a industry"
+              onChange={(option) => handleFilterChange("city", option)}
             />
-            <datalist id="cities-list">
-              {locations.map((city) => (
-                <option key={city} value={city} />
-              ))}
-            </datalist>
           </div>
 
           <PiLineVerticalThin className="lg:block hidden" />
           {/* Team Size */}
           <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
-            <input
-              type="text"
-              name="teamSize"
-              onChange={handleFilterChange}
-              placeholder="Enter Team Size"
-              list="team-sizes-list"
-              className="focus:outline-none w-full lg:w-auto bg-white text-gray"
+            
+            <Dropdown
+              options={teamSizes}
+              placeholder="Select a number"
+              onChange={(option) => handleFilterChange("teamSize", option)}
             />
-            <datalist id="team-sizes-list">
-              {teamSizes.map((size) => (
-                <option key={size} value={size} />
-              ))}
-            </datalist>
           </div>
 
           {/* Search Button */}

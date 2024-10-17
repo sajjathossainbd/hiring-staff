@@ -8,8 +8,8 @@ import BannerCountDown from "./BannerCountDown";
 const Banner = () => {
   return (
     <section className="dark:bg-darkBlue px-4 lg:pb-10">
-      <div className="container ">
-        <div className="flex flex-col-reverse lg:flex-row lg:justify-between justify-center items-center gap-16 w-full">
+      <div className="container">
+        <div className="flex flex-col-reverse lg:flex-row lg:justify-between justify-center items-center gap-16 w-full lg:py-10">
           {/* Banner Left - Content */}
           <div className="lg:w-1/2 w-full flex flex-col gap-8 ">
             {/* title and subtitle */}

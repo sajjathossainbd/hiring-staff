@@ -29,24 +29,51 @@ const Dropdown = ({
     };
   }, []);
 
+  // const handleOptionClick = (option) => {
+  //   if (option === neutralOption) {
+  //     setSelectedOption(placeholder);
+  //     onChange("");
+  //   } else {
+  //     setSelectedOption(option);
+  //     onChange(option);
+  //   }
+  //   setIsOpen(false);
+  // };
+
   const handleOptionClick = (option) => {
     if (option === neutralOption) {
       setSelectedOption(placeholder);
       onChange("");
+    } else if (typeof option === "object") {
+      setSelectedOption(option.label); // Set the label as the selected option
+      onChange(option); // Pass the entire object to the parent
     } else {
-      setSelectedOption(option);
+      setSelectedOption(option); // Handle primitive types
       onChange(option);
     }
     setIsOpen(false);
   };
 
+
+
+
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
-  const filteredOptions = options.filter((option) =>
-    option.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredOptions = options.filter((option) => {
+    const valueToFilter = option.label !== undefined ? option.label : option;
+    return valueToFilter
+      .toString()
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+  });
+  
+
+  // const filteredOptions = options.filter((option) =>
+  //   option.label.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
+  
 
   return (
     <div className="relative inline-block text-left w-full" ref={dropdownRef}>

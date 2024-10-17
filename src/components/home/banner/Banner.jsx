@@ -3,6 +3,7 @@ import PopularSearch from "./PopularSearch";
 import bannerImg from "../../../assets/home/banner/banner-3.svg";
 import Lottie from "lottie-react";
 import UpDownDrawLine from "./../../../../public/up-down-draw-line.json";
+import BannerCountDown from "./BannerCountDown";
 
 const Banner = () => {
   return (
@@ -40,6 +41,9 @@ const Banner = () => {
             />
           </div>
         </div>
+      </div>
+      <div className="container">
+        <BannerCountDown />
       </div>
     </section>
   );

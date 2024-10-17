@@ -20,8 +20,8 @@ function RecruitersListing() {
     totalPages,
     currentPage,
   } = useSelector((state) => state.recruitersListing);
-
-  console.log(recruiters.totalDocuments);
+ console.log(recruiters)
+  console.log(recruiters.length);
 
   // Fetch recruiters whenever filters change
   useEffect(() => {
@@ -39,23 +39,23 @@ function RecruitersListing() {
   if (!isLoading && isError)
     content = <NoFoundData title="No Recruiters Found!" message={error} />;
 
-  if (!isLoading && !isError && recruiters?.data?.length === 0) {
+  if (!isLoading && !isError && recruiters?.length === 0) {
     content = <NoFoundData title="No Recruiters Found!" />;
   }
 
-  if (!isLoading && !isError && recruiters?.data?.length > 0) {
+  if (!isLoading && !isError && recruiters?.length > 0) {
     content = (
       <div>
         {/* Recruiter Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 mt-10">
-          {recruiters?.data?.map((recruiter) => (
+          {recruiters?.map((recruiter) => (
             <RecruiterCard key={recruiter._id} recruiter={recruiter} />
           ))}
         </div>
 
         {/* Pagination Component */}
         <Pagination
-          totalPages={totalPages}
+          totalPages={totalPages}code
           currentPage={currentPage}
           onPageChange={handlePageChange}
         />

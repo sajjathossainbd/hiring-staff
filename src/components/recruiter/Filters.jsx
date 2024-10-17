@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { fetchRecruitersListing } from "../../features/recruiters/recruitersListing/recruitersListingSlice";
 import axiosInstance from "../../utils/axios";
 import { PiLineVerticalThin } from "react-icons/pi";
+import PrimaryBtn from "../ui/PrimaryBtn";
 
 function RecruitersFiltering() {
   const dispatch = useDispatch();
@@ -11,12 +12,9 @@ function RecruitersFiltering() {
   const [industries, setIndustries] = useState([]);
   const [locations, setLocations] = useState([]);
   const [teamSizes, setTeamSizes] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   const initialFilters = {
     industry: "",
-    location: "",
-    country: "",
     city: "",
     teamSize: "",
   };
@@ -26,13 +24,11 @@ function RecruitersFiltering() {
     const fetchFilterData = async () => {
       try {
         const { data } = await axiosInstance.get("/recruiters/unique");
-        setIndustries(data.uniqueData.industries || []);
-        setLocations(data.uniqueData.cities || []);
-        setTeamSizes(data.uniqueData.teamSizes || []);
-        setIsLoading(false);
+        setIndustries(data.industries || []);
+        setLocations(data.cities || []);
+        setTeamSizes(data.teamSizes || []);
       } catch (error) {
         console.error("Error fetching filter data", error);
-        setIsLoading(false);
       }
     };
 
@@ -45,18 +41,12 @@ function RecruitersFiltering() {
   };
 
   const applyFilters = () => {
-    console.log("Filters before applying:", filters);
     dispatch(fetchRecruitersListing(filters));
   };
 
-  // Render Loading state
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div>
-      <div className="relative bg-white md:p-2 p-5 rounded-2xl w-full">
+      <div className="relative bg-white md:p-2 p-5 rounded-lg w-full">
         {/* Search Bar */}
         <div className="flex items-center md:flex-row flex-col md:gap-2 gap-3 justify-center">
           {/* Industry */}
@@ -67,7 +57,7 @@ function RecruitersFiltering() {
               name="industry"
               onChange={handleFilterChange}
               list="industries-list"
-              placeholder="Select or Enter Industry"
+              placeholder="Enter Industry"
               className="focus:outline-none w-full lg:w-auto bg-white text-gray"
             />
             <datalist id="industries-list">
@@ -117,11 +107,12 @@ function RecruitersFiltering() {
             </datalist>
           </div>
 
+          {/* Search Button */}
           <button
             onClick={applyFilters}
-            className="btn btn-primary border-none bg-blue text-white font-medium w-full md:w-36"
+            className=" text-white font-medium w-full md:w-36"
           >
-            Search
+            <PrimaryBtn title={"Search"} />
           </button>
         </div>
       </div>

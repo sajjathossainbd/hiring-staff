@@ -31,7 +31,7 @@ function Category() {
   }
 
   return (
-    <>
+    <div className="bg-bgLightBlue pb-6">
       <section className="container px-0 sm:px-0 md:px-0 lg:px-0 xl:px-14">
         <SectionTitle
           title={"Browse by category"}
@@ -68,7 +68,7 @@ function Category() {
         </div>
       </section>
       <Hiring />
-    </>
+    </div>
   );
 }
 

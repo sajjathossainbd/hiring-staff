@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import { FiChevronDown } from "react-icons/fi";
 
-const NormalDropdown = ({ dynamicOptions, placeholderData }) => {
+const DropdownSimple = ({ dynamicOptions, placeholderData }) => {
   const [placeholder, setPlaceholder] = useState(placeholderData);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(placeholder);
@@ -70,4 +70,4 @@ const NormalDropdown = ({ dynamicOptions, placeholderData }) => {
   );
 };
 
-export default NormalDropdown;
+export default DropdownSimple;

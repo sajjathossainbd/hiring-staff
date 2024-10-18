@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useRef, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";

@@ -12,13 +12,13 @@ function JobCardHorizontal({ job, recruiterLogo }) {
     job || {};
 
   return (
-    <div className="boxBorderHoverBlue p-6 rounded-lg flex justify-between items-center bg-white">
-      <div className="flex items-center gap-4">
+    <div className="boxBorderHoverBlue p-6 rounded-lg flex lg:flex-row md:flex-row flex-col gap-5 justify-between items-center bg-white">
+      <div className="flex lg:flex-row flex-col gap-5 items-center">
         <img className="w-24 rounded-lg" src={recruiterLogo} alt="" />
 
         <div className="">
           {/* title, type */}
-          <div className="flex gap-3">
+          <div className="flex lg:flex-row flex-col gap-3">
             <h4>{jobTitle}</h4>{" "}
             <MiniBtn
               value={job_type}
@@ -27,7 +27,7 @@ function JobCardHorizontal({ job, recruiterLogo }) {
             />
           </div>
           {/* location, price, date */}
-          <div className="flex gap-4 mt-1">
+          <div className="flex lg:flex-row flex-col lg:gap-4 mt-3">
             <MiniBtn
               value={`${max_salary}$ - ${min_salary}$ Salary`}
               icon={<IoBriefcaseOutline />}

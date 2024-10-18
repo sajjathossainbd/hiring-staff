@@ -5,7 +5,7 @@ const currencyOptions = ["EUR", "BD", "AURO"];
 
 function SubNavbarRight() {
   return (
-    <div className="flex items-center gap-6">
+    <div className="xl:flex lg:hidden md:hidden items-center gap-6 hidden">
       <div className="flex gap-2 items-center text-darkBlue">
         <FiPhoneCall />
         <p className="text-darkBlue">328-435-6523</p>

@@ -75,7 +75,7 @@ function TodayNewJobs() {
 
           return (
             <JobCardHorizontal
-              key={job._id} // Keep the key here
+              key={job._id}
               job={job}
               recruiterName={recruiter?.name}
               recruiterLogo={recruiter?.logo}
@@ -89,7 +89,7 @@ function TodayNewJobs() {
   return (
     <div className="bg-bgLightBlue py-12">
       <div className="container py-0">
-        <h3>Today New Jobs</h3>
+        <h3>Today&apos;s New Jobs</h3>
         <div className="mt-10">{content}</div>
         <Link
           to={"/jobs-listing"}

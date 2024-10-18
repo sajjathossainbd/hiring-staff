@@ -10,11 +10,21 @@ import { GoArrowRight } from "react-icons/go";
 function JobCardHorizontal({ job, recruiterLogo }) {
   const { _id, jobTitle, job_type, max_salary, min_salary, postedDate } =
     job || {};
-
+  const calculateDaysRemaining = (postedDate) => {
+    const now = new Date();
+    const posted = new Date(postedDate);
+    const timeDiff = posted - now;
+    const daysRemaining = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+    return daysRemaining > 0 ? `${daysRemaining} Days Remaining` : "Expired";
+  };
   return (
-    <div className="boxBorderHoverBlue p-6 rounded-lg flex justify-between items-center bg-white">
-      <div className="flex items-center">
-        <img className="w-24 rounded-lg" src={recruiterLogo} alt="" />
+    <div className="boxBorderHoverBlue p-8 rounded-lg flex justify-between items-center bg-white">
+      <div className="flex items-center gap-5">
+        <img
+          className="w-24 object-cover rounded-lg"
+          src={recruiterLogo}
+          alt=""
+        />
 
         <div className="">
           {/* title, type */}
@@ -34,7 +44,7 @@ function JobCardHorizontal({ job, recruiterLogo }) {
               style="text-18"
             />
             <MiniBtn
-              value={`${postedDate} Remaining`}
+              value={`${calculateDaysRemaining(postedDate)}`}
               icon={<MdOutlineDateRange />}
               style="text-18"
             />

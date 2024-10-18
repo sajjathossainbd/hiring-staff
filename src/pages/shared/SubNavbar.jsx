@@ -43,7 +43,7 @@ function SubNavbar() {
         damping: 20,
         duration: 10,
       }}
-      className={"fixed bg-white top-0 z-50 py-2 w-full px-20"}
+      className={"fixed bg-white top-0 z-50 py-2 w-full lg:px-20 px-5"}
     >
       <DesktopNavItems navLinks={navLinks} />
       <MobileNavItems navLinks={navLinks} user={user} logOut={logOut} />

@@ -1,5 +1,5 @@
 import { FiPhoneCall } from "react-icons/fi";
-import NormalDropdown from "../../components/ui/NormalDropDown";
+import DropdownSimple from "../../components/ui/DropdownSimple";
 const countryOptions = ["Bangladesh", "US", "Other"];
 const currencyOptions = ["EUR", "BD", "AURO"];
 
@@ -10,8 +10,8 @@ function SubNavbarRight() {
         <FiPhoneCall />
         <p className="text-darkBlue">328-435-6523</p>
       </div>
-      <NormalDropdown dynamicOptions={currencyOptions} placeholderData="USD" />
-      <NormalDropdown
+      <DropdownSimple dynamicOptions={currencyOptions} placeholderData="USD" />
+      <DropdownSimple
         dynamicOptions={countryOptions}
         placeholderData="All Country"
       />

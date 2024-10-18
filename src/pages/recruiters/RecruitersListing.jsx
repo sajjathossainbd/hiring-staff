@@ -9,6 +9,7 @@ import Filter from "../../components/recruiter/Filters";
 import Pagination from "../../components/recruiter/Pagination";
 import Lottie from "lottie-react";
 import multipleLineDraw from "./../../../public/multiline-repet.json";
+import { ScrollRestoration } from "react-router-dom";
 
 function RecruitersListing() {
   const dispatch = useDispatch();
@@ -48,7 +49,10 @@ function RecruitersListing() {
         {/* Recruiter Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 mt-10">
           {recruiters?.recruiters?.map((recruiter, index) => (
-            <RecruiterCard key={`${recruiter._id}-${index}`} recruiter={recruiter} />
+            <RecruiterCard
+              key={`${recruiter._id}-${index}`}
+              recruiter={recruiter}
+            />
           ))}
         </div>
 
@@ -81,7 +85,8 @@ function RecruitersListing() {
           </h3>
 
           <p className="md:max-w-xl text-14 mt-3">
-            Browse top-rated recruiters across various locations, tailored to meet your project needs.
+            Browse top-rated recruiters across various locations, tailored to
+            meet your project needs.
           </p>
         </div>
 
@@ -91,6 +96,7 @@ function RecruitersListing() {
       </div>
 
       <div>{content}</div>
+      <ScrollRestoration />
     </div>
   );
 }

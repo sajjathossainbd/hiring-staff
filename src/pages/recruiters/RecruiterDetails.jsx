@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { ScrollRestoration, useParams } from "react-router-dom";
 import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
 import { fetchRecruiterDetails } from "../../features/recruiters/recruiterDetails/recruiterDetailsSlice";
@@ -27,9 +27,7 @@ function RecruiterDetails() {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  
-  const openPositionRef = useRef(null); // Create a reference for 
-
+  const openPositionRef = useRef(null); // Create a reference for
 
   const scrollToOpenPosition = () => {
     if (openPositionRef.current) {
@@ -124,14 +122,8 @@ function RecruiterDetails() {
             <div className="lg:mt-10 mt-6 lg:mb-0 mb-6">
               <h5 className="mb-4">Follow us on :</h5>
               <div className="flex gap-3">
-                <SocialIcon
-                  link={linkedin}
-                  mediaName={<FaLinkedin />}
-                />
-                <SocialIcon
-                  link={twitter}
-                  mediaName={<FaTwitter />}
-                />
+                <SocialIcon link={linkedin} mediaName={<FaLinkedin />} />
+                <SocialIcon link={twitter} mediaName={<FaTwitter />} />
               </div>
             </div>
           </div>
@@ -213,6 +205,7 @@ function RecruiterDetails() {
 
       {/* Recruiter Details Content */}
       {content}
+      <ScrollRestoration />
     </div>
   );
 }

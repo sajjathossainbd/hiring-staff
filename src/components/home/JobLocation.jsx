@@ -1,6 +1,10 @@
+import { useEffect } from "react";
 import SectionTitle from "../../components/shared/SectionTitle";
+import { useDispatch } from "react-redux";
+import { fetchJobLocations } from "../../features/jobs/filterCollection/location/jobLocationsSlice";
 
 const JobLocation = () => {
+  const dispatch = useDispatch();
   const jobData = [
     {
       country: "Germany",
@@ -92,6 +96,9 @@ const JobLocation = () => {
         };
     }
   };
+  useEffect(() => {
+    dispatch(fetchJobLocations());
+  }, [dispatch]);
 
   return (
     <div className="container">

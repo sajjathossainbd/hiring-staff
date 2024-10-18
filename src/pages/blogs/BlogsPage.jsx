@@ -26,7 +26,7 @@ function BlogsPage() {
   }, [dispatch, page, searchQuery]);
 
   const totalPages = blogs.totalPages;
-  const pages = [...Array(totalPages).keys()].map(i => i + 1);
+  const pages = [...Array(totalPages).keys()].map((i) => i + 1);
 
   let content = null;
 
@@ -38,7 +38,6 @@ function BlogsPage() {
   if (!isLoading && !isError && blogs?.blogs?.length === 0) {
     content = <NoFoundData title="No Blogs Found!" />;
   }
-
 
   if (!isLoading && !isError && blogs?.blogs?.length > 0) {
     content = (
@@ -59,7 +58,7 @@ function BlogsPage() {
         subTitle={"Explore our latest tech articles and insights."}
         currentPath={"blogs"}
       />
-      <div className="container">
+      <div className="container flex flex-col items-center">
         {/* Search and Filter */}
         <div className="flex justify-center my-4">
           <input
@@ -75,20 +74,38 @@ function BlogsPage() {
         {content}
 
         {/* Pagination */}
-        <div className="flex justify-center mt-4 gap-3">
-          {page > 1 && <button className="text-blue" onClick={() => setPage(page - 1)}>Previous</button>}
+        <div className="join mx-auto mt-4">
+          {page > 1 && (
+            <button
+              className="join-item btn dark:bg-white"
+              onClick={() => setPage(page - 1)}
+              aria-label="Previous Page"
+            >
+              «
+            </button>
+          )}
 
           {pages.map((p) => (
             <button
               key={p}
               onClick={() => setPage(p)}
-              className={`mx-1 ${page === p ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}
+              className={`join-item btn ${
+                page === p ? "bg-blue-500 text-white" : "dark:bg-white"
+              }`}
             >
               {p}
             </button>
           ))}
 
-          {page < totalPages && <button className="text-blue" onClick={() => setPage(page + 1)}>Next</button>}
+          {page < totalPages && (
+            <button
+              className="join-item btn dark:bg-white bg-blue text-white dark:text-black"
+              onClick={() => setPage(page + 1)}
+              aria-label="Next Page"
+            >
+              »
+            </button>
+          )}
         </div>
       </div>
     </>

@@ -36,7 +36,7 @@ function Blogblog() {
       <div>
         <div className="flex justify-center">
           <img
-            className="xl:h-96 lg:h-80 md:h-60 sm:h-40 h-28 w-full object-center rounded-2xl"
+            className="xl:h-96 lg:h-80 md:h-60 sm:h-40 h-28 w-full object-cover rounded-2xl"
             src={blog?.url}
             alt=""
           />
@@ -60,9 +60,9 @@ function Blogblog() {
                 src="https://secure.gravatar.com/avatar/bb00cf69a3ae5d10043a9e2d3db9b173?s=64&d=mm&r=g"
                 alt=""
               />
-              <h5 className="text-14 mt-4 ml-2">{blog?.author}</h5>
+              <h5 className="text-14 ml-2">{blog?.author}</h5>
             </div>
-            <p className="text-12 mt-4">
+            <p className="text-12">
               <span className="font-semibold">Published: </span>
               {blog?.date_published}
             </p>

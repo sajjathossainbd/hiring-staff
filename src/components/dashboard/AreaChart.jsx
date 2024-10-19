@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 
 
@@ -38,31 +38,28 @@ const AreaCharts = ({ UsersQuantity,
     ];
 
     return (
-        <div style={{ width: '100%' }} className="mt-10">
-            <h4 className="mt-5">A areaChart of admin analytics</h4>
-
-            <div className="mt-7">
-                <ResponsiveContainer width="100%" height="100%">
-                    <BarChart
-                        width={500}
-                        height={300}
-                        data={data}
-                        margin={{
-                            top: 5,
-                            right: 30,
-                            left: 20,
-                            bottom: 5,
-                        }}
-                    >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        <Bar dataKey="uv" fill="#82ca9d" activeBar={<Rectangle fill="gold" stroke="purple" />} />
-                    </BarChart>
-                </ResponsiveContainer>
-            </div>
+        <div style={{ height: '400px' }} className="mt-10 bg-white p-5 rounded-lg">
+            <ResponsiveContainer width="100%" height="100%">
+                <BarChart
+                    width={500}
+                    height={300}
+                    data={data}
+                    margin={{
+                        top: 20,
+                        right: 30,
+                        left: 20,
+                        bottom: 5,
+                    }}
+                >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="pv" stackId="a" fill="#8884d8" />
+                    <Bar dataKey="uv" stackId="a" fill="#82ca9d" />
+                </BarChart>
+            </ResponsiveContainer>
         </div>
     );
 };

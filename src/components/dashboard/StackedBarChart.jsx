@@ -27,7 +27,7 @@ const StackedBarChart = ({ shortlistedQuantity, messageQuantity, applicationsQua
     ];
 
     return (
-        <div style={{ height: '400px' }} className="mt-10">
+        <div style={{ height: '400px' }} className="mt-10 bg-white p-5 rounded-lg">
             <ResponsiveContainer width="100%" height="100%">
                 <BarChart
                     width={500}

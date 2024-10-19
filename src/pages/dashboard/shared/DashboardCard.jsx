@@ -3,28 +3,30 @@
 const DashboardCard = ({ logo, title, quantity }) => {
 
   const bgColorMap = {
-    Users: 'bg-blue',
-    Message: 'bg-blue',
-    Jobs: 'bg-green-500',
-    Applications: 'bg-red-500',
-    Recruiters: 'bg-purple-500',
-    Shortlisted: 'bg-yellow-500',
+    "Total Users": 'bg-gradient-to-r from-green to-lime-400',
+    "Total Message": 'bg-gradient-to-r from-rose-600 to-pink-400',
+    "Total Jobs": 'bg-gradient-to-r from-yellow-600 to-amber-400',
+    "Total Applications": 'bg-gradient-to-r from-red-600 to-pink-400',
+    "Total Recruiters": 'bg-gradient-to-r from-blue to-teal-400',
+    "Total Shortlisted": 'bg-gradient-to-r from-indigo-600 to-purple-400',
   };
 
-  const logoBg = bgColorMap[title] || 'bg-gray-300';
-
+  const logoBg = bgColorMap[title] || 'bg-blue';
 
   return (
-    <div className="bg-bgDeepBlue dark:bg-blue py-3 px-3 flex xl:flex-row lg:flex-col md:flex-col flex-row items-center gap-3 rounded-lg">
-      <div className={`p-4 rounded-lg ${logoBg}`}>
-        <h3 className="text-white">
+    <div className={`${logoBg} py-5 px-3 flex xl:flex-row lg:flex-col md:flex-col flex-row items-center justify-around rounded-md`}>
+
+      <div className="space-y-1">
+        <h3 className="text-white font-light">{quantity}</h3>
+        <p className="text-white">{title}</p>
+      </div>
+
+      <div className='p-4 rounded-lg'>
+        <h2 className="text-white">
           {logo}
-        </h3>
+        </h2>
       </div>
-      <div>
-        <h5>{title}</h5>
-        <h5 className="text-lightBlue">{quantity}</h5>
-      </div>
+
     </div>
   );
 };

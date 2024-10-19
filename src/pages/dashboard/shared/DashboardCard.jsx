@@ -4,9 +4,10 @@ const DashboardCard = ({ logo, title, quantity }) => {
 
   const bgColorMap = {
     "Total Users": 'bg-gradient-to-r from-green to-lime-400',
-    "Total Message": 'bg-gradient-to-r from-rose-600 to-pink-400',
+    "Total Message": 'bg-gradient-to-r from-cyan-600 to-pink-400',
     "Total Jobs": 'bg-gradient-to-r from-yellow-600 to-amber-400',
     "Total Applications": 'bg-gradient-to-r from-red-600 to-pink-400',
+    "My Applications": 'bg-gradient-to-r from-red-600 to-pink-400',
     "Total Recruiters": 'bg-gradient-to-r from-blue to-teal-400',
     "Total Shortlisted": 'bg-gradient-to-r from-indigo-600 to-purple-400',
   };

@@ -7,16 +7,37 @@ import { SiImessage } from "react-icons/si";
 import StackedBarChart from "../../../components/dashboard/StackedBarChart";
 import axiosInstance from "../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
+import useCurrentUser from "../../../hooks/useCurrentUser";
 
 
 
 const CandidatesAnalytics = () => {
+
+    const { currentUser } = useCurrentUser();
 
 
     const { data: jobs, } = useQuery({
         queryKey: ['jobs'],
         queryFn: async () => {
             const res = await axiosInstance.get("/jobs");
+            return res.data;
+        },
+    });
+
+    const {
+        data: appliedJobs = [],
+    } = useQuery({
+        queryKey: ["appliedJobs"],
+        queryFn: async () => {
+            const res = await axiosInstance.get(`/jobs/applied-jobs/${currentUser?._id}`);
+            return res.data;
+        },
+    });
+
+    const { data: MyShortlistedJob, } = useQuery({
+        queryKey: ['MyShortlistedJob'],
+        queryFn: async () => {
+            const res = await axiosInstance.get(`/jobs/applied-jobs/shortlist/approved/${currentUser?.email}`);
             return res.data;
         },
     });
@@ -30,10 +51,10 @@ const CandidatesAnalytics = () => {
                 pathName="Dashboard Main"
             />
             <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-5">
-                <DashboardCard logo={<IoBagRemoveOutline />} title={'Jobs'} quantity={jobs?.totalJobs} />
-                <DashboardCard logo={<VscGitStashApply />} title={'Applications'} quantity={'50'} />
-                <DashboardCard logo={<SiImessage />} title={'Message'} quantity={'100'} />
-                <DashboardCard logo={<MdPlaylistAddCheck />} title={'Shortlisted'} quantity={'5'} />
+                <DashboardCard logo={<IoBagRemoveOutline />} title={'Total Jobs'} quantity={jobs?.totalJobs} />
+                <DashboardCard logo={<VscGitStashApply />} title={'My Applications'} quantity={appliedJobs?.length} />
+                <DashboardCard logo={<SiImessage />} title={'Total Message'} quantity={'43'} />
+                <DashboardCard logo={<MdPlaylistAddCheck />} title={'Shortlisted'} quantity={MyShortlistedJob?.length} />
             </div>
 
             <StackedBarChart />

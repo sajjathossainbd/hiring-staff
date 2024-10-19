@@ -1,5 +1,5 @@
 import { CgProfile } from "react-icons/cg";
-import { FaArrowUpShortWide } from "react-icons/fa6";
+import { FaArrowUpShortWide, FaCheck } from "react-icons/fa6";
 import { ImProfile } from "react-icons/im";
 import { IoHomeOutline } from "react-icons/io5";
 import {
@@ -19,7 +19,6 @@ import useAuth from "../hooks/useAuth";
 import { IoIosLogOut } from "react-icons/io";
 import { HiOutlineBriefcase } from "react-icons/hi";
 import { Helmet } from "react-helmet-async";
-import { FcApproval } from "react-icons/fc";
 
 const Dashboard = () => {
   const { logOut } = useAuth();
@@ -192,7 +191,7 @@ const Dashboard = () => {
                       to="/dashboard/selected-jobs"
                       className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
-                      <FcApproval /> Selected Jobs
+                      <FaCheck /> Selected Jobs
                     </NavLink>
                   </li>
                 </>

@@ -61,9 +61,6 @@ const AdminAnalytics = () => {
             />
 
             <div
-                data-aos="fade-up"
-                data-aos-offset="200"
-                data-aos-duration="700"
                 className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5">
                 <DashboardCard logo={<FaUsers />} title={'Total Users'} quantity={users?.users.length} />
                 <DashboardCard logo={<IoBagRemoveOutline />} title={'Total Jobs'} quantity={jobs?.totalJobs} />
@@ -71,7 +68,13 @@ const AdminAnalytics = () => {
                 <DashboardCard logo={<FaRegAddressBook />} title={'Total Recruiters'} quantity={recruiters?.recruiters.length} />
                 <DashboardCard logo={<MdPlaylistAddCheck />} title={'Total Shortlisted'} quantity={shortlisted?.length} />
             </div>
-            <AreaCharts />
+            <AreaCharts
+                UsersQuantity={users?.users.length}
+                totalJobsQuantity={jobs?.totalJobs}
+                applicationsQuantity={appliedJobs?.length}
+                recruitersQuantity={recruiters?.recruiters.length}
+                shortlistedQuantity={shortlisted?.length}
+            />
         </div>
     );
 };

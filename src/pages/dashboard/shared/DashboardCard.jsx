@@ -15,13 +15,16 @@ const DashboardCard = ({ logo, title, quantity }) => {
   const logoBg = bgColorMap[title] || 'bg-blue';
 
   return (
-    <div className={`${logoBg} py-5 px-3 flex xl:flex-row lg:flex-col md:flex-col flex-row items-center justify-around rounded-md`}>
-
+    <div
+      data-aos="fade-up"
+      data-aos-offset="200"
+      data-aos-duration="700"
+      className={`${logoBg} py-5 px-3 flex xl:flex-row lg:flex-col md:flex-col flex-row items-center justify-around rounded-md`}>
+        
       <div className="space-y-1">
         <h3 className="text-white font-light">{quantity}</h3>
         <p className="text-white">{title}</p>
       </div>
-
       <div className='p-4 rounded-lg'>
         <h2 className="text-white">
           {logo}

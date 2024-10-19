@@ -57,7 +57,13 @@ const CandidatesAnalytics = () => {
                 <DashboardCard logo={<MdPlaylistAddCheck />} title={'Shortlisted'} quantity={MyShortlistedJob?.length} />
             </div>
 
-            <StackedBarChart jobsQuantity={jobs?.totalJobs} applicationsQuantity={appliedJobs?.length} messageQuantity={'43'} shortlistedQuantity={MyShortlistedJob?.length} />
+            <StackedBarChart
+                jobsQuantity={jobs?.totalJobs}
+                applicationsQuantity={appliedJobs?.length}
+                messageQuantity={'43'}
+                shortlistedQuantity={MyShortlistedJob?.length}
+            />
+            
         </div >
     );
 };

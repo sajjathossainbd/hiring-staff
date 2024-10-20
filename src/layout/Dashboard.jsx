@@ -1,5 +1,5 @@
 import { CgProfile } from "react-icons/cg";
-import { FaArrowUpShortWide } from "react-icons/fa6";
+import { FaArrowUpShortWide, FaCheck } from "react-icons/fa6";
 import { ImProfile } from "react-icons/im";
 import { IoHomeOutline } from "react-icons/io5";
 import {
@@ -19,7 +19,6 @@ import useAuth from "../hooks/useAuth";
 import { IoIosLogOut } from "react-icons/io";
 import { HiOutlineBriefcase } from "react-icons/hi";
 import { Helmet } from "react-helmet-async";
-import { FcApproval } from "react-icons/fc";
 
 const Dashboard = () => {
   const { logOut } = useAuth();
@@ -33,7 +32,7 @@ const Dashboard = () => {
   }, [currentUser]);
 
   return (
-    <div className="flex lg:flex-row flex-col inter bg-gray-100">
+    <div className="flex lg:flex-row flex-col inter">
       <Helmet>
         <title>Hiring Staff - Dashboard</title>
       </Helmet>
@@ -51,7 +50,7 @@ const Dashboard = () => {
           </div>
           <div className="drawer-side">
             <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-            <ul className="menu inter space-y-2 p-4 w-64 h-full dark:bg-darkBlue bg-white text-black fixed top-0 overflow-y-auto shadow-xl font-bold">
+            <ul className="menu inter p-4 w-64 h-full dark:bg-darkBlue bg-white text-black fixed top-0 overflow-y-auto shadow-xl font-bold space-y-3">
               {/* Logo Section */}
               <div className="flex items-center justify-center my-6">
                 <Link to={"/"} className="flex items-center gap-1">
@@ -68,7 +67,7 @@ const Dashboard = () => {
                       to="/dashboard/dashboard-main"
                       className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
-                      <ImProfile /> Dashboard
+                      <ImProfile /> Overview
                     </NavLink>
                   </li>
                   <li>
@@ -106,7 +105,7 @@ const Dashboard = () => {
                       to="/dashboard/dashboard-main"
                       className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
-                      <ImProfile /> Dashboard
+                      <ImProfile /> Overview
                     </NavLink>
                   </li>
                   <li>
@@ -160,7 +159,7 @@ const Dashboard = () => {
                       to="/dashboard/dashboard-main"
                       className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
-                      <ImProfile /> Dashboard
+                      <ImProfile /> Overview
                     </NavLink>
                   </li>
                   <li>
@@ -192,7 +191,7 @@ const Dashboard = () => {
                       to="/dashboard/selected-jobs"
                       className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
-                      <FcApproval /> Selected Jobs
+                      <FaCheck /> Selected Jobs
                     </NavLink>
                   </li>
                 </>
@@ -227,7 +226,7 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <button onClick={logOut} className="text-red-500 flex items-center gap-2 px-4 hover:bg-red-600 hover:text-white py-2">
+                <button onClick={logOut} className="flex items-center gap-2 px-4 hover:bg-red-600 hover:text-white text-red-600 py-2">
                   <IoIosLogOut /> Sign out
                 </button>
               </li>
@@ -237,7 +236,7 @@ const Dashboard = () => {
       </div>
 
       {/* Main Content */}
-      <div className="bg-white z-10 flex-1 xl:p-10 lg:p-8 md:p-5 p-3 dark:bg-darkBlue">
+      <div className="bg-slate-50 z-10 flex-1 xl:p-5 lg:p-4 md:p-3 p-2 dark:bg-darkBlue">
         <Outlet />
         <DashboardFooter />
       </div>

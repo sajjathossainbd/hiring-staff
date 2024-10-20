@@ -10,69 +10,24 @@ body {
   font-family: "Plus Jakarta Sans", sans-serif;
   overflow-x: hidden;
 }
-/* for ratings */
-.rating {
-  display: flex;
-  align-items: center;
-}
 
-.star {
-  font-size: 1.5rem;
-  color: #f5c518;
-  /* Gold color for stars */
-}
-
-.star.full {
-  color: #f5c518;
-  /* Gold color for filled stars */
-}
-
-.star.empty {
-  color: #e0e0e0;
-  /* Light gray color for empty stars */
-}
-
-/* end */
-
-/* swiper pagination bullet */
-.swiper-pagination {
-  margin-top: 100px;
-}
-
-.swiper-pagination-bullet {
-  height: 8px !important;
-  width: 8px !important;
-  border-radius: 10px !important;
-}
-
-.swiper-pagination-bullet-active {
-  height: 8px !important;
-  width: 12px !important;
-  border-radius: 10px !important;
-  background-color: #3c65f5 !important;
-}
-
-/* end */
-
-/* phone number input field */
-
-.PhoneInput {
-  padding: 0 16px;
-}
-
-.PhoneInputInput {
-  padding: 15px;
-  outline: none;
-  background-color: transparent !important;
-}
-.PhoneInputCountrySelect {
-  background: #05274f !important;
-  color: white;
-}
-
-/* end */
 
 @layer components {
+  .animate-updown {
+    animation-name: animate-updownAnim;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+}
+
+@keyframes animate-updownAnim {
+    from {
+        transform: translateY(-20px);
+    }
+    to {
+        transform: translateY(20px);
+    }
+}
   .container {
     @apply max-w-screen-2xl mx-auto lg:py-12 py-7 px-4 sm:px-6 md:px-8 lg:px-16 xl:px-24;
   }
@@ -82,7 +37,7 @@ body {
   }
 
   .boxBorderHoverBlue {
-    @apply border-[.5px] border-lightGray hover:border-blue hover:-translate-y-[3px] transition-all duration-500 cursor-pointer rounded-lg;
+    @apply border-[.5px] border-bgDeepBlue hover:border-blue hover:-translate-y-[3px] transition-all duration-500 rounded-lg;
   }
 
   .boxBorderHoverGray {

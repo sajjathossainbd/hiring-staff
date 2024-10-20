@@ -1,9 +1,33 @@
 import email from "../../assets/home/news-letter/email.svg";
 import right from "../../assets/home/news-letter/undraw_newsletter_re_wrob.svg";
 import left from "../../assets/home/news-letter/undraw_connecting_teams_re_hno7.svg";
-import PrimaryButton from "../shared/PrimaryButton";
+import PrimaryBtn from "../ui/PrimaryBtn";
+import emailjs from "@emailjs/browser";
+import { useRef } from "react";
+import toast from "react-hot-toast";
 
 function NewsLetter() {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm("service_z81qoi8", "template_4hkjcri", form.current, {
+        publicKey: "028PSjl2WRnGl2zgy",
+      })
+      .then(
+        () => {
+          toast.success("Subscription successful!");
+        },
+        () => {
+          toast.error("Failed to subscribe. Please try again.");
+        }
+      );
+
+    e.target.reset();
+  };
+
   return (
     <div className="container rounded-2xl">
       <section className="w-full mx-auto bg-blue rounded-2xl py-16 px-4 md:px-8">
@@ -13,9 +37,13 @@ function NewsLetter() {
           </div>
           <div>
             <h3 className="text-white mb-4">New Things Will Always</h3>
-            <h3 className="text-white  mb-8">Update Regularly</h3>
+            <h3 className="text-white mb-8">Update Regularly</h3>
 
-            <form className="flex relative flex-col sm:flex-row items-center justify-center w-full gap-4 bg-white rounded-md ">
+            <form
+              className="flex relative flex-col sm:flex-row items-center justify-center w-full gap-4 bg-white rounded-md"
+              ref={form}
+              onSubmit={sendEmail}
+            >
               <img
                 src={email}
                 alt="email box"
@@ -24,11 +52,12 @@ function NewsLetter() {
               <input
                 type="email"
                 placeholder="Enter your email"
+                name="user_email"
                 className="pl-3 md:pl-0 w-full py-5 md:py-6 rounded-md focus:outline-none dark:bg-white"
+                required
               />
-
               <div className="absolute right-2 md:right-4">
-                <PrimaryButton title={"Subscribe"} />
+                <PrimaryBtn title={"Subscribe"} />
               </div>
             </form>
           </div>

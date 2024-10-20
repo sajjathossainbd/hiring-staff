@@ -1,44 +1,36 @@
-/* eslint-disable react/no-unknown-property */
 import SectionTitle from "../../shared/SectionTitle";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import content from "../../../assets/home/category/content-writer.svg";
-import customer from "../../../assets/home/category/customer-service.svg";
-import finance from "../../../assets/home/category/finance.svg";
-import management from "../../../assets/home/category/management.svg";
-import marketing from "../../../assets/home/category/marketing.svg";
-import research from "../../../assets/home/category/research.svg";
-import retail from "../../../assets/home/category/retail.svg";
-import sale from "../../../assets/home/category/sale.svg";
 import CategoryCard from "./CategoryCard";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchJobCategories } from "../../../features/jobs/jobCategories/jobCategoriesAPI";
+import { setCategory } from "../../../features/jobs/jobsFilter/filterSlice";
+import { useNavigate } from "react-router-dom";
+import { fetchJobsListing } from "../../../features/jobs/jobsListing/jobsListingSlice";
 import Hiring from "./Hiring";
 
 function Category() {
-  const categories = [
-    { img: retail, name: "Retail & Product", jobs: "No Job Available" },
-    { img: content, name: "Content Writer", jobs: "4 Jobs Available" },
-    { img: customer, name: "Human Resource", jobs: "No Job Available" },
-    { img: marketing, name: "Market Research", jobs: "1 Job Available" },
-    { img: research, name: "Software", jobs: "No Job Available" },
-    { img: finance, name: "Finance", jobs: "2 Jobs Available" },
-    { img: management, name: "Management", jobs: "No Job Available" },
-    { img: sale, name: "Marketing & Sale", jobs: "No Job Available" },
-    { img: research, name: "Software", jobs: "No Job Available" },
-    { img: retail, name: "Design", jobs: "3 Jobs Available" },
-    { img: sale, name: "Legal", jobs: "1 Job Available" },
-    { img: management, name: "Health & Fitness", jobs: "2 Jobs Available" },
-    { img: management, name: "Health & Fitness", jobs: "2 Jobs Available" },
-    { img: management, name: "Health & Fitness", jobs: "2 Jobs Available" },
-    { img: management, name: "Health & Fitness", jobs: "2 Jobs Available" },
-    { img: management, name: "Health & Fitness", jobs: "2 Jobs Available" },
-    { img: management, name: "Health & Fitness", jobs: "2 Jobs Available" },
-    { img: management, name: "Health & Fitness", jobs: "2 Jobs Available" },
-    { img: management, name: "Health & Fitness", jobs: "2 Jobs Available" },
-    { img: management, name: "Health & Fitness", jobs: "2 Jobs Available" },
-  ];
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { jobsListing: jobs } = useSelector((state) => state.jobsListing);
+  const { categories } = useSelector((state) => state.jobCategories);
+
+  useEffect(() => {
+    dispatch(fetchJobCategories());
+    dispatch(fetchJobsListing());
+  }, [dispatch]);
+
+  const jobsData = jobs?.jobs || [];
+
+  const handleCategoryClick = (categoryName) => {
+    dispatch(setCategory(categoryName));
+    navigate("/jobs-listing/1");
+  };
 
   const itemsPerSlide = 10;
   const slides = [];
@@ -46,20 +38,31 @@ function Category() {
     slides.push(categories.slice(i, i + itemsPerSlide));
   }
 
+  // Calculate job counts per category
+  const jobCounts = categories.reduce((acc, category) => {
+    acc[category] = jobsData.filter(
+      (job) => job.category.toLowerCase() === category.toLowerCase()
+    ).length;
+    return acc;
+  }, {});
+
+  // Conditionally disable loop based on number of slides
+  const shouldLoop = slides.length > 1;
+
   return (
-    <>
+    <div className=" pb-6">
       <section className="container px-0 sm:px-0 md:px-0 lg:px-0 xl:px-14">
         <SectionTitle
           title={"Browse by category"}
           subTitle={
-            "Find the job that’s perfect for you. about 800+ new jobs everyday"
+            "Find the job that’s perfect for you. About 800+ new jobs every day"
           }
         />
         <div>
           <Swiper
             slidesPerView={1}
             spaceBetween={30}
-            loop={true}
+            loop={shouldLoop} // Conditionally enable loop
             pagination={{
               clickable: true,
             }}
@@ -73,41 +76,23 @@ function Category() {
           >
             {slides.map((slide, index) => (
               <SwiperSlide key={index}>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 md:gap-4 mx-14 mt-14   mb-10">
-                  {slide.map((category) => (
-                    <CategoryCard key={category.name} {...category} />
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 md:gap-4 mx-14 mt-14 mb-10">
+                  {slide.map((category, idx) => (
+                    <CategoryCard
+                      key={idx}
+                      categoryName={category}
+                      jobCount={jobCounts[category] || 0} // Pass job count
+                      onCategoryClick={handleCategoryClick}
+                    />
                   ))}
                 </div>
               </SwiperSlide>
             ))}
-
-            <style jsx>{`
-              .swiper-button-next,
-              .swiper-button-prev {
-                background-color: rgba(194, 217, 238, 0.8);
-                padding: 10px;
-                border-radius: 50%;
-                width: 30px;
-                height: 30px;
-              }
-
-              .swiper-button-next::after,
-              .swiper-button-prev::after {
-                font-size: 14px;
-                font-weight: 900;
-                color: rgba(149, 149, 242, 0.86);
-              }
-
-              .swiper-button-next:hover::after,
-              .swiper-button-prev:hover::after {
-                color: rgba(69, 69, 238, 0.86);
-              }
-            `}</style>
           </Swiper>
         </div>
       </section>
       <Hiring />
-    </>
+    </div>
   );
 }
 

@@ -1,11 +1,13 @@
 import left from "../../../assets/home/hiring/bg-left-hiring.svg";
 import right from "../../../assets/home/hiring/bg-right-hiring.svg";
 import { GoVerified } from "react-icons/go";
-import PrimaryButton from "../../shared/PrimaryButton";
+import PrimaryBtn from "../../ui/PrimaryBtn";
+import { Link } from "react-router-dom";
 function Hiring() {
   return (
-    <div className="container flex justify-center items-center pt-0">
-      <div className="flex w-[90%] justify-evenly items-center border border-lightGray rounded-md flex-col lg:flex-row p-5 space-y-3 shadow-md lg:gap-3">
+    <div className="container flex justify-center items-center pt-0 ">
+      {/* Hiring Inof */}
+      <div className="flex w-[90%] justify-evenly items-center border border-bgDeepBlue rounded-lg shadow-sm flex-col lg:flex-row p-5 space-y-3 lg:gap-3 bg-white">
         <div className="hidden lg:block">
           <img src={left} alt="left img" />
         </div>
@@ -15,18 +17,22 @@ function Hiring() {
           </p>
           <h2 className="lg:mb-10">HIRING</h2>
         </div>
-        <div className="flex flex-col md:flex-row items-center gap-3 md:gap-12">
-          <div className="text-center">
-            <p className="text-18  text-lightGray">
-              Let’s Work Together & Explore Opportunities
-            </p>
-          </div>
-          <div className="lg:mt-10">
-            <div className="flex  items-center lg:items-start justify-center mb-4 lg:mr-4">
-              <PrimaryButton icon={<GoVerified />} title={"Apply Now"} />
+        <div className="flex flex-col items-center">
+          <div className="flex flex-col md:flex-row items-center gap-3 md:gap-12 mb-4">
+            <div className="text-center">
+              <p className="text-18  text-lightGray">
+                Let’s Work Together & Explore Opportunities
+              </p>
+            </div>
+            <div className="lg:mt-10">
+              <div className=""></div>
             </div>
           </div>
+          <Link to={"/jobs-listing"}>
+            <PrimaryBtn icon={<GoVerified />} title={"Apply Now"} />
+          </Link>
         </div>
+
         <div className="hidden lg:block">
           <img src={right} alt="right img" />
         </div>

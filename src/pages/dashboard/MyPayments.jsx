@@ -18,7 +18,6 @@ const MyPayments = () => {
         enabled: !!currentUser?.email,
     });
 
-    console.log(myPayment);
 
 
     return (

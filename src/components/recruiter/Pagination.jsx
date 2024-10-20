@@ -1,31 +1,46 @@
+/* eslint-disable react/prop-types */
 
+import { useNavigate } from "react-router-dom";
 
+function Pagination({ totalPages, currentPage, onPageChange }) {
+  const navigate = useNavigate();
 
-const Pagination = ({ currentPage, totalPages, handlePageChange }) => {
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      onPageChange(newPage);
+      navigate(`/recruiters-listing/${newPage}`);
+    }
+  };
+
   return (
-    <div className="flex justify-start items-center mt-6">
-      {Array.from({ length: totalPages }, (_, i) => (
-        <button
-          key={i}
-          onClick={() => handlePageChange(i + 1)}
-          className={`px-4 py-2 rounded-full mr-4 ${
-            currentPage === i + 1
-              ? "bg-[#F8FAFF] text-blue"
-              : "bg-white text-lightGray hover:bg-[#F8FAFF] hover:text-blue"
-          }`}
-        >
-          {i + 1}
-        </button>
-      ))}
+    <div className="flex justify-center mt-4">
+    <button
+      className={`join-item btn dark:bg-white rounded-r-none ${
+        currentPage <= 1 ? "btn-disabled" : ""
+      }`}
+      onClick={() => handlePageChange(currentPage - 1)}
+      disabled={currentPage <= 1}
+      aria-label="Previous Page"
+    >
+      «
+    </button>
 
-      <button
-        onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
-        className="px-4 py-2 rounded-full border border-blue bg-[#F8FAFF] text-lightGray"
-      >
-        {">"}
-      </button>
-    </div>
+    <button className="join-item btn rounded-none disabled">
+      {`${currentPage} of ${totalPages}`}
+    </button>
+
+    <button
+      className={`join-item btn dark:bg-white rounded-l-none ${
+        currentPage >= totalPages ? "btn-disabled" : ""
+      }`}
+      onClick={() => handlePageChange(currentPage + 1)}
+      disabled={currentPage >= totalPages}
+      aria-label="Next Page"
+    >
+      »
+    </button>
+  </div>
   );
-};
+}
 
 export default Pagination;

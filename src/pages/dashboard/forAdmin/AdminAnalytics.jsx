@@ -1,4 +1,4 @@
-import { FaUsers } from "react-icons/fa6";
+import { FaRegAddressBook, FaUsers } from "react-icons/fa6";
 import DashboardCard from "../shared/DashboardCard";
 import TinnyHeading from "../shared/TinnyHeading";
 import { IoBagRemoveOutline } from "react-icons/io5";
@@ -27,6 +27,30 @@ const AdminAnalytics = () => {
         },
     });
 
+    const { data: appliedJobs, } = useQuery({
+        queryKey: ['appliedJobs'],
+        queryFn: async () => {
+            const res = await axiosInstance.get("/jobs/get/applied-jobs");
+            return res.data;
+        },
+    });
+
+    const { data: recruiters, } = useQuery({
+        queryKey: ['recruiters'],
+        queryFn: async () => {
+            const res = await axiosInstance.get("/recruiters");
+            return res.data;
+        },
+    });
+
+    const { data: shortlisted, } = useQuery({
+        queryKey: ['shortlisted'],
+        queryFn: async () => {
+            const res = await axiosInstance.get("/jobs/applied-jobs/shortlist/approved");
+            return res.data;
+        },
+    });
+
 
     return (
         <div>
@@ -36,14 +60,21 @@ const AdminAnalytics = () => {
                 pathName="Admin Analytics"
             />
 
-            <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5">
-                <DashboardCard logo={<FaUsers />} title={'Users'} quantity={users?.users.length} />
-                <DashboardCard logo={<IoBagRemoveOutline />} title={'Jobs'} quantity={jobs?.totalJobs} />
-                <DashboardCard logo={<VscGitStashApply />} title={'Applications'} quantity={'1000'} />
-                <DashboardCard logo={<VscGitStashApply />} title={'Recruiters'} quantity={'100'} />
-                <DashboardCard logo={<MdPlaylistAddCheck />} title={'Shortlisted'} quantity={'50'} />
+            <div
+                className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5">
+                <DashboardCard logo={<FaUsers />} title={'Total Users'} quantity={users?.users.length} />
+                <DashboardCard logo={<IoBagRemoveOutline />} title={'Total Jobs'} quantity={jobs?.totalJobs} />
+                <DashboardCard logo={<VscGitStashApply />} title={'Total Applications'} quantity={appliedJobs?.length} />
+                <DashboardCard logo={<FaRegAddressBook />} title={'Total Recruiters'} quantity={recruiters?.recruiters.length} />
+                <DashboardCard logo={<MdPlaylistAddCheck />} title={'Total Shortlisted'} quantity={shortlisted?.length} />
             </div>
-            <AreaCharts />
+            <AreaCharts
+                UsersQuantity={users?.users.length}
+                totalJobsQuantity={jobs?.totalJobs}
+                applicationsQuantity={appliedJobs?.length}
+                recruitersQuantity={recruiters?.recruiters.length}
+                shortlistedQuantity={shortlisted?.length}
+            />
         </div>
     );
 };

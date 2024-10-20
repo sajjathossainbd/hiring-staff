@@ -1,11 +1,9 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import { CiLocationOn } from "react-icons/ci";
 import StarRatings from "react-star-ratings";
 
 function RecruiterCard({ recruiter }) {
   const { name, location = {}, logo } = recruiter;
-  // console.log(recruiter);
 
   return (
     <div className="py-4 px-5 rounded-xl border border-[#D2D4D7] hover:-translate-y-1 hover:shadow-md hover: shadow-[#D2D4D7] transition-all duration-200 cursor-pointer lg:inline-block block">

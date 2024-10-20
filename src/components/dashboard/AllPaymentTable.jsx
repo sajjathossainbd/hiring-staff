@@ -48,7 +48,6 @@ const AllPaymentTable = () => {
   const totalDocuments = paymentHistory.totalDocuments || 0;
   const totalPages = Math.ceil(totalDocuments / limit) || 1;
 
-
   // delete payment history
   const handleDelete = (id) => {
     Swal.fire({
@@ -112,14 +111,14 @@ const AllPaymentTable = () => {
               <th>Category</th>
               <th>Price</th>
               <th>Date</th>
-              <th>Payment Method</th>
-              <th>Transaction Id</th>
+              <th>Method</th>
+              <th>Transaction</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {paymentHistory?.map((payment) => (
+            {paymentHistory?.payments?.map((payment) => (
               <tr key={payment._id}>
                 <td>{payment?.name}</td>
                 <td>{payment?.email}</td>
@@ -136,13 +135,14 @@ const AllPaymentTable = () => {
                     onChange={(e) =>
                       handleUpdateStatus(e.target.value, payment?._id)
                     }
-                    className="select select-bordered w-full"
+                    className="select dark:bg-darkBlue select-bordered w-full"
                   >
                     <option value="select">Select</option>
                     <option value="approved">Approved</option>
                     <option value="pending">Pending</option>
                   </select>
-                </td><td>
+                </td>
+                <td>
                   <button
                     onClick={() => handleDelete(payment?._id)}
                     className="btn rounded-full text-red-600 hover:text-white hover:bg-blue"
@@ -158,7 +158,9 @@ const AllPaymentTable = () => {
         <CardPagination
           currentPage={currentPage}
           totalPages={totalPages}
-          onPageChange={(newPage) => navigate(`/dashboard/all-payment-history/${newPage}`)}
+          onPageChange={(newPage) =>
+            navigate(`/dashboard/all-payment-history/${newPage}`)
+          }
         />
       </div>
     </div>

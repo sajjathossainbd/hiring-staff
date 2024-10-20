@@ -1,12 +1,13 @@
 import NewsLetter from "../../components/home/NewsLetter";
 import JobCard from "../../components/shared/JobCard";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchJobsListing } from "../../features/jobs/jobsListing/jobsListingSlice";
 import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
 import JobBanner from "../../components/jobs/JobBanner";
 import { ScrollRestoration, useNavigate, useParams } from "react-router-dom";
+import { fetchRecruiterDetails } from "../../features/recruiters/recruiterDetails/recruiterDetailsSlice";
 
 function JobsListing() {
   const dispatch = useDispatch();
@@ -19,13 +20,12 @@ function JobsListing() {
     isLoading,
     isError,
   } = useSelector((state) => state.jobsListing);
- 
-  // Fetch jobs
   const { JobTitle, AllCategory, Location } = useSelector(
     (state) => state.filters
   );
 
-  console.log(Location, AllCategory);
+  const [recruitersData, setRecruitersData] = useState({});
+
   useEffect(() => {
     const filters = {
       category: AllCategory,
@@ -35,7 +35,24 @@ function JobsListing() {
       limit,
     };
     dispatch(fetchJobsListing(filters));
-  }, [page]);
+  }, [AllCategory, JobTitle, Location, dispatch, page]);
+
+  // Fetch recruiter details for each job
+  useEffect(() => {
+    if (jobs?.jobs?.length > 0) {
+      const fetchRecruiters = async () => {
+        const recruiters = {};
+        for (const job of jobs.jobs) {
+          const recruiterResponse = await dispatch(
+            fetchRecruiterDetails(job.company_id)
+          ).unwrap();
+          recruiters[job.company_id] = recruiterResponse;
+        }
+        setRecruitersData(recruiters);
+      };
+      fetchRecruiters();
+    }
+  }, [jobs?.jobs, dispatch]);
 
   let content = null;
 
@@ -43,23 +60,32 @@ function JobsListing() {
 
   if (!isLoading && isError) content = <NoFoundData title="No Jobs Found!" />;
 
-  if (!isLoading && !isError && jobs.length === 0) {
+  if (!isError && jobs.length === 0) {
     content = <NoFoundData title="No Jobs Found!" />;
   }
 
   if (!isLoading && !isError && jobs?.jobs?.length > 0) {
     content = (
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
-        {jobs?.jobs?.map((job) => (
-          <JobCard key={job._id} job={job} />
-        ))}
+        {jobs?.jobs?.map((job) => {
+          const recruiter = recruitersData[job.company_id];
+
+          return (
+            <JobCard
+              key={job._id}
+              job={job}
+              recruiterName={recruiter?.name}
+              recruiterLogo={recruiter?.logo}
+            />
+          );
+        })}
       </div>
     );
   }
 
   // current page and total jobs count
-  const currentPage = jobs.currentPage || 1;
-  const totalJobs = jobs.totalJobs || 0;
+  const currentPage = jobs?.currentPage || 1;
+  const totalJobs = jobs?.totalJobs || 0;
   const totalPages = Math.ceil(totalJobs / limit) || 1;
 
   // Navigate the next or previous page
@@ -69,9 +95,10 @@ function JobsListing() {
       navigate(`/jobs-listing/${newPage}`);
     }
   };
+
   return (
     <>
-      <div classNzame="container flex flex-col justify-center">
+      <div className="container flex flex-col justify-center">
         {/* Jobs Banner */}
         <JobBanner totalJobs={totalJobs} />
 
@@ -82,7 +109,7 @@ function JobsListing() {
         {jobs?.jobs && (
           <div className="join mx-auto">
             <button
-              className="join-item btn"
+              className="join-item btn dark:bg-white"
               onClick={() => handlePageChange("previous")}
               disabled={currentPage <= 1}
               aria-label="Previous Page"
@@ -91,7 +118,7 @@ function JobsListing() {
             </button>
             <button className="join-item btn disabled">{`${currentPage} of ${totalPages}`}</button>
             <button
-              className="join-item btn"
+              className="join-item btn dark:bg-white"
               onClick={() => handlePageChange("next")}
               disabled={currentPage >= totalPages}
               aria-label="Next Page"

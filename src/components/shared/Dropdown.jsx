@@ -33,8 +33,8 @@ const Dropdown = ({ options, placeholder = "Select an option", onChange }) => {
   };
 
   return (
-    <div className="relative inline-block text-left" ref={dropdownRef}>
-      <div className="md:w-40 flex items-center">
+    <div className="relative inline-block text-left w-40" ref={dropdownRef}>
+      <div className=" flex items-center">
         <button
           onClick={toggleDropdown}
           className="flex items-center justify-center w-full py-2 text-sm font-medium rounded-md text-[#818896]"

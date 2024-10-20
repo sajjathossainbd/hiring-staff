@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useCurrentUser from "../../hooks/useCurrentUser";
-
+import { PiSignInFill } from "react-icons/pi";
 function SinginLogout() {
   const { user, logOut } = useAuth();
   const { currentUser } = useCurrentUser();
@@ -37,7 +37,11 @@ function SinginLogout() {
                 <div className="w-30 h-30 rounded-full overflow-hidden flex items-center justify-center">
                   <img
                     className="w-full rounded-full h-full object-cover"
-                    src={`${currentUser?.image || user?.image ? currentUser?.image : "https://i.ibb.co.com/30FCMBq/default-profile.jpg"}`}
+                    src={`${
+                      currentUser?.image || user?.image
+                        ? currentUser?.image
+                        : "https://i.ibb.co.com/30FCMBq/default-profile.jpg"
+                    }`}
                     alt="User photo"
                   />
                 </div>
@@ -48,7 +52,7 @@ function SinginLogout() {
           {dropdownOpen && (
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-md px-4 py-6 z-[1] mt-3 w-52 shadow gap-1 "
+              className="menu menu-sm dropdown-content bg-white dark:bg-darkBlue rounded-md px-4 py-6 z-[1] mt-3 w-52 shadow gap-1 "
             >
               <li>
                 <Link
@@ -68,20 +72,23 @@ function SinginLogout() {
                 </Link>
               </li>
               <li>
-                <a className="text-16 py-2">Settings</a>
+                <Link className="text-16 py-2">Settings</Link>
               </li>
               <li>
-                <a className="justify-between text-16 py-2F" onClick={logOut}>
+                <Link
+                  className="justify-between text-16 py-2F"
+                  onClick={logOut}
+                >
                   Logout
-                </a>
+                </Link>
               </li>
             </ul>
           )}
         </div>
       ) : (
         <Link to="/sign-in">
-          <button className="text-blue bg-white font-semibold py-4 px-8 rounded-md text-18 tracking-wide">
-            Sign in
+          <button className="btn-primary text-blue bg-white font-medium py-2 px-8 rounded-md text-18 tracking-wide flex items-center gap-2 mt-1">
+            Sign in <PiSignInFill />
           </button>
         </Link>
       )}

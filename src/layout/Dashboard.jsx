@@ -1,5 +1,5 @@
 import { CgProfile } from "react-icons/cg";
-import { FaArrowUpShortWide } from "react-icons/fa6";
+import { FaArrowUpShortWide, FaCheck } from "react-icons/fa6";
 import { ImProfile } from "react-icons/im";
 import { IoHomeOutline } from "react-icons/io5";
 import {
@@ -18,6 +18,7 @@ import useCurrentUser from "../hooks/useCurrentUser";
 import useAuth from "../hooks/useAuth";
 import { IoIosLogOut } from "react-icons/io";
 import { HiOutlineBriefcase } from "react-icons/hi";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
   const { logOut } = useAuth();
@@ -31,7 +32,10 @@ const Dashboard = () => {
   }, [currentUser]);
 
   return (
-    <div className="flex lg:flex-row flex-col inter bg-gray-100">
+    <div className="flex lg:flex-row flex-col inter">
+      <Helmet>
+        <title>Hiring Staff - Dashboard</title>
+      </Helmet>
       {/* Sidebar */}
       <div className="relative lg:w-64 w-full shadow-lg">
         <div className="drawer lg:drawer-open z-20">
@@ -46,7 +50,7 @@ const Dashboard = () => {
           </div>
           <div className="drawer-side">
             <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-            <ul className="menu inter space-y-2 p-4 w-64 h-full bg-white text-black fixed top-0 overflow-y-auto shadow-md font-bold">
+            <ul className="menu inter p-4 w-64 h-full dark:bg-darkBlue bg-white text-black fixed top-0 overflow-y-auto shadow-xl font-bold space-y-3">
               {/* Logo Section */}
               <div className="flex items-center justify-center my-6">
                 <Link to={"/"} className="flex items-center gap-1">
@@ -61,15 +65,15 @@ const Dashboard = () => {
                   <li>
                     <NavLink
                       to="/dashboard/dashboard-main"
-                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
-                      <ImProfile /> Dashboard
+                      <ImProfile /> Overview
                     </NavLink>
                   </li>
                   <li>
                     <NavLink
                       to="/dashboard/manage-users"
-                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
                       <FaUserCog /> Manage Users
                     </NavLink>
@@ -77,7 +81,7 @@ const Dashboard = () => {
                   <li>
                     <NavLink
                       to="/dashboard/manage-all-jobs"
-                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
                       <MdPostAdd /> Manage Jobs
                     </NavLink>
@@ -85,7 +89,7 @@ const Dashboard = () => {
                   <li>
                     <NavLink
                       to="/dashboard/all-payment-history"
-                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
                       <MdOutlinePayment /> All Payments
                     </NavLink>
@@ -99,23 +103,23 @@ const Dashboard = () => {
                   <li>
                     <NavLink
                       to="/dashboard/dashboard-main"
-                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
-                      <ImProfile /> Dashboard
+                      <ImProfile /> Overview
                     </NavLink>
                   </li>
                   <li>
                     <NavLink
-                      to="/dashboard/company-profile"
-                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
+                      to="/dashboard/recruiter-profile"
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
-                      <ImProfile /> Company Profile
+                      <ImProfile /> Recruiter Profile
                     </NavLink>
                   </li>
                   <li>
                     <NavLink
                       to="/dashboard/post-job"
-                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
                       <MdPostAdd /> Post Job
                     </NavLink>
@@ -123,7 +127,7 @@ const Dashboard = () => {
                   <li>
                     <NavLink
                       to="/dashboard/manage-jobs"
-                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
                       <MdManageHistory /> Manage Jobs
                     </NavLink>
@@ -131,7 +135,7 @@ const Dashboard = () => {
                   <li>
                     <NavLink
                       to="/dashboard/all-applicants"
-                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
                       <VscGitStashApply /> All Applicants
                     </NavLink>
@@ -139,7 +143,7 @@ const Dashboard = () => {
                   <li>
                     <NavLink
                       to="/dashboard/shortlist"
-                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
                       <MdPlaylistAddCheck /> Shortlist
                     </NavLink>
@@ -153,15 +157,15 @@ const Dashboard = () => {
                   <li>
                     <NavLink
                       to="/dashboard/dashboard-main"
-                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
-                      <ImProfile /> Dashboard
+                      <ImProfile /> Overview
                     </NavLink>
                   </li>
                   <li>
                     <NavLink
                       to="/dashboard/my-resume"
-                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white ${isActive ? "bg-blue text-white" : ""}`}
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
                       <RxResume /> My Resume
                     </NavLink>
@@ -169,7 +173,7 @@ const Dashboard = () => {
                   <li>
                     <NavLink
                       to="/dashboard/applied-jobs"
-                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white ${isActive ? "bg-blue text-white" : ""}`}
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
                       <VscGitStashApply /> Applied Jobs
                     </NavLink>
@@ -177,9 +181,17 @@ const Dashboard = () => {
                   <li>
                     <NavLink
                       to="/dashboard/shortlisted-jobs"
-                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white ${isActive ? "bg-blue text-white" : ""}`}
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
                       <FaArrowUpShortWide /> Shortlisted Jobs
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/dashboard/selected-jobs"
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
+                    >
+                      <FaCheck /> Selected Jobs
                     </NavLink>
                   </li>
                 </>
@@ -191,7 +203,7 @@ const Dashboard = () => {
               <li>
                 <NavLink
                   to="/dashboard/my-profile"
-                  className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white ${isActive ? "bg-blue text-white" : ""}`}
+                  className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white ${isActive ? "bg-blue text-white" : ""}`}
                 >
                   <CgProfile /> My Profile
                 </NavLink>
@@ -199,7 +211,7 @@ const Dashboard = () => {
               <li>
                 <NavLink
                   to="/dashboard/my-payments"
-                  className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white ${isActive ? "bg-blue text-white" : ""}`}
+                  className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white ${isActive ? "bg-blue text-white" : ""}`}
                 >
                   <MdOutlinePayment /> My Payments
                 </NavLink>
@@ -208,13 +220,13 @@ const Dashboard = () => {
               <li>
                 <NavLink
                   to="/"
-                  className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white ${isActive ? "bg-blue text-white" : ""}`}
+                  className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white ${isActive ? "bg-blue text-white" : ""}`}
                 >
                   <IoHomeOutline /> Home
                 </NavLink>
               </li>
               <li>
-                <button onClick={logOut} className="text-red-500 flex items-center gap-2 px-4 hover:bg-red-600 hover:text-white py-2">
+                <button onClick={logOut} className="flex items-center gap-2 px-4 hover:bg-red-600 hover:text-white text-red-600 py-2">
                   <IoIosLogOut /> Sign out
                 </button>
               </li>
@@ -224,7 +236,7 @@ const Dashboard = () => {
       </div>
 
       {/* Main Content */}
-      <div className="bg-white z-10 flex-1 xl:p-10 lg:p-8 md:p-5 p-3 dark:bg-darkBlue">
+      <div className="bg-slate-50 z-10 flex-1 xl:p-5 lg:p-4 md:p-3 p-2 dark:bg-darkBlue">
         <Outlet />
         <DashboardFooter />
       </div>

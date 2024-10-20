@@ -3,7 +3,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 import axiosInstance from "../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "../ui/Loading";
 import { CardPagination } from "../shared/CardPagination";
 import { GoArrowRight } from "react-icons/go";
@@ -11,7 +11,7 @@ import { GoArrowRight } from "react-icons/go";
 const UsersManagementTable = () => {
   const navigate = useNavigate();
   const { page = 1 } = useParams();
-  const limit = 5;
+  const limit = 6;
   const [selectedUser, setSelectedUser] = useState(null);
 
   // Fetch users with pagination
@@ -111,7 +111,7 @@ const UsersManagementTable = () => {
                     onChange={(e) =>
                       handleUpdateRole(user.name, e.target.value, user._id)
                     }
-                    className="select select-bordered lg:w-full w-[100px]"
+                    className="select dark:bg-darkBlue select-bordered lg:w-full w-[100px]"
                   >
                     <option value="admin">Admin</option>
                     <option value="recruiter">Recruiter</option>
@@ -139,76 +139,72 @@ const UsersManagementTable = () => {
 
       {/* DaisyUI Modal */}
       <dialog id="my_modal_3" className="modal">
-
-        <div className="modal-box p-6 bg-white rounded-lg shadow-lg max-w-md mx-auto">
+        <div className="modal-box p-6 bg-white rounded-lg shadow-lg max-w-2xl mx-auto">
           <form method="dialog">
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 hover:bg-gray-200 transition-colors">✕</button>
           </form>
           <h2 className="font-bold text-2xl mb-4 text-gray-800 text-center">
-            User Details - <span className="text-blue">{selectedUser?.name}</span>
+            User Details - <span className="text-blue">{selectedUser?.first_name} {selectedUser?.last_name}</span>
           </h2>
           {selectedUser && (
             <div className="mt-4">
-              <div className="mb-2">
+              <div className="mb-3">
                 <span className="font-semibold text-gray-700">Plan:</span>
                 <span className="ml-2 text-gray-600">{selectedUser?.plan}</span>
               </div>
-              <div className="mb-2">
-                <span className="font-semibold text-gray-700">Email:</span>
-                <strong className="ml-2 text-blue">{selectedUser?.email}</strong>
-              </div>
-              <div className="mb-2">
+              <div className="mb-3">
                 <span className="font-semibold text-gray-700">Role:</span>
                 <span className="ml-2 text-gray-600">{selectedUser?.role}</span>
               </div>
-              <div className="mb-2">
-                <span className="font-semibold text-gray-700">About:</span>
-                <span className="ml-2 text-gray-500">{selectedUser?.about}</span>
+              <div className="mb-3">
+                <span className="font-semibold text-gray-700">Email:</span>
+                <strong className="ml-2 text-blue">{selectedUser?.email}</strong>
               </div>
-              <div className="mb-2">
-                <span className="font-semibold text-gray-700">Address:</span>
-                <span className="ml-2 text-gray-600">{selectedUser?.city}, {selectedUser?.country}</span>
+              <div className="mb-3">
+                <span className="font-semibold text-gray-700">Special Profession:</span>
+                <span className="ml-2 text-gray-600">{selectedUser?.special_profession}</span>
               </div>
-              <div className="mb-2">
+              <div className="mb-3">
+                <span className="font-semibold text-gray-700">Experience:</span>
+                <span className="ml-2 text-gray-600">{selectedUser?.experience_year} years</span>
+              </div>
+              <div className="mb-3">
                 <span className="font-semibold text-gray-700">Phone:</span>
-                <span className="ml-2 text-gray-600">{selectedUser?.phone}</span>
+                <span className="ml-2 text-gray-600">{selectedUser?.phone_number}</span>
               </div>
-              <div className="mb-2">
-                <span className="font-semibold text-gray-700">Website:</span>
+              <div className="mb-3">
+                <span className="font-semibold text-gray-700">Location:</span>
+                <span className="ml-2 text-gray-600">{selectedUser?.location?.city}, {selectedUser?.location?.state}, {selectedUser?.location?.country}</span>
+              </div>
+              <div className="mb-3">
+                <span className="font-semibold text-gray-700">Resume:</span>
                 <span className="ml-2">
-                  <a target="_blank" rel="noopener noreferrer" className="text-blue hover:underline" href={selectedUser?.website}>view</a>
+                  <Link target="_blank" rel="noopener noreferrer" className="text-blue hover:underline" href={selectedUser?.resume}>view</Link>
                 </span>
               </div>
-              <div className="mb-2">
-                <span className="font-semibold text-gray-700">LinkedIn:</span>
+              <div className="mb-3">
+                <span className="font-semibold text-gray-700">Cover Letter:</span>
                 <span className="ml-2">
-                  <a target="_blank" rel="noopener noreferrer" className="text-blue hover:underline" href={selectedUser?.linkedin}>view</a>
+                  <Link target="_blank" rel="noopener noreferrer" className="text-blue hover:underline" href={selectedUser?.cover_letter}>view</Link>
                 </span>
               </div>
-              <div className="mb-2">
-                <span className="font-semibold text-gray-700">GitHub:</span>
-                <span className="ml-2">
-                  <a target="_blank" rel="noopener noreferrer" className="text-blue hover:underline" href={selectedUser?.github}>view</a>
-                </span>
+              <div className="mb-3">
+                <span className="font-semibold text-gray-700">Skills:</span>
+                <span className="ml-2 text-gray-600">{selectedUser?.skills?.join(", ")}</span>
               </div>
-              <div className="mb-2">
-                <span className="font-semibold text-gray-700">Facebook:</span>
-                <span className="ml-2">
-                  <a target="_blank" rel="noopener noreferrer" className="text-blue hover:underline" href={selectedUser?.facebook}>view</a>
-                </span>
+              <div className="mb-3">
+                <span className="font-semibold text-gray-700">Date Applied:</span>
+                <span className="ml-2 text-gray-600">{new Date(selectedUser?.date_applied).toLocaleDateString()}</span>
               </div>
-              <div className="mb-2">
-                <span className="font-semibold text-gray-700">Twitter:</span>
-                <span className="ml-2">
-                  <a target="_blank" rel="noopener noreferrer" className="text-blue hover:underline" href={selectedUser?.twitter}>view</a>
-                </span>
+              <div className="mb-3">
+                <span className="font-semibold text-gray-700">Job Type:</span>
+                <span className="ml-2 text-gray-600">{selectedUser?.job_type}</span>
               </div>
             </div>
           )}
         </div>
-
-
       </dialog>
+
     </div>
   );
 };

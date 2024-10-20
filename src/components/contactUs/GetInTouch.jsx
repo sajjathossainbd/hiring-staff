@@ -1,10 +1,9 @@
-import box from "../../assets/home/get-in-touch/icon-email.svg";
 import GetInTouchImg from "../../assets/contact-us/get-in-touch.svg";
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 import { useRef } from "react";
-import { send } from "emailjs-com";
+import { MdOutlineMail } from "react-icons/md";
 import toast from "react-hot-toast";
-
+import PrimaryBtn from "../ui/PrimaryBtn";
 
 function GetInTouch() {
   const form = useRef();
@@ -13,17 +12,15 @@ function GetInTouch() {
     e.preventDefault();
 
     emailjs
-      .sendForm('service_z81qoi8', 'template_4hkjcri', form.current, {
-        publicKey: '028PSjl2WRnGl2zgy',
+      .sendForm("service_z81qoi8", "template_4hkjcri", form.current, {
+        publicKey: "028PSjl2WRnGl2zgy",
       })
       .then(
-        (result) => {
-          console.log(result.text);
-          toast.success('Email sent successfully!');
+        () => {
+          toast.success("Email sent successfully!");
         },
-        (error) => {
-          console.log(error.text);
-          toast.error('Failed to send email. Please try again.');
+        () => {
+          toast.error("Failed to send email. Please try again.");
         }
       );
 
@@ -106,15 +103,8 @@ function GetInTouch() {
 
               {/* Submit Button */}
               <div>
-                <button
-                  type="submit"
-                  value={send}
-                  className="flex items-center justify-center px-6 py-4 text-16 font-bold tracking-wider bg-blue text-white rounded-md hover:bg-darkBlue"
-                >
-                  <span className="mr-2">
-                    <img src={box} alt="box" />
-                  </span>
-                  Send Message
+                <button type="submit">
+                  <PrimaryBtn title={"Send Message"} icon={<MdOutlineMail />} />
                 </button>
               </div>
             </form>

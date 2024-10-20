@@ -1,16 +1,12 @@
 import { useEffect, useState } from "react";
-import {
-  FaSearch,
-  FaFilter,
-  FaMapMarkerAlt,
-  FaLayerGroup,
-  FaSlidersH,
-} from "react-icons/fa";
+import { FaMapMarkerAlt, FaLayerGroup, FaSlidersH } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { fetchCandidatesListing } from "../../features/candidates/candidatesListing/candidatesListingSlice";
 import axiosInstance from "../../utils/axios";
 import FilterSidePanel from "./FilterSidePanel";
 import { PiLineVerticalThin } from "react-icons/pi";
+import Dropdown from "../shared/DropdownCandidate";
+import PrimaryBtn from "../ui/PrimaryBtn";
 
 function CandidatesFiltering() {
   const dispatch = useDispatch();
@@ -50,10 +46,11 @@ function CandidatesFiltering() {
 
     fetchFilterData();
   }, []);
-
-  const handleFilterChange = (e) => {
-    const { name, value } = e.target;
-    setFilters({ ...filters, [name]: value });
+  const handleFilterChange = (name, value) => {
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [name]: value,
+    }));
   };
 
   const applyFilters = () => {
@@ -71,64 +68,47 @@ function CandidatesFiltering() {
 
   return (
     <div>
-      <div className="relative bg-white  md:p-2 p-5 rounded-2xl w-full">
+      <div className="relative bg-white border border-bgLightBlue shadow-md md:p-2 p-5 rounded-lg w-full">
         {/* Search Bar */}
         <div className="flex items-center md:flex-row flex-col md:gap-2 gap-3">
           {/* Profession   */}
-          <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
+          <div className="flex items-center px-3">
             <FaLayerGroup className="text-blue" />
-            <input
-              type="text"
-              name="profession"
-              onChange={handleFilterChange}
-              list="professions-list"
-              placeholder="Select or Enter Profession"
-              className="focus:outline-none w-full lg:w-auto bg-white text-gray"
+            <Dropdown
+              options={professions}
+              placeholder="Select a profession"
+              onChange={(option) => handleFilterChange("profession", option)}
             />
-            <datalist id="professions-list">
-              {professions.map((profession) => (
-                <option key={profession} value={profession}>
-                  {profession}
-                </option>
-              ))}
-            </datalist>
           </div>
 
-    
           <PiLineVerticalThin className="lg:block hidden" />
 
           {/* Location */}
           <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
             <FaMapMarkerAlt className="text-blue" />
-            <input
-              type="text"
-              name="location"
-              onChange={handleFilterChange}
-              placeholder="Enter Location"
-              list="locations"
-              className="focus:outline-none w-full lg:w-auto bg-white text-gray"
+            <Dropdown
+              options={locations}
+              placeholder="Select a location"
+              onChange={(option) => handleFilterChange("location", option)}
             />
-            <datalist id="locations">
-              {locations.map((location) => (
-                <option key={location} value={location} />
-              ))}
-            </datalist>
           </div>
 
-        
           <PiLineVerticalThin className="lg:block hidden" />
 
           {/* Filter Button */}
-          <button onClick={toggleFilter} className="  rounded-md text-blue text-18 pr-2 ">
+          <button
+            onClick={toggleFilter}
+            className="  rounded-md text-blue text-18 pr-2 "
+          >
             <FaSlidersH />
           </button>
 
           {/* Search Button */}
           <button
             onClick={applyFilters}
-            className="btn btn-primary border-none bg-blue text-white font-medium w-full md:w-36"
+            className=" text-white font-medium w-full md:w-36"
           >
-            Search  
+            <PrimaryBtn title={"Search"} />
           </button>
         </div>
 

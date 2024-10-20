@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import SectionTitle from "../shared/SectionTitle";
-import Blogs from "../shared/blogs/Blogs";
 import { useEffect } from "react";
 import { fetchBlogsListing } from "../../features/blogs/blogsListing/blogsListingSlice";
 import Loading from "../ui/Loading";
 import NoFoundData from "../ui/NoFoundData";
+import BlogCard from "../shared/blogs/BlogCard";
+import { Link } from "react-router-dom";
+import PrimaryBtn from "../ui/PrimaryBtn";
 
 const BlogSection = () => {
   const dispatch = useDispatch();
@@ -17,8 +19,10 @@ const BlogSection = () => {
   } = useSelector((state) => state.blogsListing);
 
   useEffect(() => {
-    dispatch(fetchBlogsListing());
+    dispatch(fetchBlogsListing({ page: 1, limit: 10, query: "" }));
   }, [dispatch]);
+
+  const blogsData = blogs?.blogs?.slice(0, 3) || [];
 
   let content = null;
 
@@ -27,15 +31,20 @@ const BlogSection = () => {
   if (!isLoading && isError)
     content = <div className="col-span-12">{error}</div>;
 
-  if (!isLoading && !isError && blogs?.length === 0) {
+  if (!isLoading && !isError && blogsData.length === 0) {
     content = <NoFoundData title="No Blogs Found!" />;
   }
 
-  if (!isLoading && !isError && blogs?.length > 0) {
+  if (!isLoading && !isError && blogsData.length > 0) {
     content = (
-      <Blogs blogs={blogs}/>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-2 md:gap-4 mt-10">
+        {blogsData.map((blog) => (
+          <BlogCard key={blog._id} blog={blog} />
+        ))}
+      </div>
     );
   }
+
   return (
     <section className="container">
       <div>
@@ -43,9 +52,15 @@ const BlogSection = () => {
           title={"News and Blog"}
           subTitle={"Get the latest news, updates and tips"}
         />
-
-        {/* All Blogs */}
-        {content}
+        <div className="mt-10">
+          <div className="">{content}</div>
+          <Link
+            to={"/blogs"}
+            className="mt-16 flex items-center justify-center"
+          >
+            <PrimaryBtn title="More Blgos" />
+          </Link>
+        </div>
       </div>
     </section>
   );

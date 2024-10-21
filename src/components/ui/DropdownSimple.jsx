@@ -30,16 +30,17 @@ const DropdownSimple = ({
   }, []);
 
   const handleOptionClick = (option) => {
-    setSelectedOption(option);
-    setPlaceholder(option);
-
+    setSelectedOption(option); // Update selected option
+    setPlaceholder(option); // Update placeholder
+  
     if (onOptionSelect) {
       console.log('Language selected:', option);
-      onOptionSelect(option);
+      onOptionSelect(option); // Call the function to change language
     }
-
+  
     setIsOpen(false);
   };
+  
 
   return (
     <div className="relative inline-block text-left " ref={dropdownRef}>

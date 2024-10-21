@@ -1,7 +1,9 @@
-import { Trans } from "react-i18next";
+import { Trans, useTranslation} from "react-i18next";
 import ReviewForm from "./ReviewForm";
 
 const reviews = () => {
+  const {t} = useTranslation();
+  
   return (
     <section className="container rounded-xl">
       <div className=" text-white rounded-xl">

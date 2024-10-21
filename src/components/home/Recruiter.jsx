@@ -10,8 +10,9 @@ import { fetchRecruitersListing } from "../../features/recruiters/recruitersList
 import TopRecruiterCard from "../shared/TopRecruiterCard";
 import { Link } from "react-router-dom";
 import PrimaryBtn from "../ui/PrimaryBtn";
-import { Trans } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 function Recruiter() {
+  const {t} = useTranslation()
   const dispatch = useDispatch();
 
   const {

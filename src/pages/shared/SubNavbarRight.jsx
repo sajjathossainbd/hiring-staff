@@ -12,13 +12,16 @@ function SubNavbarRight() {
   const { i18n } = useTranslation();
 
   const handleLanguageChange = (selectedLanguage) => {
+    console.log('Language selected:', selectedLanguage);
     if (selectedLanguage === "English") {
-      console.log('Language selected:', selectedLanguage);
       i18n.changeLanguage("en");
+      localStorage.setItem('language', 'en');
     } else if (selectedLanguage === "Bangla") {
       i18n.changeLanguage("bn");
+      localStorage.setItem('language', 'bn');
     }
   };
+  
   
   return (
     <div className="xl:flex lg:hidden md:hidden items-center gap-6 hidden">
@@ -33,7 +36,7 @@ function SubNavbarRight() {
       />
       <DropdownSimple
         dynamicOptions={languageOptions} 
-        placeholderData="Language" 
+        placeholderData={i18n.language === "en" ? "English" : "Bangla"}  
         onOptionSelect={handleLanguageChange} 
       />
     </div>

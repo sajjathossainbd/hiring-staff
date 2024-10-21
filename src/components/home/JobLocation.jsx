@@ -1,7 +1,8 @@
-import { Trans } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import SectionTitle from "../../components/shared/SectionTitle";
 
 const JobLocation = () => {
+  const {t} = useTranslation()
   const jobData = [
     {
       country: "Germany",
@@ -48,6 +49,7 @@ const JobLocation = () => {
   ];
 
   const getGridProperties = (index) => {
+    
     switch (index) {
       case 0:
         return {

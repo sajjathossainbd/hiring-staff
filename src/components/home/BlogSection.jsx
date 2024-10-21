@@ -7,9 +7,10 @@ import NoFoundData from "../ui/NoFoundData";
 import BlogCard from "../shared/blogs/BlogCard";
 import { Link } from "react-router-dom";
 import PrimaryBtn from "../ui/PrimaryBtn";
-import { Trans } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 const BlogSection = () => {
+  const {t} = useTranslation()
   const dispatch = useDispatch();
 
   const {

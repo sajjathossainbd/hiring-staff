@@ -1,14 +1,13 @@
 import SearchByFilter from "../../shared/SearchByFilter";
 import PopularSearch from "./PopularSearch";
 import bannerImg from "../../../assets/home/banner/banner03.svg";
-import Lottie from "lottie-react";
-import UpDownDrawLine from "./../../../../public/up-down-draw-line.json";
 import BannerCountDown from "./BannerCountDown";
 import TodayNewJobs from "../jobs/TodayNewJobs";
-import { Trans } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 
 const Banner = () => {
+  const {t} = useTranslation()
   return (
     <section className="dark:bg-darkBlue px-4 lg:pb-10">
       <div className="container pt-0">
@@ -28,8 +27,7 @@ const Banner = () => {
               </h2>
              
               <p className="text-18 mt-8">
-              <Trans i18nKey="home_hero_subTitile">
-              </Trans>
+              {t("home_hero_subTitile")}
               </p>
             </div>
             {/* search by filter jobs*/}

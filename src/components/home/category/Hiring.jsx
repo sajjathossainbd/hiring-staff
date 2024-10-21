@@ -3,8 +3,9 @@ import right from "../../../assets/home/hiring/bg-right-hiring.svg";
 import { GoVerified } from "react-icons/go";
 import PrimaryBtn from "../../ui/PrimaryBtn";
 import { Link } from "react-router-dom";
-import { Trans } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 function Hiring() {
+  const {t} = useTranslation()
   return (
     <div className="container flex justify-center items-center pt-0 ">
       {/* Hiring Inof */}

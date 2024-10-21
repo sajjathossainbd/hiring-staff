@@ -5,9 +5,10 @@ import PrimaryBtn from "../ui/PrimaryBtn";
 import emailjs from "@emailjs/browser";
 import { useRef } from "react";
 import toast from "react-hot-toast";
-import { Trans } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 function NewsLetter() {
+  const {t} = useTranslation();
   const form = useRef();
 
   const sendEmail = (e) => {

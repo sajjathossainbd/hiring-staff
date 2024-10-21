@@ -12,10 +12,11 @@ import { setCategory } from "../../../features/jobs/jobsFilter/filterSlice";
 import { useNavigate } from "react-router-dom";
 import { fetchJobsListing } from "../../../features/jobs/jobsListing/jobsListingSlice";
 import Hiring from "./Hiring";
-import { Trans } from "react-i18next";
-import i18n from "../../../i18n";
+import { Trans, useTranslation } from "react-i18next";
+
 
 function Category() {
+  const {t} = useTranslation()
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

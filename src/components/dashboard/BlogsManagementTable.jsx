@@ -52,7 +52,7 @@ const BlogsManagementTable = () => {
             confirmButtonText: "Yes, delete it!",
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosInstance.delete(`/blogs/${id}`).then((res) => {
+                axiosInstance.delete(`/blogs/delete/${id}`).then((res) => {
                     if (res.data.deletedCount > 0) {
                         Swal.fire("Deleted!", "Blog has been deleted.", "success");
                         refetch();

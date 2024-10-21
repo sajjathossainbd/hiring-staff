@@ -1,5 +1,5 @@
 import { CgProfile } from "react-icons/cg";
-import { FaArrowUpShortWide, FaCheck } from "react-icons/fa6";
+import { FaArrowUpShortWide, FaCheck, FaUserGroup } from "react-icons/fa6";
 import { ImProfile } from "react-icons/im";
 import { IoHomeOutline } from "react-icons/io5";
 import {
@@ -12,7 +12,7 @@ import { RxResume } from "react-icons/rx";
 import { VscGitStashApply } from "react-icons/vsc";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import DashboardFooter from "../pages/dashboard/shared/DashboardFooter";
-import { FaUserCog } from "react-icons/fa";
+import { FaUsers, FaUserTie } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import useCurrentUser from "../hooks/useCurrentUser";
 import useAuth from "../hooks/useAuth";
@@ -72,34 +72,26 @@ const Dashboard = () => {
                   </li>
                   <li>
                     <NavLink
-                      to="/dashboard/manage-users"
-                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
-                    >
-                      <FaUserCog /> Manage Users
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/dashboard/manage-candidates"
-                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
-                    >
-                      <FaUserCog /> Manage Candidates
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/dashboard/manage-recruiters"
-                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
-                    >
-                      <FaUserCog /> Manage Recruiters
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
                       to="/dashboard/manage-all-jobs"
                       className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
-                      <MdPostAdd /> Manage Jobs
+                      <MdPostAdd /> All Jobs
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/dashboard/manage-users"
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
+                    >
+                      <FaUsers /> All Users
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/dashboard/manage-all-blogs"
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
+                    >
+                      <MdPostAdd /> All Blogs
                     </NavLink>
                   </li>
                   <li>
@@ -108,6 +100,22 @@ const Dashboard = () => {
                       className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
                       <MdOutlinePayment /> All Payments
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/dashboard/manage-recruiters"
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
+                    >
+                      <FaUserTie /> All Recruiters
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/dashboard/manage-candidates"
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
+                    >
+                      <FaUserGroup /> All Candidates
                     </NavLink>
                   </li>
                 </>

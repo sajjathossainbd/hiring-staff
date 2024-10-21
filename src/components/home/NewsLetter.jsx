@@ -5,6 +5,7 @@ import PrimaryBtn from "../ui/PrimaryBtn";
 import emailjs from "@emailjs/browser";
 import { useRef } from "react";
 import toast from "react-hot-toast";
+import { Trans } from "react-i18next";
 
 function NewsLetter() {
   const form = useRef();
@@ -36,8 +37,8 @@ function NewsLetter() {
             <img src={left} alt="img" className="w-52 hidden lg:block" />
           </div>
           <div>
-            <h3 className="text-white mb-4">New Things Will Always</h3>
-            <h3 className="text-white mb-8">Update Regularly</h3>
+            <h3 className="text-white mb-4"><Trans i18nKey={"newsLetter"}/></h3>
+            
 
             <form
               className="flex relative flex-col sm:flex-row items-center justify-center w-full gap-4 bg-white rounded-md"
@@ -57,7 +58,7 @@ function NewsLetter() {
                 required
               />
               <div className="absolute right-2 md:right-4">
-                <PrimaryBtn title={"Subscribe"} />
+                <PrimaryBtn title={<Trans i18nKey={"subscribe"}/>} />
               </div>
             </form>
           </div>

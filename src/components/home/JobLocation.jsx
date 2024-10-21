@@ -1,3 +1,4 @@
+import { Trans } from "react-i18next";
 import SectionTitle from "../../components/shared/SectionTitle";
 
 const JobLocation = () => {
@@ -96,11 +97,9 @@ const JobLocation = () => {
   return (
     <div className="container">
       <SectionTitle
-        title="Jobs by Location
-"
-        subTitle="Find your favourite jobs and get the benefits of yourself
+        title={<Trans i18nKey={"jobsByLocation"}/>}
+        subTitle={<Trans i18nKey={"jobsByLocationDescrip"}/>}
 
-"
       />
       <div className="grid lg:grid-cols-12 grid-cols-1 lg:grid-rows-2 grid-rows-1 gap-6 lg:pt-14 pt-10">
         {jobData.map((job, index) => {

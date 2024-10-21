@@ -7,6 +7,7 @@ import GrowthSection from "../../components/home/growthSection/GrowthSection";
 import Reviews from "../../components/reviews/Reviews";
 import Banner from "../../components/home/banner/Banner";
 
+
 function Home() {
   return (
     <div>

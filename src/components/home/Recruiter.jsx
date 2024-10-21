@@ -10,7 +10,7 @@ import { fetchRecruitersListing } from "../../features/recruiters/recruitersList
 import TopRecruiterCard from "../shared/TopRecruiterCard";
 import { Link } from "react-router-dom";
 import PrimaryBtn from "../ui/PrimaryBtn";
-
+import { Trans } from "react-i18next";
 function Recruiter() {
   const dispatch = useDispatch();
 
@@ -55,9 +55,9 @@ function Recruiter() {
     <div className="">
       <div className="container">
         <SectionTitle
-          title={"Top Recruiters"}
+          title={<Trans i18nKey={"topRecruiters"}/>}
           subTitle={
-            "Discover your next career move, freelance gig, or internship"
+            <Trans i18nKey={"topRecruitersDescrip"}/>
           }
         />
 
@@ -67,7 +67,7 @@ function Recruiter() {
             to={"/recruiters-listing"}
             className="mt-16 flex items-center justify-center"
           >
-            <PrimaryBtn title="More Recruiter" />
+            <PrimaryBtn title={<Trans i18nKey={"moreRecruiters"}/>} />
           </Link>
         </div>
       </div>

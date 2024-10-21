@@ -2,7 +2,11 @@
 import { useState, useRef, useEffect } from "react";
 import { FiChevronDown } from "react-icons/fi";
 
-const DropdownSimple = ({ dynamicOptions, placeholderData }) => {
+const DropdownSimple = ({
+  dynamicOptions,
+  placeholderData,
+  onOptionSelect,
+}) => {
   const [placeholder, setPlaceholder] = useState(placeholderData);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(placeholder);
@@ -26,12 +30,14 @@ const DropdownSimple = ({ dynamicOptions, placeholderData }) => {
   }, []);
 
   const handleOptionClick = (option) => {
-    if (option === selectedOption) {
-      setSelectedOption(placeholder);
-    } else {
-      setSelectedOption(option);
-      setPlaceholder(option);
+    setSelectedOption(option);
+    setPlaceholder(option);
+
+    if (onOptionSelect) {
+      console.log('Language selected:', option);
+      onOptionSelect(option);
     }
+
     setIsOpen(false);
   };
 

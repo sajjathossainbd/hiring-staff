@@ -88,6 +88,14 @@ const Dashboard = () => {
                   </li>
                   <li>
                     <NavLink
+                      to="/dashboard/manage-recruiters"
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
+                    >
+                      <FaUserCog /> Manage Recruiters
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
                       to="/dashboard/manage-all-jobs"
                       className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >

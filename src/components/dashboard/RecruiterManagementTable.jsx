@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../ui/Loading";
 import { CardPagination } from "../shared/CardPagination";
 
-const CandidatesManagementTable = () => {
+const RecruiterManagementTable = () => {
     const navigate = useNavigate();
     const { page = 1 } = useParams();
     const limit = 6;
@@ -14,7 +14,7 @@ const CandidatesManagementTable = () => {
     // Fetch users with pagination
     const fetchUsers = async (currentPage, limit) => {
         const response = await axiosInstance.get(
-            `/users/candidates?page=${currentPage}&limit=${limit}`
+            `/users/recruiters?page=${currentPage}&limit=${limit}`
         );
         return response.data;
     };
@@ -62,7 +62,6 @@ const CandidatesManagementTable = () => {
         });
     };
 
-
     return (
         <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
             <h5>Manage Users</h5>
@@ -77,24 +76,26 @@ const CandidatesManagementTable = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {usersData?.candidates?.map((user) => (
-                            <tr key={user._id}>
-                                <td>{user.name}</td>
-                                <td>
-                                    <span className="text-blue">{user.email}</span>
-                                </td>
-                                <td>
-                                    <button
-                                        onClick={() => handleDelete(user._id)}
-                                        className="btn rounded-full text-red-600 hover:text-white hover:bg-blue"
-                                    >
-                                        <RiDeleteBin6Line />
-                                    </button>
-                                </td>
-                            </tr>
-                        )) || (
+                        {usersData?.recruiters?.length > 0 ? (
+                            usersData.recruiters.map((user) => (
+                                <tr key={user._id}>
+                                    <td>{user.name}</td>
+                                    <td>
+                                        <span className="text-blue">{user.email}</span>
+                                    </td>
+                                    <td>
+                                        <button
+                                            onClick={() => handleDelete(user._id)}
+                                            className="btn rounded-full text-red-600 hover:text-white hover:bg-blue"
+                                        >
+                                            <RiDeleteBin6Line />
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))
+                        ) : (
                             <tr>
-                                <td colSpan="5" className="text-center">No candidates found.</td>
+                                <td colSpan="5" className="text-center">No recruiters found.</td>
                             </tr>
                         )}
                     </tbody>
@@ -102,11 +103,11 @@ const CandidatesManagementTable = () => {
                 <CardPagination
                     currentPage={currentPage}
                     totalPages={totalPages}
-                    onPageChange={(newPage) => navigate(`/dashboard/manage-candidates/${newPage}`)}
+                    onPageChange={(newPage) => navigate(`/dashboard/manage-recruiters/${newPage}`)}
                 />
             </div>
         </div>
     );
 };
 
-export default CandidatesManagementTable;
+export default RecruiterManagementTable;

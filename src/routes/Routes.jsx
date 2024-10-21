@@ -36,6 +36,7 @@ import MyPayments from "../pages/dashboard/MyPayments";
 import ManageJobs from "../pages/dashboard/forAdmin/ManageJobs";
 import SelectedJobs from "../pages/dashboard/forCandidates/SelectedJobs";
 import ManageCandidates from "../pages/dashboard/forAdmin/ManageCandidates";
+import ManageRecruiters from "../pages/dashboard/forAdmin/ManageRecruiters";
 
 const router = createBrowserRouter([
   {
@@ -165,6 +166,14 @@ const router = createBrowserRouter([
       {
         path: "manage-candidates/:page",
         element: <ManageCandidates />,
+      },
+      {
+        path: "manage-recruiters",
+        element: <ManageRecruiters />,
+      },
+      {
+        path: "manage-recruiters/:page",
+        element: <ManageRecruiters />,
       },
       {
         path: "manage-all-jobs",

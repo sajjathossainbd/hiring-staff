@@ -35,6 +35,7 @@ import AllPaymentHistory from "../pages/dashboard/forAdmin/AllPaymentHistory";
 import MyPayments from "../pages/dashboard/MyPayments";
 import ManageJobs from "../pages/dashboard/forAdmin/ManageJobs";
 import SelectedJobs from "../pages/dashboard/forCandidates/SelectedJobs";
+import ManageCandidates from "../pages/dashboard/forAdmin/ManageCandidates";
 
 const router = createBrowserRouter([
   {
@@ -156,6 +157,14 @@ const router = createBrowserRouter([
       {
         path: "manage-users",
         element: <ManageUsers />,
+      },
+      {
+        path: "manage-candidates",
+        element: <ManageCandidates />,
+      },
+      {
+        path: "manage-candidates/:page",
+        element: <ManageCandidates />,
       },
       {
         path: "manage-all-jobs",

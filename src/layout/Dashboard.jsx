@@ -1,5 +1,5 @@
 import { CgProfile } from "react-icons/cg";
-import { FaArrowUpShortWide, FaCheck, FaUserGroup } from "react-icons/fa6";
+import { FaArrowUpShortWide, FaBlogger, FaCheck, FaUserGroup } from "react-icons/fa6";
 import { ImProfile } from "react-icons/im";
 import { IoHomeOutline } from "react-icons/io5";
 import {
@@ -91,7 +91,7 @@ const Dashboard = () => {
                       to="/dashboard/manage-all-blogs"
                       className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
-                      <MdPostAdd /> All Blogs
+                      <FaBlogger /> All Blogs
                     </NavLink>
                   </li>
                   <li>

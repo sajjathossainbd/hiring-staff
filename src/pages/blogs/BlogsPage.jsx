@@ -6,6 +6,7 @@ import NoFoundData from "../../components/ui/NoFoundData";
 import BlogCard from "../../components/shared/blogs/BlogCard";
 import { Helmet } from "react-helmet-async";
 import TinnyBanner from "../../components/shared/TinnyBanner";
+import { CardPagination } from "../../components/shared/CardPagination";
 
 function BlogsPage() {
   const dispatch = useDispatch();
@@ -25,30 +26,28 @@ function BlogsPage() {
     dispatch(fetchBlogsListing({ page, limit, query: searchQuery }));
   }, [dispatch, page, searchQuery]);
 
-  const totalPages = blogs.totalPages;
-  const pages = [...Array(totalPages).keys()].map(i => i + 1);
+  const totalPages = blogs.totalPages || 1;
 
   let content = null;
 
   if (isLoading) content = <Loading />;
 
-  if (!isLoading && isError)
-    content = <div className="col-span-12">{error}</div>;
+  if (!isLoading && isError) content = <div className="col-span-12">{error}</div>;
 
   if (!isLoading && !isError && blogs?.blogs?.length === 0) {
     content = <NoFoundData title="No Blogs Found!" />;
   }
 
-
   if (!isLoading && !isError && blogs?.blogs?.length > 0) {
     content = (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-2 md:gap-4 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-2 md:gap-4 my-10">
         {blogs?.blogs?.map((blog) => (
           <BlogCard key={blog._id} blog={blog} />
         ))}
       </div>
     );
   }
+
   return (
     <>
       <Helmet>
@@ -71,25 +70,17 @@ function BlogsPage() {
           />
         </div>
 
-        {/* Blog Card Content*/}
+        {/* Blog Card Content */}
         {content}
 
-        {/* Pagination */}
-        <div className="flex justify-center mt-4 gap-3">
-          {page > 1 && <button className="text-blue" onClick={() => setPage(page - 1)}>Previous</button>}
-
-          {pages.map((p) => (
-            <button
-              key={p}
-              onClick={() => setPage(p)}
-              className={`mx-1 ${page === p ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}
-            >
-              {p}
-            </button>
-          ))}
-
-          {page < totalPages && <button className="text-blue" onClick={() => setPage(page + 1)}>Next</button>}
-        </div>
+        {/* Card Pagination Component */}
+        {blogs?.blogs && (
+          <CardPagination
+            currentPage={page}
+            totalPages={totalPages}
+            onPageChange={setPage} // Directly set the page number
+          />
+        )}
       </div>
     </>
   );

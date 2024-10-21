@@ -9,6 +9,8 @@ import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
 import JobBanner from "../../components/jobs/JobBanner";
 import { ScrollRestoration, useNavigate, useParams } from "react-router-dom";
+import { CardPagination } from "../../components/shared/CardPagination";
+
 
 function JobsListing() {
   const dispatch = useDispatch();
@@ -31,7 +33,6 @@ function JobsListing() {
   const { JobTitle, AllCategory, Location } = useSelector(
     (state) => state.filters
   );
-
 
   const [recruitersData, setRecruitersData] = useState({});
 
@@ -113,13 +114,6 @@ function JobsListing() {
   const totalJobs = jobs?.totalJobs || 0;
   const totalPages = Math.ceil(totalJobs / limit) || 1;
 
-  const handlePageChange = (direction) => {
-    const newPage = direction === "next" ? currentPage + 1 : currentPage - 1;
-    if (newPage >= 1 && newPage <= totalPages) {
-      navigate(`/jobs-listing/${newPage}`);
-    }
-  };
-
   return (
     <>
       <div className="container flex flex-col justify-center">
@@ -129,27 +123,13 @@ function JobsListing() {
         {/* Jobs Listing */}
         <div className="pb-10 mt-20">{content}</div>
 
-        {/* Pagination */}
+        {/* Card Pagination */}
         {jobs?.jobs && (
-          <div className="join mx-auto">
-            <button
-              className="join-item btn dark:bg-white"
-              onClick={() => handlePageChange("previous")}
-              disabled={currentPage <= 1}
-              aria-label="Previous Page"
-            >
-              «
-            </button>
-            <button className="join-item btn disabled">{`${currentPage} of ${totalPages}`}</button>
-            <button
-              className="join-item btn dark:bg-white"
-              onClick={() => handlePageChange("next")}
-              disabled={currentPage >= totalPages}
-              aria-label="Next Page"
-            >
-              »
-            </button>
-          </div>
+          <CardPagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={(newPage) => navigate(`/jobs-listing/${newPage}`)}
+          />
         )}
       </div>
       <NewsLetter />

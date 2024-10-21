@@ -15,38 +15,34 @@ export const CardPagination = ({ currentPage, totalPages, onPageChange }) => {
     };
 
     return (
-        <div className='flex select-none justify-center items-center gap-3'>
-            {/* Left Arrow */}
+        <div className="mx-auto flex w-fit select-none items-center justify-center divide-x divide-zinc-500 overflow-hidden rounded-sm border border-zinc-500 bg-white dark:bg-gray-700">
+            {/* Previous Button */}
             <div
                 onClick={() => updatePageNumber(pageNumber - 1)}
-                className={`hover:scale-110 scale-100 transition-all duration-200 cursor-pointer hover:bg-white px-1 py-1 rounded-full ${pageNumber === 0 ? 'cursor-not-allowed opacity-50' : ''}`}
+                className={`w-20 cursor-pointer px-3 py-2 text-center text-sm outline-none transition-all duration-200 hover:bg-gray-500/20 ${pageNumber === 0 ? 'cursor-not-allowed opacity-50' : ''}`}
             >
-                <svg className='w-8' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 7L10 12L15 17" stroke="#0284C7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+                Previous
             </div>
 
             {/* Page Numbers */}
-            <div className='flex justify-center items-center gap-2 bg-white p-2 shadow-lg rounded-full'>
+            <div className="flex items-center justify-center divide-x divide-zinc-500">
                 {[...Array(totalPages).keys()].map((item) => (
                     <div
                         key={item}
                         onClick={() => updatePageNumber(item)}
-                        className={`cursor-pointer hover:scale-110 text-sm scale-100 transition-all duration-200 px-3 ${pageNumber === item ? 'bg-sky-500 text-white' : 'bg-white'} border-sky-300 font-semibold text-gray-700 py-[6px] rounded-full`}
+                        className={`cursor-pointer px-4 text-sm transition-all duration-200 ${pageNumber === item ? 'bg-zinc-500 text-white' : 'hover:bg-gray-500/20'} py-[8px] font-semibold`}
                     >
                         {item + 1}
                     </div>
                 ))}
             </div>
 
-            {/* Right Arrow */}
+            {/* Next Button */}
             <div
                 onClick={() => updatePageNumber(pageNumber + 1)}
-                className={`hover:scale-110 scale-100 transition-all duration-200 cursor-pointer hover:bg-white px-1 py-1 rounded-full ${pageNumber === totalPages - 1 ? 'cursor-not-allowed opacity-50' : ''}`}
+                className={`w-20 cursor-pointer px-3 py-2 text-center text-sm outline-none transition-all duration-200 hover:bg-gray-500/20 ${pageNumber === totalPages - 1 ? 'cursor-not-allowed opacity-50' : ''}`}
             >
-                <svg className='w-8' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 7L15 12L10 17" stroke="#0284C7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+                Next
             </div>
         </div>
     );

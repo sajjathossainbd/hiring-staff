@@ -5,10 +5,10 @@ import { fetchCandidatesListing } from "../../features/candidates/candidatesList
 import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
 import CandidateCard from "../../components/candidate/CandidateCard";
-import Pagination from "../../components/candidate/Pagination";
 import CandidatesFiltering from "../../components/candidate/CandidatesFiltering";
 import Lottie from "lottie-react";
 import multipleLineDraw from "./../../../public/multiline-repet.json";
+import { CardPagination } from "../../components/shared/CardPagination";
 
 function CandidatesListing() {
   const dispatch = useDispatch();
@@ -56,8 +56,8 @@ function CandidatesListing() {
         </div>
 
         {/* Pagination Controls */}
-        <div className="flex justify-center mt-4">
-          <Pagination
+        <div className="flex justify-center mt-10">
+          <CardPagination
             totalPages={totalPages}
             currentPage={currentPage}
             onPageChange={handlePageChange}

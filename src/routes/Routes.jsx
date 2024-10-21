@@ -166,6 +166,10 @@ const router = createBrowserRouter([
         element: <ManageUsers />,
       },
       {
+        path: "manage-all-jobs/:page",
+        element: <ManageJobs />,
+      },
+      {
         path: "all-payment-history",
         element: <AllPaymentHistory />,
       },
@@ -184,11 +188,23 @@ const router = createBrowserRouter([
         element: <AppliedJobs />,
       },
       {
+        path: "applied-jobs/:page",
+        element: <AppliedJobs />,
+      },
+      {
         path: "shortlisted-jobs",
         element: <ShortlistedJobs />,
       },
       {
+        path: "shortlisted-jobs/:page",
+        element: <ShortlistedJobs />,
+      },
+      {
         path: "selected-jobs",
+        element: <SelectedJobs />,
+      },
+      {
+        path: "selected-jobs/:page",
         element: <SelectedJobs />,
       },
 
@@ -203,6 +219,10 @@ const router = createBrowserRouter([
       },
       {
         path: "manage-jobs",
+        element: <ManageJob />,
+      },
+      {
+        path: "manage-jobs/:page",
         element: <ManageJob />,
       },
       {

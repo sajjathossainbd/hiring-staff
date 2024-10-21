@@ -1,81 +1,106 @@
+/* eslint-disable react/prop-types */
 import NewsLetter from "../../components/home/NewsLetter";
 import JobCard from "../../components/shared/JobCard";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { fetchJobsListing } from "../../features/jobs/jobsListing/jobsListingSlice";
+import { fetchRecruiterDetails } from "../../features/recruiters/recruiterDetails/recruiterDetailsSlice";
 import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
 import JobBanner from "../../components/jobs/JobBanner";
 import { ScrollRestoration, useNavigate, useParams } from "react-router-dom";
-import { fetchRecruiterDetails } from "../../features/recruiters/recruiterDetails/recruiterDetailsSlice";
 
 function JobsListing() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { page } = useParams() || 1;
+  const { page: paramPage } = useParams();
+  const page = paramPage ? parseInt(paramPage, 10) : 1;
   const limit = 9;
 
+  // Selectors
   const {
     jobsListing: jobs,
-    isLoading,
-    isError,
+    isLoading: jobsLoading,
+    isError: jobsError,
   } = useSelector((state) => state.jobsListing);
+  const {
+    recruiterDetails: recruiter,
+    isLoading: recruiterLoading,
+    isError: recruiterError,
+  } = useSelector((state) => state.recruiterDetails);
   const { JobTitle, AllCategory, Location } = useSelector(
     (state) => state.filters
   );
 
+
   const [recruitersData, setRecruitersData] = useState({});
 
-  useEffect(() => {
-    const filters = {
+  const filters = useMemo(
+    () => ({
       category: AllCategory,
       job_title: JobTitle,
       job_location: Location,
-      page: page,
+      page,
       limit,
-    };
-    dispatch(fetchJobsListing(filters));
-  }, [AllCategory, JobTitle, Location, dispatch, page]);
+    }),
+    [AllCategory, JobTitle, Location, page]
+  );
 
-  // Fetch recruiter details for each job
+  // Fetch Jobs Listing
+  useEffect(() => {
+    dispatch(fetchJobsListing(filters));
+  }, [filters, dispatch]);
+
+  // Fetch Recruiter details for all jobs
   useEffect(() => {
     if (jobs?.jobs?.length > 0) {
       const fetchRecruiters = async () => {
         const recruiters = {};
-        for (const job of jobs.jobs) {
-          const recruiterResponse = await dispatch(
-            fetchRecruiterDetails(job.company_id)
-          ).unwrap();
-          recruiters[job.company_id] = recruiterResponse;
-        }
+        await Promise.all(
+          jobs.jobs.map(async (job) => {
+            try {
+              const recruiterResponse = await dispatch(
+                fetchRecruiterDetails(job.recruiter_id)
+              ).unwrap();
+              recruiters[job.recruiter_id] = recruiterResponse;
+            } catch (error) {
+              console.error(
+                `Error fetching recruiter details for recruiter_id ${job.recruiter_id}:`,
+                error
+              );
+              recruiters[job.recruiter_id] = null;
+            }
+          })
+        );
         setRecruitersData(recruiters);
       };
       fetchRecruiters();
     }
   }, [jobs?.jobs, dispatch]);
 
+  // Unified Loading and Error state
+  const isLoading = jobsLoading || recruiterLoading;
+  const isError = jobsError || recruiterError;
+
+  // Content rendering logic
   let content = null;
 
   if (isLoading) content = <Loading />;
-
-  if (!isLoading && isError) content = <NoFoundData title="No Jobs Found!" />;
-
-  if (!isError && jobs.length === 0) {
+  else if (isError || jobs?.jobs?.length === 0) {
     content = <NoFoundData title="No Jobs Found!" />;
-  }
-
-  if (!isLoading && !isError && jobs?.jobs?.length > 0) {
+  } else {
     content = (
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
         {jobs?.jobs?.map((job) => {
-          const recruiter = recruitersData[job.company_id];
-
+          const recruiter = recruitersData[job.recruiter_id];
           return (
             <JobCard
               key={job._id}
               job={job}
-              recruiterName={recruiter?.name}
-              recruiterLogo={recruiter?.logo}
+              recruiterName={recruiter?.name || "Loading..."}
+              recruiterLogo={recruiter?.logo || ""}
+              recruiterWebsite={recruiter?.website || ""}
+              recruiterRating={recruiter?.ratings || 0}
             />
           );
         })}
@@ -83,12 +108,11 @@ function JobsListing() {
     );
   }
 
-  // current page and total jobs count
+  // Pagination logic
   const currentPage = jobs?.currentPage || 1;
   const totalJobs = jobs?.totalJobs || 0;
   const totalPages = Math.ceil(totalJobs / limit) || 1;
 
-  // Navigate the next or previous page
   const handlePageChange = (direction) => {
     const newPage = direction === "next" ? currentPage + 1 : currentPage - 1;
     if (newPage >= 1 && newPage <= totalPages) {

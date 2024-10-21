@@ -7,6 +7,7 @@ import useCurrentUser from "../../../hooks/useCurrentUser";
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../../utils/axios";
 import toast from "react-hot-toast";
+import NoFoundData from "../../../components/ui/NoFoundData";
 
 const Shortlist = () => {
   const { currentUser } = useCurrentUser();
@@ -35,6 +36,19 @@ const Shortlist = () => {
       toast.error("Failed to update job status.");
     }
   };
+
+  if (allShortlistAppliedJobs?.length == 0 || allShortlistAppliedJobs === undefined) {
+    return (
+      <>
+        <TinnyHeading
+          title="Shortlisted Resumes"
+          path="shortlist"
+          pathName="Shortlisted Resumes"
+        />
+        <NoFoundData title="No Shortlist Jobs Found!" />
+      </>
+    )
+  }
 
   return (
     <div>

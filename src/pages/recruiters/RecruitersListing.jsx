@@ -6,9 +6,9 @@ import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
 import RecruiterCard from "../../components/recruiter/RecruiterCard";
 import Filter from "../../components/recruiter/Filters";
-import Pagination from "../../components/recruiter/Pagination";
 import Lottie from "lottie-react";
 import multipleLineDraw from "./../../../public/multiline-repet.json";
+import { CardPagination } from "../../components/shared/CardPagination";
 
 function RecruitersListing() {
   const dispatch = useDispatch();
@@ -19,8 +19,6 @@ function RecruitersListing() {
     isLoading,
     isError,
     error,
-    totalPages,
-    currentPage,
   } = useSelector((state) => state.recruitersListing);
 
   useEffect(() => {
@@ -46,14 +44,14 @@ function RecruitersListing() {
     content = (
       <div>
         {/* Recruiter Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 my-10">
           {recruiters?.recruiters?.map((recruiter, index) => (
             <RecruiterCard key={`${recruiter._id}-${index}`} recruiter={recruiter} />
           ))}
         </div>
 
-        {/* Pagination Component */}
-        <Pagination
+        {/* Card Pagination Component */}
+        <CardPagination
           totalPages={recruiters?.totalPages}
           currentPage={recruiters?.currentPage}
           onPageChange={handlePageChange}

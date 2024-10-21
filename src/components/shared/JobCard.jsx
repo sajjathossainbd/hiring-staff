@@ -10,16 +10,18 @@ import { GoArrowRight } from "react-icons/go";
 import { LiaBuffer } from "react-icons/lia";
 import BookmarkBtn from "../ui/BookmarkBtn";
 function JobCard({ job, recruiterName, recruiterLogo }) {
+
+
   const {
     _id,
     jobTitle,
+    description,
     job_type,
     postedDate,
-    description = [],
-    min_salary,
-    max_salary,
+    salary_range,
     job_location,
   } = job || {};
+
   return (
     <div className="boxBorderHoverBlue hover:bg-[white]  bg-bgLightBlue dark:bg-darkBlue">
       <div className="md:p-5 p-3 flex flex-col justify-between h-full">
@@ -54,11 +56,10 @@ function JobCard({ job, recruiterName, recruiterLogo }) {
           </div>
           {/* Description And Price */}
           <div className="">
-            <p className="text-14 my-3">{description[0]}</p>
+            <p className="text-14 my-3">{description}</p>
             <div className="flex justify-between">
               <p className="text-14 flex items-center gap-x-1">
-                <CiBadgeDollar className="text-lg" />
-                {min_salary} - {max_salary}
+                <CiBadgeDollar className="text-lg" />{salary_range}
               </p>
               <p className="flex items-center gap-x-1 text-14">
                 <WiTime7 className="text-lg" /> {postedDate}

@@ -12,6 +12,7 @@ import { fetchJobLocations } from "../../features/jobs/filterCollection/location
 import { fetchJobsListing } from "../../features/jobs/jobsListing/jobsListingSlice";
 import { useNavigate } from "react-router-dom";
 import PrimaryBtn from "../ui/PrimaryBtn";
+import { Trans } from "react-i18next";
 const SearchByFilter = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -54,6 +55,7 @@ const SearchByFilter = () => {
       console.error("Error fetching filtered jobs:", error);
     }
   };
+
 
   return (
     <div className="relative bg-white border shadow-md border-bgLightBlue md:p-2 p-5 rounded-lg">
@@ -103,7 +105,7 @@ const SearchByFilter = () => {
 
         {/* Search button */}
         <button onClick={showFilter} className="w-40">
-          <PrimaryBtn title={"Search Jobs"} />
+          <PrimaryBtn title={<Trans i18nKey={"searchJobBtn"}/>} />
         </button>
       </div>
     </div>

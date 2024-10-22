@@ -2,7 +2,11 @@
 import { useState, useRef, useEffect } from "react";
 import { FiChevronDown } from "react-icons/fi";
 
-const NormalDropdown = ({ dynamicOptions, placeholderData }) => {
+const DropdownSimple = ({
+  dynamicOptions,
+  placeholderData,
+  onOptionSelect,
+}) => {
   const [placeholder, setPlaceholder] = useState(placeholderData);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(placeholder);
@@ -26,14 +30,17 @@ const NormalDropdown = ({ dynamicOptions, placeholderData }) => {
   }, []);
 
   const handleOptionClick = (option) => {
-    if (option === selectedOption) {
-      setSelectedOption(placeholder);
-    } else {
-      setSelectedOption(option);
-      setPlaceholder(option);
+    setSelectedOption(option); // Update selected option
+    setPlaceholder(option); // Update placeholder
+  
+    if (onOptionSelect) {
+      console.log('Language selected:', option);
+      onOptionSelect(option); // Call the function to change language
     }
+  
     setIsOpen(false);
   };
+  
 
   return (
     <div className="relative inline-block text-left " ref={dropdownRef}>
@@ -70,4 +77,4 @@ const NormalDropdown = ({ dynamicOptions, placeholderData }) => {
   );
 };
 
-export default NormalDropdown;
+export default DropdownSimple;

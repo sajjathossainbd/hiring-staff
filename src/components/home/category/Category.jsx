@@ -12,8 +12,11 @@ import { setCategory } from "../../../features/jobs/jobsFilter/filterSlice";
 import { useNavigate } from "react-router-dom";
 import { fetchJobsListing } from "../../../features/jobs/jobsListing/jobsListingSlice";
 import Hiring from "./Hiring";
+import { Trans, useTranslation } from "react-i18next";
+
 
 function Category() {
+  const {t} = useTranslation()
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -53,10 +56,8 @@ function Category() {
     <div className=" pb-6">
       <section className="container px-0 sm:px-0 md:px-0 lg:px-0 xl:px-14">
         <SectionTitle
-          title={"Browse by category"}
-          subTitle={
-            "Find the job that’s perfect for you. About 800+ new jobs every day"
-          }
+          title={<Trans i18nKey="browsbyCategory" />}
+          subTitle={<Trans i18nKey="browsbyCategory_subTitle"/>}
         />
         <div>
           <Swiper

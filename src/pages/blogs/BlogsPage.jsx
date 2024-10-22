@@ -6,6 +6,7 @@ import NoFoundData from "../../components/ui/NoFoundData";
 import BlogCard from "../../components/shared/blogs/BlogCard";
 import { Helmet } from "react-helmet-async";
 import TinnyBanner from "../../components/shared/TinnyBanner";
+import { CardPagination } from "../../components/shared/CardPagination";
 
 function BlogsPage() {
   const dispatch = useDispatch();
@@ -41,13 +42,14 @@ function BlogsPage() {
 
   if (!isLoading && !isError && blogs?.blogs?.length > 0) {
     content = (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-2 md:gap-4 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-2 md:gap-4 my-10">
         {blogs?.blogs?.map((blog) => (
           <BlogCard key={blog._id} blog={blog} />
         ))}
       </div>
     );
   }
+
   return (
     <>
       <Helmet>
@@ -70,43 +72,17 @@ function BlogsPage() {
           />
         </div>
 
-        {/* Blog Card Content*/}
+        {/* Blog Card Content */}
         {content}
 
-        {/* Pagination */}
-        <div className="join mx-auto mt-4">
-          {page > 1 && (
-            <button
-              className="join-item btn dark:bg-white"
-              onClick={() => setPage(page - 1)}
-              aria-label="Previous Page"
-            >
-              «
-            </button>
-          )}
-
-          {pages.map((p) => (
-            <button
-              key={p}
-              onClick={() => setPage(p)}
-              className={`join-item btn ${
-                page === p ? "bg-blue-500 text-white" : "dark:bg-white"
-              }`}
-            >
-              {p}
-            </button>
-          ))}
-
-          {page < totalPages && (
-            <button
-              className="join-item btn dark:bg-white bg-blue text-white dark:text-black"
-              onClick={() => setPage(page + 1)}
-              aria-label="Next Page"
-            >
-              »
-            </button>
-          )}
-        </div>
+        {/* Card Pagination Component */}
+        {blogs?.blogs && (
+          <CardPagination
+            currentPage={page}
+            totalPages={totalPages}
+            onPageChange={setPage} // Directly set the page number
+          />
+        )}
       </div>
     </>
   );

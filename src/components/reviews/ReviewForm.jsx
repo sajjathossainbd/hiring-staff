@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import useCurrentUser from "../../hooks/useCurrentUser";
 import toast from "react-hot-toast";
 import axiosInstance from "../../utils/axios";
+import { Trans } from "react-i18next";
 
 const ReviewForm = () => {
     const { register, handleSubmit, reset, setValue } = useForm();
@@ -48,9 +49,9 @@ const ReviewForm = () => {
     return (
         <div className="flex flex-col max-w-xl p-8 shadow-sm rounded-xl lg:p-12 text-black dark:text-darkBlue">
             <div className="flex flex-col items-center w-full">
-                <h2 className="text-3xl font-semibold text-center dark:text-darkBlue">Your opinion matters!</h2>
+                <h2 className="text-3xl font-semibold text-center dark:text-darkBlue">{<Trans i18nKey={"reviewRightCard"}/>}</h2>
                 <div className="flex flex-col items-center py-6 space-y-3">
-                    <span className="text-center">How was your experience?</span>
+                    <span className="text-center"><Trans i18nKey={"reviewRightCard_1"}/></span>
                     <div className="flex space-x-3">
                         {Array.from({ length: 5 }, (_, index) => index + 1).map(star => (
                             <button
@@ -86,7 +87,7 @@ const ReviewForm = () => {
                             onClick={handleSubmit(onSubmit)}
                             className="py-4 my-8 font-semibold rounded-md dark:text-white dark:bg-violet-600 text-white bg-blue"
                         >
-                            Leave feedback
+                           <Trans i18nKey={"reviwBtn"}/>
                         </button>
                     ) : (
 

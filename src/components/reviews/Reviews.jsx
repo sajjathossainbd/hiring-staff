@@ -1,19 +1,22 @@
+import { Trans, useTranslation} from "react-i18next";
 import ReviewForm from "./ReviewForm";
 
 const reviews = () => {
+  const {t} = useTranslation();
+  
   return (
     <section className="container rounded-xl">
       <div className=" text-white rounded-xl">
         <div className="flex flex-col xl:flex-row lg:flex-row md:flex-row justify-around items-center">
           <div className="flex flex-col w-full p-8">
             <h5 className="text-lg uppercase tracking-loose">
-              REVIEW
+             {<Trans i18nKey={"review"}/>}
             </h5>
             <h2 className="text-3xl md:text-5xl my-4 leading-relaxed md:leading-snug">
-              Leave us a feedback!
+            {<Trans i18nKey={"reviewleft1"}/>}
             </h2>
             <p className=" leading-snug">
-              Please provide your valuable feedback and something something ...
+            {<Trans i18nKey={"reviewleft2"}/>}
             </p>
           </div>
           <div className="flex flex-col w-full justify-center">

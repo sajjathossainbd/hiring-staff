@@ -11,6 +11,10 @@ import SimilarJobs from "../../components/jobs/SimilarJobs";
 import { fetchRecruiterDetails } from "../../features/recruiters/recruiterDetails/recruiterDetailsSlice";
 import ApplyJob from "../../components/jobs/ApplyJob";
 import { CiMail } from "react-icons/ci";
+import PrimaryBtnBlue from "../../components/ui/PrimaryBtnBlue";
+import { HiExternalLink } from "react-icons/hi";
+import BookmarkBtn from "../../components/ui/BookmarkBtn";
+
 function JobDetails() {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -95,11 +99,11 @@ function JobDetails() {
               <div>
                 <div className="flex flex-col items-center lg:flex-row gap-x-2">
                   {/*modal for aplly job */}
-                  <button
-                    className="btn border-none btn-primary bg-blue text-white font-medium px-6 min-h-[2.8rem] h-[2.8rem] rounded-xl my-3"
-                    onClick={handleOpen}
-                  >
-                    Apply Now
+                  <button onClick={handleOpen}>
+                    <PrimaryBtnBlue
+                      title={"Apply Now"}
+                      icon={<HiExternalLink />}
+                    />
                   </button>
                   {isOpen && (
                     <dialog id="my_modal_3" className="modal" open>
@@ -119,9 +123,9 @@ function JobDetails() {
                     </dialog>
                   )}
 
-                  <button className="btn btn-primary btn-outline min-h-[2.8rem] h-[2.8rem] px-3 border-bgDeepBlue text-blue dark:text-white rounded-xl text-lg">
-                    <FaBookmark />
-                  </button>
+                  <div className="">
+                    <BookmarkBtn />
+                  </div>
                 </div>
                 <div className="mt-3">
                   <p className="lg:text-right text-14 font-medium">

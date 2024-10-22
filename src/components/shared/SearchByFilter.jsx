@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 import { FaSlidersH } from "react-icons/fa";
 import Dropdown from "./DropdownCandidate";
 const SearchByFilter = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { JobTitle, AllCategory, Location } = useSelector(
@@ -80,7 +80,7 @@ const SearchByFilter = () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
             fill="currentColor"
-            className="h-4 w-4 opacity-70 "
+            className="h-4 w-4 opacity-70"
           >
             <path
               fillRule="evenodd"

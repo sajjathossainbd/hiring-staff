@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 // import jsPDF from "jspdf";
-import html2pdf from "html2pdf.js";
+// import html2pdf from "html2pdf.js";
 // import html2canvas from "html2canvas";
 
 const ResumeTemplate = ({ data }) => {

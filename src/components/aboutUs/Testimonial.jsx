@@ -13,8 +13,9 @@ import { Pagination } from "swiper/modules";
 import SectionTitle from "../shared/SectionTitle";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../utils/axios";
-
+import { Trans, useTranslation } from "react-i18next";
 const Testimonial = () => {
+  const {t} = useTranslation();
 
   const [reviews, setReviews] = useState([]);
 
@@ -33,8 +34,8 @@ const Testimonial = () => {
     <div className="py-0 container">
       <div className="lg:w-1/2 mx-auto text-center pb-12">
         <SectionTitle
-          title="Our Happy Customer"
-          subTitle="When it comes to choosing the right web hosting provider, we know how easy it is to get overwhelmed with the number."
+          title={<Trans i18nKey={"testiminialTitle"}/>}
+          subTitle={<Trans i18nKey={"testiminialDescrip"}/>}
         />
       </div>
       <Swiper

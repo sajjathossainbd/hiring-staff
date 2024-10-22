@@ -13,7 +13,9 @@ import { fetchJobsListing } from "../../features/jobs/jobsListing/jobsListingSli
 import { useNavigate } from "react-router-dom";
 import PrimaryBtn from "../ui/PrimaryBtn";
 import { Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 const SearchByFilter = () => {
+  const {t} = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { JobTitle, AllCategory, Location } = useSelector(
@@ -64,7 +66,7 @@ const SearchByFilter = () => {
           <input
             type="text"
             className="outline-none w-full text-14 placeholder:font-medium"
-            placeholder="Search"
+            placeholder={t('search')}
             value={JobTitle}
             onChange={handleJobTitleChange}
           />
@@ -89,7 +91,7 @@ const SearchByFilter = () => {
         <Dropdown
           options={categories}
           onChange={(selected) => handleSelectChange(selected, "AllCategory")}
-          placeholder={AllCategory || "All Category"}
+          placeholder={AllCategory || t('allCategory')}
         />
 
         {/* Vertical line */}
@@ -99,7 +101,7 @@ const SearchByFilter = () => {
         <Dropdown
           options={locations}
           onChange={(selected) => handleSelectChange(selected, "Location")}
-          placeholder={Location || "All Location"}
+          placeholder={Location || t('allLocation')}
         />
 
         {/* Search button */}

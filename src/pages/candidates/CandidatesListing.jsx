@@ -9,8 +9,15 @@ import CandidatesFiltering from "../../components/candidate/CandidatesFiltering"
 import Lottie from "lottie-react";
 import multipleLineDraw from "./../../../public/multiline-repet.json";
 import { CardPagination } from "../../components/shared/CardPagination";
+import { Trans, useTranslation } from "react-i18next";
+
+const convertToBanglaDigits = (number) => {
+  const banglaDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+  return number.toString().split('').map(digit => banglaDigits[digit] || digit).join('');
+};
 
 function CandidatesListing() {
+  const {t} = useTranslation();
   const dispatch = useDispatch();
   const [filters, setFilters] = useState({});
 
@@ -33,6 +40,8 @@ function CandidatesListing() {
   const handlePageChange = (newPage) => {
     setFilters((prev) => ({ ...prev, page: newPage }));
   };
+
+  const banglaCandidatesCount = candidates ? convertToBanglaDigits(candidates?.totalCandidates || 0) : "০";
 
   let content = null;
 
@@ -78,15 +87,13 @@ function CandidatesListing() {
         </div>
         <div className="text-center pb-6">
           <h3>
-            <span className="text-blue">
-              {candidates.totalCandidates} Candidates
-            </span>{" "}
-            Available Now
+          <Trans i18nKey="candidatesBannerTitle" count={banglaCandidatesCount}>
+            <span className="text-blue">{banglaCandidatesCount} Candidates</span> Available Now
+            </Trans>
           </h3>
 
           <p className="md:max-w-xl text-14 mt-3">
-            Browse top-rated professionals across various skills and locations,
-            tailored to meet your project needs.
+            <Trans i18nKey={"candidatesBannerDescrip"}/>
           </p>
         </div>
 

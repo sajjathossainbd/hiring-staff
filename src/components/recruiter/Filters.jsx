@@ -6,8 +6,10 @@ import axiosInstance from "../../utils/axios";
 import { PiLineVerticalThin } from "react-icons/pi";
 import PrimaryBtn from "../ui/PrimaryBtn";
 import Dropdown from "../shared/DropdownCandidate";
+import { Trans, useTranslation } from "react-i18next";
 
 function RecruitersFiltering() {
+  const {t} = useTranslation();
   const dispatch = useDispatch();
 
   const [industries, setIndustries] = useState([]);
@@ -90,7 +92,7 @@ function RecruitersFiltering() {
             onClick={applyFilters}
             className=" text-white font-medium w-full md:w-36"
           >
-            <PrimaryBtn title={"Search"} />
+            <PrimaryBtn title={<Trans i18nKey={"search"}/>} />
           </button>
         </div>
       </div>

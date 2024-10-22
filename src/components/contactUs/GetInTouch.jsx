@@ -4,8 +4,10 @@ import { useRef } from "react";
 import { MdOutlineMail } from "react-icons/md";
 import toast from "react-hot-toast";
 import PrimaryBtn from "../ui/PrimaryBtn";
-
+import { Trans, useTranslation } from "react-i18next";
 function GetInTouch() {
+  const {t} = useTranslation();
+  
   const form = useRef();
 
   const sendEmail = (e) => {
@@ -32,22 +34,20 @@ function GetInTouch() {
       <div className="grid lg:grid-cols-3 gap-4">
         <div className="lg:col-span-2">
           <div className=" mx-auto p-4 space-y-3">
-            <p className="text-16 text-blue">Contact Us</p>
-            <h2>Get in Touch</h2>
+            <p className="text-16 text-blue"><Trans i18nKey={"contactUs"}/></p>
+            <h2><Trans i18nKey={"getInTouch"}/></h2>
             <p className="text-16">
-              The right move at the right time saves your investment. live{" "}
-              <br />
-              the dream of expanding your business.
+            <Trans i18nKey={"getInTouchDescrip"}/>
             </p>
           </div>
           <div>
-            <form className=" mx-auto p-4" ref={form} onSubmit={sendEmail}>
+          <form className="mx-auto p-4" ref={form} onSubmit={sendEmail}>
               {/* Name and Company fields */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
                   <input
                     type="text"
-                    placeholder="Enter your name"
+                    placeholder={t('enterYourName')}
                     name="user_name"
                     className="w-full px-4 py-4 border border-lightGray text-14 focus:outline-none rounded-sm"
                   />
@@ -55,7 +55,7 @@ function GetInTouch() {
                 <div>
                   <input
                     type="text"
-                    placeholder="Company (optional)"
+                    placeholder={t('company')}
                     className="w-full px-4 py-4 border border-lightGray text-14 focus:outline-none rounded-sm"
                   />
                 </div>
@@ -66,7 +66,7 @@ function GetInTouch() {
                 <div>
                   <input
                     type="email"
-                    placeholder="Your email"
+                    placeholder={t('yourEmail')}
                     name="user_email"
                     className="w-full px-4 py-4 border border-lightGray text-14 focus:outline-none rounded-sm"
                   />
@@ -74,7 +74,7 @@ function GetInTouch() {
                 <div>
                   <input
                     type="text"
-                    placeholder="Phone number"
+                    placeholder={t('phoneNumber')}
                     className="w-full px-4 py-4 border border-lightGray text-14 focus:outline-none rounded-sm"
                   />
                 </div>
@@ -83,9 +83,9 @@ function GetInTouch() {
               {/* Message field */}
               <div className="mb-4">
                 <textarea
-                  placeholder="Tell us about yourself"
+                  placeholder={t('tellAboutYourself')}
                   rows="10"
-                  name="massage"
+                  name="message"
                   className="w-full px-4 py-4 border border-lightGray text-14 focus:outline-none rounded-md"
                 ></textarea>
               </div>
@@ -95,8 +95,7 @@ function GetInTouch() {
                 <label className="flex items-center">
                   <input type="checkbox" className="mr-2" />
                   <span className="text-16 dark:text-lightText">
-                    By clicking contact us button, you agree to our terms and
-                    policy
+                    {t('termsAndPolicy')}
                   </span>
                 </label>
               </div>
@@ -104,7 +103,7 @@ function GetInTouch() {
               {/* Submit Button */}
               <div>
                 <button type="submit">
-                  <PrimaryBtn title={"Send Message"} icon={<MdOutlineMail />} />
+                  <PrimaryBtn title={t('sendMessages')} icon={<MdOutlineMail />} />
                 </button>
               </div>
             </form>

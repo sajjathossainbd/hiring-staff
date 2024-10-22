@@ -56,6 +56,7 @@ const SearchByFilter = () => {
     }
   };
 
+
   return (
     <div className="relative bg-white border shadow-md border-bgLightBlue md:p-2 p-5 rounded-lg">
       <div className="flex items-center md:flex-row flex-col md:gap-2 gap-3">

@@ -9,24 +9,19 @@ import axiosInstance from "../../../utils/axios";
 import toast from "react-hot-toast";
 import useCurrentUser from "../../../hooks/useCurrentUser";
 import { useQuery } from "@tanstack/react-query";
-
-const SelectInput = ({ label, name, options, onChange, value }) => (
-  <div className="lg:col-span-3 md:col-span-6">
-    <label className="font-semibold">{label}</label>
-    <select
-      name={name}
-      value={value}
-      onChange={onChange}
-      className="py-4 px-3 bg-bgLightWhite dark:bg-darkBlue dark:border-blue outline-none w-full border-lightGray rounded-md"
-    >
-      {options.map((option, index) => (
-        <option key={index} value={option}>
-          {option}
-        </option>
-      ))}
-    </select>
-  </div>
-);
+import SelectField from "../shared/SelectField";
+import { LiaCitySolid } from "react-icons/lia";
+import { TbUnlink } from "react-icons/tb";
+import { BsBrowserChrome } from "react-icons/bs";
+import {
+  MdAddLocationAlt,
+  MdLocationCity,
+  MdPersonAddAlt1,
+} from "react-icons/md";
+import { FaMapLocationDot, FaMoneyCheckDollar } from "react-icons/fa6";
+import { TbNumbers } from "react-icons/tb";
+import { RiUserLocationLine } from "react-icons/ri";
+import TextareaField from "../shared/TextareaField";
 
 const RecruiterProfile = () => {
   const { currentUser } = useCurrentUser();
@@ -41,7 +36,6 @@ const RecruiterProfile = () => {
     },
     enabled: !!currentUser?.email,
   });
-
 
   const [formData, setFormData] = useState({
     name: "",
@@ -73,7 +67,7 @@ const RecruiterProfile = () => {
   const [certification, setCertification] = useState("");
   const [award, setAward] = useState("");
 
-  // Populate formData with recruiter data once it's available
+  // Populate formData with recruiter data
   useEffect(() => {
     if (currentRecruiter) {
       setFormData((prev) => ({
@@ -127,40 +121,55 @@ const RecruiterProfile = () => {
       <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
         <h5>Profile Details</h5>
         <hr className="my-6 text-lightGray" />
-        <form
-          onSubmit={handleSubmit}
-          className="grid lg:grid-cols-6 md:grid-cols-1 gap-x-6 gap-y-4 text-14"
-        >
+        <form onSubmit={handleSubmit} className="">
           <DefaultInput
             label="Company Name"
+            icon={<LiaCitySolid />}
             type="text"
             name="name"
+            placeholder="Company Name"
             value={formData.name}
             onChange={handleChange}
           />
           <DefaultInput
             label="Logo URL"
+            icon={<TbUnlink />}
             type="url"
             name="logo"
+            placeholder="http://company.com/logo"
             value={formData.logo}
             onChange={handleChange}
           />
-          <textarea
-            className="lg:col-span-6 p-3 bg-bgLightWhite dark:bg-darkBlue rounded-md"
+          <TextareaField
             placeholder="Short description about the company..."
+            label="Company Short Description"
             name="description"
             value={formData.description}
             onChange={handleChange}
           />
-          <SelectInput
+          <SelectField
             label="Industry"
             name="industry"
-            options={["FinTech", "Banking", "Education"]}
+            options={[
+              "Select Industry",
+              "Web and Software Development",
+              "Technology and IT Solutions",
+              "Business Process Outsourcing (BPO)",
+              "Artificial Intelligence and Data Science",
+              "Digital Marketing and E-commerce",
+              "Construction and Infrastructure",
+              "Healthcare IT and Life Sciences",
+              "Logistics and Supply Chain Management",
+              "Financial Technology (FinTech)",
+              "Education Technology (EdTech)",
+            ]}
             value={formData.industry}
             onChange={handleChange}
           />
           <DefaultInput
             label="Website"
+            icon={<BsBrowserChrome />}
+            placeholder="http://company.com"
             type="url"
             name="website"
             value={formData.website}
@@ -178,74 +187,97 @@ const RecruiterProfile = () => {
           </div>
           <DefaultInput
             label="CEO"
+            icon={<MdPersonAddAlt1 />}
+            placeholder="Jhankar Mahbub"
             type="text"
             name="ceo"
             value={formData.ceo}
             onChange={handleChange}
           />
-          <SelectInput
-            label="Business Type"
-            name="businessType"
-            options={["Private", "Public"]}
-            value={formData.businessType}
-            onChange={handleChange}
-          />
-          <DefaultInput
-            label="Annual Revenue"
-            type="text"
-            name="annualRevenue"
-            value={formData.annualRevenue}
-            onChange={handleChange}
-          />
-          <DefaultInput
-            label="Founded Year"
-            type="text"
-            name="foundedYear"
-            value={formData.foundedYear}
-            onChange={handleChange}
-          />
-          <SelectInput
-            label="Company Size Category"
-            name="companySizeCategory"
-            options={["Small", "Medium", "Large"]}
-            value={formData.companySizeCategory}
-            onChange={handleChange}
-          />
-          <DefaultInput
-            label="Number of Employees"
-            type="number"
-            name="numberOfEmployees"
-            value={formData.numberOfEmployees}
-            onChange={handleChange}
-          />
-          <DefaultInput
-            label="Address"
-            type="text"
-            name="address"
-            value={formData.address}
-            onChange={handleChange}
-          />
-          <DefaultInput
-            label="City"
-            type="text"
-            name="city"
-            value={formData.city}
-            onChange={handleChange}
-          />
-          <DefaultInput
-            label="State"
-            type="text"
-            name="state"
-            value={formData.state}
-            onChange={handleChange}
-          />
-          <DefaultInput
-            label="Country"
-            type="text"
-            name="country"
-            value={formData.country}
-            onChange={handleChange}
-          />
+
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6">
+            <SelectField
+              label="Business Type"
+              name="businessType"
+              options={["Private", "Public"]}
+              value={formData.businessType}
+              onChange={handleChange}
+            />
+            <SelectField
+              label="Company Size Category"
+              name="companySizeCategory"
+              options={["Small", "Medium", "Large"]}
+              value={formData.companySizeCategory}
+              onChange={handleChange}
+            />
+            <SelectField
+              label="Number of Employees"
+              name="numberOfEmployees"
+              options={["1-50", "51-100", "101-300", "301-500", "501-1000+"]}
+              value={formData.numberOfEmployees}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="grid lg:grid-cols-2 md:grid-cols-2 lg:gap-x-6 md:gap-x-4">
+            <DefaultInput
+              label="Annual Revenue"
+              icon={<FaMoneyCheckDollar />}
+              placeholder="20 Million"
+              type="number"
+              name="annualRevenue"
+              value={formData.annualRevenue}
+              onChange={handleChange}
+            />
+            <DefaultInput
+              label="Founded Year"
+              icon={<TbNumbers />}
+              placeholder="2004"
+              type="number"
+              name="foundedYear"
+              value={formData.foundedYear}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 max-sm:grid-cols-1 gap-6">
+            <DefaultInput
+              label="Address"
+              icon={<RiUserLocationLine />}
+              placeholder="Toy Tower, 4Floor"
+              type="text"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+            />
+            <DefaultInput
+              label="City"
+              icon={<MdLocationCity />}
+              placeholder="Dhanmondi, Dhaka"
+              type="text"
+              name="city"
+              value={formData.city}
+              onChange={handleChange}
+            />
+            <DefaultInput
+              label="State"
+              icon={<MdAddLocationAlt />}
+              placeholder="Dhaka Division"
+              type="text"
+              name="state"
+              value={formData.state}
+              onChange={handleChange}
+            />
+            <DefaultInput
+              label="Country"
+              icon={<FaMapLocationDot />}
+              placeholder="Bangladesh"
+              type="text"
+              name="country"
+              value={formData.country}
+              onChange={handleChange}
+            />
+          </div>
+
           <DefaultInput
             label="Latitude"
             type="text"

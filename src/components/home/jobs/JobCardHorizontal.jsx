@@ -8,8 +8,9 @@ import { GoArrowRight } from "react-icons/go";
 
 // eslint-disable-next-line react/prop-types
 function JobCardHorizontal({ job, recruiterLogo }) {
-  const { _id, jobTitle, job_type, max_salary, min_salary, postedDate } =
-    job || {};
+  console.log(recruiterLogo);
+
+  const { _id, jobTitle, job_type, salary_range, postedDate } = job || {};
 
   return (
     <div className="boxBorderHoverBlue p-6 rounded-lg flex lg:flex-row md:flex-row flex-col gap-5 justify-between items-center bg-white">
@@ -29,7 +30,7 @@ function JobCardHorizontal({ job, recruiterLogo }) {
           {/* location, price, date */}
           <div className="flex lg:flex-row flex-col lg:gap-4 mt-3">
             <MiniBtn
-              value={`${max_salary}$ - ${min_salary}$ Salary`}
+              value={salary_range}
               icon={<IoBriefcaseOutline />}
               style="text-18"
             />

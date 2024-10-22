@@ -69,7 +69,7 @@ function RecruitersFiltering() {
             <FaMapMarkerAlt className="text-blue" />
             <Dropdown
               options={locations}
-              placeholder="Select a industry"
+              placeholder="Select a location"
               onChange={(option) => handleFilterChange("city", option)}
             />
           </div>

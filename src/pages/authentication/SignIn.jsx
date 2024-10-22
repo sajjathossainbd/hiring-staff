@@ -177,7 +177,7 @@ const SignIn = () => {
           </p>
         </form>
 
-        <div className="mt-7  px-10 py-5 rounded-md">
+        <div className="px-10 py-5 rounded-md">
           <p className="dark:text-black">Login Credentials</p>
           <div className="mt-5 flex flex-col gap-5 items-center justify-center">
             <div className="flex gap-5 items-center">

@@ -11,7 +11,6 @@ import JobBanner from "../../components/jobs/JobBanner";
 import { ScrollRestoration, useNavigate, useParams } from "react-router-dom";
 import { CardPagination } from "../../components/shared/CardPagination";
 
-
 function JobsListing() {
   const dispatch = useDispatch();
   const navigate = useNavigate();

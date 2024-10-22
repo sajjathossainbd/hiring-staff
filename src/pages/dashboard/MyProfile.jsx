@@ -80,17 +80,17 @@ const MyProfile = () => {
                 I am a:
               </label>
               <select
-                defaultValue={currentUser?.role}
-                disabled={currentUser?.role === "admin"}
+                value={currentUser?.role || ''}
                 id="role"
                 {...register("role")}
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
               >
-                <option disabled >Select role</option>
-                <option disabled >Admin</option>
+                <option disabled>Select role</option>
+                <option value="admin">Admin</option>
                 <option value="candidate">Candidate</option>
                 <option value="recruiter">Recruiter</option>
               </select>
+
             </div>
             {/* First and Last Name */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">

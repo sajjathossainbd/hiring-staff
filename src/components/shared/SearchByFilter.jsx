@@ -4,9 +4,9 @@ import {
   setCategory,
   setLocation,
 } from "../../features/jobs/jobsFilter/filterSlice";
-import Dropdown from "./Dropdown";
+// import Dropdown from "./Dropdown";
 import { PiLineVerticalThin } from "react-icons/pi";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchJobCategories } from "../../features/jobs/filterCollection/categories/jobCategoriesSlice";
 import { fetchJobLocations } from "../../features/jobs/filterCollection/location/jobLocationsSlice";
 import { fetchJobsListing } from "../../features/jobs/jobsListing/jobsListingSlice";
@@ -14,6 +14,8 @@ import { useNavigate } from "react-router-dom";
 import PrimaryBtn from "../ui/PrimaryBtn";
 import { Trans } from "react-i18next";
 import { useTranslation } from "react-i18next";
+import { FaSlidersH } from "react-icons/fa";
+import Dropdown from "./DropdownCandidate";
 const SearchByFilter = () => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
@@ -23,6 +25,7 @@ const SearchByFilter = () => {
   );
   const { categories } = useSelector((state) => state.jobCategories);
   const { locations } = useSelector((state) => state.jobLocations);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   useEffect(() => {
     dispatch(fetchJobCategories());
@@ -56,6 +59,9 @@ const SearchByFilter = () => {
     } catch (error) {
       console.error("Error fetching filtered jobs:", error);
     }
+  };
+  const toggleFilter = () => {
+    setIsFilterOpen(!isFilterOpen);
   };
 
   return (
@@ -97,18 +103,60 @@ const SearchByFilter = () => {
         {/* Vertical line */}
         <PiLineVerticalThin className="md:block hidden" />
 
-        {/* Locations Dropdown */}
-        <Dropdown
-          options={locations}
-          onChange={(selected) => handleSelectChange(selected, "Location")}
-          placeholder={Location || t('allLocation')}
-        />
+        {/* Filter Button */}
+        <div>
+          <button
+            onClick={toggleFilter}
+            className="rounded-md text-blue text-18 pr-2"
+          >
+            <FaSlidersH />
+          </button>
+        </div>
 
         {/* Search button */}
         <button onClick={showFilter} className="w-40">
-          <PrimaryBtn title={<Trans i18nKey={"searchJobBtn"}/>} />
+          <PrimaryBtn title={<Trans i18nKey={"searchJobBtn"} />} />
         </button>
       </div>
+
+      {/* Sidebar for filter */}
+      {isFilterOpen && (
+        <div
+          className={`fixed z-50 top-0 left-0 h-full bg-white dark:bg-darkBlue shadow-lg w-64 p-5 overflow-y-scroll transition-transform transform ${
+            isFilterOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
+        >
+          {/* Close */}
+          <button
+            className="text-gray text-18 hover:text-lightGray"
+            onClick={toggleFilter}
+          >
+            &times;
+          </button>
+
+          <h4 className="mb-3">Filter Jobs</h4>
+
+          <h6>Location</h6>
+          <div className="border border-lightGray rounded-md p-1 mt-1">
+            <Dropdown
+              options={locations}
+              onChange={(selected) => handleSelectChange(selected, "Location")}
+              placeholder={Location || "All Location"}
+            />
+          </div>
+
+          {/* Search button in the sidebar */}
+          {/* <button onClick={showFilter} className="w-full mt-4">
+            <PrimaryBtn title={"Apply Filter"} />
+          </button> */}
+        </div>
+      )}
+      {isFilterOpen && (
+        <div
+          className="fixed inset-0 bg-lightText opacity-50"
+          onClick={toggleFilter}
+        ></div>
+      )}
     </div>
   );
 };

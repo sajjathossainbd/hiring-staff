@@ -10,6 +10,7 @@ import Lottie from "lottie-react";
 import multipleLineDraw from "./../../../public/multiline-repet.json";
 import { CardPagination } from "../../components/shared/CardPagination";
 import { Trans, useTranslation } from "react-i18next";
+import i18n from "../../i18n";
 
 const convertToBanglaDigits = (number) => {
   const banglaDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
@@ -41,7 +42,10 @@ function CandidatesListing() {
     setFilters((prev) => ({ ...prev, page: newPage }));
   };
 
-  const banglaCandidatesCount = candidates ? convertToBanglaDigits(candidates?.totalCandidates || 0) : "০";
+  const totalCandidates = candidates?.totalCandidates || 0;
+  const banglaCandidatesCount = i18n.language === 'bn' 
+    ? convertToBanglaDigits(totalCandidates)
+    : totalCandidates;
 
   let content = null;
 

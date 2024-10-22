@@ -49,12 +49,11 @@ const Register = () => {
   const onSubmit = async (data) => {
     const userInfo = {
       name: data.fullName,
+      companyName: data.companyName,
       email: data.email,
       image: imageUrl,
       role: userRole,
     };
-
-    console.log("Submitted Data: ", userInfo); // Log the submitted data
 
     try {
       const result = await registerUser(data.email, data.password);
@@ -123,21 +122,43 @@ const Register = () => {
         </h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <div>
-            <label htmlFor="fullName" className="block text-left font-medium pb-1">
-              Full Name*
-            </label>
-            <input
-              id="fullName"
-              type="text"
-              placeholder="Full Name"
-              {...register("fullName", { required: "Full name is required" })}
-              className="input input-bordered w-full"
-            />
-            {errors.fullName && (
-              <p className="text-red-500 text-sm">{errors.fullName.message}</p>
-            )}
-          </div>
+
+          {userRole === "candidate"
+            ?
+            <>
+              <div>
+                <label htmlFor="fullName" className="block text-left font-medium pb-1">
+                  Full Name*
+                </label>
+                <input
+                  id="fullName"
+                  type="text"
+                  placeholder="Full Name"
+                  {...register("fullName", { required: "Full name is required" })}
+                  className="input input-bordered w-full"
+                />
+                {errors.fullName && (
+                  <p className="text-red-500 text-sm">{errors.fullName.message}</p>
+                )}
+              </div>
+            </>
+            :
+            <div>
+              <label htmlFor="fullName" className="block text-left font-medium pb-1">
+                Company Name*
+              </label>
+              <input
+                id="fullName"
+                type="text"
+                placeholder="Company Name"
+                {...register("companyName", { required: "Company name is required" })}
+                className="input input-bordered w-full"
+              />
+              {errors.fullName && (
+                <p className="text-red-500 text-sm">{errors.companyName.message}</p>
+              )}
+            </div>
+          }
 
           <div>
             <label htmlFor="email" className="block text-left font-medium pb-1">

@@ -13,9 +13,11 @@ import { fetchJobsListing } from "../../features/jobs/jobsListing/jobsListingSli
 import { useNavigate } from "react-router-dom";
 import PrimaryBtn from "../ui/PrimaryBtn";
 import { Trans } from "react-i18next";
-import Dropdown from "./DropdownCandidate";
+import { useTranslation } from "react-i18next";
 import { FaSlidersH } from "react-icons/fa";
+import Dropdown from "./DropdownCandidate";
 const SearchByFilter = () => {
+  const {t} = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { JobTitle, AllCategory, Location } = useSelector(

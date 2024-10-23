@@ -43,7 +43,7 @@ function JobsListing() {
       page,
       limit,
     }),
-    [AllCategory, JobTitle, Location, page]
+    [page, JobTitle]
   );
 
   // Fetch Jobs Listing
@@ -124,8 +124,6 @@ function JobsListing() {
   const currentPage = jobs?.currentPage || 1;
   const totalJobs = jobs?.totalJobs || 0;
   const totalPages = Math.ceil(totalJobs / limit) || 1;
-
-  console.log(jobs);
 
   return (
     <>

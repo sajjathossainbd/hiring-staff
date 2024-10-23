@@ -17,7 +17,7 @@ i18n
           browsbyCategory: "Browse by category",
           browsbyCategory_subTitle:
             "Find the job that’s perfect for you. About 800+ new jobs every day",
-          todayNewJobs: "Today New Jobs",
+          todayNewJobs: "Today's New Jobs",
           searchJobBtn: "Search Jobs",
           moreJobs: "More Jobs",
           weAre: "WE ARE",
@@ -28,7 +28,8 @@ i18n
           growthSection_hero2: "Choose the Perfect Match for You",
           learnMore: "Learn More",
           topRecruiters: "Top Recruiters",
-          topRecruitersDecrip: "Top Recruiters",
+          topRecruitersDescrip:
+            "Look for your next career move, freelance opportunities, or internships.",
           moreRecruiters: "More Recruiters",
           newsandBlogs: "News and Blogs",
           newsandBlogsDescrip: "Get the latest news, updates, and tips",
@@ -45,13 +46,13 @@ i18n
           jobsByLocation: "Jobs By Location",
           jobsByLocationDescrip:
             "Find your favourite jobs and get the benefits of yourself",
-            jobBannerTitle:"{{count}} Job Available Now",
+          jobBannerTitle: "{{count}} Job Available Now",
           jobBannerDescrip:
             "Find the perfect job that fits your skills and aspirations. Browsethrough our latest job openings and take the next step in your career.",
-            recruitersBannerTitle:"{{count}} Recruiters Available Now",
+          recruitersBannerTitle: "{{count}} Recruiters Available Now",
           recruitersBannerDescrip:
             "Browse top-rated recruiters across various locations, tailored to meet your project needs.",
-            candidatesBannerTitle:"{{count}} Recruiters Available Now",
+            candidatesBannerTitle:"{{count}} candidates Available Now",
           candidatesBannerDescrip:
             "Browse top-rated professionals across various skills and locations,tailored to meet your project needs.",
           aboutUsTitle: "About Our Company",
@@ -60,26 +61,48 @@ i18n
           companyAbout: "What we can do?",
           companyAboutDescription:
             "Our community is built on the foundation of trust, respect, and shared success. We pride ourselves on cultivating a network ofprofessionals who are not only skilled but also committed touplifting one another. By joining us, you’re becoming part of a supportive ecosystem where collaboration and mentorship are keyvalues. We offer a platform where job seekers can discover careerpaths tailored to their aspirations, and employers can find the perfect fit for their teams. Through continuous engagement, workshops, and networking events, we empower our members to grow, learn, and thrive. Together, we’re not just shaping careers — we’rebuilding a stronger, more connected workforce for the future.",
-            readMore:"Read More",
-            meetOurTeamTitile:"Meet Our Team",
-            meetOurTeamDescrip:"Explore our company and get to know the talented team that drives our success. Each member is dedicated to innovation, excellence, and achieving outstanding results in every project we undertake.",
-            testiminialTitle:"Our Happy Customer",
-            testiminialDescrip:"When it comes to choosing the right web hosting provider, we know how easy it is to get overwhelmed with the number.",
-            getInTouch:"Get in Touch",
-            getInTouchDescrip:"Let’s Build Connections and Uncover Opportunities Together for a Brighter Future!",
-            sendMessages:"Send Messages",
-            enterYourName:"Name",
-            company:"company(optional)",
-            yourEmail:"Email",
-            phoneNumber:"Phone Number",
-            tellAboutYourself:"Tell us about yourself",
-            search:"Search",
-            termsAndPolicy:"Terms and Policy",
-            contactUs:"Contact Us",
-            contactUsSubtitle:"Let us know how we can help.",
-            fixedNavbarPlaceholder:"Type job title or keyword",
-            allLocation:"All Location",
-            allCategory:"All Category",
+          readMore: "Read More",
+          meetOurTeamTitile: "Meet Our Team",
+          meetOurTeamDescrip:
+            "Explore our company and get to know the talented team that drives our success. Each member is dedicated to innovation, excellence, and achieving outstanding results in every project we undertake.",
+          testiminialTitle: "Our Happy Customer",
+          testiminialDescrip:
+            "When it comes to choosing the right web hosting provider, we know how easy it is to get overwhelmed with the number.",
+          getInTouch: "Get in Touch",
+          getInTouchDescrip:
+            "Let’s Build Connections and Uncover Opportunities Together for a Brighter Future!",
+          sendMessages: "Send Messages",
+          enterYourName: "Name",
+          company: "company(optional)",
+          yourEmail: "Email",
+          phoneNumber: "Phone Number",
+          tellAboutYourself: "Tell us about yourself",
+          search: "Search",
+          termsAndPolicy: "Terms and Policy",
+          contactUs: "Contact Us",
+          contactUsSubtitle: "Let us know how we can help.",
+          fixedNavbarPlaceholder: "Type job title or keyword",
+          allLocation: "All Location",
+          allCategory: "All Category",
+          home:"Home",
+          jobs:"Jobs",
+          recruiters:"Recruiters",
+          candidates:"Candidates",
+          about:"About",
+          pricing:"Pricing",
+          blogs:"Blogs",
+          contact:"Contact",
+          number:"328-435-6523",
+          
+          
+        
+
+
+
+
+
+
+
 
 
 
@@ -123,13 +146,13 @@ i18n
           jobsByLocation: "স্থানভিত্তিক চাকরি",
           jobsByLocationDescrip:
             "আপনার প্রিয় চাকরি খুঁজুন এবং নিজেকে উন্নত করেন",
-          jobBannerTitle:"{{count}} টি চাকরির সুযোগ রয়েছে",
+          jobBannerTitle: "{{count}} টি চাকরির সুযোগ রয়েছে",
           jobBannerDescrip:
             "আপনার দক্ষতা ও লক্ষ্য অনুযায়ী সেরা চাকরিটি খুঁজুন। আমাদের নতুন চাকরির বিজ্ঞাপনগুলো দেখুন এবং আপনার ক্যারিয়ারে আরও এক ধাপ এগিয়ে যান।",
-            recruitersBannerTitle:"{{count}} টি নিয়োগদাতা রয়েছেন",
+          recruitersBannerTitle: "{{count}} টি নিয়োগদাতা রয়েছেন",
           recruitersBannerDescrip:
             "আপনার প্রকল্পের প্রয়োজন অনুসারে বিভিন্ন লোকেশনের সেরা নিয়োগকারীদের খুঁজে বের করুন।",
-            candidatesBannerTitle:"{{count}} জন চাকরি প্রার্থী রয়েছেন",
+          candidatesBannerTitle: "{{count}} জন চাকরি প্রার্থী রয়েছেন",
           candidatesBannerDescrip:
             "আপনার প্রকল্পের চাহিদা অনুযায়ী বিভিন্ন স্থানের ও দক্ষতার শীর্ষ পেশাজীবীদের ব্রাউজ করুন।",
           aboutUsTitle: "আমাদের সম্পর্কে জানুন",
@@ -138,28 +161,39 @@ i18n
           companyAbout: "আমরা কীভাবে সহায়তা করতে পারি?",
           companyAboutDescription:
             "আমাদের কমিউনিটি গড়ে উঠেছে বিশ্বাস, সম্মান, এবং যৌথ সফলতার ভিত্তির উপর। আমরা গর্বিত যে আমাদের নেটওয়ার্কে শুধু দক্ষ পেশাজীবীরাই নয়, একে অপরকে সহায়তা করতে প্রতিশ্রুতিবদ্ধ সদস্যরাও আছেন। আমাদের সাথে যোগ দিয়ে আপনি এমন একটি সহায়ক পরিবেশের অংশ হয়ে উঠছেন যেখানে সহযোগিতা ও মেন্টরশিপ প্রধান মূল্যবোধ। আমরা একটি এমন প্ল্যাটফর্ম প্রদান করি যেখানে চাকরি প্রার্থীরা তাদের আকাঙ্ক্ষা অনুযায়ী ক্যারিয়ার পথ আবিষ্কার করতে পারেন, এবং নিয়োগকর্তারা তাদের দলের জন্য উপযুক্ত প্রার্থী খুঁজে পান। ধারাবাহিক সম্পৃক্ততা, ওয়ার্কশপ এবং নেটওয়ার্কিং ইভেন্টের মাধ্যমে, আমরা আমাদের সদস্যদের বিকাশ, শেখা এবং সাফল্যের পথে এগিয়ে যেতে সক্ষম করে তুলি। একসাথে, আমরা শুধু ক্যারিয়ার গঠন করছি না—আমরা ভবিষ্যতের জন্য আরও শক্তিশালী ও সংযুক্ত কর্মশক্তি তৈরি করছি।",
-            readMore:"আরও পড়ুন",
-            meetOurTeamTitile:"আমাদের দলের সাথে পরিচিত হন",
-            meetOurTeamDescrip:"আমাদের কোম্পানি সম্পর্কে জানুন এবং সেই দক্ষ দলের সাথে পরিচিত হন যা আমাদের সফলতার চাবিকাঠি। প্রত্যেক সদস্য উদ্ভাবন, উৎকর্ষতা এবং প্রতিটি প্রকল্পে অসাধারণ ফলাফল অর্জনের জন্য আত্মনিয়োগ করেছে।",
-            testiminialTitle:"আমাদের প্রিয় গ্রাহক",
-            testiminialDescrip:"আমাদের মূল্যবান গ্রাহকদের আস্থা ও নির্ভরতার উদযাপন, যারা আমাদের প্রতিদিন নতুন উদ্যমে কাজ করার অনুপ্রেরণা দেয়।",
-            getInTouch:"আমাদের সাথে যোগাযোগ করুন",
-            getInTouchDescrip:"চলুন সম্পর্ক তৈরি করি এবং একসঙ্গে একটি সুন্দর ভবিষ্যতের জন্য সুযোগগুলো খুঁজে বের করি!",
-            sendMessages:"বার্তা জমা দিন",
-            enterYourName:"আপনার নাম",
-            company:"প্রতিষ্ঠানের নাম",
-            yourEmail:"ইমেইল",
-            phoneNumber:"ফোন নম্বর",
-            tellAboutYourself:"আপনার সম্পর্কে কিছু বলুন",
-            search:"খুঁজুন",
-            termsAndPolicy:"শর্তাবলী এবং নীতি",
-            contactUs:"যোগাযোগ করুন",
-            contactUsSubtitle:"আমরা কিভাবে সাহায্য করতে পারি তা আমাদের জানান।",
-            fixedNavbarPlaceholder:"চাকরির শিরোনাম বা কীওয়ার্ড লিখুন",
-            allLocation:"সকল স্থান সমুহ",
-            allCategory:"সকল শ্রেণী",
-
-
+          readMore: "আরও পড়ুন",
+          meetOurTeamTitile: "আমাদের দলের সাথে পরিচিত হন",
+          meetOurTeamDescrip:
+            "আমাদের কোম্পানি সম্পর্কে জানুন এবং সেই দক্ষ দলের সাথে পরিচিত হন যা আমাদের সফলতার চাবিকাঠি। প্রত্যেক সদস্য উদ্ভাবন, উৎকর্ষতা এবং প্রতিটি প্রকল্পে অসাধারণ ফলাফল অর্জনের জন্য আত্মনিয়োগ করেছে।",
+          testiminialTitle: "আমাদের প্রিয় গ্রাহক",
+          testiminialDescrip:
+            "আমাদের মূল্যবান গ্রাহকদের আস্থা ও নির্ভরতার উদযাপন, যারা আমাদের প্রতিদিন নতুন উদ্যমে কাজ করার অনুপ্রেরণা দেয়।",
+          getInTouch: "আমাদের সাথে যোগাযোগ করুন",
+          getInTouchDescrip:
+            "চলুন সম্পর্ক তৈরি করি এবং একসঙ্গে একটি সুন্দর ভবিষ্যতের জন্য সুযোগগুলো খুঁজে বের করি!",
+          sendMessages: "বার্তা জমা দিন",
+          enterYourName: "আপনার নাম",
+          company: "প্রতিষ্ঠানের নাম",
+          yourEmail: "ইমেইল",
+          phoneNumber: "ফোন নম্বর",
+          tellAboutYourself: "আপনার সম্পর্কে কিছু বলুন",
+          search: "খুঁজুন",
+          termsAndPolicy: "শর্তাবলী এবং নীতি",
+          contactUs: "যোগাযোগ করুন",
+          contactUsSubtitle: "আমরা কিভাবে সাহায্য করতে পারি তা আমাদের জানান।",
+          fixedNavbarPlaceholder: "চাকরির শিরোনাম বা কীওয়ার্ড লিখুন",
+          allLocation: "সকল স্থান সমুহ",
+          allCategory: "সকল শ্রেণী",
+          home:"হোম",
+          jobs:"চাকরি খুঁজুন",
+          recruiters:"নিয়োগকর্তা",
+          candidates:"চাকরিপ্রার্থী",
+          about:"আমাদের সম্পর্কে",
+          pricing:"মূল্য",
+          blogs:"ব্লগ",
+          contact:"যোগাযোগ",
+          number:"৩২৮-৪৩৫-৬৫২৩",
+          
         },
       },
     },

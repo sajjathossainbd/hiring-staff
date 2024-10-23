@@ -5,12 +5,10 @@ import { FiSend } from "react-icons/fi";
 import toast from "react-hot-toast";
 import axiosInstance from "../../../utils/axios";
 import useCurrentUser from "../../../hooks/useCurrentUser";
-import axios from "axios";
 
 const PostJob = () => {
   const { currentUser } = useCurrentUser();
   const [candidateEmails, setCandidateEmails] = useState();
-  // console.log(candidateEmails);
 
   useEffect(() => {
     axiosInstance.get("/users/candidate-emails").then((res) => {
@@ -33,9 +31,10 @@ const PostJob = () => {
     responsibilities: "",
     education: "",
     tags: "",
+    status: "pending",
     candidateEmails
   });
-// console.log(formData);
+
 useEffect(() => {
   setFormData((prevFormData) => ({
     ...prevFormData,

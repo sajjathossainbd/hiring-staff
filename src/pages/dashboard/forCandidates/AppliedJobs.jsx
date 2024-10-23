@@ -113,6 +113,11 @@ const AppliedJobs = () => {
               </div>
 
               <div className="flex space-x-4 text-gray">
+                <Link to={`/job-details/${job?._id}`}>
+                <button className="btn rounded-full text-blue hover:text-white hover:bg-blue">
+                  <FaRegEye />
+                </button>
+              </Link>
                 <button onClick={() => handleDelete(job._id)}>
                   <FaTrash className="hover:text-red-500 cursor-pointer" />
                 </button>
@@ -128,7 +133,7 @@ const AppliedJobs = () => {
         totalPages={totalPages}
         onPageChange={(newPage) => navigate(`/dashboard/applied-jobs/${newPage}`)}
       />
-    </div>
+    </div >
   );
 };
 

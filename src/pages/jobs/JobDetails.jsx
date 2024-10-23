@@ -5,7 +5,6 @@ import { fetchJobDetails } from "../../features/jobs/jobsDetails/jobDetailsSlice
 import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
 import { GoDotFill } from "react-icons/go";
-import { FaBookmark } from "react-icons/fa";
 import { FiDollarSign } from "react-icons/fi";
 import SimilarJobs from "../../components/jobs/SimilarJobs";
 import { fetchRecruiterDetails } from "../../features/recruiters/recruiterDetails/recruiterDetailsSlice";
@@ -48,7 +47,6 @@ function JobDetails() {
     max_salary,
     lastDateToApply,
   } = job || {};
-
   const { name, logo } = recruiter || {};
   useEffect(() => {
     dispatch(fetchJobDetails(id));
@@ -106,8 +104,12 @@ function JobDetails() {
                     />
                   </button>
                   {isOpen && (
-                    <dialog id="my_modal_3" className="modal" open>
-                      <div className="modal-box max-w-xl">
+                    <dialog
+                      data-aos="zoom-in"
+                      data-aos-offset="200"
+                      data-aos-duration="700"
+                      id="my_modal_3" className="modal" open>
+                      <div className="modal-box max-w-xl mt-7">
                         <form method="dialog">
                           <button
                             type="button"
@@ -151,13 +153,15 @@ function JobDetails() {
               <h5 className="mb-2">Responsibility</h5>
               <ul>{responsibilities}</ul>
             </div>
-            <div className="mt-7">
-              <h5 className="mb-2">Education</h5>
-              <p className="flex items-center gap-x-1">
-                <GoDotFill className="text-[10px] text-gray" />
-                {education}
-              </p>
-            </div>
+            {education && (
+              <div className="mt-7">
+                <h5 className="mb-2">Education</h5>
+                <p className="flex items-center gap-x-1">
+                  <GoDotFill className="text-[10px] text-gray" />
+                  {education}
+                </p>
+              </div>
+            )}
             <div className="mt-7">
               <h5 className="mb-2">Salary</h5>
               <p className="flex items-center">
@@ -168,7 +172,17 @@ function JobDetails() {
               </p>
             </div>
             <div className="bg-bgLightBlue dark:bg-darkBlue  p-8 rounded-md mt-10">
-              <div className="text-14 ">Tags : {tags}</div>
+              <div className="text-14 flex gap-2">
+                Tags :{" "}
+                {tags.map((tag, index) => (
+                  <span
+                    className="bg-bgLightWhite px-2 py-1 rounded-sm"
+                    key={index}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
               <div className="pt-4">
                 <p className="text-14">
                   Have a query? Drop us a line at{" "}

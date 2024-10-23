@@ -15,7 +15,7 @@ const AllApplicants = () => {
   const { currentUser } = useCurrentUser();
 
   const { data: allAppliedJobs, refetch } = useQuery({
-    queryKey: ["myJobs", currentUser?.email],
+    queryKey: ["allAppliedJobs", currentUser?.email],
     queryFn: async () => {
       const res = await axiosInstance.get(
         `/jobs/applied-jobs/email/${currentUser.email}`
@@ -89,7 +89,7 @@ const AllApplicants = () => {
       <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 rounded-md">
         <h5>Applicants</h5>
         <hr className="my-6 text-lightGray" />
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
           {allAppliedJobs?.map((person, index) => (
             <div
               key={index}

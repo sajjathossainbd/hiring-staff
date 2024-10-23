@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { ScrollRestoration } from "react-router-dom";
 import BlogCard from "./BlogCard";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -72,6 +73,7 @@ function Blogs({ blogs }) {
           </SwiperSlide>
         ))}
       </Swiper>
+      <ScrollRestoration />
     </div>
   );
 }

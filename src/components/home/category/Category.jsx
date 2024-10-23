@@ -24,8 +24,8 @@ function Category() {
   const { categories } = useSelector((state) => state.jobCategories);
 
   useEffect(() => {
-    dispatch(fetchJobCategories());
     dispatch(fetchJobsListing());
+    dispatch(fetchJobCategories());
   }, [dispatch]);
 
   const jobsData = jobs?.jobs || [];
@@ -63,7 +63,7 @@ function Category() {
           <Swiper
             slidesPerView={1}
             spaceBetween={30}
-            loop={shouldLoop} // Conditionally enable loop
+            loop={shouldLoop}
             pagination={{
               clickable: true,
             }}
@@ -82,7 +82,7 @@ function Category() {
                     <CategoryCard
                       key={idx}
                       categoryName={category}
-                      jobCount={jobCounts[category] || 0} // Pass job count
+                      jobCount={jobCounts[category] || 0}
                       onCategoryClick={handleCategoryClick}
                     />
                   ))}

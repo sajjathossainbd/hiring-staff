@@ -47,7 +47,6 @@ function JobDetails() {
     max_salary,
     lastDateToApply,
   } = job || {};
-
   const { name, logo } = recruiter || {};
   useEffect(() => {
     dispatch(fetchJobDetails(id));
@@ -154,13 +153,15 @@ function JobDetails() {
               <h5 className="mb-2">Responsibility</h5>
               <ul>{responsibilities}</ul>
             </div>
-            <div className="mt-7">
-              <h5 className="mb-2">Education</h5>
-              <p className="flex items-center gap-x-1">
-                <GoDotFill className="text-[10px] text-gray" />
-                {education}
-              </p>
-            </div>
+            {education && (
+              <div className="mt-7">
+                <h5 className="mb-2">Education</h5>
+                <p className="flex items-center gap-x-1">
+                  <GoDotFill className="text-[10px] text-gray" />
+                  {education}
+                </p>
+              </div>
+            )}
             <div className="mt-7">
               <h5 className="mb-2">Salary</h5>
               <p className="flex items-center">
@@ -171,7 +172,17 @@ function JobDetails() {
               </p>
             </div>
             <div className="bg-bgLightBlue dark:bg-darkBlue  p-8 rounded-md mt-10">
-              <div className="text-14 ">Tags : {tags}</div>
+              <div className="text-14 flex gap-2">
+                Tags :{" "}
+                {tags.map((tag, index) => (
+                  <span
+                    className="bg-bgLightWhite px-2 py-1 rounded-sm"
+                    key={index}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
               <div className="pt-4">
                 <p className="text-14">
                   Have a query? Drop us a line at{" "}

@@ -51,11 +51,7 @@ i18n
           recruitersBannerTitle: "{{count}} Recruiters Available Now",
           recruitersBannerDescrip:
             "Browse top-rated recruiters across various locations, tailored to meet your project needs.",
-<<<<<<< HEAD
             candidatesBannerTitle:"{{count}} candidates Available Now",
-=======
-          candidatesBannerTitle: "{{count}} Recruiters Available Now",
->>>>>>> 338542282e4f2a38b9cbf9e818ac3f38f0961cae
           candidatesBannerDescrip:
             "Browse top-rated professionals across various skills and locations,tailored to meet your project needs.",
           aboutUsTitle: "About Our Company",

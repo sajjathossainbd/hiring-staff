@@ -45,13 +45,8 @@ const RecruiterProfile = () => {
     website: "",
     phone: "",
     email: currentUser?.email,
-    latitude: "",
-    longitude: "",
-    address: "",
-    zip: "",
-    city: "",
-    state: "",
-    country: "",
+    map: "",
+    location: "",
     ceo: "",
     businessType: "",
     annualRevenue: "",
@@ -60,12 +55,15 @@ const RecruiterProfile = () => {
     numberOfEmployees: "",
     certifications: [],
     awards: [],
-    linkedin: "",
-    twitter: "",
+    technology: [],
+    socialProfiles: {},
   });
 
   const [certification, setCertification] = useState("");
   const [award, setAward] = useState("");
+  const [technologys, setTechnologys] = useState("");
+  const [socialKey, setSocialKey] = useState("");
+  const [socialValue, setSocialValue] = useState("");
 
   // Populate formData with recruiter data
   useEffect(() => {
@@ -102,6 +100,28 @@ const RecruiterProfile = () => {
     setAward("");
   };
 
+  const handleAddTechnology = () => {
+    setFormData((prev) => ({
+      ...prev,
+      technology: [...prev.technology, technologys],
+    }));
+    setTechnologys("");
+  };
+
+  const handleSocialChange = () => {
+    if (socialKey && socialValue) {
+      setFormData((prev) => ({
+        ...prev,
+        socialProfiles: {
+          ...prev.socialProfiles,
+          [socialKey]: socialValue,
+        },
+      }));
+      setSocialKey("");
+      setSocialValue("");
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     axiosInstance.post("/recruiters", formData).then((res) => {
@@ -110,7 +130,7 @@ const RecruiterProfile = () => {
       }
     });
   };
-
+  console.log(formData);
   return (
     <div>
       <TinnyHeading
@@ -121,7 +141,7 @@ const RecruiterProfile = () => {
       <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
         <h5>Profile Details</h5>
         <hr className="my-6 text-lightGray" />
-        <form onSubmit={handleSubmit} className="">
+        <form onSubmit={handleSubmit} className="space-y-2">
           <DefaultInput
             label="Company Name"
             icon={<LiaCitySolid />}
@@ -239,66 +259,27 @@ const RecruiterProfile = () => {
             />
           </div>
 
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 max-sm:grid-cols-1 gap-6">
+          <div className="grid md:grid-cols-2 sm:grid-cols-2 max-sm:grid-cols-1 gap-6">
             <DefaultInput
-              label="Address"
-              icon={<RiUserLocationLine />}
-              placeholder="Toy Tower, 4Floor"
-              type="text"
-              name="address"
-              value={formData.address}
-              onChange={handleChange}
-            />
-            <DefaultInput
-              label="City"
-              icon={<MdLocationCity />}
-              placeholder="Dhanmondi, Dhaka"
-              type="text"
-              name="city"
-              value={formData.city}
-              onChange={handleChange}
-            />
-            <DefaultInput
-              label="State"
+              label="Location"
               icon={<MdAddLocationAlt />}
-              placeholder="Dhaka Division"
+              placeholder="City, Country"
               type="text"
-              name="state"
+              name="location"
               value={formData.state}
               onChange={handleChange}
             />
+
             <DefaultInput
-              label="Country"
-              icon={<FaMapLocationDot />}
-              placeholder="Bangladesh"
+              label="Map"
               type="text"
-              name="country"
-              value={formData.country}
+              name="map"
+              value={formData.map}
               onChange={handleChange}
+              placeholder={"Map link.."}
             />
           </div>
 
-          <DefaultInput
-            label="Latitude"
-            type="text"
-            name="latitude"
-            value={formData.latitude}
-            onChange={handleChange}
-          />
-          <DefaultInput
-            label="Longitude"
-            type="text"
-            name="longitude"
-            value={formData.longitude}
-            onChange={handleChange}
-          />
-          <DefaultInput
-            label="Zip Code"
-            type="zip"
-            name="zip"
-            value={formData.zip}
-            onChange={handleChange}
-          />
           <div className="lg:col-span-6">
             <label className="font-semibold">Certifications</label>
             <div className="flex gap-2">
@@ -307,6 +288,7 @@ const RecruiterProfile = () => {
                 value={certification}
                 onChange={(e) => setCertification(e.target.value)}
                 className="w-full"
+                placeholder="Add certifications one by one"
               />
               <button
                 type="button"
@@ -315,6 +297,13 @@ const RecruiterProfile = () => {
               >
                 Add
               </button>
+            </div>
+            <div className="flex gap-2">
+              {formData.certifications.map((a, index) => (
+                <div key={index} className="text-gray text-12">
+                  <p>{a} ,</p>
+                </div>
+              ))}
             </div>
           </div>
           <div className="lg:col-span-6">
@@ -325,6 +314,7 @@ const RecruiterProfile = () => {
                 value={award}
                 onChange={(e) => setAward(e.target.value)}
                 className="w-full"
+                placeholder="Add awards one by one"
               />
               <button
                 type="button"
@@ -334,21 +324,80 @@ const RecruiterProfile = () => {
                 Add
               </button>
             </div>
+            <div className="flex gap-2">
+              {formData.awards.map((a, index) => (
+                <div key={index} className="text-gray text-12">
+                  <p>{a} ,</p>
+                </div>
+              ))}
+            </div>
           </div>
-          <DefaultInput
-            label="LinkedIn"
-            type="url"
-            name="linkedin"
-            value={formData.linkedin}
-            onChange={handleChange}
-          />
-          <DefaultInput
-            label="Twitter"
-            type="url"
-            name="twitter"
-            value={formData.twitter}
-            onChange={handleChange}
-          />
+          <div className="lg:col-span-6">
+            <label className="font-semibold">Technology</label>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={technologys}
+                onChange={(e) => setTechnologys(e.target.value)}
+                className="w-full"
+                placeholder="Add technology one by one"
+              />
+              <button
+                type="button"
+                onClick={handleAddTechnology}
+                className="btn bg-blue text-white"
+              >
+                Add
+              </button>
+            </div>
+            <div className="flex gap-2">
+              {formData.technology.map((a, index) => (
+                <div key={index} className="text-gray text-12">
+                  <p>{a} ,</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="lg:col-span-6">
+            <label className="font-semibold">Social </label>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={socialKey}
+                onChange={(e) => setSocialKey(e.target.value)}
+                className="w-full"
+                placeholder="Platform (e.g., LinkedIn)"
+              />
+              <input
+                type="text"
+                value={socialValue}
+                onChange={(e) => setSocialValue(e.target.value)}
+                className="w-full"
+                placeholder="URL (e.g., https://linkedin.com/company/...)"
+              />
+              <button
+                type="button"
+                onClick={handleSocialChange}
+                className="btn bg-blue text-white"
+              >
+                Add
+              </button>
+            </div>
+            <ul>
+              {Object.entries(formData.socialProfiles).map(
+                ([platform, url], index) => (
+                  <li key={index} className="text-gray text-12">
+                    {platform}:{" "}
+                    <a href={url} target="_blank">
+                      {url}
+                    </a>
+                  </li>
+                )
+              )}
+            </ul>
+          </div>
+
           {/* Add more fields like this as needed */}
           <div className="lg:col-span-6 flex justify-end">
             <button

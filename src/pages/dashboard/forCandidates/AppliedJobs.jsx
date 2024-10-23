@@ -1,5 +1,5 @@
-import { FaRegEye, FaTrash } from "react-icons/fa";
-import { FaWarehouse } from "react-icons/fa6";
+import { FaTrash } from "react-icons/fa";
+import {  FaRegEye, FaWarehouse } from "react-icons/fa6";
 import axiosInstance from "../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
 import useCurrentUser from "../../../hooks/useCurrentUser";
@@ -82,8 +82,8 @@ const AppliedJobs = () => {
       <TinnyHeading title={"Applied Jobs"} path={"applied-jobs"} pathName={"Applied Jobs"} />
 
       <div className="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-5 mb-10">
-        {appliedJobs.map((job) => (
-          <div key={job._id} className="shadow-md bg-bgLightBlue hover:-translate-y-1 duration-200 rounded-lg p-6 overflow-auto cursor-pointer">
+        {appliedJobs?.map((job) => (
+          <div key={job?._id} className="shadow-md bg-bgLightBlue hover:-translate-y-1 duration-200 rounded-lg p-6 overflow-auto cursor-pointer">
             <div>
               <div className="flex items-center">
                 <div className="ml-3">
@@ -94,6 +94,11 @@ const AppliedJobs = () => {
                     </span>
                   </div>
                 </div>
+                <Link to={`/job-details/${job?._id}`}>
+                        <button className="btn rounded-full text-blue hover:text-white hover:bg-blue">
+                          <FaRegEye />
+                        </button>
+                      </Link>
               </div>
             </div>
 

@@ -7,7 +7,7 @@ import LogoBlack from "../../components/ui/LogoBlack";
 const Footer = () => {
   return (
     <div className="container">
-      <footer className="footer text-base-content lg:mt-20 mt-10">
+      <footer className="footer text-base-content lg:mt-10 mt-6">
         <aside className="space-y-3 mr-3">
           <div className="text-6">
             <LogoBlack size="medium" />

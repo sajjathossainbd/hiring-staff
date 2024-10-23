@@ -125,6 +125,10 @@ function JobsListing() {
   const totalJobs = jobs?.totalJobs || 0;
   const totalPages = Math.ceil(totalJobs / limit) || 1;
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 36e18d1ffd803c851c38ea7d1e6eaec5b40c7178
   return (
     <>
       <div className="container flex flex-col justify-center">

@@ -1,4 +1,4 @@
-import { FaTrash } from "react-icons/fa";
+import { FaRegEye, FaTrash } from "react-icons/fa";
 import { FaWarehouse } from "react-icons/fa6";
 import axiosInstance from "../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
@@ -6,7 +6,7 @@ import useCurrentUser from "../../../hooks/useCurrentUser";
 import Swal from "sweetalert2";
 import TinnyHeading from "../shared/TinnyHeading";
 import NoFoundData from "../../../components/ui/NoFoundData";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "../../../components/ui/Loading";
 import { CardPagination } from "../../../components/shared/CardPagination";
 
@@ -108,6 +108,11 @@ const AppliedJobs = () => {
               </div>
 
               <div className="flex space-x-4 text-gray">
+                <Link to={`/job-details/${job?._id}`}>
+                <button className="btn rounded-full text-blue hover:text-white hover:bg-blue">
+                  <FaRegEye />
+                </button>
+              </Link>
                 <button onClick={() => handleDelete(job._id)}>
                   <FaTrash className="hover:text-red-500 cursor-pointer" />
                 </button>
@@ -123,7 +128,7 @@ const AppliedJobs = () => {
         totalPages={totalPages}
         onPageChange={(newPage) => navigate(`/dashboard/applied-jobs/${newPage}`)}
       />
-    </div>
+    </div >
   );
 };
 

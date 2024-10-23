@@ -6,7 +6,7 @@ import { searched } from "../../features/jobs/jobsFilter/jobsFilterSlice";
 import PrimaryBtn from "../ui/PrimaryBtn";
 import { Trans, useTranslation } from "react-i18next";
 function JobSearchBox() {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { search } = useSelector((state) => state.jobsFilter);
   const [input, setInput] = useState(search);
@@ -31,15 +31,15 @@ function JobSearchBox() {
 
       <input
         type="text"
-        placeholder={t('fixedNavbarPlaceholder')}
+        placeholder={t("fixedNavbarPlaceholder")}
         className="w-full py-[18px] rounded-md focus:outline-none dark:bg-white"
         value={input}
         onChange={(event) => setInput(event.target.value)}
       />
 
-      <div className="absolute right-1">
-        <PrimaryBtn title={ <Trans i18nKey={"search"}/>} />
-      </div>
+      <button className="absolute right-2">
+        <PrimaryBtn title={<Trans i18nKey={"search"} />} />
+      </button>
     </form>
   );
 }

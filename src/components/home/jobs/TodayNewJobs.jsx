@@ -34,12 +34,12 @@ function TodayNewJobs() {
 
       await Promise.all(
         jobsData.map(async (job) => {
-          if (!recruiterIdsFetched.has(job.company_id)) {
+          if (!recruiterIdsFetched.has(job.recruiter_id)) {
             const recruiterResponse = await dispatch(
-              fetchRecruiterDetails(job.company_id)
+              fetchRecruiterDetails(job.recruiter_id)
             ).unwrap();
-            recruiters[job.company_id] = recruiterResponse;
-            newRecruiterIds.add(job.company_id);
+            recruiters[job.recruiter_id] = recruiterResponse;
+            newRecruiterIds.add(job.recruiter_id);
           }
         })
       );
@@ -72,7 +72,7 @@ function TodayNewJobs() {
     content = (
       <div className="grid gap-10">
         {jobsData.map((job) => {
-          const recruiter = recruitersData[job.company_id];
+          const recruiter = recruitersData[job.recruiter_id];
 
           return (
             <JobCardHorizontal

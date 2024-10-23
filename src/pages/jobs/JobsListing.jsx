@@ -78,6 +78,18 @@ function JobsListing() {
     }
   }, [jobs?.jobs, dispatch]);
 
+  const logoSkeleton = (
+    <div className="flex w-52 flex-col gap-4">
+      <div className="flex items-center gap-4">
+        <div className="skeleton h-16 w-16 shrink-0 rounded-full"></div>
+        <div className="flex flex-col gap-4">
+          <div className="skeleton h-4 w-20"></div>
+          <div className="skeleton h-4 w-28"></div>
+        </div>
+      </div>
+    </div>
+  );
+
   // Unified Loading and Error state
   const isLoading = jobsLoading || recruiterLoading;
   const isError = jobsError || recruiterError;
@@ -97,7 +109,7 @@ function JobsListing() {
             <JobCard
               key={job._id}
               job={job}
-              recruiterName={recruiter?.name || "Loading..."}
+              recruiterName={recruiter?.name || logoSkeleton}
               recruiterLogo={recruiter?.logo || ""}
               recruiterWebsite={recruiter?.website || ""}
               recruiterRating={recruiter?.ratings || 0}
@@ -112,6 +124,8 @@ function JobsListing() {
   const currentPage = jobs?.currentPage || 1;
   const totalJobs = jobs?.totalJobs || 0;
   const totalPages = Math.ceil(totalJobs / limit) || 1;
+
+  console.log(jobs);
 
   return (
     <>

@@ -4,7 +4,7 @@ import {
   setCategory,
   setLocation,
 } from "../../features/jobs/jobsFilter/filterSlice";
-// import Dropdown from "./Dropdown";
+
 import { PiLineVerticalThin } from "react-icons/pi";
 import { useEffect, useState } from "react";
 import { fetchJobCategories } from "../../features/jobs/filterCollection/categories/jobCategoriesSlice";
@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 import { FaSlidersH } from "react-icons/fa";
 import Dropdown from "./DropdownCandidate";
 const SearchByFilter = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { JobTitle, AllCategory, Location } = useSelector(
@@ -65,14 +65,14 @@ const SearchByFilter = () => {
   };
 
   return (
-    <div className="relative bg-white border shadow-md border-bgLightBlue md:p-2 p-5 rounded-lg">
-      <div className="flex items-center md:flex-row flex-col md:gap-2 gap-3">
+    <div className="relative  bg-white p-5 md:p-2  shadow-md  rounded-lg  ">
+      <div className="flex items-center md:flex-row flex-col md:gap-2 gap-1">
         {/* Job title input */}
-        <label className="flex items-center py-2 rounded-md px-3 md:w-32  md:border-none border border-[#cfdefc]">
+        <label className="flex items-center w-auto p-3 text-14 rounded-md md:border-none border border-[#cfdefc]">
           <input
             type="text"
-            className="outline-none w-full text-14 placeholder:font-medium"
-            placeholder={t('search')}
+            className="outline-none w-full text-14 "
+            placeholder="Search"
             value={JobTitle}
             onChange={handleJobTitleChange}
           />
@@ -94,28 +94,30 @@ const SearchByFilter = () => {
         <PiLineVerticalThin className="md:block hidden" />
 
         {/* Categories Dropdown */}
-        <Dropdown
-          options={categories}
-          onChange={(selected) => handleSelectChange(selected, "AllCategory")}
-          placeholder={AllCategory || t('allCategory')}
-        />
+        <div className="w-auto">
+          <Dropdown
+            options={categories}
+            onChange={(selected) => handleSelectChange(selected, "AllCategory")}
+            placeholder={AllCategory || "All Category"}
+          />
+        </div>
 
         {/* Vertical line */}
         <PiLineVerticalThin className="md:block hidden" />
 
         {/* Filter Button */}
-        <div>
+        <div className="w-auto">
           <button
             onClick={toggleFilter}
-            className="rounded-md text-blue text-18 pr-2"
+            className="rounded-md text-blue text-18 mr-2"
           >
             <FaSlidersH />
           </button>
         </div>
 
         {/* Search button */}
-        <button onClick={showFilter} className="w-40">
-          <PrimaryBtn title={<Trans i18nKey={"searchJobBtn"} />} />
+        <button onClick={showFilter} className="w-auto">
+          <PrimaryBtn title={<Trans i18nKey={"Search"} />} />
         </button>
       </div>
 

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import JobCardHorizontal from "./JobCardHorizontal";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { fetchJobsListing } from "../../../features/jobs/jobsListing/jobsListingSlice";
 import { fetchRecruiterDetails } from "../../../features/recruiters/recruiterDetails/recruiterDetailsSlice";
 import Loading from "../../ui/Loading";
@@ -18,7 +18,7 @@ function TodayNewJobs() {
     isError,
   } = useSelector((state) => state.jobsListing);
 
-  const jobsData = jobs?.jobs?.slice(0, 3) || [];
+  const jobsData = useMemo(() => jobs?.jobs?.slice(0, 3) || [], [jobs]);
 
   const [recruitersData, setRecruitersData] = useState({});
   const [recruiterIdsFetched, setRecruiterIdsFetched] = useState(new Set());
@@ -76,7 +76,7 @@ function TodayNewJobs() {
 
           return (
             <JobCardHorizontal
-              key={job._id} // Keep the key here
+              key={job._id}
               job={job}
               recruiterName={recruiter?.name}
               recruiterLogo={recruiter?.logo}
@@ -90,13 +90,15 @@ function TodayNewJobs() {
   return (
     <div className="bg-bgLightBlue py-12">
       <div className="container py-0">
-        <h3><Trans i18nKey={"todayNewJobs"}/></h3>
+        <h3>
+          <Trans i18nKey={"todayNewJobs"} />
+        </h3>
         <div className="mt-10">{content}</div>
         <Link
           to={"/jobs-listing"}
           className="flex items-center justify-center mt-6"
         >
-          <PrimaryBtn title={<Trans i18nKey={"moreJobs"}/>} />
+          <PrimaryBtn title={<Trans i18nKey={"moreJobs"} />} />
         </Link>
       </div>
     </div>

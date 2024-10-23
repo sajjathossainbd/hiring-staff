@@ -8,13 +8,17 @@ import { GoArrowRight } from "react-icons/go";
 
 // eslint-disable-next-line react/prop-types
 function JobCardHorizontal({ job, recruiterLogo }) {
-  console.log(recruiterLogo);
-
   const { _id, jobTitle, job_type, salary_range, postedDate } = job || {};
-
+  const calculateDaysRemaining = (postedDate) => {
+    const now = new Date();
+    const posted = new Date(postedDate);
+    const timeDiff = posted - now;
+    const daysRemaining = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+    return daysRemaining > 0 ? `${daysRemaining} Days Remaining` : "Expired";
+  };
   return (
-    <div className="boxBorderHoverBlue p-6 rounded-lg flex lg:flex-row md:flex-row flex-col gap-5 justify-between items-center bg-white">
-      <div className="flex lg:flex-row flex-col gap-5 items-center">
+    <div className="boxBorderHoverBlue p-8 rounded-lg flex justify-between items-center bg-white">
+      <div className="flex items-center gap-5">
         <img className="w-24 rounded-lg" src={recruiterLogo} alt="" />
 
         <div className="">
@@ -35,7 +39,7 @@ function JobCardHorizontal({ job, recruiterLogo }) {
               style="text-18"
             />
             <MiniBtn
-              value={`${postedDate} Remaining`}
+              value={`${calculateDaysRemaining(postedDate)}`}
               icon={<MdOutlineDateRange />}
               style="text-18"
             />

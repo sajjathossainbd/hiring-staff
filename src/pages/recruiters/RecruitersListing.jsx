@@ -8,17 +8,22 @@ import RecruiterCard from "../../components/recruiter/RecruiterCard";
 import Filter from "../../components/recruiter/Filters";
 import Lottie from "lottie-react";
 import multipleLineDraw from "./../../../public/multiline-repet.json";
+import { ScrollRestoration } from "react-router-dom";
 import { CardPagination } from "../../components/shared/CardPagination";
 import { Trans, useTranslation } from "react-i18next";
-
+import i18n from "../../i18n";
 
 const convertToBanglaDigits = (number) => {
-  const banglaDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
-  return number.toString().split('').map(digit => banglaDigits[digit] || digit).join('');
+  const banglaDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+  return number
+    .toString()
+    .split("")
+    .map((digit) => banglaDigits[digit] || digit)
+    .join("");
 };
 
 function RecruitersListing() {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [filters, setFilters] = useState({ page: 1 });
 
@@ -36,7 +41,10 @@ function RecruitersListing() {
   const handlePageChange = (newPage) => {
     setFilters((prev) => ({ ...prev, page: newPage }));
   };
-  const banglaRecruitersCount = recruiters ? convertToBanglaDigits(recruiters?.totalRecruiters || 0) : "০";
+  const totalRecruiters = recruiters?.totalRecruiters || 0;
+  const banglaRecruitersCount = i18n.language === 'bn' 
+    ? convertToBanglaDigits(totalRecruiters)
+    : totalRecruiters;
   let content = null;
 
   if (isLoading) content = <Loading />;
@@ -54,7 +62,10 @@ function RecruitersListing() {
         {/* Recruiter Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 my-10">
           {recruiters?.recruiters?.map((recruiter, index) => (
-            <RecruiterCard key={`${recruiter._id}-${index}`} recruiter={recruiter} />
+            <RecruiterCard
+              key={`${recruiter._id}-${index}`}
+              recruiter={recruiter}
+            />
           ))}
         </div>
 
@@ -80,13 +91,21 @@ function RecruitersListing() {
         </div>
         <div className="text-center pb-6">
           <h3>
-          <Trans i18nKey="recruitersBannerTitle" count={banglaRecruitersCount}>
-            <span className="text-blue">{banglaRecruitersCount} Recruiters</span> Available Now
+            <Trans
+              i18nKey="recruitersBannerTitle"
+              count={banglaRecruitersCount}
+            >
+              <span className="text-blue">
+                {banglaRecruitersCount} Recruiters
+              </span>{" "}
+              Available Now
             </Trans>
           </h3>
 
           <p className="md:max-w-xl text-14 mt-3">
-           <Trans i18nKey={"recruitersBannerDescrip"}/>
+            Browse top-rated recruiters across various locations, tailored to
+            meet your project needs.
+            <Trans i18nKey={"recruitersBannerDescrip"} />
           </p>
         </div>
 
@@ -96,6 +115,7 @@ function RecruitersListing() {
       </div>
 
       <div>{content}</div>
+      <ScrollRestoration />
     </div>
   );
 }

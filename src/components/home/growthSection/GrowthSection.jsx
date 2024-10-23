@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { Trans, useTranslation } from "react-i18next";
 
 const GrowthSection = () => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   return (
     <div className="bg-bgLightBlue">
       <div className="container">
@@ -42,20 +42,20 @@ const GrowthSection = () => {
           <div className=" w-full lg:w-5/12">
             <div className="">
               <h1 className="text-2xl lg:text-4xl font-bold text-lightGray">
-                <Trans i18nKey={"growthSection_hero"}/>
+                <Trans i18nKey={"growthSection_hero"} />
               </h1>
               <h1 className="text-3xl lg:text-5xl font-bold w-full text-darkBlue py-2">
-              <Trans i18nKey={"growthSection_hero2"}/>
+                <Trans i18nKey={"growthSection_hero2"} />
               </h1>
               <div className="flex items-center gap-3 mt-6">
                 <Link to={"jobs-listing"}>
-                  <PrimaryBtn title={<Trans i18nKey={"searchJobBtn"} />}/>
+                  <PrimaryBtn title={<Trans i18nKey={"searchJobBtn"} />} />
                 </Link>
                 <Link
                   className="ml-2 lg:ml-4 cursor-pointer hover:underline"
                   to={"blogs"}
                 >
-                  <Trans i18nKey={"learnMore"}/>
+                  <Trans i18nKey={"learnMore"} />
                 </Link>
               </div>
             </div>

@@ -104,8 +104,12 @@ function JobDetails() {
                     />
                   </button>
                   {isOpen && (
-                    <dialog id="my_modal_3" className="modal" open>
-                      <div className="modal-box max-w-xl">
+                    <dialog
+                      data-aos="zoom-in"
+                      data-aos-offset="200"
+                      data-aos-duration="700"
+                      id="my_modal_3" className="modal" open>
+                      <div className="modal-box max-w-xl mt-7">
                         <form method="dialog">
                           <button
                             type="button"

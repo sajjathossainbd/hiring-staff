@@ -15,7 +15,7 @@ const AllApplicants = () => {
   const { currentUser } = useCurrentUser();
 
   const { data: allAppliedJobs, refetch } = useQuery({
-    queryKey: ["myJobs", currentUser?.email],
+    queryKey: ["allAppliedJobs", currentUser?.email],
     queryFn: async () => {
       const res = await axiosInstance.get(
         `/jobs/applied-jobs/email/${currentUser.email}`

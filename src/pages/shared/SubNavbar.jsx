@@ -3,14 +3,16 @@ import DesktopNavItems from "../../components/navbar/DesktopNavItems";
 import MobileNavItems from "../../components/navbar/MobileNavItems";
 import useAuth from "../../hooks/useAuth";
 import { motion } from "framer-motion";
+import useCurrentUser from "../../hooks/useCurrentUser";
+
 function SubNavbar() {
   const { user, logOut } = useAuth();
+  const { currentUser } = useCurrentUser();
   const [scrollDirection, setScrollDirection] = useState("up");
   const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Detect scroll direction
       if (window.scrollY > lastScrollY) {
         setScrollDirection("down");
       } else {
@@ -24,9 +26,10 @@ function SubNavbar() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [lastScrollY]);
+
   const navLinks = [
     { to: "/", label: "Home" },
-    { to: "/jobs-listing", label: "Jobs" },
+    { to: "/jobs-listing", label: "Find Jobs" },
     { to: "/recruiters-listing", label: "Recruiters" },
     { to: "/candidates-listing", label: "Candidates" },
     { to: "/about", label: "About" },
@@ -34,6 +37,18 @@ function SubNavbar() {
     { to: "/pricing", label: "Pricing" },
     { to: "/blogs", label: "Blogs" },
   ];
+
+  // Filter nav links based on user role
+  const filteredNavLinks = navLinks.filter(link => {
+    if (currentUser?.role === "candidate" && link.label === "Candidates") {
+      return false;
+    }
+    if (currentUser?.role === "recruiter" && link.label === "Recruiters") {
+      return false;
+    }
+    return true;
+  });
+
   return (
     <motion.div
       initial={false}
@@ -46,8 +61,8 @@ function SubNavbar() {
       className={"fixed bg-white top-0 z-50 py-2 w-full "}
     >
       <div className="container py-0">
-        <DesktopNavItems navLinks={navLinks} />
-        <MobileNavItems navLinks={navLinks} user={user} logOut={logOut} />
+        <DesktopNavItems navLinks={filteredNavLinks} />
+        <MobileNavItems navLinks={filteredNavLinks} user={user} logOut={logOut} />
       </div>
     </motion.div>
   );

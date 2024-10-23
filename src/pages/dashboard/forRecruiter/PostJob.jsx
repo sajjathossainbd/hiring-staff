@@ -5,7 +5,6 @@ import { FiSend } from "react-icons/fi";
 import toast from "react-hot-toast";
 import axiosInstance from "../../../utils/axios";
 import useCurrentUser from "../../../hooks/useCurrentUser";
-import axios from "axios";
 
 const PostJob = () => {
   const { currentUser } = useCurrentUser();

@@ -11,10 +11,10 @@ const convertToBanglaDigits = (number) => {
 };
 
 function JobBanner({ totalJobs, isLoading }) {
-  const {t} = useTranslation();
-  const banglaJobsCount = convertToBanglaDigits(totalJobs); 
+  const { t } = useTranslation();
+  const banglaJobsCount = convertToBanglaDigits(totalJobs);
 
-
+  console.log(totalJobs);
 
 
   return (
@@ -27,13 +27,13 @@ function JobBanner({ totalJobs, isLoading }) {
           <Loading />
         ) : (
           <h3>
-            <Trans i18nKey="jobBannerTitle" count={banglaJobsCount}>
-            <span className="text-blue">{banglaJobsCount} Jobs</span> Available Now
+            <Trans i18nKey="jobBannerTitle" count={totalJobs}>
+              <span className="text-blue">{totalJobs} Jobs</span> Available Now
             </Trans>
           </h3>
         )}
         <p className="md:max-w-xl text-14 mt-3">
-          <Trans i18nKey={"jobBannerDescrip"}/>
+          <Trans i18nKey={"jobBannerDescrip"} />
         </p>
       </div>
       {/* search filter */}

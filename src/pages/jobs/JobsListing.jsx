@@ -125,7 +125,6 @@ function JobsListing() {
   const totalJobs = jobs?.totalJobs || 0;
   const totalPages = Math.ceil(totalJobs / limit) || 1;
 
-  console.log(jobs);
 
   return (
     <>

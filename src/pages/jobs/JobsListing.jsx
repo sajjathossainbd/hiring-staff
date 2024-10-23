@@ -11,7 +11,6 @@ import JobBanner from "../../components/jobs/JobBanner";
 import { ScrollRestoration, useNavigate, useParams } from "react-router-dom";
 import { CardPagination } from "../../components/shared/CardPagination";
 
-
 function JobsListing() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -44,7 +43,7 @@ function JobsListing() {
       page,
       limit,
     }),
-    [AllCategory, JobTitle, Location, page]
+    [page, JobTitle]
   );
 
   useEffect(() => {
@@ -98,7 +97,7 @@ function JobsListing() {
   let content = null;
 
   if (isLoading) content = <Loading />;
-  else if (isError || jobs?.jobs?.length === 0) {
+  else if ( jobs?.jobs?.length === 0) {
     content = <NoFoundData title="No Jobs Found!" />;
   } else {
     content = (
@@ -124,8 +123,6 @@ function JobsListing() {
   const currentPage = jobs?.currentPage || 1;
   const totalJobs = jobs?.totalJobs || 0;
   const totalPages = Math.ceil(totalJobs / limit) || 1;
-
-  console.log(jobs);
 
   return (
     <>

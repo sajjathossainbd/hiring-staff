@@ -5,18 +5,18 @@ const StackedBarChart = ({ shortlistedQuantity, messageQuantity, applicationsQua
 
     const data = [
         {
-            name: 'Total Jobs',
+            name: 'Jobs',
             uv: jobsQuantity,
             amt: 100,
         },
         {
-            name: 'My Applications',
+            name: 'Applications',
             uv: applicationsQuantity,
             pv: jobsQuantity,
 
         },
         {
-            name: 'Total Messages',
+            name: 'Messages',
             uv: messageQuantity,
         },
         {

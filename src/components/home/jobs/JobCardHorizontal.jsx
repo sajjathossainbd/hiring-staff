@@ -17,8 +17,8 @@ function JobCardHorizontal({ job, recruiterLogo }) {
     return daysRemaining > 0 ? `${daysRemaining} Days Remaining` : "Expired";
   };
   return (
-    <div className="boxBorderHoverBlue p-8 rounded-lg flex justify-between items-center bg-white">
-      <div className="flex items-center gap-5">
+    <div className="boxBorderHoverBlue p-3 rounded-lg flex flex-col md:flex-row lg:flex-row justify-between items-center bg-white">
+      <div className="flex flex-col md:flex-row lg:flex-row items-center gap-5">
         <img className="w-24 rounded-lg" src={recruiterLogo} alt="" />
 
         <div className="">

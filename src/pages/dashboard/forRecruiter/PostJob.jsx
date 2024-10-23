@@ -9,7 +9,6 @@ import useCurrentUser from "../../../hooks/useCurrentUser";
 const PostJob = () => {
   const { currentUser } = useCurrentUser();
   const [candidateEmails, setCandidateEmails] = useState();
-  // console.log(candidateEmails);
 
   useEffect(() => {
     axiosInstance.get("/users/candidate-emails").then((res) => {
@@ -32,9 +31,10 @@ const PostJob = () => {
     responsibilities: "",
     education: "",
     tags: "",
+    status: "pending",
     candidateEmails
   });
-// console.log(formData);
+
 useEffect(() => {
   setFormData((prevFormData) => ({
     ...prevFormData,

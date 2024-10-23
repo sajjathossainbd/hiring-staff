@@ -28,7 +28,8 @@ i18n
           growthSection_hero2: "Choose the Perfect Match for You",
           learnMore: "Learn More",
           topRecruiters: "Top Recruiters",
-          topRecruitersDescrip: "Look for your next career move, freelance opportunities, or internships.",
+          topRecruitersDescrip:
+            "Look for your next career move, freelance opportunities, or internships.",
           moreRecruiters: "More Recruiters",
           newsandBlogs: "News and Blogs",
           newsandBlogsDescrip: "Get the latest news, updates, and tips",
@@ -83,6 +84,28 @@ i18n
           fixedNavbarPlaceholder: "Type job title or keyword",
           allLocation: "All Location",
           allCategory: "All Category",
+          home:"Home",
+          jobs:"Jobs",
+          recruiters:"Recruiters",
+          candidates:"Candidates",
+          about:"About",
+          pricing:"Pricing",
+          blogs:"Blogs",
+          contact:"Contact",
+          number:"328-435-6523",
+          
+          
+        
+
+
+
+
+
+
+
+
+
+
         },
       },
       bn: {
@@ -161,6 +184,16 @@ i18n
           fixedNavbarPlaceholder: "চাকরির শিরোনাম বা কীওয়ার্ড লিখুন",
           allLocation: "সকল স্থান সমুহ",
           allCategory: "সকল শ্রেণী",
+          home:"হোম",
+          jobs:"চাকরি খুঁজুন",
+          recruiters:"নিয়োগকর্তা",
+          candidates:"চাকরিপ্রার্থী",
+          about:"আমাদের সম্পর্কে",
+          pricing:"মূল্য",
+          blogs:"ব্লগ",
+          contact:"যোগাযোগ",
+          number:"৩২৮-৪৩৫-৬৫২৩",
+          
         },
       },
     },

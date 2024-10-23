@@ -59,7 +59,7 @@ function BlogCard({ blog }) {
           to={`/blog-details/${blog?._id}`}
           className="mt-10 flex items-end justify-end"
         >
-          <PrimaryBtnBlue title={"Read More"} />
+          <PrimaryBtnBlue  title={"Read More"} />
         </Link>
       </div>
     </div>

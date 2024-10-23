@@ -4,23 +4,21 @@ import { CiBadgeDollar } from "react-icons/ci";
 import { CiCalendar } from "react-icons/ci";
 import { FaRegBookmark } from "react-icons/fa";
 import SecondaryButton from "../../components/shared/SecondaryButton";
+import { Link } from "react-router-dom";
+import { GoArrowRight } from "react-icons/go";
 const RecruiterJobsCard = ({
-  recruiterImage,
+  _id,
   position,
   jobType,
   locations,
-  salary,
+  max_salary,
+  min_salary,
   dates,
 }) => {
   return (
     <div className="md:p-10 p-5  bg-bgLightWhite dark:bg-darkBlue dark:border dark:border-blue container rounded-xl">
       <div className="flex md:flex-row flex-col items-center md:justify-between justify-center">
         <div className="flex md:flex-row flex-col items-center gap-5">
-          <img
-            className="object-cover h-20 w-auto rounded-md"
-            src={recruiterImage}
-            alt=""
-          />
           <div className="flex flex-col gap-2">
             <div className="flex md:flex-row flex-col items-center gap-2">
               <h4>{position}</h4>
@@ -33,7 +31,7 @@ const RecruiterJobsCard = ({
                 <CiLocationOn /> {locations}
               </p>
               <p className="flex items-center gap-1">
-                <CiBadgeDollar /> {salary}
+                <CiBadgeDollar /> {min_salary} - {max_salary}
               </p>
               <p className="flex items-center gap-1">
                 <CiCalendar /> {dates}
@@ -45,7 +43,9 @@ const RecruiterJobsCard = ({
           <button className="btn btn-outline btn-primary border-none bg-bgLightBlue">
             <FaRegBookmark className="text-xl" />
           </button>
-          <SecondaryButton title={"Apply Now"} />
+          <Link to={`/job-details/${_id}`}>
+            <SecondaryButton title={"Apply Now"} icon={<GoArrowRight />} />
+          </Link>
         </div>
       </div>
     </div>

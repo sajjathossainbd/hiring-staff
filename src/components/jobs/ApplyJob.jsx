@@ -1,6 +1,5 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
-import useAuth from "./../../hooks/useAuth";
 import useCurrentUser from "./../../hooks/useCurrentUser";
 import axiosInstance from "../../utils/axios";
 import toast from "react-hot-toast";

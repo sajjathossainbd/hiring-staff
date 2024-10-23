@@ -3,7 +3,9 @@ import DesktopNavItems from "../../components/navbar/DesktopNavItems";
 import MobileNavItems from "../../components/navbar/MobileNavItems";
 import useAuth from "../../hooks/useAuth";
 import { motion } from "framer-motion";
+import { Trans, useTranslation } from "react-i18next";
 function SubNavbar() {
+  const {t} = useTranslation();
   const { user, logOut } = useAuth();
   const [scrollDirection, setScrollDirection] = useState("up");
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -25,14 +27,14 @@ function SubNavbar() {
     };
   }, [lastScrollY]);
   const navLinks = [
-    { to: "/", label: "Home" },
-    { to: "/jobs-listing", label: "Jobs" },
-    { to: "/recruiters-listing", label: "Recruiters" },
-    { to: "/candidates-listing", label: "Candidates" },
-    { to: "/about", label: "About" },
-    { to: "/contact", label: "Contact" },
-    { to: "/pricing", label: "Pricing" },
-    { to: "/blogs", label: "Blogs" },
+    { to: "/", label: <Trans i18nKey={"home"}/> },
+    { to: "/jobs-listing", label: <Trans i18nKey={"jobs"}/> },
+    { to: "/recruiters-listing", label:<Trans i18nKey={"recruiters"}/> },
+    { to: "/candidates-listing", label: <Trans i18nKey={"candidates"}/> },
+    { to: "/about", label: <Trans i18nKey={"about"}/> },
+    { to: "/contact", label: <Trans i18nKey={"contact"}/> },
+    { to: "/pricing", label: <Trans i18nKey={"pricing"}/> },
+    { to: "/blogs", label: <Trans i18nKey={"blogs"}/> },
   ];
   return (
     <motion.div

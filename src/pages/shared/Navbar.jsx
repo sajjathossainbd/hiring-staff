@@ -3,9 +3,8 @@ import DarkLightMode from "../../components/navbar/DarkLightMode";
 import SinginLogout from "../../components/navbar/SinginLogout";
 import LogoWhite from "../../components/ui/LogoWhite";
 const Navbar = () => {
-  
   return (
-    <div className="backdrop-blur-sm z-20 mt-16 sticky top-0">
+    <div className="backdrop-blur-sm z-20 mt-14 sticky top-0">
       <div className="bg-blue dark:bg-darkBlue">
         <nav className="container flex items-center justify-between py-4">
           <LogoWhite size="large" />

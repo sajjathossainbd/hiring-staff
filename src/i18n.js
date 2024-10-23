@@ -28,7 +28,8 @@ i18n
           growthSection_hero2: "Choose the Perfect Match for You",
           learnMore: "Learn More",
           topRecruiters: "Top Recruiters",
-          topRecruitersDescrip: "Look for your next career move, freelance opportunities, or internships.",
+          topRecruitersDescrip:
+            "Look for your next career move, freelance opportunities, or internships.",
           moreRecruiters: "More Recruiters",
           newsandBlogs: "News and Blogs",
           newsandBlogsDescrip: "Get the latest news, updates, and tips",

@@ -5,7 +5,6 @@ import { fetchJobDetails } from "../../features/jobs/jobsDetails/jobDetailsSlice
 import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
 import { GoDotFill } from "react-icons/go";
-import { FaBookmark } from "react-icons/fa";
 import { FiDollarSign } from "react-icons/fi";
 import SimilarJobs from "../../components/jobs/SimilarJobs";
 import { fetchRecruiterDetails } from "../../features/recruiters/recruiterDetails/recruiterDetailsSlice";
@@ -106,8 +105,12 @@ function JobDetails() {
                     />
                   </button>
                   {isOpen && (
-                    <dialog id="my_modal_3" className="modal" open>
-                      <div className="modal-box max-w-xl">
+                    <dialog
+                      data-aos="zoom-in"
+                      data-aos-offset="200"
+                      data-aos-duration="700"
+                      id="my_modal_3" className="modal" open>
+                      <div className="modal-box max-w-xl mt-7">
                         <form method="dialog">
                           <button
                             type="button"

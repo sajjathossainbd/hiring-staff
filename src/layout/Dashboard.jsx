@@ -134,14 +134,6 @@ const Dashboard = () => {
                   </li>
                   <li>
                     <NavLink
-                      to="/dashboard/recruiter-profile"
-                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
-                    >
-                      <ImProfile /> Recruiter Profile
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
                       to="/dashboard/post-job"
                       className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
@@ -224,22 +216,36 @@ const Dashboard = () => {
               {/* For all users */}
               <div className="divider" />
 
-              <li>
-                <NavLink
-                  to="/dashboard/my-profile"
-                  className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white ${isActive ? "bg-blue text-white" : ""}`}
-                >
-                  <CgProfile /> My Profile
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/dashboard/my-payments"
-                  className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white ${isActive ? "bg-blue text-white" : ""}`}
-                >
-                  <MdOutlinePayment /> My Payments
-                </NavLink>
-              </li>
+              {
+                !admin && !recruiter && <li>
+                  <NavLink
+                    to="/dashboard/my-profile"
+                    className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white ${isActive ? "bg-blue text-white" : ""}`}
+                  >
+                    <CgProfile /> Candidate Profile
+                  </NavLink>
+                </li>
+              }
+              {
+                recruiter && <li>
+                  <NavLink
+                    to="/dashboard/recruiter-profile"
+                    className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
+                  >
+                    <ImProfile /> Recruiter Profile
+                  </NavLink>
+                </li>
+              }
+              {
+                !admin && <li>
+                  <NavLink
+                    to="/dashboard/my-payments"
+                    className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white ${isActive ? "bg-blue text-white" : ""}`}
+                  >
+                    <MdOutlinePayment /> Payments
+                  </NavLink>
+                </li>
+              }
 
               <li>
                 <NavLink

@@ -98,7 +98,7 @@ function JobsListing() {
   let content = null;
 
   if (isLoading) content = <Loading />;
-  else if (isError || jobs?.jobs?.length === 0) {
+  else if ( jobs?.jobs?.length === 0) {
     content = <NoFoundData title="No Jobs Found!" />;
   } else {
     content = (

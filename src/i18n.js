@@ -28,7 +28,7 @@ i18n
           growthSection_hero2: "Choose the Perfect Match for You",
           learnMore: "Learn More",
           topRecruiters: "Top Recruiters",
-          topRecruitersDecrip: "Top Recruiters",
+          topRecruitersDescrip: "Look for your next career move, freelance opportunities, or internships.",
           moreRecruiters: "More Recruiters",
           newsandBlogs: "News and Blogs",
           newsandBlogsDescrip: "Get the latest news, updates, and tips",
@@ -51,7 +51,11 @@ i18n
           recruitersBannerTitle: "{{count}} Recruiters Available Now",
           recruitersBannerDescrip:
             "Browse top-rated recruiters across various locations, tailored to meet your project needs.",
+<<<<<<< HEAD
+            candidatesBannerTitle:"{{count}} candidates Available Now",
+=======
           candidatesBannerTitle: "{{count}} Recruiters Available Now",
+>>>>>>> 338542282e4f2a38b9cbf9e818ac3f38f0961cae
           candidatesBannerDescrip:
             "Browse top-rated professionals across various skills and locations,tailored to meet your project needs.",
           aboutUsTitle: "About Our Company",

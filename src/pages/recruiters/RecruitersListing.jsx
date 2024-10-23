@@ -11,6 +11,7 @@ import multipleLineDraw from "./../../../public/multiline-repet.json";
 import { ScrollRestoration } from "react-router-dom";
 import { CardPagination } from "../../components/shared/CardPagination";
 import { Trans, useTranslation } from "react-i18next";
+import i18n from "../../i18n";
 
 const convertToBanglaDigits = (number) => {
   const banglaDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
@@ -40,9 +41,10 @@ function RecruitersListing() {
   const handlePageChange = (newPage) => {
     setFilters((prev) => ({ ...prev, page: newPage }));
   };
-  const banglaRecruitersCount = recruiters
-    ? convertToBanglaDigits(recruiters?.totalRecruiters || 0)
-    : "০";
+  const totalRecruiters = recruiters?.totalRecruiters || 0;
+  const banglaRecruitersCount = i18n.language === 'bn' 
+    ? convertToBanglaDigits(totalRecruiters)
+    : totalRecruiters;
   let content = null;
 
   if (isLoading) content = <Loading />;

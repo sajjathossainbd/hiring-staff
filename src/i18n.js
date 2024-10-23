@@ -52,7 +52,7 @@ i18n
           recruitersBannerTitle: "{{count}} Recruiters Available Now",
           recruitersBannerDescrip:
             "Browse top-rated recruiters across various locations, tailored to meet your project needs.",
-          candidatesBannerTitle: "{{count}} candidates Available Now",
+            candidatesBannerTitle:"{{count}} candidates Available Now",
           candidatesBannerDescrip:
             "Browse top-rated professionals across various skills and locations,tailored to meet your project needs.",
           aboutUsTitle: "About Our Company",
@@ -84,6 +84,28 @@ i18n
           fixedNavbarPlaceholder: "Type job title or keyword",
           allLocation: "All Location",
           allCategory: "All Category",
+          home:"Home",
+          jobs:"Jobs",
+          recruiters:"Recruiters",
+          candidates:"Candidates",
+          about:"About",
+          pricing:"Pricing",
+          blogs:"Blogs",
+          contact:"Contact",
+          number:"328-435-6523",
+          
+          
+        
+
+
+
+
+
+
+
+
+
+
         },
       },
       bn: {
@@ -162,6 +184,16 @@ i18n
           fixedNavbarPlaceholder: "চাকরির শিরোনাম বা কীওয়ার্ড লিখুন",
           allLocation: "সকল স্থান সমুহ",
           allCategory: "সকল শ্রেণী",
+          home:"হোম",
+          jobs:"চাকরি খুঁজুন",
+          recruiters:"নিয়োগকর্তা",
+          candidates:"চাকরিপ্রার্থী",
+          about:"আমাদের সম্পর্কে",
+          pricing:"মূল্য",
+          blogs:"ব্লগ",
+          contact:"যোগাযোগ",
+          number:"৩২৮-৪৩৫-৬৫২৩",
+          
         },
       },
     },

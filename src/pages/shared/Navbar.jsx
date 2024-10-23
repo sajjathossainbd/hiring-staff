@@ -2,7 +2,6 @@ import JobSearchBox from "../../components/jobs/JobSearchBox";
 import DarkLightMode from "../../components/navbar/DarkLightMode";
 import SinginLogout from "../../components/navbar/SinginLogout";
 import LogoWhite from "../../components/ui/LogoWhite";
-// import { Trans, useTranslation } from "react-i18next";
 const Navbar = () => {
   return (
     <div className="backdrop-blur-sm z-20 mt-14 sticky top-0">

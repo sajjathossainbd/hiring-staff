@@ -1,6 +1,6 @@
 import { FiPhoneCall } from "react-icons/fi";
 import DropdownSimple from "../../components/ui/DropdownSimple";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 const countryOptions = ["Bangladesh", "US", "Other"];
 const currencyOptions = ["EUR", "BD", "AURO"];
@@ -27,7 +27,7 @@ function SubNavbarRight() {
     <div className="xl:flex lg:hidden md:hidden items-center gap-6 hidden">
       <div className="flex gap-2 items-center text-darkBlue">
         <FiPhoneCall />
-        <p className="text-darkBlue">328-435-6523</p>
+        <p className="text-darkBlue"><Trans i18nKey={"number"}></Trans></p>
       </div>
       <DropdownSimple dynamicOptions={currencyOptions} placeholderData="USD" />
       <DropdownSimple
@@ -36,7 +36,7 @@ function SubNavbarRight() {
       />
       <DropdownSimple
         dynamicOptions={languageOptions} 
-        placeholderData={i18n.language === "en" ? "English" : "Bangla"}  
+        placeholderData={i18n.language === "en" ? "English" : "বাংলা"}  
         onOptionSelect={handleLanguageChange} 
       />
     </div>

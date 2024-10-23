@@ -9,7 +9,7 @@ function BlogCard({ blog }) {
   const { url, content, title } = blog || {};
 
   return (
-    <div className="boxBorderHoverBlue p-5">
+    <div className="boxBorderHoverBlue border-none shadow-sm bg-white">
       <div className="flex flex-col justify-between">
         <figure className="">
           <img
@@ -18,7 +18,7 @@ function BlogCard({ blog }) {
             alt="Blog"
           />
         </figure>
-        <div className="mt-4">
+        <div className="p-5">
           {/* Category and bookmark */}
           <div className="flex items-center justify-between">
             <div className="flex gap-2">

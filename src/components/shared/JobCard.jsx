@@ -10,8 +10,6 @@ import { GoArrowRight } from "react-icons/go";
 import { LiaBuffer } from "react-icons/lia";
 import BookmarkBtn from "../ui/BookmarkBtn";
 function JobCard({ job, recruiterName, recruiterLogo }) {
-
-
   const {
     _id,
     jobTitle,
@@ -20,6 +18,7 @@ function JobCard({ job, recruiterName, recruiterLogo }) {
     postedDate,
     salary_range,
     job_location,
+    featured,
   } = job || {};
 
   return (
@@ -48,18 +47,23 @@ function JobCard({ job, recruiterName, recruiterLogo }) {
               icon={<IoBriefcaseOutline />}
               style="bg-softGreen text-orange"
             />
-            <MiniBtn
-              value={"Featured"}
-              icon={<LiaBuffer />}
-              style="bg-softGreen text-blue"
-            />
+            {featured ? (
+              <MiniBtn
+                value={"Featured"}
+                icon={<LiaBuffer />}
+                style="bg-softGreen text-blue"
+              />
+            ) : (
+              ""
+            )}
           </div>
           {/* Description And Price */}
           <div className="">
             <p className="text-14 my-3">{description}</p>
             <div className="flex justify-between">
               <p className="text-14 flex items-center gap-x-1">
-                <CiBadgeDollar className="text-lg" />{salary_range}
+                <CiBadgeDollar className="text-lg" />
+                {salary_range}
               </p>
               <p className="flex items-center gap-x-1 text-14">
                 <WiTime7 className="text-lg" /> {postedDate}

@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { fetchJobCategories } from "../../features/jobs/filterCollection/categories/jobCategoriesSlice";
 import { fetchJobLocations } from "../../features/jobs/filterCollection/location/jobLocationsSlice";
 import { fetchJobsListing } from "../../features/jobs/jobsListing/jobsListingSlice";
-import { useNavigate } from "react-router-dom";
+import { useMatch, useNavigate } from "react-router-dom";
 import PrimaryBtn from "../ui/PrimaryBtn";
 import { Trans } from "react-i18next";
 import { useTranslation } from "react-i18next";
@@ -26,7 +26,7 @@ const SearchByFilter = () => {
   const { categories } = useSelector((state) => state.jobCategories);
   const { locations } = useSelector((state) => state.jobLocations);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-
+  const match = useMatch("/jobs-listing");
   useEffect(() => {
     dispatch(fetchJobCategories());
     dispatch(fetchJobLocations());
@@ -106,14 +106,16 @@ const SearchByFilter = () => {
         <PiLineVerticalThin className="md:block hidden" />
 
         {/* Filter Button */}
-        <div className="w-auto">
-          <button
-            onClick={toggleFilter}
-            className="rounded-md text-blue text-18 mr-2"
-          >
-            <FaSlidersH />
-          </button>
-        </div>
+        {match && (
+          <div className="w-auto">
+            <button
+              onClick={toggleFilter}
+              className="rounded-md text-blue text-18 mr-2"
+            >
+              <FaSlidersH />
+            </button>
+          </div>
+        )}
 
         {/* Search button */}
         <button onClick={showFilter} className="w-auto">

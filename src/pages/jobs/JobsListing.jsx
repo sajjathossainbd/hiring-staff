@@ -11,7 +11,6 @@ import JobBanner from "../../components/jobs/JobBanner";
 import { ScrollRestoration, useNavigate, useParams } from "react-router-dom";
 import { CardPagination } from "../../components/shared/CardPagination";
 
-
 function JobsListing() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -44,7 +43,7 @@ function JobsListing() {
       page,
       limit,
     }),
-    [AllCategory, JobTitle, Location, page]
+    [page, JobTitle]
   );
 
   // Fetch Jobs Listing
@@ -126,7 +125,10 @@ function JobsListing() {
   const totalJobs = jobs?.totalJobs || 0;
   const totalPages = Math.ceil(totalJobs / limit) || 1;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 36e18d1ffd803c851c38ea7d1e6eaec5b40c7178
   return (
     <>
       <div className="container flex flex-col justify-center">

@@ -47,12 +47,11 @@ function JobsListing() {
     [AllCategory, JobTitle, Location, page]
   );
 
-  // Fetch Jobs Listing
   useEffect(() => {
     dispatch(fetchJobsListing(filters));
   }, [filters, dispatch]);
 
-  // Fetch Recruiter details for all jobs
+  
   useEffect(() => {
     if (jobs?.jobs?.length > 0) {
       const fetchRecruiters = async () => {

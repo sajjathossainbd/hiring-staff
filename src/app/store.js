@@ -12,6 +12,7 @@ import blogDetailsReducer from "../features/blogs/blogDetails/blogDetailsSlice";
 import filterReducer from "../features/jobs/jobsFilter/filterSlice";
 import jobCategoriesReducer from "../features/jobs/filterCollection/categories/jobCategoriesSlice";
 import jobLocationsReducer from "../features/jobs/filterCollection/location/jobLocationsSlice";
+import fetchRecruiterOpenJobsReducer from "../features/recruiters/recruiterDetails/OpenJobsSlice";
 const store = configureStore({
   reducer: {
     // Jobs
@@ -25,7 +26,7 @@ const store = configureStore({
     // Recruiters
     recruitersListing: recruitersListingReducer,
     recruiterDetails: recruiterDetailsReducer,
-
+    recruiterOpenJobs: fetchRecruiterOpenJobsReducer,
     // Candidates
     candidatesListing: candidatesListingReducer,
     candidateDetails: candidateDetailsReducer,

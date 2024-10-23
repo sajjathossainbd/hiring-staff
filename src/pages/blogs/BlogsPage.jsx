@@ -26,13 +26,15 @@ function BlogsPage() {
     dispatch(fetchBlogsListing({ page, limit, query: searchQuery }));
   }, [dispatch, page, searchQuery]);
 
-  const totalPages = blogs.totalPages || 1;
+  const totalPages = blogs.totalPages;
+  const pages = [...Array(totalPages).keys()].map((i) => i + 1);
 
   let content = null;
 
   if (isLoading) content = <Loading />;
 
-  if (!isLoading && isError) content = <div className="col-span-12">{error}</div>;
+  if (!isLoading && isError)
+    content = <div className="col-span-12">{error}</div>;
 
   if (!isLoading && !isError && blogs?.blogs?.length === 0) {
     content = <NoFoundData title="No Blogs Found!" />;
@@ -58,7 +60,7 @@ function BlogsPage() {
         subTitle={"Explore our latest tech articles and insights."}
         currentPath={"blogs"}
       />
-      <div className="container">
+      <div className="container flex flex-col items-center">
         {/* Search and Filter */}
         <div className="flex justify-center my-4">
           <input

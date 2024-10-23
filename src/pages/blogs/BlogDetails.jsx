@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { ScrollRestoration, useParams } from "react-router-dom";
 import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
 import { fetchBlogDetails } from "../../features/blogs/blogDetails/blogDetailsSlice";
@@ -78,6 +78,7 @@ function Blogblog() {
     <div className="container">
       {/* Blog blog Content */}
       {content}
+      <ScrollRestoration />
     </div>
   );
 }

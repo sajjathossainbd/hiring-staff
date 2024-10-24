@@ -4,10 +4,10 @@ import TinnyHeading from "../shared/TinnyHeading";
 import { FiSend } from "react-icons/fi";
 import toast from "react-hot-toast";
 import axiosInstance from "../../../utils/axios";
-import useCurrentUser from "../../../hooks/useCurrentUser";
+import useCurrentRecruiter from "../../../hooks/useCurrentRecruiter";
 
 const PostJob = () => {
-  const { currentUser } = useCurrentUser();
+  const { currentRecruiter } = useCurrentRecruiter();
   const [candidateEmails, setCandidateEmails] = useState();
 
   useEffect(() => {
@@ -15,6 +15,7 @@ const PostJob = () => {
       setCandidateEmails(res.data.candidateEmails);
     });
   }, []);
+
   const [formData, setFormData] = useState({
     company_email: "",
     company_id: "",
@@ -35,20 +36,21 @@ const PostJob = () => {
     candidateEmails
   });
 
-useEffect(() => {
-  setFormData((prevFormData) => ({
-    ...prevFormData,
-    candidateEmails: candidateEmails, 
-  }));
-}, [candidateEmails]);
   useEffect(() => {
-    if (currentUser?.email) {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      candidateEmails: candidateEmails,
+    }));
+  }, [candidateEmails]);
+
+  useEffect(() => {
+    if (currentRecruiter?.email) {
       setFormData((prevData) => ({
         ...prevData,
-        company_email: currentUser.email,
+        company_email: currentRecruiter.email,
       }));
     }
-  }, [currentUser]);
+  }, [currentRecruiter]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

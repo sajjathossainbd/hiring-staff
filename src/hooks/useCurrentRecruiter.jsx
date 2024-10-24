@@ -3,7 +3,7 @@ import axiosInstance from "../utils/axios";
 import useAuth from "./useAuth";
 
 
-const useCurrentCandidate = () => {
+const useCurrentRecruiter = () => {
 
     const { user } = useAuth();
 
@@ -20,4 +20,4 @@ const useCurrentCandidate = () => {
     return { currentRecruiter, refetch };
 };
 
-export default useCurrentCandidate;
+export default useCurrentRecruiter;

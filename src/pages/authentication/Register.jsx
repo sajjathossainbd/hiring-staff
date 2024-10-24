@@ -55,34 +55,30 @@ const Register = () => {
       role: userRole,
     };
 
-    try {
-      const result = await registerUser(data.email, data.password);
-      await updateProfile(result.user, {
-        displayName: data.fullName,
-        photoURL: imageUrl,
+    const result = await registerUser(data.email, data.password);
+    await updateProfile(result.user, {
+      displayName: data.fullName,
+      photoURL: imageUrl,
+    });
+
+    if (userRole === "recruiter") {
+      await axiosInstance.post("/recruiters", userInfo).then((res) => {
+        if (res.data.insertId) {
+          toast.success("Successfully recruiters registered!");
+          navigate(location?.state ? location.state : "/dashboard/recruiter-profile");
+        }
       });
-
-      if (userRole === "recruiter") {
-        await axiosInstance.post("/recruiters", userInfo).then((res) => {
-          if (res.data.insertId) {
-            toast.success("Successfully recruiters registered!");
-            navigate(location?.state ? location.state : "/dashboard/recruiter-profile");
-          }
-        });
-      }
-      if (userRole === "candidate") {
-
-        await axiosInstance.post("/users/candidates", userInfo).then((res) => {
-          if (res.data.insertId) {
-            toast.success("Successfully candidates registered!");
-            navigate(location?.state ? location.state : "/dashboard/my-profile");
-          }
-        })
-      };
-
-    } catch (error) {
-      toast.error(error.message);
     }
+    if (userRole === "candidate") {
+
+      await axiosInstance.post("/candidates", userInfo).then((res) => {
+        if (res.data.insertId) {
+          toast.success("Successfully candidates registered!");
+          navigate(location?.state ? location.state : "/dashboard/my-profile");
+        }
+      })
+    };
+
   };
 
   const handleGoogleRegister = () => {

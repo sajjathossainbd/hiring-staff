@@ -1,9 +1,9 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useLocation } from "react-router-dom";
-import useCurrentUser from "../../hooks/useCurrentUser";
 import CheckoutForm from "./CheckoutForm";
 import { Helmet } from "react-helmet-async";
+import useAuth from "../../hooks/useAuth";
 
 const stripePromise = loadStripe(
   "pk_test_51PL8uBP0ShXafyXS5FODE9CyG33SubCyCZ0KOn2HjaW91HHuGUo6On1Sz6WYQRywehzSEMB1nenzn3CLB8IlISTy004zqTEhGT"
@@ -12,7 +12,7 @@ const stripePromise = loadStripe(
 const PaymentForm = () => {
   const location = useLocation();
   const { category, price } = location.state || {};
-  const { currentUser } = useCurrentUser();
+  const { user } = useAuth();
 
   return (
     <>
@@ -24,16 +24,16 @@ const PaymentForm = () => {
           <h2 className="text-4xl font-extrabold text-center text-gray-700 mb-8">
             💳 Secure Payment
           </h2>
-          {currentUser && (
+          {user && (
             <div className="mb-6 lg:p-4 p-2 dark:bg-lightGray border-l-4 border-blue rounded-lg shadow-md">
               <p className="text-lg">
                 Welcome,{" "}
                 <span className="text-blue-700 font-bold">
-                  {currentUser.name}!
+                  {user?.name}!
                 </span>
               </p>
               <strong className="text-gray-600">
-                Email: {currentUser.email}
+                Email: {user?.email}
               </strong>
             </div>
           )}

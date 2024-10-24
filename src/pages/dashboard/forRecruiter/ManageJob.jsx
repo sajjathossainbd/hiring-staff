@@ -4,20 +4,20 @@ import { CiMail } from "react-icons/ci";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import axiosInstance from "../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
-import useCurrentUser from "../../../hooks/useCurrentUser";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import useCurrentRecruiter from "../../../hooks/useCurrentRecruiter";
 const ManageJob = () => {
 
-  const { currentUser } = useCurrentUser();
+  const { currentRecruiter } = useCurrentRecruiter();
 
   const { data: myJobs, refetch } = useQuery({
-    queryKey: ["myJobs", currentUser?.email],
+    queryKey: ["myJobs", currentRecruiter?.email],
     queryFn: async () => {
-      const res = await axiosInstance.get(`/jobs/email/${currentUser.email}`);
+      const res = await axiosInstance.get(`/jobs/email/${currentRecruiter.email}`);
       return res.data;
     },
-    enabled: !!currentUser?.email,
+    enabled: !!currentRecruiter?.email,
   });
 
   const handleDelete = (id) => {

@@ -3,9 +3,9 @@ import axiosInstance from "../utils/axios";
 import useAuth from "./useAuth";
 
 
-const useCurrentRecruiter = () => {
+const useCurrentCandidate = () => {
 
-    const { user } = useAuth();
+  const { user } = useAuth();
 
   const { data: currentCandidate, refetch } = useQuery({
     queryKey: ['currentCandidate', user?.email],
@@ -16,9 +16,10 @@ const useCurrentRecruiter = () => {
     enabled: !!user?.email,
   });
 
+
   console.log(currentCandidate);
 
   return { currentCandidate, refetch };
 };
 
-export default useCurrentRecruiter;
+export default useCurrentCandidate;

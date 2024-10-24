@@ -72,11 +72,11 @@ const SignIn = () => {
       case "admin":
         email = "admin@gmail.com";
         break;
-      case "recruiter":
-        email = "recruiter@gmail.com";
+      case "Programming Hero":
+        email = "support@programming-hero.com";
         break;
-      case "candidate":
-        email = "candidate@gmail.com";
+      case "Jake":
+        email = "jake.wilson@example.com";
         break;
       default:
         break;

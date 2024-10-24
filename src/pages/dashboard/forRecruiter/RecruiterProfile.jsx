@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import { useState, useEffect } from "react";
 import TinnyHeading from "../shared/TinnyHeading";
 import DefaultInput from "../shared/DefaultInput";
@@ -7,35 +7,23 @@ import { FiSend } from "react-icons/fi";
 import "react-phone-number-input/style.css";
 import axiosInstance from "../../../utils/axios";
 import toast from "react-hot-toast";
-import useCurrentUser from "../../../hooks/useCurrentUser";
-import { useQuery } from "@tanstack/react-query";
 import SelectField from "../shared/SelectField";
 import { LiaCitySolid } from "react-icons/lia";
 import { TbUnlink } from "react-icons/tb";
 import { BsBrowserChrome } from "react-icons/bs";
 import {
   MdAddLocationAlt,
-  MdLocationCity,
   MdPersonAddAlt1,
 } from "react-icons/md";
-import { FaMapLocationDot, FaMoneyCheckDollar } from "react-icons/fa6";
+import { FaMoneyCheckDollar } from "react-icons/fa6";
 import { TbNumbers } from "react-icons/tb";
-import { RiUserLocationLine } from "react-icons/ri";
 import TextareaField from "../shared/TextareaField";
+import useCurrentRecruiter from "../../../hooks/useCurrentRecruiter";
 
 const RecruiterProfile = () => {
-  const { currentUser } = useCurrentUser();
 
-  const { data: currentRecruiter } = useQuery({
-    queryKey: ["currentRecruiter", currentUser?.email],
-    queryFn: async () => {
-      const res = await axiosInstance.get(
-        `/recruiters/currentRecruiter/${currentUser?.email}`
-      );
-      return res.data;
-    },
-    enabled: !!currentUser?.email,
-  });
+  const { currentRecruiter } = useCurrentRecruiter();
+
 
   const [formData, setFormData] = useState({
     name: "",
@@ -44,7 +32,7 @@ const RecruiterProfile = () => {
     industry: "",
     website: "",
     phone: "",
-    email: currentUser?.email,
+    email: currentRecruiter?.email,
     map: "",
     location: "",
     ceo: "",

@@ -50,7 +50,7 @@ const AuthProvider = ({ children }) => {
             } else {
                 setUser(null);
             }
-            setLoading(false); // Set loading to false in both cases
+            setLoading(false);
         });
 
         return () => unSubscribe();

@@ -35,7 +35,7 @@ const MyPaymentsTable = ({ data }) => {
                                 <td>{payment?.paymentType}</td>
                                 <td>{payment?.transactionId}</td>
                                 <td
-                                    className={`font-semibold ${payment?.status == "approved" ? "text-green-500" : "text-yellow-600"}`}
+                                    className={`font-semibold ${payment?.status == "approved" ? "text-green" : "text-yellow-600"}`}
                                 >
                                     {payment?.status}
 

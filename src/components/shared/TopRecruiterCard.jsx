@@ -12,7 +12,7 @@ import MiniBtn from "../ui/MiniBtn";
 import PrimaryOutlineBtn from "../ui/PrimaryOutlineBtn";
 
 function TopRecruiterCard({ recruiter }) {
-  const { _id, name, industry, logo, location = {} } = recruiter || {};
+  const { _id, name, industry, logo, location } = recruiter || {};
 
   return (
     <div className="boxBorderHoverBlue  overflow-hidden hover:bg-[white]  bg-bgLightBlue dark:bg-darkBlue p-2">
@@ -31,7 +31,7 @@ function TopRecruiterCard({ recruiter }) {
           {/* Recruiter Button */}
           <div className="flex gap-6 mt-6">
             <MiniBtn
-              value={`${location?.state}, ${location?.country}`}
+              value={location}
               icon={<CiLocationOn />}
               style="bg-softGreen text-green"
             />

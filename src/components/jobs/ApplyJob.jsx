@@ -1,9 +1,8 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
-import useAuth from "./../../hooks/useAuth";
-import useCurrentUser from "./../../hooks/useCurrentUser";
 import axiosInstance from "../../utils/axios";
 import toast from "react-hot-toast";
+import useCurrentCandidate from "../../hooks/useCurrentCandidate";
 
 function ApplyJob({ job, onClose }) {
   const {
@@ -12,7 +11,10 @@ function ApplyJob({ job, onClose }) {
     reset,
     formState: { errors },
   } = useForm();
-  const { currentUser } = useCurrentUser();
+  const { currentCandidate } = useCurrentCandidate();
+
+
+
   const { _id: jobId, jobTitle, company_email, company_id } = job;
 
   const onSubmit = async (data) => {
@@ -21,9 +23,9 @@ function ApplyJob({ job, onClose }) {
       jobTitle,
       company_email,
       company_id,
-      applicantId: currentUser?._id,
-      applicantName: currentUser?.name,
-      applicantEmail: currentUser?.email,
+      applicantId: currentCandidate?._id,
+      applicantName: currentCandidate?.name,
+      applicantEmail: currentCandidate?.email,
       coverLetter: data.coverLetter,
       resume: data.resume,
       availability: data.availability,
@@ -61,11 +63,11 @@ function ApplyJob({ job, onClose }) {
             })}
             className="w-full p-3 rounded-md focus:outline-none bg-lightText"
             rows="4"
-            placeholder={`${currentUser.name}, Your cover letter`}
+            placeholder={`${currentCandidate?.name}, Your cover letter`}
           ></textarea>
-          {errors.coverLetter && (
+          {errors?.coverLetter && (
             <p className="text-red-500 text-sm mt-1">
-              {errors.coverLetter.message}
+              {errors?.coverLetter.message}
             </p>
           )}
         </div>

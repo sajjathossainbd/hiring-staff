@@ -72,11 +72,11 @@ const SignIn = () => {
       case "admin":
         email = "admin@gmail.com";
         break;
-      case "recruiter":
-        email = "recruiter@gmail.com";
+      case "Programming Hero":
+        email = "support@programming-hero.com";
         break;
-      case "candidate":
-        email = "candidate@gmail.com";
+      case "Jake":
+        email = "jake.wilson@example.com";
         break;
       default:
         break;
@@ -177,7 +177,7 @@ const SignIn = () => {
           </p>
         </form>
 
-        <div className="mt-7  px-10 py-5 rounded-md">
+        <div className="px-10 py-5 rounded-md">
           <p className="dark:text-black">Login Credentials</p>
           <div className="mt-5 flex flex-col gap-5 items-center justify-center">
             <div className="flex gap-5 items-center">
@@ -189,14 +189,14 @@ const SignIn = () => {
               </button>
               <button
                 className="border-2 border-blue text-blue font-semibold py-1 px-4"
-                onClick={() => handleRoleLogin("recruiter")}
+                onClick={() => handleRoleLogin("Programming Hero")}
               >
                 Recruiter Login
               </button>
             </div>
             <button
               className="border-2 border-blue text-blue font-semibold py-1 px-4"
-              onClick={() => handleRoleLogin("candidate")}
+              onClick={() => handleRoleLogin("Jake")}
             >
               Candidates Login
             </button>

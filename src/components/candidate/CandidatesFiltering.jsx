@@ -7,8 +7,9 @@ import FilterSidePanel from "./FilterSidePanel";
 import { PiLineVerticalThin } from "react-icons/pi";
 import Dropdown from "../shared/DropdownCandidate";
 import PrimaryBtn from "../ui/PrimaryBtn";
-
+import { Trans, useTranslation } from "react-i18next";
 function CandidatesFiltering() {
+  const {t} = useTranslation();
   const dispatch = useDispatch();
 
   const [professions, setProfessions] = useState([]);
@@ -108,7 +109,7 @@ function CandidatesFiltering() {
             onClick={applyFilters}
             className=" text-white font-medium w-full md:w-36"
           >
-            <PrimaryBtn title={"Search"} />
+            <PrimaryBtn title={<Trans i18nKey={"search"}/>} />
           </button>
         </div>
 

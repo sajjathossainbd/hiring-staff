@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
 
 function Pagination({ totalPages, currentPage, onPageChange }) {
@@ -24,7 +24,7 @@ function Pagination({ totalPages, currentPage, onPageChange }) {
         «
       </button>
 
-      <button className="join-item btn rounded-none disabled">
+      <button className="join-item  btn rounded-none disabled">
         {`${currentPage} of ${totalPages}`}
       </button>
 

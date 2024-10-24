@@ -6,8 +6,10 @@ import axiosInstance from "../../utils/axios";
 import { PiLineVerticalThin } from "react-icons/pi";
 import PrimaryBtn from "../ui/PrimaryBtn";
 import Dropdown from "../shared/DropdownCandidate";
+import { Trans, useTranslation } from "react-i18next";
 
 function RecruitersFiltering() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const [industries, setIndustries] = useState([]);
@@ -69,7 +71,7 @@ function RecruitersFiltering() {
             <FaMapMarkerAlt className="text-blue" />
             <Dropdown
               options={locations}
-              placeholder="Select a industry"
+              placeholder="Select a location"
               onChange={(option) => handleFilterChange("city", option)}
             />
           </div>
@@ -77,7 +79,6 @@ function RecruitersFiltering() {
           <PiLineVerticalThin className="lg:block hidden" />
           {/* Team Size */}
           <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
-            
             <Dropdown
               options={teamSizes}
               placeholder="Select a number"
@@ -90,7 +91,7 @@ function RecruitersFiltering() {
             onClick={applyFilters}
             className=" text-white font-medium w-full md:w-36"
           >
-            <PrimaryBtn title={"Search"} />
+            <PrimaryBtn title={<Trans i18nKey={"search"} />} />
           </button>
         </div>
       </div>

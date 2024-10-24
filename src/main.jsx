@@ -15,20 +15,23 @@ import "aos/dist/aos.css";
 import AuthProvider from "./contextProvider/AuthProvider.jsx";
 import { Provider } from "react-redux";
 import store from "./app/store.js";
+import "./i18n.js"
 
 AOS.init();
 
 createRoot(document.getElementById("root")).render(
+
   <StrictMode>
-    <Provider store={store}>
-      <AuthProvider>
-        <HelmetProvider>
-          <QueryClientProvider client={queryClient}>
-            <RouterProvider router={router} />
-          </QueryClientProvider>
-        </HelmetProvider>
-      </AuthProvider>
-      <Toaster />
-    </Provider>
+      <Provider store={store}>
+        <AuthProvider>
+          <HelmetProvider>
+            <QueryClientProvider client={queryClient}>
+              <RouterProvider router={router} />
+            </QueryClientProvider>
+          </HelmetProvider>
+        </AuthProvider>
+        <Toaster />
+      </Provider>
   </StrictMode>
+
 );

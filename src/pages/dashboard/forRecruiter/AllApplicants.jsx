@@ -5,24 +5,25 @@ import { RxCross2 } from "react-icons/rx";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { CiLocationOn } from "react-icons/ci";
 import { IoTimeOutline } from "react-icons/io5";
-import useCurrentUser from "../../../hooks/useCurrentUser";
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../../utils/axios";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import useCurrentRecruiter from "../../../hooks/useCurrentRecruiter";
 
 const AllApplicants = () => {
-  const { currentUser } = useCurrentUser();
+
+  const { currentRecruiter } = useCurrentRecruiter();
 
   const { data: allAppliedJobs, refetch } = useQuery({
-    queryKey: ["myJobs", currentUser?.email],
+    queryKey: ["allAppliedJobs", currentRecruiter?.email],
     queryFn: async () => {
       const res = await axiosInstance.get(
-        `/jobs/applied-jobs/email/${currentUser.email}`
+        `/jobs/applied-jobs/email/${currentRecruiter.email}`
       );
       return res.data;
     },
-    enabled: !!currentUser?.email,
+    enabled: !!currentRecruiter?.email,
   });
 
   // Handle shortlist or reject action
@@ -89,7 +90,7 @@ const AllApplicants = () => {
       <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 rounded-md">
         <h5>Applicants</h5>
         <hr className="my-6 text-lightGray" />
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
           {allAppliedJobs?.map((person, index) => (
             <div
               key={index}

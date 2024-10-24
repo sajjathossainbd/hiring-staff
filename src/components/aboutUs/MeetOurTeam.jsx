@@ -1,7 +1,9 @@
 import TeamCard from "./TeamInfoCard";
 import SectionTitle from "../shared/SectionTitle";
+import { Trans, useTranslation } from "react-i18next";
 
 function MeetOurTeam() {
+  const { t } = useTranslation();
   const teamData = [
     {
       img: "https://i.ibb.co.com/M7nx1wy/sajjat-bro.jpg",
@@ -49,7 +51,7 @@ function MeetOurTeam() {
     },
     {
       img: "https://i.ibb.co.com/pZmRm0T/mushfiq.jpg",
-      name: "Mushfic Rahman",
+      name: "Mushfiqur Rahman",
       role: "Front End Developer",
       review: 4.9,
       location: "Chicago, IL",
@@ -75,10 +77,8 @@ function MeetOurTeam() {
     <div className="container">
       <div className="flex flex-col items-center justify-center text-center">
         <SectionTitle
-          title={"Meet Our Team"}
-          subTitle={
-            "Explore our company and get to know the talented team that drives our success. Each member is dedicated to innovation, excellence, and achieving outstanding results in every project we undertake."
-          }
+          title={<Trans i18nKey={"meetOurTeamTitile"} />}
+          subTitle={<Trans i18nKey={"meetOurTeamDescrip"} />}
           subHeading={"Our Company"}
         />
       </div>

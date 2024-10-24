@@ -6,6 +6,8 @@ import NoFoundData from "../../components/ui/NoFoundData";
 import BlogCard from "../../components/shared/blogs/BlogCard";
 import { Helmet } from "react-helmet-async";
 import TinnyBanner from "../../components/shared/TinnyBanner";
+import { CardPagination } from "../../components/shared/CardPagination";
+import { ScrollRestoration } from "react-router-dom";
 
 function BlogsPage() {
   const dispatch = useDispatch();
@@ -26,7 +28,7 @@ function BlogsPage() {
   }, [dispatch, page, searchQuery]);
 
   const totalPages = blogs.totalPages;
-  const pages = [...Array(totalPages).keys()].map(i => i + 1);
+  const pages = [...Array(totalPages).keys()].map((i) => i + 1);
 
   let content = null;
 
@@ -39,16 +41,16 @@ function BlogsPage() {
     content = <NoFoundData title="No Blogs Found!" />;
   }
 
-
   if (!isLoading && !isError && blogs?.blogs?.length > 0) {
     content = (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-2 md:gap-4 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-2 md:gap-4 my-10">
         {blogs?.blogs?.map((blog) => (
           <BlogCard key={blog._id} blog={blog} />
         ))}
       </div>
     );
   }
+
   return (
     <>
       <Helmet>
@@ -59,37 +61,44 @@ function BlogsPage() {
         subTitle={"Explore our latest tech articles and insights."}
         currentPath={"blogs"}
       />
-      <div className="container">
+      <div className="container flex flex-col items-center">
         {/* Search and Filter */}
         <div className="flex justify-center my-4">
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search"
-            className="input input-bordered w-full max-w-xs"
-          />
+          <label className="input input-bordered flex items-center gap-2">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search blgos"
+              className="grow"
+            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              className="h-4 w-4 opacity-70"
+            >
+              <path
+                fillRule="evenodd"
+                d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </label>
         </div>
 
-        {/* Blog Card Content*/}
+        {/* Blog Card Content */}
         {content}
 
-        {/* Pagination */}
-        <div className="flex justify-center mt-4 gap-3">
-          {page > 1 && <button className="text-blue" onClick={() => setPage(page - 1)}>Previous</button>}
-
-          {pages.map((p) => (
-            <button
-              key={p}
-              onClick={() => setPage(p)}
-              className={`mx-1 ${page === p ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}
-            >
-              {p}
-            </button>
-          ))}
-
-          {page < totalPages && <button className="text-blue" onClick={() => setPage(page + 1)}>Next</button>}
-        </div>
+        {/* Card Pagination Component */}
+        {blogs?.blogs && (
+          <CardPagination
+            currentPage={page}
+            totalPages={totalPages}
+            onPageChange={setPage} // Directly set the page number
+          />
+        )}
+        <ScrollRestoration />
       </div>
     </>
   );

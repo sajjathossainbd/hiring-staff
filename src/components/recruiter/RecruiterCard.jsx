@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import MiniBtn from "../ui/MiniBtn";
 import { CiLocationOn, CiMoneyBill } from "react-icons/ci";
-import { HiOutlineBriefcase } from "react-icons/hi";
+import { MdOutlineVerified } from "react-icons/md";
 import { RiNumbersLine } from "react-icons/ri";
 import StarRatings from "react-star-ratings";
 import SecondaryButton from "../shared/SecondaryButton";
@@ -20,19 +20,26 @@ const RecruiterCard = ({ recruiter }) => {
     companySizeCategory,
     logo,
     ratings,
-    openJobs,
-    location = {},
+    ratingsNumbers,
+    location,
   } = recruiter || {};
+
 
   return (
     <div className="boxBorderHoverBlue  overflow-hidden hover:bg-[white]  bg-bgLightBlue dark:bg-darkBlue">
       <div className="md:p-5 p-3 flex flex-col justify-between h-full">
         {/* Recruiter Info */}
-        <div className="">
+        <div>
           {/* Recruiter logo, name, industry */}
-          <div className="">
+          <div>
             <img src={logo} alt={name} className="w-20 rounded-full" />
-            <h4 className="">{name}</h4>
+            <div className="flex items-center gap-2">
+              <h4>{name}</h4>
+              <p className="text-blue text-18">
+                <MdOutlineVerified />
+              </p>
+            </div>
+
             <p className="text-12 mt-1 border-solid border-[1px] inline-block rounded-full py-1 px-5 border-lightGray">
               {industry}
             </p>
@@ -41,19 +48,19 @@ const RecruiterCard = ({ recruiter }) => {
           {/* Recruiter Button */}
           <div className="flex gap-6 mt-6">
             <MiniBtn
-              value={`${location?.state}, ${location?.country}`}
+              value={location}
               icon={<CiLocationOn />}
               style="bg-softGreen text-green"
             />
-            <MiniBtn
-              value={`${openJobs} Open Job`}
+            {/* <MiniBtn
+              value={`4 Open Job`}
               icon={<HiOutlineBriefcase />}
               style="bg-softGreen text-blue"
-            />
+            /> */}
           </div>
 
           {/* Rating */}
-          <div className="mt-[3px] flex gap-[1px] text-14 items-center">
+          <div className="flex items-center gap-2 mt-2">
             <StarRatings
               rating={ratings}
               starRatedColor="#ffd250"
@@ -62,7 +69,9 @@ const RecruiterCard = ({ recruiter }) => {
               starDimension="16px"
               starSpacing="1px"
             />
-            <p className="ml-2 text-blue">{ratings} Rating</p>
+            <p className="text-blue text-14">
+              {ratings} ( {ratingsNumbers} Reviews )
+            </p>
           </div>
 
           {/* Description */}

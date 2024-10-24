@@ -3,23 +3,26 @@ import TinnyHeading from "../shared/TinnyHeading";
 import { IoCheckmark } from "react-icons/io5";
 import { CiLocationOn } from "react-icons/ci";
 import { IoTimeOutline } from "react-icons/io5";
-import useCurrentUser from "../../../hooks/useCurrentUser";
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../../utils/axios";
 import toast from "react-hot-toast";
+import NoFoundData from "../../../components/ui/NoFoundData";
+import useCurrentRecruiter from "../../../hooks/useCurrentRecruiter";
 
 const Shortlist = () => {
-  const { currentUser } = useCurrentUser();
+
+
+  const { currentRecruiter } = useCurrentRecruiter()
 
   const { data: allShortlistAppliedJobs, refetch } = useQuery({
-    queryKey: ["allShortlistAppliedJobs", currentUser?.email],
+    queryKey: ["allShortlistAppliedJobs", currentRecruiter?.email],
     queryFn: async () => {
       const res = await axiosInstance.get(
-        `/jobs/applied-jobs/email/shortlist/${currentUser?.email}`
+        `/jobs/applied-jobs/email/shortlist/${currentRecruiter?.email}`
       );
       return res.data;
     },
-    enabled: !!currentUser?.email,
+    enabled: !!currentRecruiter?.email,
   });
 
   // Function to handle status update
@@ -36,6 +39,19 @@ const Shortlist = () => {
     }
   };
 
+  if (allShortlistAppliedJobs?.length == 0 || allShortlistAppliedJobs === undefined) {
+    return (
+      <>
+        <TinnyHeading
+          title="Shortlisted Resumes"
+          path="shortlist"
+          pathName="Shortlisted Resumes"
+        />
+        <NoFoundData title="No Shortlist Jobs Found!" />
+      </>
+    )
+  }
+
   return (
     <div>
       <TinnyHeading
@@ -46,7 +62,7 @@ const Shortlist = () => {
       <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 rounded-md">
         <h5>Shortlisted Resumes</h5>
         <hr className="my-6 text-lightGray" />
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
           {allShortlistAppliedJobs?.map((person, index) => (
             <div
               key={index}

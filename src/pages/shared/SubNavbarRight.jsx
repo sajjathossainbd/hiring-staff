@@ -2,7 +2,7 @@ import { FiPhoneCall } from "react-icons/fi";
 import DropdownSimple from "../../components/ui/DropdownSimple";
 import { Trans, useTranslation } from "react-i18next";
 
-const languageOptions = ["English", "Bangla"];
+const languageOptions = ["English", "বাংলা"];
 
 function SubNavbarRight() {
   const { i18n } = useTranslation();
@@ -12,7 +12,7 @@ function SubNavbarRight() {
     if (selectedLanguage === "English") {
       i18n.changeLanguage("en");
       localStorage.setItem("language", "en");
-    } else if (selectedLanguage === "Bangla") {
+    } else if (selectedLanguage === "বাংলা") {
       i18n.changeLanguage("bn");
       localStorage.setItem("language", "bn");
     }

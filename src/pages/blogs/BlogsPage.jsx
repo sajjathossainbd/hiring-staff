@@ -7,6 +7,7 @@ import BlogCard from "../../components/shared/blogs/BlogCard";
 import { Helmet } from "react-helmet-async";
 import TinnyBanner from "../../components/shared/TinnyBanner";
 import { CardPagination } from "../../components/shared/CardPagination";
+import { ScrollRestoration } from "react-router-dom";
 
 function BlogsPage() {
   const dispatch = useDispatch();
@@ -83,6 +84,7 @@ function BlogsPage() {
             onPageChange={setPage} // Directly set the page number
           />
         )}
+        <ScrollRestoration />
       </div>
     </>
   );

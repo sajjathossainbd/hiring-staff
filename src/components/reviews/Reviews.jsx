@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 import { Trans, useTranslation } from "react-i18next";
 import ReviewForm from "./ReviewForm";
 import Lottie from "lottie-react";
-import reviewImg from "./../../../public/review-2.json";
+import reviewImg from "./../../../public/review-3.json";
 
 const reviews = () => {
   const { t } = useTranslation();

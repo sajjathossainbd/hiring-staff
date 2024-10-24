@@ -1,13 +1,14 @@
 import SearchByFilter from "../../shared/SearchByFilter";
 import PopularSearch from "./PopularSearch";
-import bannerImg from "../../../assets/home/banner/banner03.svg";
 import BannerCountDown from "./BannerCountDown";
 import TodayNewJobs from "../jobs/TodayNewJobs";
+import UpDownDrawLine from "./../../../../public/up-down-draw-line.json";
+import BannerImg from "./../../../../public/banner1.json";
 import { Trans, useTranslation } from "react-i18next";
-
+import Lottie from "lottie-react";
 
 const Banner = () => {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
   return (
     <section className="dark:bg-darkBlue px-4 lg:pb-10">
       <div className="container pt-0">
@@ -18,17 +19,15 @@ const Banner = () => {
             <div className="">
               <h2 className="lg:leading-[58px] md:leading-[50px] sm:leading-10 relative">
                 <div className="absolute xl:flex hidden w-44 bottom-10 left-[82px]">
-                  {/* <Lottie animationData={UpDownDrawLine}></Lottie> */}
+                  <Lottie animationData={UpDownDrawLine}></Lottie>
                 </div>
                 <Trans i18nKey="home_hero_title">
                   The <span className="text-blue">Easiest</span> Way To Get{" "}
                   <br /> Your New Job.
                 </Trans>
               </h2>
-             
-              <p className="text-18 mt-8">
-              {t("home_hero_subTitile")}
-              </p>
+
+              <p className="text-18 mt-8">{t("home_hero_subTitile")}</p>
             </div>
             {/* search by filter jobs*/}
             <SearchByFilter />
@@ -37,11 +36,9 @@ const Banner = () => {
           </div>
           {/* Banner Right - Image */}
           <div className="lg:w-1/2 md:w-2/4 w-10/12 flex justify-center">
-            <img
-              className="h-full object-cover ml-auto animate-updown"
-              src={bannerImg}
-              alt=""
-            />
+            <div className="object-cover">
+              <Lottie animationData={BannerImg}></Lottie>
+            </div>
           </div>
         </div>
       </div>

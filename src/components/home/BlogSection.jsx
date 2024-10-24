@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useDispatch, useSelector } from "react-redux";
 import SectionTitle from "../shared/SectionTitle";
 import { useEffect } from "react";
@@ -25,6 +26,8 @@ const BlogSection = () => {
   }, [dispatch]);
 
   const blogsData = blogs?.blogs?.slice(0, 3) || [];
+
+  console.log(blogsData);
 
   let content = null;
 

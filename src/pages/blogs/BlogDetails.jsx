@@ -17,6 +17,16 @@ function Blogblog() {
     error,
   } = useSelector((state) => state.blogDetails);
 
+  const {
+    url,
+    title,
+    date_published,
+    tags,
+    category,
+    short_description,
+    content: articleBody = [],
+  } = blog || {};
+
   useEffect(() => {
     dispatch(fetchBlogDetails(id));
   }, [dispatch, id]);
@@ -60,14 +70,16 @@ function Blogblog() {
                 src="https://secure.gravatar.com/avatar/bb00cf69a3ae5d10043a9e2d3db9b173?s=64&d=mm&r=g"
                 alt=""
               />
-              <h5 className="text-14 ml-2">{blog?.author}</h5>
+              <h5 className="text-14 ml-2">Admin</h5>
             </div>
             <p className="text-12">
               <span className="font-semibold">Published: </span>
-              {blog?.date_published}
+              {date_published}
             </p>
           </div>
-          <p className="border-b-2 border-lightGray pb-8">{blog?.content}</p>
+          <p className="border-b-2 border-lightGray pb-8">
+            {short_description}
+          </p>
         </div>
         <BlogCommentSection />
       </div>

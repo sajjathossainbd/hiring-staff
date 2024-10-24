@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import axiosInstance from "../../utils/axios";
 import toast from "react-hot-toast";
-import useCurrentCandidate from "../../hooks/useCurrentRecruiter";
+import useCurrentCandidate from "../../hooks/useCurrentCandidate";
 
 function ApplyJob({ job, onClose }) {
   const {
@@ -12,6 +12,9 @@ function ApplyJob({ job, onClose }) {
     formState: { errors },
   } = useForm();
   const { currentCandidate } = useCurrentCandidate();
+
+
+
   const { _id: jobId, jobTitle, company_email, company_id } = job;
 
   const onSubmit = async (data) => {
@@ -60,11 +63,11 @@ function ApplyJob({ job, onClose }) {
             })}
             className="w-full p-3 rounded-md focus:outline-none bg-lightText"
             rows="4"
-            placeholder={`${currentCandidate.name}, Your cover letter`}
+            placeholder={`${currentCandidate?.name}, Your cover letter`}
           ></textarea>
-          {errors.coverLetter && (
+          {errors?.coverLetter && (
             <p className="text-red-500 text-sm mt-1">
-              {errors.coverLetter.message}
+              {errors?.coverLetter.message}
             </p>
           )}
         </div>

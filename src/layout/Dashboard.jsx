@@ -26,7 +26,6 @@ const Dashboard = () => {
   const { currentCandidate } = useCurrentCandidate()
   const { currentRecruiter } = useCurrentRecruiter()
 
-  console.log(currentCandidate);
 
   return (
     <div className="flex lg:flex-row flex-col inter">
@@ -47,7 +46,7 @@ const Dashboard = () => {
           </div>
           <div className="drawer-side">
             <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-            <ul className="menu inter p-4 w-64 h-full dark:bg-darkBlue bg-white text-black fixed lg:relative top-0 lg:overflow-y-auto overflow-y-hidden font-bold space-y-2">
+            <ul className="menu inter p-4 w-64 xl:h-fit lg:h-fit md:h-full h-full dark:bg-darkBlue bg-white text-black fixed lg:relative top-0 lg:overflow-y-auto overflow-y-hidden font-bold space-y-2">
               {/* Logo Section */}
               <div className="flex items-center justify-center my-6">
                 <Link to={"/"} className="flex items-center gap-1">

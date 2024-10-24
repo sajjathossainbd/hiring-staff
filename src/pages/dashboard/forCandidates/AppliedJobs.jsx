@@ -11,6 +11,7 @@ import { CardPagination } from "../../../components/shared/CardPagination";
 import useCurrentCandidate from "../../../hooks/useCurrentCandidate";
 
 const AppliedJobs = () => {
+
   const { currentCandidate } = useCurrentCandidate();
   const userId = currentCandidate?._id;
   const navigate = useNavigate();
@@ -33,6 +34,8 @@ const AppliedJobs = () => {
     queryFn: () => fetchAppliedJobs(page, limit),
     enabled: !!userId,
   });
+
+  console.log(appliedJobs);
 
   const handleDelete = async (id) => {
     Swal.fire({
@@ -76,6 +79,7 @@ const AppliedJobs = () => {
       </>
     );
   }
+  console.log(appliedJobs)
 
   return (
     <div>
@@ -94,11 +98,6 @@ const AppliedJobs = () => {
                     </span>
                   </div>
                 </div>
-                <Link to={`/job-details/${job?._id}`}>
-                  <button className="btn rounded-full text-blue hover:text-white hover:bg-blue">
-                    <FaRegEye />
-                  </button>
-                </Link>
               </div>
             </div>
 
@@ -113,7 +112,7 @@ const AppliedJobs = () => {
               </div>
 
               <div className="flex space-x-4 text-gray">
-                <Link to={`/job-details/${job?._id}`}>
+                <Link to={`/job-details/${job?.jobId}`}>
                   <button className="btn rounded-full text-blue hover:text-white hover:bg-blue">
                     <FaRegEye />
                   </button>

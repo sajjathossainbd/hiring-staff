@@ -26,6 +26,7 @@ const SelectedJobs = () => {
     },
     enabled: !!currentCandidate?.email,
   });
+  console.log(currentCandidate);
 
   if (!selectedJobsData || selectedJobsData.selectedJobs.length === 0) {
     return (
@@ -51,7 +52,7 @@ const SelectedJobs = () => {
       />
 
       <div className="grid gap-3 grid-cols-1 md:grid-cols-2 mt-6">
-        {selectedJobs.map((job, idx) => (
+        {selectedJobs?.map((job, idx) => (
           <div
             key={idx}
             className="shadow-md bg-bgLightBlue hover:-translate-y-1 duration-200 rounded-lg p-6 overflow-auto cursor-pointer"

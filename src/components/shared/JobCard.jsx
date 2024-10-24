@@ -4,7 +4,6 @@ import { WiTime7 } from "react-icons/wi";
 import SecondaryButton from "./SecondaryButton";
 import { Link } from "react-router-dom";
 import { CiLocationOn } from "react-icons/ci";
-import { CiBadgeDollar } from "react-icons/ci";
 import MiniBtn from "../ui/MiniBtn";
 import { GoArrowRight } from "react-icons/go";
 import { LiaBuffer } from "react-icons/lia";

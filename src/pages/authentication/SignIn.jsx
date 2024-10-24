@@ -189,14 +189,14 @@ const SignIn = () => {
               </button>
               <button
                 className="border-2 border-blue text-blue font-semibold py-1 px-4"
-                onClick={() => handleRoleLogin("recruiter")}
+                onClick={() => handleRoleLogin("Programming Hero")}
               >
                 Recruiter Login
               </button>
             </div>
             <button
               className="border-2 border-blue text-blue font-semibold py-1 px-4"
-              onClick={() => handleRoleLogin("candidate")}
+              onClick={() => handleRoleLogin("Jake")}
             >
               Candidates Login
             </button>

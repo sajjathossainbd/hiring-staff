@@ -16,9 +16,6 @@ const useCurrentCandidate = () => {
     enabled: !!user?.email,
   });
 
-
-  console.log(currentCandidate);
-
   return { currentCandidate, refetch };
 };
 

@@ -98,12 +98,10 @@ const PrivacyAndPolicy = () => {
         {policies.map((pol, index) => (
           <div key={index} className="pb-10">
             {/* Section heading */}
-            <h2>
-              {pol.section}
-            </h2>
+            <h3>{pol.section}</h3>
 
             {/* Section description */}
-            <p className="pb-2 mt-4">{pol.description}</p>
+            <p className="pb-4 pt-2">{pol.description}</p>
 
             {/* List of content items, if present */}
             {pol?.content && (

@@ -1,5 +1,5 @@
 import TinnyHeading from "../shared/TinnyHeading";
-import { FaArrowRight, FaRegEye } from "react-icons/fa6";
+import { FaRegEye } from "react-icons/fa6";
 import { CiMail } from "react-icons/ci";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import axiosInstance from "../../../utils/axios";
@@ -58,7 +58,6 @@ const ManageJob = () => {
             <thead>
               <tr className="text-base dark:text-white">
                 <th>Title</th>
-                <th>Applications</th>
                 <th>Created & Expired</th>
                 <th>Details</th>
                 <th>Action</th>
@@ -81,10 +80,7 @@ const ManageJob = () => {
                     </div>
                   </td>
                   <td>
-                    <span className="text-blue">{job?.appliedCount}</span>
-                  </td>
-                  <td>
-                    {job?.postedDate} <FaArrowRight /> {job?.lastDateToApply}
+                    {job?.postedDate} ={">"} {job?.lastDateToApply}
                   </td>
                   <td>
                     <div className="tooltip" data-tip="View">

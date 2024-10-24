@@ -27,14 +27,12 @@ const CandidatesManagementTable = () => {
     } = useQuery({
         queryKey: ["users", page],
         queryFn: () => fetchUsers(page, limit),
-        enabled: !!page, // Ensure it only runs when page is defined
+        enabled: !!page,
     });
 
     if (isError) return <div>Error loading users.</div>;
     if (isLoading) return <Loading />;
 
-    // Log usersData to debug the structure
-    console.log("Fetched Users Data:", usersData);
 
     // Use optional chaining to avoid errors
     const currentPage = usersData?.currentPage || 1;

@@ -9,12 +9,12 @@ import { CardPagination } from "../shared/CardPagination";
 const RecruiterManagementTable = () => {
     const navigate = useNavigate();
     const { page = 1 } = useParams();
-    const limit = 6;
+    const limit = 100;
 
     // Fetch users with pagination
     const fetchUsers = async (currentPage, limit) => {
         const response = await axiosInstance.get(
-            `/users/recruiters?page=${currentPage}&limit=${limit}`
+            `/recruiters?page=${currentPage}&limit=${limit}`
         );
         return response.data;
     };
@@ -27,7 +27,7 @@ const RecruiterManagementTable = () => {
     } = useQuery({
         queryKey: ["users", page],
         queryFn: () => fetchUsers(page, limit),
-        enabled: !!page, // Ensure it only runs when page is defined
+        enabled: !!page,
     });
 
     if (isError) return <div>Error loading users.</div>;
@@ -52,7 +52,8 @@ const RecruiterManagementTable = () => {
             confirmButtonText: "Yes, delete it!",
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosInstance.delete(`/users/${id}`).then((res) => {
+                axiosInstance.delete(`/recruiters/deleteRecruiter/${id}`).then((res) => {
+                    console.log("Delete Response:", res.data);
                     if (res.data.deletedCount > 0) {
                         Swal.fire("Deleted!", "User has been deleted.", "success");
                         refetch();
@@ -64,7 +65,7 @@ const RecruiterManagementTable = () => {
 
     return (
         <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
-            <h5>Manage Users</h5>
+            <h5>Manage Recruiters</h5>
             <hr className="my-6 text-lightGray" />
             <div className="overflow-x-auto flex flex-col justify-between lg:h-[550px]">
                 <table className="table text-sm">
@@ -77,9 +78,9 @@ const RecruiterManagementTable = () => {
                     </thead>
                     <tbody>
                         {usersData?.recruiters?.length > 0 ? (
-                            usersData.recruiters.map((user) => (
+                            usersData?.recruiters.map((user) => (
                                 <tr key={user._id}>
-                                    <td>{user.name}</td>
+                                    <td>{user?.name}</td>
                                     <td>
                                         <span className="text-blue">{user.email}</span>
                                     </td>

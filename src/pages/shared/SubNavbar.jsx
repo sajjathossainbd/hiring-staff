@@ -4,13 +4,13 @@ import DesktopNavItems from "../../components/navbar/DesktopNavItems";
 import MobileNavItems from "../../components/navbar/MobileNavItems";
 import useAuth from "../../hooks/useAuth";
 import { motion } from "framer-motion";
-import useCurrentUser from "../../hooks/useCurrentUser";
 import { Trans, useTranslation } from "react-i18next";
+import useCurrentCandidate from "../../hooks/useCurrentCandidate";
+import useCurrentRecruiter from "../../hooks/useCurrentRecruiter";
 
 function SubNavbar() {
   const { t } = useTranslation();
   const { user, logOut } = useAuth();
-  const { currentUser } = useCurrentUser();
   const [scrollDirection, setScrollDirection] = useState("up");
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -41,12 +41,15 @@ function SubNavbar() {
     { to: "/blogs", label: <Trans i18nKey={"blogs"} /> },
   ];
 
+  const { currentCandidate } = useCurrentCandidate()
+  const { currentRecruiter } = useCurrentRecruiter()
+
   // Filter nav links based on user role
   const filteredNavLinks = navLinks.filter((link) => {
-    if (currentUser?.role === "candidate" && link.label === "Candidates") {
+    if (currentCandidate && link.label === "Candidates") {
       return false;
     }
-    if (currentUser?.role === "recruiter" && link.label === "Recruiters") {
+    if (currentRecruiter && link.label === "Recruiters") {
       return false;
     }
     return true;

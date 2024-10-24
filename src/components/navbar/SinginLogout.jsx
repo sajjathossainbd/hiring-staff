@@ -1,11 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import useCurrentUser from "../../hooks/useCurrentUser";
 import { PiSignInFill } from "react-icons/pi";
 function SinginLogout() {
   const { user, logOut } = useAuth();
-  const { currentUser } = useCurrentUser();
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -22,6 +20,7 @@ function SinginLogout() {
     };
   }, [dropdownRef]);
 
+
   return (
     <div>
       {user ? (
@@ -37,11 +36,8 @@ function SinginLogout() {
                 <div className="w-30 h-30 rounded-full overflow-hidden flex items-center justify-center">
                   <img
                     className="w-full rounded-full h-full object-cover"
-                    src={`${
-                      currentUser?.image || user?.image
-                        ? currentUser?.image
-                        : "https://i.ibb.co.com/30FCMBq/default-profile.jpg"
-                    }`}
+                    src={user?.
+                      photoURL}
                     alt="User photo"
                   />
                 </div>
@@ -60,15 +56,6 @@ function SinginLogout() {
                   className="justify-between text-16 py-2"
                 >
                   Dashboard
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to={"/dashboard/my-profile"}
-                  className="justify-between text-16 py-2"
-                >
-                  Profile
-                  <span className="badge">New</span>
                 </Link>
               </li>
               <li>

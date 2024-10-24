@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
 
 function Pagination({ totalPages, currentPage, onPageChange }) {

@@ -4,12 +4,11 @@ import TinnyHeading from "../shared/TinnyHeading";
 import { FiSend } from "react-icons/fi";
 import toast from "react-hot-toast";
 import axiosInstance from "../../../utils/axios";
-import useCurrentUser from "../../../hooks/useCurrentUser";
 import SelectField from "../shared/SelectField";
-import { number } from "prop-types";
+import useCurrentRecruiter from "../../../hooks/useCurrentRecruiter";
 
 const PostJob = () => {
-  const { currentUser } = useCurrentUser();
+  const { currentRecruiter } = useCurrentRecruiter();
   const [candidateEmails, setCandidateEmails] = useState();
   // console.log(candidateEmails);
 
@@ -18,8 +17,9 @@ const PostJob = () => {
       setCandidateEmails(res.data.candidateEmails);
     });
   }, []);
+
   const [formData, setFormData] = useState({
-    recruiter_id: currentUser?._id,
+    recruiter_id: currentRecruiter?._id,
     jobTitle: "",
     category: "",
     description: "",
@@ -55,14 +55,21 @@ const PostJob = () => {
     }));
   }, []);
   useEffect(() => {
-    if (currentUser?.email) {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      candidateEmails: candidateEmails,
+    }));
+  }, [candidateEmails]);
+
+  useEffect(() => {
+    if (currentRecruiter?.email) {
       setFormData((prevData) => ({
         ...prevData,
-        company_email: currentUser?.email,
+        company_email: currentRecruiter?.email,
         candidateEmails,
       }));
     }
-  }, [currentUser]);
+  }, [candidateEmails, currentRecruiter]);
 
   const handleAddTags = () => {
     setFormData((prev) => ({
@@ -297,7 +304,6 @@ const PostJob = () => {
                     : "",
                 }))
               }
-              full
               className=" bg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block w-full ps-10 p-2.5 outline-none transition-all duration-500  
           dark:bg-softGreen dark:text-gray dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"
               placeholder="Enter maximum salary"

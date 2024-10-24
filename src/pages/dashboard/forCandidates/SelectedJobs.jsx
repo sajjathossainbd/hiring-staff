@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import useCurrentUser from "../../../hooks/useCurrentUser";
 import axiosInstance from "../../../utils/axios";
 import TinnyHeading from "../shared/TinnyHeading";
 import { FaWarehouse } from "react-icons/fa";
@@ -7,25 +6,27 @@ import NoFoundData from "../../../components/ui/NoFoundData";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CardPagination } from "../../../components/shared/CardPagination";
+import useCurrentCandidate from "../../../hooks/useCurrentCandidate";
 
 const SelectedJobs = () => {
 
   const navigate = useNavigate();
-  const { currentUser } = useCurrentUser();
+  const { currentCandidate } = useCurrentCandidate();
   // eslint-disable-next-line no-unused-vars
   const [page, setPage] = useState(1);
   const limit = 12; // Set your desired number of jobs per page
 
   const { data: selectedJobsData } = useQuery({
-    queryKey: ["selectedJobs", currentUser?.email, page],
+    queryKey: ["selectedJobs", currentCandidate?.email, page],
     queryFn: async () => {
       const res = await axiosInstance.get(
-        `/jobs/applied-jobs/selected/${currentUser?.email}?page=${page}&limit=${limit}`
+        `/jobs/applied-jobs/selected/${currentCandidate?.email}?page=${page}&limit=${limit}`
       );
       return res.data;
     },
-    enabled: !!currentUser?.email,
+    enabled: !!currentCandidate?.email,
   });
+  console.log(currentCandidate);
 
   if (!selectedJobsData || selectedJobsData.selectedJobs.length === 0) {
     return (
@@ -51,7 +52,7 @@ const SelectedJobs = () => {
       />
 
       <div className="grid gap-3 grid-cols-1 md:grid-cols-2 mt-6">
-        {selectedJobs.map((job, idx) => (
+        {selectedJobs?.map((job, idx) => (
           <div
             key={idx}
             className="shadow-md bg-bgLightBlue hover:-translate-y-1 duration-200 rounded-lg p-6 overflow-auto cursor-pointer"

@@ -86,10 +86,12 @@ const PrivacyAndPolicy = () => {
   ];
 
   return (
-    <div className="pt-16 max-w-4xl lg:mx-auto mx-5">
-      <div className="text-center">
-        <h1>Privacy Policy</h1>
-        <p className="">Last Updated: 06 May, 2024</p>
+    <div className="xl:pt-16 lg:pt-12 md:pt-10 pt-7 max-w-4xl mx-auto px-5">
+      <div className="text-center space-y-2">
+        <h2>
+          Privacy Policy
+        </h2>
+        <p>Last Updated: 06 May, 2024</p>
       </div>
 
       <div className="pt-16">
@@ -108,7 +110,9 @@ const PrivacyAndPolicy = () => {
                   const [beforeColon, afterColon] = item.split(":");
                   return (
                     <li key={index}>
-                      <span className="font-semibold">{beforeColon}:</span>{" "}
+                      <span>
+                        {beforeColon}:
+                      </span>{" "}
                       <span>{afterColon}</span>
                     </li>
                   );

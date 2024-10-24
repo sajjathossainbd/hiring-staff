@@ -11,6 +11,7 @@ import { number } from "prop-types";
 const PostJob = () => {
   const { currentUser } = useCurrentUser();
   const [candidateEmails, setCandidateEmails] = useState();
+  // console.log(candidateEmails);
 
   useEffect(() => {
     axiosInstance.get("/users/candidate-emails").then((res) => {
@@ -39,8 +40,9 @@ const PostJob = () => {
     benefits: [],
     appliers: [],
     featured: false,
+    
   });
-  console.log(formData);
+  // console.log(formData);
   const [tag, setTag] = useState("");
   const [responsibilitie, setResponsibilitie] = useState("");
   const [requirement, setRequirement] = useState("");
@@ -56,7 +58,8 @@ const PostJob = () => {
     if (currentUser?.email) {
       setFormData((prevData) => ({
         ...prevData,
-        company_email: currentUser.email,
+        company_email: currentUser?.email,
+        candidateEmails,
       }));
     }
   }, [currentUser]);

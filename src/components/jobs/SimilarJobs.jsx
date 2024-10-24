@@ -4,6 +4,7 @@ import MiniBtn from "../ui/MiniBtn";
 import { IoMdTime } from "react-icons/io";
 import { IoBriefcaseOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { CgCalendarDates } from "react-icons/cg";
 
 function SimilarJobs({ job }) {
   const { _id, jobTitle, category, job_type, job_location, lastDateToApply } =
@@ -12,11 +13,19 @@ function SimilarJobs({ job }) {
   // Last date to apply
   const startDate = new Date(lastDateToApply);
   const currentDate = new Date();
+  const differenceInTime = startDate - currentDate;
 
-  const differenceInTime = currentDate.getTime() - startDate.getTime();
-
-  const differenceInDays = Math.ceil(differenceInTime / (1000 * 3600 * 24));
-
+  const differenceInDays = Math.ceil(differenceInTime / (1000 * 60 * 60 * 24));
+  const result =
+    differenceInDays < 0 ? (
+      <div className="flex gap-2 items-center">
+        <CgCalendarDates /> Expired
+      </div>
+    ) : (
+      <div className="flex gap-2 items-center">
+        <CgCalendarDates /> {differenceInDays} Days Left
+      </div>
+    );
   // data formate
   function formatDate(dateString) {
     const date = new Date(dateString);
@@ -54,9 +63,10 @@ function SimilarJobs({ job }) {
               <div className="text-14">
                 <IoMdTime />
               </div>
+              {/* how many days left */}
               <div className="flex items-center gap-2 text-12">
                 {formattedDate}
-                <p className="text-red-600"> ({differenceInDays} days Left)</p>
+                <p className="text-red-600"> {result}</p>
               </div>
             </div>
           </div>

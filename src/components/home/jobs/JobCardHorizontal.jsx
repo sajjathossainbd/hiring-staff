@@ -1,21 +1,38 @@
 import { IoBriefcaseOutline } from "react-icons/io5";
 import MiniBtn from "../../ui/MiniBtn";
-import { MdOutlineDateRange } from "react-icons/md";
 import { Link } from "react-router-dom";
 import BookmarkBtn from "../../ui/BookmarkBtn";
 import SecondaryButton from "../../shared/SecondaryButton";
 import { GoArrowRight } from "react-icons/go";
+import { TbCoinTaka } from "react-icons/tb";
+import { CgCalendarDates } from "react-icons/cg";
 
 // eslint-disable-next-line react/prop-types
 function JobCardHorizontal({ job, recruiterLogo }) {
-  const { _id, jobTitle, job_type, salary_range, postedDate } = job || {};
-  const calculateDaysRemaining = (postedDate) => {
-    const now = new Date();
-    const posted = new Date(postedDate);
-    const timeDiff = posted - now;
-    const daysRemaining = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-    return daysRemaining > 0 ? `${daysRemaining} Days Remaining` : "Expired";
-  };
+  const { _id, jobTitle, job_type, max_salary, min_salary, lastDateToApply } =
+    job || {};
+  // const calculateDaysRemaining = (postedDate) => {
+  //   const now = new Date();
+  //   const posted = new Date(postedDate);
+  //   const timeDiff = posted - now;
+  //   const daysRemaining = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+  //   return daysRemaining > 0 ? `${daysRemaining} Days Remaining` : "Expired";
+  // };
+  const posted = new Date(lastDateToApply);
+  const now = new Date();
+  const timeDiff = posted - now;
+  console.log(timeDiff);
+  const differenceInDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+  const result =
+    differenceInDays < 0 ? (
+      <div className="flex gap-2 items-center">
+        <CgCalendarDates /> Expired
+      </div>
+    ) : (
+      <div className="flex gap-2 items-center">
+        <CgCalendarDates /> {differenceInDays} Days Left
+      </div>
+    );
   return (
     <div className="boxBorderHoverBlue p-3 rounded-lg flex flex-col md:flex-row lg:flex-row justify-between items-center bg-white">
       <div className="flex flex-col md:flex-row lg:flex-row items-center gap-5">
@@ -32,17 +49,14 @@ function JobCardHorizontal({ job, recruiterLogo }) {
             />
           </div>
           {/* location, price, date */}
-          <div className="flex lg:flex-row flex-col lg:gap-4 mt-3">
-            <MiniBtn
-              value={salary_range}
-              icon={<IoBriefcaseOutline />}
-              style="text-18"
-            />
-            <MiniBtn
-              value={`${calculateDaysRemaining(postedDate)}`}
-              icon={<MdOutlineDateRange />}
-              style="text-18"
-            />
+          <div className="flex lg:flex-row items-center flex-col lg:gap-4 mt-3">
+            <div className="flex gap-1 items-center">
+              <TbCoinTaka />
+              <p className="text-14">
+                {min_salary} - {max_salary}
+              </p>
+            </div>
+            <p>{result}</p>
           </div>
         </div>
       </div>

@@ -103,28 +103,24 @@ const TermsAndConditions = () => {
   ];
 
   return (
-    <div className="pt-16 max-w-4xl mx-auto">
+    <div className="pt-16 max-w-4xl lg:mx-auto mx-5">
       <div className="text-center">
-        <h1 className="font-semibold text-[62px] leading-heading tracking-heading">
-          Terms & Conditions
-        </h1>
+        <h2>Terms & Conditions</h2>
         <p className="">Last Updated: 06 May, 2024</p>
       </div>
 
       <div className="pt-16">
         {terms.map((term, index) => (
           <div key={index} className="pb-10">
-            <h1 className="text-[42px] font-semibold leading-subHeading tracking-subHeading">
-              {term.section}
-            </h1>
+            <h3>{term.section}</h3>
 
-            <p className=" text-lg pb-4 pt-2">{term.description}</p>
+            <p className="pb-4 pt-2">{term.description}</p>
 
             {term.content && (
               <ul className="flex flex-col gap-2">
                 {term.content.map((item, index) => (
                   <li key={index}>
-                    <span className=" text-lg">{item}</span>
+                    <span>{item}</span>
                   </li>
                 ))}
               </ul>

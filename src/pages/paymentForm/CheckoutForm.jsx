@@ -6,16 +6,16 @@ import Swal from "sweetalert2";
 import axiosInstance from "../../utils/axios";
 
 const CheckoutForm = ({ price, category }) => {
-
   const stripe = useStripe();
   const elements = useElements();
   const { currentUser } = useCurrentUser();
   const [clientSecret, setClientSecret] = useState("");
   const [error, setError] = useState("");
   const [existPlan, setExistPlan] = useState(false);
+  const [loading, setLoading] = useState(false); // Loading state
 
   useEffect(() => {
-    if (currentUser?.plan == category) {
+    if (currentUser?.plan === category) {
       setExistPlan(true);
     }
   }, [category, currentUser?.plan]);
@@ -55,6 +55,8 @@ const CheckoutForm = ({ price, category }) => {
       return;
     }
 
+    setLoading(true); // Start loading
+
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card,
@@ -66,6 +68,7 @@ const CheckoutForm = ({ price, category }) => {
 
     if (error) {
       setError(error.message);
+      setLoading(false); // Stop loading
       return;
     } else {
       setError("");
@@ -78,6 +81,7 @@ const CheckoutForm = ({ price, category }) => {
 
     if (confirmError) {
       setError(confirmError.message);
+      setLoading(false); // Stop loading
     } else if (paymentIntent.status === "succeeded") {
       const paymentDetails = {
         name: currentUser.name,
@@ -102,8 +106,9 @@ const CheckoutForm = ({ price, category }) => {
             text: "Your payment was successful!",
             icon: "success",
           });
-
           elements.getElement(CardElement).clear();
+          setExistPlan(false); // Reset existPlan to allow further payments
+          setClientSecret(""); // Reset clientSecret for future payments
         } else if (res.data.error) {
           Swal.fire({
             title: "Payment Failed",
@@ -114,6 +119,8 @@ const CheckoutForm = ({ price, category }) => {
       } catch (error) {
         setError("You already have a plan in this category.");
         console.log(error);
+      } finally {
+        setLoading(false); // Stop loading after payment completes
       }
     }
   };
@@ -136,12 +143,12 @@ const CheckoutForm = ({ price, category }) => {
       </div>
       <button
         className={`w-full py-3 px-6 text-white bg-gradient-to-r from-blue to-purple-500 rounded-lg hover:from-blue-500 hover:to-purple-400 transition-transform transform hover:scale-105 disabled:opacity-50 ${
-          existPlan ? "hover:scale-100" : ""
+          existPlan || loading ? "hover:scale-100" : ""
         }`}
         type="submit"
-        disabled={!stripe || !clientSecret || existPlan}
+        disabled={!stripe || !clientSecret || existPlan || loading} // Disable button while loading or if plan exists
       >
-        Pay ${price}
+        {loading ? "Processing..." : `Pay $${price}`}
       </button>
       {error && <p className="text-sm text-red-600 my-2">{error}</p>}
     </form>

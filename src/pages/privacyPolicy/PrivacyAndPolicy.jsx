@@ -86,11 +86,9 @@ const PrivacyAndPolicy = () => {
   ];
 
   return (
-    <div className="pt-16 max-w-4xl mx-auto">
+    <div className="pt-16 max-w-4xl lg:mx-auto mx-5">
       <div className="text-center">
-        <h1 className="font-semibold text-[62px] leading-heading tracking-heading">
-          Privacy Policy
-        </h1>
+        <h1>Privacy Policy</h1>
         <p className="">Last Updated: 06 May, 2024</p>
       </div>
 
@@ -98,12 +96,10 @@ const PrivacyAndPolicy = () => {
         {policies.map((pol, index) => (
           <div key={index} className="pb-10">
             {/* Section heading */}
-            <h1 className="text-[42px] font-semibold leading-subHeading tracking-subHeading">
-              {pol.section}
-            </h1>
+            <h3>{pol.section}</h3>
 
             {/* Section description */}
-            <p className=" text-lg pb-4 pt-2">{pol.description}</p>
+            <p className="pb-4 pt-2">{pol.description}</p>
 
             {/* List of content items, if present */}
             {pol?.content && (
@@ -112,10 +108,8 @@ const PrivacyAndPolicy = () => {
                   const [beforeColon, afterColon] = item.split(":");
                   return (
                     <li key={index}>
-                      <span className="font-semibold text-lg">
-                        {beforeColon}:
-                      </span>{" "}
-                      <span className=" text-lg">{afterColon}</span>
+                      <span className="font-semibold">{beforeColon}:</span>{" "}
+                      <span>{afterColon}</span>
                     </li>
                   );
                 })}

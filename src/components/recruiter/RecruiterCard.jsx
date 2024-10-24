@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import MiniBtn from "../ui/MiniBtn";
 import { CiLocationOn, CiMoneyBill } from "react-icons/ci";
 import { MdOutlineVerified } from "react-icons/md";
-import { HiOutlineBriefcase } from "react-icons/hi";
 import { RiNumbersLine } from "react-icons/ri";
 import StarRatings from "react-star-ratings";
 import SecondaryButton from "../shared/SecondaryButton";
@@ -24,6 +23,7 @@ const RecruiterCard = ({ recruiter }) => {
     ratingsNumbers,
     location,
   } = recruiter || {};
+
 
   return (
     <div className="boxBorderHoverBlue  overflow-hidden hover:bg-[white]  bg-bgLightBlue dark:bg-darkBlue">
@@ -52,11 +52,11 @@ const RecruiterCard = ({ recruiter }) => {
               icon={<CiLocationOn />}
               style="bg-softGreen text-green"
             />
-            <MiniBtn
+            {/* <MiniBtn
               value={`4 Open Job`}
               icon={<HiOutlineBriefcase />}
               style="bg-softGreen text-blue"
-            />
+            /> */}
           </div>
 
           {/* Rating */}

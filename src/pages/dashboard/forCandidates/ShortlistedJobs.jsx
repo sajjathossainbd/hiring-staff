@@ -1,30 +1,30 @@
 import { useState } from "react";
 import { FaWarehouse } from "react-icons/fa6";
 import TinnyHeading from "../shared/TinnyHeading";
-import useCurrentUser from "../../../hooks/useCurrentUser";
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../../utils/axios";
 import NoFoundData from "../../../components/ui/NoFoundData";
 import { CardPagination } from "../../../components/shared/CardPagination";
 import { useNavigate } from "react-router-dom";
+import useCurrentCandidate from "../../../hooks/useCurrentCandidate";
 
 const ShortlistedJobs = () => {
 
   const navigate = useNavigate();
-  const { currentUser } = useCurrentUser();
+  const { currentCandidate } = useCurrentCandidate();
   // eslint-disable-next-line no-unused-vars
   const [page, setPage] = useState(1); // State for current page
   const limit = 12; // Number of jobs per page
 
   const { data: shortlistAppliedJobs } = useQuery({
-    queryKey: ["shortlistAppliedJobs", currentUser?.email, page],
+    queryKey: ["shortlistAppliedJobs", currentCandidate?.email, page],
     queryFn: async () => {
       const res = await axiosInstance.get(
-        `/jobs/applied-jobs/shortlist/approved/${currentUser?.email}?page=${page}&limit=${limit}`
+        `/jobs/applied-jobs/shortlist/approved/${currentCandidate?.email}?page=${page}&limit=${limit}`
       );
       return res.data;
     },
-    enabled: !!currentUser?.email,
+    enabled: !!currentCandidate?.email,
   });
 
   if (shortlistAppliedJobs?.jobs?.length === 0 || shortlistAppliedJobs === undefined) {

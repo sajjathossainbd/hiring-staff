@@ -11,13 +11,13 @@ import axiosInstance from "../../../utils/axios";
 
 const AdminAnalytics = () => {
 
-    const { data: users, } = useQuery({
-        queryKey: ['users'],
-        queryFn: async () => {
-            const res = await axiosInstance.get("/users");
-            return res.data;
-        },
-    });
+    // const { data: users, } = useQuery({
+    //     queryKey: ['users'],
+    //     queryFn: async () => {
+    //         const res = await axiosInstance.get("/users");
+    //         return res.data;
+    //     },
+    // });
 
     const { data: jobs, } = useQuery({
         queryKey: ['jobs'],
@@ -62,14 +62,14 @@ const AdminAnalytics = () => {
 
             <div
                 className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5">
-                <DashboardCard logo={<FaUsers />} title={'Total Users'} quantity={users?.users.length} />
+                {/* <DashboardCard logo={<FaUsers />} title={'Total Users'} quantity={users?.users.length} /> */}
                 <DashboardCard logo={<IoBagRemoveOutline />} title={'Total Jobs'} quantity={jobs?.totalJobs} />
                 <DashboardCard logo={<VscGitStashApply />} title={'Total Applications'} quantity={appliedJobs?.length} />
                 <DashboardCard logo={<FaRegAddressBook />} title={'Total Recruiters'} quantity={recruiters?.recruiters.length} />
                 <DashboardCard logo={<MdPlaylistAddCheck />} title={'Total Shortlisted'} quantity={shortlisted?.length} />
             </div>
             <AreaCharts
-                UsersQuantity={users?.users.length}
+                // UsersQuantity={users?.users.length}
                 totalJobsQuantity={jobs?.totalJobs}
                 applicationsQuantity={appliedJobs?.length}
                 recruitersQuantity={recruiters?.recruiters.length}

@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import useCurrentUser from "../../../hooks/useCurrentUser";
 import axiosInstance from "../../../utils/axios";
 import TinnyHeading from "../shared/TinnyHeading";
 import DashboardCard from "../shared/DashboardCard";
@@ -8,40 +7,41 @@ import { MdPlaylistAddCheck } from "react-icons/md";
 import { VscGitStashApply } from "react-icons/vsc";
 import { SiImessage } from "react-icons/si";
 import StackedBarChart from "../../../components/dashboard/StackedBarChart";
+import useCurrentRecruiter from "../../../hooks/useCurrentRecruiter";
 
 const RecruitersAnalytics = () => {
 
-    const { currentUser } = useCurrentUser();
+    const { currentRecruiter } = useCurrentRecruiter();
 
     const { data: myJobs } = useQuery({
-        queryKey: ["myJobs", currentUser?.email],
+        queryKey: ["myJobs", currentRecruiter?.email],
         queryFn: async () => {
-            const res = await axiosInstance.get(`/jobs/email/${currentUser.email}`);
+            const res = await axiosInstance.get(`/jobs/email/${currentRecruiter.email}`);
             return res.data;
         },
-        enabled: !!currentUser?.email,
+        enabled: !!currentRecruiter?.email,
     });
 
     const { data: allAppliedJobs } = useQuery({
-        queryKey: ["allAppliedJobs", currentUser?.email],
+        queryKey: ["allAppliedJobs", currentRecruiter?.email],
         queryFn: async () => {
             const res = await axiosInstance.get(
-                `/jobs/applied-jobs/email/${currentUser.email}`
+                `/jobs/applied-jobs/email/${currentRecruiter.email}`
             );
             return res.data;
         },
-        enabled: !!currentUser?.email,
+        enabled: !!currentRecruiter?.email,
     });
 
     const { data: allShortlistAppliedJobs } = useQuery({
-        queryKey: ["allShortlistAppliedJobs", currentUser?.email],
+        queryKey: ["allShortlistAppliedJobs", currentRecruiter?.email],
         queryFn: async () => {
             const res = await axiosInstance.get(
-                `/jobs/applied-jobs/email/shortlist/${currentUser?.email}`
+                `/jobs/applied-jobs/email/shortlist/${currentRecruiter?.email}`
             );
             return res.data;
         },
-        enabled: !!currentUser?.email,
+        enabled: !!currentRecruiter?.email,
     });
 
 

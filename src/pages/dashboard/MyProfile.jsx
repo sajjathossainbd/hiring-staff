@@ -1,47 +1,51 @@
 import { BsFillSendFill } from "react-icons/bs";
 import PrimaryButton from "./../../components/shared/PrimaryButton";
-import useCurrentUser from "../../hooks/useCurrentUser";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import axiosInstance from "../../utils/axios";
+import { useQuery } from "@tanstack/react-query";
 
 const MyProfile = () => {
-  const { currentUser, refetch } = useCurrentUser();
   const { user } = useAuth();
+
+  const { data: currentCandidate, refetch } = useQuery({
+    queryKey: ['currentCandidate', user?.email],
+    queryFn: async () => {
+      const res = await axiosInstance.get(`/candidates/currentCandidate/${user?.email}`);
+      return res.data;
+    },
+    enabled: !!user?.email,
+  });
+
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
+
     const updatedData = {
-      role: data.role || currentUser?.role,
-      first_name: data.first_name || currentUser?.first_name,
-      last_name: data.last_name || currentUser?.last_name,
-      email: currentUser?.email, // Email should be fetched from currentUser
-      special_profession: data.special_profession || currentUser?.special_profession,
-      experience_year: data.experience_year || currentUser?.experience_year,
-      coverImage: data.coverImageUrl || currentUser?.coverImage,
-      phone_number: data.phone_number || currentUser?.phone_number,
-      image: data.image || currentUser?.photo_url,
-      resume: data.resume || currentUser?.resume,
-      cover_letter: data.cover_letter || currentUser?.cover_letter,
-      skills: data.skills.split(",").map(skill => skill.trim()) || currentUser?.skills,
-      education: currentUser?.education, // Assuming education remains unchanged
-      company_experience: currentUser?.company_experience, // Assuming company experience remains unchanged
-      certifications: currentUser?.certifications, // Assuming certifications remain unchanged
+
+      first_name: data.first_name || currentCandidate?.first_name,
+      last_name: data.last_name || currentCandidate?.last_name,
+      email: currentCandidate?.email,
+      special_profession: data.special_profession || currentCandidate?.special_profession,
+      experience_year: data.experience_year || currentCandidate?.experience_year,
+      phone_number: data.phone_number || currentCandidate?.phone_number,
+      image: data.image || currentCandidate?.photo_url,
+      resume: data.resume || currentCandidate?.resume,
+      cover_letter: data.cover_letter || currentCandidate?.cover_letter,
+      skills: data.skills.split(",").map(skill => skill.trim()) || currentCandidate?.skills,
       location: {
-        city: data.city || currentUser?.location?.city,
-        state: data.state || currentUser?.location?.state,
-        country: data.country || currentUser?.location?.country,
+        city: data.city || currentCandidate?.location?.city,
+        state: data.state || currentCandidate?.location?.state,
+        country: data.country || currentCandidate?.location?.country,
       },
-      about_me: data.about_me || currentUser?.about_me,
-      job_type: data.job_type || currentUser?.job_type,
+      about_me: data.about_me || currentCandidate?.about_me,
+      job_type: data.job_type || currentCandidate?.job_type,
+
     };
 
     try {
-      const res = await axiosInstance.patch(
-        `/users/profile/${currentUser.email}`,
-        updatedData
-      );
+      const res = await axiosInstance.patch(`/candidates/profile/${currentCandidate?.email}`, updatedData);
       if (res.data.modifiedCount > 0) {
         toast.success("Your data has been updated");
         refetch();
@@ -52,21 +56,26 @@ const MyProfile = () => {
       console.error(error);
       toast.error("Failed to update profile");
     }
+
   };
+
+  if (!currentCandidate) return <div>Loading...</div>;
 
   return (
     <div>
       <h3>Candidate Profile</h3>
-
       <div className="mt-6">
         <div className="flex flex-col items-center">
-          <div className="relative w-full h-36 md:h-44 lg:h-60 xl:h-72 bg-cover bg-center border-[7px] border-white rounded-xl" style={{ backgroundImage: `url(${currentUser?.coverImage || 'https://i.ibb.co.com/mBcjQj6/download-1.jpg'})` }}>
+          <div
+            className="relative w-full h-36 md:h-44 lg:h-60 xl:h-72 bg-cover bg-center border-[7px] border-white rounded-xl"
+            style={{ backgroundImage: `url(${currentCandidate?.coverImage || 'https://i.ibb.co.com/mBcjQj6/download-1.jpg'})` }}
+          >
             <div className="absolute inset-0 bg-black opacity-40 rounded-xl"></div>
           </div>
 
           <div className="mt-[-40px] lg:mt-[-100px] md:mt-[-70px] -left-20 z-50">
             <img
-              src={currentUser?.image || user?.photoURL}
+              src={currentCandidate?.image || user?.photoURL}
               alt="Profile Photo"
               className="rounded-full xl:h-52 lg:h-44 md:h-32 h-20 xl:w-52 lg:w-44 md:w-32 w-20 object-cover border-[7px] border-white"
             />
@@ -79,27 +88,20 @@ const MyProfile = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div className="mb-4">
-                <label htmlFor="role" className="block text-gray-700 font-bold mb-2">
-                  My Role:
-                </label>
-                <select
-                  value={currentUser?.role || ''}
-                  disabled={currentUser.role === 'admin'}
-                  id="role"
-                  {...register("role")}
+                <label htmlFor="role" className="block text-gray-700 font-bold mb-2">My Role:</label>
+                <input
+                  id="first_name"
+                  type="text"
+                  disabled
+                  placeholder={"Candidate"}
                   className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
-                >
-                  <option disabled>Select role</option>
-                  <option value="admin">Admin</option>
-                  <option value="candidate">Candidate</option>
-                  <option value="recruiter">Recruiter</option>
-                </select>
+                />
               </div>
 
               <div className="mb-4">
                 <label htmlFor="job_type" className="block text-gray-700 font-bold mb-2">Job Type</label>
                 <select
-                  defaultValue={currentUser?.job_type || "remote"}
+                  defaultValue={currentCandidate?.job_type || "remote"}
                   id="job_type"
                   {...register("job_type")}
                   className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
@@ -117,7 +119,7 @@ const MyProfile = () => {
                 <input
                   id="first_name"
                   type="text"
-                  placeholder={currentUser?.first_name}
+                  placeholder={currentCandidate?.first_name}
                   {...register("first_name")}
                   className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
                 />
@@ -127,7 +129,7 @@ const MyProfile = () => {
                 <input
                   id="last_name"
                   type="text"
-                  placeholder={currentUser?.last_name}
+                  placeholder={currentCandidate?.last_name}
                   {...register("last_name")}
                   className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
                 />
@@ -141,7 +143,7 @@ const MyProfile = () => {
                   disabled
                   id="email"
                   type="email"
-                  value={currentUser?.email}
+                  value={currentCandidate?.email}
                   className="w-full px-4 py-3 border border-gray-300 bg-gray-100 text-gray-500 text-md rounded-md shadow-sm"
                 />
               </div>
@@ -151,7 +153,7 @@ const MyProfile = () => {
                 <input
                   id="special_profession"
                   type="text"
-                  placeholder={currentUser?.special_profession}
+                  placeholder={currentCandidate?.special_profession}
                   {...register("special_profession")}
                   className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
                 />
@@ -164,7 +166,7 @@ const MyProfile = () => {
                 <input
                   id="experience_year"
                   type="number"
-                  placeholder={currentUser?.experience_year}
+                  placeholder={currentCandidate?.experience_year}
                   {...register("experience_year")}
                   className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
                 />
@@ -175,7 +177,7 @@ const MyProfile = () => {
                 <input
                   id="phone_number"
                   type="tel"
-                  placeholder={currentUser?.phone_number}
+                  placeholder={currentCandidate?.phone_number}
                   {...register("phone_number")}
                   className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
                 />
@@ -188,7 +190,7 @@ const MyProfile = () => {
                 <input
                   id="photo_url"
                   type="url"
-                  placeholder={currentUser?.image}
+                  placeholder={currentCandidate?.photo_url}
                   {...register("image")}
                   className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
                 />
@@ -199,8 +201,8 @@ const MyProfile = () => {
                 <input
                   id="imageUrl"
                   type="url"
-                  placeholder={currentUser?.coverImage}
-                  {...register("coverImageUrl")}
+                  disabled
+                  placeholder={"https://i.ibb.co.com/mBcjQj6/download-1.jpg"}
                   className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
                 />
               </div>
@@ -212,7 +214,7 @@ const MyProfile = () => {
                 <input
                   id="resume"
                   type="url"
-                  placeholder={currentUser?.resume}
+                  placeholder={currentCandidate?.resume}
                   {...register("resume")}
                   className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
                 />
@@ -223,7 +225,7 @@ const MyProfile = () => {
                 <input
                   id="cover_letter"
                   type="url"
-                  placeholder={currentUser?.cover_letter}
+                  placeholder={currentCandidate?.cover_letter}
                   {...register("cover_letter")}
                   className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
                 />
@@ -235,7 +237,7 @@ const MyProfile = () => {
               <input
                 id="skills"
                 type="text"
-                placeholder={currentUser?.skills?.join(", ")}
+                placeholder={currentCandidate?.skills?.join(", ")}
                 {...register("skills")}
                 className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
               />
@@ -246,7 +248,7 @@ const MyProfile = () => {
               <textarea
                 id="about_me"
                 rows="4"
-                placeholder={currentUser?.about_me}
+                placeholder={currentCandidate?.about_me}
                 {...register("about_me")}
                 className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
               />
@@ -259,7 +261,7 @@ const MyProfile = () => {
                 <input
                   id="city"
                   type="text"
-                  placeholder={currentUser?.location?.city}
+                  placeholder={currentCandidate?.location?.city}
                   {...register("city")}
                   className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
                 />
@@ -269,7 +271,7 @@ const MyProfile = () => {
                 <input
                   id="state"
                   type="text"
-                  placeholder={currentUser?.location?.state}
+                  placeholder={currentCandidate?.location?.state}
                   {...register("state")}
                   className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
                 />
@@ -279,19 +281,17 @@ const MyProfile = () => {
                 <input
                   id="country"
                   type="text"
-                  placeholder={currentUser?.location?.country}
+                  placeholder={currentCandidate?.location?.country}
                   {...register("country")}
                   className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
                 />
               </div>
             </div>
 
-            {/* Submit Button */}
             <div className="flex justify-center mb-4">
               <PrimaryButton title={"Update Now"} icon={<BsFillSendFill />} />
             </div>
           </form>
-
         </div>
       </div>
     </div>

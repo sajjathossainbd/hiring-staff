@@ -1,24 +1,18 @@
 /* eslint-disable react/prop-types */
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
-import useCurrentUser from "../../hooks/useCurrentUser";
 import Swal from "sweetalert2";
 import axiosInstance from "../../utils/axios";
+import useAuth from "../../hooks/useAuth";
 
 const CheckoutForm = ({ price, category }) => {
   const stripe = useStripe();
   const elements = useElements();
-  const { currentUser } = useCurrentUser();
+  const { user } = useAuth();
   const [clientSecret, setClientSecret] = useState("");
   const [error, setError] = useState("");
-  const [existPlan, setExistPlan] = useState(false);
-  const [loading, setLoading] = useState(false); // Loading state
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (currentUser?.plan === category) {
-      setExistPlan(true);
-    }
-  }, [category, currentUser?.plan]);
 
   useEffect(() => {
     if (price > 0) {
@@ -61,8 +55,8 @@ const CheckoutForm = ({ price, category }) => {
       type: "card",
       card,
       billing_details: {
-        email: currentUser?.email || "anonymous",
-        name: currentUser?.name || "anonymous",
+        email: user?.email || "anonymous",
+        name: user?.displayName || "anonymous",
       },
     });
 
@@ -84,9 +78,9 @@ const CheckoutForm = ({ price, category }) => {
       setLoading(false); // Stop loading
     } else if (paymentIntent.status === "succeeded") {
       const paymentDetails = {
-        name: currentUser.name,
-        email: currentUser.email,
-        photo: currentUser.photo,
+        name: user?.name,
+        email: user?.email,
+        photo: user?.photo_URL,
         category: category,
         date: new Date().toLocaleDateString(),
         status: "pending",
@@ -107,8 +101,7 @@ const CheckoutForm = ({ price, category }) => {
             icon: "success",
           });
           elements.getElement(CardElement).clear();
-          setExistPlan(false); // Reset existPlan to allow further payments
-          setClientSecret(""); // Reset clientSecret for future payments
+          setClientSecret("");
         } else if (res.data.error) {
           Swal.fire({
             title: "Payment Failed",
@@ -120,7 +113,7 @@ const CheckoutForm = ({ price, category }) => {
         setError("You already have a plan in this category.");
         console.log(error);
       } finally {
-        setLoading(false); // Stop loading after payment completes
+        setLoading(false);
       }
     }
   };
@@ -142,11 +135,10 @@ const CheckoutForm = ({ price, category }) => {
         />
       </div>
       <button
-        className={`w-full py-3 px-6 text-white bg-gradient-to-r from-blue to-purple-500 rounded-lg hover:from-blue-500 hover:to-purple-400 transition-transform transform hover:scale-105 disabled:opacity-50 ${
-          existPlan || loading ? "hover:scale-100" : ""
-        }`}
+        className={`w-full py-3 px-6 text-white bg-gradient-to-r from-blue to-purple-500 rounded-lg hover:from-blue-500 hover:to-purple-400 transition-transform transform hover:scale-105 disabled:opacity-50 ${loading ? "hover:scale-100" : ""
+          }`}
         type="submit"
-        disabled={!stripe || !clientSecret || existPlan || loading} // Disable button while loading or if plan exists
+        disabled={!stripe || !clientSecret || loading}
       >
         {loading ? "Processing..." : `Pay $${price}`}
       </button>

@@ -7,13 +7,13 @@ import { SiImessage } from "react-icons/si";
 import StackedBarChart from "../../../components/dashboard/StackedBarChart";
 import axiosInstance from "../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
-import useCurrentUser from "../../../hooks/useCurrentUser";
+import useCurrentCandidate from "../../../hooks/useCurrentCandidate";
 
 
 
 const CandidatesAnalytics = () => {
 
-    const { currentUser } = useCurrentUser();
+    const { currentCandidate } = useCurrentCandidate();
 
 
     const { data: jobs, } = useQuery({
@@ -29,7 +29,7 @@ const CandidatesAnalytics = () => {
     } = useQuery({
         queryKey: ["appliedJobs"],
         queryFn: async () => {
-            const res = await axiosInstance.get(`/jobs/applied-jobs/${currentUser?._id}`);
+            const res = await axiosInstance.get(`/jobs/applied-jobs/${currentCandidate?._id}`);
             return res.data;
         },
     });
@@ -37,7 +37,7 @@ const CandidatesAnalytics = () => {
     const { data: MyShortlistedJob, } = useQuery({
         queryKey: ['MyShortlistedJob'],
         queryFn: async () => {
-            const res = await axiosInstance.get(`/jobs/applied-jobs/shortlist/approved/${currentUser?.email}`);
+            const res = await axiosInstance.get(`/jobs/applied-jobs/shortlist/approved/${currentCandidate?.email}`);
             return res.data;
         },
     });

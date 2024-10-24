@@ -1,21 +1,23 @@
+import useCurrentCandidate from "../../hooks/useCurrentCandidate";
+import useCurrentRecruiter from "../../hooks/useCurrentRecruiter";
 import AdminAnalytics from "./forAdmin/AdminAnalytics";
-import useCurrentUser from "../../hooks/useCurrentUser";
 import CandidatesAnalytics from "./forCandidates/CandidatesAnalytics";
 import RecruitersAnalytics from "./forRecruiter/RecruitersAnalytics";
 
 const DashboardMain = () => {
 
-    const { currentUser } = useCurrentUser()
+    const { currentCandidate } = useCurrentCandidate()
+    const { currentRecruiter } = useCurrentRecruiter()
 
-    if (currentUser?.role === 'admin') {
+    if (!currentRecruiter && !currentCandidate) {
         return <AdminAnalytics />
     }
 
-    if (currentUser?.role === 'recruiter') {
-        return  <RecruitersAnalytics />
+    if (currentRecruiter) {
+        return <RecruitersAnalytics />
     }
 
-    if (currentUser?.role === 'candidate') {
+    if (currentCandidate) {
         return <CandidatesAnalytics />
     }
 };

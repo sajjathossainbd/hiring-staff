@@ -1,18 +1,19 @@
 import { FaTrash } from "react-icons/fa";
-import {  FaRegEye, FaWarehouse } from "react-icons/fa6";
+import { FaRegEye, FaWarehouse } from "react-icons/fa6";
 import axiosInstance from "../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
-import useCurrentUser from "../../../hooks/useCurrentUser";
 import Swal from "sweetalert2";
 import TinnyHeading from "../shared/TinnyHeading";
 import NoFoundData from "../../../components/ui/NoFoundData";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "../../../components/ui/Loading";
 import { CardPagination } from "../../../components/shared/CardPagination";
+import useCurrentCandidate from "../../../hooks/useCurrentCandidate";
 
 const AppliedJobs = () => {
-  const { currentUser } = useCurrentUser();
-  const userId = currentUser?._id;
+
+  const { currentCandidate } = useCurrentCandidate();
+  const userId = currentCandidate?._id;
   const navigate = useNavigate();
   const { page = 1 } = useParams(); // Get current page from URL
   const limit = 12; // Number of jobs per page
@@ -34,6 +35,8 @@ const AppliedJobs = () => {
     enabled: !!userId,
   });
 
+  console.log(appliedJobs);
+
   const handleDelete = async (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -49,7 +52,7 @@ const AppliedJobs = () => {
           const res = await axiosInstance.delete(
             `/jobs/applied-jobs/delete/${id}`,
             {
-              data: { email: currentUser?.email },
+              data: { email: currentCandidate?.email },
             }
           );
 
@@ -76,6 +79,7 @@ const AppliedJobs = () => {
       </>
     );
   }
+  console.log(appliedJobs)
 
   return (
     <div>
@@ -94,11 +98,6 @@ const AppliedJobs = () => {
                     </span>
                   </div>
                 </div>
-                <Link to={`/job-details/${job?._id}`}>
-                        <button className="btn rounded-full text-blue hover:text-white hover:bg-blue">
-                          <FaRegEye />
-                        </button>
-                      </Link>
               </div>
             </div>
 
@@ -113,11 +112,11 @@ const AppliedJobs = () => {
               </div>
 
               <div className="flex space-x-4 text-gray">
-                <Link to={`/job-details/${job?._id}`}>
-                <button className="btn rounded-full text-blue hover:text-white hover:bg-blue">
-                  <FaRegEye />
-                </button>
-              </Link>
+                <Link to={`/job-details/${job?.jobId}`}>
+                  <button className="btn rounded-full text-blue hover:text-white hover:bg-blue">
+                    <FaRegEye />
+                  </button>
+                </Link>
                 <button onClick={() => handleDelete(job._id)}>
                   <FaTrash className="hover:text-red-500 cursor-pointer" />
                 </button>

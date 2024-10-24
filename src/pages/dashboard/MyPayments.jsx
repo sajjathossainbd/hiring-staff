@@ -1,21 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
-import useCurrentUser from "../../hooks/useCurrentUser";
 import axiosInstance from "../../utils/axios";
 import TinnyHeading from "./shared/TinnyHeading";
 import MyPaymentsTable from "../../components/dashboard/MyPaymentsTable";
+import useAuth from "../../hooks/useAuth";
 
 
 const MyPayments = () => {
 
-    const { currentUser } = useCurrentUser()
+    const { user } = useAuth()
 
     const { data: myPayment, } = useQuery({
-        queryKey: ['my-payment', currentUser?.email],
+        queryKey: ['my-payment', user?.email],
         queryFn: async () => {
-            const res = await axiosInstance.get(`/payment-history/${currentUser?.email}`);
+            const res = await axiosInstance.get(`/payment-history/${user?.email}`);
             return res.data;
         },
-        enabled: !!currentUser?.email,
+        enabled: !!user?.email,
     });
 
 

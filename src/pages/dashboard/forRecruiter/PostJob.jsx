@@ -10,8 +10,7 @@ import useCurrentRecruiter from "../../../hooks/useCurrentRecruiter";
 const PostJob = () => {
   const { currentRecruiter } = useCurrentRecruiter();
   const [candidateEmails, setCandidateEmails] = useState();
-  // console.log(candidateEmails);
-
+ 
   useEffect(() => {
     axiosInstance.get("/users/candidate-emails").then((res) => {
       setCandidateEmails(res.data.candidateEmails);
@@ -66,6 +65,7 @@ const PostJob = () => {
       setFormData((prevData) => ({
         ...prevData,
         company_email: currentRecruiter?.email,
+        company_name: currentRecruiter?.name,
         candidateEmails,
       }));
     }

@@ -24,7 +24,7 @@ function Pagination({ totalPages, currentPage, onPageChange }) {
         «
       </button>
 
-      <button className="join-item btn rounded-none disabled">
+      <button className="join-item  btn rounded-none disabled">
         {`${currentPage} of ${totalPages}`}
       </button>
 

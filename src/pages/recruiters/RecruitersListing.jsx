@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Helmet } from "react-helmet-async";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";

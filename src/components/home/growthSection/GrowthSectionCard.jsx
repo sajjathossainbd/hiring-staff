@@ -34,10 +34,10 @@ function GrowthSectionCard(data) {
       animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0.8 }}
       transition={{ duration: 0.5 }}
     >
-      <h3 className="text-blue mt-4 mb-2">
+      <h4 className="text-blue mt-4 mb-2">
         {isVisible ? <CountUp end={targetCount} duration={2} /> : "0"}+
-      </h3>
-      <h5 className="text-16 font-bold text-darkBlue">{title}</h5>
+      </h4>
+      <h6 className="text-16 font-bold text-darkBlue">{title}</h6>
     </motion.div>
   );
 }

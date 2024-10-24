@@ -11,28 +11,19 @@ import { CgCalendarDates } from "react-icons/cg";
 function JobCardHorizontal({ job, recruiterLogo }) {
   const { _id, jobTitle, job_type, max_salary, min_salary, lastDateToApply } =
     job || {};
-  // const calculateDaysRemaining = (postedDate) => {
-  //   const now = new Date();
-  //   const posted = new Date(postedDate);
-  //   const timeDiff = posted - now;
-  //   const daysRemaining = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-  //   return daysRemaining > 0 ? `${daysRemaining} Days Remaining` : "Expired";
-  // };
+
   const posted = new Date(lastDateToApply);
   const now = new Date();
   const timeDiff = posted - now;
-  console.log(timeDiff);
   const differenceInDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-  const result =
-    differenceInDays < 0 ? (
-      <div className="flex gap-2 items-center">
-        <CgCalendarDates /> Expired
-      </div>
-    ) : (
-      <div className="flex gap-2 items-center">
-        <CgCalendarDates /> {differenceInDays} Days Left
-      </div>
-    );
+
+  const result = (
+    <div className="flex gap-2 items-center">
+      <CgCalendarDates />
+      {differenceInDays < 0 ? "Expired" : `${differenceInDays} Days Left`}
+    </div>
+  );
+
   return (
     <div className="boxBorderHoverBlue p-3 rounded-lg flex flex-col md:flex-row lg:flex-row justify-between items-center bg-white">
       <div className="flex flex-col md:flex-row lg:flex-row items-center gap-5">
@@ -41,7 +32,7 @@ function JobCardHorizontal({ job, recruiterLogo }) {
         <div className="">
           {/* title, type */}
           <div className="flex lg:flex-row flex-col gap-3">
-            <h4>{jobTitle}</h4>{" "}
+            <h4>{jobTitle}</h4>
             <MiniBtn
               value={job_type}
               icon={<IoBriefcaseOutline />}
@@ -56,15 +47,13 @@ function JobCardHorizontal({ job, recruiterLogo }) {
                 {min_salary} - {max_salary}
               </p>
             </div>
-            <p>{result}</p>
+            {result} {/* Updated to directly use result as a div */}
           </div>
         </div>
       </div>
       <div className="flex justify-between items-center">
         <div className="flex gap-6">
-          <div className="">
-            <BookmarkBtn />
-          </div>
+          <BookmarkBtn />
           <Link to={`/job-details/${_id}`}>
             <SecondaryButton title={"Apply Now"} icon={<GoArrowRight />} />
           </Link>

@@ -56,14 +56,13 @@ function JobDetails() {
     education,
     tags = [],
     jobTitle,
-    company_email,
     recruiter_id: companyId,
     min_salary,
     max_salary,
     lastDateToApply,
     postedDate,
   } = job || {};
-  const { name, logo } = recruiter || {};
+  const { name, logo, email } = recruiter || {};
   useEffect(() => {
     dispatch(fetchJobsListing());
     dispatch(fetchJobDetails(id));
@@ -156,7 +155,10 @@ function JobDetails() {
                       data-aos="zoom-in"
                       data-aos-offset="200"
                       data-aos-duration="700"
-                      id="my_modal_3" className="modal" open>
+                      id="my_modal_3"
+                      className="modal"
+                      open
+                    >
                       <div className="modal-box max-w-xl mt-7">
                         <form method="dialog">
                           <button
@@ -251,7 +253,7 @@ function JobDetails() {
                 <p className="text-14">
                   Have a query? Drop us a line at{" "}
                   <span className="font-medium text-blue hover:border-b text-base">
-                    {company_email}
+                    {email}
                   </span>
                 </p>
               </div>

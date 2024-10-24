@@ -75,7 +75,6 @@ function RecruiterDetails() {
     linkedin,
     twitter,
   } = recruiter || {};
-
   useEffect(() => {
     dispatch(fetchRecruiterDetails(id));
     dispatch(fetchRecruiterOpenJobs(id));
@@ -202,7 +201,12 @@ function RecruiterDetails() {
           </div>
         </div>
         <hr className="text-lightGray my-10" />
-        <OpenPosition openJobs={openJobs} ref={openPositionRef} />{" "}
+        <OpenPosition
+          recruiterName={name}
+          recruiterImg={logo}
+          openJobs={openJobs}
+          ref={openPositionRef}
+        />{" "}
       </>
     );
   }

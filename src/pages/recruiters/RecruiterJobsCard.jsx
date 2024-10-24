@@ -14,12 +14,24 @@ const RecruiterJobsCard = ({
   max_salary,
   min_salary,
   dates,
+  recruiterimg,
+  recruiterName,
 }) => {
   return (
     <div className="md:p-10 p-5  bg-bgLightWhite dark:bg-darkBlue dark:border dark:border-blue container rounded-xl">
       <div className="flex md:flex-row flex-col items-center md:justify-between justify-center">
         <div className="flex md:flex-row flex-col items-center gap-5">
+          <div>
+            <img
+              className="w-auto h-16 rounded-full"
+              src={recruiterimg}
+              alt=""
+            />
+          </div>
           <div className="flex flex-col gap-2">
+            <div className="flex justify-start items-center">
+              <p className="px-3 rounded-md bg-bgDeepBlue">{recruiterName}</p>
+            </div>
             <div className="flex md:flex-row flex-col items-center gap-2">
               <h4>{position}</h4>
               <span className="bg-bgDeepBlue px-2 rounded-md text-14">

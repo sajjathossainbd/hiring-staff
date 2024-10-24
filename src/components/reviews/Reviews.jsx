@@ -1,23 +1,17 @@
-import { Trans, useTranslation} from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import ReviewForm from "./ReviewForm";
+import Lottie from "lottie-react";
+import reviewImg from "./../../../public/review-2.json";
 
 const reviews = () => {
-  const {t} = useTranslation();
-  
+  const { t } = useTranslation();
+
   return (
     <section className="container rounded-xl">
       <div className=" text-white rounded-xl">
         <div className="flex flex-col xl:flex-row lg:flex-row md:flex-row justify-around items-center">
-          <div className="flex flex-col w-full p-8">
-            <h5 className="text-lg uppercase tracking-loose">
-             {<Trans i18nKey={"review"}/>}
-            </h5>
-            <h2 className="text-3xl md:text-5xl my-4 leading-relaxed md:leading-snug">
-            {<Trans i18nKey={"reviewleft1"}/>}
-            </h2>
-            <p className=" leading-snug">
-            {<Trans i18nKey={"reviewleft2"}/>}
-            </p>
+          <div className="flex flex-col w-full p-10">
+            <Lottie animationData={reviewImg}></Lottie>
           </div>
           <div className="flex flex-col w-full justify-center">
             <div className="container w-full px-4">

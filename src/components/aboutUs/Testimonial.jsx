@@ -65,7 +65,7 @@ const Testimonial = () => {
             <div className="border rounded-md border-[#EBEFFA] p-6 relative min-h-72 lg:min-h-52">
               <div className="flex flex-col gap-5">
                 <div className="flex gap-5 items-center">
-                  <h5>{review.role}</h5>
+                  <h5>{review.name}</h5>
                   <span className="hidden lg:block">-</span>
                   <Rating rating={review?.reviewData.rating} />
                 </div>
@@ -88,14 +88,11 @@ const Testimonial = () => {
 
             {/* name with image and role */}
             <div className="flex gap-4 items-center pt-8 relative left-7">
-              <img
-                className="h-14 w-14 rounded-full object-cover"
-                src={review.image}
-                alt={review.name}
-              />
-              <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1">
                 <h5>{review.name}</h5>
-                <span className="text-sm">{review.role}</span>
+              </div>
+              <div className="flex flex-col gap-1">
+                <h6>{review.date}</h6>
               </div>
             </div>
           </SwiperSlide>

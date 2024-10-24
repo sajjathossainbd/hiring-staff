@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import DesktopNavItems from "../../components/navbar/DesktopNavItems";
 import MobileNavItems from "../../components/navbar/MobileNavItems";
@@ -7,7 +8,7 @@ import useCurrentUser from "../../hooks/useCurrentUser";
 import { Trans, useTranslation } from "react-i18next";
 
 function SubNavbar() {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const { user, logOut } = useAuth();
   const { currentUser } = useCurrentUser();
   const [scrollDirection, setScrollDirection] = useState("up");
@@ -30,18 +31,18 @@ function SubNavbar() {
   }, [lastScrollY]);
 
   const navLinks = [
-    { to: "/", label: <Trans i18nKey={"home"}/> },
-    { to: "/jobs-listing", label: <Trans i18nKey={"jobs"}/> },
-    { to: "/recruiters-listing", label:<Trans i18nKey={"recruiters"}/> },
-    { to: "/candidates-listing", label: <Trans i18nKey={"candidates"}/> },
-    { to: "/about", label: <Trans i18nKey={"about"}/> },
-    { to: "/contact", label: <Trans i18nKey={"contact"}/> },
-    { to: "/pricing", label: <Trans i18nKey={"pricing"}/> },
-    { to: "/blogs", label: <Trans i18nKey={"blogs"}/> },
+    { to: "/", label: <Trans i18nKey={"home"} /> },
+    { to: "/jobs-listing", label: <Trans i18nKey={"jobs"} /> },
+    { to: "/recruiters-listing", label: <Trans i18nKey={"recruiters"} /> },
+    { to: "/candidates-listing", label: <Trans i18nKey={"candidates"} /> },
+    { to: "/about", label: <Trans i18nKey={"about"} /> },
+    { to: "/contact", label: <Trans i18nKey={"contact"} /> },
+    { to: "/pricing", label: <Trans i18nKey={"pricing"} /> },
+    { to: "/blogs", label: <Trans i18nKey={"blogs"} /> },
   ];
 
   // Filter nav links based on user role
-  const filteredNavLinks = navLinks.filter(link => {
+  const filteredNavLinks = navLinks.filter((link) => {
     if (currentUser?.role === "candidate" && link.label === "Candidates") {
       return false;
     }
@@ -64,7 +65,11 @@ function SubNavbar() {
     >
       <div className="container py-0">
         <DesktopNavItems navLinks={filteredNavLinks} />
-        <MobileNavItems navLinks={filteredNavLinks} user={user} logOut={logOut} />
+        <MobileNavItems
+          navLinks={filteredNavLinks}
+          user={user}
+          logOut={logOut}
+        />
       </div>
     </motion.div>
   );

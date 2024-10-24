@@ -11,14 +11,19 @@ import multipleLineDraw from "./../../../public/multiline-repet.json";
 import { CardPagination } from "../../components/shared/CardPagination";
 import { Trans, useTranslation } from "react-i18next";
 import i18n from "../../i18n";
+import { ScrollRestoration } from "react-router-dom";
 
 const convertToBanglaDigits = (number) => {
-  const banglaDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
-  return number.toString().split('').map(digit => banglaDigits[digit] || digit).join('');
+  const banglaDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+  return number
+    .toString()
+    .split("")
+    .map((digit) => banglaDigits[digit] || digit)
+    .join("");
 };
 
 function CandidatesListing() {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [filters, setFilters] = useState({});
 
@@ -43,9 +48,10 @@ function CandidatesListing() {
   };
 
   const totalCandidates = candidates?.totalCandidates || 0;
-  const banglaCandidatesCount = i18n.language === 'bn' 
-    ? convertToBanglaDigits(totalCandidates)
-    : totalCandidates;
+  const banglaCandidatesCount =
+    i18n.language === "bn"
+      ? convertToBanglaDigits(totalCandidates)
+      : totalCandidates;
 
   let content = null;
 
@@ -91,13 +97,19 @@ function CandidatesListing() {
         </div>
         <div className="text-center pb-6">
           <h3>
-          <Trans i18nKey="candidatesBannerTitle" count={banglaCandidatesCount}>
-            <span className="text-blue">{banglaCandidatesCount} Candidates</span> Available Now
+            <Trans
+              i18nKey="candidatesBannerTitle"
+              count={banglaCandidatesCount}
+            >
+              <span className="text-blue">
+                {banglaCandidatesCount} Candidates
+              </span>{" "}
+              Available Now
             </Trans>
           </h3>
 
           <p className="md:max-w-xl text-14 mt-3">
-            <Trans i18nKey={"candidatesBannerDescrip"}/>
+            <Trans i18nKey={"candidatesBannerDescrip"} />
           </p>
         </div>
 
@@ -107,6 +119,7 @@ function CandidatesListing() {
       </div>
 
       <div className="">{content}</div>
+      <ScrollRestoration />
     </div>
   );
 }

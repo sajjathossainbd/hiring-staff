@@ -6,12 +6,14 @@ import BookmarkBtn from "../../ui/BookmarkBtn";
 import PrimaryBtnBlue from "../../ui/PrimaryBtnBlue";
 
 function BlogCard({ blog }) {
-  const { url, content, title } = blog || {};
+  const { url, short_description, title } = blog || {};
+
+  console.log(short_description?.slice(0, 100));
 
   return (
     <div className="boxBorderHoverBlue border-none shadow-sm bg-white">
       <div className="flex flex-col justify-between">
-        <figure className="">
+        <figure className="object-cover">
           <img
             className="rounded-md size-48 object-cover w-full"
             src={url}
@@ -34,7 +36,7 @@ function BlogCard({ blog }) {
 
           {/* Title and Contnet */}
           <h4 className="line-clamp-2">{title}</h4>
-          <p className="mt-1 text-14">{content.slice(0, 100)}</p>
+          <p className="mt-1 text-14">{short_description?.slice(0, 100)}...</p>
 
           {/* Author */}
           <div className="flex justify-between items-end mt-6">
@@ -45,7 +47,7 @@ function BlogCard({ blog }) {
                 alt=""
               />
               <div>
-                <h5 className="lg:text-14 text-xs">{blog?.author}</h5>
+                <h5 className="lg:text-14 text-xs">Admin</h5>
                 <p className="lg:text-12 text-[11px] lg:mt-1">
                   {blog?.date_published}
                 </p>
@@ -59,7 +61,7 @@ function BlogCard({ blog }) {
           to={`/blog-details/${blog?._id}`}
           className="mt-10 flex items-end justify-end"
         >
-          <PrimaryBtnBlue  title={"Read More"} />
+          <PrimaryBtnBlue title={"Read More"} />
         </Link>
       </div>
     </div>

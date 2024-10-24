@@ -92,7 +92,7 @@ i18n
           pricing:"Pricing",
           blogs:"Blogs",
           contact:"Contact",
-          number:"328-435-6523",
+          number:"+880-1860-843454",
           
           
         
@@ -192,7 +192,7 @@ i18n
           pricing:"মূল্য",
           blogs:"ব্লগ",
           contact:"যোগাযোগ",
-          number:"৩২৮-৪৩৫-৬৫২৩",
+          number:"+৮৮০-১৮৬০-৮৪৩৪৫৪",
           
         },
       },

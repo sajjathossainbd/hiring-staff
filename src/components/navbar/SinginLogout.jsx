@@ -22,6 +22,8 @@ function SinginLogout() {
     };
   }, [dropdownRef]);
 
+  console.log(user);
+
   return (
     <div>
       {user ? (

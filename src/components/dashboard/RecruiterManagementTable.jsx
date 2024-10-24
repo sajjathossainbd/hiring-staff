@@ -78,9 +78,9 @@ const RecruiterManagementTable = () => {
                     </thead>
                     <tbody>
                         {usersData?.recruiters?.length > 0 ? (
-                            usersData.recruiters.map((user) => (
+                            usersData?.recruiters.map((user) => (
                                 <tr key={user._id}>
-                                    <td>{user.name}</td>
+                                    <td>{user?.name}</td>
                                     <td>
                                         <span className="text-blue">{user.email}</span>
                                     </td>

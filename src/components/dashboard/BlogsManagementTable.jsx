@@ -103,7 +103,7 @@ const BlogsManagementTable = () => {
                 <CardPagination
                     currentPage={currentPage}
                     totalPages={totalPages}
-                    onPageChange={(newPage) => navigate(`/dashboard/manage-blogs/${newPage}`)}
+                    onPageChange={(newPage) => navigate(`/dashboard/manage-all-blogs/${newPage}`)}
                 />
             </div>
         </div>

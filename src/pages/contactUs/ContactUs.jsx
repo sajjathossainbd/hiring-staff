@@ -2,16 +2,17 @@ import { Helmet } from "react-helmet-async";
 import TinnyBanner from "../../components/shared/TinnyBanner";
 import GetInTouch from "../../components/contactUs/GetInTouch";
 import { Trans, useTranslation } from "react-i18next";
+import { ScrollRestoration } from "react-router-dom";
 function ContactUs() {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <>
       <Helmet>
         <title>Hiring Staff - Contact Us</title>
       </Helmet>
       <TinnyBanner
-        title={<Trans i18nKey={"contactUs"}/>}
-        subTitle={<Trans i18nKey={"contactUsSubtitle"}/>}
+        title={<Trans i18nKey={"contactUs"} />}
+        subTitle={<Trans i18nKey={"contactUsSubtitle"} />}
         currentPath={"Contact Us"}
       />
       <div className="container">
@@ -75,6 +76,7 @@ function ContactUs() {
         </div>
       </div>
       <GetInTouch />
+      <ScrollRestoration />
     </>
   );
 }

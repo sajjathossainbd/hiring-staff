@@ -130,8 +130,8 @@ const RecruiterProfile = () => {
       }
     });
   };
- 
-  
+
+
   return (
     <div>
       <TinnyHeading

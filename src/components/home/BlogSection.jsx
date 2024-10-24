@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useDispatch, useSelector } from "react-redux";
 import SectionTitle from "../shared/SectionTitle";
 import { useEffect } from "react";
@@ -10,7 +11,7 @@ import PrimaryBtn from "../ui/PrimaryBtn";
 import { Trans, useTranslation } from "react-i18next";
 
 const BlogSection = () => {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const {
@@ -25,6 +26,8 @@ const BlogSection = () => {
   }, [dispatch]);
 
   const blogsData = blogs?.blogs?.slice(0, 3) || [];
+
+  console.log(blogsData);
 
   let content = null;
 
@@ -48,11 +51,11 @@ const BlogSection = () => {
   }
 
   return (
-    <section className="container">
-      <div>
+    <section className=" bg-bgLightWhite">
+      <div className="container">
         <SectionTitle
-          title={<Trans i18nKey={"newsandBlogs"}/>}
-          subTitle={<Trans i18nKey={"newsandBlogsDescrip"}/>}
+          title={<Trans i18nKey={"newsandBlogs"} />}
+          subTitle={<Trans i18nKey={"newsandBlogsDescrip"} />}
         />
         <div className="mt-10">
           <div className="">{content}</div>
@@ -60,7 +63,7 @@ const BlogSection = () => {
             to={"/blogs"}
             className="mt-16 flex items-center justify-center"
           >
-            <PrimaryBtn title={<Trans i18nKey={"moreBlogs"}/>}/>
+            <PrimaryBtn title={<Trans i18nKey={"moreBlogs"} />} />
           </Link>
         </div>
       </div>

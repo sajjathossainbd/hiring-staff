@@ -50,7 +50,7 @@ const ShortlistedJobs = () => {
         pathName={"Shortlisted Jobs"}
       />
 
-      <div className="grid gap-3 grid-cols-1 md:grid-cols-2 mt-6">
+      <div className="grid gap-3 grid-cols-1 md:grid-cols-2 mt-6 mb-5">
         {shortlistAppliedJobs?.jobs?.map((job, idx) => (
           <div
             key={idx}

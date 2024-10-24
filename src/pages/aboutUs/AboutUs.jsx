@@ -3,6 +3,7 @@ import TinnyBanner from "../../components/shared/TinnyBanner";
 import MeetOurTeam from "../../components/aboutUs/MeetOurTeam";
 import AboutOurCommunity from "../../components/aboutUs/AboutOurCommunity";
 import Testimonial from "../../components/aboutUs/Testimonial";
+import { ScrollRestoration } from "react-router-dom";
 
 function AboutUs() {
   return (
@@ -18,6 +19,7 @@ function AboutUs() {
       <AboutOurCommunity />
       <MeetOurTeam />
       <Testimonial />
+      <ScrollRestoration />
     </div>
   );
 }

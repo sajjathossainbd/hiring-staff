@@ -44,7 +44,18 @@ const MyProfile = () => {
 
     };
 
-    
+    try {
+      const res = await axiosInstance.patch(`/candidates/profile/${currentCandidate?.email}`, updatedData);
+      if (res.data.modifiedCount > 0) {
+        toast.success("Your data has been updated");
+        refetch();
+      } else {
+        toast.error("No changes made");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to update profile");
+    }
 
   };
 

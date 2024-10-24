@@ -12,24 +12,19 @@ import { RxResume } from "react-icons/rx";
 import { VscGitStashApply } from "react-icons/vsc";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import DashboardFooter from "../pages/dashboard/shared/DashboardFooter";
-import { FaUsers, FaUserTie } from "react-icons/fa";
-import { useEffect, useState } from "react";
-import useCurrentUser from "../hooks/useCurrentUser";
+import { FaUserTie } from "react-icons/fa";
 import useAuth from "../hooks/useAuth";
 import { IoIosLogOut } from "react-icons/io";
 import { HiOutlineBriefcase } from "react-icons/hi";
 import { Helmet } from "react-helmet-async";
+import useCurrentCandidate from "../hooks/useCurrentCandidate";
+import useCurrentRecruiter from "../hooks/useCurrentCandidate";
 
 const Dashboard = () => {
   const { logOut } = useAuth();
-  const [admin, setAdmin] = useState(false);
-  const [recruiter, setRecruiter] = useState(false);
-  const { currentUser } = useCurrentUser();
 
-  useEffect(() => {
-    setAdmin(currentUser?.role === "admin");
-    setRecruiter(currentUser?.role === "recruiter");
-  }, [currentUser]);
+  const { currentCandidate } = useCurrentCandidate()
+  const { currentRecruiter } = useCurrentRecruiter()
 
   return (
     <div className="flex lg:flex-row flex-col inter">
@@ -50,7 +45,7 @@ const Dashboard = () => {
           </div>
           <div className="drawer-side">
             <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-            <ul  className="menu inter p-4 w-64 h-full dark:bg-darkBlue bg-white text-black fixed lg:relative top-0 lg:overflow-y-auto overflow-y-hidden font-bold space-y-2">
+            <ul className="menu inter p-4 w-64 h-full dark:bg-darkBlue bg-white text-black fixed lg:relative top-0 lg:overflow-y-auto overflow-y-hidden font-bold space-y-2">
               {/* Logo Section */}
               <div className="flex items-center justify-center my-6">
                 <Link to={"/"} className="flex items-center gap-1">
@@ -60,7 +55,7 @@ const Dashboard = () => {
               </div>
 
               {/* Admin Links */}
-              {admin && (
+              {!currentCandidate && !currentRecruiter && (
                 <>
                   <li>
                     <NavLink
@@ -78,14 +73,6 @@ const Dashboard = () => {
                       <MdPostAdd /> All Jobs
                     </NavLink>
                   </li>
-                  {/* <li>
-                    <NavLink
-                      to="/dashboard/manage-users"
-                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
-                    >
-                      <FaUsers /> All Users
-                    </NavLink>
-                  </li> */}
                   <li>
                     <NavLink
                       to="/dashboard/manage-all-blogs"
@@ -122,7 +109,7 @@ const Dashboard = () => {
               )}
 
               {/* Recruiter Links */}
-              {recruiter && (
+              {currentRecruiter && (
                 <>
                   <li>
                     <NavLink
@@ -168,7 +155,7 @@ const Dashboard = () => {
               )}
 
               {/* Links for Candidates */}
-              {!admin && !recruiter && (
+              {currentCandidate && (
                 <>
                   <li>
                     <NavLink
@@ -217,7 +204,7 @@ const Dashboard = () => {
               <div className="divider" />
 
               {
-                !admin && !recruiter && <li>
+                currentCandidate && <li>
                   <NavLink
                     to="/dashboard/my-profile"
                     className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white ${isActive ? "bg-blue text-white" : ""}`}
@@ -227,7 +214,7 @@ const Dashboard = () => {
                 </li>
               }
               {
-                recruiter && <li>
+                currentRecruiter && <li>
                   <NavLink
                     to="/dashboard/recruiter-profile"
                     className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
@@ -237,7 +224,7 @@ const Dashboard = () => {
                 </li>
               }
               {
-                !admin && <li>
+                currentCandidate && currentRecruiter && <li>
                   <NavLink
                     to="/dashboard/my-payments"
                     className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white ${isActive ? "bg-blue text-white" : ""}`}

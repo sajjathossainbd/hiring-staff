@@ -62,12 +62,24 @@ const Register = () => {
         photoURL: imageUrl,
       });
 
-      await axiosInstance.post("/users", userInfo).then((res) => {
-        if (res.data.insertId) {
-          toast.success("Successfully registered!");
-          navigate(location?.state ? location.state : "/dashboard/my-profile");
-        }
-      });
+      if (userRole === "recruiter") {
+        await axiosInstance.post("/recruiters", userInfo).then((res) => {
+          if (res.data.insertId) {
+            toast.success("Successfully recruiters registered!");
+            navigate(location?.state ? location.state : "/dashboard/recruiter-profile");
+          }
+        });
+      }
+      if (userRole === "candidate") {
+
+        await axiosInstance.post("/users/candidates", userInfo).then((res) => {
+          if (res.data.insertId) {
+            toast.success("Successfully candidates registered!");
+            navigate(location?.state ? location.state : "/dashboard/my-profile");
+          }
+        })
+      };
+
     } catch (error) {
       toast.error(error.message);
     }
@@ -75,19 +87,32 @@ const Register = () => {
 
   const handleGoogleRegister = () => {
     googleSignIn()
-      .then((result) => {
+      .then(async (result) => {
         const userInfo = {
           email: result.user?.email,
           name: result.user?.displayName,
           photo: result.user?.photoURL,
           role: userRole,
         };
-        axiosInstance.post("/users", userInfo).then((res) => {
-          if (res.data.insertedId) {
-            toast.success("Successfully Google Login");
-            navigate(location?.state ? location.state : "/dashboard/my-profile");
-          }
-        });
+
+        if (userRole === "recruiter") {
+          await axiosInstance.post("/recruiters", userInfo).then((res) => {
+            if (res.data.insertId) {
+              toast.success("Successfully recruiters registered!");
+              navigate(location?.state ? location.state : "/dashboard/recruiter-profile");
+            }
+          });
+        }
+        if (userRole === "candidate") {
+
+          await axiosInstance.post("/users/candidates", userInfo).then((res) => {
+            if (res.data.insertId) {
+              toast.success("Successfully candidates registered!");
+              navigate(location?.state ? location.state : "/dashboard/my-profile");
+            }
+          })
+        };
+
       })
       .catch(() => {
         toast.error("Google Sign-In failed");

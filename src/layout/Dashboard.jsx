@@ -78,14 +78,14 @@ const Dashboard = () => {
                       <MdPostAdd /> All Jobs
                     </NavLink>
                   </li>
-                  <li>
+                  {/* <li>
                     <NavLink
                       to="/dashboard/manage-users"
                       className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
                       <FaUsers /> All Users
                     </NavLink>
-                  </li>
+                  </li> */}
                   <li>
                     <NavLink
                       to="/dashboard/manage-all-blogs"

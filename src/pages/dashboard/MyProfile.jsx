@@ -39,7 +39,7 @@ const MyProfile = () => {
 
     try {
       const res = await axiosInstance.patch(
-        `/users/profile/${currentUser.email}`,
+        `/users/profile/${currentUser?.email}`,
         updatedData
       );
       if (res.data.modifiedCount > 0) {
@@ -53,6 +53,8 @@ const MyProfile = () => {
       toast.error("Failed to update profile");
     }
   };
+
+  console.log(currentUser?.role);
 
   return (
     <div>
@@ -84,7 +86,7 @@ const MyProfile = () => {
                 </label>
                 <select
                   value={currentUser?.role || ''}
-                  disabled={currentUser.role === 'admin'}
+                  disabled={currentUser?.role === 'admin'}
                   id="role"
                   {...register("role")}
                   className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"

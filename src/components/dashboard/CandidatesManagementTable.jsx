@@ -9,12 +9,12 @@ import { CardPagination } from "../shared/CardPagination";
 const CandidatesManagementTable = () => {
     const navigate = useNavigate();
     const { page = 1 } = useParams();
-    const limit = 6;
+    const limit = 100;
 
     // Fetch users with pagination
     const fetchUsers = async (currentPage, limit) => {
         const response = await axiosInstance.get(
-            `/users/candidates?page=${currentPage}&limit=${limit}`
+            `/candidates?page=${currentPage}&limit=${limit}`
         );
         return response.data;
     };
@@ -52,7 +52,7 @@ const CandidatesManagementTable = () => {
             confirmButtonText: "Yes, delete it!",
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosInstance.delete(`/users/${id}`).then((res) => {
+                axiosInstance.delete(`/candidates/delete/${id}`).then((res) => {
                     if (res.data.deletedCount > 0) {
                         Swal.fire("Deleted!", "User has been deleted.", "success");
                         refetch();
@@ -65,7 +65,7 @@ const CandidatesManagementTable = () => {
 
     return (
         <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
-            <h5>Manage Users</h5>
+            <h5>Manage Candidates</h5>
             <hr className="my-6 text-lightGray" />
             <div className="overflow-x-auto flex flex-col justify-between lg:h-[550px]">
                 <table className="table text-sm">
@@ -78,14 +78,14 @@ const CandidatesManagementTable = () => {
                     </thead>
                     <tbody>
                         {usersData?.candidates?.map((user) => (
-                            <tr key={user._id}>
-                                <td>{user.name}</td>
+                            <tr key={user?._id}>
+                                <td>{user.first_name} {user?.last_name}</td>
                                 <td>
-                                    <span className="text-blue">{user.email}</span>
+                                    <span className="text-blue">{user?.email}</span>
                                 </td>
                                 <td>
                                     <button
-                                        onClick={() => handleDelete(user._id)}
+                                        onClick={() => handleDelete(user?._id)}
                                         className="btn rounded-full text-red-600 hover:text-white hover:bg-blue"
                                     >
                                         <RiDeleteBin6Line />
@@ -93,10 +93,10 @@ const CandidatesManagementTable = () => {
                                 </td>
                             </tr>
                         )) || (
-                            <tr>
-                                <td colSpan="5" className="text-center">No candidates found.</td>
-                            </tr>
-                        )}
+                                <tr>
+                                    <td colSpan="5" className="text-center">No candidates found.</td>
+                                </tr>
+                            )}
                     </tbody>
                 </table>
                 <CardPagination

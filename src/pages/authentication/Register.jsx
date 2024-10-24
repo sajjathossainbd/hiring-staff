@@ -59,25 +59,26 @@ const Register = () => {
     await updateProfile(result.user, {
       displayName: data.fullName,
       photoURL: imageUrl,
-    });
+    }).then(async () => {
 
-    if (userRole === "recruiter") {
-      await axiosInstance.post("/recruiters", userInfo).then((res) => {
-        if (res.data.insertId) {
-          toast.success("Successfully recruiters registered!");
-          navigate(location?.state ? location.state : "/dashboard/recruiter-profile");
-        }
-      });
-    }
-    if (userRole === "candidate") {
+      if (userRole === "recruiter") {
+        await axiosInstance.post("/recruiters", userInfo).then((res) => {
+          if (res.data.insertId) {
+            toast.success("Successfully recruiters registered!");
+            navigate(location?.state ? location.state : "/dashboard/recruiter-profile");
+          }
+        });
+      }
+      if (userRole === "candidate") {
 
-      await axiosInstance.post("/candidates", userInfo).then((res) => {
-        if (res.data.insertId) {
-          toast.success("Successfully candidates registered!");
-          navigate(location?.state ? location.state : "/dashboard/my-profile");
-        }
-      })
-    };
+        await axiosInstance.post("/candidates", userInfo).then((res) => {
+          if (res.data.insertId) {
+            toast.success("Successfully candidates registered!");
+            navigate(location?.state ? location.state : "/dashboard/my-profile");
+          }
+        })
+      }
+    })
 
   };
 

@@ -143,7 +143,7 @@ const MyProfile = () => {
                   disabled
                   id="email"
                   type="email"
-                  value={currentCandidate?.email}
+                  placeholder={currentCandidate?.email}
                   className="w-full px-4 py-3 border border-gray-300 bg-gray-100 text-gray-500 text-md rounded-md shadow-sm"
                 />
               </div>

@@ -4,6 +4,7 @@ import NewsLetter from "../../components/home/NewsLetter";
 import TinnyBanner from "../../components/shared/TinnyBanner";
 import Testimonial from "../../components/aboutUs/Testimonial";
 import { Helmet } from "react-helmet-async";
+import { ScrollRestoration } from "react-router-dom";
 
 const Pricing = () => {
   return (
@@ -25,7 +26,9 @@ const Pricing = () => {
           <PricingCard
             category={"Basic"}
             price={"19"}
-            description={"Perfect for individuals looking to start a small project."}
+            description={
+              "Perfect for individuals looking to start a small project."
+            }
             service1={"Basic Support"}
             service2={"5 Projects Limit"}
             service3={"Single User Access"}
@@ -36,7 +39,9 @@ const Pricing = () => {
           <PricingCard
             category={"Standard"}
             price={"49"}
-            description={"Ideal for small teams or startups to get things moving."}
+            description={
+              "Ideal for small teams or startups to get things moving."
+            }
             service1={"Priority Support"}
             service2={"Unlimited Projects"}
             service3={"Team Collaboration"}
@@ -105,6 +110,7 @@ const Pricing = () => {
       </div>
       <Testimonial />
       <NewsLetter />
+      <ScrollRestoration />
     </div>
   );
 };

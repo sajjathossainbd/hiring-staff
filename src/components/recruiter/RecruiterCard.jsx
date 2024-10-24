@@ -22,7 +22,6 @@ const RecruiterCard = ({ recruiter }) => {
     logo,
     ratings,
     ratingsNumbers,
-    openJobs,
     location,
   } = recruiter || {};
 
@@ -30,12 +29,12 @@ const RecruiterCard = ({ recruiter }) => {
     <div className="boxBorderHoverBlue  overflow-hidden hover:bg-[white]  bg-bgLightBlue dark:bg-darkBlue">
       <div className="md:p-5 p-3 flex flex-col justify-between h-full">
         {/* Recruiter Info */}
-        <div className="">
+        <div>
           {/* Recruiter logo, name, industry */}
-          <div className="">
+          <div>
             <img src={logo} alt={name} className="w-20 rounded-full" />
             <div className="flex items-center gap-2">
-              <h4 className="">{name}</h4>
+              <h4>{name}</h4>
               <p className="text-blue text-18">
                 <MdOutlineVerified />
               </p>

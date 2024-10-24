@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Helmet } from "react-helmet-async";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -42,9 +43,10 @@ function RecruitersListing() {
     setFilters((prev) => ({ ...prev, page: newPage }));
   };
   const totalRecruiters = recruiters?.totalRecruiters || 0;
-  const banglaRecruitersCount = i18n.language === 'bn' 
-    ? convertToBanglaDigits(totalRecruiters)
-    : totalRecruiters;
+  const banglaRecruitersCount =
+    i18n.language === "bn"
+      ? convertToBanglaDigits(totalRecruiters)
+      : totalRecruiters;
   let content = null;
 
   if (isLoading) content = <Loading />;

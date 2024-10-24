@@ -38,6 +38,8 @@ import SelectedJobs from "../pages/dashboard/forCandidates/SelectedJobs";
 import ManageCandidates from "../pages/dashboard/forAdmin/ManageCandidates";
 import ManageRecruiters from "../pages/dashboard/forAdmin/ManageRecruiters";
 import ManageBlogs from "../pages/dashboard/forAdmin/ManageBlogs";
+import PrivacyAndPolicy from "../pages/privacyPolicy/PrivacyAndPolicy";
+import TermsAndConditions from "../pages/termsandcondition/TermsAndConditions";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +62,14 @@ const router = createBrowserRouter([
       {
         path: "/pricing",
         element: <Pricing />,
+      },
+      {
+        path: "/privacy",
+        element: <PrivacyAndPolicy />,
+      },
+      {
+        path: "/termsandcondition",
+        element: <TermsAndConditions />,
       },
       {
         path: "/paymentForm",

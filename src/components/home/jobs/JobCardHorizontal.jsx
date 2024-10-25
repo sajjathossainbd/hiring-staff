@@ -25,7 +25,7 @@ function JobCardHorizontal({ job, recruiterLogo }) {
   );
 
   return (
-    <div className="boxBorderHoverBlue p-3 rounded-lg flex flex-col md:flex-row lg:flex-row justify-between items-center bg-white">
+    <div className="boxBorderHoverBlue p-3 rounded-lg flex flex-col md:flex-row lg:flex-row justify-between items-center bg-white dark:bg-darkBlue dark:text-white">
       <div className="flex flex-col md:flex-row lg:flex-row items-center gap-5">
         <img className="w-24 rounded-lg" src={recruiterLogo} alt="" />
 

@@ -70,7 +70,7 @@ function TodayNewJobs() {
 
   if (!isLoading && !isError && jobsData.length > 0) {
     content = (
-      <div className="grid gap-10 lg:black md:red sm:white ">
+      <div className="grid gap-10 ">
         {jobsData.map((job) => {
           const recruiter = recruitersData[job.recruiter_id];
 
@@ -88,7 +88,7 @@ function TodayNewJobs() {
   }
 
   return (
-    <div className="bg-bgLightBlue py-12">
+    <div className="bg-bgLightBlue dark:bg-darkBlue py-12">
       <div className="container py-0">
         <h3>
           <Trans i18nKey={"todayNewJobs"} />

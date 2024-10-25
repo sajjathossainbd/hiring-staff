@@ -102,7 +102,7 @@ const Register = () => {
         }
         if (userRole === "candidate") {
 
-          await axiosInstance.post("/users/candidates", userInfo).then((res) => {
+          await axiosInstance.post("/candidates", userInfo).then((res) => {
             if (res.data.insertId) {
               toast.success("Successfully candidates registered!");
               navigate(location?.state ? location.state : "/dashboard/my-profile");

@@ -15,6 +15,8 @@ const SignIn = () => {
   const { signInUser, googleSignIn, user } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
 
+console.log(user);
+
   const {
     register,
     handleSubmit,
@@ -72,11 +74,11 @@ const SignIn = () => {
       case "admin":
         email = "admin@gmail.com";
         break;
-      case "Programming Hero":
-        email = "support@programming-hero.com";
+      case "recruiter":
+        email = "recruiter@gmail.com";
         break;
-      case "Jake":
-        email = "jake.wilson@example.com";
+      case "candidate":
+        email = "candidate@gmail.com";
         break;
       default:
         break;
@@ -189,14 +191,14 @@ const SignIn = () => {
               </button>
               <button
                 className="border-2 border-blue text-blue font-semibold py-1 px-4"
-                onClick={() => handleRoleLogin("Programming Hero")}
+                onClick={() => handleRoleLogin("recruiter")}
               >
                 Recruiter Login
               </button>
             </div>
             <button
               className="border-2 border-blue text-blue font-semibold py-1 px-4"
-              onClick={() => handleRoleLogin("Jake")}
+              onClick={() => handleRoleLogin("candidate")}
             >
               Candidates Login
             </button>

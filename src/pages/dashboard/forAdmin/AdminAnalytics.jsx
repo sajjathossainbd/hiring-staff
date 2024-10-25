@@ -75,16 +75,16 @@ const AdminAnalytics = () => {
             <div
                 className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5">
                 <DashboardCard logo={<IoBagRemoveOutline />} title={'Total Jobs'} quantity={jobs?.totalJobs} />
-                <DashboardCard logo={<FaUsers />} title={'Total Candidates'} quantity={totalCandidates?.candidates.length} />
-                <DashboardCard logo={<FaRegAddressBook />} title={'Total Recruiters'} quantity={recruiters?.recruiters.length} />
+                <DashboardCard logo={<FaUsers />} title={'Total Candidates'} quantity={totalCandidates?.candidates?.length} />
+                <DashboardCard logo={<FaRegAddressBook />} title={'Total Recruiters'} quantity={recruiters?.recruiters?.length} />
                 <DashboardCard logo={<VscGitStashApply />} title={'Total Applications'} quantity={appliedJobs?.length} />
                 <DashboardCard logo={<MdPlaylistAddCheck />} title={'Total Shortlisted'} quantity={shortlisted?.length} />
             </div>
             <AreaCharts
-                UsersQuantity={totalCandidates?.candidates.length}
+                UsersQuantity={totalCandidates?.candidates?.length}
                 totalJobsQuantity={jobs?.totalJobs}
                 applicationsQuantity={appliedJobs?.length}
-                recruitersQuantity={recruiters?.recruiters.length}
+                recruitersQuantity={recruiters?.recruiters?.length}
                 shortlistedQuantity={shortlisted?.length}
             />
         </div>

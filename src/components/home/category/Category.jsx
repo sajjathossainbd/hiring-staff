@@ -1,18 +1,19 @@
-import SectionTitle from "../../shared/SectionTitle";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { fetchJobCategories } from "../../../features/jobs/jobCategories/jobCategoriesAPI";
+import { setCategory } from "../../../features/jobs/jobsFilter/filterSlice";
+import { fetchJobsListing } from "../../../features/jobs/jobsListing/jobsListingSlice";
+import { Trans, useTranslation } from "react-i18next";
+import SectionTitle from "../../shared/SectionTitle";
+import CategoryCard from "./CategoryCard";
+import Hiring from "./Hiring";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import CategoryCard from "./CategoryCard";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { fetchJobCategories } from "../../../features/jobs/jobCategories/jobCategoriesAPI";
-import { setCategory } from "../../../features/jobs/jobsFilter/filterSlice";
-import { useNavigate } from "react-router-dom";
-import { fetchJobsListing } from "../../../features/jobs/jobsListing/jobsListingSlice";
-import Hiring from "./Hiring";
-import { Trans, useTranslation } from "react-i18next";
 
 function Category() {
   const { t } = useTranslation();
@@ -31,12 +32,10 @@ function Category() {
 
   // Calculate job counts per category using reduce
   const jobCounts = jobs.reduce((acc, job) => {
-    const category = job.category || "Uncategorized"; // Handle missing categories
-    acc[category] = (acc[category] || 0) + 1; // Increment the count
+    const category = job.category || "Uncategorized"; 
+    acc[category] = (acc[category] || 0) + 1; 
     return acc;
   }, {});
-
-  console.log(jobCounts); // Example log to view counts
 
   const handleCategoryClick = (categoryName) => {
     dispatch(setCategory(categoryName));
@@ -49,8 +48,7 @@ function Category() {
     slides.push(categories.slice(i, i + itemsPerSlide));
   }
 
-  const shouldLoop = slides.length > 1; // Loop only if more than 1 slide
-
+  const shouldLoop = slides.length > 1; 
   return (
     <div className="pb-6">
       <section className="container px-0 sm:px-0 md:px-0 lg:px-0 xl:px-14">
@@ -68,6 +66,10 @@ function Category() {
             autoplay={{ delay: 3000, disableOnInteraction: true }}
             modules={[Pagination, Navigation, Autoplay]}
             className="mySwiper"
+            style={{
+              "--swiper-navigation-size": "20px", 
+              "--swiper-navigation-color": "#000", 
+            }}
           >
             {slides.map((slide, index) => (
               <SwiperSlide key={index}>

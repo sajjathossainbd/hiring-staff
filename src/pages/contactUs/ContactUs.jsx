@@ -18,13 +18,6 @@ function ContactUs() {
       <div className="container">
         <div className="lg:p-8 p-5 flex lg:flex-row flex-col lg:items-center lg:gap-0 justify-between bg-bgLightWhite dark:bg-darkBlue rounded gap-7">
           <div className="space-y-2 mr-16 ">
-            <div className="flex items-center gap-2">
-              <img
-                className="w-32"
-                src="https://i.ibb.co/0rKvK9v/Hiring-Staff-Logo.png"
-                alt="Hiring Stuff"
-              />
-            </div>
             <p>
               205 North Michigan Avenue <br /> Chicago, 60601, USA
             </p>

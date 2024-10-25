@@ -51,7 +51,7 @@ const BlogSection = () => {
   }
 
   return (
-    <section className=" bg-bgLightWhite">
+    <section className=" bg-bgLightWhite dark:bg-darkBlue dark:text-white">
       <div className="container">
         <SectionTitle
           title={<Trans i18nKey={"newsandBlogs"} />}

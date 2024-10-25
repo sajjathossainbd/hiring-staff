@@ -59,6 +59,25 @@
   color: white;
 }
 
+/* Custom styles for Swiper arrows */
+.swiper-button-next,
+.swiper-button-prev {
+  width: 10px;  
+  height: 10px; 
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 10px; 
+}
+
+/* Optional: Adjust arrow color */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #000; 
+}
+
+
 /* end */
 
 /* animate banner image */

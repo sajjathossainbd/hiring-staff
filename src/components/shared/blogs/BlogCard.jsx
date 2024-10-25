@@ -17,9 +17,9 @@ function BlogCard({ blog }) {
   const formattedDate = formatDate(date_published);
 
   return (
-    <div className="boxBorderHoverBlue dark:bg-lightGray  shadow-sm bg-white dark:border-noe">
+    <div className="boxBorderHoverBlue dark:bg-darkBlue  shadow-sm bg-white dark:text-white">
       <div className="flex flex-col justify-between">
-        <figure className="w-full flex items-center justify-center py-2">
+        <figure className="w-full flex items-center justify-center py-4">
           <img
             className="rounded-md size-48 object-cover "
             src={url}
@@ -46,8 +46,8 @@ function BlogCard({ blog }) {
             </div>
 
             {/* Title and Contnet */}
-            <h4 className="line-clamp-2 dark:text-black">{title}</h4>
-            <p className="mt-1 text-14 dark:text-black">
+            <h4 className="line-clamp-2 ">{title}</h4>
+            <p className="mt-1 text-14 ">
               {short_description?.slice(0, 100)}...
             </p>
 

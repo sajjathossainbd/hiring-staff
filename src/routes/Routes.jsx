@@ -211,6 +211,11 @@ const router = createBrowserRouter([
       {
         path: "manage-all-blogs/:page",
         element: <ManageBlogs />,
+
+      },
+      {
+        path: "manage-all-blogs/:page/create-blogs",
+        element: <CreateBlogs />,
       },
       {
         path: "all-payment-history",
@@ -220,10 +225,7 @@ const router = createBrowserRouter([
         path: "all-payment-history/:page",
         element: <AllPaymentHistory />,
       },
-      {
-        path: "manage-all-blogs/:page/create-blogs",
-        element: <CreateBlogs />,
-      },
+      
 
       // For Candidate
       {

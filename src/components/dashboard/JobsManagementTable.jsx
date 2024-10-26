@@ -58,6 +58,14 @@ const JobsManagementTable = () => {
         });
     };
 
+    const renderSkeletonRows = () =>
+        Array.from({ length: limit }).map((_, index) => (
+            <tr key={index}>
+                {/* <td><Skeleton height={20} width="100%" style={customSkeletonStyle} /></td> */}
+                <td><Skeleton height={20} width="100%" /></td>
+            </tr>
+        ));
+
     return (
         <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
             <h5>Manage Jobs</h5>

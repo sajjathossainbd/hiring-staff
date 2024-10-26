@@ -2,9 +2,11 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 import axiosInstance from "../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "../ui/Loading";
 import { CardPagination } from "../shared/CardPagination";
+import SecondaryButton from "../shared/SecondaryButton";
+
 
 const BlogsManagementTable = () => {
     const navigate = useNavigate();
@@ -64,7 +66,13 @@ const BlogsManagementTable = () => {
 
     return (
         <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
+            <div className="flex justify-between">
             <h5>Manage Blogs</h5>
+            <Link to={"create-blogs"}>
+            <SecondaryButton title={"Cretae Blogs + "}/>
+            </Link>
+            
+            </div>
             <hr className="my-6 text-lightGray" />
             <div className="overflow-x-auto flex flex-col justify-between lg:h-[550px]">
                 <table className="table text-sm">

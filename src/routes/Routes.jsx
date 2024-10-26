@@ -41,6 +41,7 @@ import ManageBlogs from "../pages/dashboard/forAdmin/ManageBlogs";
 import PrivacyAndPolicy from "../pages/privacyPolicy/PrivacyAndPolicy";
 import TermsAndConditions from "../pages/termsandcondition/TermsAndConditions";
 import AiAssistant from "../pages/dashboard/AiAssistant";
+import CreateBlogs from "../pages/dashboard/forAdmin/CreateBlogs";
 
 const router = createBrowserRouter([
   {
@@ -218,6 +219,10 @@ const router = createBrowserRouter([
       {
         path: "all-payment-history/:page",
         element: <AllPaymentHistory />,
+      },
+      {
+        path: "manage-all-blogs/create-blogs",
+        element: <CreateBlogs />,
       },
 
       // For Candidate

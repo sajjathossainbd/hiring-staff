@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import axiosInstance from "../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Loading from "../ui/Loading";
+// import Loading from "../ui/Loading";
 import { CardPagination } from "../shared/CardPagination";
 import SecondaryButton from "../shared/SecondaryButton";
 import Skeleton from "react-loading-skeleton";
@@ -34,7 +34,7 @@ const BlogsManagementTable = () => {
     });
 
     if (isError) return <div>Error loading blogs.</div>;
-    if (isLoading) return <Loading />;
+    // if (isLoading) return <Loading />;
 
     // Log blogsData to debug the structure
     console.log("Fetched Blogs Data:", blogsData);

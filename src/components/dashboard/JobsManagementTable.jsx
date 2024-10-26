@@ -65,6 +65,7 @@ const JobsManagementTable = () => {
                 <td><Skeleton height={20} width="100%" /></td>
                 <td><Skeleton height={20} width="100%" /></td>
                 <td><Skeleton height={20} width="100%" /></td>
+                <td><Skeleton height={20} width="100%" /></td>
             </tr>
         ));
 

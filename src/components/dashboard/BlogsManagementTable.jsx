@@ -6,7 +6,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "../ui/Loading";
 import { CardPagination } from "../shared/CardPagination";
 import SecondaryButton from "../shared/SecondaryButton";
-
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const BlogsManagementTable = () => {
     const navigate = useNavigate();
@@ -64,14 +65,21 @@ const BlogsManagementTable = () => {
         });
     };
 
+    const renderSkeletonRows = () =>
+        Array.from({ length: limit }).map((_, index) => (
+            <tr key={index}>
+
+            </tr>
+        ));
+
     return (
         <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
             <div className="flex justify-between">
-            <h5>Manage Blogs</h5>
-            <Link to={`/dashboard/manage-all-blogs/${currentPage}/create-blogs`}>
-            <SecondaryButton title={"Cretae Blogs + "}/>
-            </Link>
-            
+                <h5>Manage Blogs</h5>
+                <Link to={`/dashboard/manage-all-blogs/${currentPage}/create-blogs`}>
+                    <SecondaryButton title={"Cretae Blogs + "} />
+                </Link>
+
             </div>
             <hr className="my-6 text-lightGray" />
             <div className="overflow-x-auto flex flex-col justify-between lg:h-[550px]">

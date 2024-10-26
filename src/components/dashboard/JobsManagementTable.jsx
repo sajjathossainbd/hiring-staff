@@ -101,6 +101,14 @@ const JobsManagementTable = () => {
                                             <SecondaryButton title={"Details"} />
                                         </Link>
                                     </td>
+                                    <td>
+                                        <button
+                                            onClick={() => handleDelete(job?._id)}
+                                            className="btn rounded-full text-red-600 hover:text-white hover:bg-blue"
+                                        >
+                                            <RiDeleteBin6Line />
+                                        </button>
+                                    </td>
                                 </tr>
                             ))}
 

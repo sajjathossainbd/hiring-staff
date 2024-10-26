@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import JobCardHorizontal from "./JobCardHorizontal";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { fetchJobsListing } from "../../../features/jobs/jobsListing/jobsListingSlice";
 import { fetchRecruiterDetails } from "../../../features/recruiters/recruiterDetails/recruiterDetailsSlice";
 import Loading from "../../ui/Loading";
 import NoFoundData from "../../ui/NoFoundData";
 import { Link } from "react-router-dom";
 import PrimaryBtn from "../../ui/PrimaryBtn";
+import { Trans } from "react-i18next";
 
 function TodayNewJobs() {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ function TodayNewJobs() {
     isError,
   } = useSelector((state) => state.jobsListing);
 
-  const jobsData = jobs?.jobs?.slice(0, 3) || [];
+  const jobsData = useMemo(() => jobs?.jobs?.slice(0, 3) || [], [jobs]);
 
   const [recruitersData, setRecruitersData] = useState({});
   const [recruiterIdsFetched, setRecruiterIdsFetched] = useState(new Set());
@@ -33,12 +34,12 @@ function TodayNewJobs() {
 
       await Promise.all(
         jobsData.map(async (job) => {
-          if (!recruiterIdsFetched.has(job.company_id)) {
+          if (!recruiterIdsFetched.has(job.recruiter_id)) {
             const recruiterResponse = await dispatch(
-              fetchRecruiterDetails(job.company_id)
+              fetchRecruiterDetails(job.recruiter_id)
             ).unwrap();
-            recruiters[job.company_id] = recruiterResponse;
-            newRecruiterIds.add(job.company_id);
+            recruiters[job.recruiter_id] = recruiterResponse;
+            newRecruiterIds.add(job.recruiter_id);
           }
         })
       );
@@ -69,13 +70,13 @@ function TodayNewJobs() {
 
   if (!isLoading && !isError && jobsData.length > 0) {
     content = (
-      <div className="grid gap-10">
+      <div className="grid gap-10 ">
         {jobsData.map((job) => {
-          const recruiter = recruitersData[job.company_id];
+          const recruiter = recruitersData[job.recruiter_id];
 
           return (
             <JobCardHorizontal
-              key={job._id} // Keep the key here
+              key={job._id}
               job={job}
               recruiterName={recruiter?.name}
               recruiterLogo={recruiter?.logo}
@@ -87,15 +88,17 @@ function TodayNewJobs() {
   }
 
   return (
-    <div className="bg-bgLightBlue py-12">
+    <div className="bg-bgLightBlue dark:bg-darkBlue py-12">
       <div className="container py-0">
-        <h3>Today New Jobs</h3>
+        <h3>
+          <Trans i18nKey={"todayNewJobs"} />
+        </h3>
         <div className="mt-10">{content}</div>
         <Link
           to={"/jobs-listing"}
           className="flex items-center justify-center mt-6"
         >
-          <PrimaryBtn title="More Jobs" />
+          <PrimaryBtn title={<Trans i18nKey={"moreJobs"} />} />
         </Link>
       </div>
     </div>

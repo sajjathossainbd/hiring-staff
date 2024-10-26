@@ -1,31 +1,41 @@
-import SectionTitle from "../../shared/SectionTitle";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { fetchJobCategories } from "../../../features/jobs/jobCategories/jobCategoriesAPI";
+import { setCategory } from "../../../features/jobs/jobsFilter/filterSlice";
+import { fetchJobsListing } from "../../../features/jobs/jobsListing/jobsListingSlice";
+import { Trans, useTranslation } from "react-i18next";
+import SectionTitle from "../../shared/SectionTitle";
+import CategoryCard from "./CategoryCard";
+import Hiring from "./Hiring";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import CategoryCard from "./CategoryCard";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { fetchJobCategories } from "../../../features/jobs/jobCategories/jobCategoriesAPI";
-import { setCategory } from "../../../features/jobs/jobsFilter/filterSlice";
-import { useNavigate } from "react-router-dom";
-import { fetchJobsListing } from "../../../features/jobs/jobsListing/jobsListingSlice";
-import Hiring from "./Hiring";
 
 function Category() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { jobsListing: jobs } = useSelector((state) => state.jobsListing);
+  const { jobsListing: jobsData } = useSelector((state) => state.jobsListing);
   const { categories } = useSelector((state) => state.jobCategories);
 
   useEffect(() => {
-    dispatch(fetchJobCategories());
     dispatch(fetchJobsListing());
+    dispatch(fetchJobCategories());
   }, [dispatch]);
 
-  const jobsData = jobs?.jobs || [];
+  const jobs = jobsData?.jobs || [];
+
+  // Calculate job counts per category using reduce
+  const jobCounts = jobs.reduce((acc, job) => {
+    const category = job.category || "Uncategorized"; 
+    acc[category] = (acc[category] || 0) + 1; 
+    return acc;
+  }, {});
 
   const handleCategoryClick = (categoryName) => {
     dispatch(setCategory(categoryName));
@@ -38,41 +48,28 @@ function Category() {
     slides.push(categories.slice(i, i + itemsPerSlide));
   }
 
-  // Calculate job counts per category
-  const jobCounts = categories.reduce((acc, category) => {
-    acc[category] = jobsData.filter(
-      (job) => job.category.toLowerCase() === category.toLowerCase()
-    ).length;
-    return acc;
-  }, {});
-
-  // Conditionally disable loop based on number of slides
-  const shouldLoop = slides.length > 1;
-
+  const shouldLoop = slides.length > 1; 
   return (
-    <div className=" pb-6">
+    <div className="pb-6">
       <section className="container px-0 sm:px-0 md:px-0 lg:px-0 xl:px-14">
         <SectionTitle
-          title={"Browse by category"}
-          subTitle={
-            "Find the job that’s perfect for you. About 800+ new jobs every day"
-          }
+          title={<Trans i18nKey="browsbyCategory" />}
+          subTitle={<Trans i18nKey="browsbyCategory_subTitle" />}
         />
         <div>
           <Swiper
             slidesPerView={1}
             spaceBetween={30}
-            loop={shouldLoop} // Conditionally enable loop
-            pagination={{
-              clickable: true,
-            }}
+            loop={shouldLoop}
+            pagination={{ clickable: true }}
             navigation={true}
-            autoplay={{
-              delay: 3000,
-              disableOnInteraction: true,
-            }}
+            autoplay={{ delay: 3000, disableOnInteraction: true }}
             modules={[Pagination, Navigation, Autoplay]}
             className="mySwiper"
+            style={{
+              "--swiper-navigation-size": "20px", 
+              "--swiper-navigation-color": "#000", 
+            }}
           >
             {slides.map((slide, index) => (
               <SwiperSlide key={index}>
@@ -81,7 +78,7 @@ function Category() {
                     <CategoryCard
                       key={idx}
                       categoryName={category}
-                      jobCount={jobCounts[category] || 0} // Pass job count
+                      jobCount={jobCounts[category] || 0} // Display job count
                       onCategoryClick={handleCategoryClick}
                     />
                   ))}

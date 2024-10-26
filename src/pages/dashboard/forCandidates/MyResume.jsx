@@ -79,6 +79,7 @@ const MyResume = () => {
                 placeholder="Name"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="mb-4">
@@ -92,6 +93,7 @@ const MyResume = () => {
                 placeholder="Email Address"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
                 onChange={handleChange}
+                required
               />
             </div>
           </div>
@@ -108,6 +110,7 @@ const MyResume = () => {
                 placeholder="Date of Birth"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="mb-4">
@@ -121,13 +124,17 @@ const MyResume = () => {
                 placeholder="+880-"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
                 onChange={handleChange}
+                required
               />
             </div>
           </div>
           {/* address and gender */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div className="mb-4">
-              <label htmlFor="address" className="block text-gray font-bold mb-2">
+              <label
+                htmlFor="address"
+                className="block text-gray font-bold mb-2"
+              >
                 Address
               </label>
               <input
@@ -137,10 +144,14 @@ const MyResume = () => {
                 placeholder="Address"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="gender" className="block text-gray font-bold mb-2">
+              <label
+                htmlFor="gender"
+                className="block text-gray font-bold mb-2"
+              >
                 Gender
               </label>
               <select
@@ -148,6 +159,7 @@ const MyResume = () => {
                 id="gender"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
                 onChange={handleChange}
+                required
               >
                 <option value="" disabled selected>
                   Select your gender
@@ -160,7 +172,10 @@ const MyResume = () => {
           </div>
           {/* description */}
           <div className="mb-4">
-            <label htmlFor="description" className="block text-gray font-bold mb-2">
+            <label
+              htmlFor="description"
+              className="block text-gray font-bold mb-2"
+            >
               Description
             </label>
             <textarea
@@ -170,6 +185,7 @@ const MyResume = () => {
               placeholder="Short description about you.."
               className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
               onChange={handleChange}
+              required
             />
           </div>
 
@@ -177,7 +193,10 @@ const MyResume = () => {
           {/* title and degree */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 mt-2">
             <div className="mb-4">
-              <label htmlFor="educationTitle" className="block text-gray font-bold mb-2">
+              <label
+                htmlFor="educationTitle"
+                className="block text-gray font-bold mb-2"
+              >
                 Title
               </label>
               <input
@@ -190,7 +209,10 @@ const MyResume = () => {
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="degree" className="block text-gray font-bold mb-2">
+              <label
+                htmlFor="degree"
+                className="block text-gray font-bold mb-2"
+              >
                 Degree
               </label>
               <input
@@ -206,7 +228,10 @@ const MyResume = () => {
           {/* institute and year */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div className="mb-4">
-              <label htmlFor="institute" className="block text-gray font-bold mb-2">
+              <label
+                htmlFor="institute"
+                className="block text-gray font-bold mb-2"
+              >
                 Institute
               </label>
               <input
@@ -237,7 +262,10 @@ const MyResume = () => {
           {/* title and experience */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 mt-2">
             <div className="mb-4">
-              <label htmlFor="skillTitle" className="block text-gray font-bold mb-2">
+              <label
+                htmlFor="skillTitle"
+                className="block text-gray font-bold mb-2"
+              >
                 Title
               </label>
               <input
@@ -247,10 +275,14 @@ const MyResume = () => {
                 placeholder="Skill Title"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
                 onChange={handleSkillChange}
+                required
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="experience" className="block text-gray font-bold mb-2">
+              <label
+                htmlFor="experience"
+                className="block text-gray font-bold mb-2"
+              >
                 Experience
               </label>
               <input
@@ -260,6 +292,7 @@ const MyResume = () => {
                 placeholder="Experience Level"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
                 onChange={handleSkillChange}
+                required
               />
             </div>
           </div>
@@ -268,7 +301,10 @@ const MyResume = () => {
           {/* Social Links */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 mt-2">
             <div className="mb-4">
-              <label htmlFor="facebook" className="block text-gray font-bold mb-2">
+              <label
+                htmlFor="facebook"
+                className="block text-gray font-bold mb-2"
+              >
                 Facebook URL
               </label>
               <input
@@ -278,10 +314,14 @@ const MyResume = () => {
                 placeholder="Facebook URL"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
                 onChange={handleSocialChange}
+                required
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="twitter" className="block text-gray font-bold mb-2">
+              <label
+                htmlFor="twitter"
+                className="block text-gray font-bold mb-2"
+              >
                 Twitter URL
               </label>
               <input
@@ -291,12 +331,16 @@ const MyResume = () => {
                 placeholder="Twitter URL"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
                 onChange={handleSocialChange}
+                required
               />
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div className="mb-4">
-              <label htmlFor="linkedin" className="block text-gray font-bold mb-2">
+              <label
+                htmlFor="linkedin"
+                className="block text-gray font-bold mb-2"
+              >
                 LinkedIn URL
               </label>
               <input
@@ -306,10 +350,14 @@ const MyResume = () => {
                 placeholder="LinkedIn URL"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
                 onChange={handleSocialChange}
+                required
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="github" className="block text-gray font-bold mb-2">
+              <label
+                htmlFor="github"
+                className="block text-gray font-bold mb-2"
+              >
                 GitHub URL
               </label>
               <input
@@ -319,14 +367,12 @@ const MyResume = () => {
                 placeholder="GitHub URL"
                 className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
                 onChange={handleSocialChange}
+                required
               />
             </div>
           </div>
 
-          <PrimaryButton
-            title={"Submit Now"}
-            icon={<BsFillSendFill />}
-          />
+          <PrimaryButton title={"Submit Now"} icon={<BsFillSendFill />} />
         </form>
       </div>
     </div>

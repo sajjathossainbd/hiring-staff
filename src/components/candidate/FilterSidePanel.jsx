@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 import Dropdown from "../shared/DropdownCandidate";
 
 function FilterSidePanel({

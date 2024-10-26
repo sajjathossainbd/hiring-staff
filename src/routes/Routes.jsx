@@ -35,6 +35,11 @@ import AllPaymentHistory from "../pages/dashboard/forAdmin/AllPaymentHistory";
 import MyPayments from "../pages/dashboard/MyPayments";
 import ManageJobs from "../pages/dashboard/forAdmin/ManageJobs";
 import SelectedJobs from "../pages/dashboard/forCandidates/SelectedJobs";
+import ManageCandidates from "../pages/dashboard/forAdmin/ManageCandidates";
+import ManageRecruiters from "../pages/dashboard/forAdmin/ManageRecruiters";
+import ManageBlogs from "../pages/dashboard/forAdmin/ManageBlogs";
+import PrivacyAndPolicy from "../pages/privacyPolicy/PrivacyAndPolicy";
+import TermsAndConditions from "../pages/termsandcondition/TermsAndConditions";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +62,14 @@ const router = createBrowserRouter([
       {
         path: "/pricing",
         element: <Pricing />,
+      },
+      {
+        path: "/privacy",
+        element: <PrivacyAndPolicy />,
+      },
+      {
+        path: "/termsandcondition",
+        element: <TermsAndConditions />,
       },
       {
         path: "/paymentForm",
@@ -158,12 +171,40 @@ const router = createBrowserRouter([
         element: <ManageUsers />,
       },
       {
+        path: "manage-users/:page",
+        element: <ManageUsers />,
+      },
+      {
+        path: "manage-candidates",
+        element: <ManageCandidates />,
+      },
+      {
+        path: "manage-candidates/:page",
+        element: <ManageCandidates />,
+      },
+      {
+        path: "manage-recruiters",
+        element: <ManageRecruiters />,
+      },
+      {
+        path: "manage-recruiters/:page",
+        element: <ManageRecruiters />,
+      },
+      {
         path: "manage-all-jobs",
         element: <ManageJobs />,
       },
       {
-        path: "manage-users/:page",
-        element: <ManageUsers />,
+        path: "manage-all-jobs/:page",
+        element: <ManageJobs />,
+      },
+      {
+        path: "manage-all-blogs",
+        element: <ManageBlogs />,
+      },
+      {
+        path: "manage-all-blogs/:page",
+        element: <ManageBlogs />,
       },
       {
         path: "all-payment-history",
@@ -184,11 +225,23 @@ const router = createBrowserRouter([
         element: <AppliedJobs />,
       },
       {
+        path: "applied-jobs/:page",
+        element: <AppliedJobs />,
+      },
+      {
         path: "shortlisted-jobs",
         element: <ShortlistedJobs />,
       },
       {
+        path: "shortlisted-jobs/:page",
+        element: <ShortlistedJobs />,
+      },
+      {
         path: "selected-jobs",
+        element: <SelectedJobs />,
+      },
+      {
+        path: "selected-jobs/:page",
         element: <SelectedJobs />,
       },
 
@@ -203,6 +256,10 @@ const router = createBrowserRouter([
       },
       {
         path: "manage-jobs",
+        element: <ManageJob />,
+      },
+      {
+        path: "manage-jobs/:page",
         element: <ManageJob />,
       },
       {

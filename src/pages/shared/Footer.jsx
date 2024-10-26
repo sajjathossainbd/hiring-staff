@@ -3,11 +3,12 @@ import appStore from "../../assets/footer-images/app-store.svg";
 import googlePlay from "../../assets/footer-images/google-play.svg";
 import NavLink from "../../components/shared/NavLink";
 import LogoBlack from "../../components/ui/LogoBlack";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <div className="container">
-      <footer className="footer text-base-content lg:mt-20 mt-10">
+      <footer className="footer text-base-content lg:mt-10 mt-6">
         <aside className="space-y-3 mr-3">
           <div className="text-6">
             <LogoBlack size="medium" />
@@ -24,28 +25,20 @@ const Footer = () => {
         </aside>
         <nav>
           <h6 className="footer-title">Resources</h6>
-          <NavLink navTitle={"About Us"} />
-          <NavLink navTitle={"Candidates"} />
-          <NavLink navTitle={"Contact Us"} />
+          <NavLink to={"/about"} navTitle={"About Us"} />
+          <NavLink to={"/candidates-listing"} navTitle={"Candidates"} />
+          <NavLink to={"/contact"} navTitle={"Contact Us"} />
         </nav>
         <nav>
           <h6 className="footer-title">Community</h6>
-          <NavLink navTitle={"Feature"} />
-          <NavLink navTitle={"Pricing"} />
-          <NavLink navTitle={"Credit"} />
-          <NavLink navTitle={"FAQ"} />
+          <NavLink to={"/blogs"} navTitle={"Blogs"} />
+          <NavLink to={"/pricing"} navTitle={"FAQ"} />
         </nav>
-        <nav>
+        <nav className="disabled">
           <h6 className="footer-title">Quick links</h6>
           <NavLink navTitle={"IOS"} />
           <NavLink navTitle={"Android"} />
           <NavLink navTitle={"Desktop"} />
-        </nav>
-        <nav>
-          <h6 className="footer-title">More</h6>
-          <NavLink navTitle={"Helps"} />
-          <NavLink navTitle={"Privacy policy"} />
-          <NavLink navTitle={"Terms"} />
         </nav>
         <nav>
           <div className="space-y-3">
@@ -69,13 +62,16 @@ const Footer = () => {
           reserved
         </strong>
         <div className="flex items-center gap-3 lg:gap-10">
-          <strong className="hover:text-blue cursor-pointer">
-            Privacy Policy
-          </strong>
-          <strong className="hover:text-blue cursor-pointer">
-            Terms & Conditions
-          </strong>
-          <strong className="hover:text-blue cursor-pointer">Security</strong>
+          <Link to={"/privacy"}>
+            <strong className="hover:text-blue cursor-pointer">
+              Privacy Policy
+            </strong>
+          </Link>
+          <Link to={"termsandcondition"}>
+            <strong className="hover:text-blue cursor-pointer">
+              Terms & Conditions
+            </strong>
+          </Link>
         </div>
       </div>
     </div>

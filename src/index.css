@@ -22,10 +22,10 @@ body {
 
 @keyframes animate-updownAnim {
     from {
-        transform: translateY(-20px);
+        transform: translateY(-15px);
     }
     to {
-        transform: translateY(20px);
+        transform: translateY(15px);
     }
 }
   .container {
@@ -37,7 +37,7 @@ body {
   }
 
   .boxBorderHoverBlue {
-    @apply border-[.5px] border-bgDeepBlue hover:border-blue hover:-translate-y-[3px] transition-all duration-500 rounded-lg;
+    @apply border border-bgDeepBlue hover:border-blue hover:-translate-y-1 transition-all duration-500 rounded-lg;
   }
 
   .boxBorderHoverGray {

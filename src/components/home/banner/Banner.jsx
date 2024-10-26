@@ -1,12 +1,14 @@
 import SearchByFilter from "../../shared/SearchByFilter";
 import PopularSearch from "./PopularSearch";
-import bannerImg from "../../../assets/home/banner/banner03.svg";
-import Lottie from "lottie-react";
-import UpDownDrawLine from "./../../../../public/up-down-draw-line.json";
 import BannerCountDown from "./BannerCountDown";
 import TodayNewJobs from "../jobs/TodayNewJobs";
+import UpDownDrawLine from "./../../../../public/up-down-draw-line.json";
+import BannerImg from "./../../../../public/banner1.json";
+import { Trans, useTranslation } from "react-i18next";
+import Lottie from "lottie-react";
 
 const Banner = () => {
+  const { t } = useTranslation();
   return (
     <section className="dark:bg-darkBlue px-4 lg:pb-10">
       <div className="container pt-0">
@@ -19,14 +21,13 @@ const Banner = () => {
                 <div className="absolute xl:flex hidden w-44 bottom-10 left-[82px]">
                   <Lottie animationData={UpDownDrawLine}></Lottie>
                 </div>
-                The <span className="text-blue">Easiest</span> Way To Get
-                <br className="lg:block hidden" /> Your New Job.
+                <Trans i18nKey="home_hero_title">
+                  The <span className="text-blue">Easiest</span> Way To Get{" "}
+                  <br /> Your New Job.
+                </Trans>
               </h2>
-              <p className="text-18 mt-8">
-                Every month, 3 million job seekers use our platform, submitting
-                over 140,000 applications daily to explore new opportunities and
-                connect with potential employers.
-              </p>
+
+              <p className="text-18 mt-8">{t("home_hero_subTitile")}</p>
             </div>
             {/* search by filter jobs*/}
             <SearchByFilter />
@@ -35,18 +36,16 @@ const Banner = () => {
           </div>
           {/* Banner Right - Image */}
           <div className="lg:w-1/2 md:w-2/4 w-10/12 flex justify-center">
-            <img
-              className="h-full object-cover ml-auto animate-updown"
-              src={bannerImg}
-              alt=""
-            />
+            <div className="object-cover">
+              <Lottie animationData={BannerImg}></Lottie>
+            </div>
           </div>
         </div>
       </div>
       <div className="container pt-0">
         <BannerCountDown />
       </div>
-      <div className="mt-10">
+      <div className="mt-10 ">
         <TodayNewJobs />
       </div>
     </section>

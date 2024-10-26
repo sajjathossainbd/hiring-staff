@@ -2,7 +2,7 @@
 const CategoryCard = ({ categoryName, jobCount, onCategoryClick }) => {
   return (
     <div
-      className="boxBorderHoverBlue py-5 px-4 rounded-lg shadow-sm text-center flex justify-center items-center gap-2 cursor-pointer bg-bgLightBlue"
+      className="boxBorderHoverBlue py-5 px-4 rounded-lg shadow-sm text-center flex justify-center items-center gap-2 cursor-pointer bg-bgLightBlue dark:bg-darkBlue text-white"
       onClick={() => onCategoryClick(categoryName)}
     >
       <div>

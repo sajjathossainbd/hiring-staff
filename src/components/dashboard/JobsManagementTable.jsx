@@ -1,20 +1,39 @@
-import { useQuery } from "@tanstack/react-query";
-import axiosInstance from "../../utils/axios";
-import { Link } from "react-router-dom";
-import SecondaryButton from "../shared/SecondaryButton";
-import Swal from "sweetalert2";
 import { RiDeleteBin6Line } from "react-icons/ri";
-
+import Swal from "sweetalert2";
+import axiosInstance from "../../utils/axios";
+import { useQuery } from "@tanstack/react-query";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import Loading from "../ui/Loading";
+import { CardPagination } from "../shared/CardPagination";
+import SecondaryButton from "../shared/SecondaryButton";
 
 const JobsManagementTable = () => {
+    const navigate = useNavigate();
+    const { page = 1 } = useParams(); // Assuming page is passed in the URL
+    const limit = 6; // Set your desired number of jobs per page
 
-    const { data: jobs, refetch } = useQuery({
-        queryKey: ['jobs'],
-        queryFn: async () => {
-            const res = await axiosInstance.get("/jobs");
-            return res.data;
-        },
+    // Fetch jobs with pagination
+    const fetchJobs = async (currentPage, limit) => {
+        const response = await axiosInstance.get(`/jobs?page=${currentPage}&limit=${limit}`);
+        return response.data;
+    };
+
+    const {
+        data: jobsData,
+        isLoading,
+        isError,
+        refetch,
+    } = useQuery({
+        queryKey: ["jobs", page],
+        queryFn: () => fetchJobs(page, limit),
     });
+
+    if (isError) return <div>Error loading jobs.</div>;
+    if (isLoading) return <Loading />;
+
+    const currentPage = jobsData.currentPage || 1;
+    const totalDocuments = jobsData.totalJobs || 0;
+    const totalPages = Math.ceil(totalDocuments / limit) || 1;
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -37,10 +56,9 @@ const JobsManagementTable = () => {
         });
     };
 
-
     return (
         <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
-            <h5>Manage jobs</h5>
+            <h5>Manage Jobs</h5>
             <hr className="my-6 text-lightGray" />
             <div className="overflow-x-auto flex flex-col justify-between lg:h-[550px]">
                 <table className="table text-sm">
@@ -55,7 +73,7 @@ const JobsManagementTable = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {jobs?.jobs?.map((job) => (
+                        {jobsData?.jobs?.map((job) => (
                             <tr key={job?._id}>
                                 <td>{job?.jobTitle}</td>
                                 <td>{job?.category}</td>
@@ -78,6 +96,11 @@ const JobsManagementTable = () => {
                         ))}
                     </tbody>
                 </table>
+                <CardPagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={(newPage) => navigate(`/dashboard/manage-all-jobs/${newPage}`)}
+                />
             </div>
         </div>
     );

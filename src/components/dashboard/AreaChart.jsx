@@ -11,7 +11,7 @@ const AreaCharts = ({ UsersQuantity,
 
     const data = [
         {
-            name: 'Total Users',
+            name: 'Total Candidates',
             uv: UsersQuantity,
 
         },

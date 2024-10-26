@@ -1,5 +1,5 @@
 import { CgProfile } from "react-icons/cg";
-import { FaArrowUpShortWide, FaCheck } from "react-icons/fa6";
+import { FaArrowUpShortWide, FaBlogger, FaCheck, FaUserGroup } from "react-icons/fa6";
 import { ImProfile } from "react-icons/im";
 import { IoHomeOutline } from "react-icons/io5";
 import {
@@ -12,24 +12,20 @@ import { RxResume } from "react-icons/rx";
 import { VscGitStashApply } from "react-icons/vsc";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import DashboardFooter from "../pages/dashboard/shared/DashboardFooter";
-import { FaUserCog } from "react-icons/fa";
-import { useEffect, useState } from "react";
-import useCurrentUser from "../hooks/useCurrentUser";
+import { FaUserTie } from "react-icons/fa";
 import useAuth from "../hooks/useAuth";
 import { IoIosLogOut } from "react-icons/io";
 import { HiOutlineBriefcase } from "react-icons/hi";
 import { Helmet } from "react-helmet-async";
+import useCurrentCandidate from "../hooks/useCurrentCandidate";
+import useCurrentRecruiter from "../hooks/useCurrentRecruiter";
 
 const Dashboard = () => {
   const { logOut } = useAuth();
-  const [admin, setAdmin] = useState(false);
-  const [recruiter, setRecruiter] = useState(false);
-  const { currentUser } = useCurrentUser();
 
-  useEffect(() => {
-    setAdmin(currentUser?.role === "admin");
-    setRecruiter(currentUser?.role === "recruiter");
-  }, [currentUser]);
+  const { currentCandidate } = useCurrentCandidate()
+  const { currentRecruiter } = useCurrentRecruiter()
+
 
   return (
     <div className="flex lg:flex-row flex-col inter">
@@ -50,7 +46,7 @@ const Dashboard = () => {
           </div>
           <div className="drawer-side">
             <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-            <ul className="menu inter p-4 w-64 h-full dark:bg-darkBlue bg-white text-black fixed top-0 overflow-y-auto shadow-xl font-bold space-y-3">
+            <ul className="menu inter p-4 w-64 xl:h-fit lg:h-fit md:h-full h-full dark:bg-darkBlue bg-white text-black fixed top-0 overflow-y-auto font-bold space-y-2">
               {/* Logo Section */}
               <div className="flex items-center justify-center my-6">
                 <Link to={"/"} className="flex items-center gap-1">
@@ -60,7 +56,7 @@ const Dashboard = () => {
               </div>
 
               {/* Admin Links */}
-              {admin && (
+              {!currentCandidate && !currentRecruiter && (
                 <>
                   <li>
                     <NavLink
@@ -72,18 +68,18 @@ const Dashboard = () => {
                   </li>
                   <li>
                     <NavLink
-                      to="/dashboard/manage-users"
+                      to="/dashboard/manage-all-jobs"
                       className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
-                      <FaUserCog /> Manage Users
+                      <MdPostAdd /> All Jobs
                     </NavLink>
                   </li>
                   <li>
                     <NavLink
-                      to="/dashboard/manage-all-jobs"
+                      to="/dashboard/manage-all-blogs"
                       className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
-                      <MdPostAdd /> Manage Jobs
+                      <FaBlogger /> All Blogs
                     </NavLink>
                   </li>
                   <li>
@@ -94,11 +90,27 @@ const Dashboard = () => {
                       <MdOutlinePayment /> All Payments
                     </NavLink>
                   </li>
+                  <li>
+                    <NavLink
+                      to="/dashboard/manage-recruiters"
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
+                    >
+                      <FaUserTie /> All Recruiters
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/dashboard/manage-candidates"
+                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
+                    >
+                      <FaUserGroup /> All Candidates
+                    </NavLink>
+                  </li>
                 </>
               )}
 
               {/* Recruiter Links */}
-              {recruiter && (
+              {currentRecruiter && (
                 <>
                   <li>
                     <NavLink
@@ -106,14 +118,6 @@ const Dashboard = () => {
                       className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
                     >
                       <ImProfile /> Overview
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/dashboard/recruiter-profile"
-                      className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
-                    >
-                      <ImProfile /> Recruiter Profile
                     </NavLink>
                   </li>
                   <li>
@@ -152,7 +156,7 @@ const Dashboard = () => {
               )}
 
               {/* Links for Candidates */}
-              {!admin && !recruiter && (
+              {currentCandidate && (
                 <>
                   <li>
                     <NavLink
@@ -200,22 +204,36 @@ const Dashboard = () => {
               {/* For all users */}
               <div className="divider" />
 
-              <li>
-                <NavLink
-                  to="/dashboard/my-profile"
-                  className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white ${isActive ? "bg-blue text-white" : ""}`}
-                >
-                  <CgProfile /> My Profile
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/dashboard/my-payments"
-                  className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white ${isActive ? "bg-blue text-white" : ""}`}
-                >
-                  <MdOutlinePayment /> My Payments
-                </NavLink>
-              </li>
+              {
+                currentCandidate && <li>
+                  <NavLink
+                    to="/dashboard/my-profile"
+                    className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white ${isActive ? "bg-blue text-white" : ""}`}
+                  >
+                    <CgProfile /> Candidate Profile
+                  </NavLink>
+                </li>
+              }
+              {
+                currentRecruiter && <li>
+                  <NavLink
+                    to="/dashboard/recruiter-profile"
+                    className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${isActive ? "bg-blue text-white" : ""}`}
+                  >
+                    <ImProfile /> Recruiter Profile
+                  </NavLink>
+                </li>
+              }
+              {
+                currentCandidate && currentRecruiter && <li>
+                  <NavLink
+                    to="/dashboard/my-payments"
+                    className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white ${isActive ? "bg-blue text-white" : ""}`}
+                  >
+                    <MdOutlinePayment /> Payments
+                  </NavLink>
+                </li>
+              }
 
               <li>
                 <NavLink
@@ -236,7 +254,7 @@ const Dashboard = () => {
       </div>
 
       {/* Main Content */}
-      <div className="bg-slate-50 z-10 flex-1 xl:p-5 lg:p-4 md:p-3 p-2 dark:bg-darkBlue">
+      <div className="bg-slate-100 z-10 flex-1 xl:p-5 lg:p-4 md:p-3 p-2 dark:bg-darkBlue">
         <Outlet />
         <DashboardFooter />
       </div>

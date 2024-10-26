@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import { useState, useEffect } from "react";
 import TinnyHeading from "../shared/TinnyHeading";
 import DefaultInput from "../shared/DefaultInput";
@@ -7,40 +7,22 @@ import { FiSend } from "react-icons/fi";
 import "react-phone-number-input/style.css";
 import axiosInstance from "../../../utils/axios";
 import toast from "react-hot-toast";
-import useCurrentUser from "../../../hooks/useCurrentUser";
-import { useQuery } from "@tanstack/react-query";
-
-const SelectInput = ({ label, name, options, onChange, value }) => (
-  <div className="lg:col-span-3 md:col-span-6">
-    <label className="font-semibold">{label}</label>
-    <select
-      name={name}
-      value={value}
-      onChange={onChange}
-      className="py-4 px-3 bg-bgLightWhite dark:bg-darkBlue dark:border-blue outline-none w-full border-lightGray rounded-md"
-    >
-      {options.map((option, index) => (
-        <option key={index} value={option}>
-          {option}
-        </option>
-      ))}
-    </select>
-  </div>
-);
+import SelectField from "../shared/SelectField";
+import { LiaCitySolid } from "react-icons/lia";
+import { TbUnlink } from "react-icons/tb";
+import { BsBrowserChrome } from "react-icons/bs";
+import {
+  MdAddLocationAlt,
+  MdPersonAddAlt1,
+} from "react-icons/md";
+import { FaMoneyCheckDollar } from "react-icons/fa6";
+import { TbNumbers } from "react-icons/tb";
+import TextareaField from "../shared/TextareaField";
+import useCurrentRecruiter from "../../../hooks/useCurrentRecruiter";
 
 const RecruiterProfile = () => {
-  const { currentUser } = useCurrentUser();
 
-  const { data: currentRecruiter } = useQuery({
-    queryKey: ["currentRecruiter", currentUser?.email],
-    queryFn: async () => {
-      const res = await axiosInstance.get(
-        `/recruiters/currentRecruiter/${currentUser?.email}`
-      );
-      return res.data;
-    },
-    enabled: !!currentUser?.email,
-  });
+  const { currentRecruiter } = useCurrentRecruiter();
 
 
   const [formData, setFormData] = useState({
@@ -50,14 +32,9 @@ const RecruiterProfile = () => {
     industry: "",
     website: "",
     phone: "",
-    email: currentUser?.email,
-    latitude: "",
-    longitude: "",
-    address: "",
-    zip: "",
-    city: "",
-    state: "",
-    country: "",
+    email: currentRecruiter?.email,
+    map: "",
+    location: "",
     ceo: "",
     businessType: "",
     annualRevenue: "",
@@ -66,14 +43,17 @@ const RecruiterProfile = () => {
     numberOfEmployees: "",
     certifications: [],
     awards: [],
-    linkedin: "",
-    twitter: "",
+    technology: [],
+    socialProfiles: {},
   });
 
   const [certification, setCertification] = useState("");
   const [award, setAward] = useState("");
+  const [technologys, setTechnologys] = useState("");
+  const [socialKey, setSocialKey] = useState("");
+  const [socialValue, setSocialValue] = useState("");
 
-  // Populate formData with recruiter data once it's available
+  // Populate formData with recruiter data
   useEffect(() => {
     if (currentRecruiter) {
       setFormData((prev) => ({
@@ -108,6 +88,28 @@ const RecruiterProfile = () => {
     setAward("");
   };
 
+  const handleAddTechnology = () => {
+    setFormData((prev) => ({
+      ...prev,
+      technology: [...prev.technology, technologys],
+    }));
+    setTechnologys("");
+  };
+
+  const handleSocialChange = () => {
+    if (socialKey && socialValue) {
+      setFormData((prev) => ({
+        ...prev,
+        socialProfiles: {
+          ...prev.socialProfiles,
+          [socialKey]: socialValue,
+        },
+      }));
+      setSocialKey("");
+      setSocialValue("");
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     axiosInstance.post("/recruiters", formData).then((res) => {
@@ -116,6 +118,7 @@ const RecruiterProfile = () => {
       }
     });
   };
+
 
   return (
     <div>
@@ -127,40 +130,55 @@ const RecruiterProfile = () => {
       <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
         <h5>Profile Details</h5>
         <hr className="my-6 text-lightGray" />
-        <form
-          onSubmit={handleSubmit}
-          className="grid lg:grid-cols-6 md:grid-cols-1 gap-x-6 gap-y-4 text-14"
-        >
+        <form onSubmit={handleSubmit} className="space-y-2">
           <DefaultInput
             label="Company Name"
+            icon={<LiaCitySolid />}
             type="text"
             name="name"
+            placeholder="Company Name"
             value={formData.name}
             onChange={handleChange}
           />
           <DefaultInput
             label="Logo URL"
+            icon={<TbUnlink />}
             type="url"
             name="logo"
+            placeholder="http://company.com/logo"
             value={formData.logo}
             onChange={handleChange}
           />
-          <textarea
-            className="lg:col-span-6 p-3 bg-bgLightWhite dark:bg-darkBlue rounded-md"
+          <TextareaField
             placeholder="Short description about the company..."
+            label="Company Short Description"
             name="description"
             value={formData.description}
             onChange={handleChange}
           />
-          <SelectInput
+          <SelectField
             label="Industry"
             name="industry"
-            options={["FinTech", "Banking", "Education"]}
+            options={[
+              "Select Industry",
+              "Web and Software Development",
+              "Technology and IT Solutions",
+              "Business Process Outsourcing (BPO)",
+              "Artificial Intelligence and Data Science",
+              "Digital Marketing and E-commerce",
+              "Construction and Infrastructure",
+              "Healthcare IT and Life Sciences",
+              "Logistics and Supply Chain Management",
+              "Financial Technology (FinTech)",
+              "Education Technology (EdTech)",
+            ]}
             value={formData.industry}
             onChange={handleChange}
           />
           <DefaultInput
             label="Website"
+            icon={<BsBrowserChrome />}
+            placeholder="http://company.com"
             type="url"
             name="website"
             value={formData.website}
@@ -178,95 +196,79 @@ const RecruiterProfile = () => {
           </div>
           <DefaultInput
             label="CEO"
+            icon={<MdPersonAddAlt1 />}
+            placeholder="Jhankar Mahbub"
             type="text"
             name="ceo"
             value={formData.ceo}
             onChange={handleChange}
           />
-          <SelectInput
-            label="Business Type"
-            name="businessType"
-            options={["Private", "Public"]}
-            value={formData.businessType}
-            onChange={handleChange}
-          />
-          <DefaultInput
-            label="Annual Revenue"
-            type="text"
-            name="annualRevenue"
-            value={formData.annualRevenue}
-            onChange={handleChange}
-          />
-          <DefaultInput
-            label="Founded Year"
-            type="text"
-            name="foundedYear"
-            value={formData.foundedYear}
-            onChange={handleChange}
-          />
-          <SelectInput
-            label="Company Size Category"
-            name="companySizeCategory"
-            options={["Small", "Medium", "Large"]}
-            value={formData.companySizeCategory}
-            onChange={handleChange}
-          />
-          <DefaultInput
-            label="Number of Employees"
-            type="number"
-            name="numberOfEmployees"
-            value={formData.numberOfEmployees}
-            onChange={handleChange}
-          />
-          <DefaultInput
-            label="Address"
-            type="text"
-            name="address"
-            value={formData.address}
-            onChange={handleChange}
-          />
-          <DefaultInput
-            label="City"
-            type="text"
-            name="city"
-            value={formData.city}
-            onChange={handleChange}
-          />
-          <DefaultInput
-            label="State"
-            type="text"
-            name="state"
-            value={formData.state}
-            onChange={handleChange}
-          />
-          <DefaultInput
-            label="Country"
-            type="text"
-            name="country"
-            value={formData.country}
-            onChange={handleChange}
-          />
-          <DefaultInput
-            label="Latitude"
-            type="text"
-            name="latitude"
-            value={formData.latitude}
-            onChange={handleChange}
-          />
-          <DefaultInput
-            label="Longitude"
-            type="text"
-            name="longitude"
-            value={formData.longitude}
-            onChange={handleChange}
-          />
-          <DefaultInput
-            label="Zip Code"
-            type="zip"
-            name="zip"
-            value={formData.zip}
-            onChange={handleChange}
-          />
+
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6">
+            <SelectField
+              label="Business Type"
+              name="businessType"
+              options={["Private", "Public"]}
+              value={formData.businessType}
+              onChange={handleChange}
+            />
+            <SelectField
+              label="Company Size Category"
+              name="companySizeCategory"
+              options={["Small", "Medium", "Large"]}
+              value={formData.companySizeCategory}
+              onChange={handleChange}
+            />
+            <SelectField
+              label="Number of Employees"
+              name="numberOfEmployees"
+              options={["1-50", "51-100", "101-300", "301-500", "501-1000+"]}
+              value={formData.numberOfEmployees}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="grid lg:grid-cols-2 md:grid-cols-2 lg:gap-x-6 md:gap-x-4">
+            <DefaultInput
+              label="Annual Revenue"
+              icon={<FaMoneyCheckDollar />}
+              placeholder="20 Million"
+              type="number"
+              name="annualRevenue"
+              value={formData.annualRevenue}
+              onChange={handleChange}
+            />
+            <DefaultInput
+              label="Founded Year"
+              icon={<TbNumbers />}
+              placeholder="2004"
+              type="number"
+              name="foundedYear"
+              value={formData.foundedYear}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="grid md:grid-cols-2 sm:grid-cols-2 max-sm:grid-cols-1 gap-6">
+            <DefaultInput
+              label="Location"
+              icon={<MdAddLocationAlt />}
+              placeholder="City, Country"
+              type="text"
+              name="location"
+              value={formData.state}
+              onChange={handleChange}
+            />
+
+            <DefaultInput
+              label="Map"
+              type="text"
+              name="map"
+              value={formData.map}
+              onChange={handleChange}
+              placeholder={"Map link.."}
+            />
+          </div>
+
           <div className="lg:col-span-6">
             <label className="font-semibold">Certifications</label>
             <div className="flex gap-2">
@@ -275,6 +277,7 @@ const RecruiterProfile = () => {
                 value={certification}
                 onChange={(e) => setCertification(e.target.value)}
                 className="w-full"
+                placeholder="Add certifications one by one"
               />
               <button
                 type="button"
@@ -283,6 +286,13 @@ const RecruiterProfile = () => {
               >
                 Add
               </button>
+            </div>
+            <div className="flex gap-2">
+              {formData.certifications.map((a, index) => (
+                <div key={index} className="text-gray text-12">
+                  <p>{a} ,</p>
+                </div>
+              ))}
             </div>
           </div>
           <div className="lg:col-span-6">
@@ -293,6 +303,7 @@ const RecruiterProfile = () => {
                 value={award}
                 onChange={(e) => setAward(e.target.value)}
                 className="w-full"
+                placeholder="Add awards one by one"
               />
               <button
                 type="button"
@@ -302,21 +313,80 @@ const RecruiterProfile = () => {
                 Add
               </button>
             </div>
+            <div className="flex gap-2">
+              {formData.awards.map((a, index) => (
+                <div key={index} className="text-gray text-12">
+                  <p>{a} ,</p>
+                </div>
+              ))}
+            </div>
           </div>
-          <DefaultInput
-            label="LinkedIn"
-            type="url"
-            name="linkedin"
-            value={formData.linkedin}
-            onChange={handleChange}
-          />
-          <DefaultInput
-            label="Twitter"
-            type="url"
-            name="twitter"
-            value={formData.twitter}
-            onChange={handleChange}
-          />
+          <div className="lg:col-span-6">
+            <label className="font-semibold">Technology</label>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={technologys}
+                onChange={(e) => setTechnologys(e.target.value)}
+                className="w-full"
+                placeholder="Add technology one by one"
+              />
+              <button
+                type="button"
+                onClick={handleAddTechnology}
+                className="btn bg-blue text-white"
+              >
+                Add
+              </button>
+            </div>
+            <div className="flex gap-2">
+              {formData.technology.map((a, index) => (
+                <div key={index} className="text-gray text-12">
+                  <p>{a} ,</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="lg:col-span-6">
+            <label className="font-semibold">Social </label>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={socialKey}
+                onChange={(e) => setSocialKey(e.target.value)}
+                className="w-full"
+                placeholder="Platform (e.g., LinkedIn)"
+              />
+              <input
+                type="text"
+                value={socialValue}
+                onChange={(e) => setSocialValue(e.target.value)}
+                className="w-full"
+                placeholder="URL (e.g., https://linkedin.com/company/...)"
+              />
+              <button
+                type="button"
+                onClick={handleSocialChange}
+                className="btn bg-blue text-white"
+              >
+                Add
+              </button>
+            </div>
+            <ul>
+              {Object.entries(formData.socialProfiles).map(
+                ([platform, url], index) => (
+                  <li key={index} className="text-gray text-12">
+                    {platform}:{" "}
+                    <a href={url} target="_blank">
+                      {url}
+                    </a>
+                  </li>
+                )
+              )}
+            </ul>
+          </div>
+
           {/* Add more fields like this as needed */}
           <div className="lg:col-span-6 flex justify-end">
             <button

@@ -1,22 +1,46 @@
+import { useState } from "react";
 import { FaWarehouse } from "react-icons/fa6";
 import TinnyHeading from "../shared/TinnyHeading";
-import useCurrentUser from "../../../hooks/useCurrentUser";
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../../utils/axios";
+import NoFoundData from "../../../components/ui/NoFoundData";
+import { CardPagination } from "../../../components/shared/CardPagination";
+import { useNavigate } from "react-router-dom";
+import useCurrentCandidate from "../../../hooks/useCurrentCandidate";
 
 const ShortlistedJobs = () => {
-  const { currentUser } = useCurrentUser();
+
+  const navigate = useNavigate();
+  const { currentCandidate } = useCurrentCandidate();
+  // eslint-disable-next-line no-unused-vars
+  const [page, setPage] = useState(1); // State for current page
+  const limit = 12; // Number of jobs per page
 
   const { data: shortlistAppliedJobs } = useQuery({
-    queryKey: ["shortlistAppliedJobs", currentUser?.email],
+    queryKey: ["shortlistAppliedJobs", currentCandidate?.email, page],
     queryFn: async () => {
       const res = await axiosInstance.get(
-        `/jobs/applied-jobs/shortlist/approved/${currentUser?.email}`
+        `/jobs/applied-jobs/shortlist/approved/${currentCandidate?.email}?page=${page}&limit=${limit}`
       );
       return res.data;
     },
-    enabled: !!currentUser?.email,
+    enabled: !!currentCandidate?.email,
   });
+
+  if (shortlistAppliedJobs?.jobs?.length === 0 || shortlistAppliedJobs === undefined) {
+    return (
+      <>
+        <TinnyHeading
+          title="Shortlisted Resumes"
+          path="shortlist"
+          pathName="Shortlisted Resumes"
+        />
+        <NoFoundData title="No Shortlist Jobs Found!" />
+      </>
+    );
+  }
+
+  const totalPages = shortlistAppliedJobs.totalPages || 1; // Get total pages from response
 
   return (
     <div>
@@ -26,11 +50,11 @@ const ShortlistedJobs = () => {
         pathName={"Shortlisted Jobs"}
       />
 
-      <div className="grid gap-3 grid-cols-1 md:grid-cols-2 mt-6">
-        {shortlistAppliedJobs?.map((job, idx) => (
+      <div className="grid gap-3 grid-cols-1 md:grid-cols-2 mt-6 mb-5">
+        {shortlistAppliedJobs?.jobs?.map((job, idx) => (
           <div
             key={idx}
-            className=" shadow-md bg-bgLightBlue hover:-translate-y-1 duration-200 rounded-lg p-6 overflow-auto cursor-pointer"
+            className="shadow-md bg-bgLightBlue hover:-translate-y-1 duration-200 rounded-lg p-6 overflow-auto cursor-pointer"
           >
             <div>
               <div className="flex items-center">
@@ -47,7 +71,7 @@ const ShortlistedJobs = () => {
             </div>
 
             <div className="mt-5 flex items-center justify-between">
-              <div className=" ">
+              <div>
                 <p className="text-12">
                   Applied on:
                   <span className="bg-green-100 text-green-500 px-3 py-1 rounded-full">
@@ -57,7 +81,7 @@ const ShortlistedJobs = () => {
               </div>
 
               <div className="flex space-x-4 text-gray">
-                <p className="text-12 bg-yellow-300  px-2 py-1 rounded-lg">
+                <p className="text-12 bg-yellow-300 px-2 py-1 rounded-lg">
                   {job.shortlist}
                 </p>
               </div>
@@ -65,6 +89,13 @@ const ShortlistedJobs = () => {
           </div>
         ))}
       </div>
+
+      {/* Pagination Component */}
+      <CardPagination
+        currentPage={page}
+        totalPages={totalPages}
+        onPageChange={(newPage) => navigate(`/dashboard/shortlisted-jobs/${newPage}`)}
+      />
     </div>
   );
 };

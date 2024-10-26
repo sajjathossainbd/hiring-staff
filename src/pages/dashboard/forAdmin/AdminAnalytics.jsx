@@ -7,16 +7,28 @@ import { MdPlaylistAddCheck } from "react-icons/md";
 import AreaCharts from "../../../components/dashboard/AreaChart";
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../../utils/axios";
+import { useParams } from "react-router-dom";
 
 
 const AdminAnalytics = () => {
 
-    const { data: users, } = useQuery({
-        queryKey: ['users'],
-        queryFn: async () => {
-            const res = await axiosInstance.get("/users");
-            return res.data;
-        },
+    const { page = 1 } = useParams();
+    const limit = 100;
+
+    // Fetch users with pagination
+    const fetchUsers = async (currentPage, limit) => {
+        const response = await axiosInstance.get(
+            `/candidates?page=${currentPage}&limit=${limit}`
+        );
+        return response.data;
+    };
+
+    const {
+        data: totalCandidates,
+    } = useQuery({
+        queryKey: ["users", page],
+        queryFn: () => fetchUsers(page, limit),
+        enabled: !!page,
     });
 
     const { data: jobs, } = useQuery({
@@ -62,17 +74,17 @@ const AdminAnalytics = () => {
 
             <div
                 className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5">
-                <DashboardCard logo={<FaUsers />} title={'Total Users'} quantity={users?.users.length} />
                 <DashboardCard logo={<IoBagRemoveOutline />} title={'Total Jobs'} quantity={jobs?.totalJobs} />
+                <DashboardCard logo={<FaUsers />} title={'Total Candidates'} quantity={totalCandidates?.candidates?.length} />
+                <DashboardCard logo={<FaRegAddressBook />} title={'Total Recruiters'} quantity={recruiters?.recruiters?.length} />
                 <DashboardCard logo={<VscGitStashApply />} title={'Total Applications'} quantity={appliedJobs?.length} />
-                <DashboardCard logo={<FaRegAddressBook />} title={'Total Recruiters'} quantity={recruiters?.recruiters.length} />
                 <DashboardCard logo={<MdPlaylistAddCheck />} title={'Total Shortlisted'} quantity={shortlisted?.length} />
             </div>
             <AreaCharts
-                UsersQuantity={users?.users.length}
+                UsersQuantity={totalCandidates?.candidates?.length}
                 totalJobsQuantity={jobs?.totalJobs}
                 applicationsQuantity={appliedJobs?.length}
-                recruitersQuantity={recruiters?.recruiters.length}
+                recruitersQuantity={recruiters?.recruiters?.length}
                 shortlistedQuantity={shortlisted?.length}
             />
         </div>

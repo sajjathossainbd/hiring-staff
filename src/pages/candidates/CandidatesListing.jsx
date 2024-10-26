@@ -5,12 +5,25 @@ import { fetchCandidatesListing } from "../../features/candidates/candidatesList
 import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
 import CandidateCard from "../../components/candidate/CandidateCard";
-import Pagination from "../../components/candidate/Pagination";
 import CandidatesFiltering from "../../components/candidate/CandidatesFiltering";
 import Lottie from "lottie-react";
 import multipleLineDraw from "./../../../public/multiline-repet.json";
+import { CardPagination } from "../../components/shared/CardPagination";
+import { Trans, useTranslation } from "react-i18next";
+import i18n from "../../i18n";
+import { ScrollRestoration } from "react-router-dom";
+
+const convertToBanglaDigits = (number) => {
+  const banglaDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+  return number
+    .toString()
+    .split("")
+    .map((digit) => banglaDigits[digit] || digit)
+    .join("");
+};
 
 function CandidatesListing() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [filters, setFilters] = useState({});
 
@@ -34,6 +47,12 @@ function CandidatesListing() {
     setFilters((prev) => ({ ...prev, page: newPage }));
   };
 
+  const totalCandidates = candidates?.totalCandidates || 0;
+  const banglaCandidatesCount =
+    i18n.language === "bn"
+      ? convertToBanglaDigits(totalCandidates)
+      : totalCandidates;
+
   let content = null;
 
   if (isLoading) content = <Loading />;
@@ -56,8 +75,8 @@ function CandidatesListing() {
         </div>
 
         {/* Pagination Controls */}
-        <div className="flex justify-center mt-4">
-          <Pagination
+        <div className="flex justify-center mt-10">
+          <CardPagination
             totalPages={totalPages}
             currentPage={currentPage}
             onPageChange={handlePageChange}
@@ -78,15 +97,19 @@ function CandidatesListing() {
         </div>
         <div className="text-center pb-6">
           <h3>
-            <span className="text-blue">
-              {candidates.totalCandidates} Candidates
-            </span>{" "}
-            Available Now
+            <Trans
+              i18nKey="candidatesBannerTitle"
+              count={banglaCandidatesCount}
+            >
+              <span className="text-blue">
+                {banglaCandidatesCount} Candidates
+              </span>{" "}
+              Available Now
+            </Trans>
           </h3>
 
           <p className="md:max-w-xl text-14 mt-3">
-            Browse top-rated professionals across various skills and locations,
-            tailored to meet your project needs.
+            <Trans i18nKey={"candidatesBannerDescrip"} />
           </p>
         </div>
 
@@ -96,6 +119,7 @@ function CandidatesListing() {
       </div>
 
       <div className="">{content}</div>
+      <ScrollRestoration />
     </div>
   );
 }

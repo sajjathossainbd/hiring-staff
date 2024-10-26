@@ -4,22 +4,25 @@ import { WiTime7 } from "react-icons/wi";
 import SecondaryButton from "./SecondaryButton";
 import { Link } from "react-router-dom";
 import { CiLocationOn } from "react-icons/ci";
-import { CiBadgeDollar } from "react-icons/ci";
 import MiniBtn from "../ui/MiniBtn";
 import { GoArrowRight } from "react-icons/go";
 import { LiaBuffer } from "react-icons/lia";
 import BookmarkBtn from "../ui/BookmarkBtn";
+import { TbCoinTaka } from "react-icons/tb";
+
 function JobCard({ job, recruiterName, recruiterLogo }) {
   const {
     _id,
     jobTitle,
+    description,
     job_type,
     postedDate,
-    description = [],
     min_salary,
     max_salary,
     job_location,
+    featured,
   } = job || {};
+
   return (
     <div className="boxBorderHoverBlue hover:bg-[white]  bg-bgLightBlue dark:bg-darkBlue">
       <div className="md:p-5 p-3 flex flex-col justify-between h-full">
@@ -46,18 +49,22 @@ function JobCard({ job, recruiterName, recruiterLogo }) {
               icon={<IoBriefcaseOutline />}
               style="bg-softGreen text-orange"
             />
-            <MiniBtn
-              value={"Featured"}
-              icon={<LiaBuffer />}
-              style="bg-softGreen text-blue"
-            />
+            {featured ? (
+              <MiniBtn
+                value={"Featured"}
+                icon={<LiaBuffer />}
+                style="bg-softGreen text-blue"
+              />
+            ) : (
+              ""
+            )}
           </div>
           {/* Description And Price */}
           <div className="">
-            <p className="text-14 my-3">{description[0]}</p>
+            <p className="text-14 my-3">{description}</p>
             <div className="flex justify-between">
               <p className="text-14 flex items-center gap-x-1">
-                <CiBadgeDollar className="text-lg" />
+                <TbCoinTaka className="text-lg" />
                 {min_salary} - {max_salary}
               </p>
               <p className="flex items-center gap-x-1 text-14">

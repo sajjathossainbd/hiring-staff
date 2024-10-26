@@ -1,28 +1,23 @@
 import { Helmet } from "react-helmet-async";
 import TinnyBanner from "../../components/shared/TinnyBanner";
 import GetInTouch from "../../components/contactUs/GetInTouch";
-
+import { Trans, useTranslation } from "react-i18next";
+import { ScrollRestoration } from "react-router-dom";
 function ContactUs() {
+  const { t } = useTranslation();
   return (
     <>
       <Helmet>
         <title>Hiring Staff - Contact Us</title>
       </Helmet>
       <TinnyBanner
-        title={"Contact Us"}
-        subTitle={"Get the latest news, updates and tips"}
+        title={<Trans i18nKey={"contactUs"} />}
+        subTitle={<Trans i18nKey={"contactUsSubtitle"} />}
         currentPath={"Contact Us"}
       />
       <div className="container">
         <div className="lg:p-8 p-5 flex lg:flex-row flex-col lg:items-center lg:gap-0 justify-between bg-bgLightWhite dark:bg-darkBlue rounded gap-7">
           <div className="space-y-2 mr-16 ">
-            <div className="flex items-center gap-2">
-              <img
-                className="w-32"
-                src="https://i.ibb.co/0rKvK9v/Hiring-Staff-Logo.png"
-                alt="Hiring Stuff"
-              />
-            </div>
             <p>
               205 North Michigan Avenue <br /> Chicago, 60601, USA
             </p>
@@ -74,6 +69,7 @@ function ContactUs() {
         </div>
       </div>
       <GetInTouch />
+      <ScrollRestoration />
     </>
   );
 }

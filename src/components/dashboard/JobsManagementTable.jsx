@@ -94,7 +94,7 @@ const JobsManagementTable = () => {
                                 <tr key={job?._id}>
                                     <td>{job?.jobTitle}</td>
                                     <td>{job?.category}</td>
-                                    <td></td>
+                                    <td>{job?.job_type}</td>
                                     <td></td>
                                 </tr>
                             ))}

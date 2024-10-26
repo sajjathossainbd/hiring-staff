@@ -41,8 +41,8 @@ function SubNavbar() {
     { to: "/blogs", label: <Trans i18nKey={"blogs"} /> },
   ];
 
-  const { currentCandidate } = useCurrentCandidate()
-  const { currentRecruiter } = useCurrentRecruiter()
+  const { currentCandidate } = useCurrentCandidate();
+  const { currentRecruiter } = useCurrentRecruiter();
 
   // Filter nav links based on user role
   const filteredNavLinks = navLinks.filter((link) => {
@@ -64,7 +64,9 @@ function SubNavbar() {
         damping: 20,
         duration: 10,
       }}
-      className={"fixed bg-white top-0 z-50 py-2 w-full "}
+      className={
+        "fixed bg-white dark:bg-darkBlue dark:text-white top-0 z-50 py-2 w-full "
+      }
     >
       <div className="container py-0">
         <DesktopNavItems navLinks={filteredNavLinks} />

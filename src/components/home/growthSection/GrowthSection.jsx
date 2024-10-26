@@ -8,7 +8,7 @@ import Lottie from "lottie-react";
 const GrowthSection = () => {
   const { t } = useTranslation();
   return (
-    <div className="bg-bgLightBlue">
+    <div className="bg-bgLightBlue dark:bg-darkBlue dark:text-white">
       <div className="container">
         <div className=" hero-content flex flex-col lg:flex-row">
           {/* image */}

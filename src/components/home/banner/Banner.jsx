@@ -45,7 +45,7 @@ const Banner = () => {
       <div className="container pt-0">
         <BannerCountDown />
       </div>
-      <div className="mt-10">
+      <div className="mt-10 ">
         <TodayNewJobs />
       </div>
     </section>

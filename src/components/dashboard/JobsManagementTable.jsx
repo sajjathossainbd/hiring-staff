@@ -95,7 +95,7 @@ const JobsManagementTable = () => {
                                     <td>{job?.jobTitle}</td>
                                     <td>{job?.category}</td>
                                     <td>{job?.job_type}</td>
-                                    <td></td>
+                                    <td>{job?.lastDateToApply}</td>
                                 </tr>
                             ))}
 

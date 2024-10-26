@@ -34,7 +34,7 @@ const JobsManagementTable = () => {
     // if (isLoading) return <Loading />;
 
     const currentPage = jobsData?.currentPage || 1;
-    const totalDocuments = jobsData.totalJobs || 0;
+    const totalDocuments = jobsData?.totalJobs || 0;
     const totalPages = Math.ceil(totalDocuments / limit) || 1;
 
     const handleDelete = (id) => {

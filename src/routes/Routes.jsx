@@ -40,6 +40,7 @@ import ManageRecruiters from "../pages/dashboard/forAdmin/ManageRecruiters";
 import ManageBlogs from "../pages/dashboard/forAdmin/ManageBlogs";
 import PrivacyAndPolicy from "../pages/privacyPolicy/PrivacyAndPolicy";
 import TermsAndConditions from "../pages/termsandcondition/TermsAndConditions";
+import AiAssistant from "../pages/dashboard/AiAssistant";
 
 const router = createBrowserRouter([
   {
@@ -163,6 +164,10 @@ const router = createBrowserRouter([
       {
         path: "my-payments",
         element: <MyPayments />,
+      },
+      {
+        path: "ai-assistant",
+        element: <AiAssistant />,
       },
 
       // For admin

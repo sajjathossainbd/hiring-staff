@@ -19,6 +19,7 @@ import { HiOutlineBriefcase } from "react-icons/hi";
 import { Helmet } from "react-helmet-async";
 import useCurrentCandidate from "../hooks/useCurrentCandidate";
 import useCurrentRecruiter from "../hooks/useCurrentRecruiter";
+import { BsChatLeftTextFill } from "react-icons/bs";
 
 const Dashboard = () => {
   const { logOut } = useAuth();
@@ -235,6 +236,14 @@ const Dashboard = () => {
                 </li>
               }
 
+              <li>
+                <NavLink
+                  to="/dashboard/ai-assistant"
+                  className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white ${isActive ? "bg-blue text-white" : ""}`}
+                >
+                  <BsChatLeftTextFill /> AI Assistant
+                </NavLink>
+              </li>
               <li>
                 <NavLink
                   to="/"

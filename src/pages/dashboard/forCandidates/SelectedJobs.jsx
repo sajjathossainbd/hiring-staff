@@ -15,7 +15,7 @@ const SelectedJobs = () => {
   const limit = 12;
 
   const { data: selectedJobsData } = useQuery({
-    queryKey: ["selectedJobs", currentCandidate?.email, page],
+    queryKey: ["selectedJobsData", currentCandidate?.email, page],
     queryFn: async () => {
       const res = await axiosInstance.get(
         `/jobs/applied-jobs/selected/${currentCandidate?.email}?page=${page}&limit=${limit}`
@@ -24,7 +24,7 @@ const SelectedJobs = () => {
     },
     enabled: !!currentCandidate?.email,
   });
-  console.log(currentCandidate);
+  // console.log(currentCandidate);
 
   if (!selectedJobsData || selectedJobsData.selectedJobs.length === 0) {
     return (
@@ -49,19 +49,14 @@ const SelectedJobs = () => {
         pathName={"Selected Jobs"}
       />
 
-      <div className="grid gap-3 grid-cols-1 md:grid-cols-2 mt-6">
+      <div className="grid gap-3 grid-cols-1 lg:grid-cols-3 md:grid-cols-2 my-6">
         {selectedJobs?.map((job, idx) => (
           <div
             key={idx}
             className="shadow-md bg-white hover:-translate-y-1 duration-200 rounded-lg p-6 overflow-auto "
           >
             <div>
-              <div className="flex items-center">
-                <img
-                  src={job.logoUrl || "https://via.placeholder.com/50"}
-                  alt="Company Logo"
-                  className="w-12 h-12 rounded-full"
-                />
+              <div className="flex items-center justify-between">
                 <div className="ml-3">
                   <h5>{job.jobTitle}</h5>
                   <div className="flex flex-wrap text-12 text-gray">

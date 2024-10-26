@@ -3,7 +3,6 @@ import Swal from "sweetalert2";
 import axiosInstance from "../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useNavigate, useParams } from "react-router-dom";
-// import Loading from "../ui/Loading";
 import { CardPagination } from "../shared/CardPagination";
 import SecondaryButton from "../shared/SecondaryButton";
 import Skeleton from "react-loading-skeleton";
@@ -34,7 +33,6 @@ const BlogsManagementTable = () => {
     });
 
     if (isError) return <div>Error loading blogs.</div>;
-    // if (isLoading) return <Loading />;
 
     // Log blogsData to debug the structure
     console.log("Fetched Blogs Data:", blogsData);
@@ -116,28 +114,6 @@ const BlogsManagementTable = () => {
                                     </td>
                                 </tr>
                             ))}
-
-                        {/* {blogsData?.blogs?.length > 0 ? (
-                            blogsData.blogs.map((blog) => (
-                                <tr key={blog._id}>
-                                    <td>{blog.title}</td>
-                                    <td>{blog.author}</td>
-                                    <td>{new Date(blog.date_published).toLocaleDateString()}</td>
-                                    <td>
-                                        <button
-                                            onClick={() => handleDelete(blog._id)}
-                                            className="btn rounded-full text-red-600 hover:text-white hover:bg-blue"
-                                        >
-                                            <RiDeleteBin6Line />
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))
-                        ) : (
-                            <tr>
-                                <td colSpan="4" className="text-center">No blogs found.</td>
-                            </tr>
-                        )} */}
                     </tbody>
                 </table>
                 <CardPagination

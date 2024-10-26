@@ -11,7 +11,6 @@ import ApplyJob from "../../components/jobs/ApplyJob";
 import { CiLocationOn } from "react-icons/ci";
 import PrimaryBtnBlue from "../../components/ui/PrimaryBtnBlue";
 import { HiExternalLink } from "react-icons/hi";
-import BookmarkBtn from "../../components/ui/BookmarkBtn";
 import { fetchJobsListing } from "../../features/jobs/jobsListing/jobsListingSlice";
 import MiniBtn from "../../components/ui/MiniBtn";
 import { IoBriefcaseOutline } from "react-icons/io5";
@@ -174,10 +173,6 @@ function JobDetails() {
                       </div>
                     </dialog>
                   )}
-
-                  <div className="">
-                    <BookmarkBtn />
-                  </div>
                 </div>
                 <div className="mt-3">
                   <p className="lg:text-right text-16 font-medium">

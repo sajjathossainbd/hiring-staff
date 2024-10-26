@@ -1,7 +1,6 @@
 import { IoBriefcaseOutline } from "react-icons/io5";
 import MiniBtn from "../../ui/MiniBtn";
 import { Link } from "react-router-dom";
-import BookmarkBtn from "../../ui/BookmarkBtn";
 import SecondaryButton from "../../shared/SecondaryButton";
 import { GoArrowRight } from "react-icons/go";
 import { TbCoinTaka } from "react-icons/tb";
@@ -53,7 +52,6 @@ function JobCardHorizontal({ job, recruiterLogo }) {
       </div>
       <div className="flex justify-between items-center">
         <div className="flex gap-6">
-          <BookmarkBtn />
           <Link to={`/job-details/${_id}`}>
             <SecondaryButton title={"Apply Now"} icon={<GoArrowRight />} />
           </Link>

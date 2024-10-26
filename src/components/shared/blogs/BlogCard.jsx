@@ -2,7 +2,6 @@
 
 import { Link } from "react-router-dom";
 import MiniBtn from "../../ui/MiniBtn";
-import BookmarkBtn from "../../ui/BookmarkBtn";
 import PrimaryBtnBlue from "../../ui/PrimaryBtnBlue";
 
 function BlogCard({ blog }) {
@@ -42,7 +41,6 @@ function BlogCard({ blog }) {
                   style="bg-softGreen text-blue"
                 />
               </div>
-              <BookmarkBtn />
             </div>
 
             {/* Title and Contnet */}

@@ -7,7 +7,6 @@ import StarRatings from "react-star-ratings";
 import SecondaryButton from "./SecondaryButton";
 import { GoArrowRight } from "react-icons/go";
 import { HiOutlineBriefcase } from "react-icons/hi";
-import BookmarkBtn from "../ui/BookmarkBtn";
 import MiniBtn from "../ui/MiniBtn";
 import PrimaryOutlineBtn from "../ui/PrimaryOutlineBtn";
 
@@ -65,9 +64,6 @@ function TopRecruiterCard({ recruiter }) {
                 icon={<GoArrowRight />}
               />
             </Link>
-          </div>
-          <div className="">
-            <BookmarkBtn />
           </div>
         </div>
       </div>

@@ -69,7 +69,8 @@ const BlogsManagementTable = () => {
         Array.from({ length: limit }).map((_, index) => (
             <tr key={index}>
                 <td><Skeleton height={20} width="80%" /></td>
-                
+                <td><Skeleton height={20} width="60%" /></td>
+              
             </tr>
         ));
 

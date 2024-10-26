@@ -33,3 +33,37 @@
     step 9: pull request (github open click button "compare & pull request")
     step 10: dev <= your-branch (select)
     step 11: "create pull request" button click
+
+
+// scrolling
+    const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.pageYOffset > 300) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  {/* {isVisible && (
+        <button
+          onClick={scrollToTop}
+          className="fixed xl:flex lg:flex md:flex sm:hidden hidden bottom-20 right-6 bg-blue text-white p-3 rounded-full hover:bg-blue-700 transition-all duration-300 hover:-translate-y-1"
+        >
+          <FaArrowUp />
+        </button>
+      )} */}
+      // scrolling

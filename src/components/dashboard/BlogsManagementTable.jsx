@@ -100,7 +100,21 @@ const BlogsManagementTable = () => {
                         {isLoading
                             ? renderSkeletonRows()
                             : blogsData?.blogs?.map((blog) => (
-                                
+                                <tr key={blog._id}>
+                                    <td>{blog.title}</td>
+                                    <td>{blog.author}</td>
+                                    <td>
+                                        {new Date(blog.date_published).toLocaleDateString()}
+                                    </td>
+                                    <td>
+                                        <button
+                                            onClick={() => handleDelete(blog._id)}
+                                            className="btn rounded-full text-red-600 hover:text-white hover:bg-blue"
+                                        >
+                                            <RiDeleteBin6Line />
+                                        </button>
+                                    </td>
+                                </tr>
                             ))}
 
                         {/* {blogsData?.blogs?.length > 0 ? (

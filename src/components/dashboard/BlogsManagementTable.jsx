@@ -71,7 +71,7 @@ const BlogsManagementTable = () => {
                 <td><Skeleton height={20} width="80%" /></td>
                 <td><Skeleton height={20} width="60%" /></td>
                 <td><Skeleton height={20} width="50%" /></td>
-                
+                <td><Skeleton circle height={30} width={30} /></td>
             </tr>
         ));
 

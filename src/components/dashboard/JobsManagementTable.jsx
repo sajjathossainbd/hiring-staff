@@ -92,6 +92,9 @@ const JobsManagementTable = () => {
                             ? renderSkeletonRows()
                             : jobsData?.jobs?.map((job) => (
                                 <tr key={job?._id}>
+                                    <td>{job?.jobTitle}</td>
+                                    <td></td>
+                                    <td></td>
                                     <td></td>
                                 </tr>
                             ))}

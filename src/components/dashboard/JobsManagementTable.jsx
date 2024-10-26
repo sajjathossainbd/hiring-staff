@@ -3,7 +3,6 @@ import Swal from "sweetalert2";
 import axiosInstance from "../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useNavigate, useParams } from "react-router-dom";
-// import Loading from "../ui/Loading";
 import { CardPagination } from "../shared/CardPagination";
 import SecondaryButton from "../shared/SecondaryButton";
 import Skeleton from "react-loading-skeleton";
@@ -61,7 +60,6 @@ const JobsManagementTable = () => {
     const renderSkeletonRows = () =>
         Array.from({ length: limit }).map((_, index) => (
             <tr key={index}>
-                {/* <td><Skeleton height={20} width="100%" style={customSkeletonStyle} /></td> */}
                 <td><Skeleton height={20} width="100%" /></td>
                 <td><Skeleton height={20} width="100%" /></td>
                 <td><Skeleton height={20} width="100%" /></td>
@@ -111,28 +109,6 @@ const JobsManagementTable = () => {
                                     </td>
                                 </tr>
                             ))}
-
-                        {/* {jobsData?.jobs?.map((job) => (
-                            <tr key={job?._id}>
-                                <td>{job?.jobTitle}</td>
-                                <td>{job?.category}</td>
-                                <td>{job?.job_type}</td>
-                                <td>{job?.lastDateToApply}</td>
-                                <td>
-                                    <Link to={`/job-details/${job?._id}`}>
-                                        <SecondaryButton title={"Details"} />
-                                    </Link>
-                                </td>
-                                <td>
-                                    <button
-                                        onClick={() => handleDelete(job?._id)}
-                                        className="btn rounded-full text-red-600 hover:text-white hover:bg-blue"
-                                    >
-                                        <RiDeleteBin6Line />
-                                    </button>
-                                </td>
-                            </tr>
-                        ))} */}
                     </tbody>
                 </table>
                 <CardPagination

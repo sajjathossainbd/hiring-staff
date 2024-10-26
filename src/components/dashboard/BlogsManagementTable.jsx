@@ -68,7 +68,7 @@ const BlogsManagementTable = () => {
         <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
             <div className="flex justify-between">
             <h5>Manage Blogs</h5>
-            <Link to={"create-blogs"}>
+            <Link to={"manage-all-blogs/create-blogs"}>
             <SecondaryButton title={"Cretae Blogs + "}/>
             </Link>
             

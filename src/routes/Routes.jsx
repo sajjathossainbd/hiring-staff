@@ -221,7 +221,7 @@ const router = createBrowserRouter([
         element: <AllPaymentHistory />,
       },
       {
-        path: "manage-all-blogs/create-blogs",
+        path: "manage-all-blogs/:page/create-blogs",
         element: <CreateBlogs />,
       },
 

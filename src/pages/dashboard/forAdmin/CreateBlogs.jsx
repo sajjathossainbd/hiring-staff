@@ -4,6 +4,7 @@ import TextareaField from "../shared/TextareaField";
 import { FiSend } from "react-icons/fi";
 import axiosInstance from "../../../utils/axios";
 import toast from "react-hot-toast";
+import TinnyHeading from "../shared/TinnyHeading";
 
 const CreateBlogs = () => {
   const [formData, setFormData] = useState({
@@ -78,7 +79,13 @@ const CreateBlogs = () => {
 
   return (
     <div>
-      <h2>Create a New Blog Post</h2>
+         <TinnyHeading
+                title={"Manage Blogs"}
+                path={"manage-all-blogs/:page/create-blogs"}
+                pathName={"Create Blogs"}
+            />
+      
+      <div>
       <form onSubmit={handleSubmit} className="space-y-4">
         <DefaultInput
           label="Blog Title"
@@ -189,6 +196,8 @@ const CreateBlogs = () => {
           <FiSend className="mr-2" /> Submit
         </button>
       </form>
+      </div>
+      
     </div>
   );
 };

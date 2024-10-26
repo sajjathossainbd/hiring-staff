@@ -36,7 +36,7 @@ const AppliedJobs = () => {
     enabled: !!userId,
   });
 
-  console.log(appliedJobs);
+  // console.log(appliedJobs);
 
   const handleDelete = async (id) => {
     Swal.fire({
@@ -92,7 +92,7 @@ const AppliedJobs = () => {
       </>
     );
   }
-  console.log(appliedJobs);
+  // console.log(appliedJobs);
 
   return (
     <div>

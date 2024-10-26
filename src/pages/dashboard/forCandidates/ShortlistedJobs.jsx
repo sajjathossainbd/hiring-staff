@@ -43,7 +43,7 @@ const ShortlistedJobs = () => {
     );
   }
 
-  const totalPages = shortlistAppliedJobs.totalPages || 1;  
+  const totalPages = shortlistAppliedJobs.totalPages || 1;
 
   return (
     <div>
@@ -90,7 +90,7 @@ const ShortlistedJobs = () => {
 
               <div className="flex space-x-4 text-gray">
                 <p className="text-12 bg-yellow-300 px-2 py-1 rounded-lg">
-                  {job.shortlist}
+                  {job?.shortlist}
                 </p>
               </div>
             </div>

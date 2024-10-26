@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import axiosInstance from "../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Loading from "../ui/Loading";
+// import Loading from "../ui/Loading";
 import { CardPagination } from "../shared/CardPagination";
 import SecondaryButton from "../shared/SecondaryButton";
 import Skeleton from "react-loading-skeleton";
@@ -31,7 +31,7 @@ const JobsManagementTable = () => {
     });
 
     if (isError) return <div>Error loading jobs.</div>;
-    if (isLoading) return <Loading />;
+    // if (isLoading) return <Loading />;
 
     const currentPage = jobsData.currentPage || 1;
     const totalDocuments = jobsData.totalJobs || 0;

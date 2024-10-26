@@ -75,7 +75,7 @@ const JobsManagementTable = () => {
         <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
             <h5>Manage Jobs</h5>
             <hr className="my-6 text-lightGray" />
-            <div className="overflow-x-auto flex flex-col justify-between lg:h-[550px]">
+            <div className="overflow-x-auto flex flex-col justify-between lg:h-[590px]">
                 <table className="table text-sm">
                     <thead>
                         <tr className="text-base dark:text-white">

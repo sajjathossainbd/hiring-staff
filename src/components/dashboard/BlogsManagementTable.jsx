@@ -96,7 +96,14 @@ const BlogsManagementTable = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {blogsData?.blogs?.length > 0 ? (
+
+                        {isLoading
+                            ? renderSkeletonRows()
+                            : blogsData?.blogs?.map((blog) => (
+                                
+                            ))}
+
+                        {/* {blogsData?.blogs?.length > 0 ? (
                             blogsData.blogs.map((blog) => (
                                 <tr key={blog._id}>
                                     <td>{blog.title}</td>
@@ -116,7 +123,7 @@ const BlogsManagementTable = () => {
                             <tr>
                                 <td colSpan="4" className="text-center">No blogs found.</td>
                             </tr>
-                        )}
+                        )} */}
                     </tbody>
                 </table>
                 <CardPagination

@@ -1,20 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../../utils/axios";
 import TinnyHeading from "../shared/TinnyHeading";
-import { FaWarehouse } from "react-icons/fa";
+import { FaRegEye, FaWarehouse } from "react-icons/fa";
 import NoFoundData from "../../../components/ui/NoFoundData";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CardPagination } from "../../../components/shared/CardPagination";
 import useCurrentCandidate from "../../../hooks/useCurrentCandidate";
 
 const SelectedJobs = () => {
-
   const navigate = useNavigate();
   const { currentCandidate } = useCurrentCandidate();
-  // eslint-disable-next-line no-unused-vars
   const [page, setPage] = useState(1);
-  const limit = 12; // Set your desired number of jobs per page
+  const limit = 12;
 
   const { data: selectedJobsData } = useQuery({
     queryKey: ["selectedJobs", currentCandidate?.email, page],
@@ -55,7 +53,7 @@ const SelectedJobs = () => {
         {selectedJobs?.map((job, idx) => (
           <div
             key={idx}
-            className="shadow-md bg-bgLightBlue hover:-translate-y-1 duration-200 rounded-lg p-6 overflow-auto cursor-pointer"
+            className="shadow-md bg-white hover:-translate-y-1 duration-200 rounded-lg p-6 overflow-auto "
           >
             <div>
               <div className="flex items-center">
@@ -73,6 +71,11 @@ const SelectedJobs = () => {
                     </span>
                   </div>
                 </div>
+                <Link to={`/job-details/${job?.jobId}`}>
+                  <button className=" rounded-full text-blue hover:text-white hover:bg-blue">
+                    <FaRegEye />
+                  </button>
+                </Link>
               </div>
             </div>
 
@@ -99,7 +102,9 @@ const SelectedJobs = () => {
       <CardPagination
         currentPage={page}
         totalPages={totalPages}
-        onPageChange={(newPage) => navigate(`/dashboard/selected-jobs/${newPage}`)}
+        onPageChange={(newPage) =>
+          navigate(`/dashboard/selected-jobs/${newPage}`)
+        }
       />
     </div>
   );

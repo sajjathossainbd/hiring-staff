@@ -88,7 +88,15 @@ const JobsManagementTable = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {jobsData?.jobs?.map((job) => (
+                        {isLoading
+                            ? renderSkeletonRows()
+                            : jobsData?.jobs?.map((job) => (
+                                <tr key={job?._id}>
+                                    <td></td>
+                                </tr>
+                            ))}
+
+                        {/* {jobsData?.jobs?.map((job) => (
                             <tr key={job?._id}>
                                 <td>{job?.jobTitle}</td>
                                 <td>{job?.category}</td>
@@ -108,7 +116,7 @@ const JobsManagementTable = () => {
                                     </button>
                                 </td>
                             </tr>
-                        ))}
+                        ))} */}
                     </tbody>
                 </table>
                 <CardPagination

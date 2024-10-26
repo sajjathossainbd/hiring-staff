@@ -41,6 +41,7 @@ import ManageBlogs from "../pages/dashboard/forAdmin/ManageBlogs";
 import PrivacyAndPolicy from "../pages/privacyPolicy/PrivacyAndPolicy";
 import TermsAndConditions from "../pages/termsandcondition/TermsAndConditions";
 import AiAssistant from "../pages/dashboard/AiAssistant";
+import Meet from "../pages/dashboard/Meet";
 
 const router = createBrowserRouter([
   {
@@ -168,6 +169,10 @@ const router = createBrowserRouter([
       {
         path: "ai-assistant",
         element: <AiAssistant />,
+      },
+      {
+        path: "meet",
+        element: <Meet />,
       },
 
       // For admin

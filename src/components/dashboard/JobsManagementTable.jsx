@@ -33,7 +33,7 @@ const JobsManagementTable = () => {
     if (isError) return <div>Error loading jobs.</div>;
     // if (isLoading) return <Loading />;
 
-    const currentPage = jobsData.currentPage || 1;
+    const currentPage = jobsData?.currentPage || 1;
     const totalDocuments = jobsData.totalJobs || 0;
     const totalPages = Math.ceil(totalDocuments / limit) || 1;
 

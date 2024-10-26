@@ -96,6 +96,11 @@ const JobsManagementTable = () => {
                                     <td>{job?.category}</td>
                                     <td>{job?.job_type}</td>
                                     <td>{job?.lastDateToApply}</td>
+                                    <td>
+                                        <Link to={`/job-details/${job?._id}`}>
+                                            <SecondaryButton title={"Details"} />
+                                        </Link>
+                                    </td>
                                 </tr>
                             ))}
 

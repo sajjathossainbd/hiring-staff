@@ -68,7 +68,8 @@ const BlogsManagementTable = () => {
     const renderSkeletonRows = () =>
         Array.from({ length: limit }).map((_, index) => (
             <tr key={index}>
-
+                <td><Skeleton height={20} width="80%" /></td>
+                
             </tr>
         ));
 

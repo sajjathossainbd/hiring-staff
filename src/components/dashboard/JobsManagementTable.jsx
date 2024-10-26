@@ -6,6 +6,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "../ui/Loading";
 import { CardPagination } from "../shared/CardPagination";
 import SecondaryButton from "../shared/SecondaryButton";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const JobsManagementTable = () => {
     const navigate = useNavigate();

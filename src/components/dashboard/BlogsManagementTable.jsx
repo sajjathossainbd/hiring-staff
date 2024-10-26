@@ -83,7 +83,7 @@ const BlogsManagementTable = () => {
 
             </div>
             <hr className="my-6 text-lightGray" />
-            <div className="overflow-x-auto flex flex-col justify-between lg:h-[550px]">
+            <div className="overflow-x-auto flex flex-col justify-between lg:h-[580px]">
                 <table className="table text-sm">
                     <thead>
                         <tr className="text-base dark:text-white">

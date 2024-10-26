@@ -70,7 +70,8 @@ const BlogsManagementTable = () => {
             <tr key={index}>
                 <td><Skeleton height={20} width="80%" /></td>
                 <td><Skeleton height={20} width="60%" /></td>
-              
+                <td><Skeleton height={20} width="50%" /></td>
+                
             </tr>
         ));
 

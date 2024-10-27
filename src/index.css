@@ -11,12 +11,16 @@ body {
   overflow-x: hidden;
 }
 
-#gradient-1 {
+.gradient-1 {
   background-image: linear-gradient(to right, #3c65f5, #8388f8, #b2aefb, #dbd6fe, #ffffff);
 }
 
 .gradient-2 {
   background-image: linear-gradient(to right top, #3c65f5, #1957ca, #0047a0, #003777, #05274f);
+}
+
+.gradient-2-1 {
+  background-image: linear-gradient(to right top, #05274f, #003777, #0047a0, #1957ca, #3c65f5);
 }
 
 .gradient-3 {

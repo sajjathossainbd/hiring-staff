@@ -1,14 +1,16 @@
 import TinnyHeading from "../shared/TinnyHeading";
 import { FaRegEye } from "react-icons/fa6";
 import { CiMail } from "react-icons/ci";
+import { GoPlus } from "react-icons/go";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import axiosInstance from "../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useCurrentUser from "../../../hooks/useCurrentUser";
+import PrimaryBtnBlue from "../../../components/ui/PrimaryBtnBlue";
+import JobPostCard from "./JobPostCard";
 const ManageJob = () => {
-
   const { currentRecruiter } = useCurrentUser();
 
   const { data: myJobs, refetch } = useQuery({
@@ -51,74 +53,148 @@ const ManageJob = () => {
         path={"manage-jobs"}
         pathName={"Manage Jobs"}
       />
-      <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
-        <h5>Manage Jobs</h5>
-        <hr className="my-6 text-lightGray" />
-        {/* table */}
-        <div className="overflow-x-auto">
-          <table className="table text-sm">
-            {/* head */}
-            <thead>
-              <tr className="text-base dark:text-white">
-                <th>Title</th>
-                <th>Created & Expired</th>
-                <th>Details</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {myJobs?.map((job, index) => (
-                <tr key={index}>
-                  <td>
-                    <div className="flex items-center gap-3">
-                      <div>
-                        <div className="font-bold mb-2 lg:text-base text-sm">
-                          {job?.jobTitle}
-                          <span className="text-xs text-yellow-500 bg-green p-3 rounded-full ml-3">
-                            {job?.applicationsCount}
-                          </span>
-                        </div>
-                        <div className="text-14 flex gap-1 items-center">
-                          <CiMail className="text-lg" />
-                          {job?.company_email}
+      {/* Create A New Job Post */}
+      <div className="flex justify-end">
+        <button>
+          <PrimaryBtnBlue icon={<GoPlus />} title="Create A Job Post" />
+        </button>
+      </div>
+
+      {/* All Job Post */}
+      <div className="grid lg:grid-cols-2 gap-6 mt-6">
+        <JobPostCard />
+      </div>
+
+      {/* Manage JObs */}
+      <div className="mt-10">
+        <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
+          <h5>Manage Jobs</h5>
+          <hr className="my-6 text-lightGray" />
+          {/* table */}
+          <div className="overflow-x-auto">
+            <table className="table text-sm">
+              {/* head */}
+              <thead>
+                <tr className="text-base dark:text-white">
+                  <th>Title</th>
+                  <th>Created & Expired</th>
+                  <th>Details</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {myJobs?.map((job, index) => (
+                  <tr key={index}>
+                    <td>
+                      <div className="flex items-center gap-3">
+                        <div>
+                          <div className="font-bold mb-2 lg:text-base text-sm">
+                            {job?.jobTitle}
+                          </div>
+                          <div className="text-14 flex gap-1 items-center">
+                            <CiMail className="text-lg" />
+                            {job?.company_email}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </td>
-                  <td>
-                    {job?.postedDate} ={">"} {job?.lastDateToApply}
-                  </td>
-                  <td>
-                    <Link
-                      to={`/dashboard/applications/${job?._id}`}
-                      className="btn btn-primary"
-                    >
-                      View All
-                    </Link>
-                  </td>
-                  <td>
-                    <div className="tooltip" data-tip="View">
-                      <Link to={`/job-details/${job?._id}`}>
-                        <button className="btn rounded-full text-blue hover:text-white hover:bg-blue">
-                          <FaRegEye />
+                    </td>
+                    <td>
+                      {job?.postedDate} ={">"} {job?.lastDateToApply}
+                    </td>
+                    <td>
+                      <div className="tooltip" data-tip="View">
+                        <Link to={`/job-details/${job?._id}`}>
+                          <button className="btn rounded-full text-blue hover:text-white hover:bg-blue">
+                            <FaRegEye />
+                          </button>
+                        </Link>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="tooltip" data-tip="Delete">
+                        <button
+                          onClick={() => handleDelete(job?._id)}
+                          className="btn rounded-full text-blue hover:text-white hover:bg-blue"
+                        >
+                          <RiDeleteBin6Line />
                         </button>
-                      </Link>
-                    </div>
-                  </td>
-                  <td>
-                    <div className="tooltip" data-tip="Delete">
-                      <button
-                        onClick={() => handleDelete(job?._id)}
-                        className="btn rounded-full text-blue hover:text-white hover:bg-blue"
-                      >
-                        <RiDeleteBin6Line />
-                      </button>
-                    </div>
-                  </td>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
+          <h5>Manage Jobs</h5>
+          <hr className="my-6 text-lightGray" />
+          {/* table */}
+          <div className="overflow-x-auto">
+            <table className="table text-sm">
+              {/* head */}
+              <thead>
+                <tr className="text-base dark:text-white">
+                  <th>Title</th>
+                  <th>Created & Expired</th>
+                  <th>Details</th>
+                  <th>Action</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {myJobs?.map((job, index) => (
+                  <tr key={index}>
+                    <td>
+                      <div className="flex items-center gap-3">
+                        <div>
+                          <div className="font-bold mb-2 lg:text-base text-sm">
+                            {job?.jobTitle}
+                            <span className="text-xs text-yellow-500 bg-green p-3 rounded-full ml-3">
+                              {job?.applicationsCount}
+                            </span>
+                          </div>
+                          <div className="text-14 flex gap-1 items-center">
+                            <CiMail className="text-lg" />
+                            {job?.company_email}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      {job?.postedDate} ={">"} {job?.lastDateToApply}
+                    </td>
+                    <td>
+                      <Link
+                        to={`/dashboard/applications/${job?._id}`}
+                        className="btn btn-primary"
+                      >
+                        View All
+                      </Link>
+                    </td>
+                    <td>
+                      <div className="tooltip" data-tip="View">
+                        <Link to={`/job-details/${job?._id}`}>
+                          <button className="btn rounded-full text-blue hover:text-white hover:bg-blue">
+                            <FaRegEye />
+                          </button>
+                        </Link>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="tooltip" data-tip="Delete">
+                        <button
+                          onClick={() => handleDelete(job?._id)}
+                          className="btn rounded-full text-blue hover:text-white hover:bg-blue"
+                        >
+                          <RiDeleteBin6Line />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

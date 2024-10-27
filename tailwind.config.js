@@ -15,6 +15,7 @@ export default {
       colors: {
         // heading, button
         blue: "#3C65F5",
+        greenLight: "#14b8a6",
         darkBlue: "#05274F",
 
         green: "#0EA12F",

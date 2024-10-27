@@ -76,9 +76,9 @@ function SinginLogout() {
             <div className="text-blue text-3xl">
               <BsPerson />
             </div>
-            <div className="flex flex-col gap-0 relative mb-[18px]">
-              <p className="text-[10px]">Account</p>
-              <p className="text-14 font-medium absolute mt-[18px]">Login</p>
+            <div className="flex flex-col gap-0 relative mb-[18px] ">
+              <p className="text-[10px] dark:text-gray">Account</p>
+              <p className="text-14 font-medium absolute mt-[18px] dark:text-gray">Login</p>
             </div>
           </button>
         </Link>

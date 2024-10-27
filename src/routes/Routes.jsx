@@ -43,6 +43,7 @@ import CreateBlogs from "../pages/dashboard/forAdmin/CreateBlogs";
 import MyProfile from "../pages/dashboard/forCandidates/MyProfile";
 import CandidateRoute from "./CandidateRoute";
 import RecruiterRoute from "./RecruiterRoute";
+import JobAppliers from "../pages/dashboard/forRecruiter/JobAppliers";
 
 const router = createBrowserRouter([
   {
@@ -200,7 +201,6 @@ const router = createBrowserRouter([
       {
         path: "manage-all-blogs/:page",
         element: <ManageBlogs />,
-
       },
       {
         path: "manage-all-blogs/:page/create-blogs",
@@ -214,7 +214,6 @@ const router = createBrowserRouter([
         path: "all-payment-history/:page",
         element: <AllPaymentHistory />,
       },
-
 
       // For Candidate
       {
@@ -308,6 +307,10 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "job-appliers",
+        element: <JobAppliers />,
+      },
+      {
         path: "manage-jobs/:page",
         element: (
           <RecruiterRoute>
@@ -316,12 +319,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "all-applicants",
-        element: (
-          <RecruiterRoute>
-            <AllApplicants />
-          </RecruiterRoute>
-        ),
+        path: "applications/:jobId",
+        element: <RecruiterRoute>
+          <AllApplicants />
+        </RecruiterRoute>,
       },
       {
         path: "shortlist",
@@ -331,7 +332,7 @@ const router = createBrowserRouter([
           </RecruiterRoute>
         ),
       }
-      
+
     ],
   },
 ]);

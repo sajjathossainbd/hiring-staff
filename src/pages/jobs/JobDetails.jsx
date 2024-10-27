@@ -44,7 +44,6 @@ function JobDetails() {
   const { recruiterDetails: recruiter } = useSelector(
     (state) => state.recruiterDetails
   );
-
   const {
     description,
     job_type,

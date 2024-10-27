@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 import TinnyHeading from "../shared/TinnyHeading";
 import NoFoundData from "../../../components/ui/NoFoundData";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Loading from "../../../components/ui/Loading";
 import { CardPagination } from "../../../components/shared/CardPagination";
 import useCurrentCandidate from "../../../hooks/useCurrentCandidate";
 
@@ -27,7 +26,6 @@ const AppliedJobs = () => {
   const {
     // eslint-disable-next-line no-unused-vars
     data: { appliedJobs = [], totalJobs = 0, totalPages = 0 } = {},
-    isLoading,
     isError,
     refetch,
   } = useQuery({
@@ -78,7 +76,7 @@ const AppliedJobs = () => {
   };
 
   if (isError) return <div>Error loading applied jobs.</div>;
-  if (isLoading) return <Loading />;
+  // if (isLoading) return <Loading />;
 
   if (!appliedJobs.length) {
     return (

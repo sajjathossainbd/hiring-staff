@@ -72,14 +72,13 @@ function TodayNewJobs() {
     content = (
       <div className="grid gap-10 ">
         {jobsData.map((job) => {
-          const recruiter = recruitersData[job.recruiter_id];
-
+          // const recruiter = recruitersData[job.recruiter_id];
           return (
             <JobCardHorizontal
               key={job._id}
               job={job}
-              recruiterName={recruiter?.name}
-              recruiterLogo={recruiter?.logo}
+              // recruiterName={recruiter?.name}
+              // recruiterLogo={recruiter?.logo}
             />
           );
         })}

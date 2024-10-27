@@ -2,17 +2,18 @@
 import { useForm } from "react-hook-form";
 import axiosInstance from "../../utils/axios";
 import toast from "react-hot-toast";
-import useCurrentCandidate from "../../hooks/useCurrentCandidate";
+import useCurrentUser from "../../hooks/useCurrentUser";
 
 function ApplyJob({ job, onClose }) {
+
+  const { currentCandidate } = useCurrentUser();
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
-  const { currentCandidate } = useCurrentCandidate();
-  // console.log(currentCandidate);
 
   const { _id: jobId, jobTitle, company_email, company_name } = job;
   // console.log(job);

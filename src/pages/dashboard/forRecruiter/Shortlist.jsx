@@ -7,12 +7,11 @@ import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../../utils/axios";
 import toast from "react-hot-toast";
 import NoFoundData from "../../../components/ui/NoFoundData";
-import useCurrentRecruiter from "../../../hooks/useCurrentRecruiter";
+import useCurrentUser from "../../../hooks/useCurrentUser";
 
 const Shortlist = () => {
 
-
-  const { currentRecruiter } = useCurrentRecruiter()
+  const { currentRecruiter } = useCurrentUser();
 
   const { data: allShortlistAppliedJobs, refetch } = useQuery({
     queryKey: ["allShortlistAppliedJobs", currentRecruiter?.email],

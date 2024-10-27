@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import PrimaryButton from "../../components/shared/PrimaryButton";
 import useAuth from "../../hooks/useAuth";
@@ -14,7 +13,7 @@ import { BsBuildingFillLock } from "react-icons/bs";
 import { IoIosLogIn } from "react-icons/io";
 
 const Register = () => {
-  const { registerUser, googleSignIn } = useAuth();
+  const { registerUser } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -38,8 +37,7 @@ const Register = () => {
     setIsUploading(true);
     try {
       const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/${
-          import.meta.env.VITE_CLOUD_NAME
+        `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUD_NAME
         }/image/upload`,
         formData
       );
@@ -87,44 +85,6 @@ const Register = () => {
     });
   };
 
-  const handleGoogleRegister = () => {
-    googleSignIn()
-      .then(async (result) => {
-        const userInfo = {
-          email: result.user?.email,
-          name: result.user?.displayName,
-          photo: result.user?.photoURL,
-          role: userRole,
-        };
-
-        if (userRole === "recruiter") {
-          await axiosInstance.post("/recruiters", userInfo).then((res) => {
-            if (res.data.insertId) {
-              toast.success("Successfully recruiters registered!");
-              navigate(
-                location?.state
-                  ? location.state
-                  : "/dashboard/recruiter-profile"
-              );
-            }
-          });
-        }
-        if (userRole === "candidate") {
-          await axiosInstance.post("/candidates", userInfo).then((res) => {
-            if (res.data.insertId) {
-              toast.success("Successfully candidates registered!");
-              navigate(
-                location?.state ? location.state : "/dashboard/my-profile"
-              );
-            }
-          });
-        }
-      })
-      .catch(() => {
-        toast.error("Google Sign-In failed");
-      });
-  };
-
   return (
     <div className="container max-w-3xl text-center">
       <div className="space-y-3">
@@ -141,19 +101,17 @@ const Register = () => {
         <button
           onClick={() => setUserRole("candidate")}
           className={` flex items-center justify-center gap-3  px-5 py-3  sm:px-5 sm:py-3 md:px-5 md:py-3 lg:px-6 lg:py-3 rounded-md font-medium transition-all duration-500 ease-in-out
-            ${
-              userRole === "candidate"
-                ? " bg-blue  text-white"
-                : "bg-white text-blue border border-blue dark:text-gray"
+            ${userRole === "candidate"
+              ? " bg-blue  text-white"
+              : "bg-white text-blue border border-blue dark:text-gray"
             } 
           `}
         >
           <p
-            className={`text-12 ${
-              userRole === "candidate"
-                ? "text-white"
-                : "text-blue dark:text-gray"
-            }`}
+            className={`text-12 ${userRole === "candidate"
+              ? "text-white"
+              : "text-blue dark:text-gray"
+              }`}
           >
             Candidate Sing-up
           </p>
@@ -164,19 +122,17 @@ const Register = () => {
         <button
           onClick={() => setUserRole("recruiter")}
           className={` flex items-center justify-center gap-3 px-5 py-3  sm:px-5 sm:py-3 md:px-5 md:py-3 lg:px-6 lg:py-3 rounded-md font-medium transition-all duration-500 ease-in-out
-            ${
-              userRole === "recruiter"
-                ? " bg-blue  text-white"
-                : "bg-white text-blue border border-blue dark:text-gray"
+            ${userRole === "recruiter"
+              ? " bg-blue  text-white"
+              : "bg-white text-blue border border-blue dark:text-gray"
             } 
           `}
         >
           <p
-            className={`text-12 ${
-              userRole === "recruiter"
-                ? "text-white"
-                : "text-blue dark:text-gray"
-            }`}
+            className={`text-12 ${userRole === "recruiter"
+              ? "text-white"
+              : "text-blue dark:text-gray"
+              }`}
           >
             Recruiter Sing-up
           </p>
@@ -326,19 +282,6 @@ const Register = () => {
             </Link>
           </p>
         </form>
-
-        <div className="mt-3 space-y-3">
-          <div className="divider my-7 dark:text-white">Or continue with</div>
-          <button
-            onClick={handleGoogleRegister}
-            className="flex items-center gap-2 justify-center font-medium py-2 w-full border rounded-lg hover:scale-95 transition-all duration-500 dark:text-white"
-          >
-            <span className="text-xl">
-              <FcGoogle />
-            </span>{" "}
-            Continue with Google
-          </button>
-        </div>
       </div>
     </div>
   );

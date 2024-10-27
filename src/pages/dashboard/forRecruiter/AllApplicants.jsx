@@ -3,34 +3,28 @@ import { useParams } from "react-router-dom";
 import axiosInstance from "../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import Loading from "./../../../components/ui/Loading";
+import TinnyHeading from "../shared/TinnyHeading";
 
 const ViewAllApplications = () => {
   const { jobId } = useParams();
-import { Link } from "react-router-dom";
-import useCurrentUser from "../../../hooks/useCurrentUser";
-
-const AllApplicants = () => {
-
-  const { currentRecruiter } = useCurrentUser();
 
   const {
     data: applications,
     isLoading,
-    error,
     refetch,
   } = useQuery({
     queryKey: ["applications", jobId],
     queryFn: async () => {
       const res = await axiosInstance.get(
         `/jobs/applied/applications/${jobId}`
-      ); // Adjust endpoint as needed
+      );
       return res.data;
     },
     enabled: !!jobId,
   });
 
   const handleSelectChange = async (applicationId, action) => {
-    // Determine the update data based on action
     let updateData;
     let statusText;
 
@@ -59,7 +53,7 @@ const AllApplicants = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        refetch(); // Refresh the list after updating
+        refetch();
       }
     } catch (error) {
       console.error("Error updating status:", error);
@@ -71,12 +65,15 @@ const AllApplicants = () => {
     }
   };
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error fetching applications.</div>;
+  if (isLoading) return <Loading />;
 
   return (
     <div>
-      <h1>Applications for Job ID: {jobId}</h1>
+      <TinnyHeading
+        title={"Manage Jobs"}
+        path={"manage-jobs"}
+        pathName={"Manage Jobs"}
+      />
       <div className="overflow-x-auto">
         <table className="min-w-full border-collapse border border-gray-200">
           <thead>

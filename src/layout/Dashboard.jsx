@@ -222,16 +222,14 @@ const Dashboard = () => {
                   </NavLink>
                 </li>
               }
-              {
-                currentCandidate && currentRecruiter && <li>
-                  <NavLink
-                    to="/dashboard/my-payments"
-                    className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white ${isActive ? "bg-blue text-white" : ""}`}
-                  >
-                    <MdOutlinePayment /> Payments
-                  </NavLink>
-                </li>
-              }
+              <li>
+                <NavLink
+                  to="/dashboard/my-payments"
+                  className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white ${isActive ? "bg-blue text-white" : ""}`}
+                >
+                  <MdOutlinePayment /> My Payments
+                </NavLink>
+              </li>
 
               <li>
                 <NavLink

@@ -1,5 +1,8 @@
-import { useNavigate } from "react-router-dom";
-import Button from "../../components/shared/Button";
+import { Link, useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
+import { GoHome } from "react-icons/go";
+import PrimaryBtnWhite from "../../components/ui/PrimaryBtnWhite";
+import PrimaryBtnBlue from "../../components/ui/PrimaryBtnBlue";
 
 const ErrorPage = () => {
   const navigate = useNavigate();
@@ -29,30 +32,14 @@ const ErrorPage = () => {
           </h1>
           <p className="mt-4 text-gray-500 ">Here are some helpful links:</p>
 
-          <div className="flex items-center w-full mt-6 gap-x-3 shrink-0 sm:w-auto">
-            <button
-              onClick={() => navigate(-1)}
-              className="flex items-center justify-center w-1/2 px-5 py-1 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto   hover:bg-gray-100 "
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-5 h-5 rtl:rotate-180 text-rose-500"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
-                />
-              </svg>
-
-              <span>Go back</span>
+          <div className="flex items-center gap-2">
+            <button onClick={() => navigate(-1)} className="">
+              <PrimaryBtnWhite title="Go Back" icon={<FaArrowLeft />} />
             </button>
 
-            <Button label={"Take Me Home"} onClick={() => navigate("/")} />
+            <Link to={"/"}>
+              <PrimaryBtnBlue title={"Take Me Home"} icon={<GoHome />} />
+            </Link>
           </div>
         </div>
       </div>

@@ -21,7 +21,7 @@ export const CardPagination = ({ currentPage, totalPages, onPageChange }) => {
                 onClick={() => updatePageNumber(pageNumber - 1)}
                 className={`flex-1 cursor-pointer px-3 py-2 text-center text-sm outline-none transition-all duration-200 hover:bg-gray-500/20 ${pageNumber === 0 ? 'cursor-not-allowed opacity-50' : ''}`}
             >
-                Previous
+                {"<"}
             </div>
 
             {/* Page Numbers */}
@@ -42,7 +42,7 @@ export const CardPagination = ({ currentPage, totalPages, onPageChange }) => {
                 onClick={() => updatePageNumber(pageNumber + 1)}
                 className={`flex-1 cursor-pointer px-3 py-2 text-center text-sm outline-none transition-all duration-200 hover:bg-gray-500/20 ${pageNumber === totalPages - 1 ? 'cursor-not-allowed opacity-50' : ''}`}
             >
-                Next
+                {">"}
             </div>
         </div>
     );

@@ -9,6 +9,10 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import axiosInstance from "../../utils/axios";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import PrimaryBtnBlue from "../../components/ui/PrimaryBtnBlue";
+import { RiAdminLine } from "react-icons/ri";
+import { BsBuildingFillLock } from "react-icons/bs";
+import { IoIosLogIn } from "react-icons/io";
 
 const Register = () => {
   const { registerUser, googleSignIn } = useAuth();
@@ -35,7 +39,9 @@ const Register = () => {
     setIsUploading(true);
     try {
       const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUD_NAME}/image/upload`,
+        `https://api.cloudinary.com/v1_1/${
+          import.meta.env.VITE_CLOUD_NAME
+        }/image/upload`,
         formData
       );
       setImageUrl(response.data.secure_url);
@@ -60,26 +66,27 @@ const Register = () => {
       displayName: data.fullName,
       photoURL: imageUrl,
     }).then(async () => {
-
       if (userRole === "recruiter") {
         await axiosInstance.post("/recruiters", userInfo).then((res) => {
           if (res.data.insertId) {
             toast.success("Successfully recruiters registered!");
-            navigate(location?.state ? location.state : "/dashboard/recruiter-profile");
+            navigate(
+              location?.state ? location.state : "/dashboard/recruiter-profile"
+            );
           }
         });
       }
       if (userRole === "candidate") {
-
         await axiosInstance.post("/candidates", userInfo).then((res) => {
           if (res.data.insertId) {
             toast.success("Successfully candidates registered!");
-            navigate(location?.state ? location.state : "/dashboard/my-profile");
+            navigate(
+              location?.state ? location.state : "/dashboard/my-profile"
+            );
           }
-        })
+        });
       }
-    })
-
+    });
   };
 
   const handleGoogleRegister = () => {
@@ -96,20 +103,24 @@ const Register = () => {
           await axiosInstance.post("/recruiters", userInfo).then((res) => {
             if (res.data.insertId) {
               toast.success("Successfully recruiters registered!");
-              navigate(location?.state ? location.state : "/dashboard/recruiter-profile");
+              navigate(
+                location?.state
+                  ? location.state
+                  : "/dashboard/recruiter-profile"
+              );
             }
           });
         }
         if (userRole === "candidate") {
-
           await axiosInstance.post("/candidates", userInfo).then((res) => {
             if (res.data.insertId) {
               toast.success("Successfully candidates registered!");
-              navigate(location?.state ? location.state : "/dashboard/my-profile");
+              navigate(
+                location?.state ? location.state : "/dashboard/my-profile"
+              );
             }
-          })
-        };
-
+          });
+        }
       })
       .catch(() => {
         toast.error("Google Sign-In failed");
@@ -119,68 +130,115 @@ const Register = () => {
   return (
     <div className="container max-w-3xl text-center">
       <div className="space-y-3">
-        <p className="text-blue">Register</p>
         <h3>Start For Free Today</h3>
-        <p>Choose your path: register as a <span className="border-b-2 pb-[1px] border-blue">Candidate</span> or a <span className="border-b-2 pb-[1px] border-blue">Recruiter</span> to get started!</p>
+        <p>
+          Choose your path - register as a{" "}
+          <span className="text-blue">Candidate</span> or a{" "}
+          <span className=" text-blue">Recruiter</span> to get started!
+        </p>
       </div>
-      <div className="flex select-none gap-2 border-b p-2.5 mt-5">
+
+      {/* Recruiter and Candidate conditionally Login*/}
+      <div className="flex items-center justify-center select-none gap-4  mt-5 mb-5">
         <button
           onClick={() => setUserRole("candidate")}
-          className={userRole === "candidate" ? 'font-bold text-lg' : ''}
+          className={` flex items-center justify-center gap-3  px-5 py-3  sm:px-5 sm:py-3 md:px-5 md:py-3 lg:px-6 lg:py-3 rounded-md font-medium transition-all duration-500 ease-in-out
+            ${
+              userRole === "candidate"
+                ? " bg-blue  text-white"
+                : "bg-white text-blue border border-blue dark:text-gray"
+            } 
+          `}
         >
-          Candidate
+          <p
+            className={`text-12 ${
+              userRole === "candidate"
+                ? "text-white"
+                : "text-blue dark:text-gray"
+            }`}
+          >
+            Candidate Sing-up
+          </p>
+          <div className="text-xl">
+            <RiAdminLine />
+          </div>
         </button>
         <button
           onClick={() => setUserRole("recruiter")}
-          className={userRole === "recruiter" ? 'font-bold text-lg' : ''}
+          className={` flex items-center justify-center gap-3 px-5 py-3  sm:px-5 sm:py-3 md:px-5 md:py-3 lg:px-6 lg:py-3 rounded-md font-medium transition-all duration-500 ease-in-out
+            ${
+              userRole === "recruiter"
+                ? " bg-blue  text-white"
+                : "bg-white text-blue border border-blue dark:text-gray"
+            } 
+          `}
         >
-          Recruiter
+          <p
+            className={`text-12 ${
+              userRole === "recruiter"
+                ? "text-white"
+                : "text-blue dark:text-gray"
+            }`}
+          >
+            Recruiter Sing-up
+          </p>
+          <div className="text-xl">
+            <BsBuildingFillLock />
+          </div>
         </button>
       </div>
 
-      <div className="flex-col items-center overflow-hidden p-4 space-y-3">
-        <h1 className="mb-6 uppercase backdrop-blur-sm sm:text-2xl">
-          {userRole === "candidate" ? "Candidate" : "Recruiter"} Registration
-        </h1>
-
+      <div className="flex-col items-center overflow-hidden p-4 space-y-3 ">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-
-          {userRole === "candidate"
-            ?
+          {userRole === "candidate" ? (
             <>
               <div>
-                <label htmlFor="fullName" className="block text-left font-medium pb-1">
+                <label
+                  htmlFor="fullName"
+                  className="block text-left font-medium pb-1"
+                >
                   Full Name*
                 </label>
                 <input
                   id="fullName"
                   type="text"
                   placeholder="Full Name"
-                  {...register("fullName", { required: "Full name is required" })}
+                  {...register("fullName", {
+                    required: "Full name is required",
+                  })}
                   className="input input-bordered w-full"
                 />
                 {errors.fullName && (
-                  <p className="text-red-500 text-sm">{errors.fullName.message}</p>
+                  <p className="text-red-500 text-sm mt-1 text-left">
+                    {errors.fullName.message}
+                  </p>
                 )}
               </div>
             </>
-            :
+          ) : (
             <div>
-              <label htmlFor="fullName" className="block text-left font-medium pb-1">
+              <label
+                htmlFor="fullName"
+                className="block text-left font-medium pb-1"
+              >
                 Company Name*
               </label>
               <input
                 id="fullName"
                 type="text"
                 placeholder="Company Name"
-                {...register("companyName", { required: "Company name is required" })}
+                {...register("companyName", {
+                  required: "Company name is required",
+                })}
                 className="input input-bordered w-full"
               />
               {errors.fullName && (
-                <p className="text-red-500 text-sm">{errors.companyName.message}</p>
+                <p className="text-red-500 text-sm mt-1 text-left">
+                  {errors.companyName.message}
+                </p>
               )}
             </div>
-          }
+          )}
 
           <div>
             <label htmlFor="email" className="block text-left font-medium pb-1">
@@ -200,12 +258,15 @@ const Register = () => {
               className="input input-bordered w-full"
             />
             {errors.email && (
-              <p className="text-red-500 text-sm">{errors.email.message}</p>
+              <p className="text-red-500 text-sm mt-1 text-left">{errors.email.message}</p>
             )}
           </div>
 
           <div className="relative">
-            <label htmlFor="password" className="block text-left font-medium pb-1">
+            <label
+              htmlFor="password"
+              className="block text-left font-medium pb-1"
+            >
               Password*
             </label>
             <input
@@ -229,7 +290,7 @@ const Register = () => {
               {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
             </span>
             {errors.password && (
-              <p className="text-red-500 text-sm">{errors.password.message}</p>
+              <p className="text-red-500 text-sm mt-1 text-left">{errors.password.message}</p>
             )}
           </div>
 
@@ -242,15 +303,23 @@ const Register = () => {
               type="file"
               id="photo"
               onChange={(e) => handleImageUpload(e.target.files[0])}
-              className="input input-bordered w-full"
+              className="file-input w-full"
             />
             {isUploading && <p>Uploading...</p>}
             {imageUrl && (
-              <img src={imageUrl} alt="Uploaded" className="mt-2 w-28 rounded" />
+              <img
+                src={imageUrl}
+                alt="Uploaded"
+                className="mt-2 w-28 rounded"
+              />
             )}
           </div>
 
-          <PrimaryButton formSubmit={true} title={"Register"} />
+          <PrimaryButton
+            formSubmit={true}
+            title={"Register"}
+            icon={<IoIosLogIn />}
+          />
 
           <p className="mt-4 text-sm">
             Already have an account?{" "}
@@ -261,7 +330,7 @@ const Register = () => {
         </form>
 
         <div className="mt-3 space-y-3">
-          <hr className="border-zinc-700" />
+          <div className="divider my-7 dark:text-white">Or continue with</div>
           <button
             onClick={handleGoogleRegister}
             className="flex items-center gap-2 justify-center font-medium py-2 w-full border rounded-lg hover:scale-95 transition-all duration-500 dark:text-white"

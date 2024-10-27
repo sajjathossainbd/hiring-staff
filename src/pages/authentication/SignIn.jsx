@@ -12,6 +12,7 @@ import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { RiAdminLine } from "react-icons/ri";
 import { BsBuildingFillLock } from "react-icons/bs";
 import PrimaryBtnWhite from "../../components/ui/PrimaryBtnWhite";
+import { IoIosLogIn } from "react-icons/io";
 
 const SignIn = () => {
   const location = useLocation();
@@ -132,7 +133,7 @@ const SignIn = () => {
               className="input input-bordered w-full"
             />
             {errors.email && (
-              <p className="text-red-500 text-sm">{errors.email.message}</p>
+              <p className="text-red-500 text-sm mt-1 text-left">{errors.email.message}</p>
             )}
           </div>
 
@@ -164,7 +165,7 @@ const SignIn = () => {
               {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
             </span>
             {errors.password && (
-              <p className="text-red-500 text-sm">{errors.password.message}</p>
+              <p className="text-red-500 text-sm mt-1 text-left">{errors.password.message}</p>
             )}
           </div>
 
@@ -174,7 +175,7 @@ const SignIn = () => {
             </Link>
           </div>
 
-          <PrimaryButton formSubmit={true} title={"Login"} />
+          <PrimaryButton formSubmit={true} title={"Login"} icon={<IoIosLogIn />} />
 
           <p className="mt-4 text-sm">
             Already have an account?{" "}

@@ -18,7 +18,6 @@ import Register from "../pages/authentication/Register";
 import SignIn from "../pages/authentication/SignIn";
 import ResetPassword from "../pages/authentication/ResetPassword";
 import Dashboard from "../layout/Dashboard";
-import MyProfile from "../pages/dashboard/MyProfile";
 import MyResume from "../pages/dashboard/forCandidates/MyResume";
 import AppliedJobs from "../pages/dashboard/forCandidates/AppliedJobs";
 import ShortlistedJobs from "../pages/dashboard/forCandidates/ShortlistedJobs";
@@ -42,6 +41,7 @@ import PrivacyAndPolicy from "../pages/privacyPolicy/PrivacyAndPolicy";
 import TermsAndConditions from "../pages/termsandcondition/TermsAndConditions";
 import AiAssistant from "../pages/dashboard/AiAssistant";
 import CreateBlogs from "../pages/dashboard/forAdmin/CreateBlogs";
+import MyProfile from "../pages/dashboard/forCandidates/MyProfile";
 
 const router = createBrowserRouter([
   {
@@ -159,10 +159,6 @@ const router = createBrowserRouter([
         element: <DashboardMain />,
       },
       {
-        path: "my-profile",
-        element: <MyProfile />,
-      },
-      {
         path: "my-payments",
         element: <MyPayments />,
       },
@@ -255,6 +251,10 @@ const router = createBrowserRouter([
       {
         path: "selected-jobs/:page",
         element: <SelectedJobs />,
+      },
+      {
+        path: "my-profile",
+        element: <MyProfile />,
       },
 
       // For Recruiter

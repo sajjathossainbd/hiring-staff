@@ -7,10 +7,12 @@ import TinnyHeading from "../shared/TinnyHeading";
 import NoFoundData from "../../../components/ui/NoFoundData";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { CardPagination } from "../../../components/shared/CardPagination";
-import useCurrentCandidate from "../../../hooks/useCurrentCandidate";
+import useCurrentUser from "../../../hooks/useCurrentUser";
 
 const AppliedJobs = () => {
-  const { currentCandidate } = useCurrentCandidate();
+
+  const { currentCandidate } = useCurrentUser();
+
   const userId = currentCandidate?._id;
   const navigate = useNavigate();
   const { page = 1 } = useParams(); // Get current page from URL

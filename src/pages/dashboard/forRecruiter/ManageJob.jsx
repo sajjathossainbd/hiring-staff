@@ -6,10 +6,10 @@ import axiosInstance from "../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import useCurrentRecruiter from "../../../hooks/useCurrentRecruiter";
+import useCurrentUser from "../../../hooks/useCurrentUser";
 const ManageJob = () => {
 
-  const { currentRecruiter } = useCurrentRecruiter();
+  const { currentRecruiter } = useCurrentUser();
 
   const { data: myJobs, refetch } = useQuery({
     queryKey: ["myJobs", currentRecruiter?.email],

@@ -7,9 +7,11 @@ const DropdownSimple = ({
   placeholderData,
   onOptionSelect,
 }) => {
-  const [placeholder, setPlaceholder] = useState(placeholderData);
+  const [selectedOption, setSelectedOption] = useState(
+    dynamicOptions.find((option) => option.label === placeholderData) ||
+      dynamicOptions[0]
+  );
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(placeholder);
   const dropdownRef = useRef(null);
 
   const toggleDropdown = () => {
@@ -30,27 +32,25 @@ const DropdownSimple = ({
   }, []);
 
   const handleOptionClick = (option) => {
-    setSelectedOption(option); // Update selected option
-    setPlaceholder(option); // Update placeholder
-  
+    setSelectedOption(option);
+
     if (onOptionSelect) {
-      console.log('Language selected:', option);
-      onOptionSelect(option); // Call the function to change language
+      onOptionSelect(option.label);
     }
-  
+
     setIsOpen(false);
   };
-  
 
   return (
-    <div className="relative inline-block text-left " ref={dropdownRef}>
+    <div className="relative inline-block text-left" ref={dropdownRef}>
       <button
         onClick={toggleDropdown}
         className="flex items-center justify-center w-full py-2 text-16 font-medium rounded-md"
         aria-haspopup="true"
         aria-expanded={isOpen}
       >
-        <span>{selectedOption}</span>
+        <img className="w-6 mr-2" src={selectedOption.icon} alt="" />
+        <span>{selectedOption.label}</span>
         <FiChevronDown
           className={`ml-2 transition-transform ${isOpen ? "rotate-180" : ""}`}
         />
@@ -61,13 +61,14 @@ const DropdownSimple = ({
           <div className="py-1">
             {dynamicOptions.map((option) => (
               <button
-                key={option}
+                key={option.label}
                 onClick={() => handleOptionClick(option)}
-                className={`block w-full text-left px-4 py-2 text-16 text-darkBlue ${
-                  option === selectedOption ? "bg-blue-200" : ""
+                className={`flex gap-1 items-center w-full text-left px-4 py-2 text-16 text-darkBlue ${
+                  option.label === selectedOption.label ? "bg-blue-200" : ""
                 }`}
               >
-                {option}
+                <img className="w-6" src={option.icon} alt="" />
+                {option.label}
               </button>
             ))}
           </div>

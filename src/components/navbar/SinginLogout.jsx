@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import { PiSignInFill } from "react-icons/pi";
+import { BsPerson } from "react-icons/bs";
 function SinginLogout() {
   const { user, logOut } = useAuth();
 
@@ -20,7 +20,6 @@ function SinginLogout() {
     };
   }, [dropdownRef]);
 
-
   return (
     <div>
       {user ? (
@@ -36,8 +35,7 @@ function SinginLogout() {
                 <div className="w-30 h-30 rounded-full overflow-hidden flex items-center justify-center">
                   <img
                     className="w-full rounded-full h-full object-cover"
-                    src={user?.
-                      photoURL}
+                    src={user?.photoURL}
                     alt="User photo"
                   />
                 </div>
@@ -74,8 +72,14 @@ function SinginLogout() {
         </div>
       ) : (
         <Link to="/sign-in">
-          <button className="btn-primary text-blue bg-white font-medium py-2 px-8 rounded-md text-18 tracking-wide flex items-center gap-2 mt-1">
-            Sign in <PiSignInFill />
+          <button className="bg-white py-[4px] px-8 rounded-md flex items-center justify-start gap-2 mt-1">
+            <div className="text-blue text-3xl">
+              <BsPerson />
+            </div>
+            <div className="flex flex-col gap-0 relative mb-[18px]">
+              <p className="text-[10px]">Account</p>
+              <p className="text-14 font-medium absolute mt-[18px]">Login</p>
+            </div>
           </button>
         </Link>
       )}

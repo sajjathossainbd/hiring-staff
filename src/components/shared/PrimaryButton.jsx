@@ -7,7 +7,7 @@ function PrimaryButton({ title, icon, logout, formSubmit, onClickBtn }) {
         logout ? "bg-red-500 hover:bg-red-700" : ""
       }  text-white px-4 ${formSubmit ? "w-full" : ""}`}
     >
-      {icon} {title}
+      {title} {icon}
     </button>
   );
 }

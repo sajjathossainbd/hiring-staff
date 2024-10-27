@@ -5,11 +5,12 @@ import { FiSend } from "react-icons/fi";
 import toast from "react-hot-toast";
 import axiosInstance from "../../../utils/axios";
 import SelectField from "../shared/SelectField";
-import useCurrentRecruiter from "../../../hooks/useCurrentRecruiter";
+import useCurrentUser from "../../../hooks/useCurrentUser";
 
 const PostJob = () => {
-  const { currentRecruiter } = useCurrentRecruiter();
   const [candidateEmails, setCandidateEmails] = useState();
+
+  const { currentRecruiter } = useCurrentUser();
  
   useEffect(() => {
     axiosInstance.get("/users/candidate-emails").then((res) => {

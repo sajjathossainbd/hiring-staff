@@ -18,12 +18,11 @@ import {
 import { FaMoneyCheckDollar } from "react-icons/fa6";
 import { TbNumbers } from "react-icons/tb";
 import TextareaField from "../shared/TextareaField";
-import useCurrentRecruiter from "../../../hooks/useCurrentRecruiter";
+import useCurrentUser from "../../../hooks/useCurrentUser";
 
 const RecruiterProfile = () => {
 
-  const { currentRecruiter } = useCurrentRecruiter();
-
+  const { currentRecruiter } = useCurrentUser();
 
   const [formData, setFormData] = useState({
     name: "",

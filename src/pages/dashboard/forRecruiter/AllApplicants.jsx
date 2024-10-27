@@ -9,11 +9,11 @@ import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../../utils/axios";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
-import useCurrentRecruiter from "../../../hooks/useCurrentRecruiter";
+import useCurrentUser from "../../../hooks/useCurrentUser";
 
 const AllApplicants = () => {
 
-  const { currentRecruiter } = useCurrentRecruiter();
+  const { currentRecruiter } = useCurrentUser();
 
   const { data: allAppliedJobs, refetch } = useQuery({
     queryKey: ["allAppliedJobs", currentRecruiter?.email],

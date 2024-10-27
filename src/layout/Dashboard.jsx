@@ -17,16 +17,13 @@ import useAuth from "../hooks/useAuth";
 import { IoIosLogOut } from "react-icons/io";
 import { HiOutlineBriefcase } from "react-icons/hi";
 import { Helmet } from "react-helmet-async";
-import useCurrentCandidate from "../hooks/useCurrentCandidate";
-import useCurrentRecruiter from "../hooks/useCurrentRecruiter";
 import { BsChatLeftTextFill } from "react-icons/bs";
+import useCurrentUser from "../hooks/useCurrentUser";
 
 const Dashboard = () => {
   const { logOut } = useAuth();
 
-  const { currentCandidate } = useCurrentCandidate()
-  const { currentRecruiter } = useCurrentRecruiter()
-
+  const { currentCandidate, currentRecruiter } = useCurrentUser()
 
   return (
     <div className="flex lg:flex-row flex-col inter">

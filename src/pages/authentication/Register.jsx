@@ -9,7 +9,6 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import axiosInstance from "../../utils/axios";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import PrimaryBtnBlue from "../../components/ui/PrimaryBtnBlue";
 import { RiAdminLine } from "react-icons/ri";
 import { BsBuildingFillLock } from "react-icons/bs";
 import { IoIosLogIn } from "react-icons/io";
@@ -55,7 +54,6 @@ const Register = () => {
   const onSubmit = async (data) => {
     const userInfo = {
       name: data.fullName,
-      companyName: data.companyName,
       email: data.email,
       image: imageUrl,
       role: userRole,

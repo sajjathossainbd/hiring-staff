@@ -42,6 +42,7 @@ import PrivacyAndPolicy from "../pages/privacyPolicy/PrivacyAndPolicy";
 import TermsAndConditions from "../pages/termsandcondition/TermsAndConditions";
 import AiAssistant from "../pages/dashboard/AiAssistant";
 import CreateBlogs from "../pages/dashboard/forAdmin/CreateBlogs";
+import JobAppliers from "../pages/dashboard/forRecruiter/JobAppliers";
 
 const router = createBrowserRouter([
   {
@@ -211,7 +212,6 @@ const router = createBrowserRouter([
       {
         path: "manage-all-blogs/:page",
         element: <ManageBlogs />,
-
       },
       {
         path: "manage-all-blogs/:page/create-blogs",
@@ -225,7 +225,6 @@ const router = createBrowserRouter([
         path: "all-payment-history/:page",
         element: <AllPaymentHistory />,
       },
-      
 
       // For Candidate
       {
@@ -269,6 +268,10 @@ const router = createBrowserRouter([
       {
         path: "manage-jobs",
         element: <ManageJob />,
+      },
+      {
+        path: "job-appliers",
+        element: <JobAppliers />,
       },
       {
         path: "manage-jobs/:page",

@@ -211,7 +211,6 @@ const router = createBrowserRouter([
       {
         path: "manage-all-blogs/:page",
         element: <ManageBlogs />,
-
       },
       {
         path: "manage-all-blogs/:page/create-blogs",
@@ -225,7 +224,6 @@ const router = createBrowserRouter([
         path: "all-payment-history/:page",
         element: <AllPaymentHistory />,
       },
-      
 
       // For Candidate
       {
@@ -275,7 +273,7 @@ const router = createBrowserRouter([
         element: <ManageJob />,
       },
       {
-        path: "all-applicants",
+        path: "applications/:jobId",
         element: <AllApplicants />,
       },
       {

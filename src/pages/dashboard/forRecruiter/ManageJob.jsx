@@ -14,11 +14,14 @@ const ManageJob = () => {
   const { data: myJobs, refetch } = useQuery({
     queryKey: ["myJobs", currentRecruiter?.email],
     queryFn: async () => {
-      const res = await axiosInstance.get(`/jobs/email/${currentRecruiter.email}`);
+      const res = await axiosInstance.get(
+        `/jobs/email/${currentRecruiter.email}`
+      );
       return res.data;
     },
     enabled: !!currentRecruiter?.email,
   });
+  console.log(myJobs);
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -71,6 +74,9 @@ const ManageJob = () => {
                       <div>
                         <div className="font-bold mb-2 lg:text-base text-sm">
                           {job?.jobTitle}
+                          <span className="text-xs text-yellow-500 bg-green p-3 rounded-full ml-3">
+                            {job?.applicationsCount}
+                          </span>
                         </div>
                         <div className="text-14 flex gap-1 items-center">
                           <CiMail className="text-lg" />
@@ -83,8 +89,15 @@ const ManageJob = () => {
                     {job?.postedDate} ={">"} {job?.lastDateToApply}
                   </td>
                   <td>
+                    <Link
+                      to={`/dashboard/applications/${job?._id}`}
+                      className="btn btn-primary"
+                    >
+                      View All
+                    </Link>
+                  </td>
+                  <td>
                     <div className="tooltip" data-tip="View">
-
                       <Link to={`/job-details/${job?._id}`}>
                         <button className="btn rounded-full text-blue hover:text-white hover:bg-blue">
                           <FaRegEye />
@@ -96,7 +109,8 @@ const ManageJob = () => {
                     <div className="tooltip" data-tip="Delete">
                       <button
                         onClick={() => handleDelete(job?._id)}
-                        className="btn rounded-full text-blue hover:text-white hover:bg-blue">
+                        className="btn rounded-full text-blue hover:text-white hover:bg-blue"
+                      >
                         <RiDeleteBin6Line />
                       </button>
                     </div>

@@ -41,6 +41,8 @@ import TermsAndConditions from "../pages/termsandcondition/TermsAndConditions";
 import AiAssistant from "../pages/dashboard/AiAssistant";
 import CreateBlogs from "../pages/dashboard/forAdmin/CreateBlogs";
 import MyProfile from "../pages/dashboard/forCandidates/MyProfile";
+import CandidateRoute from "./CandidateRoute";
+import RecruiterRoute from "./RecruiterRoute";
 
 const router = createBrowserRouter([
   {
@@ -212,67 +214,124 @@ const router = createBrowserRouter([
         path: "all-payment-history/:page",
         element: <AllPaymentHistory />,
       },
-      
+
 
       // For Candidate
       {
         path: "my-resume",
-        element: <MyResume />,
+        element: (
+          <CandidateRoute>
+            <MyResume />
+          </CandidateRoute>
+        ),
       },
       {
         path: "applied-jobs",
-        element: <AppliedJobs />,
+        element: (
+          <CandidateRoute>
+            <AppliedJobs />
+          </CandidateRoute>
+        ),
       },
       {
         path: "applied-jobs/:page",
-        element: <AppliedJobs />,
+        element: (
+          <CandidateRoute>
+            <AppliedJobs />
+          </CandidateRoute>
+        ),
       },
       {
         path: "shortlisted-jobs",
-        element: <ShortlistedJobs />,
+        element: (
+          <CandidateRoute>
+            <ShortlistedJobs />
+          </CandidateRoute>
+        ),
       },
       {
         path: "shortlisted-jobs/:page",
-        element: <ShortlistedJobs />,
+        element: (
+          <CandidateRoute>
+            <ShortlistedJobs />
+          </CandidateRoute>
+        ),
       },
       {
         path: "selected-jobs",
-        element: <SelectedJobs />,
+        element: (
+          <CandidateRoute>
+            <SelectedJobs />
+          </CandidateRoute>
+        ),
       },
       {
         path: "selected-jobs/:page",
-        element: <SelectedJobs />,
+        element: (
+          <CandidateRoute>
+            <SelectedJobs />
+          </CandidateRoute>
+        ),
       },
       {
         path: "my-profile",
-        element: <MyProfile />,
+        element: (
+          <CandidateRoute>
+            <MyProfile />
+          </CandidateRoute>
+        ),
       },
 
       // For Recruiter
       {
         path: "recruiter-profile",
-        element: <RecruiterProfile />,
+        element: (
+          <RecruiterRoute>
+            <RecruiterProfile />
+          </RecruiterRoute>
+        ),
       },
       {
         path: "post-job",
-        element: <PostJob />,
+        element: (
+          <RecruiterRoute>
+            <PostJob />
+          </RecruiterRoute>
+        ),
       },
       {
         path: "manage-jobs",
-        element: <ManageJob />,
+        element: (
+          <RecruiterRoute>
+            <ManageJob />
+          </RecruiterRoute>
+        ),
       },
       {
         path: "manage-jobs/:page",
-        element: <ManageJob />,
+        element: (
+          <RecruiterRoute>
+            <ManageJob />
+          </RecruiterRoute>
+        ),
       },
       {
         path: "all-applicants",
-        element: <AllApplicants />,
+        element: (
+          <RecruiterRoute>
+            <AllApplicants />
+          </RecruiterRoute>
+        ),
       },
       {
         path: "shortlist",
-        element: <Shortlist />,
-      },
+        element: (
+          <RecruiterRoute>
+            <Shortlist />
+          </RecruiterRoute>
+        ),
+      }
+      
     ],
   },
 ]);

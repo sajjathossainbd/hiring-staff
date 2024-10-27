@@ -1,8 +1,19 @@
 import { FiPhoneCall } from "react-icons/fi";
 import DropdownSimple from "../../components/ui/DropdownSimple";
 import { Trans, useTranslation } from "react-i18next";
+import BDIcon from "./../../assets/icon/bd.png";
+import USIcon from "./../../assets/icon/us.png";
 
-const languageOptions = ["English", "বাংলা"];
+const languageOptions = [
+  {
+    label: "English",
+    icon: USIcon,
+  },
+  {
+    label: "বাংলা",
+    icon: BDIcon,
+  },
+];
 
 function SubNavbarRight() {
   const { i18n } = useTranslation();

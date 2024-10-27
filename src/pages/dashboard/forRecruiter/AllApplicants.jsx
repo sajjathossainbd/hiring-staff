@@ -6,6 +6,12 @@ import Swal from "sweetalert2";
 
 const ViewAllApplications = () => {
   const { jobId } = useParams();
+import { Link } from "react-router-dom";
+import useCurrentUser from "../../../hooks/useCurrentUser";
+
+const AllApplicants = () => {
+
+  const { currentRecruiter } = useCurrentUser();
 
   const {
     data: applications,

@@ -73,7 +73,7 @@ function CandidateCard({ candidate }) {
           <div className="">
             <p className="mt-4 text-14">{about_me?.slice(0, 80)}...</p>
             <div className="mt-4 flex flex-wrap gap-3">
-              {skills.map((skill, index) => (
+              {skills?.map((skill, index) => (
                 <MiniBtn
                   key={index}
                   value={skill}
@@ -88,7 +88,7 @@ function CandidateCard({ candidate }) {
           <div className="mt-4 text-14 flex justify-between items-center">
             <span className="flex items-center gap-1">
               <CiLocationOn />
-              {location.city}, {location.state}
+              {location?.city}, {location?.state}
             </span>
             <span className="flex items-center gap-1">
               <CiClock2 />

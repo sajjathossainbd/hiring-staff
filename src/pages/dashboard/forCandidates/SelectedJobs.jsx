@@ -24,7 +24,6 @@ const SelectedJobs = () => {
     },
     enabled: !!currentCandidate?.email,
   });
-  // console.log(currentCandidate);
 
   if (!selectedJobsData || selectedJobsData.selectedJobs.length === 0) {
     return (

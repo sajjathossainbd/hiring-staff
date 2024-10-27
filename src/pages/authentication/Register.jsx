@@ -49,7 +49,6 @@ const Register = () => {
   const onSubmit = async (data) => {
     const userInfo = {
       name: data.fullName,
-      companyName: data.companyName,
       email: data.email,
       image: imageUrl,
       role: userRole,
@@ -101,15 +100,13 @@ const Register = () => {
           });
         }
         if (userRole === "candidate") {
-
           await axiosInstance.post("/candidates", userInfo).then((res) => {
             if (res.data.insertId) {
               toast.success("Successfully candidates registered!");
               navigate(location?.state ? location.state : "/dashboard/my-profile");
             }
-          })
-        };
-
+          });
+        }
       })
       .catch(() => {
         toast.error("Google Sign-In failed");
@@ -173,7 +170,7 @@ const Register = () => {
                 id="fullName"
                 type="text"
                 placeholder="Company Name"
-                {...register("companyName", { required: "Company name is required" })}
+                {...register("fullName", { required: "Company name is required" })}
                 className="input input-bordered w-full"
               />
               {errors.fullName && (

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import PrimaryButton from "../../components/shared/PrimaryButton";
 import useAuth from "../../hooks/useAuth";
@@ -11,7 +10,7 @@ import axiosInstance from "../../utils/axios";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 const Register = () => {
-  const { registerUser, googleSignIn } = useAuth();
+  const { registerUser } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -79,38 +78,6 @@ const Register = () => {
       }
     })
 
-  };
-
-  const handleGoogleRegister = () => {
-    googleSignIn()
-      .then(async (result) => {
-        const userInfo = {
-          email: result.user?.email,
-          name: result.user?.displayName,
-          photo: result.user?.photoURL,
-          role: userRole,
-        };
-
-        if (userRole === "recruiter") {
-          await axiosInstance.post("/recruiters", userInfo).then((res) => {
-            if (res.data.insertId) {
-              toast.success("Successfully recruiters registered!");
-              navigate(location?.state ? location.state : "/dashboard/recruiter-profile");
-            }
-          });
-        }
-        if (userRole === "candidate") {
-          await axiosInstance.post("/candidates", userInfo).then((res) => {
-            if (res.data.insertId) {
-              toast.success("Successfully candidates registered!");
-              navigate(location?.state ? location.state : "/dashboard/my-profile");
-            }
-          });
-        }
-      })
-      .catch(() => {
-        toast.error("Google Sign-In failed");
-      });
   };
 
   return (
@@ -256,19 +223,6 @@ const Register = () => {
             </Link>
           </p>
         </form>
-
-        <div className="mt-3 space-y-3">
-          <hr className="border-zinc-700" />
-          <button
-            onClick={handleGoogleRegister}
-            className="flex items-center gap-2 justify-center font-medium py-2 w-full border rounded-lg hover:scale-95 transition-all duration-500 dark:text-white"
-          >
-            <span className="text-xl">
-              <FcGoogle />
-            </span>{" "}
-            Continue with Google
-          </button>
-        </div>
       </div>
     </div>
   );

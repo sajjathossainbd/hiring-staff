@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import PrimaryButton from "../../components/shared/PrimaryButton";
 import useAuth from "../../hooks/useAuth";
@@ -7,15 +6,19 @@ import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import axiosInstance from "../../utils/axios";
 
 const SignIn = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { signInUser, googleSignIn, user } = useAuth();
+  const { signInUser, user } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
 
-console.log(user);
+  useEffect(() => {
+    if (user) {
+      navigate(location.state || "/dashboard/dashboard-main");
+    }
+  }, [location.state, navigate, user]);
+
 
   const {
     register,
@@ -36,27 +39,6 @@ console.log(user);
       .catch(() => {
         toast.error("User not found. Please check your password");
       });
-  };
-
-  // Sign in with Google authentication
-  const handleGoogleLogin = () => {
-    googleSignIn().then((result) => {
-      const userInfo = {
-        email: result.user?.email,
-        name: result.user?.displayName,
-        photo: result.user?.photoURL,
-        role: "candidate"
-      };
-
-      axiosInstance.post("/users", userInfo).then((res) => {
-        if (res.data.insertedId) {
-          toast.success("Successfully Google Login");
-          navigate(
-            location?.state ? location.state : "/dashboard/dashboard-main"
-          );
-        }
-      });
-    });
   };
 
   useEffect(() => {
@@ -95,20 +77,9 @@ console.log(user);
           <p className="text-blue">Login</p>
           <h3>Welcome Back!</h3>
           <p>Access your account by signing in</p>
-          <button
-            onClick={handleGoogleLogin}
-            className="flex items-center gap-2 justify-center font-medium py-2 w-full border rounded-lg hover:scale-95 transition-all duration-500 dark:text-white"
-          >
-            <span className="text-xl">
-              <FcGoogle />
-            </span>{" "}
-            Sign in with Google
-          </button>
         </div>
 
-        <div className="divider my-7 dark:text-white">Or continue with</div>
-
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mt-7">
           <div>
             <label htmlFor="email" className="block text-left font-medium pb-1">
               Email*

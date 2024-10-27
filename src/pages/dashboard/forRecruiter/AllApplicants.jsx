@@ -5,6 +5,8 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import Loading from "./../../../components/ui/Loading";
 import TinnyHeading from "../shared/TinnyHeading";
+import { IoCheckmark } from "react-icons/io5";
+import toast from "react-hot-toast";
 
 const ViewAllApplications = () => {
   const { jobId } = useParams();
@@ -65,6 +67,21 @@ const ViewAllApplications = () => {
     }
   };
 
+  const handleUpdateStatus = async (id) => {
+    try {
+      const res = await axiosInstance.patch(
+        `/jobs/applied-jobs/selected/${id}`
+      );
+      if (res.status === 200) {
+        toast.success("Job selected successfully!");
+        refetch();
+      }
+    } catch (error) {
+      console.error("Error updating job status:", error);
+      toast.error("Failed to update job status.");
+    }
+  };
+
   if (isLoading) return <Loading />;
 
   return (
@@ -81,6 +98,9 @@ const ViewAllApplications = () => {
               <th className="border border-gray-200 px-4 py-2">Name</th>
               <th className="border border-gray-200 px-4 py-2">Email</th>
               <th className="border border-gray-200 px-4 py-2">Shortlist</th>
+              <th className="border border-gray-200 px-4 py-2">
+                Final Selection
+              </th>
               <th className="border border-gray-200 px-4 py-2">Rejections</th>
               <th className="border border-gray-200 px-4 py-2">Actions</th>
               <th className="border border-gray-200 px-4 py-2">Applied Date</th>
@@ -98,17 +118,43 @@ const ViewAllApplications = () => {
                 <td className="border border-gray-200 px-4 py-2">
                   <p
                     className={
-                      application?.shortlist == "approved"
-                        ? "bg-lime-500"
-                        : "bg-yellow-500"
+                      application?.selected
+                        ? "bg-lime-500 text-white px-2 py-1 rounded"
+                        : application?.shortlist === "approved"
+                        ? "bg-cyan-500 text-white px-2 py-1 rounded"
+                        : "bg-yellow-500 text-white px-2 py-1 rounded"
                     }
                   >
-                    {application?.shortlist == "approved"
+                    {application?.selected
+                      ? "Selected"
+                      : application?.shortlist === "approved"
                       ? "Shortlisted"
                       : "Pending"}
                   </p>
                 </td>
-                <td>
+
+                <td className="border border-gray-200 px-4 py-2">
+                  {application?.shortlist == "approved" ? (
+                    <div className="tooltip" data-tip="Select">
+                      <button
+                        onClick={() => handleUpdateStatus(application?._id)}
+                        className="btn rounded-full text-blue hover:text-white bg-lightText hover:bg-blue"
+                      >
+                        <IoCheckmark />
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="tooltip" data-tip="Shortlist first">
+                      <button
+                        onClick={() => handleUpdateStatus(application?._id)}
+                        className="btn btn-disabled rounded-full text-blue hover:text-white bg-lightText hover:bg-blue"
+                      >
+                        <IoCheckmark />
+                      </button>
+                    </div>
+                  )}
+                </td>
+                <td className="border border-gray-200 px-4 py-2">
                   <p
                     className={
                       application.reject == false
@@ -120,20 +166,24 @@ const ViewAllApplications = () => {
                   </p>
                 </td>
                 <td className="border border-gray-200 px-4 py-2">
-                  <select
-                    onChange={(event) =>
-                      handleSelectChange(application._id, event.target.value)
-                    }
-                    className="rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white p-2 hover:bg-blue-100"
-                    defaultValue=""
-                  >
-                    <option value="" disabled>
-                      Actions
-                    </option>
-                    <option value="shortlist">Shortlist</option>
-                    <option value="pending">Pending</option>
-                    <option value="reject">Reject</option>
-                  </select>
+                  {application.selected == true ? (
+                    "Al ready selected"
+                  ) : (
+                    <select
+                      onChange={(event) =>
+                        handleSelectChange(application._id, event.target.value)
+                      }
+                      className="rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white p-2 hover:bg-blue-100 cursor-pointer"
+                      defaultValue=""
+                    >
+                      <option value="" disabled>
+                        Actions
+                      </option>
+                      <option value="shortlist">Shortlist</option>
+                      <option value="pending">Pending</option>
+                      <option value="reject">Reject</option>
+                    </select>
+                  )}
                 </td>
                 <td className="border border-gray-200 px-4 py-2">
                   {application?.appliedDate

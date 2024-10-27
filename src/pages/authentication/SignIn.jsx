@@ -8,6 +8,10 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import axiosInstance from "../../utils/axios";
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import { RiAdminLine } from "react-icons/ri";
+import { BsBuildingFillLock } from "react-icons/bs";
+import PrimaryBtnWhite from "../../components/ui/PrimaryBtnWhite";
 
 const SignIn = () => {
   const location = useLocation();
@@ -15,7 +19,7 @@ const SignIn = () => {
   const { signInUser, googleSignIn, user } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
 
-console.log(user);
+  console.log(user);
 
   const {
     register,
@@ -31,7 +35,9 @@ console.log(user);
     signInUser(email, password)
       .then(() => {
         toast.success("Successfully Login !");
-        navigate(location?.state ? location.state : "/dashboard/dashboard-main");
+        navigate(
+          location?.state ? location.state : "/dashboard/dashboard-main"
+        );
       })
       .catch(() => {
         toast.error("User not found. Please check your password");
@@ -45,7 +51,7 @@ console.log(user);
         email: result.user?.email,
         name: result.user?.displayName,
         photo: result.user?.photoURL,
-        role: "candidate"
+        role: "candidate",
       };
 
       axiosInstance.post("/users", userInfo).then((res) => {
@@ -92,7 +98,6 @@ console.log(user);
     <div className="container">
       <div className="max-w-md mx-auto text-center">
         <div className="space-y-3">
-          <p className="text-blue">Login</p>
           <h3>Welcome Back!</h3>
           <p>Access your account by signing in</p>
           <button
@@ -179,28 +184,29 @@ console.log(user);
           </p>
         </form>
 
-        <div className="px-10 py-5 rounded-md">
-          <p className="dark:text-black">Login Credentials</p>
+        {/* Login Credentials */}
+        <div className="px-10 py-5 rounded-md bg-bgDeepBlue mt-6">
+          <h5 className="dark:text-black">Login Credentials</h5>
           <div className="mt-5 flex flex-col gap-5 items-center justify-center">
             <div className="flex gap-5 items-center">
-              <button
-                className="border-2 border-blue text-blue font-semibold py-1 px-4"
-                onClick={() => handleRoleLogin("admin")}
-              >
-                Admin Login
+              <button className="" onClick={() => handleRoleLogin("admin")}>
+                <PrimaryBtnWhite
+                  icon={<MdOutlineAdminPanelSettings />}
+                  title="Admin Login"
+                />
               </button>
-              <button
-                className="border-2 border-blue text-blue font-semibold py-1 px-4"
-                onClick={() => handleRoleLogin("recruiter")}
-              >
-                Recruiter Login
+              <button className="" onClick={() => handleRoleLogin("recruiter")}>
+                <PrimaryBtnWhite
+                  icon={<BsBuildingFillLock />}
+                  title="Recruiter Login"
+                />
               </button>
             </div>
-            <button
-              className="border-2 border-blue text-blue font-semibold py-1 px-4"
-              onClick={() => handleRoleLogin("candidate")}
-            >
-              Candidates Login
+            <button className="" onClick={() => handleRoleLogin("candidate")}>
+              <PrimaryBtnWhite
+                icon={<RiAdminLine />}
+                title="Candidates Login"
+              />
             </button>
           </div>
         </div>

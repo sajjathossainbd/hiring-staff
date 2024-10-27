@@ -24,9 +24,8 @@ const Footer = () => {
           </div>
         </aside>
         <nav>
-          <h6 className="footer-title">Resources</h6>
+          <h6 className="footer-title">Company</h6>
           <NavLink to={"/about"} navTitle={"About Us"} />
-          <NavLink to={"/candidates-listing"} navTitle={"Candidates"} />
           <NavLink to={"/contact"} navTitle={"Contact Us"} />
         </nav>
         <nav>

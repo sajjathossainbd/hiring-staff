@@ -6,11 +6,13 @@ import NoFoundData from "../../../components/ui/NoFoundData";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CardPagination } from "../../../components/shared/CardPagination";
-import useCurrentCandidate from "../../../hooks/useCurrentCandidate";
+import useCurrentUser from "../../../hooks/useCurrentUser";
 
 const SelectedJobs = () => {
+
+  const { currentCandidate } = useCurrentUser();
+
   const navigate = useNavigate();
-  const { currentCandidate } = useCurrentCandidate();
   const [page, setPage] = useState(1);
   const limit = 12;
 

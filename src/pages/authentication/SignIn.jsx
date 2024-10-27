@@ -6,6 +6,11 @@ import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import { RiAdminLine } from "react-icons/ri";
+import { BsBuildingFillLock } from "react-icons/bs";
+import PrimaryBtnWhite from "../../components/ui/PrimaryBtnWhite";
+import { IoIosLogIn } from "react-icons/io";
 
 const SignIn = () => {
   const location = useLocation();
@@ -34,7 +39,9 @@ const SignIn = () => {
     signInUser(email, password)
       .then(() => {
         toast.success("Successfully Login !");
-        navigate(location?.state ? location.state : "/dashboard/dashboard-main");
+        navigate(
+          location?.state ? location.state : "/dashboard/dashboard-main"
+        );
       })
       .catch(() => {
         toast.error("User not found. Please check your password");
@@ -74,7 +81,6 @@ const SignIn = () => {
     <div className="container">
       <div className="max-w-md mx-auto text-center">
         <div className="space-y-3">
-          <p className="text-blue">Login</p>
           <h3>Welcome Back!</h3>
           <p>Access your account by signing in</p>
         </div>
@@ -98,7 +104,7 @@ const SignIn = () => {
               className="input input-bordered w-full"
             />
             {errors.email && (
-              <p className="text-red-500 text-sm">{errors.email.message}</p>
+              <p className="text-red-500 text-sm mt-1 text-left">{errors.email.message}</p>
             )}
           </div>
 
@@ -130,7 +136,7 @@ const SignIn = () => {
               {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
             </span>
             {errors.password && (
-              <p className="text-red-500 text-sm">{errors.password.message}</p>
+              <p className="text-red-500 text-sm mt-1 text-left">{errors.password.message}</p>
             )}
           </div>
 
@@ -140,7 +146,7 @@ const SignIn = () => {
             </Link>
           </div>
 
-          <PrimaryButton formSubmit={true} title={"Login"} />
+          <PrimaryButton formSubmit={true} title={"Login"} icon={<IoIosLogIn />} />
 
           <p className="mt-4 text-sm">
             Already have an account?{" "}
@@ -150,28 +156,29 @@ const SignIn = () => {
           </p>
         </form>
 
-        <div className="px-10 py-5 rounded-md">
-          <p className="dark:text-black">Login Credentials</p>
+        {/* Login Credentials */}
+        <div className="px-10 py-5 rounded-md bg-bgDeepBlue mt-6">
+          <h5 className="dark:text-black">Login Credentials</h5>
           <div className="mt-5 flex flex-col gap-5 items-center justify-center">
             <div className="flex gap-5 items-center">
-              <button
-                className="border-2 border-blue text-blue font-semibold py-1 px-4"
-                onClick={() => handleRoleLogin("admin")}
-              >
-                Admin Login
+              <button className="" onClick={() => handleRoleLogin("admin")}>
+                <PrimaryBtnWhite
+                  icon={<MdOutlineAdminPanelSettings />}
+                  title="Admin Login"
+                />
               </button>
-              <button
-                className="border-2 border-blue text-blue font-semibold py-1 px-4"
-                onClick={() => handleRoleLogin("recruiter")}
-              >
-                Recruiter Login
+              <button className="" onClick={() => handleRoleLogin("recruiter")}>
+                <PrimaryBtnWhite
+                  icon={<BsBuildingFillLock />}
+                  title="Recruiter Login"
+                />
               </button>
             </div>
-            <button
-              className="border-2 border-blue text-blue font-semibold py-1 px-4"
-              onClick={() => handleRoleLogin("candidate")}
-            >
-              Candidates Login
+            <button className="" onClick={() => handleRoleLogin("candidate")}>
+              <PrimaryBtnWhite
+                icon={<RiAdminLine />}
+                title="Candidates Login"
+              />
             </button>
           </div>
         </div>

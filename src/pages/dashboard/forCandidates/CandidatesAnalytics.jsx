@@ -7,14 +7,13 @@ import { SiImessage } from "react-icons/si";
 import StackedBarChart from "../../../components/dashboard/StackedBarChart";
 import axiosInstance from "../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
-import useCurrentCandidate from "../../../hooks/useCurrentCandidate";
+import useCurrentUser from "../../../hooks/useCurrentUser";
 
 
 
 const CandidatesAnalytics = () => {
 
-    const { currentCandidate } = useCurrentCandidate();
-
+    const { currentCandidate } = useCurrentUser();
 
     const { data: jobs, } = useQuery({
         queryKey: ['jobs'],

@@ -197,7 +197,7 @@ const PostJob = () => {
               name="description"
               placeholder="Enter Job Description"
               onChange={handleChange}
-              className="w-full h-32 p-3 rounded-md border bg-bgLightWhite dark:bg-darkBlue dark:border-blue"
+              className="w-full h-32 p-3 rounded-md border focus:outline-none border-lightGray bg-bgLightWhite dark:bg-darkBlue dark:border-blue"
             ></textarea>
           </div>
 

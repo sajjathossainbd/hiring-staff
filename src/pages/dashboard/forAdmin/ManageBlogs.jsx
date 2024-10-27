@@ -6,9 +6,9 @@ const ManageBlogs = () => {
     return (
         <div>
             <TinnyHeading
-                title={"Manage Candidates"}
-                path={"manage-candidates"}
-                pathName={"Manage Candidates"}
+                title={"Manage Blogs"}
+                path={"manage-all-blogs"}
+                pathName={"Manage Blogs"}
             />
             <BlogsManagementTable />
         </div>

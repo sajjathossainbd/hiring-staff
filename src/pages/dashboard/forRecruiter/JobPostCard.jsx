@@ -6,15 +6,14 @@ import { MdOutlineGroup } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 function JobPostCard({
-  Cardtitle,
-
-  img,
-  style,
-
-  link,
+  Cardtitle, //will be removed
+  img, //will be removed
+  style, //will be removed
+  link, //will be removed
   job,
 }) {
   const { jobTitle, applicationsCount } = job;
+  // console.log(job);
   return (
     <div className="w-full bg-white p-6 rounded-lg">
       <div className={`flex items-center p-16 rounded-lg h-64 ${style}`}>

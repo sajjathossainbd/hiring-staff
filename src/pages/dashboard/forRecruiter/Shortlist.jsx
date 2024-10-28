@@ -67,14 +67,14 @@ const Shortlist = () => {
 
       {/* shortlisted candidates list */}
       <div className="grid lg:grid-cols-2 gap-6 mt-6">
-        <JobPostCard
+        {/* <JobPostCard
           Cardtitle="Shortlist Candidate"
           jobTitle="Fresher React Developer"
           statusTitle="Shortlist"
           img={shortlist}
           style="gradient-3"
           link="/dashboard/shortlsit-candidates"
-        />
+        /> */}
       </div>
 
       {/* shorrlist candidates old design list */}

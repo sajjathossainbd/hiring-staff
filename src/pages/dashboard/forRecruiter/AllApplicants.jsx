@@ -83,7 +83,7 @@ const ViewAllApplications = () => {
   };
 
   if (isLoading) return <Loading />;
-  console.log(applications);
+  // console.log(applications);
   return (
     <div>
       <TinnyHeading

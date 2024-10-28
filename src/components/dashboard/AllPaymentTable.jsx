@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import { useNavigate, useParams } from "react-router-dom";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { CardPagination } from "../shared/CardPagination";
-import Skeleton from "react-loading-skeleton/dist";
+import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const AllPaymentTable = () => {

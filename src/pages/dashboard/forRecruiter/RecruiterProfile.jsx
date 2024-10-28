@@ -16,10 +16,13 @@ import { FaMoneyCheckDollar } from "react-icons/fa6";
 import { TbNumbers } from "react-icons/tb";
 import TextareaField from "../shared/TextareaField";
 import useCurrentUser from "../../../hooks/useCurrentUser";
+import useAuth from "../../../hooks/useAuth";
 import { TbCategoryPlus } from "react-icons/tb";
 
 const RecruiterProfile = () => {
   const { currentRecruiter } = useCurrentUser();
+
+  const {user} = useAuth()
 
   const [formData, setFormData] = useState({
     name: "",
@@ -123,6 +126,24 @@ const RecruiterProfile = () => {
         pathName="Company Profile"
       />
       <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
+        
+        <div className="flex flex-col items-center">
+          <div
+            className="relative w-full h-36 md:h-44 lg:h-60 xl:h-72 bg-cover bg-center border-[7px] border-white rounded-xl"
+            style={{ backgroundImage: `url(${currentRecruiter?.coverImage || 'https://i.ibb.co.com/mBcjQj6/download-1.jpg'})` }}
+          >
+            <div className="absolute inset-0 bg-black opacity-40 rounded-xl"></div>
+          </div>
+
+          <div className="mt-[-40px] lg:mt-[-100px] md:mt-[-70px] -left-20 z-50">
+            <img
+              src={currentRecruiter?.logo || user?.photoURL}
+              alt="Profile Photo"
+              className="rounded-full xl:h-52 lg:h-44 md:h-32 h-20 xl:w-52 lg:w-44 md:w-32 w-20 object-cover border-[7px] border-white"
+            />
+          </div>
+        </div>
+        
         <h5>Profile Details</h5>
         <hr className="my-6 text-lightGray" />
         <form onSubmit={handleSubmit} className="space-y-2">

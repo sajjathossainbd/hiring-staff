@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 import NoFoundData from "../../../components/ui/NoFoundData";
 import useCurrentUser from "../../../hooks/useCurrentUser";
 import JobPostCard from "./JobPostCard";
-import shortlist from "./../../../../public/candidate";
+import shortlist from "./../../../../public/banner2";
 
 const Shortlist = () => {
   const { currentRecruiter } = useCurrentUser();
@@ -60,15 +60,15 @@ const Shortlist = () => {
   return (
     <div>
       <TinnyHeading
-        title="Shortlisted Resumes"
+        title="Manage Shortlisted Candidates"
         path="shortlist"
-        pathName="Shortlisted Resumes"
+        pathName="Shortlisted Candidates"
       />
 
       {/* shortlisted candidates list */}
       <div className="grid lg:grid-cols-2 gap-6 mt-6">
         <JobPostCard
-          Cardtitle="Shortlist Candidate"
+          Cardtitle="Shortlist Candidates"
           jobTitle="Fresher React Developer"
           statusTitle="Shortlist"
           img={shortlist}

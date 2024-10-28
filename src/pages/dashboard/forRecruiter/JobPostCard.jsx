@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 function JobPostCard({ Cardtitle, jobTitle, img, style, statusTitle, link }) {
   return (
     <div className="w-full bg-white p-6 rounded-lg">
-      <div className={`flex items-center p-16 rounded-lg h-64 ${style}`}>
+      <div className={`flex items-center p-16 rounded-lg h-64 gap-6 ${style}`}>
         {/* Title */}
         <div className="w-7/12">
           <h3>{`${Cardtitle}...`}</h3>

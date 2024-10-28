@@ -45,6 +45,10 @@ import CandidateRoute from "./CandidateRoute";
 import RecruiterRoute from "./RecruiterRoute";
 import JobAppliers from "../pages/dashboard/forRecruiter/JobAppliers";
 import ShortListedCandidates from "../pages/dashboard/forRecruiter/ShortListedCandidates";
+import InterviewCandidets from "../pages/dashboard/forRecruiter/InterviewCandidets";
+import SelectedCandidates from "../pages/dashboard/forRecruiter/SelectedCandidates";
+import InterviewCandidetsList from "../pages/dashboard/forRecruiter/InterviewCandidetsList";
+import SelectedCandidatesList from "../pages/dashboard/forRecruiter/SelectedCandidatesList";
 
 const router = createBrowserRouter([
   {
@@ -316,10 +320,34 @@ const router = createBrowserRouter([
         element: <ShortListedCandidates />,
       },
       {
+        path: "interview-candidates-list",
+        element: <InterviewCandidetsList />,
+      },
+      {
+        path: "selected-candidates-list",
+        element: <SelectedCandidatesList />,
+      },
+      {
         path: "manage-jobs/:page",
         element: (
           <RecruiterRoute>
             <ManageJob />
+          </RecruiterRoute>
+        ),
+      },
+      {
+        path: "interview-candidates",
+        element: (
+          <RecruiterRoute>
+            <InterviewCandidets />
+          </RecruiterRoute>
+        ),
+      },
+      {
+        path: "selected-candidates",
+        element: (
+          <RecruiterRoute>
+            <SelectedCandidates />
           </RecruiterRoute>
         ),
       },

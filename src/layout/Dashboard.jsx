@@ -28,7 +28,7 @@ import useCurrentUser from "../hooks/useCurrentUser";
 const Dashboard = () => {
   const { logOut } = useAuth();
 
-  const { currentCandidate, currentRecruiter } = useCurrentUser()
+  const { currentCandidate, currentRecruiter } = useCurrentUser();
 
   return (
     <div className="flex lg:flex-row flex-col inter">
@@ -178,7 +178,7 @@ const Dashboard = () => {
                         }`
                       }
                     >
-                      <MdManageHistory /> Manage Jobs
+                      <MdManageHistory /> Posted Jobs
                     </NavLink>
                   </li>
 
@@ -191,7 +191,31 @@ const Dashboard = () => {
                         }`
                       }
                     >
-                      <MdPlaylistAddCheck /> Shortlist
+                      <MdPlaylistAddCheck /> Shortlisted
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/dashboard/interview-candidates"
+                      className={({ isActive }) =>
+                        `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${
+                          isActive ? "bg-blue text-white" : ""
+                        }`
+                      }
+                    >
+                      <MdPlaylistAddCheck /> Interview
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/dashboard/selected-candidates"
+                      className={({ isActive }) =>
+                        `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${
+                          isActive ? "bg-blue text-white" : ""
+                        }`
+                      }
+                    >
+                      <MdPlaylistAddCheck /> Selected
                     </NavLink>
                   </li>
                 </>
@@ -297,7 +321,11 @@ const Dashboard = () => {
               <li>
                 <NavLink
                   to="/dashboard/my-payments"
-                  className={({ isActive }) => `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white ${isActive ? "bg-blue text-white" : ""}`}
+                  className={({ isActive }) =>
+                    `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white ${
+                      isActive ? "bg-blue text-white" : ""
+                    }`
+                  }
                 >
                   <MdOutlinePayment /> My Payments
                 </NavLink>

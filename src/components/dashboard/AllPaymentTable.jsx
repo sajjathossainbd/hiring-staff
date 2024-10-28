@@ -2,9 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../utils/axios";
 import Swal from "sweetalert2";
 import { useNavigate, useParams } from "react-router-dom";
-import Loading from "../ui/Loading";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { CardPagination } from "../shared/CardPagination";
+import Skeleton from "react-loading-skeleton/dist";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const AllPaymentTable = () => {
   const navigate = useNavigate();
@@ -30,18 +31,6 @@ const AllPaymentTable = () => {
   });
 
   if (isError) return <div>Error loading payment history.</div>;
-
-  // Ensure paymentHistory is defined before accessing its properties
-  // if (isLoading) {
-  //   return (
-  //     <div>
-  //       <Loading />
-  //     </div>
-  //   );
-  // }
-  // if (!paymentHistory) {
-  //   return <div>No payment history available.</div>;
-  // }
 
   // Extract current page and total documents
   const currentPage = paymentHistory?.currentPage || 1;
@@ -171,44 +160,6 @@ const AllPaymentTable = () => {
                 </tr>
               ))}
           </tbody>
-
-
-          {/* <tbody>
-            {paymentHistory?.payments?.map((payment) => (
-              <tr key={payment._id}>
-                <td>{payment?.name}</td>
-                <td>{payment?.email}</td>
-                <td>{payment?.category}</td>
-                <td>
-                  <span className="text-blue">${payment.price}</span>
-                </td>
-                <td>{payment?.date}</td>
-                <td>{payment?.paymentType}</td>
-                <td>{payment?.transactionId}</td>
-                <td>
-                  <select
-                    defaultValue={payment?.status}
-                    onChange={(e) =>
-                      handleUpdateStatus(e.target.value, payment?._id)
-                    }
-                    className="select dark:bg-darkBlue select-bordered w-full"
-                  >
-                    <option value="select">Select</option>
-                    <option value="approved">Approved</option>
-                    <option value="pending">Pending</option>
-                  </select>
-                </td>
-                <td>
-                  <button
-                    onClick={() => handleDelete(payment?._id)}
-                    className="btn rounded-full text-red-600 hover:text-white hover:bg-blue"
-                  >
-                    <RiDeleteBin6Line />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody> */}
         </table>
         {/* Pagination Controls */}
         <CardPagination

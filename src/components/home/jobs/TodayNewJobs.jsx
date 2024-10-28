@@ -60,26 +60,29 @@ function TodayNewJobs() {
 
   let content = null;
 
-  if (isLoading) content = <Loading />;
-
-  if (!isLoading && isError) content = <NoFoundData title="No Jobs Found!" />;
-
-  if (!isError && jobsData.length === 0) {
-    content = <NoFoundData title="No Jobs Found!" />;
-  }
-
-  if (!isLoading && !isError && jobsData.length > 0) {
+  if (isLoading) {
     content = (
-      <div className="grid gap-10 ">
+      <div className="grid gap-10">
+        <JobCardHorizontal isLoading={true} />
+        <JobCardHorizontal isLoading={true} />
+        <JobCardHorizontal isLoading={true} />
+      </div>
+    );
+  } else if (!isLoading && isError) {
+    content = <NoFoundData title="No Jobs Found!" />;
+  } else if (!isError && jobsData.length === 0) {
+    content = <NoFoundData title="No Jobs Found!" />;
+  } else {
+    content = (
+      <div className="grid gap-10">
         {jobsData.map((job) => {
           const recruiter = recruitersData[job.recruiter_id];
-
           return (
             <JobCardHorizontal
               key={job._id}
               job={job}
-              recruiterName={recruiter?.name}
               recruiterLogo={recruiter?.logo}
+              isLoading={false} // Data is loaded
             />
           );
         })}

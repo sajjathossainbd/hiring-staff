@@ -18,7 +18,7 @@ function RecruitersFiltering() {
   const initialFilters = {
     industry: "",
     location: "",
-    employeeCount: "",
+    numberOfEmployees: "", // updated to match backend
   };
   const [filters, setFilters] = useState(initialFilters);
 
@@ -76,19 +76,20 @@ function RecruitersFiltering() {
           </div>
 
           <PiLineVerticalThin className="lg:block hidden" />
+
           {/* Team Size */}
           <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
             <Dropdown
               options={employeeCounts}
               placeholder="Select a number"
-              onChange={(option) => handleFilterChange("employeeCount", option)} 
+              onChange={(option) => handleFilterChange("numberOfEmployees", option)} // updated name to match backend
             />
           </div>
 
           {/* Search Button */}
           <button
             onClick={applyFilters}
-            className=" text-white font-medium w-full md:w-36"
+            className="text-white font-medium w-full md:w-36"
           >
             <PrimaryBtn title={<Trans i18nKey={"search"} />} />
           </button>

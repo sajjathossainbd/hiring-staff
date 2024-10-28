@@ -13,14 +13,14 @@ function SelectedCandidates() {
 
       {/* shortlisted candidates list */}
       <div className="grid lg:grid-cols-2 gap-6 mt-6">
-        <JobPostCard
+        {/* <JobPostCard
           Cardtitle="Select Candidates"
           jobTitle="Fresher React Developer"
           statusTitle="Select"
           img={select}
           style="gradient-3"
           link="/dashboard/selected-candidates-list"
-        />
+        /> */}
       </div>
     </div>
   );

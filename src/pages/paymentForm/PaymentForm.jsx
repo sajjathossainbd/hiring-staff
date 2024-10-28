@@ -13,6 +13,7 @@ const PaymentForm = () => {
   const location = useLocation();
   const { category, price } = location.state || {};
   const { user } = useAuth();
+  console.log(price);
 
   return (
     <>

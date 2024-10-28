@@ -7,6 +7,7 @@ import { PiLineVerticalThin } from "react-icons/pi";
 import PrimaryBtn from "../ui/PrimaryBtn";
 import Dropdown from "../shared/DropdownCandidate";
 import { Trans, useTranslation } from "react-i18next";
+import { MdConfirmationNumber } from "react-icons/md";
 
 function RecruitersFiltering() {
   const { t } = useTranslation();
@@ -79,6 +80,7 @@ function RecruitersFiltering() {
 
           {/* Team Size */}
           <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
+          <MdConfirmationNumber className="text-blue"/>
             <Dropdown
               options={employeeCounts}
               placeholder="Select a number"

@@ -10,52 +10,64 @@ import NoFoundData from "../../../components/ui/NoFoundData";
 import useCurrentUser from "../../../hooks/useCurrentUser";
 import JobPostCard from "./JobPostCard";
 import shortlist from "./../../../../public/banner2";
+import JobShortListCard from "../../../components/dashboard/JobShortListCard";
 
 const Shortlist = () => {
   const { currentRecruiter } = useCurrentUser();
 
-  const { data: allShortlistAppliedJobs, refetch } = useQuery({
-    queryKey: ["allShortlistAppliedJobs", currentRecruiter?.email],
+  // const { data: allShortlistAppliedJobs, refetch } = useQuery({
+  //   queryKey: ["allShortlistAppliedJobs", currentRecruiter?.email],
+  //   queryFn: async () => {
+  //     const res = await axiosInstance.get(
+  //       `/jobs/applied-jobs/email/shortlist/${currentRecruiter?.email}`
+  //     );
+  //     return res.data;
+  //   },
+  //   enabled: !!currentRecruiter?.email,
+  // });
+
+  const { data: myJobs, refetch } = useQuery({
+    queryKey: ["myJobs", currentRecruiter?.email],
     queryFn: async () => {
       const res = await axiosInstance.get(
-        `/jobs/applied-jobs/email/shortlist/${currentRecruiter?.email}`
+        `/jobs/email/${currentRecruiter.email}`
       );
       return res.data;
     },
     enabled: !!currentRecruiter?.email,
   });
+  // console.log(myJobs);
 
-  // Function to handle status update
-  const handleUpdateStatus = async (id) => {
-    try {
-      const res = await axiosInstance.patch(
-        `/jobs/applied-jobs/selected/${id}`
-      );
-      if (res.status === 200) {
-        toast.success("Job selected successfully!");
-        refetch();
-      }
-    } catch (error) {
-      console.error("Error updating job status:", error);
-      toast.error("Failed to update job status.");
-    }
-  };
-
-  if (
-    allShortlistAppliedJobs?.length == 0 ||
-    allShortlistAppliedJobs === undefined
-  ) {
-    return (
-      <>
-        <TinnyHeading
-          title="Shortlisted Resumes"
-          path="shortlist"
-          pathName="Shortlisted Resumes"
-        />
-        <NoFoundData title="No Shortlist Jobs Found!" />
-      </>
+  const jobShortlistedInfo = myJobs?.map((job) => {
+    const shortlistedApplicants = (job.applications || []).filter(
+      (application) => application.shortlist === "approved"
     );
-  }
+
+    return {
+      jobId: job._id,
+      jobTitle: job.jobTitle,
+      shortlistedCount: shortlistedApplicants.length,
+      shortlistedApplicants: shortlistedApplicants,
+    };
+  });
+
+  // console.log(jobShortlistedInfo);
+
+  // Function to handle status update for selected
+  // const handleUpdateStatus = async (id) => {
+  //   try {
+  //     const res = await axiosInstance.patch(
+  //       `/jobs/applied-jobs/selected/${id}`
+  //     );
+  //     if (res.status === 200) {
+  //       toast.success("Job selected successfully!");
+  //       refetch();
+  //     }
+  //   } catch (error) {
+  //     console.error("Error updating job status:", error);
+  //     toast.error("Failed to update job status.");
+  //   }
+  // };
 
   return (
     <div>
@@ -67,21 +79,24 @@ const Shortlist = () => {
 
       {/* shortlisted candidates list */}
       <div className="grid lg:grid-cols-2 gap-6 mt-6">
-        {/* <JobPostCard
-          Cardtitle="Shortlist Candidate"
-          jobTitle="Fresher React Developer"
-          statusTitle="Shortlist"
-          img={shortlist}
-          style="gradient-3"
-          link="/dashboard/shortlsit-candidates"
-        /> */}
+        {jobShortlistedInfo?.map((job) => (
+          <JobShortListCard
+            Cardtitle="Shortlisted Candidates"
+            jobTitle={job?.jobTitle}
+            statusTitle="Shortlist"
+            img={shortlist}
+            style="gradient-3"
+            link={`/dashboard/shortlsit-candidates/${job?.jobId}`}
+            job={job}
+          />
+        ))}
       </div>
 
       {/* shorrlist candidates old design list */}
       <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 rounded-md">
         <h5>Shortlisted Resumes</h5>
         <hr className="my-6 text-lightGray" />
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+        {/* <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
           {allShortlistAppliedJobs?.map((person, index) => (
             <div
               key={index}
@@ -129,7 +144,7 @@ const Shortlist = () => {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ const RecruiterRoute = ({ children }) => {
     if (user && currentRecruiter) {
         return children
     }
-    return <Navigate to="/" state={location?.pathname || "/"}></Navigate>
+    return <Navigate to="/sign-in" state={{ from: location }} replace />;
 };
 
 export default RecruiterRoute;

@@ -3,9 +3,10 @@ import Swal from "sweetalert2";
 import axiosInstance from "../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Loading from "../ui/Loading";
 import { CardPagination } from "../shared/CardPagination";
 import SecondaryButton from "../shared/SecondaryButton";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const JobsManagementTable = () => {
     const navigate = useNavigate();
@@ -29,10 +30,10 @@ const JobsManagementTable = () => {
     });
 
     if (isError) return <div>Error loading jobs.</div>;
-    if (isLoading) return <Loading />;
+    // if (isLoading) return <Loading />;
 
-    const currentPage = jobsData.currentPage || 1;
-    const totalDocuments = jobsData.totalJobs || 0;
+    const currentPage = jobsData?.currentPage || 1;
+    const totalDocuments = jobsData?.totalJobs || 0;
     const totalPages = Math.ceil(totalDocuments / limit) || 1;
 
     const handleDelete = (id) => {
@@ -56,11 +57,23 @@ const JobsManagementTable = () => {
         });
     };
 
+    const renderSkeletonRows = () =>
+        Array.from({ length: limit }).map((_, index) => (
+            <tr key={index}>
+                <td><Skeleton height={20} width="100%" /></td>
+                <td><Skeleton height={20} width="100%" /></td>
+                <td><Skeleton height={20} width="100%" /></td>
+                <td><Skeleton height={20} width="100%" /></td>
+                <td><Skeleton height={30} width={100} /></td>
+                <td><Skeleton circle height={30} width={30} /></td>
+            </tr>
+        ));
+
     return (
         <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
             <h5>Manage Jobs</h5>
             <hr className="my-6 text-lightGray" />
-            <div className="overflow-x-auto flex flex-col justify-between lg:h-[550px]">
+            <div className="overflow-x-auto flex flex-col justify-between lg:h-[590px]">
                 <table className="table text-sm">
                     <thead>
                         <tr className="text-base dark:text-white">
@@ -73,27 +86,29 @@ const JobsManagementTable = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {jobsData?.jobs?.map((job) => (
-                            <tr key={job?._id}>
-                                <td>{job?.jobTitle}</td>
-                                <td>{job?.category}</td>
-                                <td>{job?.job_type}</td>
-                                <td>{job?.lastDateToApply}</td>
-                                <td>
-                                    <Link to={`/job-details/${job?._id}`}>
-                                        <SecondaryButton title={"Details"} />
-                                    </Link>
-                                </td>
-                                <td>
-                                    <button
-                                        onClick={() => handleDelete(job?._id)}
-                                        className="btn rounded-full text-red-600 hover:text-white hover:bg-blue"
-                                    >
-                                        <RiDeleteBin6Line />
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
+                        {isLoading
+                            ? renderSkeletonRows()
+                            : jobsData?.jobs?.map((job) => (
+                                <tr key={job?._id}>
+                                    <td>{job?.jobTitle}</td>
+                                    <td>{job?.category}</td>
+                                    <td>{job?.job_type}</td>
+                                    <td>{job?.lastDateToApply}</td>
+                                    <td>
+                                        <Link to={`/job-details/${job?._id}`}>
+                                            <SecondaryButton title={"Details"} />
+                                        </Link>
+                                    </td>
+                                    <td>
+                                        <button
+                                            onClick={() => handleDelete(job?._id)}
+                                            className="btn rounded-full text-red-600 hover:text-white hover:bg-blue"
+                                        >
+                                            <RiDeleteBin6Line />
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
                     </tbody>
                 </table>
                 <CardPagination

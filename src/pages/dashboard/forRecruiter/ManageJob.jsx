@@ -10,6 +10,8 @@ import Swal from "sweetalert2";
 import useCurrentUser from "../../../hooks/useCurrentUser";
 import PrimaryBtnBlue from "../../../components/ui/PrimaryBtnBlue";
 import JobPostCard from "./JobPostCard";
+import findCadidate from "./../../../../public/find2.json";
+
 const ManageJob = () => {
   const { currentRecruiter } = useCurrentUser();
 
@@ -62,7 +64,14 @@ const ManageJob = () => {
 
       {/* All Job Post */}
       <div className="grid lg:grid-cols-2 gap-6 mt-6">
-        <JobPostCard />
+        <JobPostCard
+          Cardtitle="We're Hiring"
+          jobTitle="Fresher React Developer"
+          statusTitle="Applied"
+          img={findCadidate}
+          style="gradient-4"
+          link="/dashboard/job-appliers"
+        />
       </div>
 
       {/* Manage JObs */}

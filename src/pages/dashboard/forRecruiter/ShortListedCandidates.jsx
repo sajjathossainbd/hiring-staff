@@ -1,9 +1,10 @@
 import PrimaryBtnBlue from "../../../components/ui/PrimaryBtnBlue";
-function JobAppliers() {
+
+function ShortListedCandidates() {
   return (
     <div className="p-6 bg-gray-50">
       <h1 className="text-2xl font-semibold text-gray-700 mb-4">
-        All Apply Candidates List
+        Shortlist Candidates List
       </h1>
       {/* All Candidates List */}
       <div className="overflow-x-auto">
@@ -12,8 +13,7 @@ function JobAppliers() {
           <thead>
             <tr className="bg-white text-16 rounded-sm">
               <th className="rounded-l-md">Name</th>
-              <th>Date</th>
-              <th>Details</th>
+              <th>Assessments</th>
               <th className="rounded-r-md">Status</th>
             </tr>
           </thead>
@@ -35,19 +35,15 @@ function JobAppliers() {
                   </div>
                 </div>
               </td>
-              <td>26 October, 2024</td>
               <td>
                 <button>
-                  {" "}
-                  <PrimaryBtnBlue title={"View Details"} />
+                  <PrimaryBtnBlue title={"Assign Assessments"} />
                 </button>
               </td>
               <td>
                 <select className="select dark:bg-darkBlue select-bordered w-full">
-                  <option value="applied">Applied</option>
-                  <option value="shortlist">Shortlist</option>
-                  <option value="shortlist">Pending</option>
-                  <option value="shortlist">Reject</option>
+                  <option value="applied">Shortlist</option>
+                  <option value="shortlist">Interview</option>
                 </select>
               </td>
             </tr>
@@ -58,4 +54,4 @@ function JobAppliers() {
   );
 }
 
-export default JobAppliers;
+export default ShortListedCandidates;

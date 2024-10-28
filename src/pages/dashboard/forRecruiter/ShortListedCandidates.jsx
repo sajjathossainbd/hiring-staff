@@ -1,12 +1,13 @@
 import PrimaryBtnBlue from "../../../components/ui/PrimaryBtnBlue";
 import TinnyHeading from "../shared/TinnyHeading";
-function JobAppliers() {
+
+function ShortListedCandidates() {
   return (
     <div>
       <TinnyHeading
-        title={"Manage Posted Jobs"}
-        path={"job-appliers"}
-        pathName={"Posted Jobs List"}
+        title="Manage Shortlisted Candidates"
+        path="shortlsit-candidates"
+        pathName="Shortlisted Candidates List"
       />
 
       <div className="p-6 bg-gray-50">
@@ -18,7 +19,7 @@ function JobAppliers() {
               <tr className="bg-white text-16 rounded-sm">
                 <th className="rounded-l-md">Name</th>
                 <th>Date</th>
-                <th>Details</th>
+                <th>Assessments</th>
                 <th className="rounded-r-md">Status</th>
               </tr>
             </thead>
@@ -45,16 +46,13 @@ function JobAppliers() {
                 <td>26 October, 2024</td>
                 <td>
                   <button>
-                    {" "}
-                    <PrimaryBtnBlue title={"View Details"} />
+                    <PrimaryBtnBlue title={"Assign Assessments"} />
                   </button>
                 </td>
                 <td>
                   <select className="select dark:bg-darkBlue select-bordered w-full">
-                    <option value="applied">Applied</option>
-                    <option value="shortlist">Shortlist</option>
-                    <option value="shortlist">Pending</option>
-                    <option value="shortlist">Reject</option>
+                    <option value="applied">Shortlist</option>
+                    <option value="shortlist">Interview</option>
                   </select>
                 </td>
               </tr>
@@ -66,4 +64,4 @@ function JobAppliers() {
   );
 }
 
-export default JobAppliers;
+export default ShortListedCandidates;

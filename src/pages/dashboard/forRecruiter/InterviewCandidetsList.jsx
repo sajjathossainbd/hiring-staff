@@ -1,12 +1,13 @@
 import PrimaryBtnBlue from "../../../components/ui/PrimaryBtnBlue";
 import TinnyHeading from "../shared/TinnyHeading";
-function JobAppliers() {
+
+function InterviewCandidetsList() {
   return (
     <div>
       <TinnyHeading
-        title={"Manage Posted Jobs"}
-        path={"job-appliers"}
-        pathName={"Posted Jobs List"}
+        title="Manage Interview Candidates"
+        path="interview-candidates-list"
+        pathName="Interview Candidates List"
       />
 
       <div className="p-6 bg-gray-50">
@@ -46,15 +47,13 @@ function JobAppliers() {
                 <td>
                   <button>
                     {" "}
-                    <PrimaryBtnBlue title={"View Details"} />
+                    <PrimaryBtnBlue title={"Invite Interview"} />
                   </button>
                 </td>
                 <td>
                   <select className="select dark:bg-darkBlue select-bordered w-full">
-                    <option value="applied">Applied</option>
-                    <option value="shortlist">Shortlist</option>
-                    <option value="shortlist">Pending</option>
-                    <option value="shortlist">Reject</option>
+                    <option value="applied">Interivew</option>
+                    <option value="shortlist">Selected</option>
                   </select>
                 </td>
               </tr>
@@ -66,4 +65,4 @@ function JobAppliers() {
   );
 }
 
-export default JobAppliers;
+export default InterviewCandidetsList;

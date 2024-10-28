@@ -1,14 +1,14 @@
 import PrimaryBtnBlue from "../../../components/ui/PrimaryBtnBlue";
 import TinnyHeading from "../shared/TinnyHeading";
-function JobAppliers() {
+
+function SelectedCandidatesList() {
   return (
     <div>
       <TinnyHeading
-        title={"Manage Posted Jobs"}
-        path={"job-appliers"}
-        pathName={"Posted Jobs List"}
+        title="Manage Selected Candidates"
+        path="selected-candidates-list"
+        pathName="Selected Candidates List"
       />
-
       <div className="p-6 bg-gray-50">
         {/* All Candidates List */}
         <div className="overflow-x-auto">
@@ -18,7 +18,7 @@ function JobAppliers() {
               <tr className="bg-white text-16 rounded-sm">
                 <th className="rounded-l-md">Name</th>
                 <th>Date</th>
-                <th>Details</th>
+                <th>Action</th>
                 <th className="rounded-r-md">Status</th>
               </tr>
             </thead>
@@ -46,15 +46,13 @@ function JobAppliers() {
                 <td>
                   <button>
                     {" "}
-                    <PrimaryBtnBlue title={"View Details"} />
+                    <PrimaryBtnBlue title={" Candidate Onboard"} />
                   </button>
                 </td>
                 <td>
                   <select className="select dark:bg-darkBlue select-bordered w-full">
-                    <option value="applied">Applied</option>
-                    <option value="shortlist">Shortlist</option>
-                    <option value="shortlist">Pending</option>
-                    <option value="shortlist">Reject</option>
+                    <option value="applied">Selected</option>
+                    <option value="shortlist">Candidate Onboard</option>
                   </select>
                 </td>
               </tr>
@@ -66,4 +64,4 @@ function JobAppliers() {
   );
 }
 
-export default JobAppliers;
+export default SelectedCandidatesList;

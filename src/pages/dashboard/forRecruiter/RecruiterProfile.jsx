@@ -318,6 +318,7 @@ const RecruiterProfile = () => {
               ))}
             </div>
           </div>
+          
           <div className="lg:col-span-6">
             <label className="font-semibold flex items-center gap-2"><BsAwardFill />Awards</label>
             <div className="flex gap-2">

@@ -2,17 +2,46 @@
 import { useRef, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { NavLink } from "react-router-dom";
+import DropdownSimple from "../../components/ui/DropdownSimple";
+import { useTranslation } from "react-i18next";
+import BDIcon from "./../../assets/icon/bd.png";
+import USIcon from "./../../assets/icon/us.png";
+
+const languageOptions = [
+  {
+    label: "English",
+    icon: USIcon,
+  },
+  {
+    label: "বাংলা",
+    icon: BDIcon,
+  },
+];
 
 function MobileNavItems({ navLinks }) {
+  const { i18n } = useTranslation();
+
+  const handleLanguageChange = (selectedLanguage) => {
+    if (selectedLanguage === "English") {
+      i18n.changeLanguage("en");
+      localStorage.setItem("language", "en");
+    } else if (selectedLanguage === "বাংলা") {
+      i18n.changeLanguage("bn");
+      localStorage.setItem("language", "bn");
+    }
+  };
+
   const [dropDownState, setDropDownState] = useState(false);
   const dropDownMenuRef = useRef();
+
   return (
     <div
       ref={dropDownMenuRef}
-      onClick={() => setDropDownState(!dropDownState)}
       className="relative flex lg:flex xl:hidden text-darkBlue dark:text-white"
     >
-      <RxHamburgerMenu className="size-8" />
+      <button onClick={() => setDropDownState(!dropDownState)} className="flex items-center">
+        <RxHamburgerMenu className="size-8" />
+      </button>
       {dropDownState && (
         <ul
           data-aos="slide-right"
@@ -36,6 +65,13 @@ function MobileNavItems({ navLinks }) {
               </NavLink>
             </li>
           ))}
+          <li>
+            <DropdownSimple
+              dynamicOptions={languageOptions}
+              placeholderData={i18n.language === "en" ? "English" : "বাংলা"}
+              onOptionSelect={handleLanguageChange}
+            />
+          </li>
         </ul>
       )}
     </div>

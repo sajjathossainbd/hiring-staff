@@ -40,7 +40,6 @@ import PrivacyAndPolicy from "../pages/privacyPolicy/PrivacyAndPolicy";
 import TermsAndConditions from "../pages/termsandcondition/TermsAndConditions";
 import AiAssistant from "../pages/dashboard/AiAssistant";
 import CreateBlogs from "../pages/dashboard/forAdmin/CreateBlogs";
-import MyProfile from "../pages/dashboard/forCandidates/MyProfile";
 import CandidateRoute from "./CandidateRoute";
 import RecruiterRoute from "./RecruiterRoute";
 import JobAppliers from "../pages/dashboard/forRecruiter/JobAppliers";
@@ -49,6 +48,7 @@ import InterviewCandidets from "../pages/dashboard/forRecruiter/InterviewCandide
 import SelectedCandidates from "../pages/dashboard/forRecruiter/SelectedCandidates";
 import InterviewCandidetsList from "../pages/dashboard/forRecruiter/InterviewCandidetsList";
 import SelectedCandidatesList from "../pages/dashboard/forRecruiter/SelectedCandidatesList";
+import CandidatesProfile from "../pages/dashboard/forCandidates/CandidatesProfile";
 
 const router = createBrowserRouter([
   {
@@ -99,9 +99,11 @@ const router = createBrowserRouter([
 
       {
         path: "/job-details/:id",
-        element: <PrivateRoute>
-          <JobDetails />
-        </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <JobDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/recruiters-listing",
@@ -113,9 +115,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/recruiter-details/:id",
-        element: <PrivateRoute>
-          <RecruiterDetails />
-        </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <RecruiterDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/candidates-listing",
@@ -127,9 +131,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/candidate-details/:id",
-        element: <PrivateRoute>
-          <CandidateDetails />
-        </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <CandidateDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/candidate-profile",
@@ -141,9 +147,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/blog-details/:id",
-        element: <PrivateRoute>
-          <BlogDetails />
-        </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <BlogDetails />
+          </PrivateRoute>
+        ),
       },
 
       {
@@ -289,7 +297,7 @@ const router = createBrowserRouter([
         path: "my-profile",
         element: (
           <CandidateRoute>
-            <MyProfile />
+            <CandidatesProfile />
           </CandidateRoute>
         ),
       },

@@ -94,7 +94,9 @@ const router = createBrowserRouter([
 
       {
         path: "/job-details/:id",
-        element: <JobDetails />,
+        element: <PrivateRoute>
+          <JobDetails />
+        </PrivateRoute>,
       },
       {
         path: "/recruiters-listing",
@@ -106,7 +108,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/recruiter-details/:id",
-        element: <RecruiterDetails />,
+        element: <PrivateRoute>
+          <RecruiterDetails />
+        </PrivateRoute>,
       },
       {
         path: "/candidates-listing",
@@ -118,7 +122,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/candidate-details/:id",
-        element: <CandidateDetails />,
+        element: <PrivateRoute>
+          <CandidateDetails />
+        </PrivateRoute>,
       },
       {
         path: "/candidate-profile",
@@ -130,7 +136,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/blog-details/:id",
-        element: <BlogDetails />,
+        element: <PrivateRoute>
+          <BlogDetails />
+        </PrivateRoute>,
       },
 
       {

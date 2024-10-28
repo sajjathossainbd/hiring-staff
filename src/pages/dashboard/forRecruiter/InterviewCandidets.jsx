@@ -13,14 +13,14 @@ function InterviewCandidets() {
 
       {/* shortlisted candidates list */}
       <div className="grid lg:grid-cols-2 gap-6 mt-6">
-        <JobPostCard
+        {/* <JobPostCard
           Cardtitle="Interview Candidates"
           jobTitle="Fresher React Developer"
           statusTitle="Intvw"
           img={interview}
           style="gradient-3"
           link="/dashboard/interview-candidates-list"
-        />
+        /> */}
       </div>
     </div>
   );

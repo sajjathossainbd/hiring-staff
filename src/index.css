@@ -11,6 +11,27 @@ body {
   overflow-x: hidden;
 }
 
+.gradient-1 {
+  background-image: linear-gradient(to right, #3c65f5, #8388f8, #b2aefb, #dbd6fe, #ffffff);
+}
+
+.gradient-2 {
+  background-image: linear-gradient(to right top, #3c65f5, #1957ca, #0047a0, #003777, #05274f);
+}
+
+.gradient-2-1 {
+  background-image: linear-gradient(to right top, #05274f, #003777, #0047a0, #1957ca, #3c65f5);
+}
+
+.gradient-3 {
+  background-image: linear-gradient(to right top, #3c65f5, #757ff8, #9c9bfa, #bdb8fc, #dbd6fe, #d3cfef, #cbc9df, #c3c2d0, #9697ae, #6a6f8d, #3e496d, #05274f);
+}
+
+.gradient-4 {
+  background: rgb(231, 240, 253);
+  background: radial-gradient(circle, rgba(231, 240, 253, 1) 0%, rgba(121, 141, 227, 1) 100%);
+}
+
 
 @layer components {
   .animate-updown {
@@ -18,16 +39,18 @@ body {
     animation-duration: 2s;
     animation-iteration-count: infinite;
     animation-direction: alternate-reverse;
-}
+  }
 
-@keyframes animate-updownAnim {
+  @keyframes animate-updownAnim {
     from {
-        transform: translateY(-15px);
+      transform: translateY(-15px);
     }
+
     to {
-        transform: translateY(15px);
+      transform: translateY(15px);
     }
-}
+  }
+
   .container {
     @apply max-w-screen-2xl mx-auto lg:py-12 py-7 px-4 sm:px-6 md:px-8 lg:px-16 xl:px-24;
   }
@@ -50,6 +73,7 @@ body {
 }
 
 @layer base {
+
   h1,
   h2,
   h3,

@@ -85,7 +85,7 @@ i18n
           allLocation: "All Location",
           allCategory: "All Category",
           home: "Home",
-          jobs: "Jobs",
+          jobs: "Find Job",
           recruiters: "Recruiters",
           candidates: "Candidates",
           about: "About",

@@ -6,12 +6,14 @@ import axiosInstance from "../../../utils/axios";
 import NoFoundData from "../../../components/ui/NoFoundData";
 import { CardPagination } from "../../../components/shared/CardPagination";
 import { Link, useNavigate } from "react-router-dom";
-import useCurrentCandidate from "../../../hooks/useCurrentCandidate";
 import { FaRegEye } from "react-icons/fa";
+import useCurrentUser from "../../../hooks/useCurrentUser";
 
 const ShortlistedJobs = () => {
+
+  const { currentCandidate } = useCurrentUser();
+
   const navigate = useNavigate();
-  const { currentCandidate } = useCurrentCandidate();
   // eslint-disable-next-line no-unused-vars
   const [page, setPage] = useState(1); // State for current page
   const limit = 12; // Number of jobs per page

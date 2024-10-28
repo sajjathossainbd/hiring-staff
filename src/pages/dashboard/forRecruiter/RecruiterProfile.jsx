@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import TinnyHeading from "../shared/TinnyHeading";
 import DefaultInput from "../shared/DefaultInput";
@@ -11,19 +10,16 @@ import SelectField from "../shared/SelectField";
 import { LiaCitySolid } from "react-icons/lia";
 import { TbUnlink } from "react-icons/tb";
 import { BsBrowserChrome } from "react-icons/bs";
-import {
-  MdAddLocationAlt,
-  MdPersonAddAlt1,
-} from "react-icons/md";
+import { GrCopy } from "react-icons/gr";
+import { MdAddLocationAlt, MdPersonAddAlt1 } from "react-icons/md";
 import { FaMoneyCheckDollar } from "react-icons/fa6";
 import { TbNumbers } from "react-icons/tb";
 import TextareaField from "../shared/TextareaField";
-import useCurrentRecruiter from "../../../hooks/useCurrentRecruiter";
+import useCurrentUser from "../../../hooks/useCurrentUser";
+import { TbCategoryPlus } from "react-icons/tb";
 
 const RecruiterProfile = () => {
-
-  const { currentRecruiter } = useCurrentRecruiter();
-
+  const { currentRecruiter } = useCurrentUser();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -119,7 +115,6 @@ const RecruiterProfile = () => {
     });
   };
 
-
   return (
     <div>
       <TinnyHeading
@@ -151,6 +146,7 @@ const RecruiterProfile = () => {
           />
           <TextareaField
             placeholder="Short description about the company..."
+            icon={<GrCopy />}
             label="Company Short Description"
             name="description"
             value={formData.description}
@@ -159,6 +155,7 @@ const RecruiterProfile = () => {
           <SelectField
             label="Industry"
             name="industry"
+            icon={<TbCategoryPlus />}
             options={[
               "Select Industry",
               "Web and Software Development",

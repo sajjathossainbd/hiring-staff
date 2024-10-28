@@ -88,7 +88,7 @@ const Dashboard = () => {
                         }`
                       }
                     >
-                      <MdPostAdd /> All Jobs
+                      <MdPostAdd /> Jobs
                     </NavLink>
                   </li>
                   <li>
@@ -100,7 +100,7 @@ const Dashboard = () => {
                         }`
                       }
                     >
-                      <FaBlogger /> All Blogs
+                      <FaBlogger /> Blogs
                     </NavLink>
                   </li>
                   <li>
@@ -112,7 +112,7 @@ const Dashboard = () => {
                         }`
                       }
                     >
-                      <MdOutlinePayment /> All Payments
+                      <MdOutlinePayment /> Payments
                     </NavLink>
                   </li>
                   <li>
@@ -124,7 +124,7 @@ const Dashboard = () => {
                         }`
                       }
                     >
-                      <FaUserTie /> All Recruiters
+                      <FaUserTie /> Recruiters
                     </NavLink>
                   </li>
                   <li>
@@ -136,7 +136,7 @@ const Dashboard = () => {
                         }`
                       }
                     >
-                      <FaUserGroup /> All Candidates
+                      <FaUserGroup /> Candidates
                     </NavLink>
                   </li>
                 </>

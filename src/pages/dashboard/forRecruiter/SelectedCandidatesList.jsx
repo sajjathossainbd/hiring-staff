@@ -1,15 +1,14 @@
 import PrimaryBtnBlue from "../../../components/ui/PrimaryBtnBlue";
 import TinnyHeading from "../shared/TinnyHeading";
 
-function ShortListedCandidates() {
+function SelectedCandidatesList() {
   return (
     <div>
       <TinnyHeading
-        title="Manage Shortlisted Candidates"
-        path="shortlsit-candidates"
-        pathName="Shortlisted Candidates List"
+        title="Manage Selected Candidates"
+        path="selected-candidates-list"
+        pathName="Selected Candidates List"
       />
-
       <div className="p-6 bg-gray-50">
         {/* All Candidates List */}
         <div className="overflow-x-auto">
@@ -19,7 +18,7 @@ function ShortListedCandidates() {
               <tr className="bg-white text-16 rounded-sm">
                 <th className="rounded-l-md">Name</th>
                 <th>Date</th>
-                <th>Assessments</th>
+                <th>Action</th>
                 <th className="rounded-r-md">Status</th>
               </tr>
             </thead>
@@ -46,13 +45,14 @@ function ShortListedCandidates() {
                 <td>26 October, 2024</td>
                 <td>
                   <button>
-                    <PrimaryBtnBlue title={"Assign Assessments"} />
+                    {" "}
+                    <PrimaryBtnBlue title={" Candidate Onboard"} />
                   </button>
                 </td>
                 <td>
                   <select className="select dark:bg-darkBlue select-bordered w-full">
-                    <option value="applied">Shortlist</option>
-                    <option value="shortlist">Interview</option>
+                    <option value="applied">Selected</option>
+                    <option value="shortlist">Candidate Onboard</option>
                   </select>
                 </td>
               </tr>
@@ -64,4 +64,4 @@ function ShortListedCandidates() {
   );
 }
 
-export default ShortListedCandidates;
+export default SelectedCandidatesList;

@@ -51,9 +51,9 @@ const ManageJob = () => {
   return (
     <div>
       <TinnyHeading
-        title={"Manage Jobs"}
+        title={"Manage Posted Jobs"}
         path={"manage-jobs"}
-        pathName={"Manage Jobs"}
+        pathName={"Posted Jobs"}
       />
       {/* Create A New Job Post */}
       <div className="flex justify-end">

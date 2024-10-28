@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axiosInstance from "./../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import TinnyHeading from "../shared/TinnyHeading";
 function JobAppliers() {
   const { jobId } = useParams();
 

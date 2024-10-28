@@ -1,13 +1,13 @@
 import PrimaryBtnBlue from "../../../components/ui/PrimaryBtnBlue";
 import TinnyHeading from "../shared/TinnyHeading";
 
-function ShortListedCandidates() {
+function InterviewCandidetsList() {
   return (
     <div>
       <TinnyHeading
-        title="Manage Shortlisted Candidates"
-        path="shortlsit-candidates"
-        pathName="Shortlisted Candidates List"
+        title="Manage Interview Candidates"
+        path="interview-candidates-list"
+        pathName="Interview Candidates List"
       />
 
       <div className="p-6 bg-gray-50">
@@ -19,7 +19,7 @@ function ShortListedCandidates() {
               <tr className="bg-white text-16 rounded-sm">
                 <th className="rounded-l-md">Name</th>
                 <th>Date</th>
-                <th>Assessments</th>
+                <th>Details</th>
                 <th className="rounded-r-md">Status</th>
               </tr>
             </thead>
@@ -46,13 +46,14 @@ function ShortListedCandidates() {
                 <td>26 October, 2024</td>
                 <td>
                   <button>
-                    <PrimaryBtnBlue title={"Assign Assessments"} />
+                    {" "}
+                    <PrimaryBtnBlue title={"Invite Interview"} />
                   </button>
                 </td>
                 <td>
                   <select className="select dark:bg-darkBlue select-bordered w-full">
-                    <option value="applied">Shortlist</option>
-                    <option value="shortlist">Interview</option>
+                    <option value="applied">Interivew</option>
+                    <option value="shortlist">Selected</option>
                   </select>
                 </td>
               </tr>
@@ -64,4 +65,4 @@ function ShortListedCandidates() {
   );
 }
 
-export default ShortListedCandidates;
+export default InterviewCandidetsList;

@@ -6,12 +6,14 @@ import toast from "react-hot-toast";
 import axiosInstance from "../../../utils/axios";
 import SelectField from "../shared/SelectField";
 import useCurrentUser from "../../../hooks/useCurrentUser";
+import TextareaField from "../shared/TextareaField";
+import { GrCopy } from "react-icons/gr";
 
 const PostJob = () => {
   const [candidateEmails, setCandidateEmails] = useState();
 
   const { currentRecruiter } = useCurrentUser();
- 
+
   useEffect(() => {
     axiosInstance.get("/users/candidate-emails").then((res) => {
       setCandidateEmails(res.data.candidateEmails);
@@ -40,7 +42,6 @@ const PostJob = () => {
     benefits: [],
     appliers: [],
     featured: false,
-    
   });
   // console.log(formData);
   const [tag, setTag] = useState("");
@@ -193,13 +194,14 @@ const PostJob = () => {
           </div>
 
           <div className="col-span-6">
-            <h6 className="text-gray">Description</h6>
-            <textarea
+            <TextareaField
+              placeholder="Job description..."
+              icon={<GrCopy />}
+              label="Job Description"
               name="description"
-              placeholder="Enter Job Description"
+              value={formData.description}
               onChange={handleChange}
-              className="w-full h-32 p-3 rounded-md border focus:outline-none border-lightGray bg-bgLightWhite dark:bg-darkBlue dark:border-blue"
-            ></textarea>
+            />
           </div>
 
           <div className="col-span-6 md:col-span-3">

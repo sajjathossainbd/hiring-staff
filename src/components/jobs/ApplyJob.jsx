@@ -2,35 +2,36 @@
 import { useForm } from "react-hook-form";
 import axiosInstance from "../../utils/axios";
 import toast from "react-hot-toast";
-import useCurrentCandidate from "../../hooks/useCurrentCandidate";
+import useCurrentUser from "../../hooks/useCurrentUser";
 
 function ApplyJob({ job, onClose }) {
+
+  const { currentCandidate } = useCurrentUser();
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
-  const { currentCandidate } = useCurrentCandidate();
 
-
-
-  const { _id: jobId, jobTitle, company_email, company_id } = job;
+  const { _id: jobId, jobTitle, company_email, company_name } = job;
+  // console.log(job);
 
   const onSubmit = async (data) => {
     const applicationData = {
       jobId,
       jobTitle,
       company_email,
-      company_id,
+      company_name,
       applicantId: currentCandidate?._id,
-      applicantName: currentCandidate?.name,
+      applicantName: currentCandidate?.first_name,
       applicantEmail: currentCandidate?.email,
       coverLetter: data.coverLetter,
       resume: data.resume,
       availability: data.availability,
     };
-
+    // console.log(applicationData);
     try {
       const response = await axiosInstance.post(
         `/jobs/applied-jobs`,
@@ -43,7 +44,7 @@ function ApplyJob({ job, onClose }) {
         onClose();
       }
     } catch (error) {
-      toast.error("Error submitting the application.");
+      toast.error("Already applied in this job.");
       console.error("Error submitting application:", error);
     }
   };

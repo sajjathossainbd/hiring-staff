@@ -5,13 +5,15 @@ import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../../utils/axios";
 import NoFoundData from "../../../components/ui/NoFoundData";
 import { CardPagination } from "../../../components/shared/CardPagination";
-import { useNavigate } from "react-router-dom";
-import useCurrentCandidate from "../../../hooks/useCurrentCandidate";
+import { Link, useNavigate } from "react-router-dom";
+import { FaRegEye } from "react-icons/fa";
+import useCurrentUser from "../../../hooks/useCurrentUser";
 
 const ShortlistedJobs = () => {
 
+  const { currentCandidate } = useCurrentUser();
+
   const navigate = useNavigate();
-  const { currentCandidate } = useCurrentCandidate();
   // eslint-disable-next-line no-unused-vars
   const [page, setPage] = useState(1); // State for current page
   const limit = 12; // Number of jobs per page
@@ -27,7 +29,10 @@ const ShortlistedJobs = () => {
     enabled: !!currentCandidate?.email,
   });
 
-  if (shortlistAppliedJobs?.jobs?.length === 0 || shortlistAppliedJobs === undefined) {
+  if (
+    shortlistAppliedJobs?.jobs?.length === 0 ||
+    shortlistAppliedJobs === undefined
+  ) {
     return (
       <>
         <TinnyHeading
@@ -40,7 +45,7 @@ const ShortlistedJobs = () => {
     );
   }
 
-  const totalPages = shortlistAppliedJobs.totalPages || 1; // Get total pages from response
+  const totalPages = shortlistAppliedJobs.totalPages || 1;
 
   return (
     <div>
@@ -50,14 +55,14 @@ const ShortlistedJobs = () => {
         pathName={"Shortlisted Jobs"}
       />
 
-      <div className="grid gap-3 grid-cols-1 md:grid-cols-2 mt-6 mb-5">
+      <div className="grid gap-3 grid-cols-1 lg:grid-cols-3 md:grid-cols-2 mt-6 mb-5">
         {shortlistAppliedJobs?.jobs?.map((job, idx) => (
           <div
             key={idx}
-            className="shadow-md bg-bgLightBlue hover:-translate-y-1 duration-200 rounded-lg p-6 overflow-auto cursor-pointer"
+            className="shadow-md bg-white hover:-translate-y-1 duration-200 rounded-lg p-6 overflow-auto "
           >
             <div>
-              <div className="flex items-center">
+              <div className="flex items-center justify-between">
                 <div className="ml-3">
                   <h5 className="">{job.jobTitle}</h5>
                   <div className="flex flex-wrap text-12 text-gray">
@@ -67,6 +72,11 @@ const ShortlistedJobs = () => {
                     </span>
                   </div>
                 </div>
+                <Link to={`/job-details/${job?.jobId}`}>
+                  <button className=" rounded-full text-blue hover:text-white hover:bg-blue">
+                    <FaRegEye />
+                  </button>
+                </Link>
               </div>
             </div>
 
@@ -82,7 +92,7 @@ const ShortlistedJobs = () => {
 
               <div className="flex space-x-4 text-gray">
                 <p className="text-12 bg-yellow-300 px-2 py-1 rounded-lg">
-                  {job.shortlist}
+                  {job?.shortlist}
                 </p>
               </div>
             </div>
@@ -94,7 +104,9 @@ const ShortlistedJobs = () => {
       <CardPagination
         currentPage={page}
         totalPages={totalPages}
-        onPageChange={(newPage) => navigate(`/dashboard/shortlisted-jobs/${newPage}`)}
+        onPageChange={(newPage) =>
+          navigate(`/dashboard/shortlisted-jobs/${newPage}`)
+        }
       />
     </div>
   );

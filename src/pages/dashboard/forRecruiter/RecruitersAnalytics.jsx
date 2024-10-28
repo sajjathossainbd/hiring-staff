@@ -7,11 +7,11 @@ import { MdPlaylistAddCheck } from "react-icons/md";
 import { VscGitStashApply } from "react-icons/vsc";
 import { SiImessage } from "react-icons/si";
 import StackedBarChart from "../../../components/dashboard/StackedBarChart";
-import useCurrentRecruiter from "../../../hooks/useCurrentRecruiter";
+import useCurrentUser from "../../../hooks/useCurrentUser";
 
 const RecruitersAnalytics = () => {
 
-    const { currentRecruiter } = useCurrentRecruiter();
+    const { currentRecruiter } = useCurrentUser();
 
     const { data: myJobs } = useQuery({
         queryKey: ["myJobs", currentRecruiter?.email],

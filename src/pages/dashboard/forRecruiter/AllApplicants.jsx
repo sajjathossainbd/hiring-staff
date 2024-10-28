@@ -1,45 +1,53 @@
-import { FaRegEye } from "react-icons/fa6";
+import React from "react";
+import { useParams } from "react-router-dom";
+import axiosInstance from "../../../utils/axios";
+import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
+import Loading from "./../../../components/ui/Loading";
 import TinnyHeading from "../shared/TinnyHeading";
 import { IoCheckmark } from "react-icons/io5";
-import { RxCross2 } from "react-icons/rx";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import { CiLocationOn } from "react-icons/ci";
-import { IoTimeOutline } from "react-icons/io5";
-import { useQuery } from "@tanstack/react-query";
-import axiosInstance from "../../../utils/axios";
-import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
-import useCurrentRecruiter from "../../../hooks/useCurrentRecruiter";
+import toast from "react-hot-toast";
 
-const AllApplicants = () => {
+const ViewAllApplications = () => {
+  const { jobId } = useParams();
 
-  const { currentRecruiter } = useCurrentRecruiter();
-
-  const { data: allAppliedJobs, refetch } = useQuery({
-    queryKey: ["allAppliedJobs", currentRecruiter?.email],
+  const {
+    data: applications,
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["applications", jobId],
     queryFn: async () => {
       const res = await axiosInstance.get(
-        `/jobs/applied-jobs/email/${currentRecruiter.email}`
+        `/jobs/applied/applications/${jobId}`
       );
       return res.data;
     },
-    enabled: !!currentRecruiter?.email,
+    enabled: !!jobId,
   });
 
-  // Handle shortlist or reject action
-  const handleUpdateStatus = async (id, action) => {
-    const updateData = action === "shortlist"
-      ? { shortlist: "approved" }
-      : { reject: true };
+  const handleSelectChange = async (applicationId, action) => {
+    let updateData;
+    let statusText;
+
+    if (action === "shortlist") {
+      updateData = { shortlist: "approved", reject: false };
+      statusText = "Shortlisted";
+    } else if (action === "reject") {
+      updateData = { reject: true, shortlist: "pending" };
+      statusText = "Rejected";
+    } else if (action === "pending") {
+      updateData = { shortlist: "pending", reject: false };
+      statusText = "Pending";
+    }
 
     try {
       const res = await axiosInstance.patch(
-        `/jobs/applied-jobs/update/${id}`,
+        `/jobs/applied-jobs/update/${applicationId}`,
         updateData
       );
 
       if (res.data.updatedCount) {
-        const statusText = action === "shortlist" ? "Shortlisted" : "Rejected";
         Swal.fire({
           position: "center",
           icon: "success",
@@ -59,105 +67,136 @@ const AllApplicants = () => {
     }
   };
 
-  const handleDelete = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axiosInstance.delete(`/jobs/applied-jobs/delete/${id}`).then((res) => {
-          if (res.data.deletedCount > 0) {
-            Swal.fire("Deleted!", "Job has been deleted.", "success");
-            refetch();
-          }
-        });
+  const handleUpdateStatus = async (id) => {
+    try {
+      const res = await axiosInstance.patch(
+        `/jobs/applied-jobs/selected/${id}`
+      );
+      if (res.status === 200) {
+        toast.success("Job selected successfully!");
+        refetch();
       }
-    });
+    } catch (error) {
+      console.error("Error updating job status:", error);
+      toast.error("Failed to update job status.");
+    }
   };
+
+  if (isLoading) return <Loading />;
 
   return (
     <div>
       <TinnyHeading
-        title="All Applicants"
-        path="all-applicants"
-        pathName="All Applicants"
+        title={"Manage Jobs"}
+        path={"manage-jobs"}
+        pathName={"Manage Jobs"}
       />
-      <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 rounded-md">
-        <h5>Applicants</h5>
-        <hr className="my-6 text-lightGray" />
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-          {allAppliedJobs?.map((person, index) => (
-            <div
-              key={index}
-              className="flex lg:flex-row flex-col justify-between border border-lightGray rounded-lg hover:border-gray transition-all duration-200 lg:p-6 p-3 pb-6"
-            >
-              <div className="flex lg:flex-row flex-col gap-5">
-                <div className="flex flex-col gap-2 justify-center">
-                  <span className="font-bold">{person?.applicantName}</span>
-                  <span className="text-sm font-medium text-blue">
-                    {person?.jobTitle}
-                  </span>
-                  <div className="flex justify-between lg:gap-14 lg:pt-0 pt-1 items-center">
-                    <span className="text-sm flex items-center gap-1">
-                      <CiLocationOn />
-                      {person?.applicantEmail}
-                    </span>
-                    <span className="text-sm flex gap-1 items-center">
-                      <IoTimeOutline />
-                      {person?.availability}
-                    </span>
-                  </div>
-                  <div>
-                    <span className="text-sm font-medium text-blue overflow-x-auto">
-                      {person?.coverLetter}
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="flex lg:justify-normal justify-center gap-2 lg:pt-0 pt-6">
-                <div className="tooltip" data-tip="Resume">
-                  <button className="btn rounded-full text-blue hover:text-white hover:bg-blue">
-                    <Link href={person?.resume}>
-                      <FaRegEye />
-                    </Link>
-                  </button>
-                </div>
-                <div className="tooltip" data-tip="Shortlist">
-                  <button
-                    onClick={() => handleUpdateStatus(person?._id, "shortlist")}
-                    className="btn rounded-full text-blue hover:text-white hover:bg-blue"
+      <div className="overflow-x-auto">
+        <table className="min-w-full border-collapse border border-gray-200">
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="border border-gray-200 px-4 py-2">Name</th>
+              <th className="border border-gray-200 px-4 py-2">Email</th>
+              <th className="border border-gray-200 px-4 py-2">Shortlist</th>
+              <th className="border border-gray-200 px-4 py-2">
+                Final Selection
+              </th>
+              <th className="border border-gray-200 px-4 py-2">Rejections</th>
+              <th className="border border-gray-200 px-4 py-2">Actions</th>
+              <th className="border border-gray-200 px-4 py-2">Applied Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {applications?.map((application) => (
+              <tr key={application._id} className="hover:bg-gray-50">
+                <td className="border border-gray-200 px-4 py-2">
+                  {application?.applicantName}
+                </td>
+                <td className="border border-gray-200 px-4 py-2">
+                  {application?.applicantEmail}
+                </td>
+                <td className="border border-gray-200 px-4 py-2">
+                  <p
+                    className={
+                      application?.selected
+                        ? "bg-lime-500 text-white px-2 py-1 rounded"
+                        : application?.shortlist === "approved"
+                        ? "bg-cyan-500 text-white px-2 py-1 rounded"
+                        : "bg-yellow-500 text-white px-2 py-1 rounded"
+                    }
                   >
-                    <IoCheckmark />
-                  </button>
-                </div>
-                <div className="tooltip" data-tip="Reject">
-                  <button
-                    onClick={() => handleUpdateStatus(person?._id, "reject")}
-                    className="btn rounded-full text-blue hover:text-white hover:bg-blue"
+                    {application?.selected
+                      ? "Selected"
+                      : application?.shortlist === "approved"
+                      ? "Shortlisted"
+                      : "Pending"}
+                  </p>
+                </td>
+
+                <td className="border border-gray-200 px-4 py-2">
+                  {application?.shortlist == "approved" ? (
+                    <div className="tooltip" data-tip="Select">
+                      <button
+                        onClick={() => handleUpdateStatus(application?._id)}
+                        className="btn rounded-full text-blue hover:text-white bg-lightText hover:bg-blue"
+                      >
+                        <IoCheckmark />
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="tooltip" data-tip="Shortlist first">
+                      <button
+                        onClick={() => handleUpdateStatus(application?._id)}
+                        className="btn btn-disabled rounded-full text-blue hover:text-white bg-lightText hover:bg-blue"
+                      >
+                        <IoCheckmark />
+                      </button>
+                    </div>
+                  )}
+                </td>
+                <td className="border border-gray-200 px-4 py-2">
+                  <p
+                    className={
+                      application.reject == false
+                        ? "bg-yellow-500"
+                        : "bg-red-500"
+                    }
                   >
-                    <RxCross2 />
-                  </button>
-                </div>
-                <div className="tooltip" data-tip="Delete">
-                  <button
-                    onClick={() => handleDelete(person?._id)}
-                    className="btn rounded-full text-blue hover:text-white hover:bg-blue"
-                  >
-                    <RiDeleteBin6Line />
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+                    {application?.reject == false ? "Not rejected" : "Rejected"}
+                  </p>
+                </td>
+                <td className="border border-gray-200 px-4 py-2">
+                  {application.selected == true ? (
+                    "Al ready selected"
+                  ) : (
+                    <select
+                      onChange={(event) =>
+                        handleSelectChange(application._id, event.target.value)
+                      }
+                      className="rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white p-2 hover:bg-blue-100 cursor-pointer"
+                      defaultValue=""
+                    >
+                      <option value="" disabled>
+                        Actions
+                      </option>
+                      <option value="shortlist">Shortlist</option>
+                      <option value="pending">Pending</option>
+                      <option value="reject">Reject</option>
+                    </select>
+                  )}
+                </td>
+                <td className="border border-gray-200 px-4 py-2">
+                  {application?.appliedDate
+                    ? new Date(application.appliedDate).toLocaleDateString()
+                    : "N/A"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
 };
 
-export default AllApplicants;
+export default ViewAllApplications;

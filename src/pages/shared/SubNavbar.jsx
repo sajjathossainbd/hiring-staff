@@ -5,10 +5,13 @@ import MobileNavItems from "../../components/navbar/MobileNavItems";
 import useAuth from "../../hooks/useAuth";
 import { motion } from "framer-motion";
 import { Trans, useTranslation } from "react-i18next";
-import useCurrentCandidate from "../../hooks/useCurrentCandidate";
-import useCurrentRecruiter from "../../hooks/useCurrentRecruiter";
+import { BiGroup, BiHomeAlt2 } from "react-icons/bi";
+import { IoBriefcaseOutline } from "react-icons/io5";
+import { LiaCitySolid } from "react-icons/lia";
+import { TbMoneybag } from "react-icons/tb";
 
 function SubNavbar() {
+
   const { t } = useTranslation();
   const { user, logOut } = useAuth();
   const [scrollDirection, setScrollDirection] = useState("up");
@@ -31,29 +34,30 @@ function SubNavbar() {
   }, [lastScrollY]);
 
   const navLinks = [
-    { to: "/", label: <Trans i18nKey={"home"} /> },
-    { to: "/jobs-listing", label: <Trans i18nKey={"jobs"} /> },
-    { to: "/recruiters-listing", label: <Trans i18nKey={"recruiters"} /> },
-    { to: "/candidates-listing", label: <Trans i18nKey={"candidates"} /> },
-    { to: "/about", label: <Trans i18nKey={"about"} /> },
-    { to: "/contact", label: <Trans i18nKey={"contact"} /> },
-    { to: "/pricing", label: <Trans i18nKey={"pricing"} /> },
-    { to: "/blogs", label: <Trans i18nKey={"blogs"} /> },
+    { to: "/", label: <Trans i18nKey={"home"} />, icon: <BiHomeAlt2 /> },
+    {
+      to: "/jobs-listing",
+      label: <Trans i18nKey={"jobs"} />,
+      icon: <IoBriefcaseOutline />,
+    },
+    {
+      to: "/recruiters-listing",
+      label: <Trans i18nKey={"recruiters"} />,
+      icon: <LiaCitySolid />,
+    },
+    {
+      to: "/candidates-listing",
+      label: <Trans i18nKey={"candidates"} />,
+      icon: <BiGroup />,
+    },
+    {
+      to: "/pricing",
+      label: <Trans i18nKey={"pricing"} />,
+      icon: <TbMoneybag />,
+    },
   ];
 
-  const { currentCandidate } = useCurrentCandidate();
-  const { currentRecruiter } = useCurrentRecruiter();
 
-  // Filter nav links based on user role
-  const filteredNavLinks = navLinks.filter((link) => {
-    if (currentCandidate && link.label === "Candidates") {
-      return false;
-    }
-    if (currentRecruiter && link.label === "Recruiters") {
-      return false;
-    }
-    return true;
-  });
 
   return (
     <motion.div
@@ -69,9 +73,9 @@ function SubNavbar() {
       }
     >
       <div className="container py-0">
-        <DesktopNavItems navLinks={filteredNavLinks} />
+        <DesktopNavItems navLinks={navLinks} />
         <MobileNavItems
-          navLinks={filteredNavLinks}
+          navLinks={navLinks}
           user={user}
           logOut={logOut}
         />

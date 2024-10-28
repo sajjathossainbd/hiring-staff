@@ -14,12 +14,11 @@ function RecruitersFiltering() {
 
   const [industries, setIndustries] = useState([]);
   const [locations, setLocations] = useState([]);
-  const [teamSizes, setTeamSizes] = useState([]);
-
+  const [employeeCounts, setEmployeeCounts] = useState([]); 
   const initialFilters = {
     industry: "",
-    city: "",
-    teamSize: "",
+    location: "",
+    employeeCount: "",
   };
   const [filters, setFilters] = useState(initialFilters);
 
@@ -28,8 +27,8 @@ function RecruitersFiltering() {
       try {
         const { data } = await axiosInstance.get("/recruiters/unique");
         setIndustries(data.industries || []);
-        setLocations(data.cities || []);
-        setTeamSizes(data.teamSizes || []);
+        setLocations(data.locations || []); 
+        setEmployeeCounts(data.numberOfEmployees || []);
       } catch (error) {
         console.error("Error fetching filter data", error);
       }
@@ -72,7 +71,7 @@ function RecruitersFiltering() {
             <Dropdown
               options={locations}
               placeholder="Select a location"
-              onChange={(option) => handleFilterChange("city", option)}
+              onChange={(option) => handleFilterChange("location", option)}
             />
           </div>
 
@@ -80,9 +79,9 @@ function RecruitersFiltering() {
           {/* Team Size */}
           <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
             <Dropdown
-              options={teamSizes}
+              options={employeeCounts}
               placeholder="Select a number"
-              onChange={(option) => handleFilterChange("teamSize", option)}
+              onChange={(option) => handleFilterChange("employeeCount", option)} 
             />
           </div>
 

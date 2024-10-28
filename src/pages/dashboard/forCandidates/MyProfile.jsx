@@ -1,9 +1,9 @@
 import { BsFillSendFill } from "react-icons/bs";
-import PrimaryButton from "./../../components/shared/PrimaryButton";
+import PrimaryButton from "../../../components/shared/PrimaryButton";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import useAuth from "../../hooks/useAuth";
-import axiosInstance from "../../utils/axios";
+import useAuth from "../../../hooks/useAuth";
+import axiosInstance from "../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
 
 const MyProfile = () => {
@@ -18,6 +18,7 @@ const MyProfile = () => {
     enabled: !!user?.email,
   });
 
+
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
@@ -28,7 +29,7 @@ const MyProfile = () => {
       last_name: data.last_name || currentCandidate?.last_name,
       email: currentCandidate?.email,
       special_profession: data.special_profession || currentCandidate?.special_profession,
-      experience_year: data.experience_year || currentCandidate?.experience_year,
+      experience_year: parseInt(data.experience_year) || currentCandidate?.experience_year,
       phone_number: data.phone_number || currentCandidate?.phone_number,
       image: data.image || currentCandidate?.photo_url,
       resume: data.resume || currentCandidate?.resume,
@@ -75,7 +76,7 @@ const MyProfile = () => {
 
           <div className="mt-[-40px] lg:mt-[-100px] md:mt-[-70px] -left-20 z-50">
             <img
-              src={currentCandidate?.image || user?.photoURL}
+              src={currentCandidate?.photo_url || user?.photoURL}
               alt="Profile Photo"
               className="rounded-full xl:h-52 lg:h-44 md:h-32 h-20 xl:w-52 lg:w-44 md:w-32 w-20 object-cover border-[7px] border-white"
             />

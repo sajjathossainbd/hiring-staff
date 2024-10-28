@@ -62,7 +62,7 @@ const CheckoutForm = ({ price, category }) => {
 
     if (error) {
       setError(error.message);
-      setLoading(false); // Stop loading
+      setLoading(false);
       return;
     } else {
       setError("");
@@ -78,9 +78,9 @@ const CheckoutForm = ({ price, category }) => {
       setLoading(false); // Stop loading
     } else if (paymentIntent.status === "succeeded") {
       const paymentDetails = {
-        name: user?.name,
+        name: user?.displayName,
         email: user?.email,
-        photo: user?.photo_URL,
+        photo: user?.photoURL,
         category: category,
         date: new Date().toLocaleDateString(),
         status: "pending",

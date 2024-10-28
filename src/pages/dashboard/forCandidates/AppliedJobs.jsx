@@ -8,18 +8,21 @@ import NoFoundData from "../../../components/ui/NoFoundData";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "../../../components/ui/Loading";
 import { CardPagination } from "../../../components/shared/CardPagination";
-import useCurrentCandidate from "../../../hooks/useCurrentCandidate";
+import useCurrentUser from "../../../hooks/useCurrentUser";
 
 const AppliedJobs = () => {
 
-  const { currentCandidate } = useCurrentCandidate();
+  const { currentCandidate } = useCurrentUser();
+
   const userId = currentCandidate?._id;
   const navigate = useNavigate();
   const { page = 1 } = useParams(); // Get current page from URL
   const limit = 12; // Number of jobs per page
 
   const fetchAppliedJobs = async (currentPage, limit) => {
-    const response = await axiosInstance.get(`/jobs/applied-jobs/${userId}?page=${currentPage}&limit=${limit}`);
+    const response = await axiosInstance.get(
+      `/jobs/applied-jobs/${userId}?page=${currentPage}&limit=${limit}`
+    );
     return response.data;
   };
 
@@ -35,7 +38,7 @@ const AppliedJobs = () => {
     enabled: !!userId,
   });
 
-  console.log(appliedJobs);
+  // console.log(appliedJobs);
 
   const handleDelete = async (id) => {
     Swal.fire({
@@ -57,12 +60,20 @@ const AppliedJobs = () => {
           );
 
           if (res.data.deletedCount === 1) {
-            Swal.fire("Deleted!", "Your application has been deleted.", "success");
+            Swal.fire(
+              "Deleted!",
+              "Your application has been deleted.",
+              "success"
+            );
             refetch();
           }
         } catch (error) {
           console.error("Failed to delete application:", error);
-          Swal.fire("Error", "Failed to delete your application. Please try again.", "error");
+          Swal.fire(
+            "Error",
+            "Failed to delete your application. Please try again.",
+            "error"
+          );
         }
       }
     });
@@ -74,30 +85,47 @@ const AppliedJobs = () => {
   if (!appliedJobs.length) {
     return (
       <>
-        <TinnyHeading title={"Applied Jobs"} path={"applied-jobs"} pathName={"Applied Jobs"} />
+        <TinnyHeading
+          title={"Applied Jobs"}
+          path={"applied-jobs"}
+          pathName={"Applied Jobs"}
+        />
         <NoFoundData title="No Applied Jobs Found!" />
       </>
     );
   }
-  console.log(appliedJobs)
+  // console.log(appliedJobs);
 
   return (
     <div>
-      <TinnyHeading title={"Applied Jobs"} path={"applied-jobs"} pathName={"Applied Jobs"} />
+      <TinnyHeading
+        title={"Applied Jobs"}
+        path={"applied-jobs"}
+        pathName={"Applied Jobs"}
+      />
 
       <div className="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-5 mb-10">
         {appliedJobs?.map((job) => (
-          <div key={job?._id} className="shadow-md bg-bgLightBlue hover:-translate-y-1 duration-200 rounded-lg p-6 overflow-auto cursor-pointer">
+          <div
+            key={job?._id}
+            className="shadow-md bg-white hover:-translate-y-1 duration-200 rounded-lg p-6 overflow-auto "
+          >
             <div>
-              <div className="flex items-center">
+              <div className="flex items-center justify-between">
                 <div className="ml-3">
                   <h5>{job.jobTitle}</h5>
                   <div className="flex flex-wrap text-12 text-gray">
                     <span className="flex items-center mr-4 flex-wrap ">
-                      <FaWarehouse className="mr-1 text-lightBlue" /> {job.company_email}
+                      <FaWarehouse className="mr-1 text-lightBlue" />{" "}
+                      {job.company_email}
                     </span>
                   </div>
                 </div>
+                <Link to={`/job-details/${job?.jobId}`}>
+                  <button className=" rounded-full text-blue hover:text-white hover:bg-blue">
+                    <FaRegEye />
+                  </button>
+                </Link>
               </div>
             </div>
 
@@ -112,11 +140,6 @@ const AppliedJobs = () => {
               </div>
 
               <div className="flex space-x-4 text-gray">
-                <Link to={`/job-details/${job?.jobId}`}>
-                  <button className="btn rounded-full text-blue hover:text-white hover:bg-blue">
-                    <FaRegEye />
-                  </button>
-                </Link>
                 <button onClick={() => handleDelete(job._id)}>
                   <FaTrash className="hover:text-red-500 cursor-pointer" />
                 </button>
@@ -130,9 +153,11 @@ const AppliedJobs = () => {
       <CardPagination
         currentPage={parseInt(page)}
         totalPages={totalPages}
-        onPageChange={(newPage) => navigate(`/dashboard/applied-jobs/${newPage}`)}
+        onPageChange={(newPage) =>
+          navigate(`/dashboard/applied-jobs/${newPage}`)
+        }
       />
-    </div >
+    </div>
   );
 };
 

@@ -1,19 +1,15 @@
 import { useState } from "react";
-import { FaWarehouse } from "react-icons/fa6";
 import TinnyHeading from "../shared/TinnyHeading";
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../../utils/axios";
 import NoFoundData from "../../../components/ui/NoFoundData";
 import { CardPagination } from "../../../components/shared/CardPagination";
 import { Link, useNavigate } from "react-router-dom";
-import { FaRegEye } from "react-icons/fa";
 import useCurrentUser from "../../../hooks/useCurrentUser";
 import { IoBriefcaseOutline } from "react-icons/io5";
 import { MdOutlineMailOutline } from "react-icons/md";
 import PrimaryBtnBlue from "../../../components/ui/PrimaryBtnBlue";
 import { VscEye } from "react-icons/vsc";
-import { AiOutlineUserDelete } from "react-icons/ai";
-
 const ShortlistedJobs = () => {
   const { currentCandidate } = useCurrentUser();
 

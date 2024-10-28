@@ -363,7 +363,8 @@ const PostJob = () => {
                 type="text"
                 value={responsibilitie}
                 onChange={(e) => setResponsibilitie(e.target.value)}
-                className="w-full"
+                className="w-full bg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block p-3 outline-none transition-all duration-500  
+          dark:bg-softGreen dark:text-gray dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"
                 placeholder="Add responsibilities"
               />
               <button

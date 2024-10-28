@@ -1,26 +1,23 @@
+/* eslint-disable react/prop-types */
 import Lottie from "lottie-react";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
 import { MdOutlineGroup } from "react-icons/md";
-import findCadidate from "./../../../../public/find2.json";
 import { Link } from "react-router-dom";
 
-function JobPostCard() {
+function JobPostCard({ Cardtitle, jobTitle, img, style, statusTitle, link }) {
   return (
     <div className="w-full bg-white p-6 rounded-lg">
-      <div className="flex items-center gradient-4 p-16 rounded-lg h-64">
+      <div className={`flex items-center p-16 rounded-lg h-64 ${style}`}>
         {/* Title */}
         <div className="w-7/12">
-          <h3>{`We're Hiring...`}</h3>
-          <p className="text-gray">Fresher React Developer</p>
+          <h3>{`${Cardtitle}...`}</h3>
+          <p className="text-gray">{jobTitle}</p>
         </div>
 
         {/* Card Images */}
         <div className="w-5/12">
-          <Lottie
-            className="w-full h-auto"
-            animationData={findCadidate}
-          ></Lottie>
+          <Lottie className="w-full h-auto" animationData={img}></Lottie>
         </div>
       </div>
 
@@ -32,7 +29,7 @@ function JobPostCard() {
             <MdOutlineGroup />
             Candidates
           </button>
-          <Link to={"/dashboard/job-appliers"}>
+          <Link to={link}>
             <h4>Fresher React Developer</h4>
           </Link>
           {/* Post & Expiry Date */}
@@ -49,7 +46,7 @@ function JobPostCard() {
         </div>
         {/* Total Applid & Profile Image */}
         <div className="">
-          <p>(30) Applied</p>
+          <p>(30) {statusTitle}</p>
           <div className="">
             <div className="avatar-group -space-x-6 rtl:space-x-reverse">
               <div className="avatar">

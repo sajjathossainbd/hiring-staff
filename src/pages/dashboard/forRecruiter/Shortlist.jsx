@@ -8,9 +8,10 @@ import axiosInstance from "../../../utils/axios";
 import toast from "react-hot-toast";
 import NoFoundData from "../../../components/ui/NoFoundData";
 import useCurrentUser from "../../../hooks/useCurrentUser";
+import JobPostCard from "./JobPostCard";
+import shortlist from "./../../../../public/candidate";
 
 const Shortlist = () => {
-
   const { currentRecruiter } = useCurrentUser();
 
   const { data: allShortlistAppliedJobs, refetch } = useQuery({
@@ -27,7 +28,9 @@ const Shortlist = () => {
   // Function to handle status update
   const handleUpdateStatus = async (id) => {
     try {
-      const res = await axiosInstance.patch(`/jobs/applied-jobs/selected/${id}`);
+      const res = await axiosInstance.patch(
+        `/jobs/applied-jobs/selected/${id}`
+      );
       if (res.status === 200) {
         toast.success("Job selected successfully!");
         refetch();
@@ -38,7 +41,10 @@ const Shortlist = () => {
     }
   };
 
-  if (allShortlistAppliedJobs?.length == 0 || allShortlistAppliedJobs === undefined) {
+  if (
+    allShortlistAppliedJobs?.length == 0 ||
+    allShortlistAppliedJobs === undefined
+  ) {
     return (
       <>
         <TinnyHeading
@@ -48,7 +54,7 @@ const Shortlist = () => {
         />
         <NoFoundData title="No Shortlist Jobs Found!" />
       </>
-    )
+    );
   }
 
   return (
@@ -58,6 +64,20 @@ const Shortlist = () => {
         path="shortlist"
         pathName="Shortlisted Resumes"
       />
+
+      {/* shortlisted candidates list */}
+      <div className="grid lg:grid-cols-2 gap-6 mt-6">
+        <JobPostCard
+          Cardtitle="Shortlist Candidate"
+          jobTitle="Fresher React Developer"
+          statusTitle="Shortlist"
+          img={shortlist}
+          style="gradient-3"
+          link="/dashboard/shortlsit-candidates"
+        />
+      </div>
+
+      {/* shorrlist candidates old design list */}
       <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 rounded-md">
         <h5>Shortlisted Resumes</h5>
         <hr className="my-6 text-lightGray" />

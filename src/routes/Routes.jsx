@@ -44,6 +44,7 @@ import MyProfile from "../pages/dashboard/forCandidates/MyProfile";
 import CandidateRoute from "./CandidateRoute";
 import RecruiterRoute from "./RecruiterRoute";
 import JobAppliers from "../pages/dashboard/forRecruiter/JobAppliers";
+import ShortListedCandidates from "../pages/dashboard/forRecruiter/ShortListedCandidates";
 
 const router = createBrowserRouter([
   {
@@ -311,6 +312,10 @@ const router = createBrowserRouter([
         element: <JobAppliers />,
       },
       {
+        path: "shortlsit-candidates",
+        element: <ShortListedCandidates />,
+      },
+      {
         path: "manage-jobs/:page",
         element: (
           <RecruiterRoute>
@@ -320,9 +325,11 @@ const router = createBrowserRouter([
       },
       {
         path: "applications/:jobId",
-        element: <RecruiterRoute>
-          <AllApplicants />
-        </RecruiterRoute>,
+        element: (
+          <RecruiterRoute>
+            <AllApplicants />
+          </RecruiterRoute>
+        ),
       },
       {
         path: "shortlist",
@@ -331,8 +338,7 @@ const router = createBrowserRouter([
             <Shortlist />
           </RecruiterRoute>
         ),
-      }
-
+      },
     ],
   },
 ]);

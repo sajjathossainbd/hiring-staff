@@ -1,5 +1,25 @@
 import PrimaryBtnBlue from "../../../components/ui/PrimaryBtnBlue";
+import { useParams } from 'react-router-dom';
+import axiosInstance from './../../../utils/axios';
+import { useQuery } from '@tanstack/react-query';
 function JobAppliers() {
+  const { jobId } = useParams();
+
+  const {
+    data: applications,
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["applications", jobId],
+    queryFn: async () => {
+      const res = await axiosInstance.get(
+        `/jobs/applied/applications/${jobId}`
+      );
+      return res.data;
+    },
+    enabled: !!jobId,
+  });
+  console.log(applications);
   return (
     <div className="p-6 bg-gray-50">
       <h1 className="text-2xl font-semibold text-gray-700 mb-4">

@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axiosInstance from "../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
@@ -83,7 +83,7 @@ const ViewAllApplications = () => {
   };
 
   if (isLoading) return <Loading />;
-
+  console.log(applications);
   return (
     <div>
       <TinnyHeading
@@ -96,14 +96,18 @@ const ViewAllApplications = () => {
           <thead>
             <tr className="bg-gray-100">
               <th className="border border-gray-200 px-4 py-2">Name</th>
-              <th className="border border-gray-200 px-4 py-2">Email</th>
-              <th className="border border-gray-200 px-4 py-2">Shortlist</th>
+              <th className="border border-gray-200 px-4 py-2">
+                candidate details
+              </th>
+              <th className="border border-gray-200 px-4 py-2">Applied Date</th>
+
+              <th className="border border-gray-200 px-4 py-2">Status</th>
+              <th className="border border-gray-200 px-4 py-2">Actions</th>
+
               <th className="border border-gray-200 px-4 py-2">
                 Final Selection
               </th>
               <th className="border border-gray-200 px-4 py-2">Rejections</th>
-              <th className="border border-gray-200 px-4 py-2">Actions</th>
-              <th className="border border-gray-200 px-4 py-2">Applied Date</th>
             </tr>
           </thead>
           <tbody>
@@ -113,7 +117,12 @@ const ViewAllApplications = () => {
                   {application?.applicantName}
                 </td>
                 <td className="border border-gray-200 px-4 py-2">
-                  {application?.applicantEmail}
+                  <Link
+                    to={`/candidate-details/${application.applicantId}`}
+                    className="btn"
+                  >
+                    details
+                  </Link>
                 </td>
                 <td className="border border-gray-200 px-4 py-2">
                   <p

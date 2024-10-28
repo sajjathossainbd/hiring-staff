@@ -308,8 +308,12 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "job-appliers",
-        element: <JobAppliers />,
+        path: "job-appliers/:jobId",
+        element: (
+          <RecruiterRoute>
+            <JobAppliers />,
+          </RecruiterRoute>
+        ),
       },
       {
         path: "shortlsit-candidates",

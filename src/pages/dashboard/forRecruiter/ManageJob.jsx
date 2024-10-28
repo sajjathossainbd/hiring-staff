@@ -61,17 +61,29 @@ const ManageJob = () => {
           <PrimaryBtnBlue icon={<GoPlus />} title="Create A Job Post" />
         </button>
       </div>
-
-      {/* All Job Post */}
-      <div className="grid lg:grid-cols-2 gap-6 mt-6">
-        <JobPostCard
+      {/* <JobPostCard
           Cardtitle="We're Hiring"
           jobTitle="Fresher React Developer"
           statusTitle="Applied"
           img={findCadidate}
           style="gradient-4"
           link="/dashboard/job-appliers"
-        />
+        /> */}
+      {/* All Job Post */}
+      <div className="grid lg:grid-cols-2 gap-6 mt-6">
+        {myJobs?.map((job) => (
+          <>
+            <JobPostCard
+              Cardtitle="We're Hiring"
+              jobTitle={job?.jobTitle}
+              statusTitle="Applied "
+              img={findCadidate}
+              style="gradient-4"
+              link={`/dashboard/job-appliers/${job?._id}`}
+              job={job}
+            />
+          </>
+        ))}
       </div>
 
       {/* Manage JObs */}
@@ -135,6 +147,7 @@ const ManageJob = () => {
             </table>
           </div>
         </div>
+
         <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
           <h5>Manage Jobs</h5>
           <hr className="my-6 text-lightGray" />

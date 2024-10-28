@@ -99,9 +99,11 @@ const router = createBrowserRouter([
 
       {
         path: "/job-details/:id",
-        element: <PrivateRoute>
-          <JobDetails />
-        </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <JobDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/recruiters-listing",
@@ -113,9 +115,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/recruiter-details/:id",
-        element: <PrivateRoute>
-          <RecruiterDetails />
-        </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <RecruiterDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/candidates-listing",
@@ -127,9 +131,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/candidate-details/:id",
-        element: <PrivateRoute>
-          <CandidateDetails />
-        </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <CandidateDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/candidate-profile",
@@ -141,9 +147,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/blog-details/:id",
-        element: <PrivateRoute>
-          <BlogDetails />
-        </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <BlogDetails />
+          </PrivateRoute>
+        ),
       },
 
       {
@@ -328,8 +336,12 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "shortlsit-candidates",
-        element: <ShortListedCandidates />,
+        path: "shortlsit-candidates/:jobId",
+        element: (
+          <RecruiterRoute>
+            <ShortListedCandidates />
+          </RecruiterRoute>
+        ),
       },
       {
         path: "interview-candidates-list",

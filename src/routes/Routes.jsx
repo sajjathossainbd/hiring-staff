@@ -40,7 +40,6 @@ import PrivacyAndPolicy from "../pages/privacyPolicy/PrivacyAndPolicy";
 import TermsAndConditions from "../pages/termsandcondition/TermsAndConditions";
 import AiAssistant from "../pages/dashboard/AiAssistant";
 import CreateBlogs from "../pages/dashboard/forAdmin/CreateBlogs";
-import MyProfile from "../pages/dashboard/forCandidates/MyProfile";
 import CandidateRoute from "./CandidateRoute";
 import RecruiterRoute from "./RecruiterRoute";
 import JobAppliers from "../pages/dashboard/forRecruiter/JobAppliers";
@@ -49,6 +48,7 @@ import InterviewCandidets from "../pages/dashboard/forRecruiter/InterviewCandide
 import SelectedCandidates from "../pages/dashboard/forRecruiter/SelectedCandidates";
 import InterviewCandidetsList from "../pages/dashboard/forRecruiter/InterviewCandidetsList";
 import SelectedCandidatesList from "../pages/dashboard/forRecruiter/SelectedCandidatesList";
+import CandidatesProfile from "../pages/dashboard/forCandidates/CandidatesProfile";
 
 const router = createBrowserRouter([
   {
@@ -297,7 +297,7 @@ const router = createBrowserRouter([
         path: "my-profile",
         element: (
           <CandidateRoute>
-            <MyProfile />
+            <CandidatesProfile />
           </CandidateRoute>
         ),
       },

@@ -3,6 +3,11 @@ import InfoCard from "../../../components/ui/InfoCard";
 import { GoPerson } from "react-icons/go";
 import useAuth from "../../../hooks/useAuth";
 import axiosInstance from "../../../utils/axios";
+import { CgNametag } from "react-icons/cg";
+import { FaBriefcase, FaClock, FaEnvelope, FaPhone } from "react-icons/fa6";
+import { FaFileAlt, FaMapMarkerAlt } from "react-icons/fa";
+import { TiDocumentText } from "react-icons/ti";
+import { GrCopy } from "react-icons/gr";
 
 function CandidatesProfileUI() {
   const { user } = useAuth();
@@ -55,33 +60,33 @@ function CandidatesProfileUI() {
       </div>
 
       <div className="grid lg:grid-cols-2 gap-y-8 mt-10">
-        <InfoCard icon={<GoPerson />} label={"First Name"} name={first_name} />
-        <InfoCard icon={<GoPerson />} label={"Last Name"} name={last_name} />
-        <InfoCard icon={<GoPerson />} label={"Email"} name={email} />
+        <InfoCard icon={<CgNametag />} label={"First Name"} name={first_name} />
+        <InfoCard icon={<CgNametag />} label={"Last Name"} name={last_name} />
+        <InfoCard icon={<FaEnvelope />} label={"Email"} name={email} />
         <InfoCard
-          icon={<GoPerson />}
+          icon={<FaPhone />}
           label={"Phone Number"}
           name={phone_number}
         />
         <InfoCard
-          icon={<GoPerson />}
+           icon={<FaBriefcase  />}
           label={"Profession"}
           name={special_profession}
         />
         <InfoCard
-          icon={<GoPerson />}
+          icon={<FaClock />}
           label={"Experience Year"}
           name={experience_year}
         />
-        <InfoCard icon={<GoPerson />} label={"Job Type"} name={job_type} />
+        <InfoCard  icon={<GrCopy />} label={"Job Type"} name={job_type} />
         <InfoCard
-          icon={<GoPerson />}
+          icon={<FaMapMarkerAlt />} 
           label={"Location"}
           name={`${location.city}, ${location.country}`}
         />
-        <InfoCard icon={<GoPerson />} label={"Resume"} link={resume} />
+        <InfoCard icon={<FaFileAlt />} label={"Resume"} link={resume} />
         <InfoCard
-          icon={<GoPerson />}
+          icon={<TiDocumentText />}
           label={"Cover Letter"}
           link={cover_letter}
         />

@@ -3,7 +3,6 @@ import JobCardHorizontal from "./JobCardHorizontal";
 import { useEffect, useMemo, useState } from "react";
 import { fetchJobsListing } from "../../../features/jobs/jobsListing/jobsListingSlice";
 import { fetchRecruiterDetails } from "../../../features/recruiters/recruiterDetails/recruiterDetailsSlice";
-import Loading from "../../ui/Loading";
 import NoFoundData from "../../ui/NoFoundData";
 import { Link } from "react-router-dom";
 import PrimaryBtn from "../../ui/PrimaryBtn";
@@ -96,7 +95,7 @@ function TodayNewJobs() {
         <h3>
           <Trans i18nKey={"todayNewJobs"} />
         </h3>
-        <div className="mt-10">{content}</div>
+        <div className="mt-8">{content}</div>
         <Link
           to={"/jobs-listing"}
           className="flex items-center justify-center mt-6"

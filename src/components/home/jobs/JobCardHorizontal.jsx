@@ -1,7 +1,7 @@
+/* eslint-disable react/prop-types */
 import { IoBriefcaseOutline } from "react-icons/io5";
 import MiniBtn from "../../ui/MiniBtn";
 import { Link } from "react-router-dom";
-import BookmarkBtn from "../../ui/BookmarkBtn";
 import SecondaryButton from "../../shared/SecondaryButton";
 import { GoArrowRight } from "react-icons/go";
 import { TbCoinTaka } from "react-icons/tb";
@@ -27,7 +27,7 @@ function JobCardHorizontal({ job, recruiterLogo, isLoading }) {
   const differenceInDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 
   const result = (
-    <div className="flex gap-2 items-center">
+    <div className="flex gap-2 items-center text-14">
       <CgCalendarDates />
       {differenceInDays < 0 ? "Expired" : `${differenceInDays} Days Left`}
     </div>
@@ -83,14 +83,8 @@ function JobCardHorizontal({ job, recruiterLogo, isLoading }) {
       </div>
 
       {/* Right Section: Bookmark + Apply Button */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center lg:mt-0 mt-3">
         <div className="flex gap-6">
-          {isLoading ? (
-            <Skeleton circle width={40} height={40} />
-          ) : (
-            <BookmarkBtn />
-          )}
-
           {isLoading ? (
             <Skeleton width={120} height={40} />
           ) : (

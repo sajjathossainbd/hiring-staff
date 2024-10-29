@@ -19,18 +19,18 @@ function JobCardHorizontal({
   const differenceInDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 
   const result = (
-    <div className="flex gap-2 items-center">
+    <div className="flex gap-2 items-center text-14">
       <CgCalendarDates />
       {differenceInDays < 0 ? "Expired" : `${differenceInDays} Days Left`}
     </div>
   );
 
   return (
-    <div className="boxBorderHoverBlue p-3 rounded-lg flex flex-col md:flex-row lg:flex-row justify-between items-center bg-white dark:bg-darkBlue dark:text-white">
+    <div className="boxBorderHoverBlue px-6 py-9 rounded-lg flex flex-col md:flex-row lg:flex-row justify-between xl:items-center items-start bg-white dark:bg-darkBlue dark:text-white">
       <div className="flex flex-col md:flex-row lg:flex-row items-center gap-5">
         {/* <img className="w-24 rounded-lg" src={recruiterLogo} alt="" /> */}
 
-        <div className="">
+        <div>
           {/* title, type */}
           <div className="flex lg:flex-row flex-col gap-3">
             <h4>{jobTitle}</h4>
@@ -41,7 +41,7 @@ function JobCardHorizontal({
             />
           </div>
           {/* location, price, date */}
-          <div className="flex lg:flex-row items-center flex-col lg:gap-4 mt-3">
+          <div className="flex lg:flex-row lg:items-center items-start flex-col gap-1 lg:gap-4 mt-3">
             <div className="flex gap-1 items-center">
               <TbCoinTaka />
               <p className="text-14">
@@ -52,7 +52,7 @@ function JobCardHorizontal({
           </div>
         </div>
       </div>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center lg:mt-0 mt-3">
         <div className="flex gap-6">
           <Link to={`/job-details/${_id}`}>
             <SecondaryButton title={"Apply Now"} icon={<GoArrowRight />} />

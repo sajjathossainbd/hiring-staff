@@ -10,7 +10,7 @@ const reviews = () => {
   return (
     <section className="container rounded-xl">
       <div className=" text-white rounded-xl">
-        <div className="flex flex-col xl:flex-row lg:flex-row md:flex-row justify-around items-center">
+        <div className="flex flex-col xl:flex-row justify-around items-center">
           <div className="flex flex-col w-full p-10">
             <Lottie animationData={reviewImg}></Lottie>
           </div>

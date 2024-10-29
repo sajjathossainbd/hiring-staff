@@ -113,7 +113,7 @@ function RecruiterDetails() {
     twitter: {
       icon: <FaTwitter />,
       colorClass: "text-white",
-      bgClass: "bg-blue",
+      bgClass: "bg-greenLight",
     },
   };
 

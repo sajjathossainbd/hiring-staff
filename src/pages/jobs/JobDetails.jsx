@@ -15,6 +15,11 @@ import { fetchJobsListing } from "../../features/jobs/jobsListing/jobsListingSli
 import MiniBtn from "../../components/ui/MiniBtn";
 import { IoBriefcaseOutline } from "react-icons/io5";
 import { TbCoinTaka } from "react-icons/tb";
+import TitleIcon from "../../components/ui/TitleIcon";
+import { PiNotepadThin } from "react-icons/pi";
+import { MdVerified } from "react-icons/md";
+
+const Benefitemojis = ["🎉", "💼", "🚀", "🏆"];
 
 function JobDetails() {
   const dispatch = useDispatch();
@@ -52,7 +57,6 @@ function JobDetails() {
     responsibilities = [],
     benefits = [],
     education,
-    tags = [],
     jobTitle,
     recruiter_id: companyId,
     min_salary,
@@ -98,49 +102,51 @@ function JobDetails() {
         <div className="lg:flex gap-16 dark:text-white">
           <div className="lg:w-2/3 w-full">
             {/* job details header */}
-            <div className="lg:flex justify-between">
-              {/* job title and profile */}
-              <div>
-                <h3 className="mb-5">{jobTitle}</h3>
+            <div className=" bg-bgLightWhite p-10 rounded-md">
+              {/* 01. Job Title */}
+              <h3 className="mb-5">{jobTitle}</h3>
+              {/* 02. Company Information */}
 
-                {/* logo and name */}
-                <div className="flex ">
-                  <div className="flex flex-col lg:flex-row items-center gap-2">
-                    <div className="flex items-center gap-4">
-                      <img
-                        className="h-20 w-auto object-cover rounded-full"
-                        src={logo}
-                        alt={name}
-                      />
-                      <div className="flex flex-col gap-2">
-                        <div className="flex lg:flex-row flex-col items-center gap-x-2">
-                          <span className="text-blue font-medium">{name}</span>
-                          <GoDotFill className="text-[8px] text-graylg:block hidden" />
-                        </div>
-                        <div className="flex lg:justify-start justify-center gap-2">
-                          <div className="flex items-center gap-x-2 text-14">
-                            <span className="flex items-center gap-4">
-                              <MiniBtn
-                                value={job_location}
-                                icon={<CiLocationOn />}
-                                style="bg-softGreen text-green"
-                              />
-                              <MiniBtn
-                                value={job_type}
-                                icon={<IoBriefcaseOutline />}
-                                style="bg-softGreen text-orange"
-                              />
-                            </span>
-                          </div>
-                        </div>
+              <div className="flex  justify-between">
+                {/* compnay information */}
+                <div className="flex items-center gap-4">
+                  <img
+                    className="h-20 w-auto object-cover rounded-full"
+                    src={logo}
+                    alt={name}
+                  />
+                  <div className="flex flex-col gap-2">
+                    <div className="flex lg:flex-row flex-col items-center gap-x-2">
+                      <div className="flex items-center gap-2">
+                        <span className="text-blue font-medium"> {name}</span>
+                        <span className="p-1 rounded-full bg-white text-blue text-18">
+                          <MdVerified />
+                        </span>
+                      </div>
+
+                      <GoDotFill className="text-[8px] text-graylg:block hidden" />
+                    </div>
+                    <div className="flex lg:justify-start justify-center gap-2">
+                      <div className="flex items-center gap-x-2 text-14">
+                        <span className="flex items-center gap-4">
+                          <MiniBtn
+                            value={job_location}
+                            icon={<CiLocationOn />}
+                            style="bg-softGreen text-green"
+                          />
+                          <MiniBtn
+                            value={job_type}
+                            icon={<IoBriefcaseOutline />}
+                            style="bg-softGreen text-orange"
+                          />
+                        </span>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              {/* apply and other button */}
-              <div>
-                <div className="flex flex-col items-center lg:flex-row gap-x-2">
+
+                {/* Apply Now Button */}
+                <div className="">
                   {/*modal for aplly job */}
                   <button onClick={handleOpen}>
                     <PrimaryBtnBlue
@@ -148,6 +154,7 @@ function JobDetails() {
                       icon={<HiExternalLink />}
                     />
                   </button>
+
                   {isOpen && (
                     <dialog
                       data-aos="zoom-in"
@@ -173,87 +180,110 @@ function JobDetails() {
                     </dialog>
                   )}
                 </div>
-                <div className="mt-3">
-                  <p className="lg:text-right text-16 font-medium">
-                    <span className="font-bold">Posted Date: </span>
-                    {formattedDatePost}
-                  </p>
-                  <p className="lg:text-right text-16 font-medium">
-                    <span className="font-bold">Deadline Date: </span>
-                    {formattedDate}
-                  </p>
-                </div>
               </div>
             </div>
 
             {/* job details informaton*/}
+            <div className=" mt-10">
+              <TitleIcon title={"Job Description"} icon={<PiNotepadThin />} />
+            </div>
             <div className="mt-7">
-              <h5 className="mb-2">About this role</h5>
+              <h5 className="mb-2">🎯𝐖𝐡𝐚𝐭 𝐖𝐞 𝐀𝐫𝐞 𝐋𝐨𝐨𝐤𝐢𝐧𝐠 𝐅𝐨𝐫</h5>
               {description}
             </div>
             <div className="mt-7">
-              <h5 className="mb-2">Requirement</h5>
-              <ul className="list-disc ml-10">
+              <h5 className="mb-2">🗒️𝐉𝐨𝐛 𝐃𝐞𝐬𝐜𝐫𝐢𝐩𝐭𝐢𝐨𝐧</h5>
+              <ul className="ml-10 leading-7">
                 {requirements.map((requirement, index) => (
-                  <li key={index}>{requirement}</li>
+                  <li key={index}>✅ {requirement}</li>
                 ))}
               </ul>
             </div>
             <div className="mt-7">
-              <h5 className="mb-2">Responsibility</h5>
-              <ul className="list-disc ml-10">
+              <h5 className="mb-2">🌟 𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐢𝐛𝐢𝐥𝐢𝐭𝐲</h5>
+              <ul className=" ml-10 leading-7">
                 {responsibilities.map((responsibilitie, index) => (
-                  <li key={index}>{responsibilitie}</li>
+                  <li key={index}>📌 {responsibilitie}</li>
                 ))}
               </ul>
             </div>
-            <div className="mt-7">
-              <h5 className="mb-2">Benefits</h5>
-              <ul className="list-disc ml-10">
+            {/* Benefits */}
+            <div className="mt-7 ">
+              <h5 className="mb-2">🎁𝐄𝐱𝐜𝐢𝐭𝐢𝐧𝐠 𝐩𝐚𝐫𝐤𝐬 𝐰𝐚𝐢𝐭𝐢𝐧𝐠 𝐲𝐨𝐮</h5>
+              <ul className="ml-10 leading-7">
                 {benefits.map((benefit, index) => (
-                  <li key={index}>{benefit}</li>
+                  <li key={index}>
+                    {Benefitemojis[index % Benefitemojis.length]} {benefit}
+                  </li>
                 ))}
+                <li>🌎 Team tours and remote meals </li>
+                <li>
+                  🎂 Birthday surprise
+                </li> <li>{`🎆 New Year's gift`}</li>{" "}
+                <li>🍼 New parent surprise</li>
+                <li> 🌴 Unlimited leaves (honesty expected)</li>
               </ul>
             </div>
+            {/* Education */}
             {education && (
               <div className="mt-7">
-                <h5 className="mb-2">Education</h5>
-                <p className="flex items-center gap-x-1">
-                  <GoDotFill className="text-[10px] text-gray" />
-                  {education}
-                </p>
+                <h5 className="mb-2">🎓 𝐄𝐝𝐮𝐜𝐚𝐭𝐢𝐨𝐧</h5>
+                <ul className="ml-10 leading-7">
+                  <li>🏫 {education}</li>
+                </ul>
               </div>
             )}
+            {/* Salary */}
             <div className="mt-7">
-              <h5 className="mb-2">Salary</h5>
-              <p className="flex items-center gap-2">
-                <TbCoinTaka className="text-xl" />
-                {min_salary} - {max_salary} BDT
-              </p>
+              <h5 className="mb-2">💵𝗦𝗮𝗹𝗮𝗿𝘆</h5>
+              <ul className="ml-10 leading-7">
+                <li className="flex items-center gap-2">
+                  {" "}
+                  <TbCoinTaka className="text-xl" />
+                  {min_salary} - {max_salary} BDT
+                </li>
+              </ul>
             </div>
-            <div className="bg-bgLightBlue dark:bg-darkBlue  p-8 rounded-md mt-10">
-              <div className="text-14 flex gap-2">
-                Tags :{" "}
-                {tags.map((tag, index) => (
-                  <span
-                    className="bg-bgLightWhite px-2 py-1 rounded-sm"
-                    key={index}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <div className="pt-4">
-                <p className="text-14">
-                  Have a query? Drop us a line at{" "}
-                  <span className="font-medium text-blue hover:border-b text-base">
+            {/* Job Location */}
+            <div className="mt-7">
+              <h5 className="mb-2">🗺️ 𝐉𝐨𝐛 𝐋𝐨𝐜𝐚𝐭𝐢𝐨𝐧</h5>
+              <ul className="ml-10 leading-7">
+                <li className="flex items-center gap-2 capitalize">
+                  📍 {job_location} (Discuss with HR to choose a location that
+                  best suits your preference)
+                </li>
+              </ul>
+            </div>
+
+            {/* Job Date */}
+            <div className="mt-7">
+              <h5 className="mb-2">📅 𝐉𝐨𝐛 𝐃𝐚𝐭𝐞</h5>
+              <ul className="ml-10 leading-7">
+                <li className="flex items-center gap-2 capitalize">
+                  ⏳ <span className="font-bold">Posted Date: </span>
+                  {formattedDatePost}
+                </li>
+                <li className="flex items-center gap-2 capitalize">
+                  🕰️ <span className="font-bold">Deadline Date: </span>
+                  {formattedDate}
+                </li>
+              </ul>
+            </div>
+
+            {/* Job Location */}
+            <div className="mt-7">
+              <h5 className="mb-2">❓𝐇𝐚𝐯𝐞 𝐚 𝐪𝐮𝐞𝐫𝐲?</h5>
+              <ul className="ml-10 leading-7">
+                <li className="flex items-center gap-2 capitalize">
+                  📝 Drop us a line at:{" "}
+                  <div className="font-medium text-blue hover:border-b text-base">
                     {email}
-                  </span>
-                </p>
-              </div>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
-          <div className="lg:w-1/3 w-full flex flex-col gap-5">
+          <div className="lg:w-1/3 w-full flex flex-col gap-5 mt-10 lg:mt-0">
             <h4>Similar Job Opening ({filteredJobsByCategory.length || 0})</h4>
             {filteredJobsByCategory.map((job) => (
               <SimilarJobs key={job._id} job={job} />

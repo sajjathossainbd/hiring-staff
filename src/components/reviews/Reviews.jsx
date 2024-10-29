@@ -17,7 +17,7 @@ const reviews = () => {
           <div className="flex flex-col w-full justify-center">
             <div className="container w-full px-4">
               <div className="flex flex-wrap justify-center">
-                <div className="w-full px-4">
+                <div className="w-full xl:px-4 px-0">
                   <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-white">
                     <ReviewForm />
                   </div>

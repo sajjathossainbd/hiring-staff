@@ -47,7 +47,7 @@ const ReviewForm = () => {
   };
 
   return (
-    <div className="flex flex-col p-8 shadow-sm rounded-xl xl:p-12 text-black dark:text-darkBlue">
+    <div className="flex flex-col p-4 shadow-sm rounded-xl xl:p-12 text-black dark:text-darkBlue">
       <div className="flex flex-col items-center w-full">
         <h2 className="xl:text-3xl text-2xl font-semibold text-center dark:text-darkBlue">
           {<Trans i18nKey={"reviewRightCard"} />}

@@ -64,7 +64,7 @@ function ApplyJob({ job, onClose }) {
             })}
             className="w-full p-3 rounded-md focus:outline-none bg-lightText"
             rows="4"
-            placeholder={`${currentCandidate?.name}, Your cover letter`}
+            placeholder={`${currentCandidate?.first_name}, Your cover letter`}
           ></textarea>
           {errors?.coverLetter && (
             <p className="text-red-500 text-sm mt-1">

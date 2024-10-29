@@ -6,13 +6,14 @@ import { fetchRecruitersListing } from "../../features/recruiters/recruitersList
 import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
 import RecruiterCard from "../../components/recruiter/RecruiterCard";
-import Filter from "../../components/recruiter/Filters";
+import Filter from "../../components/recruiter/RecruitersFiltering";
 import Lottie from "lottie-react";
 import multipleLineDraw from "./../../../public/multiline-repet.json";
 import { ScrollRestoration } from "react-router-dom";
 import { CardPagination } from "../../components/shared/CardPagination";
 import { Trans, useTranslation } from "react-i18next";
 import i18n from "../../i18n";
+import RecruitersFiltering from "../../components/recruiter/RecruitersFiltering";
 
 const convertToBanglaDigits = (number) => {
   const banglaDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
@@ -112,7 +113,7 @@ function RecruitersListing() {
         </div>
 
         <div>
-          <Filter />
+         <RecruitersFiltering/>
         </div>
       </div>
 

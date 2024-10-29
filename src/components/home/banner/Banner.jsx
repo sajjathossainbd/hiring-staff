@@ -23,7 +23,7 @@ const Banner = () => {
                 </div>
                 <Trans i18nKey="home_hero_title">
                   The <span className="text-blue">Easiest</span> Way To Get{" "}
-                  <br /> Your New Job.
+                  <br className="lg:block hidden" /> Your New Job.
                 </Trans>
               </h2>
 

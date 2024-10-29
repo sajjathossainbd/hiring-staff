@@ -2,10 +2,10 @@
 import { CiLocationOn } from "react-icons/ci";
 import { CiBadgeDollar } from "react-icons/ci";
 import { CiCalendar } from "react-icons/ci";
-import { FaRegBookmark } from "react-icons/fa";
 import SecondaryButton from "../../components/shared/SecondaryButton";
 import { Link } from "react-router-dom";
 import { GoArrowRight } from "react-icons/go";
+import BookmarkBtn from "../../components/ui/BookmarkBtn";
 const RecruiterJobsCard = ({
   _id,
   position,
@@ -52,9 +52,7 @@ const RecruiterJobsCard = ({
           </div>
         </div>
         <div className="flex md:flex-row flex-row-reverse gap-5">
-          <button className="btn btn-outline btn-primary border-none bg-bgLightBlue">
-            <FaRegBookmark className="text-xl" />
-          </button>
+          <BookmarkBtn />
           <Link to={`/job-details/${_id}`}>
             <SecondaryButton title={"Apply Now"} icon={<GoArrowRight />} />
           </Link>

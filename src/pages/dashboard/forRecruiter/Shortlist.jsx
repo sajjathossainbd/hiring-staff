@@ -78,9 +78,10 @@ const Shortlist = () => {
       />
 
       {/* shortlisted candidates list */}
-      <div className="grid lg:grid-cols-2 gap-6 mt-6">
-        {jobShortlistedInfo?.map((job) => (
+      <div className="grid xl:grid-cols-2 grid-cols-1 gap-6 mt-6">
+        {jobShortlistedInfo?.map((job, index) => (
           <JobShortListCard
+            key={index}
             Cardtitle="Shortlisted Candidates"
             jobTitle={job?.jobTitle}
             statusTitle="Shortlist"

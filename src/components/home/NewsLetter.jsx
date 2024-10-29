@@ -19,12 +19,7 @@ function NewsLetter() {
         publicKey: "028PSjl2WRnGl2zgy",
       })
       .then(
-        () => {
-          toast.success("Subscription successful!");
-        },
-        () => {
-          toast.error("Failed to subscribe. Please try again.");
-        }
+        toast.success("Subscription successful!"),
       );
 
     e.target.reset();

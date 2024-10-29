@@ -19,13 +19,13 @@ const ManageJob = () => {
     queryKey: ["myJobs", currentRecruiter?.email],
     queryFn: async () => {
       const res = await axiosInstance.get(
-        `/jobs/email/${currentRecruiter.email}`
+        `/jobs/email/${currentRecruiter?.email}`
       );
       return res.data;
     },
     enabled: !!currentRecruiter?.email,
   });
-  // console.log(myJobs);
+  console.log(myJobs);
 
   // const handleDelete = (id) => {
   //   Swal.fire({

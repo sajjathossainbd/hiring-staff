@@ -99,7 +99,7 @@ function JobsListing() {
     content = <NoFoundData title="No Jobs Found!" />;
   } else {
     content = (
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
+      <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 xl:gap-5 lg:gap-10 gap-5">
         {jobs?.jobs?.map((job) => {
           const recruiter = recruitersData[job.recruiter_id];
           return (

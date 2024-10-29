@@ -65,15 +65,15 @@ const SearchByFilter = () => {
   };
 
   return (
-    <div className="relative  bg-white p-5 md:p-2  shadow-md  rounded-lg  ">
+    <div className="relative  bg-white p-5 md:p-2 md:mt-4  shadow-md  rounded-lg">
       <div className="flex items-center justify-between md:flex-row flex-col md:gap-2 gap-1">
         {/* Job title input */}
-        <label className="flex items-center w-40 p-3 text-14 rounded-md md:border-none border border-[#cfdefc]">
+        <label className="flex items-center w-40 p-3 gap-2 text-14 rounded-md md:border-none border border-[#cfdefc]">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
             fill="currentColor"
-            className="h-4 w-4 opacity-90 text-blue"
+            className="h-5 w-5 opacity-90 text-blue"
           >
             <path
               fillRule="evenodd"
@@ -91,10 +91,10 @@ const SearchByFilter = () => {
         </label>
 
         {/* Vertical line */}
-        <PiLineVerticalThin className="md:block hidden" />
+        <PiLineVerticalThin className="lg:block hidden" />
 
         {/* Categories Dropdown */}
-        <div className="w-auto flex items-center pl-3">
+        <div className="w-auto flex items-center gap-2 pl-3">
           <TbCategoryFilled className="text-blue" />
           <Dropdown
             options={categories}
@@ -104,9 +104,9 @@ const SearchByFilter = () => {
         </div>
 
         {/* Vertical line */}
-        <PiLineVerticalThin className="md:block hidden" />
+        <PiLineVerticalThin className="lg:block hidden" />
 
-        <div className="w-auto flex items-center pl-3">
+        <div className="w-auto flex items-center gap-2 pl-3">
           <FaMapMarkerAlt className="text-blue" />
           <Dropdown
             options={locations}

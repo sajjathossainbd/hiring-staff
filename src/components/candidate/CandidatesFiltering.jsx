@@ -9,7 +9,7 @@ import Dropdown from "../shared/DropdownCandidate";
 import PrimaryBtn from "../ui/PrimaryBtn";
 import { Trans, useTranslation } from "react-i18next";
 function CandidatesFiltering() {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const [professions, setProfessions] = useState([]);
@@ -73,7 +73,7 @@ function CandidatesFiltering() {
         {/* Search Bar */}
         <div className="flex items-center md:flex-row flex-col md:gap-2 gap-3">
           {/* Profession   */}
-          <div className="flex items-center px-3">
+          <div className="flex gap-2 items-center px-3">
             <FaLayerGroup className="text-blue" />
             <Dropdown
               options={professions}
@@ -85,7 +85,7 @@ function CandidatesFiltering() {
           <PiLineVerticalThin className="lg:block hidden" />
 
           {/* Location */}
-          <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
+          <div className="flex gap-2 items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
             <FaMapMarkerAlt className="text-blue" />
             <Dropdown
               options={locations}
@@ -109,7 +109,7 @@ function CandidatesFiltering() {
             onClick={applyFilters}
             className=" text-white font-medium w-full md:w-36"
           >
-            <PrimaryBtn title={<Trans i18nKey={"search"}/>} />
+            <PrimaryBtn title={<Trans i18nKey={"search"} />} />
           </button>
         </div>
 

@@ -1,4 +1,3 @@
-/* for ratings */
 .rating {
   display: flex;
   align-items: center;
@@ -7,22 +6,18 @@
 .star {
   font-size: 1.5rem;
   color: #f5c518;
-  /* Gold color for stars */
 }
 
 .star.full {
   color: #f5c518;
-  /* Gold color for filled stars */
 }
 
 .star.empty {
   color: #e0e0e0;
-  /* Light gray color for empty stars */
+
 }
 
-/* end */
 
-/* swiper pagination bullet */
 .swiper-pagination {
   margin-top: 100px;
 }
@@ -40,9 +35,7 @@
   background-color: #3c65f5 !important;
 }
 
-/* end */
 
-/* phone number input field */
 
 .PhoneInput {
   padding: 0 16px;
@@ -59,28 +52,25 @@
   color: white;
 }
 
-/* Custom styles for Swiper arrows */
+
 .swiper-button-next,
 .swiper-button-prev {
-  width: 10px;  
-  height: 10px; 
+  width: 10px;
+  height: 10px;
 }
 
 .swiper-button-next::after,
 .swiper-button-prev::after {
-  font-size: 10px; 
+  font-size: 10px;
 }
 
-/* Optional: Adjust arrow color */
 .swiper-button-next,
 .swiper-button-prev {
-  color: #000; 
+  color: #000;
 }
 
 
-/* end */
 
-/* animate banner image */
 .box {
   top: 0px;
   left: 0px;
@@ -90,12 +80,14 @@
 
 @keyframes customMove {
   0% {
-    top: 0px; /* Starting position */
+    top: 0px;
   }
+
   50% {
-    top: 7px; /* Mid-point movement */
+    top: 7px;
   }
+
   100% {
-    top: 0px; /* Return to starting position */
+    top: 0px;
   }
 }

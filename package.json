@@ -28,7 +28,6 @@
     "i": "^0.3.7",
     "i18next": "^23.16.2",
     "i18next-browser-languagedetector": "^8.0.0",
-    "jspdf": "^2.5.2",
     "leaflet": "^1.9.4",
     "lottie-react": "^2.4.0",
     "markdown-to-jsx": "^7.5.0",

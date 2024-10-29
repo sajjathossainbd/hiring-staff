@@ -70,7 +70,7 @@ function TodayNewJobs() {
 
   if (!isLoading && !isError && jobsData.length > 0) {
     content = (
-      <div className="grid gap-8">
+      <div className="grid gap-4">
         {jobsData.map((job) => {
           // const recruiter = recruitersData[job.recruiter_id];
           return (

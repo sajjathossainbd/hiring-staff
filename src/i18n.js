@@ -11,7 +11,7 @@ i18n
     resources: {
       en: {
         translation: {
-          home_hero_title: "The <1>Easiest</1> Way To Get <br/> Your New Job.",
+          home_hero_title: "The <1>Easiest</1> Way To Get Your New Job.",
           home_hero_subTitile:
             "Every month, 3 million job seekers use our platform, submitting over 140,000 applications daily to explore new opportunities and connect with potential employers.",
           browsbyCategory: "Browse by category",

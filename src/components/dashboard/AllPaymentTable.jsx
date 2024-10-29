@@ -94,7 +94,6 @@ const AllPaymentTable = () => {
       });
     }
   };
-
   return (
     <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
       <h5>Manage Payments</h5>

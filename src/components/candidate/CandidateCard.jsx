@@ -7,7 +7,6 @@ import StarRatings from "react-star-ratings";
 import MiniBtn from "../ui/MiniBtn";
 import SecondaryButton from "../shared/SecondaryButton";
 import { BsSendArrowUp } from "react-icons/bs";
-import BookmarkBtn from "../ui/BookmarkBtn";
 
 function CandidateCard({ candidate }) {
   const {
@@ -22,8 +21,10 @@ function CandidateCard({ candidate }) {
     experience_year,
   } = candidate || {};
 
+  // Retrieve the user ID from Redux or any context/provider as per your app's logic
+
   return (
-    <div className="boxBorderHoverBlue  overflow-hidden hover:bg-[white]  bg-bgLightBlue dark:bg-darkBlue">
+    <div className="boxBorderHoverBlue overflow-hidden hover:bg-[white] bg-bgLightBlue dark:bg-darkBlue">
       <div className="p-6 flex flex-col justify-between h-full">
         {/* Card Information */}
         <div className="">
@@ -77,7 +78,7 @@ function CandidateCard({ candidate }) {
                   key={index}
                   value={skill}
                   icon={""}
-                  style=" bg-bgDeepBlue dark:text-darkBlue text-[8px]"
+                  style="bg-bgDeepBlue dark:text-darkBlue text-[8px]"
                 />
               ))}
             </div>
@@ -96,15 +97,12 @@ function CandidateCard({ candidate }) {
           </div>
         </div>
 
-        {/* Hire Button and Favourite Icon */}
+        {/* Hire Button and Bookmark Button */}
         <div className="mt-6 flex justify-between items-center">
           <div className="">
             <Link to={`/candidate-details/${_id}`}>
               <SecondaryButton title={"Hire Me"} icon={<BsSendArrowUp />} />
             </Link>
-          </div>
-          <div className="">
-            <BookmarkBtn />
           </div>
         </div>
       </div>

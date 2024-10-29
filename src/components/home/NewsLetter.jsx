@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import { Trans, useTranslation } from "react-i18next";
 
 function NewsLetter() {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const form = useRef();
 
   const sendEmail = (e) => {
@@ -38,8 +38,9 @@ function NewsLetter() {
             <img src={left} alt="img" className="w-52 hidden lg:block" />
           </div>
           <div>
-            <h3 className="text-white mb-4"><Trans i18nKey={"newsLetter"}/></h3>
-            
+            <h4 className="text-white text-[26px] lg:text-[36px] mb-4">
+              <Trans i18nKey={"newsLetter"} />
+            </h4>
 
             <form
               className="flex relative flex-col sm:flex-row items-center justify-center w-full gap-4 bg-white rounded-md"
@@ -55,11 +56,11 @@ function NewsLetter() {
                 type="email"
                 placeholder="Enter your email"
                 name="user_email"
-                className="pl-3 md:pl-0 w-full py-5 md:py-6 rounded-md focus:outline-none dark:bg-white"
+                className="pl-3 md:pl-0 w-full py-5 md:py-5 rounded-md focus:outline-none dark:bg-white"
                 required
               />
               <div className="absolute right-2 md:right-4">
-                <PrimaryBtn title={<Trans i18nKey={"subscribe"}/>} />
+                <PrimaryBtn title={<Trans i18nKey={"subscribe"} />} />
               </div>
             </form>
           </div>

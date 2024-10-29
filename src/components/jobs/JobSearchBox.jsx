@@ -33,12 +33,12 @@ function JobSearchBox() {
       <input
         type="text"
         placeholder={t("fixedNavbarPlaceholder")}
-        className="w-full py-[18px] rounded-md focus:outline-none dark:bg-white"
+        className="w-full xl:py-[18px] py-2 rounded-md focus:outline-none dark:bg-white"
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
 
-      <button type="submit" className="w-auto mr-2">
+      <button type="submit" className="w-auto mr-2 py-1">
         {" "}
         <PrimaryBtn title={<Trans i18nKey={"Search"} />} />
       </button>

@@ -41,7 +41,7 @@ function Recruiter() {
 
   if (!isLoading && !isError && recrutiersData.length > 0) {
     content = (
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
         {recrutiersData.map((recruiter, index) => (
           <TopRecruiterCard
             key={`${recruiter._id}-${index}`}

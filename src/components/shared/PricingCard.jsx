@@ -16,11 +16,11 @@ const PricingCard = ({
   return (
     <div className="boxBorderHoverBlue p-7 lg:p-10">
       <div>
-        <h3>{category}</h3>
-        <h1 className="text-blue flex items-baseline my-4">
+        <h4 className="text-3xl xl:text-4xl">{category}</h4>
+        <h3 className="text-blue flex items-baseline my-4">
           ${price}
           <p className="text-lightGray text-18">/month</p>
-        </h1>
+        </h3>
         <p className="max-w-xs">{description}</p>
         <div className="divider my-5"></div>
         <div className="space-y-4">

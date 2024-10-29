@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // JobCard.js
 import SecondaryButton from "./SecondaryButton";
 import { Link } from "react-router-dom";

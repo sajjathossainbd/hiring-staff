@@ -79,10 +79,10 @@ function RecruiterDetails() {
     foundedYear,
     companySizeCategory,
     numberOfEmployees,
-    technology,
-    certifications,
-    awards,
-    socialProfiles,
+    technology = [],
+    certifications = [],
+    awards = [],
+    socialProfiles = {},
   } = recruiter || {};
   useEffect(() => {
     dispatch(fetchRecruiterDetails(id));
@@ -255,8 +255,12 @@ function RecruiterDetails() {
               <div className="flex gap-4">
                 {Object.entries(socialProfiles).map(
                   ([platform, url], index) => {
-                    const { icon, colorClass, bgClass } =
-                      platformIconMap[platform];
+                    const platformData = platformIconMap[platform];
+
+                    // Check if platformData exists to avoid errors
+                    if (!platformData) return null;
+
+                    const { icon, colorClass, bgClass } = platformData;
                     return (
                       <a
                         key={index}
@@ -352,8 +356,6 @@ function RecruiterDetails() {
 
   return (
     <div className="container">
-      <h3 className="mb-10">Company Details</h3>
-
       {/* Recruiter Details Content */}
       {content}
       <ScrollRestoration />

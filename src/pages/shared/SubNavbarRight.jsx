@@ -19,7 +19,6 @@ function SubNavbarRight() {
   const { i18n } = useTranslation();
 
   const handleLanguageChange = (selectedLanguage) => {
-    console.log("Language selected:", selectedLanguage);
     if (selectedLanguage === "English") {
       i18n.changeLanguage("en");
       localStorage.setItem("language", "en");

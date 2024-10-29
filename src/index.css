@@ -12,26 +12,64 @@ body {
 }
 
 .gradient-1 {
-  background-image: linear-gradient(to right, #3c65f5, #8388f8, #b2aefb, #dbd6fe, #ffffff);
+  background-image: linear-gradient(
+    to right,
+    #3c65f5,
+    #8388f8,
+    #b2aefb,
+    #dbd6fe,
+    #ffffff
+  );
 }
 
 .gradient-2 {
-  background-image: linear-gradient(to right top, #3c65f5, #1957ca, #0047a0, #003777, #05274f);
+  background-image: linear-gradient(
+    to right top,
+    #3c65f5,
+    #1957ca,
+    #0047a0,
+    #003777,
+    #05274f
+  );
 }
 
 .gradient-2-1 {
-  background-image: linear-gradient(to right top, #05274f, #003777, #0047a0, #1957ca, #3c65f5);
+  background-image: linear-gradient(
+    to right top,
+    #05274f,
+    #003777,
+    #0047a0,
+    #1957ca,
+    #3c65f5
+  );
 }
 
 .gradient-3 {
-  background-image: linear-gradient(to right top, #3c65f5, #757ff8, #9c9bfa, #bdb8fc, #dbd6fe, #d3cfef, #cbc9df, #c3c2d0, #9697ae, #6a6f8d, #3e496d, #05274f);
+  background-image: linear-gradient(
+    to right top,
+    #3c65f5,
+    #757ff8,
+    #9c9bfa,
+    #bdb8fc,
+    #dbd6fe,
+    #d3cfef,
+    #cbc9df,
+    #c3c2d0,
+    #9697ae,
+    #6a6f8d,
+    #3e496d,
+    #05274f
+  );
 }
 
 .gradient-4 {
   background: rgb(231, 240, 253);
-  background: radial-gradient(circle, rgba(231, 240, 253, 1) 0%, rgba(121, 141, 227, 1) 100%);
+  background: radial-gradient(
+    circle,
+    rgba(231, 240, 253, 1) 0%,
+    rgba(121, 141, 227, 1) 100%
+  );
 }
-
 
 @layer components {
   .animate-updown {
@@ -73,7 +111,6 @@ body {
 }
 
 @layer base {
-
   h1,
   h2,
   h3,
@@ -92,7 +129,7 @@ body {
   }
 
   h3 {
-    @apply text-2xl sm:text-2xl md:text-[45px] lg:text-5xl xl:text-4xl;
+    @apply text-[32px] sm:text-[32px] md:text-[45px] lg:text-[40px] xl:text-4xl;
   }
 
   h4 {

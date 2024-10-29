@@ -2,7 +2,6 @@
 
 import { Link } from "react-router-dom";
 import MiniBtn from "../../ui/MiniBtn";
-import BookmarkBtn from "../../ui/BookmarkBtn";
 import PrimaryBtnBlue from "../../ui/PrimaryBtnBlue";
 
 function BlogCard({ blog }) {
@@ -15,13 +14,12 @@ function BlogCard({ blog }) {
     return date.toLocaleDateString("en-US", options);
   }
   const formattedDate = formatDate(date_published);
-
   return (
     <div className="boxBorderHoverBlue dark:bg-darkBlue  shadow-sm bg-white dark:text-white">
       <div className="flex flex-col justify-between">
         <figure className="w-full flex items-center justify-center py-4">
           <img
-            className="rounded-md size-48 object-cover "
+            className="rounded-md xl:size-48 size-40 object-cover "
             src={url}
             alt="Blog"
           />
@@ -42,32 +40,31 @@ function BlogCard({ blog }) {
                   style="bg-softGreen text-blue"
                 />
               </div>
-              <BookmarkBtn />
             </div>
 
             {/* Title and Contnet */}
-            <h4 className="line-clamp-2 ">{title}</h4>
-            <p className="mt-1 text-14 ">
+            <h4 className="xl:line-clamp-2">{title}</h4>
+            <p className="mt-1 text-14 xl:block hidden">
               {short_description?.slice(0, 100)}...
             </p>
 
             {/* Author */}
-            <div className="flex justify-between items-end mt-6 ">
+            <div className="flex justify-between items-center xl:mt-6">
               <div className="flex flex-col gap-1">
                 <h5 className="font-bold lg:text-14 text-xs">Admin</h5>
                 <p className="lg:text-12 text-[11px] lg:mt-1">
                   {formattedDate}
                 </p>
               </div>
+              <Link
+                to={`/blog-details/${blog?._id}`}
+                className="mt-6 mb-4 flex items-end justify-end"
+              >
+                <PrimaryBtnBlue title={"Read More"} />
+              </Link>
             </div>
           </div>
           {/* Read More */}
-          <Link
-            to={`/blog-details/${blog?._id}`}
-            className="mt-6 mb-4 flex items-end justify-end"
-          >
-            <PrimaryBtnBlue title={"Read More"} />
-          </Link>
         </div>
       </div>
     </div>

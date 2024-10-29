@@ -2,7 +2,6 @@ import GrowthSectionCard from "./GrowthSectionCard";
 
 const CounterSection = () => {
   const growthSectionData = [
-
     {
       title: "Our Offices",
       targetCount: 11,
@@ -29,7 +28,7 @@ const CounterSection = () => {
 
   return (
     <div className="mt-4">
-      <div className="grid grid-cols-2 gap-y-2 gap-x-0">
+      <div className="grid grid-cols-2 gap-3">
         {growthSectionData.map((data) => (
           <GrowthSectionCard key={data.title} {...data} />
         ))}

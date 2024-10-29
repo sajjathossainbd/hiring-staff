@@ -1,17 +1,18 @@
-import { FaTrash } from "react-icons/fa";
-import { FaRegEye, FaWarehouse } from "react-icons/fa6";
+import { AiOutlineUserDelete } from "react-icons/ai";
+import { MdOutlineMailOutline } from "react-icons/md";
+import { VscEye } from "react-icons/vsc";
 import axiosInstance from "../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import TinnyHeading from "../shared/TinnyHeading";
 import NoFoundData from "../../../components/ui/NoFoundData";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Loading from "../../../components/ui/Loading";
 import { CardPagination } from "../../../components/shared/CardPagination";
 import useCurrentUser from "../../../hooks/useCurrentUser";
+import { IoBriefcaseOutline } from "react-icons/io5";
+import PrimaryBtnBlue from "../../../components/ui/PrimaryBtnBlue";
 
 const AppliedJobs = () => {
-
   const { currentCandidate } = useCurrentUser();
 
   const userId = currentCandidate?._id;
@@ -29,7 +30,6 @@ const AppliedJobs = () => {
   const {
     // eslint-disable-next-line no-unused-vars
     data: { appliedJobs = [], totalJobs = 0, totalPages = 0 } = {},
-    isLoading,
     isError,
     refetch,
   } = useQuery({
@@ -80,7 +80,7 @@ const AppliedJobs = () => {
   };
 
   if (isError) return <div>Error loading applied jobs.</div>;
-  if (isLoading) return <Loading />;
+  // if (isLoading) return <Loading />;
 
   if (!appliedJobs.length) {
     return (
@@ -105,48 +105,76 @@ const AppliedJobs = () => {
       />
 
       <div className="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-5 mb-10">
-        {appliedJobs?.map((job) => (
-          <div
-            key={job?._id}
-            className="shadow-md bg-white hover:-translate-y-1 duration-200 rounded-lg p-6 overflow-auto "
-          >
-            <div>
+        {appliedJobs?.map((job) => {
+          const appliedDate = new Date(job.appliedDate).toLocaleDateString(
+            "en-GB",
+            {
+              timeZone: "Asia/Dhaka",
+              day: "2-digit",
+              month: "short",
+              year: "numeric",
+            }
+          );
+
+          return (
+            <div
+              key={job?._id}
+              className="shadow-md bg-white duration-200 rounded-lg p-6 overflow-auto"
+            >
+              {/* Icon and status button */}
+              <div className="flex gap-8 items-center mb-4">
+                <div className="bg-bgLightWhite p-3 text-blue rounded-md text-2xl inline-block">
+                  <IoBriefcaseOutline />
+                </div>
+                <button className="bg-bgLightWhite text-blue font-medium rounded-full text-14 px-6 py-1 pb-2">
+                  Applied
+                </button>
+              </div>
+
+              {/* Job title, company name, and view details */}
               <div className="flex items-center justify-between">
-                <div className="ml-3">
-                  <h5>{job.jobTitle}</h5>
-                  <div className="flex flex-wrap text-12 text-gray">
-                    <span className="flex items-center mr-4 flex-wrap ">
-                      <FaWarehouse className="mr-1 text-lightBlue" />{" "}
+                <div className="">
+                  <h5 className="text-lg font-semibold mb-2">{job.jobTitle}</h5>
+                  <div className="flex flex-wrap text-16 text-gray">
+                    <span className="flex items-center gap-2">
+                      <MdOutlineMailOutline />
                       {job.company_email}
                     </span>
                   </div>
                 </div>
+              </div>
+
+              {/* Applied date*/}
+              <div className="mt-1 flex items-center justify-between">
+                <div>
+                  <p className="text-14">
+                    Applied Date:
+                    <span className="bg-green-100 text-green-500  rounded-full ml-2">
+                      {appliedDate}
+                    </span>
+                  </p>
+                </div>
+              </div>
+
+              {/* View Details Job & Delete Action */}
+              <div className="flex items-center gap-6 mt-6">
                 <Link to={`/job-details/${job?.jobId}`}>
-                  <button className=" rounded-full text-blue hover:text-white hover:bg-blue">
-                    <FaRegEye />
+                  <button className="">
+                    <PrimaryBtnBlue
+                      icon={<VscEye />}
+                      title={"See Details Job Post"}
+                    />
                   </button>
                 </Link>
+                <div className="flex space-x-4  bg-bgLightWhite text-blue font-medium rounded-md text-18 p-3">
+                  <button onClick={() => handleDelete(job._id)}>
+                    <AiOutlineUserDelete className="hover:text-red-500 cursor-pointer" />
+                  </button>
+                </div>
               </div>
             </div>
-
-            <div className="mt-5 flex items-center justify-between">
-              <div>
-                <p className="text-12">
-                  Applied on:
-                  <span className="bg-green-100 text-green-500 px-3 py-1 rounded-full">
-                    {job.appliedDate}
-                  </span>
-                </p>
-              </div>
-
-              <div className="flex space-x-4 text-gray">
-                <button onClick={() => handleDelete(job._id)}>
-                  <FaTrash className="hover:text-red-500 cursor-pointer" />
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Card Pagination */}

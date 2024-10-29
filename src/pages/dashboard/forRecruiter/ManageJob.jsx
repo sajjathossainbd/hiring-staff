@@ -63,7 +63,7 @@ const ManageJob = () => {
       </div>
 
       {/* All Job Post */}
-      <div className="grid lg:grid-cols-2 gap-6 mt-6">
+      <div className="grid xl:grid-cols-2 grid-cols-1 gap-6 mt-6">
         {myJobs?.map((job) => (
           <>
             <JobPostCard

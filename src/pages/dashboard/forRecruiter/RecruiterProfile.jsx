@@ -8,11 +8,11 @@ import axiosInstance from "../../../utils/axios";
 import toast from "react-hot-toast";
 import SelectField from "../shared/SelectField";
 import { LiaCitySolid } from "react-icons/lia";
-import { TbUnlink } from "react-icons/tb";
-import { BsBrowserChrome } from "react-icons/bs";
-import { GrCopy } from "react-icons/gr";
+import { TbCategory, TbSocial, TbUnlink } from "react-icons/tb";
+import { BsAwardFill, BsBrowserChrome } from "react-icons/bs";
+import { GrCertificate, GrCopy, GrMap, GrTechnology } from "react-icons/gr";
 import { MdAddLocationAlt, MdPersonAddAlt1 } from "react-icons/md";
-import { FaMoneyCheckDollar } from "react-icons/fa6";
+import { FaMoneyCheckDollar, FaPeopleGroup } from "react-icons/fa6";
 import { TbNumbers } from "react-icons/tb";
 import TextareaField from "../shared/TextareaField";
 import useCurrentUser from "../../../hooks/useCurrentUser";
@@ -226,6 +226,7 @@ const RecruiterProfile = () => {
             <SelectField
               label="Business Type"
               name="businessType"
+              icon={<GrCopy />}
               options={["Private", "Public"]}
               value={formData.businessType}
               onChange={handleChange}
@@ -233,6 +234,7 @@ const RecruiterProfile = () => {
             <SelectField
               label="Company Size Category"
               name="companySizeCategory"
+              icon={<TbCategory/>}
               options={["Small", "Medium", "Large"]}
               value={formData.companySizeCategory}
               onChange={handleChange}
@@ -240,6 +242,7 @@ const RecruiterProfile = () => {
             <SelectField
               label="Number of Employees"
               name="numberOfEmployees"
+              icon={<FaPeopleGroup />}
               options={["1-50", "51-100", "101-300", "301-500", "501-1000+"]}
               value={formData.numberOfEmployees}
               onChange={handleChange}
@@ -280,6 +283,7 @@ const RecruiterProfile = () => {
             <DefaultInput
               label="Map"
               type="text"
+              icon={<GrMap />}
               name="map"
               value={formData.map}
               onChange={handleChange}
@@ -288,13 +292,14 @@ const RecruiterProfile = () => {
           </div>
 
           <div className="lg:col-span-6">
-            <label className="font-semibold">Certifications</label>
+            <label className="font-semibold flex items-center gap-2"><GrCertificate />Certifications</label>
             <div className="flex gap-2">
               <input
                 type="text"
                 value={certification}
                 onChange={(e) => setCertification(e.target.value)}
-                className="w-full"
+                className="bg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block w-full p-3 outline-none transition-all duration-500  
+          dark:bg-softGreen dark:text-gray dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"
                 placeholder="Add certifications one by one"
               />
               <button
@@ -313,14 +318,16 @@ const RecruiterProfile = () => {
               ))}
             </div>
           </div>
+          
           <div className="lg:col-span-6">
-            <label className="font-semibold">Awards</label>
+            <label className="font-semibold flex items-center gap-2"><BsAwardFill />Awards</label>
             <div className="flex gap-2">
               <input
                 type="text"
                 value={award}
                 onChange={(e) => setAward(e.target.value)}
-                className="w-full"
+                className="bg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block w-full p-3 outline-none transition-all duration-500  
+          dark:bg-softGreen dark:text-gray dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"
                 placeholder="Add awards one by one"
               />
               <button
@@ -340,13 +347,14 @@ const RecruiterProfile = () => {
             </div>
           </div>
           <div className="lg:col-span-6">
-            <label className="font-semibold">Technology</label>
+            <label className="font-semibold flex items-center gap-2"><GrTechnology />Technology</label>
             <div className="flex gap-2">
               <input
                 type="text"
                 value={technologys}
                 onChange={(e) => setTechnologys(e.target.value)}
-                className="w-full"
+                className="bg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block w-full p-3 outline-none transition-all duration-500  
+          dark:bg-softGreen dark:text-gray dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"
                 placeholder="Add technology one by one"
               />
               <button
@@ -367,20 +375,22 @@ const RecruiterProfile = () => {
           </div>
 
           <div className="lg:col-span-6">
-            <label className="font-semibold">Social </label>
+            <label className="font-semibold flex items-center gap-2"><TbSocial />Social </label>
             <div className="flex gap-2">
               <input
                 type="text"
                 value={socialKey}
                 onChange={(e) => setSocialKey(e.target.value)}
-                className="w-full"
+                className="bg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block w-full p-3 outline-none transition-all duration-500  
+          dark:bg-softGreen dark:text-gray dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"
                 placeholder="Platform (e.g., LinkedIn)"
               />
               <input
                 type="text"
                 value={socialValue}
                 onChange={(e) => setSocialValue(e.target.value)}
-                className="w-full"
+                className="bg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block w-full p-3 outline-none transition-all duration-500  
+          dark:bg-softGreen dark:text-gray dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"
                 placeholder="URL (e.g., https://linkedin.com/company/...)"
               />
               <button

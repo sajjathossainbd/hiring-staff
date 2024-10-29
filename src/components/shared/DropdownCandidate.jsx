@@ -49,7 +49,7 @@ const Dropdown = ({
   };
 
   const filteredOptions = options.filter((option) => {
-    if (!option) return false; 
+    if (!option) return false;
     const valueToFilter = typeof option === "object" ? option.label : option;
     return valueToFilter
       .toString()
@@ -62,7 +62,7 @@ const Dropdown = ({
       <div className="w-full flex items-center">
         <button
           onClick={toggleDropdown}
-          className="flex items-center justify-between w-full py-2 px-3 text-14 text-gray bg-white focus:outline-none"
+          className="flex items-center justify-between w-full py-2 text-14 text-gray bg-white focus:outline-none"
         >
           <div className="flex items-center min-w-32">{selectedOption}</div>
           <FiChevronDown

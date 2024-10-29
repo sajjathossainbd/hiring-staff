@@ -5,36 +5,71 @@ import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
 import axiosInstance from "../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
-
+import DefaultInput from "../shared/DefaultInput";
+import { CgNametag } from "react-icons/cg";
+import { useState } from "react";
+import SelectField from "../shared/SelectField";
+import { FaUser } from "react-icons/fa";
+import { FaEnvelope } from "react-icons/fa";
+import { FaBriefcase } from "react-icons/fa";
+import { FaClock } from "react-icons/fa";
+import { FaPhone } from "react-icons/fa";
+import { FaImage } from "react-icons/fa";
+import { TiDocumentText } from "react-icons/ti";
+import TextareaField from "../shared/TextareaField";
+import { FaGlobe } from "react-icons/fa";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import { GrCopy } from "react-icons/gr";
+import { FaTools } from "react-icons/fa";
+import { FaFileAlt } from "react-icons/fa";
+import { FaFlag } from "react-icons/fa";
 const MyProfile = () => {
   const { user } = useAuth();
 
+  const [formData, setFormData] = useState({
+    name: "",
+    logo: "",
+    description: "",
+    industry: "",
+    website: "",
+    phone: "",
+    email: user?.email || "",
+    map: "",
+    location: "",
+    ceo: "",
+    businessType: "",
+    annualRevenue: "",
+    foundedYear: "",
+    companySizeCategory: "",
+    numberOfEmployees: "",
+    certifications: [],
+    awards: [],
+    technology: [],
+    socialProfiles: {},
+  });
+
   const { data: currentCandidate, refetch } = useQuery({
-    queryKey: ['currentCandidate', user?.email],
+    queryKey: ["currentCandidate", user?.email],
     queryFn: async () => {
-      const res = await axiosInstance.get(`/candidates/currentCandidate/${user?.email}`);
+      const res = await axiosInstance.get(
+        `/candidates/currentCandidate/${user?.email}`
+      );
       return res.data;
     },
     enabled: !!user?.email,
   });
 
-
   const { register, handleSubmit } = useForm();
-
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
   const onSubmit = async (data) => {
-
     const updatedData = {
-
-      first_name: data.first_name || currentCandidate?.first_name,
-      last_name: data.last_name || currentCandidate?.last_name,
-      email: currentCandidate?.email,
-      special_profession: data.special_profession || currentCandidate?.special_profession,
-      experience_year: parseInt(data.experience_year) || currentCandidate?.experience_year,
-      phone_number: data.phone_number || currentCandidate?.phone_number,
-      image: data.image || currentCandidate?.photo_url,
-      resume: data.resume || currentCandidate?.resume,
-      cover_letter: data.cover_letter || currentCandidate?.cover_letter,
-      skills: data.skills.split(",").map(skill => skill.trim()) || currentCandidate?.skills,
+      ...formData,
+      name: data.name || currentCandidate?.name,
+      phone: data.phone || currentCandidate?.phone_number,
+      email: formData.email,
       location: {
         city: data.city || currentCandidate?.location?.city,
         state: data.state || currentCandidate?.location?.state,
@@ -42,11 +77,13 @@ const MyProfile = () => {
       },
       about_me: data.about_me || currentCandidate?.about_me,
       job_type: data.job_type || currentCandidate?.job_type,
-
     };
 
     try {
-      const res = await axiosInstance.patch(`/candidates/profile/${currentCandidate?.email}`, updatedData);
+      const res = await axiosInstance.patch(
+        `/candidates/profile/${formData.email}`,
+        updatedData
+      );
       if (res.data.modifiedCount > 0) {
         toast.success("Your data has been updated");
         refetch();
@@ -57,244 +94,229 @@ const MyProfile = () => {
       console.error(error);
       toast.error("Failed to update profile");
     }
-
   };
 
   if (!currentCandidate) return <div>Loading...</div>;
 
   return (
-    <div>
-      <h3>Candidate Profile</h3>
-      <div className="mt-6">
-        <div className="flex flex-col items-center">
-          <div
-            className="relative w-full h-36 md:h-44 lg:h-60 xl:h-72 bg-cover bg-center border-[7px] border-white rounded-xl"
-            style={{ backgroundImage: `url(${currentCandidate?.coverImage || 'https://i.ibb.co.com/mBcjQj6/download-1.jpg'})` }}
-          >
-            <div className="absolute inset-0 bg-black opacity-40 rounded-xl"></div>
+    <div className="bg-white p-10 rounded-lg mt-10">
+      <form onSubmit={handleSubmit(onSubmit)} className="">
+        <h4 className="text-center font-semibold my-7 mb-4">
+          Candidate Profile Update
+        </h4>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div className="mb-4">
+            <DefaultInput
+              label="My Role:"
+              icon={<CgNametag />}
+              placeholder={"Candidate"}
+              type="text"
+              name="myRole"
+              disabled
+            />
           </div>
 
-          <div className="mt-[-40px] lg:mt-[-100px] md:mt-[-70px] -left-20 z-50">
-            <img
-              src={currentCandidate?.photo_url || user?.photoURL}
-              alt="Profile Photo"
-              className="rounded-full xl:h-52 lg:h-44 md:h-32 h-20 xl:w-52 lg:w-44 md:w-32 w-20 object-cover border-[7px] border-white"
+          <div className="mb-4">
+            <SelectField
+              label=" Job Type"
+              name="jobType"
+              icon={<GrCopy />}
+              options={["Remote", "Hybrid", "Onsite"]}
+              value={formData.job_type}
+              onChange={handleChange}
             />
           </div>
         </div>
 
-        <div className="mt-6">
-          <form onSubmit={handleSubmit(onSubmit)} className="bg-white shadow-md rounded-xl p-6">
-            <h3 className="text-center font-semibold my-7">Candidate Profile Update</h3>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <div className="mb-4">
-                <label htmlFor="role" className="block text-gray-700 font-bold mb-2">My Role:</label>
-                <input
-                  id="first_name"
-                  type="text"
-                  disabled
-                  placeholder={"Candidate"}
-                  className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
-                />
-              </div>
-
-              <div className="mb-4">
-                <label htmlFor="job_type" className="block text-gray-700 font-bold mb-2">Job Type</label>
-                <select
-                  defaultValue={currentCandidate?.job_type || "remote"}
-                  id="job_type"
-                  {...register("job_type")}
-                  className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
-                >
-                  <option value="remote">Remote</option>
-                  <option value="onsite">Onsite</option>
-                  <option value="hybrid">Hybrid</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <div className="mb-4">
-                <label htmlFor="first_name" className="block text-gray-700 font-bold mb-2">First Name</label>
-                <input
-                  id="first_name"
-                  type="text"
-                  placeholder={currentCandidate?.first_name}
-                  {...register("first_name")}
-                  className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="last_name" className="block text-gray-700 font-bold mb-2">Last Name</label>
-                <input
-                  id="last_name"
-                  type="text"
-                  placeholder={currentCandidate?.last_name}
-                  {...register("last_name")}
-                  className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <div className="mb-4">
-                <label htmlFor="email" className="block text-gray-700 font-bold mb-2">Email</label>
-                <input
-                  disabled
-                  id="email"
-                  type="email"
-                  placeholder={currentCandidate?.email}
-                  className="w-full px-4 py-3 border border-gray-300 bg-gray-100 text-gray-500 text-md rounded-md shadow-sm"
-                />
-              </div>
-
-              <div className="mb-4">
-                <label htmlFor="special_profession" className="block text-gray-700 font-bold mb-2">Special Profession</label>
-                <input
-                  id="special_profession"
-                  type="text"
-                  placeholder={currentCandidate?.special_profession}
-                  {...register("special_profession")}
-                  className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <div className="mb-4">
-                <label htmlFor="experience_year" className="block text-gray-700 font-bold mb-2">Years of Experience</label>
-                <input
-                  id="experience_year"
-                  type="number"
-                  placeholder={currentCandidate?.experience_year}
-                  {...register("experience_year")}
-                  className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
-                />
-              </div>
-
-              <div className="mb-4">
-                <label htmlFor="phone_number" className="block text-gray-700 font-bold mb-2">Phone Number</label>
-                <input
-                  id="phone_number"
-                  type="tel"
-                  placeholder={currentCandidate?.phone_number}
-                  {...register("phone_number")}
-                  className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <div className="mb-4">
-                <label htmlFor="photo_url" className="block text-gray-700 font-bold mb-2">Profile Photo URL</label>
-                <input
-                  id="photo_url"
-                  type="url"
-                  placeholder={currentCandidate?.photo_url}
-                  {...register("image")}
-                  className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
-                />
-              </div>
-
-              <div className="mb-4">
-                <label htmlFor="imageUrl" className="block text-gray-700 font-bold mb-2">Cover Image URL</label>
-                <input
-                  id="imageUrl"
-                  type="url"
-                  disabled
-                  placeholder={"https://i.ibb.co.com/mBcjQj6/download-1.jpg"}
-                  className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <div className="mb-4">
-                <label htmlFor="resume" className="block text-gray-700 font-bold mb-2">Resume URL</label>
-                <input
-                  id="resume"
-                  type="url"
-                  placeholder={currentCandidate?.resume}
-                  {...register("resume")}
-                  className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
-                />
-              </div>
-
-              <div className="mb-4">
-                <label htmlFor="cover_letter" className="block text-gray-700 font-bold mb-2">Cover Letter URL</label>
-                <input
-                  id="cover_letter"
-                  type="url"
-                  placeholder={currentCandidate?.cover_letter}
-                  {...register("cover_letter")}
-                  className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
-                />
-              </div>
-            </div>
-
-            <div className="mb-4">
-              <label htmlFor="skills" className="block text-gray-700 font-bold mb-2">Skills (comma-separated)</label>
-              <input
-                id="skills"
-                type="text"
-                placeholder={currentCandidate?.skills?.join(", ")}
-                {...register("skills")}
-                className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
-              />
-            </div>
-
-            <div className="mb-4">
-              <label htmlFor="about_me" className="block text-gray-700 font-bold mb-2">About Me</label>
-              <textarea
-                id="about_me"
-                rows="4"
-                placeholder={currentCandidate?.about_me}
-                {...register("about_me")}
-                className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
-              />
-            </div>
-
-            {/* Location */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-              <div className="mb-4">
-                <label htmlFor="city" className="block text-gray-700 font-bold mb-2">City</label>
-                <input
-                  id="city"
-                  type="text"
-                  placeholder={currentCandidate?.location?.city}
-                  {...register("city")}
-                  className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="state" className="block text-gray-700 font-bold mb-2">State</label>
-                <input
-                  id="state"
-                  type="text"
-                  placeholder={currentCandidate?.location?.state}
-                  {...register("state")}
-                  className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="country" className="block text-gray-700 font-bold mb-2">Country</label>
-                <input
-                  id="country"
-                  type="text"
-                  placeholder={currentCandidate?.location?.country}
-                  {...register("country")}
-                  className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-700 text-md rounded-md shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightText focus:border-transparent"
-                />
-              </div>
-            </div>
-
-            <div className="flex justify-center mb-4">
-              <PrimaryButton title={"Update Now"} icon={<BsFillSendFill />} />
-            </div>
-          </form>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div className="mb-4">
+            <DefaultInput
+              label="First Name"
+              icon={<FaUser />}
+              placeholder={currentCandidate?.first_name}
+              type="text"
+              name="firstName"
+            />
+          </div>
+          <div className="mb-4">
+            <DefaultInput
+              label="Last Name"
+              icon={<FaUser />} // Add the appropriate icon here
+              placeholder={currentCandidate?.last_name}
+              type="text"
+              name="last_name" // Ensure this matches your form's register logic
+              {...register("last_name")} // Use the register function from react-hook-form
+            />
+          </div>
         </div>
-      </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div className="mb-4">
+            <DefaultInput
+              label="Email"
+              icon={<FaEnvelope />} // Add the appropriate icon for email
+              placeholder={currentCandidate?.email}
+              type="email"
+              name="email"
+              disabled // This will disable the input field
+            />
+          </div>
+
+          <div className="mb-4">
+            <DefaultInput
+              label="Special Profession"
+              icon={<FaBriefcase />} // Add the appropriate icon for special profession
+              placeholder={currentCandidate?.special_profession}
+              type="text"
+              name="special_profession" // Ensure this matches your form's register logic
+              {...register("special_profession")} // Use the register function from react-hook-form
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div className="mb-4">
+            <DefaultInput
+              label="Years of Experience"
+              icon={<FaClock />} // Add an appropriate icon for years of experience
+              placeholder={currentCandidate?.experience_year}
+              type="number"
+              name="experience_year" // Ensure this matches your form's register logic
+              {...register("experience_year")} // Use the register function from react-hook-form
+            />
+          </div>
+
+          <div className="mb-4">
+            <DefaultInput
+              label="Phone Number"
+              icon={<FaPhone />} // Add an appropriate icon for phone number
+              placeholder={currentCandidate?.phone_number}
+              type="tel"
+              name="phone_number" // Ensure this matches your form's register logic
+              {...register("phone_number")} // Use the register function from react-hook-form
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div className="mb-4">
+            <DefaultInput
+              label="Profile Photo URL"
+              icon={<FaImage />} // Add an appropriate icon for profile photo URL
+              placeholder={currentCandidate?.photo_url}
+              type="url"
+              name="image" // Ensure this matches your form's register logic
+              {...register("image")} // Use the register function from react-hook-form
+            />
+          </div>
+
+          <div className="mb-4">
+            <DefaultInput
+              label="Cover Image URL"
+              icon={<FaImage />} // Add an appropriate icon for cover image URL
+              placeholder="https://i.ibb.co.com/mBcjQj6/download-1.jpg"
+              type="url"
+              name="imageUrl" // Ensure this matches your form's register logic
+              disabled // This will disable the input field
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div className="mb-4">
+            <DefaultInput
+              label="Resume URL"
+              icon={<TiDocumentText />} 
+              placeholder={currentCandidate?.resume}
+              type="url"
+              name="resume" 
+              {...register("resume")} 
+            />
+          </div>
+
+          <div className="mb-4">
+            <DefaultInput
+              label="Cover Letter URL"
+              icon={<FaFileAlt />} 
+              placeholder={currentCandidate?.cover_letter}
+              type="url"
+              name="cover_letter" 
+              {...register("cover_letter")} 
+            />
+          </div>
+        </div>
+
+        <div className="mb-4">
+          <DefaultInput
+            label="Skills (comma-separated)"
+            icon={<FaTools />} 
+            placeholder={currentCandidate?.skills?.join(", ")}
+            type="text"
+            name="skills" 
+            {...register("skills")} 
+          />
+        </div>
+
+        <div className="mb-4">
+          <TextareaField
+            placeholder={
+              currentCandidate?.about_me ||
+              "Short description about yourself..."
+            } 
+            icon={<GrCopy />} 
+            label="About Me" 
+            name="about_me" 
+            value={formData.about_me} 
+            onChange={(e) => handleChange(e)} 
+            rows={4} 
+          />
+        </div>
+
+        {/* Location */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          <div className="mb-4">
+            <DefaultInput
+              label="City"
+              icon={<FaMapMarkerAlt />} 
+              placeholder={
+                currentCandidate?.location?.city || "Enter your city..."
+              } 
+              type="text"
+              name="city" 
+              {...register("city")}
+            />
+          </div>
+          <div className="mb-4">
+            <DefaultInput
+              label="State"
+              icon={<FaFlag />} 
+              placeholder={
+                currentCandidate?.location?.state || "Enter your state..."
+              } // Fallback placeholder
+              type="text"
+              name="state" 
+              {...register("state")} 
+            />
+          </div>
+          <div className="mb-4">
+            <DefaultInput
+              label="Country"
+              icon={<FaGlobe />} 
+              placeholder={
+                currentCandidate?.location?.country || "Enter your country..."
+              } 
+              type="text"
+              name="country" 
+              {...register("country")} 
+            />
+          </div>
+        </div>
+
+        <div className="flex justify-center mb-4">
+          <PrimaryButton title={"Update Now"} icon={<BsFillSendFill />} />
+        </div>
+      </form>
     </div>
   );
 };

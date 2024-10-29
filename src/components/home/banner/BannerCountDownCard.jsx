@@ -30,7 +30,7 @@ function BannerCountDownCard({ data }) {
   return (
     <motion.div
       ref={ref}
-      className=" h-full boxBorderHoverBlue boxBorderHoverBlue px-4 py-5 flex items-center gap-3 transition-transform duration-500 group hover:-translate-y-1"
+      className=" h-full boxBorderHoverBlue boxBorderHoverBlue px-4 py-5 flex items-center gap-3 transition-transform duration-500 group hover:-translate-y-1 cursor-pointer"
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0.8 }}
       transition={{ duration: 0.5 }}

@@ -42,7 +42,7 @@ function Recruiter() {
 
   if (!isLoading && !isError && recrutiersData.length > 0) {
     content = (
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
         {recrutiersData.map((recruiter, index) => (
           <TopRecruiterCard
             key={`${recruiter._id}-${index}`}
@@ -57,19 +57,17 @@ function Recruiter() {
     <div className="">
       <div className="container">
         <SectionTitle
-          title={<Trans i18nKey={"topRecruiters"}/>}
-          subTitle={
-            <Trans i18nKey={"topRecruitersDescrip"}/>
-          }
+          title={<Trans i18nKey={"topRecruiters"} />}
+          subTitle={<Trans i18nKey={"topRecruitersDescrip"} />}
         />
 
         <div className="mt-10">
           <div className="">{content}</div>
           <Link
             to={"/recruiters-listing"}
-            className="mt-16 flex items-center justify-center"
+            className="mt-10 mb-10 flex items-center justify-center"
           >
-            <PrimaryBtn title={<Trans i18nKey={"moreRecruiters"}/>} />
+            <PrimaryBtn title={<Trans i18nKey={"moreRecruiters"} />} />
           </Link>
         </div>
       </div>

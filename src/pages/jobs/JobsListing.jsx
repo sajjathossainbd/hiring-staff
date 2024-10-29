@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import NewsLetter from "../../components/home/NewsLetter";
 import JobCard from "../../components/shared/JobCard";
 import { useDispatch, useSelector } from "react-redux";
@@ -50,7 +49,6 @@ function JobsListing() {
     dispatch(fetchJobsListing(filters));
   }, [filters, dispatch]);
 
-  
   useEffect(() => {
     if (jobs?.jobs?.length > 0) {
       const fetchRecruiters = async () => {
@@ -97,11 +95,11 @@ function JobsListing() {
   let content = null;
 
   if (isLoading) content = <Loading />;
-  else if ( jobs?.jobs?.length === 0) {
+  else if (jobs?.jobs?.length === 0) {
     content = <NoFoundData title="No Jobs Found!" />;
   } else {
     content = (
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
+      <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 xl:gap-5 lg:gap-10 gap-5">
         {jobs?.jobs?.map((job) => {
           const recruiter = recruitersData[job.recruiter_id];
           return (

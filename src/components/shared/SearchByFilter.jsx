@@ -15,6 +15,8 @@ import PrimaryBtn from "../ui/PrimaryBtn";
 import { Trans } from "react-i18next";
 import { useTranslation } from "react-i18next";
 import Dropdown from "./DropdownCandidate";
+import { TbCategoryFilled } from "react-icons/tb";
+import { FaMapMarkerAlt } from "react-icons/fa";
 const SearchByFilter = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -67,18 +69,11 @@ const SearchByFilter = () => {
       <div className="flex items-center justify-between md:flex-row flex-col md:gap-2 gap-1">
         {/* Job title input */}
         <label className="flex items-center w-auto p-3 text-14 rounded-md md:border-none border border-[#cfdefc]">
-          <input
-            type="text"
-            className="outline-none w-full text-14 "
-            placeholder="Search"
-            value={JobTitle}
-            onChange={handleJobTitleChange}
-          />
-          <svg
+        <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
             fill="currentColor"
-            className="h-4 w-4 opacity-70"
+            className="h-4 w-4 opacity-90 text-blue"
           >
             <path
               fillRule="evenodd"
@@ -86,13 +81,22 @@ const SearchByFilter = () => {
               clipRule="evenodd"
             />
           </svg>
+          <input
+            type="text"
+            className="outline-none w-full text-14 "
+            placeholder="Search"
+            value={JobTitle}
+            onChange={handleJobTitleChange}
+          />
+          
         </label>
 
         {/* Vertical line */}
         <PiLineVerticalThin className="md:block hidden" />
 
         {/* Categories Dropdown */}
-        <div className="w-auto">
+        <div className="w-auto flex items-center pl-3">
+        <TbCategoryFilled className="text-blue" />
           <Dropdown
             options={categories}
             onChange={(selected) => handleSelectChange(selected, "AllCategory")}
@@ -103,7 +107,8 @@ const SearchByFilter = () => {
         {/* Vertical line */}
         <PiLineVerticalThin className="md:block hidden" />
 
-        <div className="w-auto">
+        <div className="w-auto flex items-center pl-3">
+        <FaMapMarkerAlt className="text-blue" />
           <Dropdown
             options={locations}
             onChange={(selected) => handleSelectChange(selected, "Location")}

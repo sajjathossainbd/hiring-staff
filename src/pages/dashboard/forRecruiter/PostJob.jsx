@@ -6,12 +6,20 @@ import toast from "react-hot-toast";
 import axiosInstance from "../../../utils/axios";
 import SelectField from "../shared/SelectField";
 import useCurrentUser from "../../../hooks/useCurrentUser";
-
+import TextareaField from "../shared/TextareaField";
+import { GrCopy } from "react-icons/gr";
+import { PiBookOpenBold, PiSubtitlesBold } from "react-icons/pi";
+import { TbCategory, TbGraphFilled } from "react-icons/tb";
+import { FaBusinessTime, FaCalendar, FaCalendarDay, FaGetPocket, FaLocationDot, FaNoteSticky, FaTags } from "react-icons/fa6";
+import { GiPlayerTime } from "react-icons/gi";
+import { MdTimelapse } from "react-icons/md";
+import { FaMoneyCheckAlt, FaRegListAlt } from "react-icons/fa";
+import { IoPeopleSharp } from "react-icons/io5";
 const PostJob = () => {
   const [candidateEmails, setCandidateEmails] = useState();
 
   const { currentRecruiter } = useCurrentUser();
- 
+
   useEffect(() => {
     axiosInstance.get("/users/candidate-emails").then((res) => {
       setCandidateEmails(res.data.candidateEmails);
@@ -40,7 +48,6 @@ const PostJob = () => {
     benefits: [],
     appliers: [],
     featured: false,
-    
   });
   // console.log(formData);
   const [tag, setTag] = useState("");
@@ -147,6 +154,7 @@ const PostJob = () => {
           <div className="col-span-6">
             <DefaultInput
               label="Job Title"
+              icon={<PiSubtitlesBold />}
               type="text"
               placeholder="Enter Job Title"
               name="jobTitle"
@@ -156,6 +164,7 @@ const PostJob = () => {
 
           <div className="col-span-6 ">
             <SelectField
+            icon={<TbCategory/>}
               label="Category"
               name="category"
               options={[
@@ -193,18 +202,20 @@ const PostJob = () => {
           </div>
 
           <div className="col-span-6">
-            <h6 className="text-gray">Description</h6>
-            <textarea
+            <TextareaField
+              placeholder="Job description..."
+              icon={<GrCopy />}
+              label="Job Description"
               name="description"
-              placeholder="Enter Job Description"
+              value={formData.description}
               onChange={handleChange}
-              className="w-full h-32 p-3 rounded-md border focus:outline-none border-lightGray bg-bgLightWhite dark:bg-darkBlue dark:border-blue"
-            ></textarea>
+            />
           </div>
 
           <div className="col-span-6 md:col-span-3">
             <SelectField
               label="Job Type"
+              icon={<FaBusinessTime />}
               name="job_type"
               options={[
                 "Full-time",
@@ -222,6 +233,7 @@ const PostJob = () => {
             <SelectField
               label="Workdays"
               name="workdays"
+              icon={<MdTimelapse />}
               options={["Monday to Friday", "Sunday to Thursday", "Flexible"]}
               value={formData.workdays}
               onChange={handleChange}
@@ -232,6 +244,7 @@ const PostJob = () => {
             <SelectField
               label="Work Hours"
               name="work_hours"
+              icon={<GiPlayerTime />}
               options={[
                 "9:00 AM - 5:00 PM",
                 "9:00 AM to 6:00 PM",
@@ -249,6 +262,7 @@ const PostJob = () => {
           <div className="col-span-6 md:col-span-3">
             <SelectField
               label="Job Location"
+              icon={<FaLocationDot />}
               name="job_location"
               options={["Hybrid", "On-site", "Remote"]}
               value={formData.job_location}
@@ -257,7 +271,7 @@ const PostJob = () => {
           </div>
 
           <div className="lg:col-span-6 col-span-6">
-            <label className="font-semibold">Experience (in years)</label>
+            <label className="font-semibold flex items-center"><TbGraphFilled className="mr-2 w-4 h-4" />Experience (in years)</label>
             <input
               type="number"
               value={formData.experience}
@@ -275,7 +289,7 @@ const PostJob = () => {
             />
           </div>
           <div className="lg:col-span-6 col-span-6">
-            <label className="font-semibold">Minimum Salary</label>
+            <label className="font-semibold flex gap-2 items-center"><FaMoneyCheckAlt />Minimum Salary</label>
             <input
               type="number"
               value={formData.min_salary}
@@ -293,7 +307,7 @@ const PostJob = () => {
             />
           </div>
           <div className="lg:col-span-6 col-span-6">
-            <label className="font-semibold">Maximum Salary</label>
+            <label className="font-semibold flex gap-2 items-center"><FaMoneyCheckAlt />Maximum Salary</label>
             <input
               type="number"
               value={formData.max_salary}
@@ -314,6 +328,7 @@ const PostJob = () => {
           <div className="col-span-6 md:col-span-3">
             <DefaultInput
               label="Posted Date"
+              icon={<FaCalendarDay />}
               type="date"
               name="postedDate"
               onChange={handleChange}
@@ -323,6 +338,7 @@ const PostJob = () => {
           <div className="col-span-6 md:col-span-3">
             <DefaultInput
               label="Last Date to Apply"
+              icon={<FaCalendar />}
               type="date"
               name="lastDateToApply"
               onChange={handleChange}
@@ -333,6 +349,7 @@ const PostJob = () => {
             <DefaultInput
               label="Education"
               type="text"
+              icon={<PiBookOpenBold />}
               placeholder="Enter Required Education"
               name="education"
               onChange={handleChange}
@@ -340,13 +357,14 @@ const PostJob = () => {
           </div>
 
           <div className="lg:col-span-6 col-span-6">
-            <label className="font-semibold">Responsibilities</label>
+            <label className="font-semibold flex items-center gap-2"><FaRegListAlt />Responsibilities</label>
             <div className="flex gap-2">
               <input
                 type="text"
                 value={responsibilitie}
                 onChange={(e) => setResponsibilitie(e.target.value)}
-                className="w-full"
+                className="w-full bg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block p-3 outline-none transition-all duration-500  
+          dark:bg-softGreen dark:text-gray dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"
                 placeholder="Add responsibilities"
               />
               <button
@@ -367,13 +385,14 @@ const PostJob = () => {
           </div>
 
           <div className="lg:col-span-6 col-span-6">
-            <label className="font-semibold">Requirement</label>
+            <label className="font-semibold flex items-center gap-2"><FaNoteSticky />Requirement</label>
             <div className="flex gap-2">
               <input
                 type="text"
                 value={requirement}
                 onChange={(e) => setRequirement(e.target.value)}
-                className="w-full"
+                className="w-full bg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block p-3 outline-none transition-all duration-500  
+          dark:bg-softGreen dark:text-gray dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"
                 placeholder="Add requirements"
               />
               <button
@@ -395,13 +414,14 @@ const PostJob = () => {
 
           <div className="lg:col-span-6 col-span-6">
             {/* Benefits Section */}
-            <label className="font-semibold">Benefits</label>
+            <label className="font-semibold flex items-center gap-2"><FaGetPocket />Benefits</label>
             <div className="flex gap-2">
               <input
                 type="text"
                 value={benefit}
                 onChange={(e) => setBenefit(e.target.value)}
-                className="w-full"
+                className="bg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block w-full p-3 outline-none transition-all duration-500  
+          dark:bg-softGreen dark:text-gray dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"
                 placeholder="Add benefits"
               />
               <button
@@ -423,13 +443,14 @@ const PostJob = () => {
 
           <div className="lg:col-span-6 col-span-6">
             {/* Appliers Section */}
-            <label className="font-semibold">Appliers</label>
+            <label className="font-semibold flex items-center gap-2"><IoPeopleSharp />Appliers</label>
             <div className="flex gap-2">
               <input
                 type="text"
                 value={applier}
                 onChange={(e) => setApplier(e.target.value)}
-                className="w-full"
+                className="bg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block w-full p-3 outline-none transition-all duration-500  
+          dark:bg-softGreen dark:text-gray dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"
                 placeholder="Add applier"
               />
               <button
@@ -450,13 +471,14 @@ const PostJob = () => {
           </div>
 
           <div className="lg:col-span-6 col-span-6">
-            <label className="font-semibold">Tags</label>
+            <label className="font-semibold flex items-center gap-2"><FaTags />Tags</label>
             <div className="flex gap-2">
               <input
                 type="text"
                 value={tag}
                 onChange={(e) => setTag(e.target.value)}
-                className="w-full"
+                className="bg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block w-full p-3 outline-none transition-all duration-500  
+          dark:bg-softGreen dark:text-gray dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"
                 placeholder="Add tags"
               />
               <button

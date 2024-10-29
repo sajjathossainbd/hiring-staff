@@ -45,7 +45,7 @@ const PostJob = () => {
     tags: [],
     responsibilities: [],
     requirements: [],
-
+    email: currentRecruiter?.email,
     benefits: [],
     appliers: [],
     featured: false,
@@ -167,7 +167,7 @@ const PostJob = () => {
 
           <div className="col-span-6 ">
             <SelectField
-            icon={<TbCategory/>}
+              icon={<TbCategory />}
               label="Category"
               name="category"
               options={[

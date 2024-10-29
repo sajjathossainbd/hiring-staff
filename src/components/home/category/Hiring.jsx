@@ -25,12 +25,9 @@ function Hiring() {
         <div className="flex flex-col items-center">
           <div className="flex flex-col md:flex-row items-center gap-3 md:gap-12 mb-4">
             <div className="text-center">
-              <p className="text-18  text-lightGray">
+              <p className="text-14  text-lightGray">
                 <Trans i18nKey={"hiringBannerDescrip"} />
               </p>
-            </div>
-            <div className="lg:mt-10">
-              <div className=""></div>
             </div>
           </div>
           <Link to={"/jobs-listing"}>
@@ -41,9 +38,9 @@ function Hiring() {
           </Link>
         </div>
 
-        <div className="hidden lg:block">
+        {/* <div className="hidden lg:block">
           <img src={right} alt="right img" />
-        </div>
+        </div> */}
       </div>
     </div>
   );

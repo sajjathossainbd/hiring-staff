@@ -49,7 +49,7 @@ const Dropdown = ({
   };
 
   const filteredOptions = options.filter((option) => {
-    if (!option) return false; 
+    if (!option) return false;
     const valueToFilter = typeof option === "object" ? option.label : option;
     return valueToFilter
       .toString()

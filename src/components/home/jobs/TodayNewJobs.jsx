@@ -70,16 +70,15 @@ function TodayNewJobs() {
 
   if (!isLoading && !isError && jobsData.length > 0) {
     content = (
-      <div className="grid gap-10 ">
+      <div className="grid gap-8">
         {jobsData.map((job) => {
-          const recruiter = recruitersData[job.recruiter_id];
-
+          // const recruiter = recruitersData[job.recruiter_id];
           return (
             <JobCardHorizontal
               key={job._id}
               job={job}
-              recruiterName={recruiter?.name}
-              recruiterLogo={recruiter?.logo}
+              // recruiterName={recruiter?.name}
+              // recruiterLogo={recruiter?.logo}
             />
           );
         })}
@@ -93,7 +92,7 @@ function TodayNewJobs() {
         <h3>
           <Trans i18nKey={"todayNewJobs"} />
         </h3>
-        <div className="mt-10">{content}</div>
+        <div className="mt-8">{content}</div>
         <Link
           to={"/jobs-listing"}
           className="flex items-center justify-center mt-6"

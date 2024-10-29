@@ -68,8 +68,8 @@ const SearchByFilter = () => {
     <div className="relative  bg-white p-5 md:p-2  shadow-md  rounded-lg  ">
       <div className="flex items-center justify-between md:flex-row flex-col md:gap-2 gap-1">
         {/* Job title input */}
-        <label className="flex items-center w-auto p-3 text-14 rounded-md md:border-none border border-[#cfdefc]">
-        <svg
+        <label className="flex items-center w-40 p-3 text-14 rounded-md md:border-none border border-[#cfdefc]">
+          <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
             fill="currentColor"
@@ -88,7 +88,6 @@ const SearchByFilter = () => {
             value={JobTitle}
             onChange={handleJobTitleChange}
           />
-          
         </label>
 
         {/* Vertical line */}
@@ -96,7 +95,7 @@ const SearchByFilter = () => {
 
         {/* Categories Dropdown */}
         <div className="w-auto flex items-center pl-3">
-        <TbCategoryFilled className="text-blue" />
+          <TbCategoryFilled className="text-blue" />
           <Dropdown
             options={categories}
             onChange={(selected) => handleSelectChange(selected, "AllCategory")}
@@ -108,7 +107,7 @@ const SearchByFilter = () => {
         <PiLineVerticalThin className="md:block hidden" />
 
         <div className="w-auto flex items-center pl-3">
-        <FaMapMarkerAlt className="text-blue" />
+          <FaMapMarkerAlt className="text-blue" />
           <Dropdown
             options={locations}
             onChange={(selected) => handleSelectChange(selected, "Location")}

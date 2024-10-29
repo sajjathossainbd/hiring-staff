@@ -20,6 +20,7 @@ const PostJob = () => {
 
   const { currentRecruiter } = useCurrentUser();
 
+  console.log(currentRecruiter);
   useEffect(() => {
     axiosInstance.get("/users/candidate-emails").then((res) => {
       setCandidateEmails(res.data.candidateEmails);
@@ -27,7 +28,7 @@ const PostJob = () => {
   }, []);
 
   const [formData, setFormData] = useState({
-    recruiter_id: currentRecruiter?._id,
+    recruiter_id: currentRecruiter?.recruiter_id,
     jobTitle: "",
     category: "",
     description: "",
@@ -44,12 +45,14 @@ const PostJob = () => {
     tags: [],
     responsibilities: [],
     requirements: [],
-
+    email: currentRecruiter?.email,
     benefits: [],
     appliers: [],
     featured: false,
   });
-  // console.log(formData);
+  console.log(formData);
+
+
   const [tag, setTag] = useState("");
   const [responsibilitie, setResponsibilitie] = useState("");
   const [requirement, setRequirement] = useState("");
@@ -68,16 +71,16 @@ const PostJob = () => {
     }));
   }, [candidateEmails]);
 
-  useEffect(() => {
-    if (currentRecruiter?.email) {
-      setFormData((prevData) => ({
-        ...prevData,
-        company_email: currentRecruiter?.email,
-        company_name: currentRecruiter?.name,
-        candidateEmails,
-      }));
-    }
-  }, [candidateEmails, currentRecruiter]);
+  // useEffect(() => {
+  //   if (currentRecruiter?.email) {
+  //     setFormData((prevData) => ({
+  //       ...prevData,
+  //       company_email: currentRecruiter?.email,
+  //       company_name: currentRecruiter?.name,
+  //       candidateEmails,
+  //     }));
+  //   }
+  // }, [candidateEmails, currentRecruiter]);
 
   const handleAddTags = () => {
     setFormData((prev) => ({
@@ -164,7 +167,7 @@ const PostJob = () => {
 
           <div className="col-span-6 ">
             <SelectField
-            icon={<TbCategory/>}
+              icon={<TbCategory />}
               label="Category"
               name="category"
               options={[

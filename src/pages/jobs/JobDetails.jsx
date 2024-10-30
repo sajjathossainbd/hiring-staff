@@ -18,16 +18,40 @@ import { TbCoinTaka } from "react-icons/tb";
 import TitleIcon from "../../components/ui/TitleIcon";
 import { PiNotepadThin } from "react-icons/pi";
 import { MdVerified } from "react-icons/md";
+import useCurrentUser from "../../hooks/useCurrentUser";
+import axiosInstance from "../../utils/axios";
+import { useQuery } from "@tanstack/react-query";
 
 const Benefitemojis = ["🎉", "💼", "🚀", "🏆"];
 
 function JobDetails() {
   const dispatch = useDispatch();
   const { id } = useParams();
+  console.log(id);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
+
+  const { currentCandidate } = useCurrentUser();
+
+  // const [appliedJobs, setAppliedJobs] = useState([]);
+
+  const userId = currentCandidate?._id;
+
+  const { data: appliedJobs } = useQuery({
+    queryKey: ['appliedJobs', userId],
+    queryFn: async () => {
+      const res = await axiosInstance.get(`/jobs/applied-jobs/validate/${userId}`);
+      return res.data;
+    },
+    enabled: !!userId
+  });
+
+  // const = appliedJobs
+
+
+  console.log(appliedJobs);
 
   const {
     jobDetails: job,
@@ -107,6 +131,10 @@ function JobDetails() {
               <h3 className="mb-5">{jobTitle}</h3>
               {/* 02. Company Information */}
 
+              {
+                appliedJobs?.map(job => <h1>job.jobId</h1>)
+              }
+
               <div className="flex  justify-between">
                 {/* compnay information */}
                 <div className="flex items-center gap-4">
@@ -175,6 +203,9 @@ function JobDetails() {
                           </button>
                         </form>
                         <h3 className="font-bold text-lg">{jobTitle}</h3>
+
+
+
                         <ApplyJob job={job} onClose={handleClose} />
                       </div>
                     </dialog>

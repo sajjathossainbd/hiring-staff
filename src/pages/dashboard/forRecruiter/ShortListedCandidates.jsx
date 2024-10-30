@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import axiosInstance from "../../../utils/axios";
 import { useState } from "react";
 import AssignAssessments from "../../../components/dashboard/AssignAssessments";
+import AssessmentResult from "../../../components/dashboard/AssessmentResult";
 
 function ShortListedCandidates({ job }) {
   const { jobId } = useParams();
@@ -50,6 +51,7 @@ function ShortListedCandidates({ job }) {
                 <th className="rounded-l-md">Name</th>
                 <th>Date</th>
                 <th>Assessments</th>
+                <th>Assessment Result</th>
                 <th className="rounded-r-md">Status</th>
               </tr>
             </thead>
@@ -100,6 +102,35 @@ function ShortListedCandidates({ job }) {
                           </form>
                           <h3 className="font-bold text-lg">{job.jobTitle}</h3>
                           <AssignAssessments job={job} onClose={handleClose} />
+                        </div>
+                      </dialog>
+                    )}
+                  </td>
+                  <td>
+                    <button onClick={handleOpen}>
+                      <PrimaryBtnBlue title={"Assign Assessments"} />
+                    </button>
+                    {isOpen && (
+                      <dialog
+                        data-aos="zoom-in"
+                        data-aos-offset="200"
+                        data-aos-duration="700"
+                        id="my_modal_3"
+                        className="modal"
+                        open
+                      >
+                        <div className="modal-box max-w-xl mt-7">
+                          <form method="dialog">
+                            <button
+                              type="button"
+                              className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                              onClick={handleClose}
+                            >
+                              ✕
+                            </button>
+                          </form>
+
+                          <AssessmentResult job={job} onClose={handleClose} />
                         </div>
                       </dialog>
                     )}

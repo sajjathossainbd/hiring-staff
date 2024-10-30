@@ -77,7 +77,7 @@ function CandidatesFiltering() {
             <FaLayerGroup className="text-blue" />
             <Dropdown
               options={professions}
-              placeholder="Select a profession"
+              placeholder="All profession"
               onChange={(option) => handleFilterChange("profession", option)}
             />
           </div>
@@ -89,7 +89,7 @@ function CandidatesFiltering() {
             <FaMapMarkerAlt className="text-blue" />
             <Dropdown
               options={locations}
-              placeholder="Select a location"
+              placeholder="All location"
               onChange={(option) => handleFilterChange("location", option)}
             />
           </div>

@@ -1,6 +1,5 @@
 import { BsFillSendFill } from "react-icons/bs";
 import PrimaryButton from "../../../components/shared/PrimaryButton";
-import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
 import axiosInstance from "../../../utils/axios";
@@ -9,81 +8,60 @@ import DefaultInput from "../shared/DefaultInput";
 import { CgNametag } from "react-icons/cg";
 import { useState } from "react";
 import SelectField from "../shared/SelectField";
-import { FaUser } from "react-icons/fa";
-import { FaEnvelope } from "react-icons/fa";
-import { FaBriefcase } from "react-icons/fa";
-import { FaClock } from "react-icons/fa";
-import { FaPhone } from "react-icons/fa";
-import { FaImage } from "react-icons/fa";
+import { FaUser, FaEnvelope, FaBriefcase, FaClock, FaPhone, FaImage, FaGlobe, FaMapMarkerAlt, FaTools, FaFileAlt, FaFlag } from "react-icons/fa";
 import { TiDocumentText } from "react-icons/ti";
 import TextareaField from "../shared/TextareaField";
-import { FaGlobe } from "react-icons/fa";
-import { FaMapMarkerAlt } from "react-icons/fa";
 import { GrCopy } from "react-icons/gr";
-import { FaTools } from "react-icons/fa";
-import { FaFileAlt } from "react-icons/fa";
-import { FaFlag } from "react-icons/fa";
+
 const MyProfile = () => {
   const { user } = useAuth();
-
-  const [formData, setFormData] = useState({
-    name: "",
-    logo: "",
-    description: "",
-    industry: "",
-    website: "",
-    phone: "",
-    email: user?.email || "",
-    map: "",
-    location: "",
-    ceo: "",
-    businessType: "",
-    annualRevenue: "",
-    foundedYear: "",
-    companySizeCategory: "",
-    numberOfEmployees: "",
-    certifications: [],
-    awards: [],
-    technology: [],
-    socialProfiles: {},
-  });
 
   const { data: currentCandidate, refetch } = useQuery({
     queryKey: ["currentCandidate", user?.email],
     queryFn: async () => {
-      const res = await axiosInstance.get(
-        `/candidates/currentCandidate/${user?.email}`
-      );
+      const res = await axiosInstance.get(`/candidates/currentCandidate/${user?.email}`);
       return res.data;
     },
     enabled: !!user?.email,
   });
 
-  const { register, handleSubmit } = useForm();
+  const [formData, setFormData] = useState({
+    job_type: "",
+    first_name: currentCandidate?.first_name || "",
+    last_name: currentCandidate?.last_name || "",
+    special_profession: currentCandidate?.special_profession || "",
+    experience_year: currentCandidate?.experience_year || "",
+    phone_number: currentCandidate?.phone_number || "",
+    photo_url: currentCandidate?.photo_url || "",
+    resume: currentCandidate?.resume || "",
+    cover_letter: currentCandidate?.cover_letter || "",
+    skills: currentCandidate?.skills || "",
+    about_me: currentCandidate?.about_me || "",
+    city: currentCandidate?.location?.city || "",
+    state: currentCandidate?.location?.state || "",
+    country: currentCandidate?.location?.country || "",
+  });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-  const onSubmit = async (data) => {
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
     const updatedData = {
+      ...currentCandidate,
       ...formData,
-      name: data.name || currentCandidate?.name,
-      phone: data.phone || currentCandidate?.phone_number,
-      email: formData.email,
+      email: user.email,
       location: {
-        city: data.city || currentCandidate?.location?.city,
-        state: data.state || currentCandidate?.location?.state,
-        country: data.country || currentCandidate?.location?.country,
+        city: formData.city,
+        state: formData.state,
+        country: formData.country,
       },
-      about_me: data.about_me || currentCandidate?.about_me,
-      job_type: data.job_type || currentCandidate?.job_type,
     };
 
     try {
-      const res = await axiosInstance.patch(
-        `/candidates/profile/${formData.email}`,
-        updatedData
-      );
+      const res = await axiosInstance.patch(`/candidates/profile/${user.email}`, updatedData);
       if (res.data.modifiedCount > 0) {
         toast.success("Your data has been updated");
         refetch();
@@ -100,10 +78,8 @@ const MyProfile = () => {
 
   return (
     <div className="bg-white p-10 rounded-lg mt-10">
-      <form onSubmit={handleSubmit(onSubmit)} className="">
-        <h4 className="text-center font-semibold my-7 mb-4">
-          Candidate Profile Update
-        </h4>
+      <form onSubmit={onSubmit} className="">
+        <h4 className="text-center font-semibold my-7 mb-4">Candidate Profile Update</h4>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div className="mb-4">
@@ -112,14 +88,13 @@ const MyProfile = () => {
               icon={<CgNametag />}
               placeholder={"Candidate"}
               type="text"
-              name="myRole"
               disabled
             />
           </div>
 
           <div className="mb-4">
             <SelectField
-              label=" Job Type"
+              label="Job Type"
               name="jobType"
               icon={<GrCopy />}
               options={["Remote", "Hybrid", "Onsite"]}
@@ -136,17 +111,20 @@ const MyProfile = () => {
               icon={<FaUser />}
               placeholder={currentCandidate?.first_name}
               type="text"
-              name="firstName"
+              name="first_name"
+              value={formData.first_name}
+              onChange={handleChange}
             />
           </div>
           <div className="mb-4">
             <DefaultInput
               label="Last Name"
-              icon={<FaUser />} // Add the appropriate icon here
+              icon={<FaUser />}
               placeholder={currentCandidate?.last_name}
               type="text"
-              name="last_name" // Ensure this matches your form's register logic
-              {...register("last_name")} // Use the register function from react-hook-form
+              name="last_name"
+              value={formData.last_name}
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -155,22 +133,21 @@ const MyProfile = () => {
           <div className="mb-4">
             <DefaultInput
               label="Email"
-              icon={<FaEnvelope />} // Add the appropriate icon for email
+              icon={<FaEnvelope />}
               placeholder={currentCandidate?.email}
               type="email"
-              name="email"
-              disabled // This will disable the input field
+              disabled
             />
           </div>
-
           <div className="mb-4">
             <DefaultInput
               label="Special Profession"
-              icon={<FaBriefcase />} // Add the appropriate icon for special profession
+              icon={<FaBriefcase />}
               placeholder={currentCandidate?.special_profession}
               type="text"
-              name="special_profession" // Ensure this matches your form's register logic
-              {...register("special_profession")} // Use the register function from react-hook-form
+              name="special_profession"
+              value={formData.special_profession}
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -179,22 +156,23 @@ const MyProfile = () => {
           <div className="mb-4">
             <DefaultInput
               label="Years of Experience"
-              icon={<FaClock />} // Add an appropriate icon for years of experience
+              icon={<FaClock />}
               placeholder={currentCandidate?.experience_year}
               type="number"
-              name="experience_year" // Ensure this matches your form's register logic
-              {...register("experience_year")} // Use the register function from react-hook-form
+              name="experience_year"
+              value={formData.experience_year}
+              onChange={handleChange}
             />
           </div>
-
           <div className="mb-4">
             <DefaultInput
               label="Phone Number"
-              icon={<FaPhone />} // Add an appropriate icon for phone number
+              icon={<FaPhone />}
               placeholder={currentCandidate?.phone_number}
               type="tel"
-              name="phone_number" // Ensure this matches your form's register logic
-              {...register("phone_number")} // Use the register function from react-hook-form
+              name="phone_number"
+              value={formData.phone_number}
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -203,22 +181,21 @@ const MyProfile = () => {
           <div className="mb-4">
             <DefaultInput
               label="Profile Photo URL"
-              icon={<FaImage />} // Add an appropriate icon for profile photo URL
+              icon={<FaImage />}
               placeholder={currentCandidate?.photo_url}
               type="url"
-              name="image" // Ensure this matches your form's register logic
-              {...register("image")} // Use the register function from react-hook-form
+              name="photo_url"
+              value={formData.photo_url}
+              onChange={handleChange}
             />
           </div>
-
           <div className="mb-4">
             <DefaultInput
               label="Cover Image URL"
-              icon={<FaImage />} // Add an appropriate icon for cover image URL
+              icon={<FaImage />}
               placeholder="https://i.ibb.co.com/mBcjQj6/download-1.jpg"
               type="url"
-              name="imageUrl" // Ensure this matches your form's register logic
-              disabled // This will disable the input field
+              disabled
             />
           </div>
         </div>
@@ -227,22 +204,23 @@ const MyProfile = () => {
           <div className="mb-4">
             <DefaultInput
               label="Resume URL"
-              icon={<TiDocumentText />} 
+              icon={<TiDocumentText />}
               placeholder={currentCandidate?.resume}
               type="url"
-              name="resume" 
-              {...register("resume")} 
+              name="resume"
+              value={formData.resume}
+              onChange={handleChange}
             />
           </div>
-
           <div className="mb-4">
             <DefaultInput
               label="Cover Letter URL"
-              icon={<FaFileAlt />} 
+              icon={<FaFileAlt />}
               placeholder={currentCandidate?.cover_letter}
               type="url"
-              name="cover_letter" 
-              {...register("cover_letter")} 
+              name="cover_letter"
+              value={formData.cover_letter}
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -250,26 +228,23 @@ const MyProfile = () => {
         <div className="mb-4">
           <DefaultInput
             label="Skills (comma-separated)"
-            icon={<FaTools />} 
-            placeholder={currentCandidate?.skills?.join(", ")}
+            icon={<FaTools />}
             type="text"
-            name="skills" 
-            {...register("skills")} 
+            name="skills"
+            value={formData.skills}
+            onChange={handleChange}
           />
         </div>
 
         <div className="mb-4">
           <TextareaField
-            placeholder={
-              currentCandidate?.about_me ||
-              "Short description about yourself..."
-            } 
-            icon={<GrCopy />} 
-            label="About Me" 
-            name="about_me" 
-            value={formData.about_me} 
-            onChange={(e) => handleChange(e)} 
-            rows={4} 
+            placeholder={currentCandidate?.about_me || "Short description about yourself..."}
+            icon={<GrCopy />}
+            label="About Me"
+            name="about_me"
+            value={formData.about_me}
+            onChange={handleChange}
+            rows={4}
           />
         </div>
 
@@ -278,37 +253,34 @@ const MyProfile = () => {
           <div className="mb-4">
             <DefaultInput
               label="City"
-              icon={<FaMapMarkerAlt />} 
-              placeholder={
-                currentCandidate?.location?.city || "Enter your city..."
-              } 
+              icon={<FaMapMarkerAlt />}
+              placeholder={currentCandidate?.location?.city || "Enter your city..."}
               type="text"
-              name="city" 
-              {...register("city")}
+              name="city"
+              value={formData.city}
+              onChange={handleChange}
             />
           </div>
           <div className="mb-4">
             <DefaultInput
               label="State"
-              icon={<FaFlag />} 
-              placeholder={
-                currentCandidate?.location?.state || "Enter your state..."
-              } // Fallback placeholder
+              icon={<FaFlag />}
+              placeholder={currentCandidate?.location?.state || "Enter your state..."}
               type="text"
-              name="state" 
-              {...register("state")} 
+              name="state"
+              value={formData.state}
+              onChange={handleChange}
             />
           </div>
           <div className="mb-4">
             <DefaultInput
               label="Country"
-              icon={<FaGlobe />} 
-              placeholder={
-                currentCandidate?.location?.country || "Enter your country..."
-              } 
+              icon={<FaGlobe />}
+              placeholder={currentCandidate?.location?.country || "Enter your country..."}
               type="text"
-              name="country" 
-              {...register("country")} 
+              name="country"
+              value={formData.country}
+              onChange={handleChange}
             />
           </div>
         </div>

@@ -36,11 +36,12 @@ function CandidateDetails() {
     resume,
     education,
     company_experience,
-    skills,
+    // skills,
     special_profession,
     about_me,
     experience_year,
   } = candidate || {};
+  const skills = [candidate?.skills]
 
   useEffect(() => {
     dispatch(fetchCandidateDetails(id));

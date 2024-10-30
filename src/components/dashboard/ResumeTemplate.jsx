@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { PDFDocument, rgb } from "pdf-lib";
+import PrimaryBtnBlue from "../ui/PrimaryBtnBlue";
+import { IoCloudDownloadOutline } from "react-icons/io5";
 
 const ResumeTemplate = ({ data }) => {
   const [loading, setLoading] = useState(false);
 
-  // Function to draw text with wrapping
   const drawWrappedText = (page, text, x, y, options) => {
     const { size, maxWidth } = options;
     const words = text.split(" ");
@@ -14,23 +15,21 @@ const ResumeTemplate = ({ data }) => {
 
     words.forEach((word) => {
       const testLine = line + word + " ";
-      const width = testLine.length * size * 0.6; // Estimate width (0.6 is a rough multiplier)
+      const width = testLine.length * size * 0.6;
 
       if (width > maxWidth && line) {
-        // Draw the current line and reset
         page.drawText(line, { x, y: currentY, size, ...options });
         line = word + " ";
-        currentY -= 15; // Move down for next line
+        currentY -= 15;
       } else {
         line = testLine;
       }
     });
 
-    // Draw any remaining text
     if (line) {
       page.drawText(line, { x, y: currentY, size, ...options });
     }
-    return currentY - 20; // Return new Y position
+    return currentY - 20;
   };
 
   const handlePdf = async () => {
@@ -38,18 +37,16 @@ const ResumeTemplate = ({ data }) => {
     try {
       const pdfDoc = await PDFDocument.create();
 
-      // Start with a page height that will increase as needed
-      let pageHeight = 800; // Starting height, can be adjusted based on content
+      let pageHeight = 800;
 
-      const page = pdfDoc.addPage([700, pageHeight]); // Fixed width of 700 points
+      const page = pdfDoc.addPage([700, pageHeight]);
 
-      // Define font sizes and colors
       const titleFontSize = 24;
       const sectionTitleFontSize = 16;
       const regularFontSize = 12;
       const headerColor = rgb(0, 0.5, 0.7);
 
-      // Destructure data for easier access
+      // Destructure data
       const {
         name,
         email,
@@ -62,7 +59,6 @@ const ResumeTemplate = ({ data }) => {
         socialLinks,
       } = data;
 
-      // Initial vertical position
       let yOffset = 730;
 
       // Add title
@@ -80,7 +76,7 @@ const ResumeTemplate = ({ data }) => {
         `${email || "Email"} | ${phone || "Phone"}`,
         50,
         yOffset,
-        { size: regularFontSize, maxWidth: 700 } // 700 for contact info
+        { size: regularFontSize, maxWidth: 700 }
       );
       yOffset -= 20;
       drawWrappedText(page, address || "Address", 50, yOffset, {
@@ -109,7 +105,7 @@ const ResumeTemplate = ({ data }) => {
         yOffset,
         { size: regularFontSize, maxWidth: 700 }
       );
-      yOffset -= 10; // Extra spacing after description
+      yOffset -= 10;
 
       // Add education section
       page.drawText("Education:", {
@@ -210,13 +206,13 @@ const ResumeTemplate = ({ data }) => {
         { size: regularFontSize, maxWidth: 700 }
       );
 
-      // Adjust page height based on content (if necessary)
+      // page height
       if (yOffset < 20) {
-        pageHeight += 100; // Increase page height if content goes beyond
-        pdfDoc.addPage([700, pageHeight]); // Add a new page
+        pageHeight += 100;
+        pdfDoc.addPage([700, pageHeight]);
       }
 
-      // Save the PDF and trigger download
+      // Save the PDF
       const pdfBytes = await pdfDoc.save();
       const blob = new Blob([pdfBytes], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
@@ -224,7 +220,7 @@ const ResumeTemplate = ({ data }) => {
       a.href = url;
       a.download = "myResume.pdf";
       a.click();
-      URL.revokeObjectURL(url); // Cleanup
+      URL.revokeObjectURL(url);
     } catch (error) {
       console.error("PDF generation failed:", error);
     } finally {
@@ -296,12 +292,13 @@ const ResumeTemplate = ({ data }) => {
       {/* Download Button */}
       <button
         onClick={handlePdf}
-        className={`mt-6 px-4 py-2 bg-blue-500 text-white font-bold rounded shadow hover:bg-blue-700 transition duration-300 ${
-          loading ? "opacity-50 cursor-not-allowed" : ""
-        }`}
+        className={`mt-6 ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
         disabled={loading}
       >
-        {loading ? "Generating PDF..." : "Download Resume"}
+        <PrimaryBtnBlue
+          title={loading ? "Generating PDF..." : "Download Resume"}
+          icon={<IoCloudDownloadOutline />}
+        />
       </button>
     </div>
   );

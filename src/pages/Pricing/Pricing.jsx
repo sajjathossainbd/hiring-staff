@@ -5,8 +5,10 @@ import TinnyBanner from "../../components/shared/TinnyBanner";
 import Testimonial from "../../components/aboutUs/Testimonial";
 import { Helmet } from "react-helmet-async";
 import { ScrollRestoration } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Pricing = () => {
+  const {t} = useTranslation()
   return (
     <div>
       <Helmet>

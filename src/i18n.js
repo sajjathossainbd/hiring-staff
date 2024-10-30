@@ -50,8 +50,7 @@ i18n
           jobBannerDescrip:
             "Find the perfect job that fits your skills and aspirations. Browsethrough our latest job openings and take the next step in your career.",
           recruitersBannerTitle: "{{count}} Recruiters Available Now",
-          recruitersBannerDescrip:
-            "Browse top-rated recruiters across various locations, tailored to meet your project needs.",
+          recruitersBannerDescrip:"Browse top-rated recruiters across various locations, tailored to meet your project needs.",
           candidatesBannerTitle: "{{count}} candidates Available Now",
           candidatesBannerDescrip:
             "Browse top-rated professionals across various skills and locations,tailored to meet your project needs.",
@@ -138,8 +137,7 @@ i18n
           jobBannerDescrip:
             "আপনার দক্ষতা ও লক্ষ্য অনুযায়ী সেরা চাকরিটি খুঁজুন। আমাদের নতুন চাকরির বিজ্ঞাপনগুলো দেখুন এবং আপনার ক্যারিয়ারে আরও এক ধাপ এগিয়ে যান।",
           recruitersBannerTitle: "{{count}} টি নিয়োগদাতা রয়েছেন",
-          recruitersBannerDescrip:
-            "আপনার প্রকল্পের প্রয়োজন অনুসারে বিভিন্ন লোকেশনের সেরা নিয়োগকারীদের খুঁজে বের করুন।",
+          recruitersBannerDescrip:"আপনার প্রকল্পের প্রয়োজন অনুসারে বিভিন্ন লোকেশনের সেরা নিয়োগকারীদের খুঁজে বের করুন।",
           candidatesBannerTitle: "{{count}} জন চাকরি প্রার্থী রয়েছেন",
           candidatesBannerDescrip:
             "আপনার প্রকল্পের চাহিদা অনুযায়ী বিভিন্ন স্থানের ও দক্ষতার শীর্ষ পেশাজীবীদের ব্রাউজ করুন।",
@@ -185,7 +183,7 @@ i18n
       },
     },
     interpolation: {
-      escapeValue: false, // React already escapes
+      escapeValue: false, 
     },
   });
 

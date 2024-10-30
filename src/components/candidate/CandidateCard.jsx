@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { CiClock2, CiLocationOn } from "react-icons/ci";
 import { MdOutlineVerified } from "react-icons/md";
 import { LiaBuffer } from "react-icons/lia";
@@ -15,11 +14,13 @@ function CandidateCard({ candidate }) {
     first_name,
     last_name,
     special_profession,
-    skills,
+
     location,
     about_me,
     experience_year,
   } = candidate || {};
+
+  const skills = [candidate?.skills];
 
   // Retrieve the user ID from Redux or any context/provider as per your app's logic
 

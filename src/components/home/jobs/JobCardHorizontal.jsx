@@ -7,10 +7,8 @@ import { GoArrowRight } from "react-icons/go";
 import { TbCoinTaka } from "react-icons/tb";
 import { CgCalendarDates } from "react-icons/cg";
 
-function JobCardHorizontal({
-  job,
-  // recruiterLogo
-}) {
+function JobCardHorizontal({ job, recruiterLogo }) {
+
   const { _id, jobTitle, job_type, max_salary, min_salary, lastDateToApply } =
     job || {};
   const posted = new Date(lastDateToApply);
@@ -28,7 +26,7 @@ function JobCardHorizontal({
   return (
     <div className="boxBorderHoverBlue px-6 py-9 rounded-lg flex flex-col md:flex-row lg:flex-row justify-between xl:items-center items-start bg-white dark:bg-darkBlue dark:text-white">
       <div className="flex flex-col md:flex-row lg:flex-row items-center gap-5">
-        {/* <img className="w-24 rounded-lg" src={recruiterLogo} alt="" /> */}
+        <img className="w-24 rounded-lg" src={recruiterLogo} alt="" />
 
         <div>
           {/* title, type */}

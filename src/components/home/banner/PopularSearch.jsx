@@ -17,7 +17,7 @@ function PopularSearch() {
         <Link
           className="text-14 hover:underline text-darkBlue dark:text-lightText"
           key={index}
-          to={""}
+          to={"jobs-listing"}
         >
           {searches} ,
         </Link>

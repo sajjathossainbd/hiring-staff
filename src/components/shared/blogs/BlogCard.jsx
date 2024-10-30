@@ -15,7 +15,7 @@ function BlogCard({ blog }) {
   }
   const formattedDate = formatDate(date_published);
   return (
-    <div className="boxBorderHoverBlue dark:bg-darkBlue  shadow-sm bg-white dark:text-white">
+    <div className="boxBorderHoverBlue dark:bg-darkBlue  shadow-sm bg-white dark:text-white py-6">
       <div className="flex flex-col justify-between">
         <figure className="w-full flex items-center justify-center py-4">
           <img

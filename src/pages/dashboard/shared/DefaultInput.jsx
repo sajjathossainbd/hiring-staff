@@ -9,6 +9,7 @@ const DefaultInput = ({
   onChange,
   name,
   icon,
+  disabled
 }) => {
   return (
     <div>
@@ -29,6 +30,7 @@ const DefaultInput = ({
           value={value}
           onChange={onChange}
           name={name}
+          disabled={disabled}
           id="input-group-1"
           className="bg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block w-full p-3 outline-none transition-all duration-500  
           dark:bg-softGreen dark:text-gray dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"

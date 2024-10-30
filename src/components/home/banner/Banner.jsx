@@ -23,7 +23,7 @@ const Banner = () => {
                 </div>
                 <Trans i18nKey="home_hero_title">
                   The <span className="text-blue">Easiest</span> Way To Get Your
-                  New Job.
+                  New Job 🚀
                 </Trans>
               </h2>
 

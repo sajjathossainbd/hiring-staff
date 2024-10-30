@@ -102,11 +102,10 @@ function JobDetails() {
         <div className="lg:flex gap-16 dark:text-white">
           <div className="lg:w-2/3 w-full">
             {/* job details header */}
-            <div className=" bg-bgLightWhite p-10 rounded-md">
+            <div className=" bg-bgLightWhite dark:bg-darkBlue p-10 rounded-md">
               {/* 01. Job Title */}
               <h3 className="mb-5">{jobTitle}</h3>
               {/* 02. Company Information */}
-
               <div className="flex  justify-between">
                 {/* compnay information */}
                 <div className="flex items-center gap-4">

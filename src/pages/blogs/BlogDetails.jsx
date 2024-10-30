@@ -26,8 +26,6 @@ function Blogblog() {
     content: articleBody = [],
   } = blog || {};
 
-  console.log(articleBody);
-
   useEffect(() => {
     dispatch(fetchBlogDetails(id));
   }, [dispatch, id]);

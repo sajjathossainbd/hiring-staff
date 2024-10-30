@@ -11,7 +11,6 @@ function SubmitAssessment({ job, onClose }) {
     reset,
     formState: { errors },
   } = useForm();
-  console.log(job);
 
   const { assessments } = job;
   let details = "";

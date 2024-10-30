@@ -5,7 +5,6 @@ import toast from "react-hot-toast";
 import useCurrentUser from "../../hooks/useCurrentUser";
 
 function ApplyJob({ job, onClose }) {
-
   const { currentCandidate } = useCurrentUser();
 
   const {
@@ -15,14 +14,14 @@ function ApplyJob({ job, onClose }) {
     formState: { errors },
   } = useForm();
 
-  const { _id: jobId, jobTitle, company_email, company_name } = job;
+  const { _id: jobId, jobTitle, email, company_name } = job;
   // console.log(job);
 
   const onSubmit = async (data) => {
     const applicationData = {
       jobId,
       jobTitle,
-      company_email,
+      email,
       company_name,
       applicantId: currentCandidate?._id,
       applicantName: currentCandidate?.first_name,
@@ -31,7 +30,7 @@ function ApplyJob({ job, onClose }) {
       resume: data.resume,
       availability: data.availability,
     };
-    // console.log(applicationData);
+ 
     try {
       const response = await axiosInstance.post(
         `/jobs/applied-jobs`,
@@ -40,8 +39,10 @@ function ApplyJob({ job, onClose }) {
 
       if (response.status === 201) {
         toast.success("Application submitted successfully!");
-        reset();
-        onClose();
+        setTimeout(() => {
+          reset();
+          onClose();
+        }, 2000);
       }
     } catch (error) {
       toast.error("Already applied in this job.");

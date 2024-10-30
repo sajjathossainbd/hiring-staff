@@ -15,6 +15,40 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+// Category-to-Emoji Mapping
+const categoryEmojis = {
+  "All Category": "📂",
+  IoT: "🌐",
+  "Content Development": "📝",
+  "Game Development": "🎮",
+  "Content Writing": "✍️",
+  "Backend Development": "🖥️",
+  "Back-End Development": "💻",
+  "IT & Software": "👨‍💻",
+  "Product Management": "📊",
+  "IT Consultancy": "🛠️",
+  "Business & Finance": "💼",
+  "Quality Assurance": "✅",
+  Design: "🎨",
+  "Content Creation": "📸",
+  "Full Stack Development": "🔧",
+  Marketing: "📈",
+  "Business Analysis": "📈",
+  DevOps: "⚙️",
+  "Education & Career Guidance": "🎓",
+  "ERP Development": "🗂️",
+  Education: "🏫",
+  "Software Development": "💻",
+  "Mobile Development": "📱",
+  "Front End": "🖥️",
+  "Web Development": "🌍",
+  ERP: "🗂️",
+  "Data Analysis": "📊",
+  "IT Support": "🛠️",
+  "Project Management": "🗂️",
+  Consulting: "🧑‍💼",
+};
+
 function Category() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -32,8 +66,8 @@ function Category() {
 
   // Calculate job counts per category using reduce
   const jobCounts = jobs.reduce((acc, job) => {
-    const category = job.category || "Uncategorized"; 
-    acc[category] = (acc[category] || 0) + 1; 
+    const category = job.category || "Uncategorized";
+    acc[category] = (acc[category] || 0) + 1;
     return acc;
   }, {});
 
@@ -48,7 +82,8 @@ function Category() {
     slides.push(categories.slice(i, i + itemsPerSlide));
   }
 
-  const shouldLoop = slides.length > 1; 
+  const shouldLoop = slides.length > 1;
+
   return (
     <div className="pb-6">
       <section className="container px-0 sm:px-0 md:px-0 lg:px-0 xl:px-14">
@@ -67,8 +102,8 @@ function Category() {
             modules={[Pagination, Navigation, Autoplay]}
             className="mySwiper"
             style={{
-              "--swiper-navigation-size": "20px", 
-              "--swiper-navigation-color": "#000", 
+              "--swiper-navigation-size": "20px",
+              "--swiper-navigation-color": "#000",
             }}
           >
             {slides.map((slide, index) => (
@@ -78,7 +113,8 @@ function Category() {
                     <CategoryCard
                       key={idx}
                       categoryName={category}
-                      jobCount={jobCounts[category] || 0} // Display job count
+                      jobCount={jobCounts[category] || 0}
+                      emoji={categoryEmojis[category] || "❓"}
                       onCategoryClick={handleCategoryClick}
                     />
                   ))}

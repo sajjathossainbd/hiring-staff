@@ -1,4 +1,4 @@
-import { AiOutlineUserDelete } from "react-icons/ai";
+import { AiOutlineDelete, AiOutlineUserDelete } from "react-icons/ai";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { VscEye } from "react-icons/vsc";
 import axiosInstance from "../../../utils/axios";
@@ -11,14 +11,15 @@ import { CardPagination } from "../../../components/shared/CardPagination";
 import useCurrentUser from "../../../hooks/useCurrentUser";
 import { IoBriefcaseOutline } from "react-icons/io5";
 import PrimaryBtnBlue from "../../../components/ui/PrimaryBtnBlue";
+import Loading from "../../../components/ui/Loading";
 
 const AppliedJobs = () => {
   const { currentCandidate } = useCurrentUser();
 
   const userId = currentCandidate?._id;
   const navigate = useNavigate();
-  const { page = 1 } = useParams(); // Get current page from URL
-  const limit = 12; // Number of jobs per page
+  const { page = 1 } = useParams();  
+  const limit = 12;  
 
   const fetchAppliedJobs = async (currentPage, limit) => {
     const response = await axiosInstance.get(
@@ -31,6 +32,7 @@ const AppliedJobs = () => {
     // eslint-disable-next-line no-unused-vars
     data: { appliedJobs = [], totalJobs = 0, totalPages = 0 } = {},
     isError,
+    isLoading,
     refetch,
   } = useQuery({
     queryKey: ["appliedJobs", userId, page],
@@ -38,7 +40,7 @@ const AppliedJobs = () => {
     enabled: !!userId,
   });
 
-  // console.log(appliedJobs);
+  console.log(appliedJobs);
 
   const handleDelete = async (id) => {
     Swal.fire({
@@ -79,8 +81,24 @@ const AppliedJobs = () => {
     });
   };
 
-  if (isError) return <div>Error loading applied jobs.</div>;
+  // if (isError) return <div>Error loading applied jobs.</div>;
   // if (isLoading) return <Loading />;
+
+  if (
+    appliedJobs?.length === 0 ||
+    appliedJobs === undefined
+  ) {
+    return (
+      <>
+        <TinnyHeading
+          title="Shortlisted Resumes"
+          path="shortlist"
+          pathName="Shortlisted Resumes"
+        />
+        <NoFoundData title="No Shortlist Jobs Found!" />
+      </>
+    );
+  }
 
   if (!appliedJobs.length) {
     return (
@@ -168,7 +186,7 @@ const AppliedJobs = () => {
                 </Link>
                 <div className="flex space-x-4  bg-bgLightWhite text-blue font-medium rounded-md text-18 p-3">
                   <button onClick={() => handleDelete(job._id)}>
-                    <AiOutlineUserDelete className="hover:text-red-500 cursor-pointer" />
+                    <AiOutlineDelete  className="text-red-500 cursor-pointer" />
                   </button>
                 </div>
               </div>

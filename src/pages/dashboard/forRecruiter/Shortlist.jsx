@@ -8,17 +8,7 @@ import JobShortListCard from "../../../components/dashboard/JobShortListCard";
 
 const Shortlist = () => {
   const { currentRecruiter } = useCurrentUser();
-
-  // const { data: allShortlistAppliedJobs, refetch } = useQuery({
-  //   queryKey: ["allShortlistAppliedJobs", currentRecruiter?.email],
-  //   queryFn: async () => {
-  //     const res = await axiosInstance.get(
-  //       `/jobs/applied-jobs/email/shortlist/${currentRecruiter?.email}`
-  //     );
-  //     return res.data;
-  //   },
-  //   enabled: !!currentRecruiter?.email,
-  // });
+ 
 
   const { data: myJobs, refetch } = useQuery({
     queryKey: ["myJobs", currentRecruiter?.email],
@@ -46,22 +36,7 @@ const Shortlist = () => {
   });
 
   // console.log(jobShortlistedInfo);
-
-  // Function to handle status update for selected
-  // const handleUpdateStatus = async (id) => {
-  //   try {
-  //     const res = await axiosInstance.patch(
-  //       `/jobs/applied-jobs/selected/${id}`
-  //     );
-  //     if (res.status === 200) {
-  //       toast.success("Job selected successfully!");
-  //       refetch();
-  //     }
-  //   } catch (error) {
-  //     console.error("Error updating job status:", error);
-  //     toast.error("Failed to update job status.");
-  //   }
-  // };
+ 
 
   return (
     <div>

@@ -59,14 +59,11 @@ function SimilarJobs({ job }) {
                 />
               </span>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="text-14">
+            <div>
+              <div className="flex items-center gap-2">
                 <IoMdTime />
-              </div>
-              {/* how many days left */}
-              <div className="flex items-center gap-2 text-12">
-                {formattedDate}
-                <p className="text-red-600"> {result}</p>
+                <span className="text-14">{formattedDate}</span>
+                <span className="text-red-600"> {result}</span>
               </div>
             </div>
           </div>

@@ -9,13 +9,13 @@ const Footer = () => {
   return (
     <div className="container">
       <footer className="footer text-base-content lg:mt-10 mt-6">
-        <aside className="space-y-3 mr-3">
+        <aside className="mr-3 space-y-2">
           <div className="text-6">
             <LogoBlack size="medium" />
           </div>
-          <p className="max-w-72">
-            Hiring Stuff is the heart of the design community and the best
-            resource to discover and connect with designers and jobs worldwide
+          <p className="max-w-sm leading-[20px]">
+            Discover and connect with top designers and jobs worldwide on Hiring
+            Stuff.
           </p>
           <div className="flex items-center gap-3 text-2xl">
             <FaFacebook />

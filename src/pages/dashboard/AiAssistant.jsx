@@ -13,8 +13,6 @@ const AiAssistant = () => {
     localStorage.getItem("conversation") || ""
   );
 
-  console.log(answer);
-
   const [generatingAnswer, setGeneratingAnswer] = useState(false);
 
   const saveConversation = (newAnswer) => {

@@ -6,14 +6,14 @@ import { MdOutlineGroup } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 function JobShortListCard({
-  Cardtitle, //will be removed
-  img, //will be removed
-  style, //will be removed
-  link, //will be removed
+  Cardtitle, 
+  img, 
+  style, 
+  link, 
   job,
 }) {
   const { jobTitle, shortlistedCount } = job;
-  //   console.log(job);
+
   return (
     <div className="w-full bg-white p-6 rounded-lg">
       <div className={`flex items-center p-16 rounded-lg h-64 gap-6 ${style}`}>
@@ -55,7 +55,10 @@ function JobShortListCard({
         </div>
         {/* Total Applid & Profile Image */}
         <div className="">
-          <p> ( {shortlistedCount} ) Shortlisted</p>
+          <p>
+            {" "}
+            <span className="font-bold">{shortlistedCount}</span> Shortlisted
+          </p>
           <div className="">
             <div className="avatar-group -space-x-6 rtl:space-x-reverse">
               <div className="avatar">

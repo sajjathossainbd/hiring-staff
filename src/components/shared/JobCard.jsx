@@ -8,7 +8,6 @@ import { IoBriefcaseOutline } from "react-icons/io5";
 import { LiaBuffer } from "react-icons/lia";
 import { TbCoinTaka } from "react-icons/tb";
 import { WiTime7 } from "react-icons/wi";
-import BookmarkBtn from "../ui/BookmarkBtn";
 function JobCard({ job, recruiterName, recruiterLogo }) {
   const {
     _id,
@@ -69,7 +68,6 @@ function JobCard({ job, recruiterName, recruiterLogo }) {
           <Link to={`/job-details/${_id}`}>
             <SecondaryButton title="Apply Now" />
           </Link>
-          <BookmarkBtn />
         </div>
       </div>
     </div>

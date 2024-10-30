@@ -25,7 +25,6 @@ const ManageJob = () => {
     },
     enabled: !!currentRecruiter?.email,
   });
-  console.log(myJobs);
 
   // const handleDelete = (id) => {
   //   Swal.fire({
@@ -56,11 +55,11 @@ const ManageJob = () => {
         pathName={"Posted Jobs"}
       />
       {/* Create A New Job Post */}
-      <div className="flex justify-end">
+      {/* <div className="flex justify-end">
         <button>
           <PrimaryBtnBlue icon={<GoPlus />} title="Create A Job Post" />
         </button>
-      </div>
+      </div> */}
 
       {/* All Job Post */}
       <div className="grid xl:grid-cols-2 grid-cols-1 gap-6 mt-6">

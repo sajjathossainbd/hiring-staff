@@ -33,11 +33,11 @@ function JobPostCard({
       <div className="flex justify-between items-start mt-6">
         {/* Job Title & Date */}
         <div className="">
-          <button className="flex gap-1 items-center py-1 px-5 rounded-full text-white bg-gradient-to-r from-blue to-greenLight hover:from-green-500 mb-1">
-            <MdOutlineGroup />
-            Candidates
-          </button>
           <Link to={link}>
+            <button className="flex gap-1 items-center py-1 px-5 rounded-full text-white bg-gradient-to-r from-blue to-greenLight hover:from-green-500 mb-1">
+              <MdOutlineGroup />
+              Candidates
+            </button>
             <h4>{jobTitle}</h4>
           </Link>
           {/* Post & Expiry Date */}

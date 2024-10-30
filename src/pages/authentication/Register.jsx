@@ -27,7 +27,6 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
   const handleImageUpload = async (file) => {
     const formData = new FormData();
     formData.append("file", file);
@@ -67,7 +66,7 @@ const Register = () => {
           if (res.data.insertId) {
             toast.success("Successfully recruiters registered!");
             navigate(
-              location?.state ? location.state : "/dashboard/recruiter-profile"
+              location?.state ? location.state : "/dashboard/dashboard-main"
             );
           }
         });
@@ -77,7 +76,7 @@ const Register = () => {
           if (res.data.insertId) {
             toast.success("Successfully candidates registered!");
             navigate(
-              location?.state ? location.state : "/dashboard/my-profile"
+              location?.state ? location.state : "/dashboard/dashboard-main"
             );
           }
         });

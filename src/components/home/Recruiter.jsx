@@ -12,7 +12,8 @@ import { Link } from "react-router-dom";
 import PrimaryBtn from "../ui/PrimaryBtn";
 import { Trans, useTranslation } from "react-i18next";
 function Recruiter() {
-  const { t } = useTranslation();
+  // eslint-disable-next-line no-unused-vars
+  const {t} = useTranslation()
   const dispatch = useDispatch();
 
   const {

@@ -3,7 +3,7 @@ import axiosInstance from "../../utils/axios";
 import PrimaryBtnBlue from "../ui/PrimaryBtnBlue";
 import toast from "react-hot-toast";
 
-function AssignAssessments({ job, handleClose }) {
+function AssignAssessments({ job, onClose }) {
   console.log(job);
   const {
     register,
@@ -29,7 +29,7 @@ function AssignAssessments({ job, handleClose }) {
         toast.success("Assessment assigned successfully!");
         setTimeout(() => {
           reset();
-          handleClose();
+          onClose();
         }, 2000);
       }
     } catch (error) {

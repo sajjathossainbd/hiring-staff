@@ -14,14 +14,14 @@ function ApplyJob({ job, onClose }) {
     formState: { errors },
   } = useForm();
 
-  const { _id: jobId, jobTitle, company_email, company_name } = job;
+  const { _id: jobId, jobTitle, email, company_name } = job;
   // console.log(job);
 
   const onSubmit = async (data) => {
     const applicationData = {
       jobId,
       jobTitle,
-      company_email,
+      email,
       company_name,
       applicantId: currentCandidate?._id,
       applicantName: currentCandidate?.first_name,
@@ -30,7 +30,7 @@ function ApplyJob({ job, onClose }) {
       resume: data.resume,
       availability: data.availability,
     };
-    // console.log(applicationData);
+ 
     try {
       const response = await axiosInstance.post(
         `/jobs/applied-jobs`,

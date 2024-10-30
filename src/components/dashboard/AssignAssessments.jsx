@@ -4,7 +4,6 @@ import PrimaryBtnBlue from "../ui/PrimaryBtnBlue";
 import toast from "react-hot-toast";
 
 function AssignAssessments({ job, onClose }) {
-  console.log(job);
   const {
     register,
     handleSubmit,
@@ -17,14 +16,13 @@ function AssignAssessments({ job, onClose }) {
       assessmentDetails: data.assessmentDetails,
       dueDate: data.dueDate,
     };
-    console.log(assessmentData);
     try {
       const response = await axiosInstance.patch(
         `/jobs/applied-jobs/assign-assessment/${job?._id}`,
         assessmentData
       );
 
-      console.log(response.data);
+      // console.log(response.data);
       if (response.status === 200) {
         toast.success("Assessment assigned successfully!");
         setTimeout(() => {

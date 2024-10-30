@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../../utils/axios";
 import NoFoundData from "../../../components/ui/NoFoundData";
 import { CardPagination } from "../../../components/shared/CardPagination";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useCurrentUser from "../../../hooks/useCurrentUser";
 import { IoBriefcaseOutline } from "react-icons/io5";
 import { MdOutlineMailOutline } from "react-icons/md";
@@ -87,7 +87,7 @@ const ShortlistedJobs = () => {
                   <IoBriefcaseOutline />
                 </div>
                 <button className="bg-bgLightWhite text-blue font-medium rounded-full text-14 px-6 py-1 pb-2">
-                  {job?.shortlist}
+                  {"Shortlisted"}
                 </button>
               </div>
 
@@ -115,9 +115,6 @@ const ShortlistedJobs = () => {
               </div>
 
               <div className="flex items-center gap-6 mt-6">
-                <Link to={`/job-details/${job?.jobId}`}>
-                  <PrimaryBtnBlue icon={<VscEye />} title={"Job Details"} />
-                </Link>
                 <button onClick={() => handleOpen(job)}>
                   <PrimaryBtnBlue icon={<VscEye />} title={"Assignment"} />
                 </button>

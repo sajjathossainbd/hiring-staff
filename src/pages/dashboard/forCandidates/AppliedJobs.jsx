@@ -1,4 +1,4 @@
-import { AiOutlineUserDelete } from "react-icons/ai";
+import { AiOutlineDelete, AiOutlineUserDelete } from "react-icons/ai";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { VscEye } from "react-icons/vsc";
 import axiosInstance from "../../../utils/axios";
@@ -183,7 +183,7 @@ const AppliedJobs = () => {
                 </Link>
                 <div className="flex space-x-4  bg-bgLightWhite text-blue font-medium rounded-md text-18 p-3">
                   <button onClick={() => handleDelete(job._id)}>
-                    <AiOutlineUserDelete className="hover:text-red-500 cursor-pointer" />
+                    <AiOutlineDelete  className="text-red-500 cursor-pointer" />
                   </button>
                 </div>
               </div>

@@ -6,10 +6,10 @@ import { MdOutlineGroup } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 function JobPostCard({
-  Cardtitle, //will be removed
-  img, //will be removed
-  style, //will be removed
-  link, //will be removed
+  Cardtitle, 
+  img, 
+  style, 
+  link, 
   job,
 }) {
   const { jobTitle, applicationsCount } = job;

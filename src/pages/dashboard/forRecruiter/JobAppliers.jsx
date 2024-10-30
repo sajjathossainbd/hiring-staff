@@ -1,5 +1,5 @@
 import PrimaryBtnBlue from "../../../components/ui/PrimaryBtnBlue";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axiosInstance from "./../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
@@ -63,6 +63,7 @@ function JobAppliers() {
       });
     }
   };
+
   return (
     <div className="p-6 bg-gray-50">
       <h1 className="text-2xl font-semibold text-gray-700 mb-4">
@@ -76,7 +77,7 @@ function JobAppliers() {
             <tr className="light:bg-white dark:text-white text-16 rounded-sm">
               <th className="rounded-l-md">Name</th>
               <th>Date</th>
-              <th>Details</th>
+              {/* <th>Details</th> */}
               <th className="rounded-r-md">Status</th>
               <th>Reject</th>
             </tr>
@@ -106,12 +107,11 @@ function JobAppliers() {
                   </div>
                 </td>
                 <td>26 October, 2024</td>
-                <td>
-                  <button>
-                    {" "}
+                {/* <td>
+                  <Link to={`/candidate-details/${applyer?.applicantId}`}>
                     <PrimaryBtnBlue title={"View Details"} />
-                  </button>
-                </td>
+                  </Link>
+                </td> */}
                 <td>
                   <select
                     onChange={(event) =>

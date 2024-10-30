@@ -25,7 +25,6 @@ const ManageJob = () => {
     },
     enabled: !!currentRecruiter?.email,
   });
-  console.log(myJobs);
 
   // const handleDelete = (id) => {
   //   Swal.fire({

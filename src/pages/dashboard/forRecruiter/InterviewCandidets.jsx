@@ -18,7 +18,6 @@ function InterviewCandidets() {
     },
     enabled: !!currentRecruiter?.email,
   });
-  console.log(myJobs);
 
   const jobInterviewInfo = myJobs?.map((job) => {
     const InteriewApplicants = (job.applications || []).filter(
@@ -33,7 +32,6 @@ function InterviewCandidets() {
     };
   });
 
-  console.log(jobInterviewInfo);
   return (
     <div>
       <TinnyHeading

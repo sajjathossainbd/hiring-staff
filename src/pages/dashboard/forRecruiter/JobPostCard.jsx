@@ -54,7 +54,10 @@ function JobPostCard({
         </div>
         {/* Total Applid & Profile Image */}
         <div className="">
-          <p> ( {applicationsCount} ) Applied</p>
+          <p>
+            {" "}
+            <span className="font-bold">{applicationsCount}</span> Applied
+          </p>
           <div className="">
             <div className="avatar-group -space-x-6 rtl:space-x-reverse">
               <div className="avatar">

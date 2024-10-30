@@ -55,7 +55,10 @@ function JobShortListCard({
         </div>
         {/* Total Applid & Profile Image */}
         <div className="">
-          <p> ( {shortlistedCount} ) Shortlisted</p>
+          <p>
+            {" "}
+            <span className="font-bold">{shortlistedCount}</span> Shortlisted
+          </p>
           <div className="">
             <div className="avatar-group -space-x-6 rtl:space-x-reverse">
               <div className="avatar">

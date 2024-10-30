@@ -50,11 +50,6 @@ const RecruiterCard = ({ recruiter }) => {
               icon={<CiLocationOn />}
               style="bg-softGreen text-green"
             />
-            {/* <MiniBtn
-              value={`4 Open Job`}
-              icon={<HiOutlineBriefcase />}
-              style="bg-softGreen text-blue"
-            /> */}
           </div>
 
           {/* Rating */}

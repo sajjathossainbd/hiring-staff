@@ -185,7 +185,7 @@ i18n
       },
     },
     interpolation: {
-      escapeValue: false, // React already escapes
+      escapeValue: false, 
     },
   });
 

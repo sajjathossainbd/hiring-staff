@@ -59,7 +59,7 @@ function RecruitersFiltering() {
             <FaLayerGroup className="text-blue" />
             <Dropdown
               options={industries}
-              placeholder="Select a industry"
+              placeholder="All industry"
               onChange={(option) => handleFilterChange("industry", option)}
             />
           </div>
@@ -71,7 +71,7 @@ function RecruitersFiltering() {
             <FaMapMarkerAlt className="text-blue" />
             <Dropdown
               options={locations}
-              placeholder="Select a location"
+              placeholder="All location"
               onChange={(option) => handleFilterChange("location", option)}
             />
           </div>
@@ -83,7 +83,7 @@ function RecruitersFiltering() {
             <MdConfirmationNumber className="text-blue" />
             <Dropdown
               options={employeeCounts}
-              placeholder="Select a number"
+              placeholder="Members"
               onChange={(option) =>
                 handleFilterChange("numberOfEmployees", option)
               } // updated name to match backend

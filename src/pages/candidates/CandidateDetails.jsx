@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { ScrollRestoration, useParams } from "react-router-dom";
 import { fetchCandidateDetails } from "../../features/candidates/candidateDetails/candidateDetailsSlice";
 import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
@@ -194,6 +194,7 @@ function CandidateDetails() {
             <Overview candidate={candidate} />
           </div>
         </div>
+        <ScrollRestoration />
       </div>
     );
   }

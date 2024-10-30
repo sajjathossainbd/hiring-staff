@@ -60,7 +60,7 @@ const AiAssistant = () => {
         pathName={"My Payments"}
       />
 
-      <div className=" bg-white p-10 rounded-lg">
+      <div className=" light:bg-white p-10 rounded-lg">
         <Header title="AI Assistant" />
         <AnswerBox answer={answer} />
         <QuestionForm
@@ -106,12 +106,12 @@ const AnswerBox = ({ answer }) => (
             component: "span",
             props: { className: "font-semibold text-blue-600" },
           },
-        
+
           li: {
             component: "li",
             props: { className: "mb-2 ml-4 list-disc text-gray-800" },
           },
-    
+
           p: {
             component: "p",
             props: { className: "mb-4 text-gray-600" },
@@ -130,8 +130,8 @@ const QuestionForm = ({ question, onChange, onSubmit, generatingAnswer }) => (
       required
       value={question}
       onChange={(e) => onChange(e.target.value)}
-      className="bg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block w-full p-3 outline-none transition-all duration-500  
-          dark:bg-softGreen dark:text-gray dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"
+      className="bg-white dark:bg-blue border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block w-full p-3 outline-none transition-all duration-500  
+          dark:text-white dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"
       placeholder="Ask me anything..."
       rows="2"
     ></textarea>

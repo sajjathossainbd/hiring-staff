@@ -36,10 +36,10 @@ function CandidatesProfileUI() {
   } = currentCandidate || {};
 
   return (
-    <div className="bg-white p-10 rounded-lg mt-10 ">
+    <div className="light:bg-white p-10 rounded-lg mt-10 ">
       <div className="flex flex-col items-center">
         <div
-          className="relative w-full h-36 md:h-44 lg:h-60 xl:h-72 bg-cover bg-center border-[7px] border-white rounded-xl"
+          className="relative w-full h-36 md:h-44 lg:h-60 xl:h-72 bg-cover bg-center border-[7px] light:border-white rounded-xl"
           style={{
             backgroundImage: `url(${
               currentCandidate?.coverImage ||
@@ -69,7 +69,7 @@ function CandidatesProfileUI() {
           name={phone_number}
         />
         <InfoCard
-           icon={<FaBriefcase  />}
+          icon={<FaBriefcase />}
           label={"Profession"}
           name={special_profession}
         />
@@ -78,9 +78,9 @@ function CandidatesProfileUI() {
           label={"Experience Year"}
           name={experience_year}
         />
-        <InfoCard  icon={<GrCopy />} label={"Job Type"} name={job_type} />
+        <InfoCard icon={<GrCopy />} label={"Job Type"} name={job_type} />
         <InfoCard
-          icon={<FaMapMarkerAlt />} 
+          icon={<FaMapMarkerAlt />}
           label={"Location"}
           name={`${location.city}, ${location.country}`}
         />

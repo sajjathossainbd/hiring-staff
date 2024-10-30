@@ -64,7 +64,6 @@ function JobAppliers() {
     }
   };
 
-
   return (
     <div className="p-6 bg-gray-50">
       <h1 className="text-2xl font-semibold text-gray-700 mb-4">
@@ -75,7 +74,7 @@ function JobAppliers() {
         <table className="table w-full border-separate border-spacing-y-4">
           {/* head */}
           <thead>
-            <tr className="bg-white text-16 rounded-sm">
+            <tr className="light:bg-white dark:text-white text-16 rounded-sm">
               <th className="rounded-l-md">Name</th>
               <th>Date</th>
               {/* <th>Details</th> */}
@@ -85,7 +84,10 @@ function JobAppliers() {
           </thead>
           <tbody>
             {applications?.map((applyer, index) => (
-              <tr key={index} className="bg-white rounded-md shadow-sm">
+              <tr
+                key={index}
+                className="light:bg-white border dark:text-white dark:border dark:border-white rounded-md shadow-sm"
+              >
                 <td className="rounded-l-md">
                   <div className="flex items-center gap-3">
                     <div className="avatar">
@@ -116,7 +118,7 @@ function JobAppliers() {
                       handleSelectChange(applyer?._id, event.target.value)
                     }
                     value={applyer?.shortlist}
-                    className="rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white p-2 hover:bg-blue-100 cursor-pointer"
+                    className="rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white p-2 hover:bg-blue-100 cursor-pointer dark:bg-darkBlue"
                     defaultValue=""
                   >
                     <option value="" disabled>

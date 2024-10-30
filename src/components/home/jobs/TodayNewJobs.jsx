@@ -3,12 +3,14 @@ import JobCardHorizontal from "./JobCardHorizontal";
 import { useEffect, useState } from "react";
 import { fetchJobsListing } from "../../../features/jobs/jobsListing/jobsListingSlice";
 import { fetchRecruiterDetails } from "../../../features/recruiters/recruiterDetails/recruiterDetailsSlice";
+import Loading from "../../ui/Loading";
 import NoFoundData from "../../ui/NoFoundData";
 import { Link } from "react-router-dom";
 import PrimaryBtn from "../../ui/PrimaryBtn";
 import { Trans } from "react-i18next";
 
 function TodayNewJobs() {
+
   const dispatch = useDispatch();
   const {
     jobsListing: jobs,
@@ -59,23 +61,6 @@ function TodayNewJobs() {
   let content;
 
   if (isLoading) {
-<<<<<<< HEAD
-    content = (
-      <div className="grid gap-10">
-        <JobCardHorizontal isLoading={true} />
-        <JobCardHorizontal isLoading={true} />
-        <JobCardHorizontal isLoading={true} />
-      </div>
-    );
-  } else if (!isLoading && isError) {
-    content = <NoFoundData title="No Jobs Found!" />;
-  } else if (!isError && jobsData.length === 0) {
-    content = <NoFoundData title="No Jobs Found!" />;
-  } else {
-    content = (
-      <div className="grid gap-10">
-        {jobsData.map((job) => {
-=======
     content = <Loading />;
   } else if (isError || !jobs?.jobs?.length) {
     content = <NoFoundData title={<Trans i18nKey="noJobsFound" />} />;
@@ -83,19 +68,13 @@ function TodayNewJobs() {
     content = (
       <div className="grid gap-4">
         {jobs.jobs.slice(0, 3).map(job => {
->>>>>>> d165969842f51e5571934f8c3edbc6f6896b2fb9
           const recruiter = recruitersData[job.recruiter_id];
           return (
             <JobCardHorizontal
               key={job._id}
               job={job}
-<<<<<<< HEAD
-              recruiterLogo={recruiter?.logo}
-              isLoading={false} // Data is loaded
-=======
               recruiterName={recruiter?.name}
               recruiterLogo={recruiter?.logo}
->>>>>>> d165969842f51e5571934f8c3edbc6f6896b2fb9
             />
           );
         })}
@@ -104,6 +83,7 @@ function TodayNewJobs() {
   }
 
   return (
+
     <div className="bg-bgLightBlue dark:bg-darkBlue py-12">
       <div className="container py-0">
         <h3 className="hover:text-blue transition-all duration-500">

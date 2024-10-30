@@ -344,7 +344,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "interview-candidates-list",
+        path: "interview-candidates/:jobId",
         element: <InterviewCandidetsList />,
       },
       {

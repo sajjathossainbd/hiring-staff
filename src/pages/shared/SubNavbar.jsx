@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import DesktopNavItems from "../../components/navbar/DesktopNavItems";
 import MobileNavItems from "../../components/navbar/MobileNavItems";
@@ -11,11 +10,21 @@ import { LiaCitySolid } from "react-icons/lia";
 import { TbMoneybag } from "react-icons/tb";
 
 function SubNavbar() {
-
   const { t } = useTranslation();
   const { user, logOut } = useAuth();
   const [scrollDirection, setScrollDirection] = useState("up");
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isXL, setIsXL] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsXL(window.innerWidth >= 1280); // xl screens start at 1280px in Tailwind CSS
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,9 +66,7 @@ function SubNavbar() {
     },
   ];
 
-
-
-  return (
+  const animatedNavbar = (
     <motion.div
       initial={false}
       animate={{ y: scrollDirection === "down" ? -100 : 0 }}
@@ -74,13 +81,20 @@ function SubNavbar() {
     >
       <div className="container py-0">
         <DesktopNavItems navLinks={navLinks} />
-        <MobileNavItems
-          navLinks={navLinks}
-          user={user}
-          logOut={logOut}
-        />
+        <MobileNavItems navLinks={navLinks} user={user} logOut={logOut} />
       </div>
     </motion.div>
+  );
+
+  return isXL ? (
+    animatedNavbar
+  ) : (
+    <div className="fixed bg-white dark:bg-darkBlue dark:text-white top-0 z-50 py-2 w-full ">
+      <div className="container py-0">
+        <DesktopNavItems navLinks={navLinks} />
+        <MobileNavItems navLinks={navLinks} user={user} logOut={logOut} />
+      </div>
+    </div>
   );
 }
 

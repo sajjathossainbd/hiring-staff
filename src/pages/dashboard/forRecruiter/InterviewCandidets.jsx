@@ -1,8 +1,37 @@
 import TinnyHeading from "../shared/TinnyHeading";
 import JobPostCard from "./JobPostCard";
 import interview from "./../../../../public/interview2.json";
+import useCurrentUser from "../../../hooks/useCurrentUser";
+import { useQuery } from "@tanstack/react-query";
+import axiosInstance from "../../../utils/axios";
 
 function InterviewCandidets() {
+  const { currentRecruiter } = useCurrentUser();
+
+  const { data: myJobs, refetch } = useQuery({
+    queryKey: ["myJobs", currentRecruiter?.email],
+    queryFn: async () => {
+      const res = await axiosInstance.get(
+        `/jobs/email/${currentRecruiter.email}`
+      );
+      return res.data;
+    },
+    enabled: !!currentRecruiter?.email,
+  });
+
+  const jobInterviewInfo = myJobs?.map((job) => {
+    const InteriewApplicants = (job.applications || []).filter(
+      (application) => application.interview === true
+    );
+
+    return {
+      jobId: job._id,
+      jobTitle: job.jobTitle,
+      InterviewCount: InteriewApplicants.length,
+      InteriewApplicants: InteriewApplicants,
+    };
+  });
+
   return (
     <div>
       <TinnyHeading
@@ -13,14 +42,18 @@ function InterviewCandidets() {
 
       {/* shortlisted candidates list */}
       <div className="grid lg:grid-cols-2 gap-6 mt-6">
-        {/* <JobPostCard
-          Cardtitle="Interview Candidates"
-          jobTitle="Fresher React Developer"
-          statusTitle="Intvw"
-          img={interview}
-          style="gradient-3"
-          link="/dashboard/interview-candidates-list"
-        /> */}
+        {jobInterviewInfo?.map((job) => (
+          <JobPostCard
+            key={job.jobId}
+            Cardtitle="Interview Candidates"
+            jobTitle={job.jobTitle}
+            statusTitle={"Interview"}
+            img={interview}
+            style="gradient-3"
+            link={`/dashboard/interview-candidates/${job.jobId}`}
+            job={job}
+          />
+        ))}
       </div>
     </div>
   );

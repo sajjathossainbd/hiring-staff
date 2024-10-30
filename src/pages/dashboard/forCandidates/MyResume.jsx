@@ -2,6 +2,27 @@ import { useState } from "react";
 import { BsFillSendFill } from "react-icons/bs";
 import PrimaryButton from "../../../components/shared/PrimaryButton";
 import ResumeTemplate from "../../../components/dashboard/ResumeTemplate";
+import DefaultInput from "../shared/DefaultInput";
+import {
+  TbBrandFacebook,
+  TbBrandGithub,
+  TbBrandLinkedin,
+  TbBrandTwitter,
+  TbBuilding,
+  TbCalendar,
+  TbCalendarTime,
+  TbCertificate,
+  TbClock,
+  TbGenderFemale,
+  TbHome,
+  TbMail,
+  TbPhone,
+  TbStar,
+  TbUser,
+} from "react-icons/tb";
+import SelectField from "../shared/SelectField";
+import TextareaField from "../shared/TextareaField";
+import { GrCopy } from "react-icons/gr";
 
 const MyResume = () => {
   const [formData, setFormData] = useState({
@@ -12,8 +33,8 @@ const MyResume = () => {
     address: "",
     gender: "",
     description: "",
-    education: { title: "", degree: "", institute: "", year: "" },
-    skill: { title: "", experience: "" },
+    education: [{ title: "", degree: "", institute: "", year: "" }],
+    skills: [{ title: "", experience: "" }],
     socialLinks: { facebook: "", twitter: "", linkedin: "", github: "" },
   });
   const [submitted, setSubmitted] = useState(false);
@@ -26,19 +47,23 @@ const MyResume = () => {
     }));
   };
 
-  const handleEducationChange = (e) => {
+  const handleEducationChange = (index, e) => {
     const { name, value } = e.target;
+    const newEducation = [...formData.education];
+    newEducation[index] = { ...newEducation[index], [name]: value };
     setFormData((prevData) => ({
       ...prevData,
-      education: { ...prevData.education, [name]: value },
+      education: newEducation,
     }));
   };
 
-  const handleSkillChange = (e) => {
+  const handleSkillChange = (index, e) => {
     const { name, value } = e.target;
+    const newSkills = [...formData.skills];
+    newSkills[index] = { ...newSkills[index], [name]: value };
     setFormData((prevData) => ({
       ...prevData,
-      skill: { ...prevData.skill, [name]: value },
+      skills: newSkills,
     }));
   };
 
@@ -62,317 +87,211 @@ const MyResume = () => {
   return (
     <div>
       <h3>My Resume</h3>
-
       <div className="mt-8">
         <form onSubmit={handleSubmit}>
           <h4>Basic Information</h4>
-          {/* name and email */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
-            <div className="mb-4">
-              <label htmlFor="name" className="block text-gray font-bold mb-2">
-                Name
-              </label>
-              <input
-                name="name"
-                id="name"
-                type="text"
-                placeholder="Name"
-                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="email" className="block text-gray font-bold mb-2">
-                Email
-              </label>
-              <input
-                name="email"
-                id="email"
-                type="email"
-                placeholder="Email Address"
-                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
-                onChange={handleChange}
-                required
-              />
-            </div>
-          </div>
-          {/* phone and birth */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div className="mb-4">
-              <label htmlFor="birth" className="block text-gray font-bold mb-2">
-                Date of Birth
-              </label>
-              <input
-                name="birth"
-                id="birth"
-                type="text"
-                placeholder="Date of Birth"
-                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="phone" className="block text-gray font-bold mb-2">
-                Phone
-              </label>
-              <input
-                name="phone"
-                id="phone"
-                type="text"
-                placeholder="+880-"
-                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
-                onChange={handleChange}
-                required
-              />
-            </div>
-          </div>
-          {/* address and gender */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div className="mb-4">
-              <label
-                htmlFor="address"
-                className="block text-gray font-bold mb-2"
-              >
-                Address
-              </label>
-              <input
-                name="address"
-                id="address"
-                type="text"
-                placeholder="Address"
-                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label
-                htmlFor="gender"
-                className="block text-gray font-bold mb-2"
-              >
-                Gender
-              </label>
-              <select
-                name="gender"
-                id="gender"
-                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
-                onChange={handleChange}
-                required
-              >
-                <option value="" disabled selected>
-                  Select your gender
-                </option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-          </div>
-          {/* description */}
-          <div className="mb-4">
-            <label
-              htmlFor="description"
-              className="block text-gray font-bold mb-2"
-            >
-              Description
-            </label>
-            <textarea
-              name="description"
-              id="description"
-              rows="5"
-              placeholder="Short description about you.."
-              className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
+            <DefaultInput
+              label="Name"
+              icon={<TbUser />}
+              type="text"
+              name="name"
+              placeholder="Name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+            <DefaultInput
+              label="Email"
+              icon={<TbMail />}
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              value={formData.email}
               onChange={handleChange}
               required
             />
           </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <DefaultInput
+              label="Date of Birth"
+              icon={<TbCalendar />}
+              type="text"
+              name="birth"
+              placeholder="Date of Birth"
+              value={formData.birth}
+              onChange={handleChange}
+              required
+            />
+            <DefaultInput
+              label="Phone"
+              icon={<TbPhone />}
+              type="text"
+              name="phone"
+              placeholder="+880-"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <DefaultInput
+              label="Address"
+              icon={<TbHome />}
+              type="text"
+              name="address"
+              placeholder="Address"
+              value={formData.address}
+              onChange={handleChange}
+              required
+            />
+            <SelectField
+              label="Gender"
+              name="gender"
+              icon={<TbGenderFemale />}
+              options={["Select your gender", "Male", "Female", "Other"]}
+              value={formData.gender}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <TextareaField
+            label="Description"
+            name="description"
+            placeholder="Short description about you.."
+            icon={<GrCopy />}
+            value={formData.description}
+            onChange={handleChange}
+            required
+          />
 
           <h4>Education:</h4>
-          {/* title and degree */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 mt-2">
-            <div className="mb-4">
-              <label
-                htmlFor="educationTitle"
-                className="block text-gray font-bold mb-2"
-              >
-                Title
-              </label>
-              <input
-                name="title"
-                id="educationTitle"
-                type="text"
-                placeholder="Education title"
-                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
-                onChange={handleEducationChange}
-              />
+          {formData.education.map((edu, index) => (
+            <div key={index}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 mt-2">
+                <DefaultInput
+                  label="Title"
+                  icon={<TbCertificate />}
+                  type="text"
+                  name="title"
+                  placeholder="Education title"
+                  value={edu.title}
+                  onChange={(e) => handleEducationChange(index, e)}
+                />
+                <DefaultInput
+                  label="Degree"
+                  icon={<TbCertificate />}
+                  type="text"
+                  name="degree"
+                  placeholder="Degree"
+                  value={edu.degree}
+                  onChange={(e) => handleEducationChange(index, e)}
+                />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <DefaultInput
+                  label="Institute"
+                  icon={<TbBuilding />}
+                  type="text"
+                  name="institute"
+                  placeholder="Institute"
+                  value={edu.institute}
+                  onChange={(e) => handleEducationChange(index, e)}
+                />
+                <DefaultInput
+                  label="Year"
+                  icon={<TbCalendarTime />}
+                  type="text"
+                  name="year"
+                  placeholder="Year"
+                  value={edu.year}
+                  onChange={(e) => handleEducationChange(index, e)}
+                />
+              </div>
             </div>
-            <div className="mb-4">
-              <label
-                htmlFor="degree"
-                className="block text-gray font-bold mb-2"
-              >
-                Degree
-              </label>
-              <input
-                name="degree"
-                id="degree"
-                type="text"
-                placeholder="Degree"
-                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
-                onChange={handleEducationChange}
-              />
-            </div>
-          </div>
-          {/* institute and year */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div className="mb-4">
-              <label
-                htmlFor="institute"
-                className="block text-gray font-bold mb-2"
-              >
-                Institute
-              </label>
-              <input
-                name="institute"
-                id="institute"
-                type="text"
-                placeholder="Institute"
-                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
-                onChange={handleEducationChange}
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="year" className="block text-gray font-bold mb-2">
-                Year
-              </label>
-              <input
-                name="year"
-                id="year"
-                type="text"
-                placeholder="Year"
-                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
-                onChange={handleEducationChange}
-              />
-            </div>
-          </div>
+          ))}
 
-          <h4>Skill:</h4>
-          {/* title and experience */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 mt-2">
-            <div className="mb-4">
-              <label
-                htmlFor="skillTitle"
-                className="block text-gray font-bold mb-2"
-              >
-                Title
-              </label>
-              <input
-                name="title"
-                id="skillTitle"
-                type="text"
-                placeholder="Skill Title"
-                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
-                onChange={handleSkillChange}
-                required
-              />
+          <h4>Skills:</h4>
+          {formData.skills.map((skill, index) => (
+            <div key={index}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 mt-2">
+                <DefaultInput
+                  label="Title"
+                  icon={<TbStar />}
+                  type="text"
+                  name="title"
+                  placeholder="Skill Title"
+                  value={skill.title}
+                  onChange={(e) => handleSkillChange(index, e)}
+                  required
+                />
+                <DefaultInput
+                  label="Experience"
+                  icon={<TbClock />}
+                  type="text"
+                  name="experience"
+                  placeholder="Experience Level"
+                  value={skill.experience}
+                  onChange={(e) => handleSkillChange(index, e)}
+                  required
+                />
+              </div>
             </div>
-            <div className="mb-4">
-              <label
-                htmlFor="experience"
-                className="block text-gray font-bold mb-2"
-              >
-                Experience
-              </label>
-              <input
-                name="experience"
-                id="experience"
-                type="text"
-                placeholder="Experience Level"
-                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
-                onChange={handleSkillChange}
-                required
-              />
-            </div>
-          </div>
+          ))}
 
           <h4>Social Links:</h4>
-          {/* Social Links */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 mt-2">
-            <div className="mb-4">
-              <label
-                htmlFor="facebook"
-                className="block text-gray font-bold mb-2"
-              >
-                Facebook URL
-              </label>
-              <input
-                name="facebook"
-                id="facebook"
-                type="text"
-                placeholder="Facebook URL"
-                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
-                onChange={handleSocialChange}
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label
-                htmlFor="twitter"
-                className="block text-gray font-bold mb-2"
-              >
-                Twitter URL
-              </label>
-              <input
-                name="twitter"
-                id="twitter"
-                type="text"
-                placeholder="Twitter URL"
-                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
-                onChange={handleSocialChange}
-                required
-              />
-            </div>
+            <DefaultInput
+              label="Facebook URL"
+              icon={<TbBrandFacebook />}
+              type="text"
+              name="facebook"
+              placeholder="Facebook URL"
+              value={formData.socialLinks.facebook}
+              onChange={handleSocialChange}
+              required
+            />
+            <DefaultInput
+              label="Twitter URL"
+              icon={<TbBrandTwitter />}
+              type="text"
+              name="twitter"
+              placeholder="Twitter URL"
+              value={formData.socialLinks.twitter}
+              onChange={handleSocialChange}
+              required
+            />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div className="mb-4">
-              <label
-                htmlFor="linkedin"
-                className="block text-gray font-bold mb-2"
-              >
-                LinkedIn URL
-              </label>
-              <input
-                name="linkedin"
-                id="linkedin"
-                type="text"
-                placeholder="LinkedIn URL"
-                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
-                onChange={handleSocialChange}
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label
-                htmlFor="github"
-                className="block text-gray font-bold mb-2"
-              >
-                GitHub URL
-              </label>
-              <input
-                name="github"
-                id="github"
-                type="text"
-                placeholder="GitHub URL"
-                className="w-full px-4 py-4 border-none bg-lightText text-14 focus:outline-lightText focus:bg-white rounded-sm"
-                onChange={handleSocialChange}
-                required
-              />
-            </div>
+            <DefaultInput
+              label="LinkedIn URL"
+              icon={<TbBrandLinkedin />}
+              type="text"
+              name="linkedin"
+              placeholder="LinkedIn URL"
+              value={formData.socialLinks.linkedin}
+              onChange={handleSocialChange}
+              required
+            />
+            <DefaultInput
+              label="GitHub URL"
+              icon={<TbBrandGithub />}
+              type="text"
+              name="github"
+              placeholder="GitHub URL"
+              value={formData.socialLinks.github}
+              onChange={handleSocialChange}
+              required
+            />
           </div>
 
-          <PrimaryButton title={"Submit Now"} icon={<BsFillSendFill />} />
+          <PrimaryButton
+            type="submit"
+            title={"Generate My Resume"}
+            icon={<BsFillSendFill />}
+          >
+            Generate My Resume
+          </PrimaryButton>
         </form>
       </div>
     </div>

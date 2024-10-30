@@ -4,21 +4,19 @@ import useCurrentUser from "../hooks/useCurrentUser";
 import useAuth from "../hooks/useAuth";
 import Loading from "../components/ui/Loading";
 
-
 const CandidateRoute = ({ children }) => {
-
-    const location = useLocation()
-    const { user, loading } = useAuth()
-
+    const location = useLocation();
+    const { user, loading } = useAuth();
     const { currentCandidate } = useCurrentUser();
 
     if (loading) {
-        return <Loading />
+        return <Loading />;
     }
+
     if (user && currentCandidate) {
-        return children
+        return children;
     }
-    return <Navigate to="/" state={location?.pathname || "/"}></Navigate>
+    return <Navigate to="/sign-in" state={{ from: location }} replace />;
 };
 
 export default CandidateRoute;

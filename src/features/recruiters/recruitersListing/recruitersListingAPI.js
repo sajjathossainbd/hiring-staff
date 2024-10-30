@@ -3,9 +3,9 @@ import axiosInstance from "../../../utils/axios";
 export const getRecruitersListing = async (filters) => {
   const {
     search = "",
-    city = "",
+    location = "",
     industry = "",
-    teamSize = "",
+    numberOfEmployees = "",
     page = 1,
     limit = 9,
   } = filters || {};
@@ -13,9 +13,9 @@ export const getRecruitersListing = async (filters) => {
   const queryParams = {};
 
   if (search) queryParams.search = search;
-  if (city) queryParams.city = city;
+  if (location) queryParams.location = location;  // updated to match frontend
   if (industry) queryParams.industry = industry;
-  if (teamSize) queryParams.numberOfEmployees = parseInt(teamSize, 10);
+  if (numberOfEmployees) queryParams.numberOfEmployees = numberOfEmployees;  // updated to match frontend
   if (page) queryParams.page = page;
   if (limit) queryParams.limit = limit;
 

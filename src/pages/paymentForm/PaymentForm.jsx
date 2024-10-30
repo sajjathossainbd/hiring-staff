@@ -29,12 +29,10 @@ const PaymentForm = () => {
               <p className="text-lg">
                 Welcome,{" "}
                 <span className="text-blue-700 font-bold">
-                  {user?.name}!
+                  {user?.displayName}!
                 </span>
               </p>
-              <strong className="text-gray-600">
-                Email: {user?.email}
-              </strong>
+              <strong className="text-gray-600">Email: {user?.email}</strong>
             </div>
           )}
           {category && (

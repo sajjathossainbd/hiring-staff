@@ -6,13 +6,14 @@ import { fetchRecruitersListing } from "../../features/recruiters/recruitersList
 import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
 import RecruiterCard from "../../components/recruiter/RecruiterCard";
-import Filter from "../../components/recruiter/Filters";
+import Filter from "../../components/recruiter/RecruitersFiltering";
 import Lottie from "lottie-react";
 import multipleLineDraw from "./../../../public/multiline-repet.json";
 import { ScrollRestoration } from "react-router-dom";
 import { CardPagination } from "../../components/shared/CardPagination";
 import { Trans, useTranslation } from "react-i18next";
 import i18n from "../../i18n";
+import RecruitersFiltering from "../../components/recruiter/RecruitersFiltering";
 
 const convertToBanglaDigits = (number) => {
   const banglaDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
@@ -62,7 +63,7 @@ function RecruitersListing() {
     content = (
       <div>
         {/* Recruiter Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 my-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2 md:gap-4 my-10">
           {recruiters?.recruiters?.map((recruiter, index) => (
             <RecruiterCard
               key={`${recruiter._id}-${index}`}
@@ -105,14 +106,13 @@ function RecruitersListing() {
           </h3>
 
           <p className="md:max-w-xl text-14 mt-3">
-            Browse top-rated recruiters across various locations, tailored to
-            meet your project needs.
+           
             <Trans i18nKey={"recruitersBannerDescrip"} />
           </p>
         </div>
 
         <div>
-          <Filter />
+          <RecruitersFiltering />
         </div>
       </div>
 

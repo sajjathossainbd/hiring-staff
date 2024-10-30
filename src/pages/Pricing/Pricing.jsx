@@ -5,8 +5,10 @@ import TinnyBanner from "../../components/shared/TinnyBanner";
 import Testimonial from "../../components/aboutUs/Testimonial";
 import { Helmet } from "react-helmet-async";
 import { ScrollRestoration } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Pricing = () => {
+  const {t} = useTranslation()
   return (
     <div>
       <Helmet>
@@ -22,7 +24,7 @@ const Pricing = () => {
           <h3>Pricing Table</h3>
           <p className="text-18">Choose The Best Plan That’s For You</p>
         </div>
-        <div className="mt-10 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 lg:gap-10">
+        <div className="mt-10 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 lg:gap-4">
           <PricingCard
             category={"Basic"}
             price={"19"}

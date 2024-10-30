@@ -1,6 +1,7 @@
- import { useEffect, useState } from "react";
+/* eslint-disable no-unused-vars */
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { ScrollRestoration, useParams } from "react-router-dom";
 import { fetchCandidateDetails } from "../../features/candidates/candidateDetails/candidateDetailsSlice";
 import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
@@ -20,7 +21,6 @@ function CandidateDetails() {
     error,
   } = useSelector((state) => state.candidateDetails);
 
- 
   const {
     _id,
     first_name,
@@ -89,7 +89,7 @@ function CandidateDetails() {
             <h5 className="text-lightGray">{special_profession}</h5>
             <div className="mt-1 flex gap-[1px] text-14 items-center">
               <StarRatings
-                rating={4}  
+                rating={4}
                 starRatedColor="#ffd250"
                 numberOfStars={5}
                 name="rating"
@@ -101,9 +101,9 @@ function CandidateDetails() {
             <p className="text-gray">{about_me}</p>
           </div>
           <div>
-            <button className="bg-blue text-white text-18 px-4 md:px-6 py-3 md:py-5 rounded flex items-center space-x-2">
+            <button className="bg-blue text-white text-18 px-4 md:px-6 py-3 md:py-5 rounded flex items-center space-x-2 w-full">
               <FaDownload />
-              <span>Download CV</span>
+              <span className="text-14">Download CV</span>
             </button>
           </div>
         </div>
@@ -194,15 +194,12 @@ function CandidateDetails() {
             <Overview candidate={candidate} />
           </div>
         </div>
+        <ScrollRestoration />
       </div>
     );
   }
 
-  return (
-    <div className="container">
-       {content}
-    </div>
-  );
+  return <div className="container">{content}</div>;
 }
 
 export default CandidateDetails;

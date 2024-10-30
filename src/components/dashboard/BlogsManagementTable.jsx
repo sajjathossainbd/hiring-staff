@@ -3,10 +3,10 @@ import Swal from "sweetalert2";
 import axiosInstance from "../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Loading from "../ui/Loading";
 import { CardPagination } from "../shared/CardPagination";
 import SecondaryButton from "../shared/SecondaryButton";
-
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const BlogsManagementTable = () => {
     const navigate = useNavigate();
@@ -29,16 +29,12 @@ const BlogsManagementTable = () => {
     } = useQuery({
         queryKey: ["blogs", page],
         queryFn: () => fetchBlogs(page, limit),
-        enabled: !!page, // Ensure it only runs when page is defined
+        enabled: !!page, 
     });
 
     if (isError) return <div>Error loading blogs.</div>;
-    if (isLoading) return <Loading />;
 
-    // Log blogsData to debug the structure
-    console.log("Fetched Blogs Data:", blogsData);
-
-    // Use optional chaining to avoid errors
+    
     const currentPage = blogsData?.currentPage || 1;
     const totalDocuments = blogsData?.totalDocuments || 0;
     const totalPages = Math.ceil(totalDocuments / limit) || 1;
@@ -64,17 +60,27 @@ const BlogsManagementTable = () => {
         });
     };
 
+    const renderSkeletonRows = () =>
+        Array.from({ length: limit }).map((_, index) => (
+            <tr key={index}>
+                <td><Skeleton height={20} width="80%" /></td>
+                <td><Skeleton height={20} width="60%" /></td>
+                <td><Skeleton height={20} width="50%" /></td>
+                <td><Skeleton circle height={30} width={30} /></td>
+            </tr>
+        ));
+
     return (
         <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
             <div className="flex justify-between">
-            <h5>Manage Blogs</h5>
-            <Link to={`/dashboard/manage-all-blogs/${currentPage}/create-blogs`}>
-            <SecondaryButton title={"Cretae Blogs + "}/>
-            </Link>
-            
+                <h5>Manage Blogs</h5>
+                <Link to={`/dashboard/manage-all-blogs/${currentPage}/create-blogs`}>
+                    <SecondaryButton title={"Create Blogs + "} />
+                </Link>
+
             </div>
             <hr className="my-6 text-lightGray" />
-            <div className="overflow-x-auto flex flex-col justify-between lg:h-[550px]">
+            <div className="overflow-x-auto flex flex-col justify-between lg:h-[580px]">
                 <table className="table text-sm">
                     <thead>
                         <tr className="text-base dark:text-white">
@@ -85,12 +91,16 @@ const BlogsManagementTable = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {blogsData?.blogs?.length > 0 ? (
-                            blogsData.blogs.map((blog) => (
+
+                        {isLoading
+                            ? renderSkeletonRows()
+                            : blogsData?.blogs?.map((blog) => (
                                 <tr key={blog._id}>
                                     <td>{blog.title}</td>
                                     <td>{blog.author}</td>
-                                    <td>{new Date(blog.date_published).toLocaleDateString()}</td>
+                                    <td>
+                                        {new Date(blog.date_published).toLocaleDateString()}
+                                    </td>
                                     <td>
                                         <button
                                             onClick={() => handleDelete(blog._id)}
@@ -100,12 +110,7 @@ const BlogsManagementTable = () => {
                                         </button>
                                     </td>
                                 </tr>
-                            ))
-                        ) : (
-                            <tr>
-                                <td colSpan="4" className="text-center">No blogs found.</td>
-                            </tr>
-                        )}
+                            ))}
                     </tbody>
                 </table>
                 <CardPagination

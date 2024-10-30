@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import TinnyHeading from "../shared/TinnyHeading";
 import DefaultInput from "../shared/DefaultInput";
@@ -9,20 +8,21 @@ import axiosInstance from "../../../utils/axios";
 import toast from "react-hot-toast";
 import SelectField from "../shared/SelectField";
 import { LiaCitySolid } from "react-icons/lia";
-import { TbUnlink } from "react-icons/tb";
-import { BsBrowserChrome } from "react-icons/bs";
-import {
-  MdAddLocationAlt,
-  MdPersonAddAlt1,
-} from "react-icons/md";
-import { FaMoneyCheckDollar } from "react-icons/fa6";
+import { TbCategory, TbSocial, TbUnlink } from "react-icons/tb";
+import { BsAwardFill, BsBrowserChrome } from "react-icons/bs";
+import { GrCertificate, GrCopy, GrMap, GrTechnology } from "react-icons/gr";
+import { MdAddLocationAlt, MdPersonAddAlt1 } from "react-icons/md";
+import { FaMoneyCheckDollar, FaPeopleGroup } from "react-icons/fa6";
 import { TbNumbers } from "react-icons/tb";
 import TextareaField from "../shared/TextareaField";
 import useCurrentUser from "../../../hooks/useCurrentUser";
+import useAuth from "../../../hooks/useAuth";
+import { TbCategoryPlus } from "react-icons/tb";
 
 const RecruiterProfile = () => {
+  const { currentRecruiter, refetchRecruiter } = useCurrentUser();
 
-  const { currentRecruiter } = useCurrentUser();
+  const { user } = useAuth()
 
   const [formData, setFormData] = useState({
     name: "",
@@ -109,15 +109,24 @@ const RecruiterProfile = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axiosInstance.post("/recruiters", formData).then((res) => {
-      if (res.data.insertId) {
-        toast.success("Successfully Added recruiter!");
+    try {
+      const res = await axiosInstance.patch(
+        `recruiters/recruiter/profile/${currentRecruiter.email}`,
+        formData
+      );
+      if (res.data.modifiedCount > 0) {
+        toast.success("Your data has been updated");
+        refetchRecruiter();
+      } else {
+        toast.error("No changes made");
       }
-    });
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to update profile");
+    }
   };
-
 
   return (
     <div>
@@ -127,6 +136,24 @@ const RecruiterProfile = () => {
         pathName="Company Profile"
       />
       <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
+
+        <div className="flex flex-col items-center">
+          <div
+            className="relative w-full h-36 md:h-44 lg:h-60 xl:h-72 bg-cover bg-center border-[7px] border-white rounded-xl"
+            style={{ backgroundImage: `url(${currentRecruiter?.coverImage || 'https://i.ibb.co.com/mBcjQj6/download-1.jpg'})` }}
+          >
+            <div className="absolute inset-0 bg-black opacity-40 rounded-xl"></div>
+          </div>
+
+          <div className="mt-[-40px] lg:mt-[-100px] md:mt-[-70px] -left-20 z-50">
+            <img
+              src={currentRecruiter?.logo || user?.photoURL}
+              alt="Profile Photo"
+              className="rounded-full xl:h-52 lg:h-44 md:h-32 h-20 xl:w-52 lg:w-44 md:w-32 w-20 object-cover border-[7px] border-white"
+            />
+          </div>
+        </div>
+
         <h5>Profile Details</h5>
         <hr className="my-6 text-lightGray" />
         <form onSubmit={handleSubmit} className="space-y-2">
@@ -150,6 +177,7 @@ const RecruiterProfile = () => {
           />
           <TextareaField
             placeholder="Short description about the company..."
+            icon={<GrCopy />}
             label="Company Short Description"
             name="description"
             value={formData.description}
@@ -158,6 +186,7 @@ const RecruiterProfile = () => {
           <SelectField
             label="Industry"
             name="industry"
+            icon={<TbCategoryPlus />}
             options={[
               "Select Industry",
               "Web and Software Development",
@@ -207,6 +236,7 @@ const RecruiterProfile = () => {
             <SelectField
               label="Business Type"
               name="businessType"
+              icon={<GrCopy />}
               options={["Private", "Public"]}
               value={formData.businessType}
               onChange={handleChange}
@@ -214,6 +244,7 @@ const RecruiterProfile = () => {
             <SelectField
               label="Company Size Category"
               name="companySizeCategory"
+              icon={<TbCategory />}
               options={["Small", "Medium", "Large"]}
               value={formData.companySizeCategory}
               onChange={handleChange}
@@ -221,6 +252,7 @@ const RecruiterProfile = () => {
             <SelectField
               label="Number of Employees"
               name="numberOfEmployees"
+              icon={<FaPeopleGroup />}
               options={["1-50", "51-100", "101-300", "301-500", "501-1000+"]}
               value={formData.numberOfEmployees}
               onChange={handleChange}
@@ -261,6 +293,7 @@ const RecruiterProfile = () => {
             <DefaultInput
               label="Map"
               type="text"
+              icon={<GrMap />}
               name="map"
               value={formData.map}
               onChange={handleChange}
@@ -269,13 +302,14 @@ const RecruiterProfile = () => {
           </div>
 
           <div className="lg:col-span-6">
-            <label className="font-semibold">Certifications</label>
+            <label className="font-semibold flex items-center gap-2"><GrCertificate />Certifications</label>
             <div className="flex gap-2">
               <input
                 type="text"
                 value={certification}
                 onChange={(e) => setCertification(e.target.value)}
-                className="w-full"
+                className="bg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block w-full p-3 outline-none transition-all duration-500  
+          dark:bg-softGreen dark:text-gray dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"
                 placeholder="Add certifications one by one"
               />
               <button
@@ -294,14 +328,16 @@ const RecruiterProfile = () => {
               ))}
             </div>
           </div>
+
           <div className="lg:col-span-6">
-            <label className="font-semibold">Awards</label>
+            <label className="font-semibold flex items-center gap-2"><BsAwardFill />Awards</label>
             <div className="flex gap-2">
               <input
                 type="text"
                 value={award}
                 onChange={(e) => setAward(e.target.value)}
-                className="w-full"
+                className="bg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block w-full p-3 outline-none transition-all duration-500  
+          dark:bg-softGreen dark:text-gray dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"
                 placeholder="Add awards one by one"
               />
               <button
@@ -321,13 +357,14 @@ const RecruiterProfile = () => {
             </div>
           </div>
           <div className="lg:col-span-6">
-            <label className="font-semibold">Technology</label>
+            <label className="font-semibold flex items-center gap-2"><GrTechnology />Technology</label>
             <div className="flex gap-2">
               <input
                 type="text"
                 value={technologys}
                 onChange={(e) => setTechnologys(e.target.value)}
-                className="w-full"
+                className="bg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block w-full p-3 outline-none transition-all duration-500  
+          dark:bg-softGreen dark:text-gray dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"
                 placeholder="Add technology one by one"
               />
               <button
@@ -348,20 +385,22 @@ const RecruiterProfile = () => {
           </div>
 
           <div className="lg:col-span-6">
-            <label className="font-semibold">Social </label>
+            <label className="font-semibold flex items-center gap-2"><TbSocial />Social </label>
             <div className="flex gap-2">
               <input
                 type="text"
                 value={socialKey}
                 onChange={(e) => setSocialKey(e.target.value)}
-                className="w-full"
+                className="bg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block w-full p-3 outline-none transition-all duration-500  
+          dark:bg-softGreen dark:text-gray dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"
                 placeholder="Platform (e.g., LinkedIn)"
               />
               <input
                 type="text"
                 value={socialValue}
                 onChange={(e) => setSocialValue(e.target.value)}
-                className="w-full"
+                className="bg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block w-full p-3 outline-none transition-all duration-500  
+          dark:bg-softGreen dark:text-gray dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"
                 placeholder="URL (e.g., https://linkedin.com/company/...)"
               />
               <button
@@ -387,12 +426,12 @@ const RecruiterProfile = () => {
           </div>
 
           {/* Add more fields like this as needed */}
-          <div className="lg:col-span-6 flex justify-end">
+          <div className="lg:col-span-6 flex justify-center">
             <button
               type="submit"
               className="btn bg-blue text-white px-6 py-3 flex items-center"
             >
-              <FiSend className="mr-2" /> Submit
+              <FiSend className="mr-2" /> Update
             </button>
           </div>
         </form>

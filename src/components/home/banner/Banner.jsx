@@ -10,11 +10,11 @@ import Lottie from "lottie-react";
 const Banner = () => {
   const { t } = useTranslation();
   return (
-    <section className="dark:bg-darkBlue px-4 lg:pb-10">
+    <section className="dark:bg-darkBlue px-4 lg:pb-10 xl:py-16 lg:py-14 md:py-10 py-7">
       <div className="container pt-0">
-        <div className="flex flex-col-reverse lg:flex-row lg:justify-between justify-center items-center gap-16 w-full xl:py-16 lg:py-14 md:py-10 py-7">
+        <div className="flex flex-col-reverse lg:flex-row lg:justify-between justify-center items-center w-full">
           {/* Banner Left - Content */}
-          <div className="lg:w-1/2 w-full flex flex-col gap-8 ">
+          <div className="lg:w-1/2 w-full flex flex-col gap-8">
             {/* title and subtitle */}
             <div className="">
               <h2 className="lg:leading-[58px] md:leading-[50px] sm:leading-10 relative">
@@ -22,15 +22,17 @@ const Banner = () => {
                   <Lottie animationData={UpDownDrawLine}></Lottie>
                 </div>
                 <Trans i18nKey="home_hero_title">
-                  The <span className="text-blue">Easiest</span> Way To Get{" "}
-                  <br /> Your New Job.
+                  The <span className="text-blue">Easiest</span> Way To Get Your
+                  New Job 🚀
                 </Trans>
               </h2>
 
               <p className="text-18 mt-8">{t("home_hero_subTitile")}</p>
             </div>
             {/* search by filter jobs*/}
-            <SearchByFilter />
+            <div className="xl:block hidden">
+              <SearchByFilter />
+            </div>
             {/* popular researches jobs */}
             <PopularSearch />
           </div>
@@ -40,6 +42,9 @@ const Banner = () => {
               <Lottie animationData={BannerImg}></Lottie>
             </div>
           </div>
+        </div>
+        <div className="xl:hidden block">
+          <SearchByFilter />
         </div>
       </div>
       <div className="container pt-0">

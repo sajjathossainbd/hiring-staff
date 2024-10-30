@@ -7,7 +7,6 @@ import { RiNumbersLine } from "react-icons/ri";
 import StarRatings from "react-star-ratings";
 import SecondaryButton from "../shared/SecondaryButton";
 import { GoArrowRight } from "react-icons/go";
-import BookmarkBtn from "../ui/BookmarkBtn";
 
 const RecruiterCard = ({ recruiter }) => {
   // data destructuring
@@ -23,7 +22,6 @@ const RecruiterCard = ({ recruiter }) => {
     ratingsNumbers,
     location,
   } = recruiter || {};
-
 
   return (
     <div className="boxBorderHoverBlue  overflow-hidden hover:bg-[white]  bg-bgLightBlue dark:bg-darkBlue">
@@ -52,11 +50,6 @@ const RecruiterCard = ({ recruiter }) => {
               icon={<CiLocationOn />}
               style="bg-softGreen text-green"
             />
-            {/* <MiniBtn
-              value={`4 Open Job`}
-              icon={<HiOutlineBriefcase />}
-              style="bg-softGreen text-blue"
-            /> */}
           </div>
 
           {/* Rating */}
@@ -95,9 +88,6 @@ const RecruiterCard = ({ recruiter }) => {
             <Link to={`/recruiter-details/${_id}`}>
               <SecondaryButton title={"View Profile"} icon={<GoArrowRight />} />
             </Link>
-          </div>
-          <div className="">
-            <BookmarkBtn />
           </div>
         </div>
       </div>

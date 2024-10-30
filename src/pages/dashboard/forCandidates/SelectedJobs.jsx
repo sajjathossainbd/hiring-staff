@@ -9,7 +9,6 @@ import { CardPagination } from "../../../components/shared/CardPagination";
 import useCurrentUser from "../../../hooks/useCurrentUser";
 
 const SelectedJobs = () => {
-
   const { currentCandidate } = useCurrentUser();
 
   const navigate = useNavigate();

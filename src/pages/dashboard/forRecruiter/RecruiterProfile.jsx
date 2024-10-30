@@ -141,8 +141,13 @@ const RecruiterProfile = () => {
       <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
         <div className="flex flex-col items-center">
           <div
-            className="relative w-full h-36 md:h-44 lg:h-60 xl:h-72 bg-cover bg-center border-[7px] border-white rounded-xl"
-            style={{ backgroundImage: `url(${currentRecruiter?.coverImage || 'https://i.ibb.co.com/mBcjQj6/download-1.jpg'})` }}
+            className="relative w-full h-36 md:h-44 lg:h-60 xl:h-72 bg-cover bg-center light:border-[7px] light:border-white rounded-xl"
+            style={{
+              backgroundImage: `url(${
+                currentRecruiter?.coverImage ||
+                "https://i.ibb.co.com/mBcjQj6/download-1.jpg"
+              })`,
+            }}
           >
             <div className="absolute inset-0 bg-black opacity-40 rounded-xl"></div>
           </div>
@@ -303,7 +308,10 @@ const RecruiterProfile = () => {
           </div>
 
           <div className="lg:col-span-6">
-            <label className="font-semibold flex items-center gap-2"><GrCertificate />Certifications</label>
+            <label className="font-semibold flex items-center gap-2">
+              <GrCertificate />
+              Certifications
+            </label>
             <div className="flex gap-2">
               <input
                 type="text"
@@ -331,7 +339,10 @@ const RecruiterProfile = () => {
           </div>
 
           <div className="lg:col-span-6">
-            <label className="font-semibold flex items-center gap-2"><BsAwardFill />Awards</label>
+            <label className="font-semibold flex items-center gap-2">
+              <BsAwardFill />
+              Awards
+            </label>
             <div className="flex gap-2">
               <input
                 type="text"
@@ -358,7 +369,10 @@ const RecruiterProfile = () => {
             </div>
           </div>
           <div className="lg:col-span-6">
-            <label className="font-semibold flex items-center gap-2"><GrTechnology />Technology</label>
+            <label className="font-semibold flex items-center gap-2">
+              <GrTechnology />
+              Technology
+            </label>
             <div className="flex gap-2">
               <input
                 type="text"
@@ -386,7 +400,10 @@ const RecruiterProfile = () => {
           </div>
 
           <div className="lg:col-span-6">
-            <label className="font-semibold flex items-center gap-2"><TbSocial />Social</label>
+            <label className="font-semibold flex items-center gap-2">
+              <TbSocial />
+              Social{" "}
+            </label>
             <div className="flex gap-2">
               <input
                 type="text"

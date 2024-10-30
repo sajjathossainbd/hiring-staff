@@ -18,8 +18,8 @@ const AppliedJobs = () => {
 
   const userId = currentCandidate?._id;
   const navigate = useNavigate();
-  const { page = 1 } = useParams();  
-  const limit = 12;  
+  const { page = 1 } = useParams();
+  const limit = 12;
 
   const fetchAppliedJobs = async (currentPage, limit) => {
     const response = await axiosInstance.get(
@@ -84,10 +84,7 @@ const AppliedJobs = () => {
   // if (isError) return <div>Error loading applied jobs.</div>;
   // if (isLoading) return <Loading />;
 
-  if (
-    appliedJobs?.length === 0 ||
-    appliedJobs === undefined
-  ) {
+  if (appliedJobs?.length === 0 || appliedJobs === undefined) {
     return (
       <>
         <TinnyHeading
@@ -137,7 +134,7 @@ const AppliedJobs = () => {
           return (
             <div
               key={job?._id}
-              className="shadow-md bg-white duration-200 rounded-lg p-6 overflow-auto"
+              className="shadow-md light:bg-white duration-200 rounded-lg p-6 overflow-auto"
             >
               {/* Icon and status button */}
               <div className="flex gap-8 items-center mb-4">

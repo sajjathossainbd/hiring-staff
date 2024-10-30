@@ -1,9 +1,7 @@
-/* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
-import axiosInstance from "../../utils/axios"; // Adjust the import based on your project structure
-import toast from "react-hot-toast";
-import PrimaryBtn from "./../ui/PrimaryBtn";
+import axiosInstance from "../../utils/axios";
 import PrimaryBtnBlue from "../ui/PrimaryBtnBlue";
+import toast from "react-hot-toast";
 
 function AssignAssessments({ job, handleClose }) {
   console.log(job);
@@ -22,19 +20,29 @@ function AssignAssessments({ job, handleClose }) {
     console.log(assessmentData);
     try {
       const response = await axiosInstance.patch(
-        `/applied-jobs/${job._id}`,
+        `/jobs/applied-jobs/assign-assessment/${job?._id}`,
         assessmentData
       );
 
       console.log(response.data);
       if (response.status === 200) {
         toast.success("Assessment assigned successfully!");
-        reset();
-        handleClose();
+        setTimeout(() => {
+          reset();
+          handleClose();
+        }, 2000);
       }
     } catch (error) {
-      toast.error("Failed to assign assessment. Please try again.");
-      console.error("Error assigning assessment:", error);
+      if (
+        error.response.status === 400 &&
+        error.response.data.message ===
+          "Assessment has already been assigned for this job."
+      ) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error(error.message);
+        console.error("Error assigning assessment:", error);
+      }
     }
   };
 

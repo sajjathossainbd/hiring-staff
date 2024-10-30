@@ -5,7 +5,6 @@ import toast from "react-hot-toast";
 import useCurrentUser from "../../hooks/useCurrentUser";
 
 function ApplyJob({ job, onClose }) {
-
   const { currentCandidate } = useCurrentUser();
 
   const {
@@ -40,8 +39,10 @@ function ApplyJob({ job, onClose }) {
 
       if (response.status === 201) {
         toast.success("Application submitted successfully!");
-        reset();
-        onClose();
+        setTimeout(() => {
+          reset();
+          onClose();
+        }, 2000);
       }
     } catch (error) {
       toast.error("Already applied in this job.");

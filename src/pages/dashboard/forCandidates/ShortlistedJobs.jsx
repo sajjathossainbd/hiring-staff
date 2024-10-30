@@ -15,14 +15,14 @@ import SubmitAssessment from "../../../components/dashboard/SubmitAssessment";
 const ShortlistedJobs = () => {
   const { currentCandidate } = useCurrentUser();
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedJob, setSelectedJob] = useState(null); 
+  const [selectedJob, setSelectedJob] = useState(null);
   const handleOpen = (job) => {
-    setSelectedJob(job); 
+    setSelectedJob(job);
     setIsOpen(true);
   };
   const handleClose = () => {
     setIsOpen(false);
-    setSelectedJob(null);  
+    setSelectedJob(null);
   };
 
   const navigate = useNavigate();
@@ -80,7 +80,7 @@ const ShortlistedJobs = () => {
           return (
             <div
               key={idx}
-              className="shadow-md bg-white hover:-translate-y-1 duration-200 rounded-lg p-6 overflow-auto "
+              className="shadow-md light:bg-white hover:-translate-y-1 duration-200 rounded-lg p-6 overflow-auto "
             >
               <div className="flex gap-8 items-center mb-4">
                 <div className="bg-bgLightWhite p-3 text-blue rounded-md text-2xl inline-block">
@@ -119,10 +119,7 @@ const ShortlistedJobs = () => {
                   <PrimaryBtnBlue icon={<VscEye />} title={"Job Details"} />
                 </Link>
                 <button onClick={() => handleOpen(job)}>
-                  <PrimaryBtnBlue
-                    icon={<VscEye />}
-                    title={'Assignment'}
-                  />
+                  <PrimaryBtnBlue icon={<VscEye />} title={"Assignment"} />
                 </button>
               </div>
             </div>

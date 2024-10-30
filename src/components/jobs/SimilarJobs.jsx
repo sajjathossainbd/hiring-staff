@@ -18,11 +18,11 @@ function SimilarJobs({ job }) {
   const differenceInDays = Math.ceil(differenceInTime / (1000 * 60 * 60 * 24));
   const result =
     differenceInDays < 0 ? (
-      <div className="flex gap-2 items-center">
+      <div className="flex dark:text-white gap-2 items-center">
         <CgCalendarDates /> Expired
       </div>
     ) : (
-      <div className="flex gap-2 items-center">
+      <div className="flex dark:text-white gap-2 items-center">
         <CgCalendarDates /> {differenceInDays} Days Left
       </div>
     );
@@ -59,8 +59,8 @@ function SimilarJobs({ job }) {
                 />
               </span>
             </div>
-            <div>
-              <div className="flex items-center gap-2">
+            <div className="pt-2">
+              <div className="flex items-center gap-2 dark:text-white">
                 <IoMdTime />
                 <span className="text-14">{formattedDate}</span>
                 <span className="text-red-600"> {result}</span>

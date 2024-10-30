@@ -15,7 +15,7 @@ function JobShortListCard({
   const { jobTitle, shortlistedCount } = job;
   //   console.log(job);
   return (
-    <div className="w-full bg-white p-6 rounded-lg">
+    <div className="w-full light:bg-white p-6 rounded-lg dark:border dark:border-bgDeepBlue">
       <div className={`flex items-center p-16 rounded-lg h-64 gap-6 ${style}`}>
         {/* Title */}
         <div className="w-7/12">

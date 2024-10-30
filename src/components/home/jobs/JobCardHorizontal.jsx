@@ -21,6 +21,9 @@ function JobCardHorizontal({ job, recruiterLogo, isLoading }) {
     lastDateToApply = "",
   } = job || {};
 
+  // const { _id, jobTitle, job_type, max_salary, min_salary, lastDateToApply } =
+  //   job || {};
+
   const posted = new Date(lastDateToApply);
   const now = new Date();
   const timeDiff = posted - now;

@@ -296,7 +296,7 @@ const ResumeTemplate = ({ data }) => {
       {/* Download Button */}
       <button
         onClick={handlePdf}
-        className={`mt-6 px-4 py-2 bg-blue-500 text-white font-bold rounded shadow hover:bg-blue-700 transition duration-300 ${
+        className={`mt-6 px-4 py-2 bg-blue text-white font-bold rounded shadow hover:bg-blue-700 transition duration-300 ${
           loading ? "opacity-50 cursor-not-allowed" : ""
         }`}
         disabled={loading}

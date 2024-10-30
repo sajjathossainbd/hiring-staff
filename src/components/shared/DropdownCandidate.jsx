@@ -64,7 +64,7 @@ const Dropdown = ({
           onClick={toggleDropdown}
           className="flex items-center justify-between w-full py-2 text-14 text-gray bg-white focus:outline-none"
         >
-          <div className="flex items-center min-w-32">{selectedOption}</div>
+          <div className="flex items-center min-w-24">{selectedOption}</div>
           <FiChevronDown
             className={`ml-2 transition-transform ${
               isOpen ? "rotate-180" : ""

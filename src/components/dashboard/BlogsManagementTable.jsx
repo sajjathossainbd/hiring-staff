@@ -78,7 +78,7 @@ const BlogsManagementTable = () => {
             <div className="flex justify-between">
                 <h5>Manage Blogs</h5>
                 <Link to={`/dashboard/manage-all-blogs/${currentPage}/create-blogs`}>
-                    <SecondaryButton title={"Cretae Blogs + "} />
+                    <SecondaryButton title={"Create Blogs + "} />
                 </Link>
 
             </div>

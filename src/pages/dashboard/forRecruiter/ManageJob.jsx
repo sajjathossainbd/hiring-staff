@@ -19,13 +19,13 @@ const ManageJob = () => {
     queryKey: ["myJobs", currentRecruiter?.email],
     queryFn: async () => {
       const res = await axiosInstance.get(
-        `/jobs/email/${currentRecruiter.email}`
+        `/jobs/email/${currentRecruiter?.email}`
       );
       return res.data;
     },
     enabled: !!currentRecruiter?.email,
   });
-  // console.log(myJobs);
+  console.log(myJobs);
 
   // const handleDelete = (id) => {
   //   Swal.fire({
@@ -63,7 +63,7 @@ const ManageJob = () => {
       </div>
 
       {/* All Job Post */}
-      <div className="grid lg:grid-cols-2 gap-6 mt-6">
+      <div className="grid xl:grid-cols-2 grid-cols-1 gap-6 mt-6">
         {myJobs?.map((job) => (
           <>
             <JobPostCard

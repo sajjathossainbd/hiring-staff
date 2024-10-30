@@ -3,7 +3,23 @@ import { BsFillSendFill } from "react-icons/bs";
 import PrimaryButton from "../../../components/shared/PrimaryButton";
 import ResumeTemplate from "../../../components/dashboard/ResumeTemplate";
 import DefaultInput from "../shared/DefaultInput";
-import { TbBrandFacebook, TbBrandGithub, TbBrandLinkedin, TbBrandTwitter, TbBuilding, TbCalendar, TbCalendarTime, TbCertificate, TbClock, TbGenderFemale, TbHome, TbMail, TbPhone, TbStar, TbUser } from "react-icons/tb";
+import {
+  TbBrandFacebook,
+  TbBrandGithub,
+  TbBrandLinkedin,
+  TbBrandTwitter,
+  TbBuilding,
+  TbCalendar,
+  TbCalendarTime,
+  TbCertificate,
+  TbClock,
+  TbGenderFemale,
+  TbHome,
+  TbMail,
+  TbPhone,
+  TbStar,
+  TbUser,
+} from "react-icons/tb";
 import SelectField from "../shared/SelectField";
 import TextareaField from "../shared/TextareaField";
 import { GrCopy } from "react-icons/gr";
@@ -61,7 +77,6 @@ const MyResume = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Validate formData here if necessary
     setSubmitted(true);
   };
 
@@ -75,7 +90,6 @@ const MyResume = () => {
       <div className="mt-8">
         <form onSubmit={handleSubmit}>
           <h4>Basic Information</h4>
-          {/* Name and Email */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
             <DefaultInput
               label="Name"
@@ -98,7 +112,6 @@ const MyResume = () => {
               required
             />
           </div>
-          {/* Phone and Date of Birth */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <DefaultInput
               label="Date of Birth"
@@ -121,7 +134,6 @@ const MyResume = () => {
               required
             />
           </div>
-          {/* Address and Gender */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <DefaultInput
               label="Address"
@@ -143,7 +155,6 @@ const MyResume = () => {
               required
             />
           </div>
-          {/* Description */}
           <TextareaField
             label="Description"
             name="description"
@@ -208,7 +219,7 @@ const MyResume = () => {
                   label="Title"
                   icon={<TbStar />}
                   type="text"
-                  name="skillTitle"
+                  name="title"
                   placeholder="Skill Title"
                   value={skill.title}
                   onChange={(e) => handleSkillChange(index, e)}
@@ -274,7 +285,11 @@ const MyResume = () => {
             />
           </div>
 
-          <PrimaryButton type="submit" title={"Generate My Resume"} icon={<BsFillSendFill />}>
+          <PrimaryButton
+            type="submit"
+            title={"Generate My Resume"}
+            icon={<BsFillSendFill />}
+          >
             Generate My Resume
           </PrimaryButton>
         </form>

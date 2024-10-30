@@ -15,7 +15,7 @@ function RecruitersFiltering() {
 
   const [industries, setIndustries] = useState([]);
   const [locations, setLocations] = useState([]);
-  const [employeeCounts, setEmployeeCounts] = useState([]); 
+  const [employeeCounts, setEmployeeCounts] = useState([]);
   const initialFilters = {
     industry: "",
     location: "",
@@ -28,7 +28,7 @@ function RecruitersFiltering() {
       try {
         const { data } = await axiosInstance.get("/recruiters/unique");
         setIndustries(data.industries || []);
-        setLocations(data.locations || []); 
+        setLocations(data.locations || []);
         setEmployeeCounts(data.numberOfEmployees || []);
       } catch (error) {
         console.error("Error fetching filter data", error);
@@ -51,9 +51,9 @@ function RecruitersFiltering() {
 
   return (
     <div>
-      <div className="relative bg-white shadow-md border border-bgLightBlue md:p-2 p-5 rounded-lg w-full">
+      <div className="relative bg-white shadow-md border border-bgLightBlue md:p-2 p-5 rounded-lg">
         {/* Search Bar */}
-        <div className="flex items-center md:flex-row flex-col md:gap-2 gap-3 justify-center">
+        <div className="flex items-center md:flex-row flex-col md:gap-2 gap-3 justify-between">
           {/* Industry */}
           <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
             <FaLayerGroup className="text-blue" />
@@ -80,18 +80,20 @@ function RecruitersFiltering() {
 
           {/* Team Size */}
           <div className="flex items-center space-x-2 rounded-lg px-3 py-2 w-full lg:w-auto bg-white">
-          <MdConfirmationNumber className="text-blue"/>
+            <MdConfirmationNumber className="text-blue" />
             <Dropdown
               options={employeeCounts}
               placeholder="Select a number"
-              onChange={(option) => handleFilterChange("numberOfEmployees", option)} // updated name to match backend
+              onChange={(option) =>
+                handleFilterChange("numberOfEmployees", option)
+              } // updated name to match backend
             />
           </div>
 
           {/* Search Button */}
           <button
             onClick={applyFilters}
-            className="text-white font-medium w-full md:w-36"
+            className="text-white font-medium w-full"
           >
             <PrimaryBtn title={<Trans i18nKey={"search"} />} />
           </button>

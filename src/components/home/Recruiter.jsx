@@ -12,7 +12,8 @@ import { Link } from "react-router-dom";
 import PrimaryBtn from "../ui/PrimaryBtn";
 import { Trans, useTranslation } from "react-i18next";
 function Recruiter() {
-  const { t } = useTranslation();
+  // eslint-disable-next-line no-unused-vars
+  const {t} = useTranslation()
   const dispatch = useDispatch();
 
   const {
@@ -41,7 +42,7 @@ function Recruiter() {
 
   if (!isLoading && !isError && recrutiersData.length > 0) {
     content = (
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
         {recrutiersData.map((recruiter, index) => (
           <TopRecruiterCard
             key={`${recruiter._id}-${index}`}

@@ -31,7 +31,7 @@ function ShortListedCandidates({ job }) {
     (applicant) => applicant?.shortlist === "approved"
   ); // Adjust the condition as needed
 
-  console.log(shortlisted);
+  // console.log(shortlisted);
   return (
     <div>
       <TinnyHeading

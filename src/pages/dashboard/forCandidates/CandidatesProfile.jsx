@@ -14,9 +14,9 @@ function CandidatesProfile() {
   return (
     <div>
       <TinnyHeading
-        title={"Candidate Profiel"}
+        title={"Candidate profile"}
         path={"my-profile"}
-        pathName={"Candidate Profiel"}
+        pathName={"Candidate profile"}
       />
       <div className="flex justify-end">
         <button onClick={handleFormOpen}>

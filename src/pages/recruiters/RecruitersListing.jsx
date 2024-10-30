@@ -106,8 +106,7 @@ function RecruitersListing() {
           </h3>
 
           <p className="md:max-w-xl text-14 mt-3">
-            Browse top-rated recruiters across various locations, tailored to
-            meet your project needs.
+           
             <Trans i18nKey={"recruitersBannerDescrip"} />
           </p>
         </div>

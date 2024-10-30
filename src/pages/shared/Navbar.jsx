@@ -4,7 +4,7 @@ import SinginLogout from "../../components/navbar/SinginLogout";
 import LogoWhite from "../../components/ui/LogoWhite";
 const Navbar = () => {
   return (
-    <div className="backdrop-blur-sm z-20 xl:mt-14 mt-12 sticky top-0">
+    <div className="backdrop-blur-sm z-20 xl:mt-14 mt-12 sticky xl:top-0 md:top-12 ">
       <div className="bg-blue dark:bg-darkBlue">
         <nav className="container flex items-center justify-between xl:py-4 lg:py-2">
           <LogoWhite size="large" />

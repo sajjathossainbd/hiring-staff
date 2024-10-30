@@ -206,7 +206,7 @@ const Dashboard = () => {
                       <MdPlaylistAddCheck /> Interview
                     </NavLink>
                   </li>
-                  <li>
+                  {/* <li>
                     <NavLink
                       to="/dashboard/selected-candidates"
                       className={({ isActive }) =>
@@ -217,7 +217,7 @@ const Dashboard = () => {
                     >
                       <MdPlaylistAddCheck /> Selected
                     </NavLink>
-                  </li>
+                  </li> */}
                 </>
               )}
 

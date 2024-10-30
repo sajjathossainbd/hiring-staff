@@ -29,15 +29,12 @@ const BlogsManagementTable = () => {
     } = useQuery({
         queryKey: ["blogs", page],
         queryFn: () => fetchBlogs(page, limit),
-        enabled: !!page, // Ensure it only runs when page is defined
+        enabled: !!page, 
     });
 
     if (isError) return <div>Error loading blogs.</div>;
 
-    // Log blogsData to debug the structure
-    console.log("Fetched Blogs Data:", blogsData);
-
-    // Use optional chaining to avoid errors
+    
     const currentPage = blogsData?.currentPage || 1;
     const totalDocuments = blogsData?.totalDocuments || 0;
     const totalPages = Math.ceil(totalDocuments / limit) || 1;

@@ -20,9 +20,9 @@ import useAuth from "../../../hooks/useAuth";
 import { TbCategoryPlus } from "react-icons/tb";
 
 const RecruiterProfile = () => {
-  const { currentRecruiter } = useCurrentUser();
+  const { currentRecruiter, refetchRecruiter } = useCurrentUser();
 
-  const {user} = useAuth()
+  const { user } = useAuth()
 
   const [formData, setFormData] = useState({
     name: "",
@@ -109,13 +109,23 @@ const RecruiterProfile = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axiosInstance.post("/recruiters", formData).then((res) => {
-      if (res.data.insertId) {
-        toast.success("Successfully Added recruiter!");
+    try {
+      const res = await axiosInstance.patch(
+        `recruiters/recruiter/profile/${currentRecruiter.email}`,
+        formData
+      );
+      if (res.data.modifiedCount > 0) {
+        toast.success("Your data has been updated");
+        refetchRecruiter();
+      } else {
+        toast.error("No changes made");
       }
-    });
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to update profile");
+    }
   };
 
   return (
@@ -126,7 +136,7 @@ const RecruiterProfile = () => {
         pathName="Company Profile"
       />
       <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
-        
+
         <div className="flex flex-col items-center">
           <div
             className="relative w-full h-36 md:h-44 lg:h-60 xl:h-72 bg-cover bg-center border-[7px] border-white rounded-xl"
@@ -143,7 +153,7 @@ const RecruiterProfile = () => {
             />
           </div>
         </div>
-        
+
         <h5>Profile Details</h5>
         <hr className="my-6 text-lightGray" />
         <form onSubmit={handleSubmit} className="space-y-2">
@@ -234,7 +244,7 @@ const RecruiterProfile = () => {
             <SelectField
               label="Company Size Category"
               name="companySizeCategory"
-              icon={<TbCategory/>}
+              icon={<TbCategory />}
               options={["Small", "Medium", "Large"]}
               value={formData.companySizeCategory}
               onChange={handleChange}
@@ -318,7 +328,7 @@ const RecruiterProfile = () => {
               ))}
             </div>
           </div>
-          
+
           <div className="lg:col-span-6">
             <label className="font-semibold flex items-center gap-2"><BsAwardFill />Awards</label>
             <div className="flex gap-2">
@@ -416,12 +426,12 @@ const RecruiterProfile = () => {
           </div>
 
           {/* Add more fields like this as needed */}
-          <div className="lg:col-span-6 flex justify-end">
+          <div className="lg:col-span-6 flex justify-center">
             <button
               type="submit"
               className="btn bg-blue text-white px-6 py-3 flex items-center"
             >
-              <FiSend className="mr-2" /> Submit
+              <FiSend className="mr-2" /> Update
             </button>
           </div>
         </form>

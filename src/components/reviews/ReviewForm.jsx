@@ -92,7 +92,7 @@ const ReviewForm = () => {
             <button
               type="submit"
               onClick={handleSubmit(onSubmit)}
-              className="py-4 my-8 font-semibold rounded-md dark:text-white dark:bg-violet-600 text-white bg-blue"
+              className="py-4 my-8 flex items-center justify-center bg-gradient-to-r from-blue to-greenLight hover:from-green-500 hover:to-darkBlue text-white px-4 sm:px-4 sm:py-3  md:px-5 md:py-3 lg:px-6 lg:py-3 rounded-md font-medium transition-all duration-500 ease-in-out gap-2"
             >
               <Trans i18nKey={"reviwBtn"} />
             </button>
@@ -101,7 +101,7 @@ const ReviewForm = () => {
               disabled
               type="submit"
               onClick={handleSubmit(onSubmit)}
-              className="py-4 btn my-8 font-semibold rounded-md dark:text-white dark:bg-violet-600 text-white bg-blue"
+              className="py-4 btn my-8 flex items-center justify-center bg-gradient-to-r from-blue to-greenLight hover:from-green-500 hover:to-darkBlue text-white px-4 sm:px-4 sm:py-3  md:px-5 md:py-3 lg:px-6 lg:py-3 rounded-md font-medium transition-all duration-500 ease-in-out gap-2"
             >
               Please login first
             </button>

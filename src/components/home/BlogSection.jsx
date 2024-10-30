@@ -27,7 +27,6 @@ const BlogSection = () => {
 
   const blogsData = blogs?.blogs?.slice(0, 3) || [];
 
-  console.log(blogsData);
 
   let content = null;
 

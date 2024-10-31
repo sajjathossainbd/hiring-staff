@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import { useForm } from "react-hook-form";
-import axiosInstance from "../../utils/axios"; // Adjust the import based on your project structure
+import axiosInstance from "../../utils/axios";  
 import PrimaryBtnBlue from "../ui/PrimaryBtnBlue";
 import toast from "react-hot-toast";
 

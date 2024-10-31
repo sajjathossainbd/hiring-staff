@@ -7,8 +7,7 @@ import PrimaryBtnWhite from "../ui/PrimaryBtnWhite";
 
 function ApplyJob({ job, onClose }) {
   const { currentCandidate } = useCurrentUser();
-
-  const {
+   const {
     register,
     handleSubmit,
     reset,
@@ -27,6 +26,7 @@ function ApplyJob({ job, onClose }) {
       applicantId: currentCandidate?._id,
       applicantName: currentCandidate?.first_name,
       applicantEmail: currentCandidate?.email,
+      applicantImage: currentCandidate?.photo_url,
       coverLetter: data.coverLetter,
       resume: data.resume,
       availability: data.availability,

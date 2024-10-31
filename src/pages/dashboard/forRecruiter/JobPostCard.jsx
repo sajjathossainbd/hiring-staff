@@ -40,16 +40,26 @@ function JobPostCard({ Cardtitle, img, style, link, job, onDelete }) {
             <h4 className="text-lg md:text-xl">{jobTitle}</h4>
           </Link>
           {/* Post & Expiry Date */}
-          <div className="flex flex-wrap gap-3 text-14 mt-3">
-            <p className="flex items-center gap-1 text-sm md:text-base">
-              <FaRegCalendarAlt />
-              Post Date: 12 Aug, 2024
-            </p>
-            <p className="flex items-center gap-1 text-sm md:text-base">
-              <FaRegCalendarAlt />
-              Expiry Date: 11 Sep, 2024
-            </p>
+          <div className="flex flex-wrap items-center justify-between lg:gap-20 md:gap-5 gap-2 text-14 mt-3">
+            <div className="flex flex-wrap gap-3 text-14">
+              <p className="flex items-center gap-1 text-sm md:text-base">
+                <FaRegCalendarAlt />
+                Post Date: 12 Aug, 2024
+              </p>
+              <p className="flex items-center gap-1 text-sm md:text-base">
+                <FaRegCalendarAlt />
+                Expiry Date: 11 Sep, 2024
+              </p>
+            </div>
+            <h4
+              className="text-red-500 bg-bgDeepBlue  cursor-pointer p-3 light:bg-white rounded-md"
+              onClick={onDelete}
+            >
+              {" "}
+              <MdDelete />
+            </h4>
           </div>
+
         </div>
 
         {/* Total Applied & Profile Image */}
@@ -90,13 +100,6 @@ function JobPostCard({ Cardtitle, img, style, link, job, onDelete }) {
               </div>
             </div>
           </div>
-          <h4
-            className="text-red-500 absolute cursor-pointer right-3 p-3 light:bg-white rounded-md mt-1"
-            onClick={onDelete}
-          >
-            {" "}
-            <MdDelete />
-          </h4>
         </div>
       </div>
     </div>

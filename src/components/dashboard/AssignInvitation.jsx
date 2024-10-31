@@ -34,7 +34,7 @@ function AssignInvitation({ job, onClose }) {
 
   return (
     <div>
-      <h4 className="">Send Interview Invitation for: {job.jobTitle}</h4>
+      <h4 className="text-blue">Send Interview Invitation for: {job.jobTitle}</h4>
       <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
         <div className="form-control mb-4">
           <label className="label">
@@ -86,7 +86,7 @@ function AssignInvitation({ job, onClose }) {
             defaultValue=""
             render={({ field }) => (
               <textarea
-                placeholder="Enter a message for the candidate (optional)"
+                placeholder="Enter a message or ( meet-link )"
                 {...field}
                 className="textarea textarea-bordered"
               ></textarea>

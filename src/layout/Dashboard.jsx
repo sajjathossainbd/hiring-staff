@@ -58,7 +58,9 @@ const Dashboard = () => {
               <div className="flex items-center justify-center my-6">
                 <Link to={"/"} className="flex items-center gap-1">
                   <HiOutlineBriefcase className={`text-3xl text-blue`} />
-                  <h3 className={`text-3xl font-semibold text-blue`}>
+                  <h3
+                    className={`xl:text-3xl lg:text-2xl text-xl font-semibold text-blue`}
+                  >
                     Hiring Staff
                   </h3>
                 </Link>

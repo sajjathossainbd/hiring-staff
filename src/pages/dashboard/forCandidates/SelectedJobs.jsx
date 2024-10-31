@@ -53,7 +53,7 @@ const SelectedJobs = () => {
         {selectedJobs?.map((job, idx) => (
           <div
             key={idx}
-            className="shadow-md bg-white hover:-translate-y-1 duration-200 rounded-lg p-6 overflow-auto "
+            className="shadow-md light:bg-white dark:border dark:border-white hover:-translate-y-1 duration-200 rounded-lg p-6 overflow-auto "
           >
             <div>
               <div className="flex items-center justify-between">

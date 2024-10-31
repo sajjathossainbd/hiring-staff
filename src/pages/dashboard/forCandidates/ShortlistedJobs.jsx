@@ -80,7 +80,7 @@ const ShortlistedJobs = () => {
           return (
             <div
               key={idx}
-              className="shadow-md light:bg-white hover:-translate-y-1 duration-200 rounded-lg p-6 overflow-auto "
+              className="shadow-md light:bg-white hover:-translate-y-1 duration-200 rounded-lg p-6 overflow-auto dark:border dark:border-white"
             >
               <div className="flex gap-8 items-center mb-4">
                 <div className="bg-bgLightWhite p-3 text-blue rounded-md text-2xl inline-block">

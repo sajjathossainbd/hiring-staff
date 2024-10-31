@@ -17,13 +17,13 @@ function FilterSidePanel({
     <>
       {/* Side Panel */}
       <div
-        className={`fixed z-50 top-0 left-0 h-full bg-white dark:bg-darkBlue shadow-lg w-64 p-5 overflow-y-scroll transition-transform transform ${
+        className={`fixed z-50 top-0 left-0 h-full bg-white dark:bg-darkBlue dark:text-white shadow-lg w-64 p-5 overflow-y-scroll transition-transform transform ${
           isFilterOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         {/* Close */}
         <button
-          className="text-gray hover:text-lightGray"
+          className="text-gray hover:text-lightGray text-2xl"
           onClick={toggleFilter}
         >
           &times;
@@ -96,7 +96,7 @@ function FilterSidePanel({
           <select
             name="jobType"
             onChange={(e) => handleFilterChange("jobType", e.target.value)}
-            className="w-full border border-lightGray rounded-lg px-3 py-2"
+            className="w-full border dark:text-black border-lightGray rounded-lg px-3 py-2"
           >
             <option value="">Select Job Type</option>
             <option value="Remote">Remote</option>

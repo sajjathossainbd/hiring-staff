@@ -79,14 +79,14 @@ function CandidateDetails() {
         <div className="flex flex-col md:flex-row justify-between gap-3 mt-6">
           <div className="space-y-2">
             <div className="flex gap-6">
-              <h3 className="">
+              <h4>
                 {first_name} {last_name}
-              </h3>
-              <p className="flex text-18 items-center gap-2">
+              </h4>
+              <p className="flex text-base items-center gap-2">
                 <CiLocationOn /> <span className="">{location?.city}</span>
               </p>
             </div>
-            <h5 className="text-lightGray">{special_profession}</h5>
+            <h5 className="text-lightGray text-lg">{special_profession}</h5>
             <div className="mt-1 flex gap-[1px] text-14 items-center">
               <StarRatings
                 rating={4}

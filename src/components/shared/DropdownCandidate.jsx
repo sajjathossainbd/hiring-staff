@@ -59,7 +59,7 @@ const Dropdown = ({
 
   return (
     <div className="relative inline-block text-left w-full" ref={dropdownRef}>
-      <div className="w-full flex items-center">
+      <div className="lg:w-full w-40  flex items-center">
         <button
           onClick={toggleDropdown}
           className="flex items-center justify-between w-full py-2 text-14 text-gray bg-white focus:outline-none"

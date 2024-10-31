@@ -134,7 +134,7 @@ const AppliedJobs = () => {
           return (
             <div
               key={job?._id}
-              className="shadow-md light:bg-white duration-200 rounded-lg p-6 overflow-auto"
+              className="shadow-md light:bg-white dark:border dark:border-white duration-200 rounded-lg p-6 overflow-auto"
             >
               {/* Icon and status button */}
               <div className="flex gap-8 items-center mb-4">
@@ -175,15 +175,12 @@ const AppliedJobs = () => {
               <div className="flex items-center gap-6 mt-6">
                 <Link to={`/job-details/${job?.jobId}`}>
                   <button className="">
-                    <PrimaryBtnBlue
-                      icon={<VscEye />}
-                      title={"See Details Job Post"}
-                    />
+                    <PrimaryBtnBlue icon={<VscEye />} title={"See Details"} />
                   </button>
                 </Link>
                 <div className="flex space-x-4  bg-bgLightWhite text-blue font-medium rounded-md text-18 p-3">
                   <button onClick={() => handleDelete(job._id)}>
-                    <AiOutlineDelete  className="text-red-500 cursor-pointer" />
+                    <AiOutlineDelete className="text-red-500 cursor-pointer" />
                   </button>
                 </div>
               </div>

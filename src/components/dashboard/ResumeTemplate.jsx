@@ -229,7 +229,7 @@ const ResumeTemplate = ({ data }) => {
   };
 
   return (
-    <div className="p-4 sm:p-8 max-w-3xl mx-auto bg-white shadow-lg rounded-lg">
+    <div className="p-4 sm:p-8 max-w-3xl mx-auto light:bg-white shadow-lg rounded-lg">
       <h1 className="text-3xl font-bold">{data?.name || "Name"}</h1>
       <p className="text-sm sm:text-base">{data?.email || "Email"}</p>
       <p className="text-sm sm:text-base">{data?.phone || "Phone"}</p>
@@ -263,7 +263,7 @@ const ResumeTemplate = ({ data }) => {
       {/* Skills Section */}
       <h2 className="text-2xl font-bold mt-6 mb-2">Skills</h2>
       {data?.skills?.length > 0 ? (
-        <ul className="list-disc ml-5">
+        <ul className="list-disc ml-5 dark:text-white">
           {data.skills.map((skill, index) => (
             <li key={index} className="text-sm sm:text-base">
               {skill.title || "Skill"} - {skill.experience || "Experience"}

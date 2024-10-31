@@ -35,7 +35,7 @@ function JobDetails() {
   const { currentCandidate } = useCurrentUser();
   const userId = currentCandidate?._id;
 
-  const { data: appliedJobs = [] } = useQuery({
+  const { data: appliedJobs = [], refetch } = useQuery({
     queryKey: ["appliedJobs", userId],
     queryFn: async () => {
       const res = await axiosInstance.get(
@@ -211,7 +211,7 @@ function JobDetails() {
                         </form>
                         <h3 className="font-bold text-lg">{jobTitle}</h3>
 
-                        <ApplyJob job={job} onClose={handleClose} />
+                        <ApplyJob refetch={refetch} job={job} onClose={handleClose} />
                       </div>
                     </dialog>
                   )}

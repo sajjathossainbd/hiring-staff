@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import useCurrentUser from "../../hooks/useCurrentUser";
 import PrimaryBtnWhite from "../ui/PrimaryBtnWhite";
 
-function ApplyJob({ job, onClose }) {
+function ApplyJob({ job, onClose, refetch }) {
   const { currentCandidate } = useCurrentUser();
    const {
     register,
@@ -43,6 +43,7 @@ function ApplyJob({ job, onClose }) {
         setTimeout(() => {
           reset();
           onClose();
+          refetch()
         }, 2000);
       }
     } catch (error) {

@@ -9,7 +9,7 @@ function JobShortListCard({ Cardtitle, img, style, link, job }) {
   const { jobTitle, shortlistedCount } = job;
 
   return (
-    <div className="w-full light:bg-white dark:border border-bgDeepBlue p-4 sm:p-6 rounded-lg">
+    <div className="w-full light:bg-white dark:border border shadow-sm border-bgDeepBlue p-4 sm:p-6 rounded-lg">
       <div
         className={`flex flex-col lg:flex-row items-center p-8 sm:p-12 lg:p-16 rounded-lg gap-4 lg:gap-6 ${style}`}
       >

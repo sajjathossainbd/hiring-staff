@@ -9,7 +9,7 @@ function InterviewCard({ Cardtitle, img, style, link, job }) {
   const { jobTitle, InterviewCount } = job;
 
   return (
-    <div className="light:bg-white dark:border border-bgDeepBlue p-4 sm:p-6 rounded-lg">
+    <div className="light:bg-white dark:border border shadow-sm border-bgDeepBlue p-4 sm:p-6 rounded-lg">
       <div
         className={`flex flex-col md:flex-row items-center p-8 md:p-16 rounded-lg h-auto md:h-64 gap-6 ${style}`}
       >

@@ -134,11 +134,11 @@ const ShortlistedJobs = () => {
           className="modal"
           open
         >
-          <div className="modal-box max-w-xl mt-7">
+          <div className="modal-box max-w-xl mt-7 dark:bg-blue">
             <form method="dialog">
               <button
                 type="button"
-                className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 dark:text-white"
                 onClick={handleClose}
               >
                 ✕

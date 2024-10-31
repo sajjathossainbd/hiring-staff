@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { CiClock2, CiLocationOn } from "react-icons/ci";
 import { MdOutlineVerified } from "react-icons/md";
 import { LiaBuffer } from "react-icons/lia";
@@ -18,11 +19,12 @@ function CandidateCard({ candidate }) {
     location,
     about_me,
     experience_year,
+    skills = [],
+    level,
+    featured,
+    ratingsNumbers,
+    ratings
   } = candidate || {};
-
-  const skills = [candidate?.skills];
-
-  // Retrieve the user ID from Redux or any context/provider as per your app's logic
 
   return (
     <div className="boxBorderHoverBlue overflow-hidden hover:bg-[white] bg-bgLightBlue dark:bg-darkBlue">
@@ -47,26 +49,28 @@ function CandidateCard({ candidate }) {
           <div className="mt-6">
             <div className="flex items-center gap-4">
               <MiniBtn
-                value={"Top Rated"}
+                value={level}
                 icon={<MdOutlineVerified />}
                 style="bg-softGreen text-blue"
               />
               <MiniBtn
-                value={"Featured"}
-                icon={<LiaBuffer />}
-                style="bg-softGreen text-green"
+                value={featured ? "Featured" : ""}
+                icon={featured ? <LiaBuffer /> : ""}
+                style={`${featured} ? "bg-softGreen text-green : ""`}
               />
             </div>
-            <div className="mt-[3px] flex gap-[1px] text-14 items-center">
+            <div className="flex items-center gap-2 mt-2">
               <StarRatings
-                rating={4}
+                rating={ratings}
                 starRatedColor="#ffd250"
                 numberOfStars={5}
                 name="rating"
                 starDimension="16px"
                 starSpacing="1px"
               />
-              <p className="ml-2 text-blue">4.5 Rating</p>
+              <p className="text-blue text-14">
+                {ratings} ( {ratingsNumbers} Reviews )
+              </p>
             </div>
           </div>
 

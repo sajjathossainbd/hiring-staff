@@ -29,7 +29,9 @@ const RecruiterJobsCard = ({
           </div>
           <div className="flex flex-col gap-2">
             <div className="flex justify-start items-center">
-              <p className="px-3 rounded-md bg-bgDeepBlue">{recruiterName}</p>
+              <p className="px-3 rounded-md bg-bgDeepBlue dark:text-gray">
+                {recruiterName}
+              </p>
             </div>
             <div className="flex md:flex-row flex-col items-center gap-2">
               <h4>{position}</h4>

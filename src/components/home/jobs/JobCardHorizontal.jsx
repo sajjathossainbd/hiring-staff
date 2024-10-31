@@ -52,7 +52,7 @@ function JobCardHorizontal({ job }) {
                 {min_salary} - {max_salary}
               </p>
             </div>
-            {result} {/* Updated to directly use result as a div */}
+            {result} 
           </div>
         </div>
       </div>

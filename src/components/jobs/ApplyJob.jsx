@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import axiosInstance from "../../utils/axios";
 import toast from "react-hot-toast";
 import useCurrentUser from "../../hooks/useCurrentUser";
+import PrimaryBtnWhite from "../ui/PrimaryBtnWhite";
 
 function ApplyJob({ job, onClose }) {
   const { currentCandidate } = useCurrentUser();
@@ -87,7 +88,7 @@ function ApplyJob({ job, onClose }) {
               id="available-immediately"
               type="radio"
               value="yes"
-              className="mr-2"
+              className="mr-2 dark:text-gray"
             />
             <label htmlFor="available-immediately" className="text-gray-700">
               Yes, I am available to join immediately
@@ -120,18 +121,15 @@ function ApplyJob({ job, onClose }) {
           <input
             type="text"
             placeholder="Google Drive Link"
-            className="block w-full text-14 rounded-md outline-none py-2 px-3 bg-lightText"
+            className="block dark:text-gray w-full text-14 rounded-md outline-none py-2 px-3 bg-lightText"
             {...register("resume")}
           />
         </div>
 
         {/* Submit Button */}
         <div className="flex justify-end">
-          <button
-            type="submit"
-            className="bg-blue hover:bg-darkBlue text-white py-2 px-6 mt-1 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
-          >
-            Submit
+          <button type="submit" className="">
+            <PrimaryBtnWhite title={"Submit"} />
           </button>
         </div>
       </form>

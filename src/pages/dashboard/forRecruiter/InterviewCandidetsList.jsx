@@ -67,8 +67,8 @@ function InterviewCandidetsList() {
                 <th className="rounded-l-md">Name</th>
                 <th>Date</th>
                 <th>Interview</th>
-                <th>Answer</th>
-                <th className="rounded-r-md">Status</th>
+                {/* <th>Answer</th>
+                <th className="rounded-r-md">Status</th> */}
               </tr>
             </thead>
             <tbody>
@@ -99,18 +99,18 @@ function InterviewCandidetsList() {
                       <PrimaryBtnBlue title={"Invite"} />
                     </button>
                   </td>
-                  <td>
+                  {/* <td>
                     <button onClick={() => handleOpenAnswer(job)}>
                       {" "}
                       <PrimaryBtnBlue title={"Answers"} />
                     </button>
-                  </td>
-                  <td>
+                  </td> */}
+                  {/* <td>
                     <select className="select dark:bg-darkBlue select-bordered w-full">
                       <option value="applied">Interivew</option>
                       <option value="shortlist">Selected</option>
                     </select>
-                  </td>
+                  </td> */}
 
                   {/* Modal for  Invitetion */}
                   {isInviteModalOpen && selectedJob && (

@@ -308,7 +308,7 @@ const PostJob = () => {
                   ...prev,
                   min_salary: e.target.value
                     ? parseInt(e.target.value, 10)
-                    : "", // Ensures it's a number
+                    : "", 
                 }))
               }
               className="bg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block w-full ps-10 p-2.5 outline-none transition-all duration-500  

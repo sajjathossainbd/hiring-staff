@@ -41,7 +41,7 @@ const Dashboard = () => {
           <div className="drawer-content flex flex-col items-center justify-center">
             <label
               htmlFor="my-drawer-2"
-              className="btn bg-blue drawer-button lg:hidden mt-2 text-white rounded px-4 py-2"
+              className="btn bg-blue drawer-button lg:hidden max-sm:mb-4 sm:mb-4 mt-2 text-white rounded px-4 py-2"
             >
               Open Dashboard
             </label>

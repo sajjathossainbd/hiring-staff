@@ -60,7 +60,7 @@ const AiAssistant = () => {
         pathName={"My Payments"}
       />
 
-      <div className=" light:bg-white lg:p-10 p-0 rounded-lg">
+      <div className="bg-white dark:bg-darkBlue dark:shadow-md lg:p-10 p-0 rounded-lg">
         <Header title="AI Assistant" />
         <AnswerBox answer={answer} />
         <QuestionForm
@@ -109,7 +109,9 @@ const AnswerBox = ({ answer }) => (
 
           li: {
             component: "li",
-            props: { className: "mb-2 ml-4 list-disc text-gray-800" },
+            props: {
+              className: "mb-2 ml-4 list-disc text-gray-800 dark:text-white",
+            },
           },
 
           p: {
@@ -133,8 +135,8 @@ const QuestionForm = ({ question, onChange, onSubmit, generatingAnswer }) => (
       required
       value={question}
       onChange={(e) => onChange(e.target.value)}
-      className="w-full bg-white dark:bg-blue border border-lightGray text-gray text-sm rounded-md focus:ring-blue focus:border-blue p-3 outline-none transition-all duration-500  
-      dark:text-white dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"
+      className="w-full bg-white dark:bg-bgLightBlue border border-lightGray text-gray text-sm rounded-md focus:ring-blue focus:border-blue p-3 outline-none transition-all duration-500  
+      dark:text-black dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"
       placeholder="Ask me anything..."
       rows="2"
     ></textarea>
@@ -142,9 +144,9 @@ const QuestionForm = ({ question, onChange, onSubmit, generatingAnswer }) => (
     <button
       type="submit"
       disabled={generatingAnswer}
-      className={`w-full px-6 py-3 text-sm font-semibold rounded-lg transition-all duration-300 text-white ${
+      className={`flex justify-center w-full px-6 py-3 text-sm font-semibold rounded-lg transition-all duration-300 text-white ${
         generatingAnswer
-          ? "bg-gradient-to-r from-green-500 to-darkBlue cursor-not-allowed"
+          ? "cursor-not-allowed disabled:bg-blue disabled:hover:bg-blue transition-all duration-300"
           : "bg-gradient-to-r from-blue to-greenLight hover:from-green-500 hover:to-darkBlue"
       }`}
     >

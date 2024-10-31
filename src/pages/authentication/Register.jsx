@@ -50,10 +50,17 @@ const Register = () => {
   };
 
   const onSubmit = async (data) => {
-    const userInfo = {
-      name: data.fullName,
+    const recruiterInfo = {
+      name: data.companyName,
       email: data.email,
-      image: imageUrl,
+      logo: imageUrl,
+      role: userRole,
+    };
+
+    const candidateInfo = {
+      first_name: data.fullName,
+      email: data.email,
+      photo_url: imageUrl,
       role: userRole,
     };
 
@@ -63,7 +70,7 @@ const Register = () => {
       photoURL: imageUrl,
     }).then(async () => {
       if (userRole === "recruiter") {
-        await axiosInstance.post("/recruiters", userInfo).then((res) => {
+        await axiosInstance.post("/recruiters", recruiterInfo).then((res) => {
           if (res.data.insertId) {
             toast.success("Successfully recruiters registered!");
             navigate(location?.state ? location.state : "/dashboard/dashboard-main");
@@ -71,7 +78,7 @@ const Register = () => {
         });
       }
       if (userRole === "candidate") {
-        await axiosInstance.post("/candidates", userInfo).then((res) => {
+        await axiosInstance.post("/candidates", candidateInfo).then((res) => {
           if (res.data.insertId) {
             toast.success("Successfully candidates registered!");
             navigate(location?.state ? location.state : "/dashboard/dashboard-main");
@@ -96,8 +103,8 @@ const Register = () => {
         <button
           onClick={() => setUserRole("candidate")}
           className={`flex items-center justify-center gap-3 px-5 py-3 rounded-md font-medium transition-all duration-500 ease-in-out ${userRole === "candidate"
-              ? "bg-blue text-white"
-              : "bg-white text-blue border border-blue dark:text-gray"
+            ? "bg-blue text-white"
+            : "bg-white text-blue border border-blue dark:text-gray"
             }`}
         >
           <p className={`text-12 ${userRole === "candidate" ? "text-white" : "text-blue dark:text-gray"}`}>
@@ -110,8 +117,8 @@ const Register = () => {
         <button
           onClick={() => setUserRole("recruiter")}
           className={`flex items-center justify-center gap-3 px-5 py-3 rounded-md font-medium transition-all duration-500 ease-in-out ${userRole === "recruiter"
-              ? "bg-blue text-white"
-              : "bg-white text-blue border border-blue dark:text-gray"
+            ? "bg-blue text-white"
+            : "bg-white text-blue border border-blue dark:text-gray"
             }`}
         >
           <p className={`text-12 ${userRole === "recruiter" ? "text-white" : "text-blue dark:text-gray"}`}>

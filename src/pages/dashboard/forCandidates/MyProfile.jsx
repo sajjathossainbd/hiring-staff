@@ -54,7 +54,7 @@ const MyProfile = () => {
         photo_url: currentCandidate.photo_url || "",
         resume: currentCandidate.resume || "",
         cover_letter: currentCandidate.cover_letter || "",
-        skills: currentCandidate.skills.join(", ") || "", // Convert array to string for input
+        skills: currentCandidate.skills ? currentCandidate.skills.join(", ") || "" : "", // Convert array to string for input
         about_me: currentCandidate.about_me || "",
         city: currentCandidate.location?.city || "",
         state: currentCandidate.location?.state || "",

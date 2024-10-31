@@ -97,7 +97,7 @@ const AllPaymentTable = () => {
       <hr className="my-6 text-lightGray" />
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="table-auto text-xs lg:text-sm min-w-full">
+        <table className="table-auto text-xs lg:text-sm min-w-full mb-5">
           {/* Head */}
           <thead>
             <tr className="text-xs lg:text-base dark:text-white">

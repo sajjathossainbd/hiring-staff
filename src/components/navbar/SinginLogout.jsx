@@ -2,8 +2,11 @@ import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { BsPerson } from "react-icons/bs";
+import useCurrentUser from "../../hooks/useCurrentUser";
 function SinginLogout() {
   const { user, logOut } = useAuth();
+
+  const { role, currentCandidate, currentRecruiter } = useCurrentUser()
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -35,7 +38,7 @@ function SinginLogout() {
                 <div className="w-30 h-30 rounded-full overflow-hidden flex items-center justify-center">
                   <img
                     className="w-full rounded-full h-full object-cover"
-                    src={user?.photoURL}
+                    src={role === "candidate" ? currentCandidate?.photo_url : currentRecruiter?.logo || user?.photoURL}
                     alt="User photo"
                   />
                 </div>

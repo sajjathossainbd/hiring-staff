@@ -61,6 +61,7 @@ const PostJob = () => {
   const [requirement, setRequirement] = useState("");
   const [benefit, setBenefit] = useState("");
   const [applier, setApplier] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setFormData((prevFormData) => ({
@@ -130,6 +131,7 @@ const PostJob = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Set loading to true when submitting
     try {
       const res = await axiosInstance.post("/jobs", formData);
       if (res.data.insertId) {
@@ -139,6 +141,8 @@ const PostJob = () => {
     } catch (error) {
       const errorMessage = error.response?.data?.message || "An error occurred";
       toast.error(errorMessage);
+    } finally {
+      setLoading(false); // Reset loading to false after submission
     }
   };
 
@@ -505,12 +509,19 @@ const PostJob = () => {
           </div>
 
           <div className="col-span-6">
-            <button
+          <button
               type="submit"
               className="w-full py-3 bg-blue text-white rounded-md hover:bg-darkBlue transition"
+              disabled={loading}
             >
-              <FiSend className="inline mr-2" />
-              Submit Job
+              {loading ? (
+                <span>Loading...</span>
+              ) : (
+                <>
+                  <FiSend className="inline mr-2" />
+                  Submit Job
+                </>
+              )}
             </button>
           </div>
         </form>

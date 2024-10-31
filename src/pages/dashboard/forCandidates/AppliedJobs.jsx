@@ -109,7 +109,7 @@ const AppliedJobs = () => {
       </>
     );
   }
-  // console.log(appliedJobs);
+  console.log(appliedJobs);
 
   return (
     <div>
@@ -137,11 +137,11 @@ const AppliedJobs = () => {
               className="shadow-md light:bg-white dark:border dark:border-white duration-200 rounded-lg p-6 overflow-auto"
             >
               {/* Icon and status button */}
-              <div className="flex gap-8 items-center mb-4">
+              <div className="flex gap-8 items-center justify-between mb-4">
                 <div className="bg-bgLightWhite p-3 text-blue rounded-md text-2xl inline-block">
                   <IoBriefcaseOutline />
                 </div>
-                <button className="bg-bgLightWhite text-blue font-medium rounded-full text-14 px-6 py-1 pb-2">
+                <button className="bg-bgDeepBlue text-blue font-medium rounded-full text-14 px-6 py-1 pb-2">
                   Applied
                 </button>
               </div>
@@ -153,7 +153,7 @@ const AppliedJobs = () => {
                   <div className="flex flex-wrap text-16 text-gray">
                     <span className="flex items-center gap-2">
                       <MdOutlineMailOutline />
-                      {job.company_email}
+                      {job?.email}
                     </span>
                   </div>
                 </div>
@@ -172,13 +172,13 @@ const AppliedJobs = () => {
               </div>
 
               {/* View Details Job & Delete Action */}
-              <div className="flex items-center gap-6 mt-6">
+              <div className="flex items-center justify-between gap-6 mt-6">
                 <Link to={`/job-details/${job?.jobId}`}>
                   <button className="">
                     <PrimaryBtnBlue icon={<VscEye />} title={"See Details"} />
                   </button>
                 </Link>
-                <div className="flex space-x-4  bg-bgLightWhite text-blue font-medium rounded-md text-18 p-3">
+                <div className="flex space-x-4  bg-bgDeepBlue text-blue font-medium rounded-md text-18 p-3">
                   <button onClick={() => handleDelete(job._id)}>
                     <AiOutlineDelete className="text-red-500 cursor-pointer" />
                   </button>

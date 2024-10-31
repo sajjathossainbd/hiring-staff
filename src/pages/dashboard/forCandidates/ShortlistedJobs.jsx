@@ -91,11 +91,11 @@ const ShortlistedJobs = () => {
               key={idx}
               className="shadow-md light:bg-white hover:-translate-y-1 duration-200 rounded-lg p-6 overflow-auto dark:border dark:border-white"
             >
-              <div className="flex gap-8 items-center mb-4">
+              <div className="flex gap-8 justify-between items-center mb-4">
                 <div className="bg-bgLightWhite p-3 text-blue rounded-md text-2xl inline-block">
                   <IoBriefcaseOutline />
                 </div>
-                <button className="bg-bgLightWhite text-blue font-medium rounded-full text-14 px-6 py-1 pb-2">
+                <button className="bg-bgDeepBlue text-blue font-medium rounded-full text-14 px-6 py-1 pb-2">
                   {"Shortlisted"}
                 </button>
               </div>
@@ -123,7 +123,7 @@ const ShortlistedJobs = () => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-6 mt-6">
+              <div className="flex items-center justify-between gap-6 mt-6">
                 <button onClick={() => handleOpen(job)}>
                   <PrimaryBtnBlue icon={<VscEye />} title={"Assignment"} />
                 </button>

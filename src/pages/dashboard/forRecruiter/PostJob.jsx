@@ -20,6 +20,8 @@ const PostJob = () => {
 
   const { currentRecruiter } = useCurrentUser();
 
+  console.log(currentRecruiter);
+
   useEffect(() => {
     axiosInstance.get("/users/candidate-emails").then((res) => {
       setCandidateEmails(res.data.candidateEmails);
@@ -27,8 +29,10 @@ const PostJob = () => {
   }, []);
 
   const [formData, setFormData] = useState({
-    recruiter_id: currentRecruiter?.recruiter_id,
+    recruiter_id: currentRecruiter?._id,
     jobTitle: "",
+    logo: currentRecruiter?.logo,
+    companyName: currentRecruiter?.name,
     category: "",
     description: "",
     job_type: "",

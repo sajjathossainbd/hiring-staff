@@ -7,7 +7,7 @@ import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
 import { CiLocationOn } from "react-icons/ci";
 import StarRatings from "react-star-ratings";
-import { FaDownload } from "react-icons/fa";
+import { RiPagesLine } from "react-icons/ri";
 import Overview from "../../components/candidate/OverView";
 
 function CandidateDetails() {
@@ -102,9 +102,9 @@ function CandidateDetails() {
             <p className="text-gray">{about_me}</p>
           </div>
           <div>
-            <button className="bg-blue text-white text-18 px-4 md:px-6 py-3 md:py-5 rounded flex items-center space-x-2 w-full">
-              <FaDownload />
-              <span className="text-14">Download CV</span>
+            <button className="bg-blue text-white text-18 px-4 md:px-6 py-3 md:py-4 rounded flex items-center space-x-2 w-full">
+              <RiPagesLine />
+              <a target="_blank" href={resume} className="text-14">View Resume</a>
             </button>
           </div>
         </div>

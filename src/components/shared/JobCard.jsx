@@ -31,7 +31,7 @@ function JobCard({ job }) {
           <h6 className="font-normal pt-2">{name}</h6>
           <h4 className="mb-3">{jobTitle}</h4>
 
-          <div className="flex lg:justify-between md:justify-between sm:justify-start items-center mt-6 flex-wrap">
+          <div className="flex lg:justify-between md:justify-between sm:justify-start items-center mt-6 flex-wrap gap-1">
             <MiniBtn
               value={job_location}
               icon={<CiLocationOn />}

@@ -30,7 +30,7 @@ function ApplyJob({ job, onClose }) {
       resume: data.resume,
       availability: data.availability,
     };
- 
+
     try {
       const response = await axiosInstance.post(
         `/jobs/applied-jobs`,
@@ -53,17 +53,19 @@ function ApplyJob({ job, onClose }) {
   return (
     <>
       <form
-        className="p-2 bg-white rounded-lg"
+        className="p-2 light:bg-white rounded-lg"
         onSubmit={handleSubmit(onSubmit)}
       >
         {/* Cover Letter Section */}
         <div className="mb-6">
-          <label className="block text-gray text-12 mb-2">Cover Letter</label>
+          <label className="block light:text-gray text-12 mb-2">
+            Cover Letter
+          </label>
           <textarea
             {...register("coverLetter", {
               required: "Cover letter is required",
             })}
-            className="w-full p-3 rounded-md focus:outline-none bg-lightText"
+            className="w-full p-3 rounded-md focus:outline-none bg-lightText dark:text-black"
             rows="4"
             placeholder={`${currentCandidate?.first_name}, Your cover letter`}
           ></textarea>
@@ -76,7 +78,7 @@ function ApplyJob({ job, onClose }) {
 
         {/* Availability Section */}
         <div className="mb-6">
-          <label className="block text-gray text-14 mb-2">
+          <label className="block light:text-gray text-14 mb-2">
             Your availability
           </label>
           <div className="flex items-center mb-2">
@@ -112,7 +114,7 @@ function ApplyJob({ job, onClose }) {
 
         {/* File Upload Section */}
         <div className="mb-6">
-          <label className="block text-gray text-14 mb-2">
+          <label className="block light:text-gray text-14 mb-2">
             Resume (Optional)
           </label>
           <input

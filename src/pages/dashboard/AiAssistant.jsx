@@ -60,7 +60,7 @@ const AiAssistant = () => {
         pathName={"My Payments"}
       />
 
-      <div className=" bg-white p-10 rounded-lg">
+      <div className=" light:bg-white lg:p-10 p-0 rounded-lg">
         <Header title="AI Assistant" />
         <AnswerBox answer={answer} />
         <QuestionForm
@@ -106,12 +106,12 @@ const AnswerBox = ({ answer }) => (
             component: "span",
             props: { className: "font-semibold text-blue-600" },
           },
-        
+
           li: {
             component: "li",
             props: { className: "mb-2 ml-4 list-disc text-gray-800" },
           },
-    
+
           p: {
             component: "p",
             props: { className: "mb-4 text-gray-600" },
@@ -125,28 +125,31 @@ const AnswerBox = ({ answer }) => (
 );
 
 const QuestionForm = ({ question, onChange, onSubmit, generatingAnswer }) => (
-  <form onSubmit={onSubmit} className="rounded-lg flex gap-4 px-6">
+  <form
+    onSubmit={onSubmit}
+    className="rounded-lg flex flex-col gap-y-4 w-full px-4"
+  >
     <textarea
       required
       value={question}
       onChange={(e) => onChange(e.target.value)}
-      className="bg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block w-full p-3 outline-none transition-all duration-500  
-          dark:bg-softGreen dark:text-gray dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"
+      className="w-full bg-white dark:bg-blue border border-lightGray text-gray text-sm rounded-md focus:ring-blue focus:border-blue p-3 outline-none transition-all duration-500  
+      dark:text-white dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"
       placeholder="Ask me anything..."
       rows="2"
     ></textarea>
+
     <button
       type="submit"
       disabled={generatingAnswer}
-      className={`px-10 py-3 text-lg font-semibold rounded-lg transition-all duration-300 text-white text-16 ${
+      className={`w-full px-6 py-3 text-sm font-semibold rounded-lg transition-all duration-300 text-white ${
         generatingAnswer
-          ? "from-green-500 to-darkBlue cursor-not-allowed"
+          ? "bg-gradient-to-r from-green-500 to-darkBlue cursor-not-allowed"
           : "bg-gradient-to-r from-blue to-greenLight hover:from-green-500 hover:to-darkBlue"
       }`}
     >
       {generatingAnswer ? (
         <div className="flex items-center gap-2">
-          {" "}
           Generating... <FaHourglassEnd />
         </div>
       ) : (

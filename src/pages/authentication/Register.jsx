@@ -11,6 +11,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { RiAdminLine } from "react-icons/ri";
 import { BsBuildingFillLock } from "react-icons/bs";
 import { IoIosLogIn } from "react-icons/io";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const Register = () => {
   const { registerUser } = useAuth();
@@ -21,7 +22,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [imageUrl, setImageUrl] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const {
     register,
     handleSubmit,
@@ -38,7 +39,9 @@ const Register = () => {
     setIsUploading(true);
     try {
       const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUD_NAME}/image/upload`,
+        `https://api.cloudinary.com/v1_1/${
+          import.meta.env.VITE_CLOUD_NAME
+        }/image/upload`,
         formData
       );
       setImageUrl(response.data.secure_url);
@@ -50,6 +53,7 @@ const Register = () => {
   };
 
   const onSubmit = async (data) => {
+    setIsSubmitting(true);
     const recruiterInfo = {
       name: data.companyName,
       email: data.email,
@@ -73,7 +77,9 @@ const Register = () => {
         await axiosInstance.post("/recruiters", recruiterInfo).then((res) => {
           if (res.data.insertId) {
             toast.success("Successfully recruiters registered!");
-            navigate(location?.state ? location.state : "/dashboard/dashboard-main");
+            navigate(
+              location?.state ? location.state : "/dashboard/dashboard-main"
+            );
           }
         });
       }
@@ -81,7 +87,9 @@ const Register = () => {
         await axiosInstance.post("/candidates", candidateInfo).then((res) => {
           if (res.data.insertId) {
             toast.success("Successfully candidates registered!");
-            navigate(location?.state ? location.state : "/dashboard/dashboard-main");
+            navigate(
+              location?.state ? location.state : "/dashboard/dashboard-main"
+            );
           }
         });
       }
@@ -102,12 +110,19 @@ const Register = () => {
       <div className="flex items-center justify-center select-none gap-4 mt-5 mb-5">
         <button
           onClick={() => setUserRole("candidate")}
-          className={`flex items-center justify-center gap-3 px-5 py-3 rounded-md font-medium transition-all duration-500 ease-in-out ${userRole === "candidate"
-            ? "bg-blue text-white"
-            : "bg-white text-blue border border-blue dark:text-gray"
-            }`}
+          className={`flex items-center justify-center gap-3 px-5 py-3 rounded-md font-medium transition-all duration-500 ease-in-out ${
+            userRole === "candidate"
+              ? "bg-blue text-white"
+              : "bg-white text-blue border border-blue dark:text-gray"
+          }`}
         >
-          <p className={`text-12 ${userRole === "candidate" ? "text-white" : "text-blue dark:text-gray"}`}>
+          <p
+            className={`text-12 ${
+              userRole === "candidate"
+                ? "text-white"
+                : "text-blue dark:text-gray"
+            }`}
+          >
             Candidate Sign-up
           </p>
           <div className="text-xl">
@@ -116,12 +131,19 @@ const Register = () => {
         </button>
         <button
           onClick={() => setUserRole("recruiter")}
-          className={`flex items-center justify-center gap-3 px-5 py-3 rounded-md font-medium transition-all duration-500 ease-in-out ${userRole === "recruiter"
-            ? "bg-blue text-white"
-            : "bg-white text-blue border border-blue dark:text-gray"
-            }`}
+          className={`flex items-center justify-center gap-3 px-5 py-3 rounded-md font-medium transition-all duration-500 ease-in-out ${
+            userRole === "recruiter"
+              ? "bg-blue text-white"
+              : "bg-white text-blue border border-blue dark:text-gray"
+          }`}
         >
-          <p className={`text-12 ${userRole === "recruiter" ? "text-white" : "text-blue dark:text-gray"}`}>
+          <p
+            className={`text-12 ${
+              userRole === "recruiter"
+                ? "text-white"
+                : "text-blue dark:text-gray"
+            }`}
+          >
             Recruiter Sign-up
           </p>
           <div className="text-xl">
@@ -135,7 +157,10 @@ const Register = () => {
           {userRole === "candidate" ? (
             <>
               <div>
-                <label htmlFor="fullName" className="block text-left font-medium pb-1">
+                <label
+                  htmlFor="fullName"
+                  className="block text-left font-medium pb-1"
+                >
                   Full Name*
                 </label>
                 <input
@@ -148,13 +173,18 @@ const Register = () => {
                   className="input input-bordered w-full"
                 />
                 {errors.fullName && (
-                  <p className="text-red-500 text-sm mt-1 text-left">{errors.fullName.message}</p>
+                  <p className="text-red-500 text-sm mt-1 text-left">
+                    {errors.fullName.message}
+                  </p>
                 )}
               </div>
             </>
           ) : (
             <div>
-              <label htmlFor="fullName" className="block text-left font-medium pb-1">
+              <label
+                htmlFor="fullName"
+                className="block text-left font-medium pb-1"
+              >
                 Company Name*
               </label>
               <input
@@ -167,7 +197,9 @@ const Register = () => {
                 className="input input-bordered w-full"
               />
               {errors.companyName && (
-                <p className="text-red-500 text-sm mt-1 text-left">{errors.companyName.message}</p>
+                <p className="text-red-500 text-sm mt-1 text-left">
+                  {errors.companyName.message}
+                </p>
               )}
             </div>
           )}
@@ -190,12 +222,17 @@ const Register = () => {
               className="input input-bordered w-full"
             />
             {errors.email && (
-              <p className="text-red-500 text-sm mt-1 text-left">{errors.email.message}</p>
+              <p className="text-red-500 text-sm mt-1 text-left">
+                {errors.email.message}
+              </p>
             )}
           </div>
 
           <div className="relative">
-            <label htmlFor="password" className="block text-left font-medium pb-1">
+            <label
+              htmlFor="password"
+              className="block text-left font-medium pb-1"
+            >
               Password*
             </label>
             <input
@@ -206,7 +243,8 @@ const Register = () => {
                 required: "Password is required",
                 pattern: {
                   value: /^(?=.*[a-z])(?=.*\d)[a-zA-Z\d]{6,}$/,
-                  message: "Password must be at least 6 characters, contain letters and numbers",
+                  message:
+                    "Password must be at least 6 characters, contain letters and numbers",
                 },
               })}
               className="input input-bordered w-full"
@@ -218,13 +256,18 @@ const Register = () => {
               {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
             </span>
             {errors.password && (
-              <p className="text-red-500 text-sm mt-1 text-left">{errors.password.message}</p>
+              <p className="text-red-500 text-sm mt-1 text-left">
+                {errors.password.message}
+              </p>
             )}
           </div>
 
           {/* Confirm Password Field */}
           <div className="relative">
-            <label htmlFor="confirmPassword" className="block text-left font-medium pb-1">
+            <label
+              htmlFor="confirmPassword"
+              className="block text-left font-medium pb-1"
+            >
               Confirm Password*
             </label>
             <input
@@ -245,7 +288,9 @@ const Register = () => {
               {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
             </span>
             {errors.confirmPassword && (
-              <p className="text-red-500 text-sm mt-1 text-left">{errors.confirmPassword.message}</p>
+              <p className="text-red-500 text-sm mt-1 text-left">
+                {errors.confirmPassword.message}
+              </p>
             )}
           </div>
 
@@ -262,11 +307,20 @@ const Register = () => {
             />
             {isUploading && <p>Uploading...</p>}
             {imageUrl && (
-              <img src={imageUrl} alt="Uploaded" className="mt-2 w-28 rounded" />
+              <img
+                src={imageUrl}
+                alt="Uploaded"
+                className="mt-2 w-28 rounded"
+              />
             )}
           </div>
 
-          <PrimaryButton formSubmit={true} title={"Register"} icon={<IoIosLogIn />} />
+          <PrimaryButton
+            formSubmit={true}
+            title={isSubmitting ? "Registering" : "Register"}
+            icon={isSubmitting ? <AiOutlineLoading3Quarters /> : <IoIosLogIn />}
+            disabled={isSubmitting}
+          />
 
           <p className="mt-4 text-sm">
             Already have an account?{" "}

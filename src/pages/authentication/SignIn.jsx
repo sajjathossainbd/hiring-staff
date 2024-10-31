@@ -11,19 +11,20 @@ import { RiAdminLine } from "react-icons/ri";
 import { BsBuildingFillLock } from "react-icons/bs";
 import PrimaryBtnWhite from "../../components/ui/PrimaryBtnWhite";
 import { IoIosLogIn } from "react-icons/io";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const SignIn = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { signInUser, user } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (user) {
       navigate(location.state || "/dashboard/dashboard-main");
     }
   }, [location.state, navigate, user]);
-
 
   const {
     register,
@@ -35,7 +36,7 @@ const SignIn = () => {
   const onSubmit = (data) => {
     const email = data.email;
     const password = data.password;
-
+    setIsSubmitting(true);
     signInUser(email, password)
       .then(() => {
         toast.success("Successfully Login !");
@@ -104,7 +105,9 @@ const SignIn = () => {
               className="input input-bordered w-full"
             />
             {errors.email && (
-              <p className="text-red-500 text-sm mt-1 text-left">{errors.email.message}</p>
+              <p className="text-red-500 text-sm mt-1 text-left">
+                {errors.email.message}
+              </p>
             )}
           </div>
 
@@ -136,7 +139,9 @@ const SignIn = () => {
               {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
             </span>
             {errors.password && (
-              <p className="text-red-500 text-sm mt-1 text-left">{errors.password.message}</p>
+              <p className="text-red-500 text-sm mt-1 text-left">
+                {errors.password.message}
+              </p>
             )}
           </div>
 
@@ -146,7 +151,12 @@ const SignIn = () => {
             </Link>
           </div>
 
-          <PrimaryButton formSubmit={true} title={"Login"} icon={<IoIosLogIn />} />
+          <PrimaryButton
+            formSubmit={true}
+            title={isSubmitting ? "Loading" : "Sign in"}
+            icon={isSubmitting ? <AiOutlineLoading3Quarters /> : <IoIosLogIn />}
+            disabled={isSubmitting}
+          />
 
           <p className="mt-4 text-sm">
             Already have an account?{" "}

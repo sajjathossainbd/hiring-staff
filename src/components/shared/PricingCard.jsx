@@ -10,7 +10,6 @@ const PricingCard = ({
   service2,
   service3,
   service4,
-  service5,
   linkTo,
 }) => {
   return (
@@ -47,12 +46,6 @@ const PricingCard = ({
               <MdDone />
             </span>
             {service4}
-          </p>
-          <p className="flex items-center gap-2 text-darkBlue">
-            <span className="bg-bgLightWhite text-gray p-2 rounded-full">
-              <MdDone />
-            </span>
-            {service5}
           </p>
         </div>
         <Link

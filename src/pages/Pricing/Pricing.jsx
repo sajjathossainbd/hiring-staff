@@ -8,7 +8,7 @@ import { ScrollRestoration } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const Pricing = () => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   return (
     <div>
       <Helmet>
@@ -32,10 +32,9 @@ const Pricing = () => {
               "Perfect for individuals looking to start a small project."
             }
             service1={"Basic Support"}
-            service2={"5 Projects Limit"}
-            service3={"Single User Access"}
-            service4={"Limited Analytics"}
-            service5={"Email Support"}
+            service2={"5 Applications Limit"}
+            service3={"Limited Analytics"}
+            service4={"Email Support"}
             linkTo="/paymentForm"
           />
           <PricingCard
@@ -45,10 +44,9 @@ const Pricing = () => {
               "Ideal for small teams or startups to get things moving."
             }
             service1={"Priority Support"}
-            service2={"Unlimited Projects"}
-            service3={"Team Collaboration"}
-            service4={"Advanced Analytics"}
-            service5={"Phone & Email Support"}
+            service2={"15 Applications Projects"}
+            service3={"Advanced Analytics"}
+            service4={"Phone & Email Support"}
             linkTo="/paymentForm"
           />
           <PricingCard
@@ -56,10 +54,9 @@ const Pricing = () => {
             price={"99"}
             description={"Best suited for large teams or enterprises."}
             service1={"24/7 Premium Support"}
-            service2={"Unlimited Projects & Users"}
-            service3={"Dedicated Account Manager"}
-            service4={"Custom Integrations"}
-            service5={"Advanced Security Features"}
+            service2={"Unlimited Applications Projects"}
+            service3={"Phone & Email Support"}
+            service4={"Advanced Security Features"}
             linkTo="/paymentForm"
           />
         </div>

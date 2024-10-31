@@ -8,7 +8,7 @@ import axiosInstance from "../../../utils/axios";
 import toast from "react-hot-toast";
 import SelectField from "../shared/SelectField";
 import { LiaCitySolid } from "react-icons/lia";
-import { TbCategory, TbSocial, TbUnlink } from "react-icons/tb";
+import { TbCategory, TbSocial, TbUnlink, TbCategoryPlus } from "react-icons/tb";
 import { BsAwardFill, BsBrowserChrome } from "react-icons/bs";
 import { GrCertificate, GrCopy, GrMap, GrTechnology } from "react-icons/gr";
 import { MdAddLocationAlt, MdPersonAddAlt1 } from "react-icons/md";
@@ -17,12 +17,10 @@ import { TbNumbers } from "react-icons/tb";
 import TextareaField from "../shared/TextareaField";
 import useCurrentUser from "../../../hooks/useCurrentUser";
 import useAuth from "../../../hooks/useAuth";
-import { TbCategoryPlus } from "react-icons/tb";
 
 const RecruiterProfile = () => {
   const { currentRecruiter, refetchRecruiter } = useCurrentUser();
-
-  const { user } = useAuth()
+  const { user } = useAuth();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -31,7 +29,7 @@ const RecruiterProfile = () => {
     industry: "",
     website: "",
     phone: "",
-    email: currentRecruiter?.email,
+    email: currentRecruiter?.email || "",
     map: "",
     location: "",
     ceo: "",
@@ -52,7 +50,6 @@ const RecruiterProfile = () => {
   const [socialKey, setSocialKey] = useState("");
   const [socialValue, setSocialValue] = useState("");
 
-  // Populate formData with recruiter data
   useEffect(() => {
     if (currentRecruiter) {
       setFormData((prev) => ({
@@ -72,27 +69,33 @@ const RecruiterProfile = () => {
   };
 
   const handleAddCertification = () => {
-    setFormData((prev) => ({
-      ...prev,
-      certifications: [...prev.certifications, certification],
-    }));
-    setCertification("");
+    if (certification) {
+      setFormData((prev) => ({
+        ...prev,
+        certifications: [...prev.certifications, certification],
+      }));
+      setCertification("");
+    }
   };
 
   const handleAddAward = () => {
-    setFormData((prev) => ({
-      ...prev,
-      awards: [...prev.awards, award],
-    }));
-    setAward("");
+    if (award) {
+      setFormData((prev) => ({
+        ...prev,
+        awards: [...prev.awards, award],
+      }));
+      setAward("");
+    }
   };
 
   const handleAddTechnology = () => {
-    setFormData((prev) => ({
-      ...prev,
-      technology: [...prev.technology, technologys],
-    }));
-    setTechnologys("");
+    if (technologys) {
+      setFormData((prev) => ({
+        ...prev,
+        technology: [...prev.technology, technologys],
+      }));
+      setTechnologys("");
+    }
   };
 
   const handleSocialChange = () => {
@@ -109,6 +112,8 @@ const RecruiterProfile = () => {
     }
   };
 
+  console.log(currentRecruiter);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -124,7 +129,7 @@ const RecruiterProfile = () => {
       }
     } catch (error) {
       console.error(error);
-      toast.error("Failed to update profile");
+      toast.error(error.response?.data?.message || "Failed to update profile");
     }
   };
 
@@ -136,18 +141,21 @@ const RecruiterProfile = () => {
         pathName="Company Profile"
       />
       <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
-
         <div className="flex flex-col items-center">
           <div
-            className="relative w-full h-36 md:h-44 lg:h-60 xl:h-72 bg-cover bg-center border-[7px] border-white rounded-xl"
-            style={{ backgroundImage: `url(${currentRecruiter?.coverImage || 'https://i.ibb.co.com/mBcjQj6/download-1.jpg'})` }}
+            className="relative w-full h-36 md:h-44 lg:h-60 xl:h-72 bg-cover bg-center light:border-[7px] light:border-white rounded-xl"
+            style={{
+              backgroundImage: `url(${currentRecruiter?.coverImage ||
+                "https://i.ibb.co.com/mBcjQj6/download-1.jpg"
+                })`,
+            }}
           >
             <div className="absolute inset-0 bg-black opacity-40 rounded-xl"></div>
           </div>
 
           <div className="mt-[-40px] lg:mt-[-100px] md:mt-[-70px] -left-20 z-50">
             <img
-              src={currentRecruiter?.logo || user?.photoURL}
+              src={currentRecruiter?.image || user?.photoURL}
               alt="Profile Photo"
               className="rounded-full xl:h-52 lg:h-44 md:h-32 h-20 xl:w-52 lg:w-44 md:w-32 w-20 object-cover border-[7px] border-white"
             />
@@ -263,7 +271,7 @@ const RecruiterProfile = () => {
               label="Annual Revenue"
               icon={<FaMoneyCheckDollar />}
               placeholder="20 Million"
-              type="number"
+              type="text"
               name="annualRevenue"
               value={formData.annualRevenue}
               onChange={handleChange}
@@ -286,10 +294,9 @@ const RecruiterProfile = () => {
               placeholder="City, Country"
               type="text"
               name="location"
-              value={formData.state}
+              value={formData.location}
               onChange={handleChange}
             />
-
             <DefaultInput
               label="Map"
               type="text"
@@ -297,12 +304,15 @@ const RecruiterProfile = () => {
               name="map"
               value={formData.map}
               onChange={handleChange}
-              placeholder={"Map link.."}
+              placeholder={"Map link..."}
             />
           </div>
 
           <div className="lg:col-span-6">
-            <label className="font-semibold flex items-center gap-2"><GrCertificate />Certifications</label>
+            <label className="font-semibold flex items-center gap-2">
+              <GrCertificate />
+              Certifications
+            </label>
             <div className="flex gap-2">
               <input
                 type="text"
@@ -330,7 +340,10 @@ const RecruiterProfile = () => {
           </div>
 
           <div className="lg:col-span-6">
-            <label className="font-semibold flex items-center gap-2"><BsAwardFill />Awards</label>
+            <label className="font-semibold flex items-center gap-2">
+              <BsAwardFill />
+              Awards
+            </label>
             <div className="flex gap-2">
               <input
                 type="text"
@@ -357,7 +370,10 @@ const RecruiterProfile = () => {
             </div>
           </div>
           <div className="lg:col-span-6">
-            <label className="font-semibold flex items-center gap-2"><GrTechnology />Technology</label>
+            <label className="font-semibold flex items-center gap-2">
+              <GrTechnology />
+              Technology
+            </label>
             <div className="flex gap-2">
               <input
                 type="text"
@@ -385,7 +401,10 @@ const RecruiterProfile = () => {
           </div>
 
           <div className="lg:col-span-6">
-            <label className="font-semibold flex items-center gap-2"><TbSocial />Social </label>
+            <label className="font-semibold flex items-center gap-2">
+              <TbSocial />
+              Social{" "}
+            </label>
             <div className="flex gap-2">
               <input
                 type="text"
@@ -416,7 +435,7 @@ const RecruiterProfile = () => {
                 ([platform, url], index) => (
                   <li key={index} className="text-gray text-12">
                     {platform}:{" "}
-                    <a href={url} target="_blank">
+                    <a href={url} target="_blank" rel="noopener noreferrer">
                       {url}
                     </a>
                   </li>
@@ -425,7 +444,6 @@ const RecruiterProfile = () => {
             </ul>
           </div>
 
-          {/* Add more fields like this as needed */}
           <div className="lg:col-span-6 flex justify-center">
             <button
               type="submit"

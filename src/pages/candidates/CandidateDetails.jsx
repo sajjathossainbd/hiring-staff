@@ -7,7 +7,7 @@ import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
 import { CiLocationOn } from "react-icons/ci";
 import StarRatings from "react-star-ratings";
-import { FaDownload } from "react-icons/fa";
+import { RiPagesLine } from "react-icons/ri";
 import Overview from "../../components/candidate/OverView";
 
 function CandidateDetails() {
@@ -79,14 +79,14 @@ function CandidateDetails() {
         <div className="flex flex-col md:flex-row justify-between gap-3 mt-6">
           <div className="space-y-2">
             <div className="flex gap-6">
-              <h3 className="">
+              <h4>
                 {first_name} {last_name}
-              </h3>
-              <p className="flex text-18 items-center gap-2">
+              </h4>
+              <p className="flex text-base items-center gap-2">
                 <CiLocationOn /> <span className="">{location?.city}</span>
               </p>
             </div>
-            <h5 className="text-lightGray">{special_profession}</h5>
+            <h5 className="text-lightGray text-lg">{special_profession}</h5>
             <div className="mt-1 flex gap-[1px] text-14 items-center">
               <StarRatings
                 rating={4}
@@ -101,9 +101,9 @@ function CandidateDetails() {
             <p className="text-gray">{about_me}</p>
           </div>
           <div>
-            <button className="bg-blue text-white text-18 px-4 md:px-6 py-3 md:py-5 rounded flex items-center space-x-2 w-full">
-              <FaDownload />
-              <span className="text-14">Download CV</span>
+            <button className="bg-blue text-white text-18 px-4 md:px-6 py-3 md:py-4 rounded flex items-center space-x-2 w-full">
+              <RiPagesLine />
+              <a target="_blank" href={resume} className="text-14">View Resume</a>
             </button>
           </div>
         </div>
@@ -166,9 +166,9 @@ function CandidateDetails() {
             <div>
               <h4 className="text-gray mb-4">Skills</h4>
               <div className="flex gap-2 flex-wrap ml-3">
-                {skills?.map((skill) => (
+                {skills?.map((skill, index) => (
                   <button
-                    key={skill}
+                    key={index}
                     className="bg-lightText py-2 px-3 rounded-full text-lightBlue hover:bg-lightBlue hover:text-white"
                   >
                     {skill}

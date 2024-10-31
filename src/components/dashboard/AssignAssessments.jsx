@@ -46,9 +46,10 @@ function AssignAssessments({ job, onClose }) {
 
   return (
     <div className="p-4 bg-white rounded-lg">
-      <h2 className="text-lg font-semibold mb-4">
-        Assign Assessment for {job.jobTitle}
-      </h2>
+      <h3 className=" mb-4 ">
+        Assign Assessment for:{" "}
+        <span className="text-blue">{job.jobTitle} </span>
+      </h3>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Assessment Details Field */}
@@ -58,7 +59,7 @@ function AssignAssessments({ job, onClose }) {
             {...register("assessmentDetails", {
               required: "Assessment details are required",
             })}
-            className={`w-full p-2 border rounded-md ${
+            className={`w-full p-2 focus:outline-none border rounded-md ${
               errors.assessmentDetails ? "border-red-500" : "border-gray"
             }`}
             rows="4"
@@ -77,7 +78,7 @@ function AssignAssessments({ job, onClose }) {
           <input
             type="date"
             {...register("dueDate", { required: "Due date is required" })}
-            className={`w-full p-2 border rounded-md ${
+            className={`w-full p-2 focus:outline-none border rounded-md ${
               errors.dueDate ? "border-red-500" : "border-gray"
             }`}
           />

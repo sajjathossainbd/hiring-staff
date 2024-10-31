@@ -21,7 +21,6 @@ import { MdVerified } from "react-icons/md";
 import useCurrentUser from "../../hooks/useCurrentUser";
 import axiosInstance from "../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
-
 const Benefitemojis = ["🎉", "💼", "🚀", "🏆"];
 
 function JobDetails() {
@@ -37,9 +36,11 @@ function JobDetails() {
   const userId = currentCandidate?._id;
 
   const { data: appliedJobs = [] } = useQuery({
-    queryKey: ['appliedJobs', userId],
+    queryKey: ["appliedJobs", userId],
     queryFn: async () => {
-      const res = await axiosInstance.get(`/jobs/applied-jobs/validate/${userId}`);
+      const res = await axiosInstance.get(
+        `/jobs/applied-jobs/validate/${userId}`
+      );
       return res.data;
     },
     enabled: !!userId,
@@ -47,10 +48,9 @@ function JobDetails() {
 
   console.log(appliedJobs);
 
-  // Check if appliedJobs is an array before mapping
-  const filterJob = Array.isArray(appliedJobs) ? appliedJobs.map(job => job) : [];
-  console.log(filterJob);
+  const filteredJobs = appliedJobs?.appliedJobs?.filter(job => job.jobId === id);
 
+  console.log(filteredJobs);
 
 
   const {
@@ -76,6 +76,7 @@ function JobDetails() {
   const {
     description,
     job_type,
+    logo,
     job_location,
     requirements = [],
     responsibilities = [],
@@ -88,7 +89,7 @@ function JobDetails() {
     lastDateToApply,
     postedDate,
   } = job || {};
-  const { name, logo, email } = recruiter || {};
+  const { name, email } = recruiter || {};
   useEffect(() => {
     dispatch(fetchJobsListing());
     dispatch(fetchJobDetails(id));
@@ -126,7 +127,7 @@ function JobDetails() {
         <div className="lg:flex gap-16 dark:text-white">
           <div className="lg:w-2/3 w-full">
             {/* job details header */}
-            <div className=" bg-bgLightWhite dark:bg-darkBlue p-10 rounded-md">
+            <div className=" bg-bgLightWhite dark:bg-darkBlue dark:border p-10 rounded-md">
               {/* 01. Job Title */}
               <h3 className="mb-5">{jobTitle}</h3>
               {/* 02. Company Information */}
@@ -141,14 +142,14 @@ function JobDetails() {
                   />
                   <div className="flex flex-col gap-2">
                     <div className="flex lg:flex-row flex-col items-center gap-x-2">
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1">
                         <span className="text-blue font-medium"> {name}</span>
                         <span className="p-1 rounded-full bg-white text-blue text-18">
                           <MdVerified />
                         </span>
                       </div>
 
-                      <GoDotFill className="text-[8px] text-graylg:block hidden" />
+                      <GoDotFill className="text-[8px] text-gray lg:block hidden" />
                     </div>
                     <div className="flex lg:justify-start justify-center gap-2">
                       <div className="flex items-center gap-x-2 text-14">
@@ -172,12 +173,22 @@ function JobDetails() {
                 {/* Apply Now Button */}
                 <div className="">
                   {/*modal for aplly job */}
-                  <button onClick={handleOpen}>
-                    <PrimaryBtnBlue
-                      title={"Apply Now"}
-                      icon={<HiExternalLink />}
-                    />
-                  </button>
+                  {filteredJobs && filteredJobs.length > 0 ? (
+                    <button
+                      disabled
+                      className="flex items-center justify-center bg-gradient-to-r from-blue to-greenLight hover:from-green-500 hover:to-darkBlue text-white px-4 py-3 sm:px-4 sm:py-3  md:px-5 md:py-3 lg:px-6 lg:py-3 rounded-md font-medium transition-all duration-500 ease-in-out gap-2"
+                    >
+                      <p className="text-12 text-white">Already Applied</p>
+                    </button>
+                  ) : (
+                    <button onClick={handleOpen}>
+                      <PrimaryBtnBlue
+                        title={"Apply Now"}
+                        icon={<HiExternalLink />}
+                      />
+                    </button>
+                  )}
+
 
                   {isOpen && (
                     <dialog
@@ -188,7 +199,7 @@ function JobDetails() {
                       className="modal"
                       open
                     >
-                      <div className="modal-box max-w-xl mt-7">
+                      <div className="modal-box max-w-xl mt-7 dark:bg-blue">
                         <form method="dialog">
                           <button
                             type="button"
@@ -199,8 +210,6 @@ function JobDetails() {
                           </button>
                         </form>
                         <h3 className="font-bold text-lg">{jobTitle}</h3>
-
-
 
                         <ApplyJob job={job} onClose={handleClose} />
                       </div>

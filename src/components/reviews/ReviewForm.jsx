@@ -47,7 +47,7 @@ const ReviewForm = () => {
   };
 
   return (
-    <div className="flex flex-col p-4 shadow-sm rounded-xl xl:p-12 text-black dark:text-darkBlue">
+    <div className="flex flex-col p-4 shadow-sm rounded-xl xl:p-12 text-black  dark:bg-blue dark:text-white">
       <div className="flex flex-col items-center w-full">
         <h2 className="xl:text-3xl text-2xl font-semibold text-center dark:text-darkBlue">
           {<Trans i18nKey={"reviewRightCard"} />}
@@ -85,7 +85,7 @@ const ReviewForm = () => {
             required
             {...register("message")}
             placeholder="Message..."
-            className="resize-none bg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block w-full p-4 outline-none transition-all duration-500  
+            className="resize-none lightbg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block w-full p-4 outline-none transition-all duration-500  
           dark:bg-softGreen dark:text-gray dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue dark:focus:border-blue"
           ></textarea>
           {user ? (

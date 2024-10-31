@@ -10,16 +10,24 @@ import { toast } from "react-hot-toast";
 
 function ShortListedCandidates() {
   const { jobId } = useParams();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isAssignModalOpen, setIsAssignModalOpen] = useState(false);
+  const [isResultModalOpen, setIsResultModalOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
 
-  const handleOpen = (job) => {
+  const handleOpenAssignModal = (job) => {
     setSelectedJob(job);
-    setIsOpen(true);
+    setIsAssignModalOpen(true);
   };
-  const handleClose = () => {
+
+  const handleOpenResultModal = (job) => {
+    setSelectedJob(job);
+    setIsResultModalOpen(true);
+  };
+
+  const handleCloseModals = () => {
     setSelectedJob(null);
-    setIsOpen(false);
+    setIsAssignModalOpen(false);
+    setIsResultModalOpen(false);
   };
 
   const {
@@ -29,7 +37,9 @@ function ShortListedCandidates() {
   } = useQuery({
     queryKey: ["applications", jobId],
     queryFn: async () => {
-      const res = await axiosInstance.get(`/jobs/applied/applications/${jobId}`);
+      const res = await axiosInstance.get(
+        `/jobs/applied/applications/${jobId}`
+      );
       return res.data;
     },
     enabled: !!jobId,
@@ -38,10 +48,12 @@ function ShortListedCandidates() {
   const shortlisted = applications?.filter(
     (applicant) => applicant?.shortlist === "approved"
   );
-
+   
   const handleToggleInterview = async (job) => {
     try {
-      const response = await axiosInstance.patch(`/jobs/applied-jobs/interview/${job._id}`);
+      const response = await axiosInstance.patch(
+        `/jobs/applied-jobs/interview/${job._id}`
+      );
 
       if (response.status === 200) {
         refetch(); // Refresh data
@@ -55,12 +67,15 @@ function ShortListedCandidates() {
 
   const handleReject = async (job) => {
     try {
-      const response = await axiosInstance.patch(`/jobs/applied-jobs/interview/${job._id}`, {
-        interview: false,
-      });
+      const response = await axiosInstance.patch(
+        `/jobs/applied-jobs/interview/${job._id}`,
+        {
+          interview: false,
+        }
+      );
 
       if (response.status === 200) {
-        refetch();  
+        refetch();
         toast.success("Job application rejected successfully!");
       }
     } catch (error) {
@@ -86,7 +101,8 @@ function ShortListedCandidates() {
                 <th>Date</th>
                 <th>Assessments</th>
                 <th>Assessment Result</th>
-                <th>Action</th>
+                <th>Interview</th>
+                <th>Rejection</th>
               </tr>
             </thead>
             <tbody>
@@ -97,47 +113,63 @@ function ShortListedCandidates() {
                       <div className="avatar">
                         <div className="mask mask-squircle h-12 w-12">
                           <img
-                            src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                            src= {job?.applicantImage}
                             alt="Avatar"
                           />
                         </div>
                       </div>
                       <div>
                         <div className="font-bold">{job.applicantName}</div>
-                        <div className="text-sm opacity-50">{job.applicantEmail}</div>
+                        <div className="text-sm opacity-50">
+                          {job.applicantEmail}
+                        </div>
                       </div>
                     </div>
                   </td>
                   <td>{new Date(job.appliedDate).toLocaleDateString()}</td>
                   <td>
-                    <button onClick={() => handleOpen(job)}>
-                      <PrimaryBtnBlue title={"Assign Assessments"} />
+                    <button onClick={() => handleOpenAssignModal(job)}>
+                      <PrimaryBtnBlue title={"Assign"} />
                     </button>
                   </td>
                   <td>
-                    <button onClick={() => handleOpen(job)}>
+                    <button onClick={() => handleOpenResultModal(job)}>
                       <PrimaryBtnBlue title={"Show Result"} />
                     </button>
                   </td>
                   <td>
-                    {job.interview ? (
-                      <button onClick={() => handleReject(job)} className="btn btn-error">
+                    {job.interview === false ? (
+                      <button onClick={() => handleToggleInterview(job)}>
+                        <PrimaryBtnBlue title={"Select"} />
+                      </button>
+                    ) : (
+                      <div>
+                        <p className="text-16 text-green">Selected</p>
+                      </div>
+                    )}
+                  </td>
+                  <td>
+                    {job.interview === true ? (
+                      <button
+                        onClick={() => handleReject(job)}
+                        className="btn btn-error text-white"
+                      >
                         Reject
                       </button>
                     ) : (
-                      <button onClick={() => handleToggleInterview(job)} className="btn btn-outline border-blue hover:bg-lightBlue hover:border-none ">
-                        Interview
-                      </button>
+                      <div>
+                        <p className="text-16 text-yellow-500">Pending</p>
+                      </div>
                     )}
                   </td>
 
                   {/* Modal for Assign Assessments */}
-                  {isOpen && selectedJob && (
+                  {isAssignModalOpen && selectedJob && (
                     <dialog
                       data-aos="zoom-in"
                       data-aos-offset="200"
                       data-aos-duration="700"
-                      id="my_modal_3"
+                      id="assign_assessment_modal"
                       className="modal"
                       open
                     >
@@ -146,24 +178,27 @@ function ShortListedCandidates() {
                           <button
                             type="button"
                             className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-                            onClick={handleClose}
+                            onClick={handleCloseModals}
                           >
                             ✕
                           </button>
                         </form>
-                        <h3 className="font-bold text-lg">{selectedJob.jobTitle}</h3>
-                        <AssignAssessments job={selectedJob} onClose={handleClose} />
+
+                        <AssignAssessments
+                          job={selectedJob}
+                          onClose={handleCloseModals}
+                        />
                       </div>
                     </dialog>
                   )}
 
                   {/* Modal for Assessment Result */}
-                  {isOpen && selectedJob && (
+                  {isResultModalOpen && selectedJob && (
                     <dialog
                       data-aos="zoom-in"
                       data-aos-offset="200"
                       data-aos-duration="700"
-                      id="my_modal_3"
+                      id="assessment_result_modal"
                       className="modal"
                       open
                     >
@@ -172,13 +207,16 @@ function ShortListedCandidates() {
                           <button
                             type="button"
                             className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-                            onClick={handleClose}
+                            onClick={handleCloseModals}
                           >
                             ✕
                           </button>
                         </form>
 
-                        <AssessmentResult job={selectedJob} onClose={handleClose} />
+                        <AssessmentResult
+                          job={selectedJob}
+                          onClose={handleCloseModals}
+                        />
                       </div>
                     </dialog>
                   )}

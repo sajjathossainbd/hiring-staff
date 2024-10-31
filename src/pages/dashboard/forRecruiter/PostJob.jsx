@@ -20,6 +20,8 @@ const PostJob = () => {
 
   const { currentRecruiter } = useCurrentUser();
 
+  console.log(currentRecruiter);
+
   useEffect(() => {
     axiosInstance.get("/users/candidate-emails").then((res) => {
       setCandidateEmails(res.data.candidateEmails);
@@ -27,8 +29,10 @@ const PostJob = () => {
   }, []);
 
   const [formData, setFormData] = useState({
-    recruiter_id: currentRecruiter?.recruiter_id,
+    recruiter_id: currentRecruiter?._id,
     jobTitle: "",
+    logo: currentRecruiter?.logo,
+    companyName: currentRecruiter?.name,
     category: "",
     description: "",
     job_type: "",
@@ -57,6 +61,7 @@ const PostJob = () => {
   const [requirement, setRequirement] = useState("");
   const [benefit, setBenefit] = useState("");
   const [applier, setApplier] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setFormData((prevFormData) => ({
@@ -126,6 +131,7 @@ const PostJob = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Set loading to true when submitting
     try {
       const res = await axiosInstance.post("/jobs", formData);
       if (res.data.insertId) {
@@ -135,6 +141,8 @@ const PostJob = () => {
     } catch (error) {
       const errorMessage = error.response?.data?.message || "An error occurred";
       toast.error(errorMessage);
+    } finally {
+      setLoading(false); // Reset loading to false after submission
     }
   };
 
@@ -300,7 +308,7 @@ const PostJob = () => {
                   ...prev,
                   min_salary: e.target.value
                     ? parseInt(e.target.value, 10)
-                    : "", // Ensures it's a number
+                    : "", 
                 }))
               }
               className="bg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block w-full ps-10 p-2.5 outline-none transition-all duration-500  
@@ -501,12 +509,19 @@ const PostJob = () => {
           </div>
 
           <div className="col-span-6">
-            <button
+          <button
               type="submit"
               className="w-full py-3 bg-blue text-white rounded-md hover:bg-darkBlue transition"
+              disabled={loading}
             >
-              <FiSend className="inline mr-2" />
-              Submit Job
+              {loading ? (
+                <span>Loading...</span>
+              ) : (
+                <>
+                  <FiSend className="inline mr-2" />
+                  Submit Job
+                </>
+              )}
             </button>
           </div>
         </form>

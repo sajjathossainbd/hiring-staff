@@ -2,8 +2,11 @@ import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { BsPerson } from "react-icons/bs";
+import useCurrentUser from "../../hooks/useCurrentUser";
 function SinginLogout() {
   const { user, logOut } = useAuth();
+
+  const { role, currentCandidate, currentRecruiter } = useCurrentUser();
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -20,8 +23,10 @@ function SinginLogout() {
     };
   }, [dropdownRef]);
 
+  console.log(role);
+
   return (
-    <div>
+    <div className="xl:block hidden">
       {user ? (
         <div className="dropdown dropdown-end" ref={dropdownRef}>
           <div
@@ -35,7 +40,11 @@ function SinginLogout() {
                 <div className="w-30 h-30 rounded-full overflow-hidden flex items-center justify-center">
                   <img
                     className="w-full rounded-full h-full object-cover"
-                    src={user?.photoURL}
+                    src={
+                      (role === "candidate" && currentCandidate?.photo_url) ||
+                      (role === "candidate" && currentRecruiter?.logo) ||
+                      user?.photoURL
+                    }
                     alt="User photo"
                   />
                 </div>
@@ -56,9 +65,9 @@ function SinginLogout() {
                   Dashboard
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link className="text-16 py-2">Settings</Link>
-              </li>
+              </li> */}
               <li>
                 <Link
                   className="justify-between text-16 py-2F"
@@ -72,13 +81,15 @@ function SinginLogout() {
         </div>
       ) : (
         <Link to="/sign-in">
-          <button className="bg-white py-[4px] px-8 rounded-md flex items-center justify-start gap-2 mt-1">
+          <button className="bg-white py-[4px] px-8 rounded-md  flex items-center justify-start gap-2 mt-1">
             <div className="text-blue text-3xl">
               <BsPerson />
             </div>
             <div className="flex flex-col gap-0 relative mb-[18px] ">
               <p className="text-[10px] dark:text-gray">Account</p>
-              <p className="text-14 font-medium absolute mt-[18px] dark:text-gray">Login</p>
+              <p className="text-14 font-medium absolute mt-[18px] dark:text-gray">
+                Login
+              </p>
             </div>
           </button>
         </Link>

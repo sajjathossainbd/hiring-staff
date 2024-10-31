@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { BsFillSendFill } from "react-icons/bs";
 import PrimaryButton from "../../../components/shared/PrimaryButton";
 import toast from "react-hot-toast";
@@ -6,15 +7,17 @@ import axiosInstance from "../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
 import DefaultInput from "../shared/DefaultInput";
 import { CgNametag } from "react-icons/cg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SelectField from "../shared/SelectField";
 import { FaUser, FaEnvelope, FaBriefcase, FaClock, FaPhone, FaImage, FaGlobe, FaMapMarkerAlt, FaTools, FaFileAlt, FaFlag } from "react-icons/fa";
 import { TiDocumentText } from "react-icons/ti";
 import TextareaField from "../shared/TextareaField";
 import { GrCopy } from "react-icons/gr";
 
-const MyProfile = () => {
+const MyProfile = ({ setIsFormOpen }) => {
   const { user } = useAuth();
+
+  console.log(setIsFormOpen);
 
   const { data: currentCandidate, refetch } = useQuery({
     queryKey: ["currentCandidate", user?.email],
@@ -26,21 +29,42 @@ const MyProfile = () => {
   });
 
   const [formData, setFormData] = useState({
-    job_type: "",
-    first_name: currentCandidate?.first_name || "",
-    last_name: currentCandidate?.last_name || "",
-    special_profession: currentCandidate?.special_profession || "",
-    experience_year: currentCandidate?.experience_year || "",
-    phone_number: currentCandidate?.phone_number || "",
-    photo_url: currentCandidate?.photo_url || "",
-    resume: currentCandidate?.resume || "",
-    cover_letter: currentCandidate?.cover_letter || "",
-    skills: currentCandidate?.skills || "",
-    about_me: currentCandidate?.about_me || "",
-    city: currentCandidate?.location?.city || "",
-    state: currentCandidate?.location?.state || "",
-    country: currentCandidate?.location?.country || "",
+    job_type: "Remote", // Default value for job type
+    first_name: "",
+    last_name: "",
+    special_profession: "",
+    experience_year: "",
+    phone_number: "",
+    photo_url: "",
+    resume: "",
+    cover_letter: "",
+    skills: [],
+    about_me: "",
+    city: "",
+    state: "",
+    country: "",
   });
+
+  useEffect(() => {
+    if (currentCandidate) {
+      setFormData({
+        job_type: currentCandidate.job_type || "Remote", // Ensure job type is set correctly
+        first_name: currentCandidate.first_name || "",
+        last_name: currentCandidate.last_name || "",
+        special_profession: currentCandidate.special_profession || "",
+        experience_year: currentCandidate.experience_year || "",
+        phone_number: currentCandidate.phone_number || "",
+        photo_url: currentCandidate.photo_url || "",
+        resume: currentCandidate.resume || "",
+        cover_letter: currentCandidate.cover_letter || "",
+        skills: currentCandidate.skills ? currentCandidate.skills.join(", ") || "" : "", // Convert array to string for input
+        about_me: currentCandidate.about_me || "",
+        city: currentCandidate.location?.city || "",
+        state: currentCandidate.location?.state || "",
+        country: currentCandidate.location?.country || "",
+      });
+    }
+  }, [currentCandidate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -49,6 +73,7 @@ const MyProfile = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
     const updatedData = {
       ...currentCandidate,
       ...formData,
@@ -58,6 +83,7 @@ const MyProfile = () => {
         state: formData.state,
         country: formData.country,
       },
+      skills: formData.skills.split(",").map(skill => skill.trim()),
     };
 
     try {
@@ -65,6 +91,7 @@ const MyProfile = () => {
       if (res.data.modifiedCount > 0) {
         toast.success("Your data has been updated");
         refetch();
+        setIsFormOpen(false);
       } else {
         toast.error("No changes made");
       }
@@ -78,7 +105,7 @@ const MyProfile = () => {
 
   return (
     <div className="bg-white p-10 rounded-lg mt-10">
-      <form onSubmit={onSubmit} className="">
+      <form onSubmit={onSubmit}>
         <h4 className="text-center font-semibold my-7 mb-4">Candidate Profile Update</h4>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -86,7 +113,7 @@ const MyProfile = () => {
             <DefaultInput
               label="My Role:"
               icon={<CgNametag />}
-              placeholder={"Candidate"}
+              placeholder="Candidate"
               type="text"
               disabled
             />
@@ -95,7 +122,7 @@ const MyProfile = () => {
           <div className="mb-4">
             <SelectField
               label="Job Type"
-              name="jobType"
+              name="job_type"
               icon={<GrCopy />}
               options={["Remote", "Hybrid", "Onsite"]}
               value={formData.job_type}
@@ -109,7 +136,7 @@ const MyProfile = () => {
             <DefaultInput
               label="First Name"
               icon={<FaUser />}
-              placeholder={currentCandidate?.first_name}
+              placeholder={currentCandidate.first_name}
               type="text"
               name="first_name"
               value={formData.first_name}
@@ -120,7 +147,7 @@ const MyProfile = () => {
             <DefaultInput
               label="Last Name"
               icon={<FaUser />}
-              placeholder={currentCandidate?.last_name}
+              placeholder={currentCandidate.last_name}
               type="text"
               name="last_name"
               value={formData.last_name}
@@ -134,7 +161,7 @@ const MyProfile = () => {
             <DefaultInput
               label="Email"
               icon={<FaEnvelope />}
-              placeholder={currentCandidate?.email}
+              placeholder={currentCandidate.email}
               type="email"
               disabled
             />
@@ -143,7 +170,7 @@ const MyProfile = () => {
             <DefaultInput
               label="Special Profession"
               icon={<FaBriefcase />}
-              placeholder={currentCandidate?.special_profession}
+              placeholder={currentCandidate.special_profession}
               type="text"
               name="special_profession"
               value={formData.special_profession}
@@ -157,7 +184,7 @@ const MyProfile = () => {
             <DefaultInput
               label="Years of Experience"
               icon={<FaClock />}
-              placeholder={currentCandidate?.experience_year}
+              placeholder={currentCandidate.experience_year}
               type="number"
               name="experience_year"
               value={formData.experience_year}
@@ -168,7 +195,7 @@ const MyProfile = () => {
             <DefaultInput
               label="Phone Number"
               icon={<FaPhone />}
-              placeholder={currentCandidate?.phone_number}
+              placeholder={currentCandidate.phone_number}
               type="tel"
               name="phone_number"
               value={formData.phone_number}
@@ -182,7 +209,7 @@ const MyProfile = () => {
             <DefaultInput
               label="Profile Photo URL"
               icon={<FaImage />}
-              placeholder={currentCandidate?.photo_url}
+              placeholder={currentCandidate.photo_url}
               type="url"
               name="photo_url"
               value={formData.photo_url}
@@ -205,7 +232,7 @@ const MyProfile = () => {
             <DefaultInput
               label="Resume URL"
               icon={<TiDocumentText />}
-              placeholder={currentCandidate?.resume}
+              placeholder={currentCandidate.resume}
               type="url"
               name="resume"
               value={formData.resume}
@@ -216,7 +243,7 @@ const MyProfile = () => {
             <DefaultInput
               label="Cover Letter URL"
               icon={<FaFileAlt />}
-              placeholder={currentCandidate?.cover_letter}
+              placeholder={currentCandidate.cover_letter}
               type="url"
               name="cover_letter"
               value={formData.cover_letter}
@@ -238,7 +265,7 @@ const MyProfile = () => {
 
         <div className="mb-4">
           <TextareaField
-            placeholder={currentCandidate?.about_me || "Short description about yourself..."}
+            placeholder={currentCandidate.about_me || "Short description about yourself..."}
             icon={<GrCopy />}
             label="About Me"
             name="about_me"
@@ -254,7 +281,7 @@ const MyProfile = () => {
             <DefaultInput
               label="City"
               icon={<FaMapMarkerAlt />}
-              placeholder={currentCandidate?.location?.city || "Enter your city..."}
+              placeholder={currentCandidate.location?.city || "Enter your city..."}
               type="text"
               name="city"
               value={formData.city}
@@ -265,7 +292,7 @@ const MyProfile = () => {
             <DefaultInput
               label="State"
               icon={<FaFlag />}
-              placeholder={currentCandidate?.location?.state || "Enter your state..."}
+              placeholder={currentCandidate.location?.state || "Enter your state..."}
               type="text"
               name="state"
               value={formData.state}
@@ -276,7 +303,7 @@ const MyProfile = () => {
             <DefaultInput
               label="Country"
               icon={<FaGlobe />}
-              placeholder={currentCandidate?.location?.country || "Enter your country..."}
+              placeholder={currentCandidate.location?.country || "Enter your country..."}
               type="text"
               name="country"
               value={formData.country}

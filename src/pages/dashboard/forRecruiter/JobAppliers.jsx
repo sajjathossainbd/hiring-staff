@@ -21,8 +21,7 @@ function JobAppliers() {
     },
     enabled: !!jobId,
   });
-  // console.log(applications);
-
+ 
   const handleSelectChange = async (applicationId, action) => {
     let updateData;
     let statusText;
@@ -64,7 +63,6 @@ function JobAppliers() {
     }
   };
 
-
   return (
     <div className="p-6 bg-gray-50">
       <h1 className="text-2xl font-semibold text-gray-700 mb-4">
@@ -75,23 +73,26 @@ function JobAppliers() {
         <table className="table w-full border-separate border-spacing-y-4">
           {/* head */}
           <thead>
-            <tr className="bg-white text-16 rounded-sm">
+            <tr className="light:bg-white dark:text-white text-16 rounded-sm">
               <th className="rounded-l-md">Name</th>
               <th>Date</th>
-              {/* <th>Details</th> */}
+              <th>Details</th>
               <th className="rounded-r-md">Status</th>
-              <th>Reject</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
             {applications?.map((applyer, index) => (
-              <tr key={index} className="bg-white rounded-md shadow-sm">
+              <tr
+                key={index}
+                className="light:bg-white border dark:text-white dark:border dark:border-white rounded-md shadow-sm"
+              >
                 <td className="rounded-l-md">
                   <div className="flex items-center gap-3">
                     <div className="avatar">
                       <div className="mask mask-squircle h-12 w-12">
                         <img
-                          src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                          src= {applyer?.applicantImage}
                           alt="Avatar Tailwind CSS Component"
                         />
                       </div>
@@ -105,30 +106,40 @@ function JobAppliers() {
                   </div>
                 </td>
                 <td>26 October, 2024</td>
-                {/* <td>
+                <td>
                   <Link to={`/candidate-details/${applyer?.applicantId}`}>
-                    <PrimaryBtnBlue title={"View Details"} />
+                    <PrimaryBtnBlue title={"View"} />
                   </Link>
-                </td> */}
+                </td>
                 <td>
                   <select
                     onChange={(event) =>
                       handleSelectChange(applyer?._id, event.target.value)
                     }
                     value={applyer?.shortlist}
-                    className="rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white p-2 hover:bg-blue-100 cursor-pointer"
+                    className="rounded-md  dark:border-gray   dark:text-white p-2 py-3 cursor-pointer dark:bg-darkBlue"
                     defaultValue=""
                   >
-                    <option value="" disabled>
-                      Actions
-                    </option>
+                    <option value="">Actions</option>
                     <option value="shortlist">Shortlist</option>
                     <option value="pending">Pending</option>
                     <option value="reject">Reject</option>
                   </select>
                 </td>
-                <td className="text-red-400">
-                  {applyer?.reject === true ? "Rejected" : ""}
+                <td
+                  className={
+                    applyer?.reject === true
+                      ? "text-red-500 text-16"
+                      : applyer?.shortlist == "approved"
+                      ? "text-green text-16"
+                      : "text-yellow-500 text-16"
+                  }
+                >
+                  {applyer?.reject === true
+                    ? "Rejected"
+                    : applyer?.shortlist == "approved"
+                    ? "Shortlisted"
+                    : "Pending"}
                 </td>
               </tr>
             ))}

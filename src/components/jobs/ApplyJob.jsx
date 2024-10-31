@@ -3,11 +3,11 @@ import { useForm } from "react-hook-form";
 import axiosInstance from "../../utils/axios";
 import toast from "react-hot-toast";
 import useCurrentUser from "../../hooks/useCurrentUser";
+import PrimaryBtnWhite from "../ui/PrimaryBtnWhite";
 
 function ApplyJob({ job, onClose }) {
   const { currentCandidate } = useCurrentUser();
-
-  const {
+   const {
     register,
     handleSubmit,
     reset,
@@ -26,11 +26,12 @@ function ApplyJob({ job, onClose }) {
       applicantId: currentCandidate?._id,
       applicantName: currentCandidate?.first_name,
       applicantEmail: currentCandidate?.email,
+      applicantImage: currentCandidate?.photo_url,
       coverLetter: data.coverLetter,
       resume: data.resume,
       availability: data.availability,
     };
- 
+
     try {
       const response = await axiosInstance.post(
         `/jobs/applied-jobs`,
@@ -53,19 +54,21 @@ function ApplyJob({ job, onClose }) {
   return (
     <>
       <form
-        className="p-2 bg-white rounded-lg"
+        className="p-2 light:bg-white rounded-lg"
         onSubmit={handleSubmit(onSubmit)}
       >
         {/* Cover Letter Section */}
         <div className="mb-6">
-          <label className="block text-gray text-12 mb-2">Cover Letter</label>
+          <label className="block light:text-gray text-12 mb-2">
+            Cover Letter
+          </label>
           <textarea
             {...register("coverLetter", {
               required: "Cover letter is required",
             })}
-            className="w-full p-3 rounded-md focus:outline-none bg-lightText"
+            className="w-full p-3 rounded-md focus:outline-none bg-lightText dark:text-black"
             rows="4"
-            placeholder={`${currentCandidate?.first_name}, Your cover letter`}
+            placeholder={`Your cover letter`}
           ></textarea>
           {errors?.coverLetter && (
             <p className="text-red-500 text-sm mt-1">
@@ -76,7 +79,7 @@ function ApplyJob({ job, onClose }) {
 
         {/* Availability Section */}
         <div className="mb-6">
-          <label className="block text-gray text-14 mb-2">
+          <label className="block light:text-gray text-14 mb-2">
             Your availability
           </label>
           <div className="flex items-center mb-2">
@@ -85,7 +88,7 @@ function ApplyJob({ job, onClose }) {
               id="available-immediately"
               type="radio"
               value="yes"
-              className="mr-2"
+              className="mr-2 dark:text-gray"
             />
             <label htmlFor="available-immediately" className="text-gray-700">
               Yes, I am available to join immediately
@@ -112,24 +115,21 @@ function ApplyJob({ job, onClose }) {
 
         {/* File Upload Section */}
         <div className="mb-6">
-          <label className="block text-gray text-14 mb-2">
+          <label className="block light:text-gray text-14 mb-2">
             Resume (Optional)
           </label>
           <input
             type="text"
             placeholder="Google Drive Link"
-            className="block w-full text-14 rounded-md outline-none py-2 px-3 bg-lightText"
+            className="block dark:text-gray w-full text-14 rounded-md outline-none py-2 px-3 bg-lightText"
             {...register("resume")}
           />
         </div>
 
         {/* Submit Button */}
         <div className="flex justify-end">
-          <button
-            type="submit"
-            className="bg-blue hover:bg-darkBlue text-white py-2 px-6 mt-1 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
-          >
-            Submit
+          <button type="submit" className="">
+            <PrimaryBtnWhite title={"Submit"} />
           </button>
         </div>
       </form>

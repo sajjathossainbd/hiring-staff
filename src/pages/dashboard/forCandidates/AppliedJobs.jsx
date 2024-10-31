@@ -18,8 +18,8 @@ const AppliedJobs = () => {
 
   const userId = currentCandidate?._id;
   const navigate = useNavigate();
-  const { page = 1 } = useParams();  
-  const limit = 12;  
+  const { page = 1 } = useParams();
+  const limit = 12;
 
   const fetchAppliedJobs = async (currentPage, limit) => {
     const response = await axiosInstance.get(
@@ -44,7 +44,7 @@ const AppliedJobs = () => {
 
   const handleDelete = async (id) => {
     Swal.fire({
-      title: "Are you sure?",
+      title: "<span style='color: red;'>Are you sure?</span>",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
@@ -84,10 +84,7 @@ const AppliedJobs = () => {
   // if (isError) return <div>Error loading applied jobs.</div>;
   // if (isLoading) return <Loading />;
 
-  if (
-    appliedJobs?.length === 0 ||
-    appliedJobs === undefined
-  ) {
+  if (appliedJobs?.length === 0 || appliedJobs === undefined) {
     return (
       <>
         <TinnyHeading
@@ -112,7 +109,7 @@ const AppliedJobs = () => {
       </>
     );
   }
-  // console.log(appliedJobs);
+  console.log(appliedJobs);
 
   return (
     <div>
@@ -137,14 +134,14 @@ const AppliedJobs = () => {
           return (
             <div
               key={job?._id}
-              className="shadow-md bg-white duration-200 rounded-lg p-6 overflow-auto"
+              className="shadow-md light:bg-white dark:border dark:border-white duration-200 rounded-lg p-6 overflow-auto"
             >
               {/* Icon and status button */}
-              <div className="flex gap-8 items-center mb-4">
+              <div className="flex gap-8 items-center justify-between mb-4">
                 <div className="bg-bgLightWhite p-3 text-blue rounded-md text-2xl inline-block">
                   <IoBriefcaseOutline />
                 </div>
-                <button className="bg-bgLightWhite text-blue font-medium rounded-full text-14 px-6 py-1 pb-2">
+                <button className="bg-bgDeepBlue text-blue font-medium rounded-full text-14 px-6 py-1 pb-2">
                   Applied
                 </button>
               </div>
@@ -156,7 +153,7 @@ const AppliedJobs = () => {
                   <div className="flex flex-wrap text-16 text-gray">
                     <span className="flex items-center gap-2">
                       <MdOutlineMailOutline />
-                      {job.company_email}
+                      {job?.email}
                     </span>
                   </div>
                 </div>
@@ -175,18 +172,15 @@ const AppliedJobs = () => {
               </div>
 
               {/* View Details Job & Delete Action */}
-              <div className="flex items-center gap-6 mt-6">
+              <div className="flex items-center justify-between gap-6 mt-6">
                 <Link to={`/job-details/${job?.jobId}`}>
                   <button className="">
-                    <PrimaryBtnBlue
-                      icon={<VscEye />}
-                      title={"See Details Job Post"}
-                    />
+                    <PrimaryBtnBlue icon={<VscEye />} title={"See Details"} />
                   </button>
                 </Link>
-                <div className="flex space-x-4  bg-bgLightWhite text-blue font-medium rounded-md text-18 p-3">
+                <div className="flex space-x-4  bg-bgDeepBlue text-blue font-medium rounded-md text-18 p-3">
                   <button onClick={() => handleDelete(job._id)}>
-                    <AiOutlineDelete  className="text-red-500 cursor-pointer" />
+                    <AiOutlineDelete className="text-red-500 cursor-pointer" />
                   </button>
                 </div>
               </div>

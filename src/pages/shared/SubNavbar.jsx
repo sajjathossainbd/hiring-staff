@@ -69,14 +69,14 @@ function SubNavbar() {
   const animatedNavbar = (
     <motion.div
       initial={false}
-      animate={{ y: scrollDirection === "down" ? -100 : 0 }}
+      animate={{ y: scrollDirection === "" ? 0 : 0 }}
       transition={{
         type: "spring",
         damping: 20,
         duration: 10,
       }}
       className={
-        "fixed bg-white dark:bg-darkBlue dark:text-white top-0 z-50 py-2 w-full "
+        "bg-white dark:bg-darkBlue dark:text-white top-0 z-50 py-2 w-full "
       }
     >
       <div className="container py-0">

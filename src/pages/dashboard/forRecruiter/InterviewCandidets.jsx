@@ -4,6 +4,7 @@ import interview from "./../../../../public/interview2.json";
 import useCurrentUser from "../../../hooks/useCurrentUser";
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../../utils/axios";
+import InterviewCard from "../../../components/dashboard/InterviewCard";
 
 function InterviewCandidets() {
   const { currentRecruiter } = useCurrentUser();
@@ -31,7 +32,7 @@ function InterviewCandidets() {
       InteriewApplicants: InteriewApplicants,
     };
   });
-
+console.log(jobInterviewInfo);
   return (
     <div>
       <TinnyHeading
@@ -43,7 +44,7 @@ function InterviewCandidets() {
       {/* shortlisted candidates list */}
       <div className="grid lg:grid-cols-2 gap-6 mt-6">
         {jobInterviewInfo?.map((job) => (
-          <JobPostCard
+          <InterviewCard
             key={job.jobId}
             Cardtitle="Interview Candidates"
             jobTitle={job.jobTitle}

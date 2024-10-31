@@ -1,9 +1,8 @@
 import NewsLetter from "../../components/home/NewsLetter";
 import JobCard from "../../components/shared/JobCard";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { fetchJobsListing } from "../../features/jobs/jobsListing/jobsListingSlice";
-import { fetchRecruiterDetails } from "../../features/recruiters/recruiterDetails/recruiterDetailsSlice";
 import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
 import JobBanner from "../../components/jobs/JobBanner";
@@ -20,19 +19,13 @@ function JobsListing() {
   // Selectors
   const {
     jobsListing: jobs,
-    isLoading: jobsLoading,
-    isError: jobsError,
+    isLoading,
+    isError,
   } = useSelector((state) => state.jobsListing);
-  const {
-    recruiterDetails: recruiter,
-    isLoading: recruiterLoading,
-    isError: recruiterError,
-  } = useSelector((state) => state.recruiterDetails);
+
   const { JobTitle, AllCategory, Location } = useSelector(
     (state) => state.filters
   );
-
-  const [recruitersData, setRecruitersData] = useState({});
 
   const filters = useMemo(
     () => ({
@@ -42,54 +35,12 @@ function JobsListing() {
       page,
       limit,
     }),
-    [page, JobTitle]
+    [page, JobTitle, Location, AllCategory]
   );
 
   useEffect(() => {
     dispatch(fetchJobsListing(filters));
   }, [filters, dispatch]);
-
-  useEffect(() => {
-    if (jobs?.jobs?.length > 0) {
-      const fetchRecruiters = async () => {
-        const recruiters = {};
-        await Promise.all(
-          jobs.jobs.map(async (job) => {
-            try {
-              const recruiterResponse = await dispatch(
-                fetchRecruiterDetails(job.recruiter_id)
-              ).unwrap();
-              recruiters[job.recruiter_id] = recruiterResponse;
-            } catch (error) {
-              console.error(
-                `Error fetching recruiter details for recruiter_id ${job.recruiter_id}:`,
-                error
-              );
-              recruiters[job.recruiter_id] = null;
-            }
-          })
-        );
-        setRecruitersData(recruiters);
-      };
-      fetchRecruiters();
-    }
-  }, [jobs?.jobs, dispatch]);
-
-  const logoSkeleton = (
-    <div className="flex w-52 flex-col gap-4">
-      <div className="flex items-center gap-4">
-        <div className="skeleton h-16 w-16 shrink-0 rounded-full"></div>
-        <div className="flex flex-col gap-4">
-          <div className="skeleton h-4 w-20"></div>
-          <div className="skeleton h-4 w-28"></div>
-        </div>
-      </div>
-    </div>
-  );
-
-  // Unified Loading and Error state
-  const isLoading = jobsLoading || recruiterLoading;
-  const isError = jobsError || recruiterError;
 
   // Content rendering logic
   let content = null;
@@ -101,18 +52,7 @@ function JobsListing() {
     content = (
       <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 xl:gap-5 lg:gap-10 gap-5">
         {jobs?.jobs?.map((job) => {
-          const recruiter = recruitersData[job.recruiter_id];
-          console.log(recruiter);
-          return (
-            <JobCard
-              key={job._id}
-              job={job}
-              recruiterName={recruiter?.name || logoSkeleton}
-              recruiterLogo={recruiter?.logo || ""}
-              recruiterWebsite={recruiter?.website || ""}
-              recruiterRating={recruiter?.ratings || 0}
-            />
-          );
+          return <JobCard key={job._id} job={job} />;
         })}
       </div>
     );

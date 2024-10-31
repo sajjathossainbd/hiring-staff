@@ -34,8 +34,8 @@ export const CardPagination = ({ currentPage, totalPages, onPageChange }) => {
             onClick={() => updatePageNumber(item)}
             className={`cursor-pointer px-2 py-1  text-sm transition-all duration-200 border-none rounded-sm text-gray ${
               pageNumber === item
-                ? "bg-blue text-white"
-                : "hover:bg-blue hover:text-white"
+                ? "bg-blue text-white "
+                : "hover:bg-blue hover:text-white dark:text-white"
             } font-semibold`}
           >
             {item + 1}

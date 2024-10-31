@@ -48,7 +48,7 @@ function InterviewCandidetsList() {
             </thead>
             <tbody>
               {Intrviewed?.map((job) => (
-                <tr className="bg-white rounded-md shadow-sm">
+                <tr key={job._id} className="bg-white rounded-md shadow-sm">
                   <td className="rounded-l-md">
                     <div className="flex items-center gap-3">
                       <div className="avatar">

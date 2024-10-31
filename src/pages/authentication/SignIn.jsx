@@ -82,7 +82,7 @@ const SignIn = () => {
 
   return (
     <div className="container">
-      <div className="max-w-md mx-auto text-center">
+      <div className="max-w-md mx-auto text-center lg:mt-0 mt-20">
         <div className="space-y-3">
           <h3>Welcome Back!</h3>
           <p>Access your account by signing in</p>

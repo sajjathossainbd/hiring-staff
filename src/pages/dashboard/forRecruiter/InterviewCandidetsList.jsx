@@ -3,9 +3,33 @@ import PrimaryBtnBlue from "../../../components/ui/PrimaryBtnBlue";
 import TinnyHeading from "../shared/TinnyHeading";
 import axiosInstance from "../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import AssignInvitation from "../../../components/dashboard/AssignInvitation";
+import InvitationAnswer from "../../../components/dashboard/InvitationAnswer";
 
 function InterviewCandidetsList() {
   const { jobId } = useParams();
+
+  const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
+  const [isResultModalOpen, setIsResultModalOpen] = useState(false);
+  const [selectedJob, setSelectedJob] = useState(null);
+
+  const handleOpenInvite = (job) => {
+    setSelectedJob(job);
+    setIsInviteModalOpen(true);
+  };
+
+  const handleOpenAnswer = (job) => {
+    setSelectedJob(job);
+    setIsResultModalOpen(true);
+  };
+
+  const handleCloseModals = () => {
+    setSelectedJob(null);
+    setIsInviteModalOpen(false);
+    setIsResultModalOpen(false);
+  };
+
   const {
     data: applications,
     isLoading,
@@ -42,7 +66,8 @@ function InterviewCandidetsList() {
               <tr className="bg-white text-16 rounded-sm">
                 <th className="rounded-l-md">Name</th>
                 <th>Date</th>
-                <th>Details</th>
+                <th>Interview</th>
+                <th>Answer</th>
                 <th className="rounded-r-md">Status</th>
               </tr>
             </thead>
@@ -69,9 +94,14 @@ function InterviewCandidetsList() {
                   </td>
                   <td>26 October, 2024</td>
                   <td>
-                    <button>
+                    <button onClick={() => handleOpenInvite(job)}>
+                      <PrimaryBtnBlue title={"Invite"} />
+                    </button>
+                  </td>
+                  <td>
+                    <button onClick={() => handleOpenAnswer(job)}>
                       {" "}
-                      <PrimaryBtnBlue title={"Invite Interview"} />
+                      <PrimaryBtnBlue title={"Answers"} />
                     </button>
                   </td>
                   <td>
@@ -80,6 +110,64 @@ function InterviewCandidetsList() {
                       <option value="shortlist">Selected</option>
                     </select>
                   </td>
+
+                  {/* Modal for  Invitetion */}
+                  {isInviteModalOpen && selectedJob && (
+                    <dialog
+                      data-aos="zoom-in"
+                      data-aos-offset="200"
+                      data-aos-duration="700"
+                      id="assign_assessment_modal"
+                      className="modal"
+                      open
+                    >
+                      <div className="modal-box max-w-xl mt-7">
+                        <form method="dialog">
+                          <button
+                            type="button"
+                            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                            onClick={handleCloseModals}
+                          >
+                            ✕
+                          </button>
+                        </form>
+
+                        <AssignInvitation
+                          job={selectedJob}
+                          onClose={handleCloseModals}
+                        />
+                      </div>
+                    </dialog>
+                  )}
+
+                  {/* Modal for Answer */}
+                  {isResultModalOpen && selectedJob && (
+                    <dialog
+                      data-aos="zoom-in"
+                      data-aos-offset="200"
+                      data-aos-duration="700"
+                      id="assign_assessment_modal"
+                      className="modal"
+                      open
+                    >
+                      <div className="modal-box max-w-xl mt-7">
+                        <form method="dialog">
+                          <button
+                            type="button"
+                            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                            onClick={handleCloseModals}
+                          >
+                            ✕
+                          </button>
+                        </form>
+
+                        <InvitationAnswer
+                          job={selectedJob}
+                          onClose={handleCloseModals}
+                        />
+                      </div>
+                    </dialog>
+                  )}
                 </tr>
               ))}
             </tbody>

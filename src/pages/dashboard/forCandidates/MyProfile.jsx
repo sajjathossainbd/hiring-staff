@@ -14,7 +14,7 @@ import { TiDocumentText } from "react-icons/ti";
 import TextareaField from "../shared/TextareaField";
 import { GrCopy } from "react-icons/gr";
 
-const MyProfile = ({setIsFormOpen}) => {
+const MyProfile = ({ setIsFormOpen }) => {
   const { user } = useAuth();
 
   console.log(setIsFormOpen);

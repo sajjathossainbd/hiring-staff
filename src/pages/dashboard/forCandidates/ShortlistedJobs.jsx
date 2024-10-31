@@ -194,12 +194,23 @@ const ShortlistedJobs = () => {
             {/* Displaying the interview schedule */}
             {selectedJob.schedule && selectedJob.schedule.length > 0 ? (
               <>
-                <h4 className="mt-4 text-md font-semibold">Scheduled Interviews:</h4>
+                <h4 className="mt-4 text-md font-semibold">
+                  Scheduled Interviews:
+                </h4>
                 {selectedJob.schedule.map((interview, index) => (
                   <div key={index} className="border-b py-2">
-                    <p><strong>Date:</strong> {new Date(interview.interviewDate).toLocaleDateString("en-GB")}</p>
-                    <p><strong>Time:</strong> {interview.interviewTime}</p>
-                    <p><strong>Message:</strong> {interview.message}</p>
+                    <p>
+                      <strong>Date:</strong>{" "}
+                      {new Date(interview.interviewDate).toLocaleDateString(
+                        "en-GB"
+                      )}
+                    </p>
+                    <p>
+                      <strong>Time:</strong> {interview.interviewTime}
+                    </p>
+                    <p>
+                      <strong>Message:</strong> {interview.message}
+                    </p>
                     {/* Optionally display when it was scheduled */}
                     {/* Uncomment if you want to show when it was scheduled */}
                     {/*<p><strong>Scheduled At:</strong> {new Date(interview.scheduledAt).toLocaleString()}</p>*/}

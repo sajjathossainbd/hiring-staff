@@ -21,8 +21,7 @@ function JobAppliers() {
     },
     enabled: !!jobId,
   });
-  console.log(applications);
-
+ 
   const handleSelectChange = async (applicationId, action) => {
     let updateData;
     let statusText;
@@ -93,7 +92,7 @@ function JobAppliers() {
                     <div className="avatar">
                       <div className="mask mask-squircle h-12 w-12">
                         <img
-                          src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                          src= {applyer?.applicantImage}
                           alt="Avatar Tailwind CSS Component"
                         />
                       </div>

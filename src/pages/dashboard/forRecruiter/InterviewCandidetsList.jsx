@@ -82,16 +82,14 @@ function InterviewCandidetsList() {
                       <div className="avatar">
                         <div className="mask mask-squircle h-12 w-12">
                           <img
-                            src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                            src= {job?.applicantImage}
                             alt="Avatar Tailwind CSS Component"
                           />
                         </div>
                       </div>
                       <div>
                         <div className="font-bold">{job?.applicantName}</div>
-                        <div className="text-sm opacity-50">
-                        {job?.email}
-                        </div>
+                        <div className="text-sm opacity-50">{job?.email}</div>
                       </div>
                     </div>
                   </td>
@@ -163,9 +161,7 @@ function InterviewCandidetsList() {
                             ✕
                           </button>
                         </form>
-<div>
-  {/* details */}
-</div>
+                        <div>{/* details */}</div>
                         <InvitationAnswer
                           job={selectedJob}
                           onClose={handleCloseModals}

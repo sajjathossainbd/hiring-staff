@@ -13,7 +13,6 @@ function Home() {
     <div>
       <Banner />
       <Category />
-      {/* <JobsDay /> */}
       <GrowthSection />
       <Recruiter />
       {/* <JobLocation /> */}

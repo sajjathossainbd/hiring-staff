@@ -7,7 +7,7 @@ import Loading from "../../components/ui/Loading";
 import NoFoundData from "../../components/ui/NoFoundData";
 import { CiLocationOn } from "react-icons/ci";
 import StarRatings from "react-star-ratings";
-import { FaDownload } from "react-icons/fa";
+import { RiPagesLine } from "react-icons/ri";
 import Overview from "../../components/candidate/OverView";
 
 function CandidateDetails() {
@@ -36,12 +36,11 @@ function CandidateDetails() {
     resume,
     education,
     company_experience,
-    // skills,
+    skills,
     special_profession,
     about_me,
     experience_year,
   } = candidate || {};
-  const skills = [candidate?.skills]
 
   useEffect(() => {
     dispatch(fetchCandidateDetails(id));
@@ -102,9 +101,9 @@ function CandidateDetails() {
             <p className="text-gray">{about_me}</p>
           </div>
           <div>
-            <button className="bg-blue text-white text-18 px-4 md:px-6 py-3 md:py-5 rounded flex items-center space-x-2 w-full">
-              <FaDownload />
-              <span className="text-14">Download CV</span>
+            <button className="bg-blue text-white text-18 px-4 md:px-6 py-3 md:py-4 rounded flex items-center space-x-2 w-full">
+              <RiPagesLine />
+              <a target="_blank" href={resume} className="text-14">View Resume</a>
             </button>
           </div>
         </div>
@@ -167,9 +166,9 @@ function CandidateDetails() {
             <div>
               <h4 className="text-gray mb-4">Skills</h4>
               <div className="flex gap-2 flex-wrap ml-3">
-                {skills?.map((skill) => (
+                {skills?.map((skill, index) => (
                   <button
-                    key={skill}
+                    key={index}
                     className="bg-lightText py-2 px-3 rounded-full text-lightBlue hover:bg-lightBlue hover:text-white"
                   >
                     {skill}

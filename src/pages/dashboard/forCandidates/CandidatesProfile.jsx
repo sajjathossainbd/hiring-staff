@@ -27,7 +27,7 @@ function CandidatesProfile() {
         </button>
       </div>
 
-      {isFormOpen ? <MyProfile /> : <CandidatesProfileUI />}
+      {isFormOpen ? <MyProfile setIsFormOpen={setIsFormOpen} /> : <CandidatesProfileUI />}
     </div>
   );
 }

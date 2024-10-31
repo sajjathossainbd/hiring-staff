@@ -9,7 +9,7 @@ import { CardPagination } from "../shared/CardPagination";
 const RecruiterManagementTable = () => {
   const navigate = useNavigate();
   const { page = 1 } = useParams();
-  const limit = 100;
+  const limit = 50;
 
   // Fetch users with pagination
   const fetchUsers = async (currentPage, limit) => {

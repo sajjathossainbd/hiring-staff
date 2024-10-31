@@ -23,6 +23,8 @@ function SinginLogout() {
     };
   }, [dropdownRef]);
 
+  console.log(role);
+
   return (
     <div>
       {user ? (
@@ -38,7 +40,7 @@ function SinginLogout() {
                 <div className="w-30 h-30 rounded-full overflow-hidden flex items-center justify-center">
                   <img
                     className="w-full rounded-full h-full object-cover"
-                    src={role === "candidate" ? currentCandidate?.photo_url : currentRecruiter?.logo || user?.photoURL}
+                    src={role === "candidate" && currentCandidate?.photo_url || role === "candidate" && currentRecruiter?.logo || user?.photoURL}
                     alt="User photo"
                   />
                 </div>

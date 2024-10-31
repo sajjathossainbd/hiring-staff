@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { BsFillSendFill } from "react-icons/bs";
 import PrimaryButton from "../../../components/shared/PrimaryButton";
 import toast from "react-hot-toast";
@@ -13,8 +14,10 @@ import { TiDocumentText } from "react-icons/ti";
 import TextareaField from "../shared/TextareaField";
 import { GrCopy } from "react-icons/gr";
 
-const MyProfile = () => {
+const MyProfile = ({setIsFormOpen}) => {
   const { user } = useAuth();
+
+  console.log(setIsFormOpen);
 
   const { data: currentCandidate, refetch } = useQuery({
     queryKey: ["currentCandidate", user?.email],
@@ -88,6 +91,7 @@ const MyProfile = () => {
       if (res.data.modifiedCount > 0) {
         toast.success("Your data has been updated");
         refetch();
+        setIsFormOpen(false);
       } else {
         toast.error("No changes made");
       }

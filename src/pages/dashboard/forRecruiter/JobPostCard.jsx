@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
 import Lottie from "lottie-react";
 import { FaRegCalendarAlt } from "react-icons/fa";
-import { FaPlus } from "react-icons/fa6";
-import { MdOutlineGroup } from "react-icons/md";
+import { FaDeleteLeft, FaPlus } from "react-icons/fa6";
+import { MdDelete, MdDeleteOutline, MdOutlineGroup } from "react-icons/md";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import axiosInstance from "../../../utils/axios";
 
-function JobPostCard({ Cardtitle, img, style, link, job }) {
+function JobPostCard({ Cardtitle, img, style, link, job, onDelete }) {
   const { jobTitle, applicationsCount } = job;
 
   return (
@@ -53,7 +55,7 @@ function JobPostCard({ Cardtitle, img, style, link, job }) {
         </div>
 
         {/* Total Applied & Profile Image */}
-        <div>
+        <div className="relative">
           <p className="text-sm md:text-base">
             <span className="font-bold">{applicationsCount}</span> Applied
           </p>
@@ -90,6 +92,13 @@ function JobPostCard({ Cardtitle, img, style, link, job }) {
               </div>
             </div>
           </div>
+          <h4
+            className="text-red-500 absolute cursor-pointer right-3 "
+            onClick={onDelete}
+          >
+            {" "}
+            <MdDelete />
+          </h4>
         </div>
       </div>
     </div>

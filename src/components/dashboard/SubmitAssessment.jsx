@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { useForm } from "react-hook-form";
 import axiosInstance from "../../utils/axios"; // Adjust the import based on your project structure
@@ -62,12 +63,13 @@ function SubmitAssessment({ job, onClose }) {
 
       {/* Display Assigned Assessment Details */}
       <div className="mb-4 p-3 border border-gray rounded-md">
-        <h4 className="">Assessment Details:</h4>
+        <h4>Assessment Details:</h4>
         <p>
-          <strong>Details:</strong> {details || "No details available"}
+          <strong className=" dark:text-white">Details:</strong>{" "}
+          {details || "No details available"}
         </p>
         <p>
-          <strong>Due Date:</strong>{" "}
+          <strong className=" dark:text-white">Due Date:</strong>{" "}
           {dueDate
             ? new Date(dueDate).toLocaleDateString()
             : "No due date available"}
@@ -77,7 +79,9 @@ function SubmitAssessment({ job, onClose }) {
       {/* Form to Submit Assignment */}
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
-          <label className="block text-gray mb-2">Assignment Submission</label>
+          <label className="block text-gray dark:text-white mb-2">
+            Assignment Submission
+          </label>
           <textarea
             {...register("assignmentDetails", {
               required: "Submission details are required",

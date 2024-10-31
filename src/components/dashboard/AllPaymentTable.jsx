@@ -48,8 +48,8 @@ const AllPaymentTable = () => {
 
   const handleDelete = (id) => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "<span style='color: red;'>Are you sure?</span>",
+      html: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",

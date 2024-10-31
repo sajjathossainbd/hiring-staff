@@ -4,8 +4,7 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 import { FaDeleteLeft, FaPlus } from "react-icons/fa6";
 import { MdDelete, MdDeleteOutline, MdOutlineGroup } from "react-icons/md";
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
-import axiosInstance from "../../../utils/axios";
+ 
 
 function JobPostCard({ Cardtitle, img, style, link, job, onDelete }) {
   const { jobTitle, applicationsCount } = job;

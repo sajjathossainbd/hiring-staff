@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
 import {
   FaBriefcase,
+  FaCopy,
   FaDollarSign,
   FaEnvelope,
   FaGraduationCap,
@@ -8,6 +10,7 @@ import {
   FaPhoneAlt,
 } from "react-icons/fa";
 import PrimaryButton from "../shared/PrimaryButton";
+import toast from "react-hot-toast";
 
 function Overview({ candidate }) {
   const {
@@ -27,6 +30,18 @@ function Overview({ candidate }) {
     experience,
     skills,
   } = candidate || {};
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(email)
+      .then(() => {
+        toast.success('Email copied to clipboard!');
+      })
+      .catch(err => {
+        console.error('Could not copy email: ', err);
+      });
+  };
+
+
   return (
     <>
       <div className=" border border-lightGray text-gray space-y-3 rounded-lg p-6 w-full">
@@ -84,8 +99,9 @@ function Overview({ candidate }) {
         </div>
 
         <PrimaryButton
-          icon={<FaEnvelope className="mr-2" />}
-          title={"Send Message"}
+          onClickBtn={copyToClipboard}
+          icon={<FaCopy className="mr-2" />}
+          title={"Copy Email"}
           className="px-4 py-5"
         />
       </div>

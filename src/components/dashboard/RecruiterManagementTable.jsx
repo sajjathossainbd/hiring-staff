@@ -9,7 +9,7 @@ import { CardPagination } from "../shared/CardPagination";
 const RecruiterManagementTable = () => {
   const navigate = useNavigate();
   const { page = 1 } = useParams();
-  const limit = 100;
+  const limit = 50;
 
   // Fetch users with pagination
   const fetchUsers = async (currentPage, limit) => {
@@ -40,7 +40,7 @@ const RecruiterManagementTable = () => {
 
   const handleDelete = (id) => {
     Swal.fire({
-      title: "Are you sure?",
+      title: "<span style='color: red;'>Are you sure?</span>",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,

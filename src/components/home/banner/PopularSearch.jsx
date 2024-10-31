@@ -2,22 +2,20 @@ import { Link } from "react-router-dom";
 
 function PopularSearch() {
   const popularSearches = [
-    "Content Writer",
-    "Finance",
-    "Human Resource",
-    "Management",
+    "React JS Developer",
+    "Mobile App Developer",
+    "Java Developer",
   ];
 
   return (
     <div>
       <strong className="text-14 text-darkBlue dark:text-lightText">
-        Popular Researches:{" "}
+        Popular Keywords:{" "}
       </strong>
       {popularSearches.map((searches, index) => (
         <Link
           className="text-14 hover:underline text-darkBlue dark:text-lightText"
           key={index}
-          to={"jobs-listing"}
         >
           {searches} ,
         </Link>

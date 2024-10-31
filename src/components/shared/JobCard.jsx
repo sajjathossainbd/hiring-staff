@@ -8,9 +8,11 @@ import { IoBriefcaseOutline } from "react-icons/io5";
 import { LiaBuffer } from "react-icons/lia";
 import { TbCoinTaka } from "react-icons/tb";
 import { WiTime7 } from "react-icons/wi";
-function JobCard({ job, recruiterName, recruiterLogo }) {
+function JobCard({ job }) {
   const {
     _id,
+    name,
+    logo,
     jobTitle,
     description,
     job_type,
@@ -25,12 +27,8 @@ function JobCard({ job, recruiterName, recruiterLogo }) {
     <div className="boxBorderHoverBlue hover:bg-[white] bg-bgLightBlue dark:bg-darkBlue">
       <div className="md:p-5 p-3 flex flex-col justify-between h-full">
         <div className="">
-          <img
-            className="w-20 h-auto rounded-full"
-            src={recruiterLogo}
-            alt=""
-          />
-          <h6 className="font-normal pt-2">{recruiterName}</h6>
+          <img className="w-20 h-auto rounded-full" src={logo} alt="" />
+          <h6 className="font-normal pt-2">{name}</h6>
           <h4 className="mb-3">{jobTitle}</h4>
 
           <div className="flex lg:justify-between md:justify-between sm:justify-start items-center mt-6 flex-wrap gap-1">

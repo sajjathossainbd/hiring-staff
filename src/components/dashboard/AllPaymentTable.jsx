@@ -48,8 +48,8 @@ const AllPaymentTable = () => {
 
   const handleDelete = (id) => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "<span style='color: red;'>Are you sure?</span>",
+      html: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -97,7 +97,7 @@ const AllPaymentTable = () => {
       <hr className="my-6 text-lightGray" />
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="table-auto text-xs lg:text-sm min-w-full">
+        <table className="table-auto text-xs lg:text-sm min-w-full mb-5">
           {/* Head */}
           <thead>
             <tr className="text-xs lg:text-base dark:text-white">

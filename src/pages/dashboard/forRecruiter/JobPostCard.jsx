@@ -4,13 +4,12 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 import { FaDeleteLeft, FaPlus } from "react-icons/fa6";
 import { MdDelete, MdDeleteOutline, MdOutlineGroup } from "react-icons/md";
 import { Link } from "react-router-dom";
- 
 
 function JobPostCard({ Cardtitle, img, style, link, job, onDelete }) {
   const { jobTitle, applicationsCount } = job;
 
   return (
-    <div className="light:bg-white dark:border border-bgDeepBlue p-4 sm:p-6 rounded-lg">
+    <div className="light:bg-white dark:border dark:border-bgDeepBlue border border-bgDeepBlue p-4 sm:p-6 rounded-lg shadow-sm">
       <div
         className={`flex flex-col md:flex-row items-center p-8 md:p-16 rounded-lg h-auto md:h-64 gap-6 ${style}`}
       >
@@ -92,7 +91,7 @@ function JobPostCard({ Cardtitle, img, style, link, job, onDelete }) {
             </div>
           </div>
           <h4
-            className="text-red-500 absolute cursor-pointer right-3 "
+            className="text-red-500 absolute cursor-pointer right-3 p-3 light:bg-white rounded-md mt-1"
             onClick={onDelete}
           >
             {" "}

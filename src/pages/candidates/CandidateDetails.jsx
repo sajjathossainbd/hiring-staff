@@ -36,12 +36,11 @@ function CandidateDetails() {
     resume,
     education,
     company_experience,
-    // skills,
+    skills,
     special_profession,
     about_me,
     experience_year,
   } = candidate || {};
-  const skills = [candidate?.skills]
 
   useEffect(() => {
     dispatch(fetchCandidateDetails(id));
@@ -167,9 +166,9 @@ function CandidateDetails() {
             <div>
               <h4 className="text-gray mb-4">Skills</h4>
               <div className="flex gap-2 flex-wrap ml-3">
-                {skills?.map((skill) => (
+                {skills?.map((skill, index) => (
                   <button
-                    key={skill}
+                    key={index}
                     className="bg-lightText py-2 px-3 rounded-full text-lightBlue hover:bg-lightBlue hover:text-white"
                   >
                     {skill}

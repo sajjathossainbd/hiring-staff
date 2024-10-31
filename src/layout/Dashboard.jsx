@@ -155,11 +155,11 @@ const Dashboard = () => {
                     icon={<FaArrowUpShortWide />}
                     text="Shortlisted Jobs"
                   />
-                  <SidebarLink
+                  {/* <SidebarLink
                     to="/dashboard/selected-jobs"
                     icon={<FaCheck />}
                     text="Selected Jobs"
-                  />
+                  /> */}
                 </>
               )}
 

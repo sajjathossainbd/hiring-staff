@@ -48,7 +48,7 @@ function ShortListedCandidates() {
   const shortlisted = applications?.filter(
     (applicant) => applicant?.shortlist === "approved"
   );
-
+   
   const handleToggleInterview = async (job) => {
     try {
       const response = await axiosInstance.patch(
@@ -101,7 +101,8 @@ function ShortListedCandidates() {
                 <th>Date</th>
                 <th>Assessments</th>
                 <th>Assessment Result</th>
-                <th>Action</th>
+                <th>Interview</th>
+                <th>Rejection</th>
               </tr>
             </thead>
             <tbody>
@@ -137,20 +138,28 @@ function ShortListedCandidates() {
                     </button>
                   </td>
                   <td>
-                    {job.interview ? (
+                    {job.interview === false ? (
+                      <button onClick={() => handleToggleInterview(job)}>
+                        <PrimaryBtnBlue title={"Select"} />
+                      </button>
+                    ) : (
+                      <div>
+                        <p className="text-16 text-green">Selected</p>
+                      </div>
+                    )}
+                  </td>
+                  <td>
+                    {job.interview === true ? (
                       <button
                         onClick={() => handleReject(job)}
-                        className="btn btn-error"
+                        className="btn btn-error text-white"
                       >
                         Reject
                       </button>
                     ) : (
-                      <button
-                        onClick={() => handleToggleInterview(job)}
-                        className="btn btn-outline border-blue hover:bg-lightBlue hover:border-none "
-                      >
-                        Interview
-                      </button>
+                      <div>
+                        <p className="text-16 text-yellow-500">Pending</p>
+                      </div>
                     )}
                   </td>
 

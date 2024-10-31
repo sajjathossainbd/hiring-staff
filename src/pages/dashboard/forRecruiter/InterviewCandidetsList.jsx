@@ -88,14 +88,14 @@ function InterviewCandidetsList() {
                         </div>
                       </div>
                       <div>
-                        <div className="font-bold">Jane Doe</div>
+                        <div className="font-bold">{job?.applicantName}</div>
                         <div className="text-sm opacity-50">
-                          3 years experience
+                        {job?.email}
                         </div>
                       </div>
                     </div>
                   </td>
-                  <td>26 October, 2024</td>
+                  <td>{new Date(job?.appliedDate).toLocaleString()}</td>
                   <td>
                     <button onClick={() => handleOpenInvite(job)}>
                       <PrimaryBtnBlue title={"Invite"} />
@@ -163,7 +163,9 @@ function InterviewCandidetsList() {
                             ✕
                           </button>
                         </form>
-
+<div>
+  {/* details */}
+</div>
                         <InvitationAnswer
                           job={selectedJob}
                           onClose={handleCloseModals}

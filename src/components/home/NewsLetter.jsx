@@ -14,15 +14,19 @@ function NewsLetter() {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs
-      .sendForm("service_z81qoi8", "template_4hkjcri", form.current, {
-        publicKey: "028PSjl2WRnGl2zgy",
-      })
+    emailjs.sendForm("service_a8p5k2s", "template_uf94t2q", form.current, {
+      publicKey: "11__AMamyO91vDWSR",
+    })
       .then(
-        toast.success("Subscription successful!"),
+        () => {
+          toast.success("Subscription successful!");
+          e.target.reset();
+        },
+        (error) => {
+          toast.error("Subscription failed. Please try again.");
+          console.error("Error sending email:", error.text);
+        }
       );
-
-    e.target.reset();
   };
 
   return (
@@ -50,12 +54,14 @@ function NewsLetter() {
               <input
                 type="email"
                 placeholder="Enter your email"
-                name="user_email"
+                name="from_email"
                 className="pl-3 md:pl-0 w-full py-5 md:py-5 rounded-md focus:outline-none dark:bg-white"
                 required
               />
               <div className="absolute right-2 md:right-4">
-                <PrimaryBtn title={<Trans i18nKey={"subscribe"} />} />
+                <button type="submit">
+                  <PrimaryBtn title={<Trans i18nKey={"subscribe"} />} />
+                </button>
               </div>
             </form>
           </div>

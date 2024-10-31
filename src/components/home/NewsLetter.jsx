@@ -37,7 +37,7 @@ function NewsLetter() {
             <img src={left} alt="img" className="w-52 hidden lg:block" />
           </div>
           <div>
-            <h4 className="text-white text-[26px] lg:text-[36px] mb-4">
+            <h4 className="text-white text-[26px] lg:text-[36px] mb-6">
               <Trans i18nKey={"newsLetter"} />
             </h4>
 
@@ -53,7 +53,7 @@ function NewsLetter() {
               />
               <input
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Email"
                 name="from_email"
                 className="pl-3 md:pl-0 w-full py-5 md:py-5 rounded-md focus:outline-none dark:bg-white"
                 required

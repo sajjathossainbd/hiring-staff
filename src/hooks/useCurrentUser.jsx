@@ -11,20 +11,24 @@ const useCurrentUser = () => {
         queryKey: ['currentRecruiter', user?.email],
         queryFn: async () => {
             const res = await axiosInstance.get(`/recruiters/currentRecruiter/${user?.email}`);
+            if (res.data) {
+                setRole("recruiter")
+            }
             return res.data;
         },
         enabled: !!user?.email && user?.role === "recruiter",
-        onSuccess: () => setRole("recruiter"),
     });
 
     const { data: currentCandidate, refetch: refetchCandidate } = useQuery({
         queryKey: ['currentCandidate', user?.email],
         queryFn: async () => {
             const res = await axiosInstance.get(`/candidates/currentCandidate/${user?.email}`);
+            if (res.data) {
+                setRole("candidate")
+            }
             return res.data;
         },
         enabled: !!user?.email && user?.role === "candidate",
-        onSuccess: () => setRole("candidate"),
     });
 
     useEffect(() => {

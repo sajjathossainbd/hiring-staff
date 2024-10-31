@@ -44,7 +44,7 @@ const AppliedJobs = () => {
 
   const handleDelete = async (id) => {
     Swal.fire({
-      title: "Are you sure?",
+      title: "<span style='color: red;'>Are you sure?</span>",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,

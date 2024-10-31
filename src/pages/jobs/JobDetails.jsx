@@ -21,7 +21,6 @@ import { MdVerified } from "react-icons/md";
 import useCurrentUser from "../../hooks/useCurrentUser";
 import axiosInstance from "../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
-
 const Benefitemojis = ["🎉", "💼", "🚀", "🏆"];
 
 function JobDetails() {

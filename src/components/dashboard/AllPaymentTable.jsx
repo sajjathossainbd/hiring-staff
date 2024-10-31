@@ -11,7 +11,6 @@ const AllPaymentTable = () => {
   const { page } = useParams();
   const limit = 5;
 
-  // Fetch payment history
   const fetchPaymentHistory = async (currentPage, limit) => {
     const response = await axiosInstance.get(
       `/payment-history?page=${currentPage}&limit=${limit}`
@@ -31,7 +30,6 @@ const AllPaymentTable = () => {
 
   if (isError) return <div>Error loading payment history.</div>;
 
-  // Ensure paymentHistory is defined before accessing its properties
   if (isLoading) {
     return (
       <div>
@@ -39,16 +37,15 @@ const AllPaymentTable = () => {
       </div>
     );
   }
+
   if (!paymentHistory) {
     return <div>No payment history available.</div>;
   }
 
-  // Extract current page and total documents
   const currentPage = paymentHistory.currentPage || 1;
   const totalDocuments = paymentHistory.totalDocuments || 0;
   const totalPages = Math.ceil(totalDocuments / limit) || 1;
 
-  // delete payment history
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -70,7 +67,6 @@ const AllPaymentTable = () => {
     });
   };
 
-  // Update payment status
   const handleUpdateStatus = async (status, id) => {
     try {
       const res = await axiosInstance.patch(`/payment-history/status/${id}`, {
@@ -94,57 +90,67 @@ const AllPaymentTable = () => {
       });
     }
   };
+
   return (
-    <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 lg:px-6 px-2 rounded-md">
-      <h5>Manage Payments</h5>
+    <div className="bg-softLightBlue dark:bg-darkBlue dark:text-white py-6 px-4 lg:px-8 xl:px-12 rounded-md w-full overflow-x-auto">
+      <h5 className="text-lg font-semibold">Manage Payments</h5>
       <hr className="my-6 text-lightGray" />
-      {isLoading && <div>Loading...</div>}
       {/* Table */}
-      <div className="overflow-x-auto flex flex-col justify-between lg:h-[550px]">
-        <table className="table text-sm">
+      <div className="overflow-x-auto">
+        <table className="table-auto text-xs lg:text-sm min-w-full">
           {/* Head */}
           <thead>
-            <tr className="text-base dark:text-white">
-              <th>Name</th>
-              <th>Email</th>
-              <th>Category</th>
-              <th>Price</th>
-              <th>Date</th>
-              <th>Method</th>
-              <th>Transaction</th>
-              <th>Status</th>
-              <th>Action</th>
+            <tr className="text-xs lg:text-base dark:text-white">
+              <th className="p-2 lg:p-4 text-left">Name</th>
+              <th className="p-2 lg:p-4 hidden sm:table-cell text-left">
+                Email
+              </th>
+              <th className="p-2 lg:p-4 text-left">Category</th>
+              <th className="p-2 lg:p-4 text-left">Price</th>
+              <th className="p-2 lg:p-4 hidden sm:table-cell text-left">
+                Date
+              </th>
+              <th className="p-2 lg:p-4 text-left">Method</th>
+              <th className="p-2 lg:p-4 hidden md:table-cell text-left">
+                Transaction
+              </th>
+              <th className="p-2 lg:p-4 text-left">Status</th>
+              <th className="p-2 lg:p-4 text-left">Action</th>
             </tr>
           </thead>
           <tbody>
             {paymentHistory?.payments?.map((payment) => (
-              <tr key={payment._id}>
-                <td>{payment?.name}</td>
-                <td>{payment?.email}</td>
-                <td>{payment?.category}</td>
-                <td>
-                  <span className="text-blue">${payment.price}</span>
+              <tr key={payment._id} className="border-b ">
+                <td className="p-2 lg:p-4">{payment?.name}</td>
+                <td className="p-2 lg:p-4 hidden sm:table-cell">
+                  {payment?.email}
                 </td>
-                <td>{payment?.date}</td>
-                <td>{payment?.paymentType}</td>
-                <td>{payment?.transactionId}</td>
-                <td>
+                <td className="p-2 lg:p-4">{payment?.category}</td>
+                <td className="p-2 lg:p-4 text-blue">${payment.price}</td>
+                <td className="p-2 lg:p-4 hidden sm:table-cell">
+                  {payment?.date}
+                </td>
+                <td className="p-2 lg:p-4">{payment?.paymentType}</td>
+                <td className="p-2 lg:p-4 hidden md:table-cell">
+                  {payment?.transactionId}
+                </td>
+                <td className="p-2 lg:p-4">
                   <select
                     defaultValue={payment?.status}
                     onChange={(e) =>
                       handleUpdateStatus(e.target.value, payment?._id)
                     }
-                    className="select dark:bg-darkBlue select-bordered w-full"
+                    className="select dark:bg-darkBlue select-bordered w-full text-xs lg:text-sm"
                   >
                     <option value="select">Select</option>
                     <option value="approved">Approved</option>
                     <option value="pending">Pending</option>
                   </select>
                 </td>
-                <td>
+                <td className="p-2 lg:p-4">
                   <button
                     onClick={() => handleDelete(payment?._id)}
-                    className="btn rounded-full text-red-600 hover:text-white hover:bg-blue"
+                    className="btn rounded-full text-red-600 hover:text-white hover:bg-blue text-xs lg:text-sm"
                   >
                     <RiDeleteBin6Line />
                   </button>

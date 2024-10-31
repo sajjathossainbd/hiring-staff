@@ -37,9 +37,11 @@ function JobDetails() {
   const userId = currentCandidate?._id;
 
   const { data: appliedJobs = [] } = useQuery({
-    queryKey: ['appliedJobs', userId],
+    queryKey: ["appliedJobs", userId],
     queryFn: async () => {
-      const res = await axiosInstance.get(`/jobs/applied-jobs/validate/${userId}`);
+      const res = await axiosInstance.get(
+        `/jobs/applied-jobs/validate/${userId}`
+      );
       return res.data;
     },
     enabled: !!userId,
@@ -48,10 +50,10 @@ function JobDetails() {
   console.log(appliedJobs);
 
   // Check if appliedJobs is an array before mapping
-  const filterJob = Array.isArray(appliedJobs) ? appliedJobs.map(job => job) : [];
+  const filterJob = Array.isArray(appliedJobs)
+    ? appliedJobs.map((job) => job)
+    : [];
   console.log(filterJob);
-
-
 
   const {
     jobDetails: job,
@@ -126,7 +128,7 @@ function JobDetails() {
         <div className="lg:flex gap-16 dark:text-white">
           <div className="lg:w-2/3 w-full">
             {/* job details header */}
-            <div className=" bg-bgLightWhite dark:bg-darkBlue p-10 rounded-md">
+            <div className=" bg-bgLightWhite dark:bg-darkBlue dark:border p-10 rounded-md">
               {/* 01. Job Title */}
               <h3 className="mb-5">{jobTitle}</h3>
               {/* 02. Company Information */}
@@ -188,7 +190,7 @@ function JobDetails() {
                       className="modal"
                       open
                     >
-                      <div className="modal-box max-w-xl mt-7">
+                      <div className="modal-box max-w-xl mt-7 dark:bg-blue">
                         <form method="dialog">
                           <button
                             type="button"
@@ -199,8 +201,6 @@ function JobDetails() {
                           </button>
                         </form>
                         <h3 className="font-bold text-lg">{jobTitle}</h3>
-
-
 
                         <ApplyJob job={job} onClose={handleClose} />
                       </div>

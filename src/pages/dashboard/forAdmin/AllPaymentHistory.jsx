@@ -3,7 +3,7 @@ import TinnyHeading from "../shared/TinnyHeading";
 
 const AllPaymentHistory = () => {
   return (
-    <div className="lg:left-48 ralative">
+    <div>
       <TinnyHeading
         title={"All Payment"}
         path={"all-payment-history"}

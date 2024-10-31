@@ -22,7 +22,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [imageUrl, setImageUrl] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [loading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -53,7 +53,8 @@ const Register = () => {
   };
 
   const onSubmit = async (data) => {
-    setIsSubmitting(true);
+    setIsLoading(true);
+
     const recruiterInfo = {
       name: data.companyName,
       email: data.email,
@@ -68,32 +69,43 @@ const Register = () => {
       role: userRole,
     };
 
-    const result = await registerUser(data.email, data.password);
-    await updateProfile(result.user, {
-      displayName: data.fullName,
-      photoURL: imageUrl,
-    }).then(async () => {
+    try {
+      // Register user
+      const result = await registerUser(data.email, data.password);
+
+      // Update profile
+      await updateProfile(result.user, {
+        displayName: data.fullName,
+        photoURL: imageUrl,
+      });
+
       if (userRole === "recruiter") {
-        await axiosInstance.post("/recruiters", recruiterInfo).then((res) => {
-          if (res.data.insertId) {
-            toast.success("Successfully recruiters registered!");
-            navigate(
-              location?.state ? location.state : "/dashboard/dashboard-main"
-            );
-          }
-        });
+        const res = await axiosInstance.post("/recruiters", recruiterInfo);
+        if (res.data.insertId) {
+          toast.success("Successfully registered as recruiter!");
+          navigate(location?.state || "/dashboard/dashboard-main");
+        }
+      } else if (userRole === "candidate") {
+        const res = await axiosInstance.post("/candidates", candidateInfo);
+        if (res.data.insertId) {
+          toast.success("Successfully registered as candidate!");
+          navigate(location?.state || "/dashboard/dashboard-main");
+        }
       }
-      if (userRole === "candidate") {
-        await axiosInstance.post("/candidates", candidateInfo).then((res) => {
-          if (res.data.insertId) {
-            toast.success("Successfully candidates registered!");
-            navigate(
-              location?.state ? location.state : "/dashboard/dashboard-main"
-            );
-          }
-        });
+    } catch (error) {
+      // Customize error handling
+      if (error.response?.data?.message.includes("email already exists")) {
+        toast.error(
+          userRole === "recruiter"
+            ? "Recruiter email already exists..."
+            : "Candidate email already exists"
+        );
+      } else {
+        toast.error("email already exists");
       }
-    });
+    } finally {
+      setIsLoading(false); // Ensures loading state is reset after all actions
+    }
   };
 
   return (
@@ -317,9 +329,9 @@ const Register = () => {
 
           <PrimaryButton
             formSubmit={true}
-            title={isSubmitting ? "Registering" : "Register"}
-            icon={isSubmitting ? <AiOutlineLoading3Quarters /> : <IoIosLogIn />}
-            disabled={isSubmitting}
+            title={loading ? "Loading" : "Register"}
+            icon={loading ? <AiOutlineLoading3Quarters /> : <IoIosLogIn />}
+            disabled={loading}
           />
 
           <p className="mt-4 text-sm">

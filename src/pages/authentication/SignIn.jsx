@@ -39,12 +39,14 @@ const SignIn = () => {
     setIsSubmitting(true);
     signInUser(email, password)
       .then(() => {
+        setIsSubmitting(false);
         toast.success("Successfully Login !");
         navigate(
           location?.state ? location.state : "/dashboard/dashboard-main"
         );
       })
       .catch(() => {
+        setIsSubmitting(false);
         toast.error("User not found. Please check your password");
       });
   };

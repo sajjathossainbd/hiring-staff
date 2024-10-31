@@ -15,13 +15,22 @@ import SubmitAssessment from "../../../components/dashboard/SubmitAssessment";
 const ShortlistedJobs = () => {
   const { currentCandidate } = useCurrentUser();
   const [isOpen, setIsOpen] = useState(false);
+  const [isInterviewOpen, setIsInterviewOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
+
   const handleOpen = (job) => {
     setSelectedJob(job);
     setIsOpen(true);
   };
+
+  const handleOpenInterview = (job) => {
+    setSelectedJob(job);
+    setIsInterviewOpen(true);
+  };
+
   const handleClose = () => {
     setIsOpen(false);
+    setIsInterviewOpen(false);
     setSelectedJob(null);
   };
 
@@ -118,6 +127,13 @@ const ShortlistedJobs = () => {
                 <button onClick={() => handleOpen(job)}>
                   <PrimaryBtnBlue icon={<VscEye />} title={"Assignment"} />
                 </button>
+                {job.schedule && job.schedule.length > 0 ? (
+                  <button onClick={() => handleOpenInterview(job)}>
+                    <PrimaryBtnBlue title={"Interview"} />
+                  </button>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           );
@@ -146,6 +162,53 @@ const ShortlistedJobs = () => {
             </form>
             <h3 className="font-bold text-lg">{selectedJob.jobTitle}</h3>
             <SubmitAssessment job={selectedJob} onClose={handleClose} />
+          </div>
+        </dialog>
+      )}
+
+      {/* Modal for Interview */}
+      {isInterviewOpen && selectedJob && (
+        <dialog
+          data-aos="zoom-in"
+          data-aos-offset="200"
+          data-aos-duration="700"
+          id="my_modal_3"
+          className="modal"
+          open
+        >
+          <div className="modal-box max-w-xl mt-7">
+            <form method="dialog">
+              <button
+                type="button"
+                className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                onClick={handleClose}
+              >
+                ✕
+              </button>
+            </form>
+
+            {/* Displaying Job Details and Interview Schedule */}
+            <h3 className="font-bold text-lg">{selectedJob.jobTitle}</h3>
+            <p>Email: {selectedJob.email}</p>
+
+            {/* Displaying the interview schedule */}
+            {selectedJob.schedule && selectedJob.schedule.length > 0 ? (
+              <>
+                <h4 className="mt-4 text-md font-semibold">Scheduled Interviews:</h4>
+                {selectedJob.schedule.map((interview, index) => (
+                  <div key={index} className="border-b py-2">
+                    <p><strong>Date:</strong> {new Date(interview.interviewDate).toLocaleDateString("en-GB")}</p>
+                    <p><strong>Time:</strong> {interview.interviewTime}</p>
+                    <p><strong>Message:</strong> {interview.message}</p>
+                    {/* Optionally display when it was scheduled */}
+                    {/* Uncomment if you want to show when it was scheduled */}
+                    {/*<p><strong>Scheduled At:</strong> {new Date(interview.scheduledAt).toLocaleString()}</p>*/}
+                  </div>
+                ))}
+              </>
+            ) : (
+              <p>No interviews scheduled.</p>
+            )}
           </div>
         </dialog>
       )}

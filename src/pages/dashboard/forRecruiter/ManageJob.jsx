@@ -26,26 +26,26 @@ const ManageJob = () => {
     enabled: !!currentRecruiter?.email,
   });
 
-  // const handleDelete = (id) => {
-  //   Swal.fire({
-  //     title: "Are you sure?",
-  //     text: "You won't be able to revert this!",
-  //     icon: "warning",
-  //     showCancelButton: true,
-  //     confirmButtonColor: "#3085d6",
-  //     cancelButtonColor: "#d33",
-  //     confirmButtonText: "Yes, delete it!",
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       axiosInstance.delete(`/jobs/delete/${id}`).then((res) => {
-  //         if (res.data.deletedCount > 0) {
-  //           Swal.fire("Deleted!", "Job has been deleted.", "success");
-  //           refetch();
-  //         }
-  //       });
-  //     }
-  //   });
-  // };
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosInstance.delete(`/jobs/delete/${id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            Swal.fire("Deleted!", "Job has been deleted.", "success");
+            refetch();
+          }
+        });
+      }
+    });
+  };
 
   return (
     <div>
@@ -73,6 +73,7 @@ const ManageJob = () => {
               style="gradient-4"
               link={`/dashboard/job-appliers/${job?._id}`}
               job={job}
+              onDelete={() => handleDelete(job?._id)}
             />
           </>
         ))}

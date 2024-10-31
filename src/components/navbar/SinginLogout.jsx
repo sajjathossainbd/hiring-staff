@@ -61,9 +61,9 @@ function SinginLogout() {
                   Dashboard
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link className="text-16 py-2">Settings</Link>
-              </li>
+              </li> */}
               <li>
                 <Link
                   className="justify-between text-16 py-2F"

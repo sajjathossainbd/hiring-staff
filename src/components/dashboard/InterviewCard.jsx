@@ -4,10 +4,9 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 import { FaDeleteLeft, FaPlus } from "react-icons/fa6";
 import { MdDelete, MdDeleteOutline, MdOutlineGroup } from "react-icons/md";
 import { Link } from "react-router-dom";
- 
 
-function JobPostCard({ Cardtitle, img, style, link, job, onDelete }) {
-  const { jobTitle, applicationsCount } = job;
+function InterviewCard({ Cardtitle, img, style, link, job }) {
+  const { jobTitle, InterviewCount } = job;
 
   return (
     <div className="light:bg-white dark:border border-bgDeepBlue p-4 sm:p-6 rounded-lg">
@@ -56,7 +55,7 @@ function JobPostCard({ Cardtitle, img, style, link, job, onDelete }) {
         {/* Total Applied & Profile Image */}
         <div className="relative">
           <p className="text-sm md:text-base">
-            <span className="font-bold">{applicationsCount}</span> Applied
+            <span className="font-bold">{InterviewCount}</span> Interview
           </p>
           <div className="flex justify-start">
             <div className="avatar-group -space-x-4 md:-space-x-6 rtl:space-x-reverse">
@@ -91,17 +90,10 @@ function JobPostCard({ Cardtitle, img, style, link, job, onDelete }) {
               </div>
             </div>
           </div>
-          <h4
-            className="text-red-500 absolute cursor-pointer right-3 "
-            onClick={onDelete}
-          >
-            {" "}
-            <MdDelete />
-          </h4>
         </div>
       </div>
     </div>
   );
 }
 
-export default JobPostCard;
+export default InterviewCard;

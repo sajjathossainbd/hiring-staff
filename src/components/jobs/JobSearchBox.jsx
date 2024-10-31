@@ -33,7 +33,7 @@ function JobSearchBox() {
       <input
         type="text"
         placeholder={t("fixedNavbarPlaceholder")}
-        className="w-full xl:py-[18px] py-2 rounded-md focus:outline-none dark:bg-white"
+        className="w-full xl:py-[18px] py-2 rounded-md focus:outline-none dark:bg-white dark:text-black"
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useRef, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import DropdownSimple from "../../components/ui/DropdownSimple";
 import { useTranslation } from "react-i18next";
 import BDIcon from "./../../assets/icon/bd.png";
@@ -37,9 +37,12 @@ function MobileNavItems({ navLinks }) {
   return (
     <div
       ref={dropDownMenuRef}
-      className="relative flex lg:flex xl:hidden text-darkBlue dark:text-white"
+      className="relative flex justify-between lg:flex xl:hidden text-darkBlue dark:text-white"
     >
-      <button onClick={() => setDropDownState(!dropDownState)} className="flex items-center">
+      <button
+        onClick={() => setDropDownState(!dropDownState)}
+        className="flex items-center"
+      >
         <RxHamburgerMenu className="size-8" />
       </button>
       {dropDownState && (
@@ -74,6 +77,11 @@ function MobileNavItems({ navLinks }) {
           </li>
         </ul>
       )}
+      <Link to={"/sign-in"}>
+        <button className="btn btn-primary min-h-[2rem] h-[2rem]">
+          Sign in
+        </button>
+      </Link>
     </div>
   );
 }

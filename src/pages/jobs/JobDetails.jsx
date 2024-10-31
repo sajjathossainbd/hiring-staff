@@ -21,7 +21,6 @@ import { MdVerified } from "react-icons/md";
 import useCurrentUser from "../../hooks/useCurrentUser";
 import axiosInstance from "../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
-
 const Benefitemojis = ["🎉", "💼", "🚀", "🏆"];
 
 function JobDetails() {
@@ -174,11 +173,12 @@ function JobDetails() {
                 {/* Apply Now Button */}
                 <div className="">
                   {/*modal for aplly job */}
-                  <button onClick={handleOpen}>
-                    <PrimaryBtnBlue
-                      title={"Apply Now"}
-                      icon={<HiExternalLink />}
-                    />
+                  <button
+                    onClick={handleOpen}
+                    disabled={!currentCandidate}
+                    className="btn btn-primary"
+                  >
+                    Apply Now
                   </button>
 
                   {isOpen && (

@@ -27,11 +27,10 @@ import useCurrentUser from "../hooks/useCurrentUser";
 
 const Dashboard = () => {
   const { logOut } = useAuth();
-
   const { currentCandidate, currentRecruiter } = useCurrentUser();
 
   return (
-    <div className="flex lg:flex-row flex-col inter">
+    <div className="flex lg:flex-row flex-col inter h-screen">
       <Helmet>
         <title>Hiring Staff - Dashboard</title>
       </Helmet>
@@ -42,7 +41,7 @@ const Dashboard = () => {
           <div className="drawer-content flex flex-col items-center justify-center">
             <label
               htmlFor="my-drawer-2"
-              className="btn bg-blue drawer-button lg:hidden mt-2 text-white rounded"
+              className="btn bg-blue drawer-button lg:hidden mt-2 text-white rounded px-4 py-2"
             >
               Open Dashboard
             </label>
@@ -53,7 +52,7 @@ const Dashboard = () => {
               aria-label="close sidebar"
               className="drawer-overlay"
             ></label>
-            <ul className="menu inter p-4 w-64 xl:h-fit lg:h-fit md:h-full h-full dark:bg-darkBlue bg-white text-black fixed top-0 overflow-y-auto font-bold space-y-2">
+            <ul className="menu inter p-4 w-64 h-full dark:bg-darkBlue bg-white text-black fixed top-0 overflow-y-auto font-bold space-y-2">
               {/* Logo Section */}
               <div className="flex items-center justify-center my-6">
                 <Link to={"/"} className="flex items-center gap-1">
@@ -69,298 +68,132 @@ const Dashboard = () => {
               {/* Admin Links */}
               {!currentCandidate && !currentRecruiter && (
                 <>
-                  <li>
-                    <NavLink
-                      to="/dashboard/dashboard-main"
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${
-                          isActive ? "bg-blue text-white" : ""
-                        }`
-                      }
-                    >
-                      <ImProfile /> Overview
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/dashboard/manage-all-jobs"
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${
-                          isActive ? "bg-blue text-white" : ""
-                        }`
-                      }
-                    >
-                      <MdPostAdd /> Jobs
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/dashboard/manage-all-blogs"
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${
-                          isActive ? "bg-blue text-white" : ""
-                        }`
-                      }
-                    >
-                      <FaBlogger /> Blogs
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/dashboard/all-payment-history"
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${
-                          isActive ? "bg-blue text-white" : ""
-                        }`
-                      }
-                    >
-                      <MdOutlinePayment /> Payments
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/dashboard/manage-recruiters"
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${
-                          isActive ? "bg-blue text-white" : ""
-                        }`
-                      }
-                    >
-                      <FaUserTie /> Recruiters
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/dashboard/manage-candidates"
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${
-                          isActive ? "bg-blue text-white" : ""
-                        }`
-                      }
-                    >
-                      <FaUserGroup /> Candidates
-                    </NavLink>
-                  </li>
+                  <SidebarLink
+                    to="/dashboard/dashboard-main"
+                    icon={<ImProfile />}
+                    text="Overview"
+                  />
+                  <SidebarLink
+                    to="/dashboard/manage-all-jobs"
+                    icon={<MdPostAdd />}
+                    text="Jobs"
+                  />
+                  <SidebarLink
+                    to="/dashboard/manage-all-blogs"
+                    icon={<FaBlogger />}
+                    text="Blogs"
+                  />
+                  <SidebarLink
+                    to="/dashboard/all-payment-history"
+                    icon={<MdOutlinePayment />}
+                    text="Payments"
+                  />
+                  <SidebarLink
+                    to="/dashboard/manage-recruiters"
+                    icon={<FaUserTie />}
+                    text="Recruiters"
+                  />
+                  <SidebarLink
+                    to="/dashboard/manage-candidates"
+                    icon={<FaUserGroup />}
+                    text="Candidates"
+                  />
                 </>
               )}
 
               {/* Recruiter Links */}
               {currentRecruiter && (
                 <>
-                  <li>
-                    <NavLink
-                      to="/dashboard/dashboard-main"
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${
-                          isActive ? "bg-blue text-white" : ""
-                        }`
-                      }
-                    >
-                      <ImProfile /> Overview
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/dashboard/post-job"
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${
-                          isActive ? "bg-blue text-white" : ""
-                        }`
-                      }
-                    >
-                      <MdPostAdd /> Post Job
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/dashboard/manage-jobs"
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${
-                          isActive ? "bg-blue text-white" : ""
-                        }`
-                      }
-                    >
-                      <MdManageHistory /> Posted Jobs
-                    </NavLink>
-                  </li>
-
-                  <li>
-                    <NavLink
-                      to="/dashboard/shortlist"
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${
-                          isActive ? "bg-blue text-white" : ""
-                        }`
-                      }
-                    >
-                      <MdPlaylistAddCheck /> Shortlisted
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/dashboard/interview-candidates"
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${
-                          isActive ? "bg-blue text-white" : ""
-                        }`
-                      }
-                    >
-                      <MdPlaylistAddCheck /> Interview
-                    </NavLink>
-                  </li>
-                  {/* <li>
-                    <NavLink
-                      to="/dashboard/selected-candidates"
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${
-                          isActive ? "bg-blue text-white" : ""
-                        }`
-                      }
-                    >
-                      <MdPlaylistAddCheck /> Selected
-                    </NavLink>
-                  </li> */}
+                  <SidebarLink
+                    to="/dashboard/dashboard-main"
+                    icon={<ImProfile />}
+                    text="Overview"
+                  />
+                  <SidebarLink
+                    to="/dashboard/post-job"
+                    icon={<MdPostAdd />}
+                    text="Post Job"
+                  />
+                  <SidebarLink
+                    to="/dashboard/manage-jobs"
+                    icon={<MdManageHistory />}
+                    text="Posted Jobs"
+                  />
+                  <SidebarLink
+                    to="/dashboard/shortlist"
+                    icon={<MdPlaylistAddCheck />}
+                    text="Shortlisted"
+                  />
+                  <SidebarLink
+                    to="/dashboard/interview-candidates"
+                    icon={<MdPlaylistAddCheck />}
+                    text="Interview"
+                  />
                 </>
               )}
 
               {/* Links for Candidates */}
               {currentCandidate && (
                 <>
-                  <li>
-                    <NavLink
-                      to="/dashboard/dashboard-main"
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${
-                          isActive ? "bg-blue text-white" : ""
-                        }`
-                      }
-                    >
-                      <ImProfile /> Overview
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/dashboard/my-resume"
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${
-                          isActive ? "bg-blue text-white" : ""
-                        }`
-                      }
-                    >
-                      <RxResume /> My Resume
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/dashboard/applied-jobs"
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${
-                          isActive ? "bg-blue text-white" : ""
-                        }`
-                      }
-                    >
-                      <VscGitStashApply /> Applied Jobs
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/dashboard/shortlisted-jobs"
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${
-                          isActive ? "bg-blue text-white" : ""
-                        }`
-                      }
-                    >
-                      <FaArrowUpShortWide /> Shortlisted Jobs
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/dashboard/selected-jobs"
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${
-                          isActive ? "bg-blue text-white" : ""
-                        }`
-                      }
-                    >
-                      <FaCheck /> Selected Jobs
-                    </NavLink>
-                  </li>
+                  <SidebarLink
+                    to="/dashboard/dashboard-main"
+                    icon={<ImProfile />}
+                    text="Overview"
+                  />
+                  <SidebarLink
+                    to="/dashboard/my-resume"
+                    icon={<RxResume />}
+                    text="My Resume"
+                  />
+                  <SidebarLink
+                    to="/dashboard/applied-jobs"
+                    icon={<VscGitStashApply />}
+                    text="Applied Jobs"
+                  />
+                  <SidebarLink
+                    to="/dashboard/shortlisted-jobs"
+                    icon={<FaArrowUpShortWide />}
+                    text="Shortlisted Jobs"
+                  />
+                  <SidebarLink
+                    to="/dashboard/selected-jobs"
+                    icon={<FaCheck />}
+                    text="Selected Jobs"
+                  />
                 </>
               )}
 
               {/* For all users */}
               <div className="divider" />
-
               {currentCandidate && (
-                <li>
-                  <NavLink
-                    to="/dashboard/my-profile"
-                    className={({ isActive }) =>
-                      `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white ${
-                        isActive ? "bg-blue text-white" : ""
-                      }`
-                    }
-                  >
-                    <CgProfile /> Candidate Profile
-                  </NavLink>
-                </li>
+                <SidebarLink
+                  to="/dashboard/my-profile"
+                  icon={<CgProfile />}
+                  text="Candidate Profile"
+                />
               )}
               {currentRecruiter && (
-                <li>
-                  <NavLink
-                    to="/dashboard/recruiter-profile"
-                    className={({ isActive }) =>
-                      `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${
-                        isActive ? "bg-blue text-white" : ""
-                      }`
-                    }
-                  >
-                    <ImProfile /> Recruiter Profile
-                  </NavLink>
-                </li>
+                <SidebarLink
+                  to="/dashboard/recruiter-profile"
+                  icon={<ImProfile />}
+                  text="Recruiter Profile"
+                />
               )}
-              <li>
-                <NavLink
-                  to="/dashboard/my-payments"
-                  className={({ isActive }) =>
-                    `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white ${
-                      isActive ? "bg-blue text-white" : ""
-                    }`
-                  }
-                >
-                  <MdOutlinePayment /> My Payments
-                </NavLink>
-              </li>
-
-              <li>
-                <NavLink
-                  to="/dashboard/ai-assistant"
-                  className={({ isActive }) =>
-                    `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white ${
-                      isActive ? "bg-blue text-white" : ""
-                    }`
-                  }
-                >
-                  <BsChatLeftTextFill /> AI Assistant
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white ${
-                      isActive ? "bg-blue text-white" : ""
-                    }`
-                  }
-                >
-                  <IoHomeOutline /> Home
-                </NavLink>
-              </li>
+              <SidebarLink
+                to="/dashboard/my-payments"
+                icon={<MdOutlinePayment />}
+                text="My Payments"
+              />
+              <SidebarLink
+                to="/dashboard/ai-assistant"
+                icon={<BsChatLeftTextFill />}
+                text="AI Assistant"
+              />
+              <SidebarLink to="/" icon={<IoHomeOutline />} text="Home" />
               <li>
                 <button
                   onClick={logOut}
-                  className="flex items-center gap-2 px-4 hover:bg-red-600 hover:text-white text-red-600 py-2"
+                  className="flex items-center gap-2 px-4 hover:bg-red-600 hover:text-white text-red-600 py-2 rounded"
                 >
                   <IoIosLogOut /> Sign out
                 </button>
@@ -371,12 +204,28 @@ const Dashboard = () => {
       </div>
 
       {/* Main Content */}
-      <div className="bg-slate-100 z-10 flex-1 xl:p-5 lg:p-4 md:p-3 p-2 dark:bg-darkBlue">
+      <div className="bg-slate-100 z-10 flex-1 xl:p-5 lg:p-4 md:p-3 p-2 dark:bg-darkBlue overflow-y-auto">
         <Outlet />
         <DashboardFooter />
       </div>
     </div>
   );
 };
+
+// SidebarLink Component
+const SidebarLink = ({ to, icon, text }) => (
+  <li>
+    <NavLink
+      to={to}
+      className={({ isActive }) =>
+        `flex items-center gap-2 px-4 hover:bg-blue hover:text-white dark:text-white rounded-md ${
+          isActive ? "bg-blue text-white" : ""
+        }`
+      }
+    >
+      {icon} <span>{text}</span> {/* Removed hidden class for visibility */}
+    </NavLink>
+  </li>
+);
 
 export default Dashboard;

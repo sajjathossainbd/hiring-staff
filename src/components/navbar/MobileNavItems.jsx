@@ -77,11 +77,6 @@ function MobileNavItems({ navLinks }) {
           </li>
         </ul>
       )}
-      <Link to={"/sign-in"}>
-        <button className="btn btn-primary min-h-[2rem] h-[2rem]">
-          Sign in
-        </button>
-      </Link>
     </div>
   );
 }

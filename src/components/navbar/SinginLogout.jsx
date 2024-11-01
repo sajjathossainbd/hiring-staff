@@ -29,7 +29,7 @@ function SinginLogout() {
   console.log(role);
 
   return (
-    <div className="xl:block hidden">
+    <div>
       {user ? (
         <div className="dropdown dropdown-end" ref={dropdownRef}>
           <div
@@ -101,7 +101,7 @@ function SinginLogout() {
         </div>
       ) : (
         <Link to="/sign-in">
-          <button className="bg-white py-[4px] px-8 rounded-md  flex items-center justify-start gap-2 mt-1">
+          <button className="bg-white py-[4px] lg:px-8 px-4 rounded-md  flex items-center justify-start gap-2 mt-1">
             <div className="text-blue text-3xl">
               <BsPerson />
             </div>

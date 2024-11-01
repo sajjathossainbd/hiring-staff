@@ -21,16 +21,16 @@ function JobAppliers() {
     },
     enabled: !!jobId,
   });
- 
-  const handleSelectChange = async (applicationId, action) => {
-    let updateData;
+ console.log(applications);
+  const handleSelectChange = async (applicationId, action, applicantEmail) => {
+     let updateData;
     let statusText;
 
     if (action === "shortlist") {
-      updateData = { shortlist: "approved", reject: false };
+      updateData = { shortlist: "approved", reject: false ,email:applicantEmail};
       statusText = "Shortlisted";
     } else if (action === "reject") {
-      updateData = { reject: true, shortlist: "pending" };
+      updateData = { reject: true, shortlist: "pending"};
       statusText = "Rejected";
     } else if (action === "pending") {
       updateData = { shortlist: "pending", reject: false };
@@ -40,7 +40,8 @@ function JobAppliers() {
     try {
       const res = await axiosInstance.patch(
         `/jobs/applied-jobs/update/${applicationId}`,
-        updateData
+        updateData,
+        applicantEmail
       );
 
       if (res.data.updatedCount) {
@@ -83,6 +84,7 @@ function JobAppliers() {
           </thead>
           <tbody>
             {applications?.map((applyer, index) => (
+            
               <tr
                 key={index}
                 className="light:bg-white border dark:text-white dark:border dark:border-white rounded-md shadow-sm"
@@ -114,7 +116,7 @@ function JobAppliers() {
                 <td>
                   <select
                     onChange={(event) =>
-                      handleSelectChange(applyer?._id, event.target.value)
+                      handleSelectChange(applyer?._id, event.target.value, applyer?.applicantEmail)
                     }
                     value={applyer?.shortlist}
                     className="rounded-md  dark:border-gray   dark:text-white p-2 py-3 cursor-pointer dark:bg-darkBlue"

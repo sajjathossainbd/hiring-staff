@@ -1,5 +1,4 @@
-import { AiOutlineDelete, AiOutlineUserDelete } from "react-icons/ai";
-import { MdOutlineMailOutline } from "react-icons/md";
+import { AiOutlineDelete } from "react-icons/ai";
 import { VscEye } from "react-icons/vsc";
 import axiosInstance from "../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
@@ -32,8 +31,6 @@ const AppliedJobs = () => {
   const {
     // eslint-disable-next-line no-unused-vars
     data: { appliedJobs = [], totalJobs = 0, totalPages = 0 } = {},
-    isError,
-    isLoading,
     refetch,
   } = useQuery({
     queryKey: ["appliedJobs", userId, page],
@@ -81,9 +78,6 @@ const AppliedJobs = () => {
       }
     });
   };
-
-  // if (isError) return <div>Error loading applied jobs.</div>;
-  // if (isLoading) return <Loading />;
 
   if (appliedJobs?.length === 0 || appliedJobs === undefined) {
     return (
@@ -153,13 +147,7 @@ const AppliedJobs = () => {
               {/* Job title, company name, and view details */}
               <div className="flex items-center justify-between">
                 <div className="">
-                  <h5 className="text-lg font-semibold mb-2">{job.jobTitle}</h5>
-                  <div className="flex flex-wrap text-16 text-gray">
-                    <span className="flex items-center gap-2">
-                      <MdOutlineMailOutline />
-                      {job?.email}
-                    </span>
-                  </div>
+                  <h5 className="text-lg font-semibold mb-1">{job.jobTitle}</h5>
                 </div>
               </div>
 

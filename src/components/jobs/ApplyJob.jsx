@@ -7,7 +7,7 @@ import PrimaryBtnWhite from "../ui/PrimaryBtnWhite";
 
 function ApplyJob({ job, onClose, refetch }) {
   const { currentCandidate } = useCurrentUser();
-   const {
+  const {
     register,
     handleSubmit,
     reset,
@@ -89,6 +89,7 @@ function ApplyJob({ job, onClose, refetch }) {
               id="available-immediately"
               type="radio"
               value="yes"
+              required
               className="mr-2 dark:text-gray"
             />
             <label htmlFor="available-immediately" className="text-gray-700">
@@ -101,6 +102,7 @@ function ApplyJob({ job, onClose, refetch }) {
               id="specify-availability"
               type="radio"
               value="no"
+              required
               className="mr-2"
             />
             <label htmlFor="specify-availability" className="text-gray-700">
@@ -121,6 +123,7 @@ function ApplyJob({ job, onClose, refetch }) {
           </label>
           <input
             type="text"
+            required
             placeholder="Google Drive Link"
             className="block dark:text-gray w-full text-14 rounded-md outline-none py-2 px-3 bg-lightText"
             {...register("resume")}

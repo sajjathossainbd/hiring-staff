@@ -1,5 +1,4 @@
 import TinnyHeading from "../shared/TinnyHeading";
-import JobPostCard from "./JobPostCard";
 import interview from "./../../../../public/interview2.json";
 import useCurrentUser from "../../../hooks/useCurrentUser";
 import { useQuery } from "@tanstack/react-query";
@@ -33,6 +32,7 @@ function InterviewCandidets() {
       InteriewApplicants: InteriewApplicants,
     };
   });
+  console.log(jobInterviewInfo);
   return (
     <div>
       <Helmet>
@@ -46,18 +46,20 @@ function InterviewCandidets() {
 
       {/* shortlisted candidates list */}
       <div className="grid lg:grid-cols-2 gap-6 mt-6">
-        {jobInterviewInfo?.map((job) => (
-          <InterviewCard
-            key={job.jobId}
-            Cardtitle="Interview Candidates"
-            jobTitle={job.jobTitle}
-            statusTitle={"Interview"}
-            img={interview}
-            style="gradient-3"
-            link={`/dashboard/interview-candidates/${job.jobId}`}
-            job={job}
-          />
-        ))}
+        {jobInterviewInfo
+          .filter((job) => job.InterviewCount > 0)
+          .map((job) => (
+            <InterviewCard
+              key={job.jobId}
+              Cardtitle="Interview Candidates"
+              jobTitle={job.jobTitle}
+              statusTitle={"Interview"}
+              img={interview}
+              style="gradient-3"
+              link={`/dashboard/interview-candidates/${job.jobId}`}
+              job={job}
+            />
+          ))}
       </div>
     </div>
   );

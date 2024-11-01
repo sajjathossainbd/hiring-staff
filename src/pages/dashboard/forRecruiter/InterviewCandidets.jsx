@@ -43,9 +43,7 @@ function InterviewCandidets() {
 
       {/* shortlisted candidates list */}
       <div className="grid lg:grid-cols-2 gap-6 mt-6">
-        {jobInterviewInfo
-          .filter((job) => job.InterviewCount > 0)
-          .map((job) => (
+        {jobInterviewInfo?.filter((job) => job.InterviewCount > 0).map((job) => (
             <InterviewCard
               key={job.jobId}
               Cardtitle="Interview Candidates"

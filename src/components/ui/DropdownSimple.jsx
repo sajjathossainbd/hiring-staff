@@ -42,7 +42,7 @@ const DropdownSimple = ({
   };
 
   return (
-    <div className="relative inline-block text-left" ref={dropdownRef}>
+    <div className="relative inline-block text-left z-50" ref={dropdownRef}>
       <button
         onClick={toggleDropdown}
         className="flex items-center justify-center w-full py-2 text-16 font-medium rounded-md"

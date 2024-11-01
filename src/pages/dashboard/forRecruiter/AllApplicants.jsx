@@ -7,6 +7,7 @@ import Loading from "./../../../components/ui/Loading";
 import TinnyHeading from "../shared/TinnyHeading";
 import { IoCheckmark } from "react-icons/io5";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const ViewAllApplications = () => {
   const { jobId } = useParams();
@@ -86,6 +87,9 @@ const ViewAllApplications = () => {
   // console.log(applications);
   return (
     <div>
+      <Helmet>
+        <title>Hiring Staff - All Applicants</title>
+      </Helmet>
       <TinnyHeading
         title={"Manage Jobs"}
         path={"manage-jobs"}

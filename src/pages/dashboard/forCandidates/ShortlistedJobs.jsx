@@ -11,6 +11,7 @@ import { MdOutlineMailOutline } from "react-icons/md";
 import PrimaryBtnBlue from "../../../components/ui/PrimaryBtnBlue";
 import { VscEye } from "react-icons/vsc";
 import SubmitAssessment from "../../../components/dashboard/SubmitAssessment";
+import { Helmet } from "react-helmet-async";
 
 const ShortlistedJobs = () => {
   const { currentCandidate } = useCurrentUser();
@@ -55,6 +56,9 @@ const ShortlistedJobs = () => {
   ) {
     return (
       <>
+        <Helmet>
+          <title>Hiring Staff - Shortlisted Jobs</title>
+        </Helmet>
         <TinnyHeading
           title="Shortlisted Resumes"
           path="shortlist"
@@ -69,6 +73,9 @@ const ShortlistedJobs = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Hiring Staff - Shortlisted Jobs</title>
+      </Helmet>
       <TinnyHeading
         title={"Shortlisted Jobs"}
         path={"shortlisted-jobs"}
@@ -187,8 +194,7 @@ const ShortlistedJobs = () => {
               </button>
             </form>
 
-            {/* Displaying Job Details and Interview Schedule */}
-            <h3 className="font-bold text-lg">{selectedJob.jobTitle}</h3>
+            <h3 className="text-blue">{selectedJob.jobTitle}</h3>
             <p>Email: {selectedJob.email}</p>
 
             {/* Displaying the interview schedule */}
@@ -198,22 +204,25 @@ const ShortlistedJobs = () => {
                   Scheduled Interviews:
                 </h4>
                 {selectedJob.schedule.map((interview, index) => (
-                  <div key={index} className="border-b py-2">
+                  <div key={index} className=" py-2 px-3">
                     <p>
-                      <strong>Date:</strong>{" "}
+                      <strong className="text-blue">Interview Date:</strong>{" "}
                       {new Date(interview.interviewDate).toLocaleDateString(
                         "en-GB"
                       )}
                     </p>
                     <p>
-                      <strong>Time:</strong> {interview.interviewTime}
+                      <strong className="text-blue">Time:</strong>{" "}
+                      {interview.interviewTime}
                     </p>
                     <p>
-                      <strong>Message:</strong> {interview.message}
+                      <strong className="text-blue">Message:</strong>{" "}
+                      {interview.message}
                     </p>
-                    {/* Optionally display when it was scheduled */}
-                    {/* Uncomment if you want to show when it was scheduled */}
-                    {/*<p><strong>Scheduled At:</strong> {new Date(interview.scheduledAt).toLocaleString()}</p>*/}
+                    <p>
+                      <strong className="text-blue">Scheduled At:</strong>{" "}
+                      {new Date(interview.scheduledAt).toLocaleString()}
+                    </p>
                   </div>
                 ))}
               </>

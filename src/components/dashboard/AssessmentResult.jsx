@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 import React from "react";
-import { FaClipboardCheck, FaRegClipboard } from "react-icons/fa"; // Import icons for better visuals
+import { FaClipboardCheck, FaRegClipboard } from "react-icons/fa"; 
 
 function AssessmentResult({ job, isClose }) {
   return (

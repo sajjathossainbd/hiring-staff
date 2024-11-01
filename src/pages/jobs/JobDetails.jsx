@@ -21,12 +21,12 @@ import { MdVerified } from "react-icons/md";
 import useCurrentUser from "../../hooks/useCurrentUser";
 import axiosInstance from "../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 const Benefitemojis = ["🎉", "💼", "🚀", "🏆"];
 
 function JobDetails() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  console.log(id);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => setIsOpen(true);
@@ -46,12 +46,8 @@ function JobDetails() {
     enabled: !!userId,
   });
 
-  console.log(appliedJobs);
-
-  const filteredJobs = appliedJobs?.appliedJobs?.filter(job => job.jobId === id);
-
-  console.log(filteredJobs);
-
+  const filteredAppliedJobs =
+    appliedJobs?.appliedJobs?.filter((job) => job.jobId === id) || [];
 
   const {
     jobDetails: job,
@@ -61,7 +57,6 @@ function JobDetails() {
   } = useSelector((state) => state.jobDetails);
 
   const { jobsListing: jobsData } = useSelector((state) => state.jobsListing);
-
   const jobs = jobsData.jobs || [];
   const category = job.category || "";
 
@@ -89,51 +84,44 @@ function JobDetails() {
     lastDateToApply,
     postedDate,
   } = job || {};
+
   const { name, email } = recruiter || {};
+
   useEffect(() => {
     dispatch(fetchJobsListing());
     dispatch(fetchJobDetails(id));
     dispatch(fetchRecruiterDetails(companyId));
   }, [dispatch, id, companyId]);
 
-  // data formate
+  // Date formatting functions
   function formatDate(dateString) {
     const date = new Date(dateString);
     const options = { year: "numeric", month: "long", day: "numeric" };
     return date.toLocaleDateString("en-US", options);
   }
-  const formattedDate = formatDate(lastDateToApply);
 
-  function formatDatePost(dateString) {
-    const date = new Date(dateString);
-    const options = { year: "numeric", month: "long", day: "numeric" };
-    return date.toLocaleDateString("en-US", options);
-  }
-  const formattedDatePost = formatDatePost(postedDate);
+  const formattedDate = formatDate(lastDateToApply);
+  const formattedDatePost = formatDate(postedDate);
 
   let content = null;
   if (isLoading) content = <Loading />;
-
   if (!isLoading && isError)
     content = <div className="col-span-12">{error}</div>;
-
-  if (!isLoading && !isError && !job?._id) {
+  if (!isLoading && !isError && !job?._id)
     content = <NoFoundData title={"No Job Found!"} />;
-  }
 
   if (!isLoading && !isError && job?._id) {
     content = (
       <>
         <div className="lg:flex gap-16 dark:text-white">
+          <Helmet>
+            <title>Hiring Staff - Job Details</title>
+          </Helmet>
           <div className="lg:w-2/3 w-full">
-            {/* job details header */}
-            <div className=" bg-bgLightWhite dark:bg-darkBlue dark:border p-10 rounded-md">
-              {/* 01. Job Title */}
+            {/* Job details header */}
+            <div className="bg-bgLightWhite dark:bg-darkBlue dark:border p-10 mt-5 rounded-md">
               <h3 className="mb-5">{jobTitle}</h3>
-              {/* 02. Company Information */}
-
-              <div className="flex  justify-between">
-                {/* compnay information */}
+              <div className="flex lg:flex-row md:flex-row flex-col items-center gap-4 justify-between">
                 <div className="flex items-center gap-4">
                   <img
                     className="h-20 w-auto object-cover rounded-full"
@@ -143,12 +131,11 @@ function JobDetails() {
                   <div className="flex flex-col gap-2">
                     <div className="flex lg:flex-row flex-col items-center gap-x-2">
                       <div className="flex items-center gap-1">
-                        <span className="text-blue font-medium"> {name}</span>
+                        <span className="text-blue font-medium">{name}</span>
                         <span className="p-1 rounded-full bg-white text-blue text-18">
                           <MdVerified />
                         </span>
                       </div>
-
                       <GoDotFill className="text-[8px] text-gray lg:block hidden" />
                     </div>
                     <div className="flex lg:justify-start justify-center gap-2">
@@ -171,12 +158,11 @@ function JobDetails() {
                 </div>
 
                 {/* Apply Now Button */}
-                <div className="">
-                  {/*modal for aplly job */}
-                  {filteredJobs && filteredJobs.length > 0 ? (
+                <div>
+                  {filteredAppliedJobs.length > 0 ? (
                     <button
                       disabled
-                      className="flex items-center justify-center bg-gradient-to-r from-blue to-greenLight hover:from-green-500 hover:to-darkBlue text-white px-4 py-3 sm:px-4 sm:py-3  md:px-5 md:py-3 lg:px-6 lg:py-3 rounded-md font-medium transition-all duration-500 ease-in-out gap-2"
+                      className="flex items-center justify-center bg-gradient-to-r from-blue to-greenLight hover:from-green-500 hover:to-darkBlue text-white px-4 py-3 sm:px-4 sm:py-3 md:px-5 md:py-3 lg:px-6 lg:py-3 rounded-md font-medium transition-all duration-500 ease-in-out gap-2"
                     >
                       <p className="text-12 text-white">Already Applied</p>
                     </button>
@@ -189,16 +175,8 @@ function JobDetails() {
                     </button>
                   )}
 
-
                   {isOpen && (
-                    <dialog
-                      data-aos="zoom-in"
-                      data-aos-offset="200"
-                      data-aos-duration="700"
-                      id="my_modal_3"
-                      className="modal"
-                      open
-                    >
+                    <dialog id="my_modal_3" className="modal" open>
                       <div className="modal-box max-w-xl mt-7 dark:bg-blue">
                         <form method="dialog">
                           <button
@@ -211,7 +189,11 @@ function JobDetails() {
                         </form>
                         <h3 className="font-bold text-lg">{jobTitle}</h3>
 
-                        <ApplyJob refetch={refetch} job={job} onClose={handleClose} />
+                        <ApplyJob
+                          refetch={refetch}
+                          job={job}
+                          onClose={handleClose}
+                        />
                       </div>
                     </dialog>
                   )}
@@ -219,16 +201,16 @@ function JobDetails() {
               </div>
             </div>
 
-            {/* job details informaton*/}
-            <div className=" mt-10">
+            {/* Job details information */}
+            <div className="mt-10">
               <TitleIcon title={"Job Description"} icon={<PiNotepadThin />} />
             </div>
             <div className="mt-7">
-              <h5 className="mb-2">🎯𝐖𝐡𝐚𝐭 𝐖𝐞 𝐀𝐫𝐞 𝐋𝐨𝐨𝐤𝐢𝐧𝐠 𝐅𝐨𝐫</h5>
+              <h5 className="mb-2">🎯 𝐖𝐡𝐚𝐭 𝐖𝐞 𝐀𝐫𝐞 𝐋𝐨𝐨𝐤𝐢𝐧𝐠 𝐅𝐨𝐫</h5>
               {description}
             </div>
             <div className="mt-7">
-              <h5 className="mb-2">🗒️𝐉𝐨𝐛 𝐃𝐞𝐬𝐜𝐫𝐢𝐩𝐭𝐢𝐨𝐧</h5>
+              <h5 className="mb-2">🗒️ 𝐉𝐨𝐛 𝐃𝐞𝐬𝐜𝐫𝐢𝐩𝐭𝐢𝐨𝐧</h5>
               <ul className="ml-10 leading-7">
                 {requirements.map((requirement, index) => (
                   <li key={index}>✅ {requirement}</li>
@@ -237,27 +219,26 @@ function JobDetails() {
             </div>
             <div className="mt-7">
               <h5 className="mb-2">🌟 𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐢𝐛𝐢𝐥𝐢𝐭𝐲</h5>
-              <ul className=" ml-10 leading-7">
-                {responsibilities.map((responsibilitie, index) => (
-                  <li key={index}>📌 {responsibilitie}</li>
+              <ul className="ml-10 leading-7">
+                {responsibilities.map((responsibility, index) => (
+                  <li key={index}>📌 {responsibility}</li>
                 ))}
               </ul>
             </div>
             {/* Benefits */}
-            <div className="mt-7 ">
-              <h5 className="mb-2">🎁𝐄𝐱𝐜𝐢𝐭𝐢𝐧𝐠 𝐩𝐚𝐫𝐤𝐬 𝐰𝐚𝐢𝐭𝐢𝐧𝐠 𝐲𝐨𝐮</h5>
+            <div className="mt-7">
+              <h5 className="mb-2">🎁 𝐄𝐱𝐜𝐢𝐭𝐢𝐧𝐠 𝐩𝐚𝐫𝐤𝐬 𝐰𝐚𝐢𝐭𝐢𝐧𝐠 𝐲𝐨𝐮</h5>
               <ul className="ml-10 leading-7">
                 {benefits.map((benefit, index) => (
                   <li key={index}>
                     {Benefitemojis[index % Benefitemojis.length]} {benefit}
                   </li>
                 ))}
-                <li>🌎 Team tours and remote meals </li>
-                <li>
-                  🎂 Birthday surprise
-                </li> <li>{`🎆 New Year's gift`}</li>{" "}
+                <li>🌎 Team tours and remote meals</li>
+                <li>🎂 Birthday surprise</li>
+                <li>🎆 New Year&#39;s gift</li>
                 <li>🍼 New parent surprise</li>
-                <li> 🌴 Unlimited leaves (honesty expected)</li>
+                <li>🌴 Unlimited leaves (honesty expected)</li>
               </ul>
             </div>
             {/* Education */}
@@ -271,10 +252,9 @@ function JobDetails() {
             )}
             {/* Salary */}
             <div className="mt-7">
-              <h5 className="mb-2">💵𝗦𝗮𝗹𝗮𝗿𝘆</h5>
+              <h5 className="mb-2">💵 𝗦𝗮𝗹𝗮𝗿𝘆</h5>
               <ul className="ml-10 leading-7">
                 <li className="flex items-center gap-2">
-                  {" "}
                   <TbCoinTaka className="text-xl" />
                   {min_salary} - {max_salary} BDT
                 </li>
@@ -290,8 +270,7 @@ function JobDetails() {
                 </li>
               </ul>
             </div>
-
-            {/* Job Date */}
+            {/* Job Dates */}
             <div className="mt-7">
               <h5 className="mb-2">📅 𝐉𝐨𝐛 𝐃𝐚𝐭𝐞</h5>
               <ul className="ml-10 leading-7">
@@ -305,8 +284,7 @@ function JobDetails() {
                 </li>
               </ul>
             </div>
-
-            {/* Job Location */}
+            {/* Contact */}
             <div className="mt-7">
               <h5 className="mb-2">❓𝐇𝐚𝐯𝐞 𝐚 𝐪𝐮𝐞𝐫𝐲?</h5>
               <ul className="ml-10 leading-7">
@@ -320,16 +298,28 @@ function JobDetails() {
             </div>
           </div>
           <div className="lg:w-1/3 w-full flex flex-col gap-5 mt-10 lg:mt-0">
-            <h4>Similar Job Opening ({filteredJobsByCategory.length || 0})</h4>
-            {filteredJobsByCategory.map((job) => (
-              <SimilarJobs key={job._id} job={job} />
-            ))}
+            {filteredJobsByCategory.length === 0 ? (
+              ""
+            ) : (
+              <h4>
+                Similar Jobs Opening ({filteredJobsByCategory.length || 0})
+              </h4>
+            )}
+
+            {filteredJobsByCategory.length > 0 ? (
+              filteredJobsByCategory.map((job, index) => (
+                <SimilarJobs key={index} job={job} />
+              ))
+            ) : (
+              <NoFoundData title="No similar jobs Found!" />
+            )}
           </div>
         </div>
         <ScrollRestoration />
       </>
     );
   }
+
   return <div className="container">{content}</div>;
 }
 

@@ -5,10 +5,10 @@ import toast from "react-hot-toast";
 import useCurrentUser from "../../../hooks/useCurrentUser";
 import shortlist from "./../../../../public/banner2";
 import JobShortListCard from "../../../components/dashboard/JobShortListCard";
+import { Helmet } from "react-helmet-async";
 
 const Shortlist = () => {
   const { currentRecruiter } = useCurrentUser();
- 
 
   const { data: myJobs, refetch } = useQuery({
     queryKey: ["myJobs", currentRecruiter?.email],
@@ -36,10 +36,12 @@ const Shortlist = () => {
   });
 
   // console.log(jobShortlistedInfo);
- 
 
   return (
     <div>
+      <Helmet>
+        <title>Hiring Staff - Shortlisted</title>
+      </Helmet>
       <TinnyHeading
         title="Manage Shortlisted Candidates"
         path="shortlist"
@@ -48,18 +50,20 @@ const Shortlist = () => {
 
       {/* shortlisted candidates list */}
       <div className="grid xl:grid-cols-2 grid-cols-1 gap-6 mt-6">
-        {jobShortlistedInfo?.map((job) => (
-          <JobShortListCard
-            key={job._id}
-            Cardtitle="Shortlisted Candidates"
-            jobTitle={job?.jobTitle}
-            statusTitle="Shortlist"
-            img={shortlist}
-            style="gradient-3"
-            link={`/dashboard/shortlsit-candidates/${job?.jobId}`}
-            job={job}
-          />
-        ))}
+        {jobShortlistedInfo?.filter((job) => job.shortlistedCount > 0)
+            .map((job) => (
+              <JobShortListCard
+                key={job._id}
+                Cardtitle="Shortlisted Candidates"
+                jobTitle={job?.jobTitle}
+                statusTitle="Shortlist"
+                img={shortlist}
+                style="gradient-3"
+                link={`/dashboard/shortlsit-candidates/${job?.jobId}`}
+                job={job}
+              />
+            ))
+         }
       </div>
     </div>
   );

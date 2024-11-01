@@ -1,9 +1,13 @@
+import { Helmet } from "react-helmet-async";
 import PrimaryBtnBlue from "../../../components/ui/PrimaryBtnBlue";
 import TinnyHeading from "../shared/TinnyHeading";
 
 function SelectedCandidatesList() {
   return (
     <div>
+      <Helmet>
+        <title>Hiring Staff - Selected Candidates</title>
+      </Helmet>
       <TinnyHeading
         title="Manage Selected Candidates"
         path="selected-candidates-list"

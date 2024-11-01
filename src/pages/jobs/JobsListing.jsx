@@ -8,6 +8,7 @@ import NoFoundData from "../../components/ui/NoFoundData";
 import JobBanner from "../../components/jobs/JobBanner";
 import { ScrollRestoration, useNavigate, useParams } from "react-router-dom";
 import { CardPagination } from "../../components/shared/CardPagination";
+import { Helmet } from "react-helmet-async";
 
 function JobsListing() {
   const dispatch = useDispatch();
@@ -44,11 +45,16 @@ function JobsListing() {
 
   // Content rendering logic
   let content = null;
-
   if (isLoading) content = <Loading />;
-  else if (jobs?.jobs?.length === 0) {
-    content = <NoFoundData title="No Jobs Found!" />;
-  } else {
+
+  if (!isLoading && isError)
+    content = <NoFoundData title="No jobs Found!" />;
+
+  if (!isLoading && !isError && jobs?.jobs?.length === 0) {
+    content = <NoFoundData title="No jobs Found!" />;
+  }
+
+  if (!isLoading && !isError && jobs?.jobs?.length > 0) {
     content = (
       <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 xl:gap-5 lg:gap-10 gap-5">
         {jobs?.jobs?.map((job) => {
@@ -66,6 +72,9 @@ function JobsListing() {
   return (
     <>
       <div className="container flex flex-col justify-center">
+        <Helmet>
+          <title>Hiring Staff - Find Jobs</title>
+        </Helmet>
         {/* Jobs Banner */}
         <JobBanner totalJobs={totalJobs} />
 

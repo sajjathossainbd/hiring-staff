@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { ScrollRestoration } from "react-router-dom";
 
 const PrivacyAndPolicy = () => {
@@ -87,10 +88,11 @@ const PrivacyAndPolicy = () => {
 
   return (
     <div className="xl:pt-16 lg:pt-12 md:pt-10 pt-7 max-w-4xl mx-auto px-5">
+      <Helmet>
+        <title>Hiring Staff - Privacy and Policy</title>
+      </Helmet>
       <div className="text-center space-y-2">
-        <h2>
-          Privacy Policy
-        </h2>
+        <h2>Privacy Policy</h2>
         <p>Last Updated: 06 May, 2024</p>
       </div>
 
@@ -110,10 +112,7 @@ const PrivacyAndPolicy = () => {
                   const [beforeColon, afterColon] = item.split(":");
                   return (
                     <li key={index}>
-                      <span>
-                        {beforeColon}:
-                      </span>{" "}
-                      <span>{afterColon}</span>
+                      <span>{beforeColon}:</span> <span>{afterColon}</span>
                     </li>
                   );
                 })}

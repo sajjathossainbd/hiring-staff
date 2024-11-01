@@ -1,18 +1,13 @@
 import { CgProfile } from "react-icons/cg";
-import {
-  FaArrowUpShortWide,
-  FaBlogger,
-  FaCheck,
-  FaUserGroup,
-} from "react-icons/fa6";
+import { FaArrowUpShortWide, FaBlogger, FaRegUser, FaUserGroup } from "react-icons/fa6";
 import { ImProfile } from "react-icons/im";
-import { IoHomeOutline } from "react-icons/io5";
+import { IoGridOutline, IoHomeOutline } from "react-icons/io5";
 import {
   MdManageHistory,
   MdOutlinePayment,
-  MdPlaylistAddCheck,
   MdPostAdd,
 } from "react-icons/md";
+import { LuBrain } from "react-icons/lu";
 import { RxResume } from "react-icons/rx";
 import { VscGitStashApply } from "react-icons/vsc";
 import { Link, NavLink, Outlet } from "react-router-dom";
@@ -20,7 +15,7 @@ import DashboardFooter from "../pages/dashboard/shared/DashboardFooter";
 import { FaUserTie } from "react-icons/fa";
 import useAuth from "../hooks/useAuth";
 import { IoIosLogOut } from "react-icons/io";
-import { HiOutlineBriefcase } from "react-icons/hi";
+import { HiOutlineBriefcase, HiOutlineClipboardList } from "react-icons/hi";
 import { Helmet } from "react-helmet-async";
 import { BsChatLeftTextFill } from "react-icons/bs";
 import useCurrentUser from "../hooks/useCurrentUser";
@@ -106,7 +101,7 @@ const Dashboard = () => {
                 <>
                   <SidebarLink
                     to="/dashboard/dashboard-main"
-                    icon={<ImProfile />}
+                    icon={<IoGridOutline />}
                     text="Overview"
                   />
                   <SidebarLink
@@ -121,12 +116,12 @@ const Dashboard = () => {
                   />
                   <SidebarLink
                     to="/dashboard/shortlist"
-                    icon={<MdPlaylistAddCheck />}
+                    icon={<HiOutlineClipboardList />}
                     text="Shortlisted"
                   />
                   <SidebarLink
                     to="/dashboard/interview-candidates"
-                    icon={<MdPlaylistAddCheck />}
+                    icon={<ImProfile />}
                     text="Interview"
                   />
                 </>
@@ -175,7 +170,7 @@ const Dashboard = () => {
               {currentRecruiter && (
                 <SidebarLink
                   to="/dashboard/recruiter-profile"
-                  icon={<ImProfile />}
+                  icon={<FaRegUser />}
                   text="Recruiter Profile"
                 />
               )}
@@ -186,7 +181,7 @@ const Dashboard = () => {
               />
               <SidebarLink
                 to="/dashboard/ai-assistant"
-                icon={<BsChatLeftTextFill />}
+                icon={<LuBrain />}
                 text="AI Assistant"
               />
               <SidebarLink to="/" icon={<IoHomeOutline />} text="Home" />
@@ -223,7 +218,7 @@ const SidebarLink = ({ to, icon, text }) => (
         }`
       }
     >
-      {icon} <span>{text}</span> {/* Removed hidden class for visibility */}
+      <span className="text-18">{icon}</span> <span>{text}</span>
     </NavLink>
   </li>
 );

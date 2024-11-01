@@ -10,11 +10,20 @@ import TextareaField from "../shared/TextareaField";
 import { GrCopy } from "react-icons/gr";
 import { PiBookOpenBold, PiSubtitlesBold } from "react-icons/pi";
 import { TbCategory, TbGraphFilled } from "react-icons/tb";
-import { FaBusinessTime, FaCalendar, FaCalendarDay, FaGetPocket, FaLocationDot, FaNoteSticky, FaTags } from "react-icons/fa6";
+import {
+  FaBusinessTime,
+  FaCalendar,
+  FaCalendarDay,
+  FaGetPocket,
+  FaLocationDot,
+  FaNoteSticky,
+  FaTags,
+} from "react-icons/fa6";
 import { GiPlayerTime } from "react-icons/gi";
 import { MdTimelapse } from "react-icons/md";
 import { FaMoneyCheckAlt, FaRegListAlt } from "react-icons/fa";
 import { IoPeopleSharp } from "react-icons/io5";
+import { Helmet } from "react-helmet-async";
 const PostJob = () => {
   const [candidateEmails, setCandidateEmails] = useState();
 
@@ -32,7 +41,7 @@ const PostJob = () => {
     recruiter_id: currentRecruiter?._id,
     jobTitle: "",
     logo: currentRecruiter?.logo,
-    companyName: currentRecruiter?.name,
+    name: currentRecruiter?.name,
     category: "",
     description: "",
     job_type: "",
@@ -53,8 +62,6 @@ const PostJob = () => {
     appliers: [],
     featured: false,
   });
-
-
 
   const [tag, setTag] = useState("");
   const [responsibilitie, setResponsibilitie] = useState("");
@@ -148,6 +155,9 @@ const PostJob = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Hiring Staff - Post New Jobs</title>
+      </Helmet>
       <TinnyHeading
         title="Post a New Job"
         path="post-job"
@@ -281,7 +291,10 @@ const PostJob = () => {
           </div>
 
           <div className="lg:col-span-6 col-span-6">
-            <label className="font-semibold flex items-center"><TbGraphFilled className="mr-2 w-4 h-4" />Experience (in years)</label>
+            <label className="font-semibold flex items-center">
+              <TbGraphFilled className="mr-2 w-4 h-4" />
+              Experience (in years)
+            </label>
             <input
               type="number"
               value={formData.experience}
@@ -299,7 +312,10 @@ const PostJob = () => {
             />
           </div>
           <div className="lg:col-span-6 col-span-6">
-            <label className="font-semibold flex gap-2 items-center"><FaMoneyCheckAlt />Minimum Salary</label>
+            <label className="font-semibold flex gap-2 items-center">
+              <FaMoneyCheckAlt />
+              Minimum Salary
+            </label>
             <input
               type="number"
               value={formData.min_salary}
@@ -308,7 +324,7 @@ const PostJob = () => {
                   ...prev,
                   min_salary: e.target.value
                     ? parseInt(e.target.value, 10)
-                    : "", 
+                    : "",
                 }))
               }
               className="bg-white border border-lightGray text-gray text-14 rounded-md focus:ring-blue focus:border-blue block w-full ps-10 p-2.5 outline-none transition-all duration-500  
@@ -317,7 +333,10 @@ const PostJob = () => {
             />
           </div>
           <div className="lg:col-span-6 col-span-6">
-            <label className="font-semibold flex gap-2 items-center"><FaMoneyCheckAlt />Maximum Salary</label>
+            <label className="font-semibold flex gap-2 items-center">
+              <FaMoneyCheckAlt />
+              Maximum Salary
+            </label>
             <input
               type="number"
               value={formData.max_salary}
@@ -367,7 +386,10 @@ const PostJob = () => {
           </div>
 
           <div className="lg:col-span-6 col-span-6">
-            <label className="font-semibold flex items-center gap-2"><FaRegListAlt />Responsibilities</label>
+            <label className="font-semibold flex items-center gap-2">
+              <FaRegListAlt />
+              Responsibilities
+            </label>
             <div className="flex gap-2">
               <input
                 type="text"
@@ -395,7 +417,10 @@ const PostJob = () => {
           </div>
 
           <div className="lg:col-span-6 col-span-6">
-            <label className="font-semibold flex items-center gap-2"><FaNoteSticky />Requirement</label>
+            <label className="font-semibold flex items-center gap-2">
+              <FaNoteSticky />
+              Requirement
+            </label>
             <div className="flex gap-2">
               <input
                 type="text"
@@ -424,7 +449,10 @@ const PostJob = () => {
 
           <div className="lg:col-span-6 col-span-6">
             {/* Benefits Section */}
-            <label className="font-semibold flex items-center gap-2"><FaGetPocket />Benefits</label>
+            <label className="font-semibold flex items-center gap-2">
+              <FaGetPocket />
+              Benefits
+            </label>
             <div className="flex gap-2">
               <input
                 type="text"
@@ -453,7 +481,10 @@ const PostJob = () => {
 
           <div className="lg:col-span-6 col-span-6">
             {/* Appliers Section */}
-            <label className="font-semibold flex items-center gap-2"><IoPeopleSharp />Appliers</label>
+            <label className="font-semibold flex items-center gap-2">
+              <IoPeopleSharp />
+              Appliers
+            </label>
             <div className="flex gap-2">
               <input
                 type="text"
@@ -481,7 +512,10 @@ const PostJob = () => {
           </div>
 
           <div className="lg:col-span-6 col-span-6">
-            <label className="font-semibold flex items-center gap-2"><FaTags />Tags</label>
+            <label className="font-semibold flex items-center gap-2">
+              <FaTags />
+              Tags
+            </label>
             <div className="flex gap-2">
               <input
                 type="text"
@@ -509,7 +543,7 @@ const PostJob = () => {
           </div>
 
           <div className="col-span-6">
-          <button
+            <button
               type="submit"
               className="w-full py-3 bg-blue text-white rounded-md hover:bg-darkBlue transition"
               disabled={loading}

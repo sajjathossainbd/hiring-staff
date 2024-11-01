@@ -12,6 +12,7 @@ import { BsBuildingFillLock } from "react-icons/bs";
 import PrimaryBtnWhite from "../../components/ui/PrimaryBtnWhite";
 import { IoIosLogIn } from "react-icons/io";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { Helmet } from "react-helmet-async";
 
 const SignIn = () => {
   const location = useLocation();
@@ -82,6 +83,9 @@ const SignIn = () => {
 
   return (
     <div className="container">
+      <Helmet>
+        <title>Hiring Staff - Sign in</title>
+      </Helmet>
       <div className="max-w-md mx-auto text-center lg:mt-0 mt-20">
         <div className="space-y-3">
           <h3>Welcome Back!</h3>

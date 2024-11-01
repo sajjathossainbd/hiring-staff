@@ -1,10 +1,14 @@
 import TinnyHeading from "../shared/TinnyHeading";
 import JobPostCard from "./JobPostCard";
 import select from "./../../../../public/select3";
+import { Helmet } from "react-helmet-async";
 
 function SelectedCandidates() {
   return (
     <div>
+      <Helmet>
+        <title>Hiring Staff - Selected Candidates</title>
+      </Helmet>
       <TinnyHeading
         title="Manage Selected Candidates"
         path="selected-candidates"

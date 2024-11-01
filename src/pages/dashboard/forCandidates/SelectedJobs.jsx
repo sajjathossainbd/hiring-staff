@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CardPagination } from "../../../components/shared/CardPagination";
 import useCurrentUser from "../../../hooks/useCurrentUser";
+import { Helmet } from "react-helmet-async";
 
 const SelectedJobs = () => {
   const { currentCandidate } = useCurrentUser();
@@ -43,6 +44,9 @@ const SelectedJobs = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Hiring Staff - Selected Jobs</title>
+      </Helmet>
       <TinnyHeading
         title={"Selected Jobs"}
         path={"selected-jobs"}

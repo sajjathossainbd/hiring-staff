@@ -9,14 +9,14 @@ function JobShortListCard({ Cardtitle, img, style, link, job }) {
   const { jobTitle, shortlistedCount } = job;
 
   return (
-    <div className="w-full light:bg-white dark:border border shadow-sm border-bgDeepBlue p-4 sm:p-6 rounded-lg">
+    <div className="w-full bg-white dark:border  dark:border-gray dark:hover:border-blue transition-all duration-300 dark:bg-darkBlue border border-bgDeepBlue p-4 sm:p-6 rounded-lg shadow-sm">
       <div
         className={`flex flex-col lg:flex-row items-center p-8 sm:p-12 lg:p-16 rounded-lg gap-4 lg:gap-6 ${style}`}
       >
         {/* Title */}
         <div className="w-full lg:w-7/12">
           <h3 className="text-lg lg:text-xl">{`${Cardtitle}...`}</h3>
-          <p className="text-gray text-sm lg:text-base">{jobTitle}</p>
+          <p className="text-gray text-sm lg:text-base mt-2">{jobTitle}</p>
         </div>
 
         {/* Card Images */}
@@ -41,11 +41,11 @@ function JobShortListCard({ Cardtitle, img, style, link, job }) {
           </Link>
           {/* Post & Expiry Date */}
           <div className="flex flex-wrap gap-3 text-14 mt-3">
-            <p className="flex items-center gap-1 text-sm lg:text-base">
+            <p className="flex items-center gap-1 text-sm lg:text-base dark:text-lightGray">
               <FaRegCalendarAlt />
               Post Date: 12 Aug, 2024
             </p>
-            <p className="flex items-center gap-1 text-sm lg:text-base">
+            <p className="flex items-center gap-1 text-sm lg:text-base dark:text-lightGray">
               <FaRegCalendarAlt />
               Expiry Date: 11 Sep, 2024
             </p>
@@ -53,14 +53,15 @@ function JobShortListCard({ Cardtitle, img, style, link, job }) {
         </div>
 
         {/* Total Shortlisted & Profile Images */}
-        <div className="text-sm lg:text-base">
-          <p>
+        <div className="text-sm lg:text-base ">
+          <p className={"dark:text-lightGray flex items-center gap-1"}>
             <span className="font-bold">{shortlistedCount}</span> Shortlisted
           </p>
-          <div className="flex justify-start mt-2 lg:mt-0">
-            <div className="avatar-group -space-x-4 lg:-space-x-6 rtl:space-x-reverse">
+
+          <div className="flex justify-start mt-2">
+            <div className="avatar-group -space-x-4 md:-space-x-6 rtl:space-x-reverse">
               <div className="avatar">
-                <div className="w-8 h-8 lg:w-10 lg:h-10">
+                <div className="w-6 md:w-8">
                   <img
                     src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
                     alt="Profile"
@@ -68,7 +69,7 @@ function JobShortListCard({ Cardtitle, img, style, link, job }) {
                 </div>
               </div>
               <div className="avatar">
-                <div className="w-8 h-8 lg:w-10 lg:h-10">
+                <div className="w-6 md:w-8">
                   <img
                     src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
                     alt="Profile"
@@ -76,7 +77,7 @@ function JobShortListCard({ Cardtitle, img, style, link, job }) {
                 </div>
               </div>
               <div className="avatar">
-                <div className="w-8 h-8 lg:w-10 lg:h-10">
+                <div className="w-6 md:w-8">
                   <img
                     src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
                     alt="Profile"
@@ -84,7 +85,7 @@ function JobShortListCard({ Cardtitle, img, style, link, job }) {
                 </div>
               </div>
               <div className="avatar placeholder">
-                <div className="bg-blue text-white w-8 h-8 lg:w-10 lg:h-10">
+                <div className="bg-blue text-white w-6 md:w-8">
                   <FaPlus />
                 </div>
               </div>

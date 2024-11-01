@@ -12,6 +12,7 @@ import { RiAdminLine } from "react-icons/ri";
 import { BsBuildingFillLock } from "react-icons/bs";
 import { IoIosLogIn } from "react-icons/io";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const { registerUser } = useAuth();
@@ -110,6 +111,9 @@ const Register = () => {
 
   return (
     <div className="container max-w-3xl text-center">
+      <Helmet>
+        <title>Hiring Staff - Register</title>
+      </Helmet>
       <div className="space-y-3">
         <h3>Start For Free Today</h3>
         <p>

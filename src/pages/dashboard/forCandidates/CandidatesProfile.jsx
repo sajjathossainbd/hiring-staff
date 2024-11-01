@@ -4,6 +4,7 @@ import CandidatesProfileUI from "./CandidatesProfileUI";
 import PrimaryBtnBlue from "../../../components/ui/PrimaryBtnBlue";
 import { LuClipboardEdit } from "react-icons/lu";
 import TinnyHeading from "../shared/TinnyHeading";
+import { Helmet } from "react-helmet-async";
 
 function CandidatesProfile() {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -13,6 +14,9 @@ function CandidatesProfile() {
   };
   return (
     <div>
+      <Helmet>
+        <title>Hiring Staff - My Profile</title>
+      </Helmet>
       <TinnyHeading
         title={"Candidate profile"}
         path={"my-profile"}
@@ -27,7 +31,11 @@ function CandidatesProfile() {
         </button>
       </div>
 
-      {isFormOpen ? <MyProfile setIsFormOpen={setIsFormOpen} /> : <CandidatesProfileUI />}
+      {isFormOpen ? (
+        <MyProfile setIsFormOpen={setIsFormOpen} />
+      ) : (
+        <CandidatesProfileUI />
+      )}
     </div>
   );
 }

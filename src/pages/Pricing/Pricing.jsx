@@ -8,11 +8,11 @@ import { ScrollRestoration } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const Pricing = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   return (
     <div>
       <Helmet>
-        <title>Hiring Staff - Pricing</title>
+        <title>Hiring Staff - Pricing and FAQ</title>
       </Helmet>
       <TinnyBanner
         title={"Pricing"}

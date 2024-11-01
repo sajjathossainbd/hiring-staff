@@ -8,6 +8,7 @@ import NoFoundData from "../../components/ui/NoFoundData";
 import JobBanner from "../../components/jobs/JobBanner";
 import { ScrollRestoration, useNavigate, useParams } from "react-router-dom";
 import { CardPagination } from "../../components/shared/CardPagination";
+import { Helmet } from "react-helmet-async";
 
 function JobsListing() {
   const dispatch = useDispatch();
@@ -71,6 +72,9 @@ function JobsListing() {
   return (
     <>
       <div className="container flex flex-col justify-center">
+        <Helmet>
+          <title>Hiring Staff - Find Jobs</title>
+        </Helmet>
         {/* Jobs Banner */}
         <JobBanner totalJobs={totalJobs} />
 

@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { ScrollRestoration } from "react-router-dom";
 
 const TermsAndConditions = () => {
@@ -104,6 +105,9 @@ const TermsAndConditions = () => {
 
   return (
     <div className="pt-16 max-w-4xl lg:mx-auto mx-5">
+      <Helmet>
+        <title>Hiring Staff - Terms and Conditions</title>
+      </Helmet>
       <div className="text-center">
         <h2>Terms & Conditions</h2>
         <p className="">Last Updated: 06 May, 2024</p>

@@ -4,6 +4,7 @@ import axiosInstance from "./../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import TinnyHeading from "../shared/TinnyHeading";
+import { Helmet } from "react-helmet-async";
 function JobAppliers() {
   const { jobId } = useParams();
 
@@ -21,7 +22,7 @@ function JobAppliers() {
     },
     enabled: !!jobId,
   });
- console.log(applications);
+//  console.log(applications);
   const handleSelectChange = async (applicationId, action, applicantEmail) => {
      let updateData;
     let statusText;
@@ -66,6 +67,9 @@ function JobAppliers() {
 
   return (
     <div className="p-6 bg-gray-50">
+      <Helmet>
+        <title>Hiring Staff - Job Appliers</title>
+      </Helmet>
       <h1 className="text-2xl font-semibold text-gray-700 mb-4">
         All Apply Candidates List
       </h1>
@@ -94,7 +98,7 @@ function JobAppliers() {
                     <div className="avatar">
                       <div className="mask mask-squircle h-12 w-12">
                         <img
-                          src= {applyer?.applicantImage}
+                          src={applyer?.applicantImage}
                           alt="Avatar Tailwind CSS Component"
                         />
                       </div>

@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import AssignInvitation from "../../../components/dashboard/AssignInvitation";
 import InvitationAnswer from "../../../components/dashboard/InvitationAnswer";
+import { Helmet } from "react-helmet-async";
 
 function InterviewCandidetsList() {
   const { jobId } = useParams();
@@ -48,9 +49,11 @@ function InterviewCandidetsList() {
   const Intrviewed = applications?.filter(
     (applicant) => applicant?.interview === true
   );
-  console.log(selectedJob);
   return (
     <div>
+      <Helmet>
+        <title>Hiring Staff - Interview Candidate List</title>
+      </Helmet>
       <TinnyHeading
         title="Manage Interview Candidates"
         path="interview-candidates-list"
@@ -96,7 +99,7 @@ function InterviewCandidetsList() {
                   <td>{new Date(job?.appliedDate).toLocaleString()}</td>
                   <td>
                     {job?.schedule && job?.schedule?.length > 0 ? (
-                        <button onClick={() => handleOpenInvite(job)}>
+                      <button onClick={() => handleOpenInvite(job)}>
                         <PrimaryBtnBlue title={"Already Invite"} />
                       </button>
                     ) : (
@@ -178,7 +181,7 @@ function InterviewCandidetsList() {
                               </h4>
                               {selectedJob.assignments.map(
                                 (interview, index) => (
-                                  <div>
+                                  <div key={index}>
                                     <div>
                                       <p>
                                         {" "}

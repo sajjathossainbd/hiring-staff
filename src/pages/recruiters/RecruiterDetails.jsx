@@ -34,6 +34,7 @@ import {
   FaLinkedin,
   FaInstagram,
 } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 function RecruiterDetails() {
   const dispatch = useDispatch();
@@ -130,6 +131,9 @@ function RecruiterDetails() {
   if (!isLoading && !isError && recruiter?._id) {
     content = (
       <>
+        <Helmet>
+          <title>Hiring Staff - Recruiter Details</title>
+        </Helmet>
         {/* Banner Section  */}
         <div className="relative">
           <img

@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { BsPerson } from "react-icons/bs";
 import useCurrentUser from "../../hooks/useCurrentUser";
+import { MdOutlineDashboard } from "react-icons/md";
+import { FaRegUser } from "react-icons/fa";
+import { IoLogOutOutline } from "react-icons/io5";
 function SinginLogout() {
   const { user, logOut } = useAuth();
 
@@ -26,7 +29,7 @@ function SinginLogout() {
   console.log(role);
 
   return (
-    <div className="xl:block hidden">
+    <div>
       {user ? (
         <div className="dropdown dropdown-end" ref={dropdownRef}>
           <div
@@ -42,10 +45,10 @@ function SinginLogout() {
                     className="w-full rounded-full h-full object-cover"
                     src={
                       (role === "candidate" && currentCandidate?.photo_url) ||
-                      (role === "candidate" && currentRecruiter?.logo) ||
+                      (role === "recruiter" && currentRecruiter?.logo) ||
                       user?.photoURL
                     }
-                    alt="User photo"
+                    alt="User"
                   />
                 </div>
               </div>
@@ -58,21 +61,38 @@ function SinginLogout() {
               className="menu menu-sm dropdown-content bg-white dark:bg-darkBlue rounded-md px-4 py-6 z-[1] mt-3 w-52 shadow gap-1 "
             >
               <li>
-                <Link
-                  to={"dashboard/dashboard-main"}
-                  className="justify-between text-16 py-2"
-                >
-                  Dashboard
+                <Link to={"dashboard/dashboard-main"} className=" text-16 py-2">
+                  <MdOutlineDashboard /> Dashboard
                 </Link>
               </li>
-              {/* <li>
-                <Link className="text-16 py-2">Settings</Link>
-              </li> */}
+              {
+                role === "recruiter" && (
+                  <li>
+                    <Link
+                      to={"dashboard/recruiter-profile"}
+                      className="text-16 py-2">
+                      <FaRegUser />
+                      Profile
+                    </Link>
+                  </li>
+                )
+              }
+
+              {
+                role === "candidate" && (
+                  <li>
+                    <Link
+                      to={"dashboard/my-profile"}
+                      className="text-16 py-2">
+                      <FaRegUser />
+                      Profile
+                    </Link>
+                  </li>
+                )
+              }
               <li>
-                <Link
-                  className="justify-between text-16 py-2F"
-                  onClick={logOut}
-                >
+                <Link className=" text-16 py-2F" onClick={logOut}>
+                  <IoLogOutOutline />
                   Logout
                 </Link>
               </li>
@@ -81,7 +101,7 @@ function SinginLogout() {
         </div>
       ) : (
         <Link to="/sign-in">
-          <button className="bg-white py-[4px] px-8 rounded-md  flex items-center justify-start gap-2 mt-1">
+          <button className="bg-white py-[4px] lg:px-8 px-4 rounded-md  flex items-center justify-start gap-2 mt-1">
             <div className="text-blue text-3xl">
               <BsPerson />
             </div>

@@ -21,7 +21,7 @@ import { MdVerified } from "react-icons/md";
 import useCurrentUser from "../../hooks/useCurrentUser";
 import axiosInstance from "../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
-
+import { Helmet } from "react-helmet-async";
 const Benefitemojis = ["🎉", "💼", "🚀", "🏆"];
 
 function JobDetails() {
@@ -38,13 +38,16 @@ function JobDetails() {
   const { data: appliedJobs = [], refetch } = useQuery({
     queryKey: ["appliedJobs", userId],
     queryFn: async () => {
-      const res = await axiosInstance.get(`/jobs/applied-jobs/validate/${userId}`);
+      const res = await axiosInstance.get(
+        `/jobs/applied-jobs/validate/${userId}`
+      );
       return res.data;
     },
     enabled: !!userId,
   });
 
-  const filteredAppliedJobs = appliedJobs?.appliedJobs?.filter(job => job.jobId === id) || [];
+  const filteredAppliedJobs =
+    appliedJobs?.appliedJobs?.filter((job) => job.jobId === id) || [];
 
   const {
     jobDetails: job,
@@ -58,9 +61,13 @@ function JobDetails() {
   const category = job.category || "";
 
   // Filter jobs by category
-  const filteredJobsByCategory = jobs.filter(job => job.category === category);
+  const filteredJobsByCategory = jobs.filter(
+    (job) => job.category === category
+  );
 
-  const { recruiterDetails: recruiter } = useSelector((state) => state.recruiterDetails);
+  const { recruiterDetails: recruiter } = useSelector(
+    (state) => state.recruiterDetails
+  );
   const {
     description,
     job_type,
@@ -98,20 +105,29 @@ function JobDetails() {
 
   let content = null;
   if (isLoading) content = <Loading />;
-  if (!isLoading && isError) content = <div className="col-span-12">{error}</div>;
-  if (!isLoading && !isError && !job?._id) content = <NoFoundData title={"No Job Found!"} />;
+  if (!isLoading && isError)
+    content = <div className="col-span-12">{error}</div>;
+  if (!isLoading && !isError && !job?._id)
+    content = <NoFoundData title={"No Job Found!"} />;
 
   if (!isLoading && !isError && job?._id) {
     content = (
       <>
         <div className="lg:flex gap-16 dark:text-white">
+          <Helmet>
+            <title>Hiring Staff - Job Details</title>
+          </Helmet>
           <div className="lg:w-2/3 w-full">
             {/* Job details header */}
             <div className="bg-bgLightWhite dark:bg-darkBlue dark:border p-10 mt-5 rounded-md">
               <h3 className="mb-5">{jobTitle}</h3>
               <div className="flex lg:flex-row md:flex-row flex-col items-center gap-4 justify-between">
                 <div className="flex items-center gap-4">
-                  <img className="h-20 w-auto object-cover rounded-full" src={logo} alt={name} />
+                  <img
+                    className="h-20 w-auto object-cover rounded-full"
+                    src={logo}
+                    alt={name}
+                  />
                   <div className="flex flex-col gap-2">
                     <div className="flex lg:flex-row flex-col items-center gap-x-2">
                       <div className="flex items-center gap-1">
@@ -125,8 +141,16 @@ function JobDetails() {
                     <div className="flex lg:justify-start justify-center gap-2">
                       <div className="flex items-center gap-x-2 text-14">
                         <span className="flex items-center gap-4">
-                          <MiniBtn value={job_location} icon={<CiLocationOn />} style="bg-softGreen text-green" />
-                          <MiniBtn value={job_type} icon={<IoBriefcaseOutline />} style="bg-softGreen text-orange" />
+                          <MiniBtn
+                            value={job_location}
+                            icon={<CiLocationOn />}
+                            style="bg-softGreen text-green"
+                          />
+                          <MiniBtn
+                            value={job_type}
+                            icon={<IoBriefcaseOutline />}
+                            style="bg-softGreen text-orange"
+                          />
                         </span>
                       </div>
                     </div>
@@ -136,12 +160,18 @@ function JobDetails() {
                 {/* Apply Now Button */}
                 <div>
                   {filteredAppliedJobs.length > 0 ? (
-                    <button disabled className="flex items-center justify-center bg-gradient-to-r from-blue to-greenLight hover:from-green-500 hover:to-darkBlue text-white px-4 py-3 sm:px-4 sm:py-3 md:px-5 md:py-3 lg:px-6 lg:py-3 rounded-md font-medium transition-all duration-500 ease-in-out gap-2">
+                    <button
+                      disabled
+                      className="flex items-center justify-center bg-gradient-to-r from-blue to-greenLight hover:from-green-500 hover:to-darkBlue text-white px-4 py-3 sm:px-4 sm:py-3 md:px-5 md:py-3 lg:px-6 lg:py-3 rounded-md font-medium transition-all duration-500 ease-in-out gap-2"
+                    >
                       <p className="text-12 text-white">Already Applied</p>
                     </button>
                   ) : (
                     <button onClick={handleOpen}>
-                      <PrimaryBtnBlue title={"Apply Now"} icon={<HiExternalLink />} />
+                      <PrimaryBtnBlue
+                        title={"Apply Now"}
+                        icon={<HiExternalLink />}
+                      />
                     </button>
                   )}
 
@@ -149,10 +179,21 @@ function JobDetails() {
                     <dialog id="my_modal_3" className="modal" open>
                       <div className="modal-box max-w-xl mt-7 dark:bg-blue">
                         <form method="dialog">
-                          <button type="button" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={handleClose}>✕</button>
+                          <button
+                            type="button"
+                            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                            onClick={handleClose}
+                          >
+                            ✕
+                          </button>
                         </form>
                         <h3 className="font-bold text-lg">{jobTitle}</h3>
-                        <ApplyJob refetch={refetch} job={job} onClose={handleClose} />
+
+                        <ApplyJob
+                          refetch={refetch}
+                          job={job}
+                          onClose={handleClose}
+                        />
                       </div>
                     </dialog>
                   )}
@@ -171,13 +212,17 @@ function JobDetails() {
             <div className="mt-7">
               <h5 className="mb-2">🗒️ 𝐉𝐨𝐛 𝐃𝐞𝐬𝐜𝐫𝐢𝐩𝐭𝐢𝐨𝐧</h5>
               <ul className="ml-10 leading-7">
-                {requirements.map((requirement, index) => <li key={index}>✅ {requirement}</li>)}
+                {requirements.map((requirement, index) => (
+                  <li key={index}>✅ {requirement}</li>
+                ))}
               </ul>
             </div>
             <div className="mt-7">
               <h5 className="mb-2">🌟 𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐢𝐛𝐢𝐥𝐢𝐭𝐲</h5>
               <ul className="ml-10 leading-7">
-                {responsibilities.map((responsibility, index) => <li key={index}>📌 {responsibility}</li>)}
+                {responsibilities.map((responsibility, index) => (
+                  <li key={index}>📌 {responsibility}</li>
+                ))}
               </ul>
             </div>
             {/* Benefits */}
@@ -220,7 +265,8 @@ function JobDetails() {
               <h5 className="mb-2">🗺️ 𝐉𝐨𝐛 𝐋𝐨𝐜𝐚𝐭𝐢𝐨𝐧</h5>
               <ul className="ml-10 leading-7">
                 <li className="flex items-center gap-2 capitalize">
-                  📍 {job_location} (Discuss with HR to choose a location that best suits your preference)
+                  📍 {job_location} (Discuss with HR to choose a location that
+                  best suits your preference)
                 </li>
               </ul>
             </div>
@@ -229,10 +275,12 @@ function JobDetails() {
               <h5 className="mb-2">📅 𝐉𝐨𝐛 𝐃𝐚𝐭𝐞</h5>
               <ul className="ml-10 leading-7">
                 <li className="flex items-center gap-2 capitalize">
-                  ⏳ <span className="font-bold">Posted Date: </span>{formattedDatePost}
+                  ⏳ <span className="font-bold">Posted Date: </span>
+                  {formattedDatePost}
                 </li>
                 <li className="flex items-center gap-2 capitalize">
-                  🕰️ <span className="font-bold">Deadline Date: </span>{formattedDate}
+                  🕰️ <span className="font-bold">Deadline Date: </span>
+                  {formattedDate}
                 </li>
               </ul>
             </div>
@@ -250,11 +298,18 @@ function JobDetails() {
             </div>
           </div>
           <div className="lg:w-1/3 w-full flex flex-col gap-5 mt-10 lg:mt-0">
-            {filteredJobsByCategory.length === 0 ? "" : <h4>Similar Jobs Opening ({filteredJobsByCategory.length || 0})</h4>
-            }
+            {filteredJobsByCategory.length === 0 ? (
+              ""
+            ) : (
+              <h4>
+                Similar Jobs Opening ({filteredJobsByCategory.length || 0})
+              </h4>
+            )}
 
             {filteredJobsByCategory.length > 0 ? (
-              filteredJobsByCategory.map((job, index) => <SimilarJobs key={index} job={job} />)
+              filteredJobsByCategory.map((job, index) => (
+                <SimilarJobs key={index} job={job} />
+              ))
             ) : (
               <NoFoundData title="No similar jobs Found!" />
             )}

@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import useCurrentUser from "../../../hooks/useCurrentUser";
 import shortlist from "./../../../../public/banner2";
 import JobShortListCard from "../../../components/dashboard/JobShortListCard";
+import { Helmet } from "react-helmet-async";
 
 const Shortlist = () => {
   const { currentRecruiter } = useCurrentUser();
@@ -38,6 +39,9 @@ const Shortlist = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Hiring Staff - Shortlisted</title>
+      </Helmet>
       <TinnyHeading
         title="Manage Shortlisted Candidates"
         path="shortlist"

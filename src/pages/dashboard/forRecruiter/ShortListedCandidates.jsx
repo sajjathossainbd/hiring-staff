@@ -7,6 +7,7 @@ import { useState } from "react";
 import AssignAssessments from "../../../components/dashboard/AssignAssessments";
 import AssessmentResult from "../../../components/dashboard/AssessmentResult";
 import { toast } from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 function ShortListedCandidates() {
   const { jobId } = useParams();
@@ -86,6 +87,9 @@ function ShortListedCandidates() {
 
   return (
     <div>
+      <Helmet>
+        <title>Hiring Staff - Shortlisted Candidates</title>
+      </Helmet>
       <TinnyHeading
         title="Manage Shortlisted Candidates"
         path="shortlisted-candidates"

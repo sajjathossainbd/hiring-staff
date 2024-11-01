@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import useCurrentUser from "../../../hooks/useCurrentUser";
 import JobPostCard from "./JobPostCard";
 import findCadidate from "./../../../../public/find2.json";
+import { Helmet } from "react-helmet-async";
 
 const ManageJob = () => {
   const { currentRecruiter } = useCurrentUser();
@@ -43,6 +44,9 @@ const ManageJob = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Hiring Staff - Posted Jobs</title>
+      </Helmet>
       <TinnyHeading
         title={"Manage Posted Jobs"}
         path={"manage-jobs"}

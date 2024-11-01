@@ -9,6 +9,7 @@ import { CiLocationOn } from "react-icons/ci";
 import StarRatings from "react-star-ratings";
 import { RiPagesLine } from "react-icons/ri";
 import Overview from "../../components/candidate/OverView";
+import { Helmet } from "react-helmet-async";
 
 function CandidateDetails() {
   const dispatch = useDispatch();
@@ -59,6 +60,9 @@ function CandidateDetails() {
   if (!isLoading && !isError && candidate?._id) {
     content = (
       <div>
+        <Helmet>
+          <title>Hiring Staff - Candidate Details</title>
+        </Helmet>
         {/* Header */}
         <div className="relative w-full h-48 md:h-64">
           <img
@@ -103,7 +107,9 @@ function CandidateDetails() {
           <div>
             <button className="bg-blue text-white text-18 px-4 md:px-6 py-3 md:py-4 rounded flex items-center space-x-2 w-full">
               <RiPagesLine />
-              <a target="_blank" href={resume} className="text-14">View Resume</a>
+              <a target="_blank" href={resume} className="text-14">
+                View Resume
+              </a>
             </button>
           </div>
         </div>

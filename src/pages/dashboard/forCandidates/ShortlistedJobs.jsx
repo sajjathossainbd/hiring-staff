@@ -11,6 +11,7 @@ import { MdOutlineMailOutline } from "react-icons/md";
 import PrimaryBtnBlue from "../../../components/ui/PrimaryBtnBlue";
 import { VscEye } from "react-icons/vsc";
 import SubmitAssessment from "../../../components/dashboard/SubmitAssessment";
+import { Helmet } from "react-helmet-async";
 
 const ShortlistedJobs = () => {
   const { currentCandidate } = useCurrentUser();
@@ -55,6 +56,9 @@ const ShortlistedJobs = () => {
   ) {
     return (
       <>
+        <Helmet>
+          <title>Hiring Staff - Shortlisted Jobs</title>
+        </Helmet>
         <TinnyHeading
           title="Shortlisted Resumes"
           path="shortlist"
@@ -69,6 +73,9 @@ const ShortlistedJobs = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Hiring Staff - Shortlisted Jobs</title>
+      </Helmet>
       <TinnyHeading
         title={"Shortlisted Jobs"}
         path={"shortlisted-jobs"}

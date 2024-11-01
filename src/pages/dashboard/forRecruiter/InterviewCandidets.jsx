@@ -4,6 +4,7 @@ import useCurrentUser from "../../../hooks/useCurrentUser";
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../../utils/axios";
 import InterviewCard from "../../../components/dashboard/InterviewCard";
+import { Helmet } from "react-helmet-async";
 
 function InterviewCandidets() {
   const { currentRecruiter } = useCurrentUser();
@@ -34,6 +35,9 @@ function InterviewCandidets() {
   console.log(jobInterviewInfo);
   return (
     <div>
+      <Helmet>
+        <title>Hiring Staff - Interview Candidates</title>
+      </Helmet>
       <TinnyHeading
         title="Manage Interview Candidates"
         path="interview-candidates"

@@ -48,7 +48,7 @@ function InterviewCandidetsList() {
   const Intrviewed = applications?.filter(
     (applicant) => applicant?.interview === true
   );
-  console.log(Intrviewed);
+  console.log(selectedJob);
   return (
     <div>
       <TinnyHeading
@@ -82,7 +82,7 @@ function InterviewCandidetsList() {
                       <div className="avatar">
                         <div className="mask mask-squircle h-12 w-12">
                           <img
-                            src= {job?.applicantImage}
+                            src={job?.applicantImage}
                             alt="Avatar Tailwind CSS Component"
                           />
                         </div>
@@ -95,9 +95,15 @@ function InterviewCandidetsList() {
                   </td>
                   <td>{new Date(job?.appliedDate).toLocaleString()}</td>
                   <td>
-                    <button onClick={() => handleOpenInvite(job)}>
-                      <PrimaryBtnBlue title={"Invite"} />
-                    </button>
+                    {job?.schedule && job?.schedule?.length > 0 ? (
+                        <button onClick={() => handleOpenInvite(job)}>
+                        <PrimaryBtnBlue title={"Already Invite"} />
+                      </button>
+                    ) : (
+                      <button onClick={() => handleOpenInvite(job)}>
+                        <PrimaryBtnBlue title={"Invite"} />
+                      </button>
+                    )}
                   </td>
                   {/* <td>
                     <button onClick={() => handleOpenAnswer(job)}>
@@ -136,6 +142,7 @@ function InterviewCandidetsList() {
                         <AssignInvitation
                           job={selectedJob}
                           onClose={handleCloseModals}
+                          refetch={refetch}
                         />
                       </div>
                     </dialog>
@@ -161,7 +168,38 @@ function InterviewCandidetsList() {
                             ✕
                           </button>
                         </form>
-                        <div>{/* details */}</div>
+                        <div>
+                          {/* details */}
+                          {selectedJob.assignments &&
+                          selectedJob.assignments.length > 0 ? (
+                            <>
+                              <h4 className="mt-4 text-md font-semibold">
+                                Scheduled Interviews:
+                              </h4>
+                              {selectedJob.assignments.map(
+                                (interview, index) => (
+                                  <div>
+                                    <div>
+                                      <p>
+                                        {" "}
+                                        <strong>Submition Date- </strong>
+                                        {new Date(
+                                          interview.submissionDate
+                                        ).toLocaleString()}
+                                      </p>
+                                      <p>
+                                        <strong>Interview Date- </strong>
+                                        {interview.assignmentDetails}
+                                      </p>
+                                    </div>
+                                  </div>
+                                )
+                              )}
+                            </>
+                          ) : (
+                            <p>No interviews scheduled.</p>
+                          )}
+                        </div>
                         <InvitationAnswer
                           job={selectedJob}
                           onClose={handleCloseModals}

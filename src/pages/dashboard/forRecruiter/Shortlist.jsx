@@ -46,9 +46,7 @@ const Shortlist = () => {
 
       {/* shortlisted candidates list */}
       <div className="grid xl:grid-cols-2 grid-cols-1 gap-6 mt-6">
-        { 
-          jobShortlistedInfo
-            .filter((job) => job.shortlistedCount > 0)
+        {jobShortlistedInfo?.filter((job) => job.shortlistedCount > 0)
             .map((job) => (
               <JobShortListCard
                 key={job._id}

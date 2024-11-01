@@ -17,6 +17,7 @@ import { TbNumbers } from "react-icons/tb";
 import TextareaField from "../shared/TextareaField";
 import useCurrentUser from "../../../hooks/useCurrentUser";
 import useAuth from "../../../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const RecruiterProfile = () => {
   const { currentRecruiter, refetchRecruiter } = useCurrentUser();
@@ -135,6 +136,9 @@ const RecruiterProfile = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Hiring Staff - Your Company Profile</title>
+      </Helmet>
       <TinnyHeading
         title="Company Profile"
         path="recruiter-profile"
@@ -145,9 +149,10 @@ const RecruiterProfile = () => {
           <div
             className="relative w-full h-36 md:h-44 lg:h-60 xl:h-72 bg-cover bg-center light:border-[7px] light:border-white rounded-xl"
             style={{
-              backgroundImage: `url(${currentRecruiter?.coverImage ||
+              backgroundImage: `url(${
+                currentRecruiter?.coverImage ||
                 "https://i.ibb.co.com/mBcjQj6/download-1.jpg"
-                })`,
+              })`,
             }}
           >
             <div className="absolute inset-0 bg-black opacity-40 rounded-xl"></div>

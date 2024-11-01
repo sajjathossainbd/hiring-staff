@@ -7,6 +7,7 @@ import { useState } from "react";
 import AssignAssessments from "../../../components/dashboard/AssignAssessments";
 import AssessmentResult from "../../../components/dashboard/AssessmentResult";
 import { toast } from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 function ShortListedCandidates() {
   const { jobId } = useParams();
@@ -48,7 +49,7 @@ function ShortListedCandidates() {
   const shortlisted = applications?.filter(
     (applicant) => applicant?.shortlist === "approved"
   );
-   
+
   const handleToggleInterview = async (job) => {
     try {
       const response = await axiosInstance.patch(
@@ -86,6 +87,9 @@ function ShortListedCandidates() {
 
   return (
     <div>
+      <Helmet>
+        <title>Hiring Staff - Shortlisted Candidates</title>
+      </Helmet>
       <TinnyHeading
         title="Manage Shortlisted Candidates"
         path="shortlisted-candidates"
@@ -112,10 +116,7 @@ function ShortListedCandidates() {
                     <div className="flex items-center gap-3">
                       <div className="avatar">
                         <div className="mask mask-squircle h-12 w-12">
-                          <img
-                            src= {job?.applicantImage}
-                            alt="Avatar"
-                          />
+                          <img src={job?.applicantImage} alt="Avatar" />
                         </div>
                       </div>
                       <div>

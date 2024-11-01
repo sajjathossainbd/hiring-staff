@@ -23,6 +23,7 @@ import {
 import SelectField from "../shared/SelectField";
 import TextareaField from "../shared/TextareaField";
 import { GrCopy } from "react-icons/gr";
+import { Helmet } from "react-helmet-async";
 
 const MyResume = () => {
   const [formData, setFormData] = useState({
@@ -86,6 +87,9 @@ const MyResume = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Hiring Staff - Build Resume</title>
+      </Helmet>
       <h3>My Resume</h3>
       <div className="mt-8">
         <form onSubmit={handleSubmit}>

@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import AssignInvitation from "../../../components/dashboard/AssignInvitation";
 import InvitationAnswer from "../../../components/dashboard/InvitationAnswer";
+import { Helmet } from "react-helmet-async";
 
 function InterviewCandidetsList() {
   const { jobId } = useParams();
@@ -48,9 +49,11 @@ function InterviewCandidetsList() {
   const Intrviewed = applications?.filter(
     (applicant) => applicant?.interview === true
   );
-  console.log(Intrviewed);
   return (
     <div>
+      <Helmet>
+        <title>Hiring Staff - Interview Candidate List</title>
+      </Helmet>
       <TinnyHeading
         title="Manage Interview Candidates"
         path="interview-candidates-list"
@@ -82,7 +85,7 @@ function InterviewCandidetsList() {
                       <div className="avatar">
                         <div className="mask mask-squircle h-12 w-12">
                           <img
-                            src= {job?.applicantImage}
+                            src={job?.applicantImage}
                             alt="Avatar Tailwind CSS Component"
                           />
                         </div>

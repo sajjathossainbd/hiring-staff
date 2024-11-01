@@ -12,6 +12,7 @@ import useCurrentUser from "../../../hooks/useCurrentUser";
 import { IoBriefcaseOutline } from "react-icons/io5";
 import PrimaryBtnBlue from "../../../components/ui/PrimaryBtnBlue";
 import Loading from "../../../components/ui/Loading";
+import { Helmet } from "react-helmet-async";
 
 const AppliedJobs = () => {
   const { currentCandidate } = useCurrentUser();
@@ -113,6 +114,9 @@ const AppliedJobs = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Hiring Staff - Applied Jobs</title>
+      </Helmet>
       <TinnyHeading
         title={"Applied Jobs"}
         path={"applied-jobs"}

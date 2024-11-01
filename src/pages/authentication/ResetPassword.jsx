@@ -3,11 +3,10 @@ import { Link } from "react-router-dom";
 import PrimaryButton from "../../components/shared/PrimaryButton";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const ResetPassword = () => {
-
-  const { resetPassword } = useAuth()
-
+  const { resetPassword } = useAuth();
 
   const {
     register,
@@ -17,25 +16,24 @@ const ResetPassword = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    const email = data.email;
 
-    const email = (data.email)
-
-    resetPassword(email)
-      .then(() => {
-
-        toast.success("Please check you email for reset password")
-        reset()
-
-      })
-
+    resetPassword(email).then(() => {
+      toast.success("Please check you email for reset password");
+      reset();
+    });
   };
 
   return (
     <div className="container relative">
+      <Helmet>
+        <title>Hiring Staff - Reset Password</title>
+      </Helmet>
       <div className="max-w-md mx-auto text-center">
         <h3 className="text-2xl mb-6">Reset Your Password</h3>
         <p className="text-gray-600 mb-6">
-          Enter the email associated with your account, and we’ll send you a link to reset your password.
+          Enter the email associated with your account, and we’ll send you a
+          link to reset your password.
         </p>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -69,7 +67,6 @@ const ResetPassword = () => {
               Sign In
             </Link>
           </p>
-
         </form>
       </div>
     </div>

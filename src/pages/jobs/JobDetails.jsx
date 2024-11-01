@@ -21,6 +21,7 @@ import { MdVerified } from "react-icons/md";
 import useCurrentUser from "../../hooks/useCurrentUser";
 import axiosInstance from "../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 const Benefitemojis = ["🎉", "💼", "🚀", "🏆"];
 
 function JobDetails() {
@@ -48,10 +49,11 @@ function JobDetails() {
 
   console.log(appliedJobs);
 
-  const filteredJobs = appliedJobs?.appliedJobs?.filter(job => job.jobId === id);
+  const filteredJobs = appliedJobs?.appliedJobs?.filter(
+    (job) => job.jobId === id
+  );
 
   console.log(filteredJobs);
-
 
   const {
     jobDetails: job,
@@ -125,6 +127,9 @@ function JobDetails() {
     content = (
       <>
         <div className="lg:flex gap-16 dark:text-white">
+          <Helmet>
+            <title>Hiring Staff - Job Details</title>
+          </Helmet>
           <div className="lg:w-2/3 w-full">
             {/* job details header */}
             <div className=" bg-bgLightWhite dark:bg-darkBlue dark:border p-10 rounded-md">
@@ -189,7 +194,6 @@ function JobDetails() {
                     </button>
                   )}
 
-
                   {isOpen && (
                     <dialog
                       data-aos="zoom-in"
@@ -211,7 +215,11 @@ function JobDetails() {
                         </form>
                         <h3 className="font-bold text-lg">{jobTitle}</h3>
 
-                        <ApplyJob refetch={refetch} job={job} onClose={handleClose} />
+                        <ApplyJob
+                          refetch={refetch}
+                          job={job}
+                          onClose={handleClose}
+                        />
                       </div>
                     </dialog>
                   )}

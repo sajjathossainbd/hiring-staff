@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import PrimaryButton from "../shared/PrimaryButton";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 function Overview({ candidate }) {
   const {
@@ -32,21 +33,23 @@ function Overview({ candidate }) {
   } = candidate || {};
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(email)
+    navigator.clipboard
+      .writeText(email)
       .then(() => {
-        toast.success('Email copied to clipboard!');
+        toast.success("Email copied to clipboard!");
       })
-      .catch(err => {
-        console.error('Could not copy email: ', err);
+      .catch((err) => {
+        console.error("Could not copy email: ", err);
       });
   };
-
 
   return (
     <>
       <div className=" border border-lightGray text-gray space-y-3 rounded-lg p-6 w-full">
+        <Helmet>
+          <title>Hiring Staff - Overview</title>
+        </Helmet>
         <h4 className=" ">Overview</h4>
-
         <hr className="text-lightGray" />
 
         <div className="flex items-center ">

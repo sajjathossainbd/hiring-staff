@@ -6,6 +6,7 @@ import { IoMdSend } from "react-icons/io";
 import { FaHourglassEnd } from "react-icons/fa6";
 import TinnyHeading from "./shared/TinnyHeading";
 import { LuBrainCircuit } from "react-icons/lu";
+import { Helmet } from "react-helmet-async";
 
 const AiAssistant = () => {
   const [question, setQuestion] = useState("");
@@ -54,6 +55,9 @@ const AiAssistant = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Hiring Staff - Ai Assistant</title>
+      </Helmet>
       <TinnyHeading
         title={"My Payments"}
         path={"my-payments"}

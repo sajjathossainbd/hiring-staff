@@ -11,7 +11,7 @@ const convertToBanglaDigits = (number) => {
   return number.toString().split('').map(digit => banglaDigits[digit] || digit).join('');
 };
 
-function JobBanner({ totalJobs, isLoading }) { // Default to 0 if totalJobs is undefined
+function JobBanner({ totalJobs, isLoading }) {
   const { t } = useTranslation();
 
   const banglaJobsCount = i18n.language === 'bn'
@@ -20,12 +20,18 @@ function JobBanner({ totalJobs, isLoading }) { // Default to 0 if totalJobs is u
 
   return (
     <div className="lg:py-16 lg:px-0 px-3 py-10 bg-bgLightWhite dark:bg-darkBlue flex flex-col items-center justify-center rounded-xl relative">
-      <div className="h-0 absolute top-24 lg:block md:block sm:none  ">
+      <div className="h-0 absolute top-24 lg:block md:block sm:none">
         <Lottie animationData={multipleLineDraw}></Lottie>
       </div>
       <div className="text-center pb-6">
         {isLoading ? (
           <Loading />
+        ) : totalJobs === 0 ? (
+          <h3>
+            <Trans i18nKey="noJobsAvailable">
+              No Jobs Available Now
+            </Trans>
+          </h3>
         ) : (
           <h3>
             <Trans i18nKey="jobBannerTitle" count={banglaJobsCount}>

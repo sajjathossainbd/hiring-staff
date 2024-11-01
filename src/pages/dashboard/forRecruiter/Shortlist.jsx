@@ -8,7 +8,6 @@ import JobShortListCard from "../../../components/dashboard/JobShortListCard";
 
 const Shortlist = () => {
   const { currentRecruiter } = useCurrentUser();
- 
 
   const { data: myJobs, refetch } = useQuery({
     queryKey: ["myJobs", currentRecruiter?.email],
@@ -36,7 +35,6 @@ const Shortlist = () => {
   });
 
   // console.log(jobShortlistedInfo);
- 
 
   return (
     <div>
@@ -48,18 +46,22 @@ const Shortlist = () => {
 
       {/* shortlisted candidates list */}
       <div className="grid xl:grid-cols-2 grid-cols-1 gap-6 mt-6">
-        {jobShortlistedInfo?.map((job) => (
-          <JobShortListCard
-            key={job._id}
-            Cardtitle="Shortlisted Candidates"
-            jobTitle={job?.jobTitle}
-            statusTitle="Shortlist"
-            img={shortlist}
-            style="gradient-3"
-            link={`/dashboard/shortlsit-candidates/${job?.jobId}`}
-            job={job}
-          />
-        ))}
+        { 
+          jobShortlistedInfo
+            .filter((job) => job.shortlistedCount > 0)
+            .map((job) => (
+              <JobShortListCard
+                key={job._id}
+                Cardtitle="Shortlisted Candidates"
+                jobTitle={job?.jobTitle}
+                statusTitle="Shortlist"
+                img={shortlist}
+                style="gradient-3"
+                link={`/dashboard/shortlsit-candidates/${job?.jobId}`}
+                job={job}
+              />
+            ))
+         }
       </div>
     </div>
   );

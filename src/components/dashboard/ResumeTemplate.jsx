@@ -229,7 +229,7 @@ const ResumeTemplate = ({ data }) => {
   };
 
   return (
-    <div className="p-4 sm:p-8 max-w-3xl mx-auto light:bg-white shadow-lg rounded-lg">
+    <div className="p-4 sm:p-8 max-w-3xl mx-auto bg-white dark:bg-darkBlue dark:border dark:border-white shadow-lg rounded-lg">
       <h1 className="text-3xl font-bold">{data?.name || "Name"}</h1>
       <p className="text-sm sm:text-base">{data?.email || "Email"}</p>
       <p className="text-sm sm:text-base">{data?.phone || "Phone"}</p>

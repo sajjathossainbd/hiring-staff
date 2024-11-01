@@ -83,9 +83,10 @@ function JobDetails() {
     max_salary,
     lastDateToApply,
     postedDate,
+    name
   } = job || {};
 
-  const { name, email } = recruiter || {};
+  const { email } = recruiter || {};
 
   useEffect(() => {
     dispatch(fetchJobsListing());

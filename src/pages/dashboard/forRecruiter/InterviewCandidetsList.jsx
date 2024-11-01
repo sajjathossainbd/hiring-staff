@@ -10,7 +10,6 @@ import { Helmet } from "react-helmet-async";
 function InterviewCandidatesList() {
   const { jobId } = useParams();
   const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
-  // const [isResultModalOpen, setIsResultModalOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
 
   const handleOpenInvite = (job) => {
@@ -18,20 +17,14 @@ function InterviewCandidatesList() {
     setIsInviteModalOpen(true);
   };
 
-  // const handleOpenAnswer = (job) => {
-  //   setSelectedJob(job);
-  //   setIsResultModalOpen(true);
-  // };
-
   const handleCloseModals = () => {
     setSelectedJob(null);
     setIsInviteModalOpen(false);
-    setIsResultModalOpen(false);
   };
 
   const {
     data: applications,
-    isLoading,
+
     refetch,
   } = useQuery({
     queryKey: ["applications", jobId],
@@ -67,10 +60,6 @@ function InterviewCandidatesList() {
                 <th className="rounded-l-md">Name</th>
                 <th>Date</th>
                 <th>Interview</th>
-                {/*  
-                                <th>Answer</th>
-                                <th className="rounded-r-md">Status</th>
-                                */}
               </tr>
             </thead>
             <tbody>
@@ -105,14 +94,6 @@ function InterviewCandidatesList() {
                     )}
                   </td>
 
-                  {/* 
-                                    <td>
-                                        <button onClick={() => handleOpenAnswer(job)}>
-                                            <PrimaryBtnBlue title={"Answers"} />
-                                        </button>
-                                    </td>
-                                    */}
-
                   {/* Modal for Invitation */}
                   {isInviteModalOpen && selectedJob && (
                     <dialog
@@ -141,15 +122,6 @@ function InterviewCandidatesList() {
                       </div>
                     </dialog>
                   )}
-
-                  {/* Modal for Answer */}
-                  {/* 
-                                    {isResultModalOpen && selectedJob && (
-                                        <dialog data-aos="zoom-in" data-aos-offset="200" data-aos-duration="700" id="assign_assessment_modal" className="modal" open>
-                                            ...
-                                        </dialog>
-                                    )}
-                                    */}
                 </tr>
               ))}
             </tbody>

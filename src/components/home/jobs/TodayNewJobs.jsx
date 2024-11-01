@@ -25,7 +25,7 @@ function TodayNewJobs() {
   if (isLoading) {
     content = <Loading />;
   } else if (isError || !jobs?.jobs?.length) {
-    content = <NoFoundData title={<Trans i18nKey="noJobsFound" />} />;
+    content = <NoFoundData title={<Trans i18nKey="No Jobs Found" />} />;
   } else {
     content = (
       <div className="grid gap-4">

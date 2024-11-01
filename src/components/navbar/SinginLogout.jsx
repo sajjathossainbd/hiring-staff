@@ -45,10 +45,10 @@ function SinginLogout() {
                     className="w-full rounded-full h-full object-cover"
                     src={
                       (role === "candidate" && currentCandidate?.photo_url) ||
-                      (role === "candidate" && currentRecruiter?.logo) ||
+                      (role === "recruiter" && currentRecruiter?.logo) ||
                       user?.photoURL
                     }
-                    alt="User photo"
+                    alt="User"
                   />
                 </div>
               </div>
@@ -65,12 +65,31 @@ function SinginLogout() {
                   <MdOutlineDashboard /> Dashboard
                 </Link>
               </li>
-              <li>
-                <Link className="text-16 py-2">
-                  <FaRegUser />
-                  Profile
-                </Link>
-              </li>
+              {
+                role === "recruiter" && (
+                  <li>
+                    <Link
+                      to={"dashboard/recruiter-profile"}
+                      className="text-16 py-2">
+                      <FaRegUser />
+                      Profile
+                    </Link>
+                  </li>
+                )
+              }
+
+              {
+                role === "candidate" && (
+                  <li>
+                    <Link
+                      to={"dashboard/my-profile"}
+                      className="text-16 py-2">
+                      <FaRegUser />
+                      Profile
+                    </Link>
+                  </li>
+                )
+              }
               <li>
                 <Link className=" text-16 py-2F" onClick={logOut}>
                   <IoLogOutOutline />

@@ -1,4 +1,4 @@
-import FindJobs from "./../../../../public/find1.json";
+import FindJobs from "./../../../../public/candidate-find-1.json";
 import CounterSection from "./CounterSection";
 import PrimaryBtn from "../../ui/PrimaryBtn";
 import { Link } from "react-router-dom";

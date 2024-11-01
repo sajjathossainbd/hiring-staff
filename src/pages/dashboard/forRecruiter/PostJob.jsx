@@ -32,7 +32,7 @@ const PostJob = () => {
     recruiter_id: currentRecruiter?._id,
     jobTitle: "",
     logo: currentRecruiter?.logo,
-    companyName: currentRecruiter?.name,
+    name: currentRecruiter?.name,
     category: "",
     description: "",
     job_type: "",

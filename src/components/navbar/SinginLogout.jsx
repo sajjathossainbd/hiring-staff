@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { BsPerson } from "react-icons/bs";
 import useCurrentUser from "../../hooks/useCurrentUser";
+import { MdOutlineDashboard } from "react-icons/md";
+import { FaRegUser } from "react-icons/fa";
+import { IoLogOutOutline } from "react-icons/io5";
 function SinginLogout() {
   const { user, logOut } = useAuth();
 
@@ -58,21 +61,19 @@ function SinginLogout() {
               className="menu menu-sm dropdown-content bg-white dark:bg-darkBlue rounded-md px-4 py-6 z-[1] mt-3 w-52 shadow gap-1 "
             >
               <li>
-                <Link
-                  to={"dashboard/dashboard-main"}
-                  className="justify-between text-16 py-2"
-                >
-                  Dashboard
+                <Link to={"dashboard/dashboard-main"} className=" text-16 py-2">
+                  <MdOutlineDashboard /> Dashboard
                 </Link>
               </li>
-              {/* <li>
-                <Link className="text-16 py-2">Settings</Link>
-              </li> */}
               <li>
-                <Link
-                  className="justify-between text-16 py-2F"
-                  onClick={logOut}
-                >
+                <Link className="text-16 py-2">
+                  <FaRegUser />
+                  Profile
+                </Link>
+              </li>
+              <li>
+                <Link className=" text-16 py-2F" onClick={logOut}>
+                  <IoLogOutOutline />
                   Logout
                 </Link>
               </li>

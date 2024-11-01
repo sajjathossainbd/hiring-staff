@@ -45,11 +45,16 @@ function JobsListing() {
 
   // Content rendering logic
   let content = null;
-
   if (isLoading) content = <Loading />;
-  else if (jobs?.jobs?.length === 0) {
-    content = <NoFoundData title="No Jobs Found!" />;
-  } else {
+
+  if (!isLoading && isError)
+    content = <NoFoundData title="No jobs Found!" />;
+
+  if (!isLoading && !isError && jobs?.jobs?.length === 0) {
+    content = <NoFoundData title="No jobs Found!" />;
+  }
+
+  if (!isLoading && !isError && jobs?.jobs?.length > 0) {
     content = (
       <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 xl:gap-5 lg:gap-10 gap-5">
         {jobs?.jobs?.map((job) => {

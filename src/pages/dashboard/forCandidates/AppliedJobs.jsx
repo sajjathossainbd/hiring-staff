@@ -1,4 +1,4 @@
-import { AiOutlineDelete, AiOutlineUserDelete } from "react-icons/ai";
+import { AiOutlineDelete } from "react-icons/ai";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { VscEye } from "react-icons/vsc";
 import axiosInstance from "../../../utils/axios";
@@ -11,7 +11,6 @@ import { CardPagination } from "../../../components/shared/CardPagination";
 import useCurrentUser from "../../../hooks/useCurrentUser";
 import { IoBriefcaseOutline } from "react-icons/io5";
 import PrimaryBtnBlue from "../../../components/ui/PrimaryBtnBlue";
-import Loading from "../../../components/ui/Loading";
 
 const AppliedJobs = () => {
   const { currentCandidate } = useCurrentUser();
@@ -31,8 +30,6 @@ const AppliedJobs = () => {
   const {
     // eslint-disable-next-line no-unused-vars
     data: { appliedJobs = [], totalJobs = 0, totalPages = 0 } = {},
-    isError,
-    isLoading,
     refetch,
   } = useQuery({
     queryKey: ["appliedJobs", userId, page],

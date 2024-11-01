@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
 import Lottie from "lottie-react";
 import { FaRegCalendarAlt } from "react-icons/fa";
-import { FaDeleteLeft, FaPlus } from "react-icons/fa6";
-import { MdDelete, MdDeleteOutline, MdOutlineGroup } from "react-icons/md";
+import { FaPlus } from "react-icons/fa6";
+import { MdOutlineGroup } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 function InterviewCard({ Cardtitle, img, style, link, job }) {
   const { jobTitle, InterviewCount } = job;
 
   return (
-    <div className="light:bg-white dark:border border shadow-sm border-bgDeepBlue p-4 sm:p-6 rounded-lg">
+    <div className="bg-white dark:border  dark:border-gray dark:hover:border-blue transition-all duration-300 dark:bg-darkBlue border border-bgDeepBlue p-4 sm:p-6 rounded-lg shadow-sm">
       <div
         className={`flex flex-col md:flex-row items-center p-8 md:p-16 rounded-lg h-auto md:h-64 gap-6 ${style}`}
       >
@@ -41,11 +41,11 @@ function InterviewCard({ Cardtitle, img, style, link, job }) {
           </Link>
           {/* Post & Expiry Date */}
           <div className="flex flex-wrap gap-3 text-14 mt-3">
-            <p className="flex items-center gap-1 text-sm md:text-base">
+            <p className="flex items-center gap-1 text-sm md:text-base dark:text-lightGray">
               <FaRegCalendarAlt />
               Post Date: 12 Aug, 2024
             </p>
-            <p className="flex items-center gap-1 text-sm md:text-base">
+            <p className="flex items-center gap-1 text-sm md:text-base dark:text-lightGray">
               <FaRegCalendarAlt />
               Expiry Date: 11 Sep, 2024
             </p>
@@ -54,10 +54,10 @@ function InterviewCard({ Cardtitle, img, style, link, job }) {
 
         {/* Total Applied & Profile Image */}
         <div className="relative">
-          <p className="text-sm md:text-base">
+          <p className="text-sm md:text-base dark:text-lightGray">
             <span className="font-bold">{InterviewCount}</span> Interview
           </p>
-          <div className="flex justify-start">
+          <div className="flex justify-start mt-2">
             <div className="avatar-group -space-x-4 md:-space-x-6 rtl:space-x-reverse">
               <div className="avatar">
                 <div className="w-6 md:w-8">

@@ -1,14 +1,8 @@
 import TinnyHeading from "../shared/TinnyHeading";
-import { FaRegEye } from "react-icons/fa6";
-import { CiMail } from "react-icons/ci";
-import { GoPlus } from "react-icons/go";
-import { RiDeleteBin6Line } from "react-icons/ri";
 import axiosInstance from "../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useCurrentUser from "../../../hooks/useCurrentUser";
-import PrimaryBtnBlue from "../../../components/ui/PrimaryBtnBlue";
 import JobPostCard from "./JobPostCard";
 import findCadidate from "./../../../../public/find2.json";
 
@@ -54,12 +48,7 @@ const ManageJob = () => {
         path={"manage-jobs"}
         pathName={"Posted Jobs"}
       />
-      {/* Create A New Job Post */}
-      {/* <div className="flex justify-end">
-        <button>
-          <PrimaryBtnBlue icon={<GoPlus />} title="Create A Job Post" />
-        </button>
-      </div> */}
+     
 
       {/* All Job Post */}
       <div className="grid xl:grid-cols-2 grid-cols-1 gap-6 mt-6">

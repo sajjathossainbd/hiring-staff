@@ -1,5 +1,4 @@
 import TinnyHeading from "../shared/TinnyHeading";
-import JobPostCard from "./JobPostCard";
 import interview from "./../../../../public/interview2.json";
 import useCurrentUser from "../../../hooks/useCurrentUser";
 import { useQuery } from "@tanstack/react-query";

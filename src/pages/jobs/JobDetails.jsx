@@ -116,9 +116,9 @@ function JobDetails() {
                     <div className="flex lg:flex-row flex-col items-center gap-x-2">
                       <div className="flex items-center gap-1">
                         <span className="text-blue font-medium">{name}</span>
-                        {/* <span className="p-1 rounded-full bg-white text-blue text-18">
+                        <span className="p-1 rounded-full bg-white text-blue text-18">
                           <MdVerified />
-                        </span> */}
+                        </span>
                       </div>
                       <GoDotFill className="text-[8px] text-gray lg:block hidden" />
                     </div>

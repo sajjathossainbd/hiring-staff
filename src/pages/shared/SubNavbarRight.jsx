@@ -1,6 +1,6 @@
-import { FiPhoneCall } from "react-icons/fi";
+import { HiOutlineMail } from "react-icons/hi";
 import DropdownSimple from "../../components/ui/DropdownSimple";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import BDIcon from "./../../assets/icon/bd.png";
 import USIcon from "./../../assets/icon/us.png";
 
@@ -30,10 +30,10 @@ function SubNavbarRight() {
 
   return (
     <div className="xl:flex lg:hidden md:hidden items-center gap-6 hidden">
-      <div className="flex gap-2 items-center text-darkBlue">
-        <FiPhoneCall />
+      <div className="flex gap-1 items-center text-darkBlue">
+        <HiOutlineMail className="text-darkBlue dark:text-white"/>
         <p className="text-darkBlue">
-          <Trans i18nKey={"number"}></Trans>
+          support@hiringstaff.com
         </p>
       </div>
 

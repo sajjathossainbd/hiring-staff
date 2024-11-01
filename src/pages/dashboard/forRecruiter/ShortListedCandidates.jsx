@@ -48,7 +48,7 @@ function ShortListedCandidates() {
   const shortlisted = applications?.filter(
     (applicant) => applicant?.shortlist === "approved"
   );
-   
+
   const handleToggleInterview = async (job) => {
     try {
       const response = await axiosInstance.patch(
@@ -112,10 +112,7 @@ function ShortListedCandidates() {
                     <div className="flex items-center gap-3">
                       <div className="avatar">
                         <div className="mask mask-squircle h-12 w-12">
-                          <img
-                            src= {job?.applicantImage}
-                            alt="Avatar"
-                          />
+                          <img src={job?.applicantImage} alt="Avatar" />
                         </div>
                       </div>
                       <div>

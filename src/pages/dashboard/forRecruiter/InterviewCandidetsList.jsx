@@ -5,14 +5,12 @@ import axiosInstance from "../../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import AssignInvitation from "../../../components/dashboard/AssignInvitation";
-import InvitationAnswer from "../../../components/dashboard/InvitationAnswer";
 import { Helmet } from "react-helmet-async";
 
-function InterviewCandidetsList() {
+function InterviewCandidatesList() {
   const { jobId } = useParams();
-
   const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
-  const [isResultModalOpen, setIsResultModalOpen] = useState(false);
+  // const [isResultModalOpen, setIsResultModalOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
 
   const handleOpenInvite = (job) => {
@@ -20,10 +18,10 @@ function InterviewCandidetsList() {
     setIsInviteModalOpen(true);
   };
 
-  const handleOpenAnswer = (job) => {
-    setSelectedJob(job);
-    setIsResultModalOpen(true);
-  };
+  // const handleOpenAnswer = (job) => {
+  //   setSelectedJob(job);
+  //   setIsResultModalOpen(true);
+  // };
 
   const handleCloseModals = () => {
     setSelectedJob(null);
@@ -46,9 +44,10 @@ function InterviewCandidetsList() {
     enabled: !!jobId,
   });
 
-  const Intrviewed = applications?.filter(
+  const interviewed = applications?.filter(
     (applicant) => applicant?.interview === true
   );
+
   return (
     <div>
       <Helmet>
@@ -59,23 +58,23 @@ function InterviewCandidetsList() {
         path="interview-candidates-list"
         pathName="Interview Candidates List"
       />
-
       <div className="p-6 bg-gray-50">
         {/* All Candidates List */}
         <div className="overflow-x-auto">
           <table className="table w-full border-separate border-spacing-y-4">
-            {/* head */}
             <thead>
               <tr className="bg-white text-16 rounded-sm">
                 <th className="rounded-l-md">Name</th>
                 <th>Date</th>
                 <th>Interview</th>
-                {/* <th>Answer</th>
-                <th className="rounded-r-md">Status</th> */}
+                {/*  
+                                <th>Answer</th>
+                                <th className="rounded-r-md">Status</th>
+                                */}
               </tr>
             </thead>
             <tbody>
-              {Intrviewed?.map((job) => (
+              {interviewed?.map((job) => (
                 <tr
                   key={job._id}
                   className="light:bg-white rounded-md shadow-sm"
@@ -84,10 +83,7 @@ function InterviewCandidetsList() {
                     <div className="flex items-center gap-3">
                       <div className="avatar">
                         <div className="mask mask-squircle h-12 w-12">
-                          <img
-                            src={job?.applicantImage}
-                            alt="Avatar Tailwind CSS Component"
-                          />
+                          <img src={job?.applicantImage} alt="Avatar" />
                         </div>
                       </div>
                       <div>
@@ -98,9 +94,9 @@ function InterviewCandidetsList() {
                   </td>
                   <td>{new Date(job?.appliedDate).toLocaleString()}</td>
                   <td>
-                    {job?.schedule && job?.schedule?.length > 0 ? (
+                    {job?.schedule && job?.schedule.length > 0 ? (
                       <button onClick={() => handleOpenInvite(job)}>
-                        <PrimaryBtnBlue title={"Already Invite"} />
+                        <PrimaryBtnBlue title={"Already Invited"} />
                       </button>
                     ) : (
                       <button onClick={() => handleOpenInvite(job)}>
@@ -108,20 +104,16 @@ function InterviewCandidetsList() {
                       </button>
                     )}
                   </td>
-                  {/* <td>
-                    <button onClick={() => handleOpenAnswer(job)}>
-                      {" "}
-                      <PrimaryBtnBlue title={"Answers"} />
-                    </button>
-                  </td> */}
-                  {/* <td>
-                    <select className="select dark:bg-darkBlue select-bordered w-full">
-                      <option value="applied">Interivew</option>
-                      <option value="shortlist">Selected</option>
-                    </select>
-                  </td> */}
 
-                  {/* Modal for  Invitetion */}
+                  {/* 
+                                    <td>
+                                        <button onClick={() => handleOpenAnswer(job)}>
+                                            <PrimaryBtnBlue title={"Answers"} />
+                                        </button>
+                                    </td>
+                                    */}
+
+                  {/* Modal for Invitation */}
                   {isInviteModalOpen && selectedJob && (
                     <dialog
                       data-aos="zoom-in"
@@ -141,7 +133,6 @@ function InterviewCandidetsList() {
                             ✕
                           </button>
                         </form>
-
                         <AssignInvitation
                           job={selectedJob}
                           onClose={handleCloseModals}
@@ -152,64 +143,13 @@ function InterviewCandidetsList() {
                   )}
 
                   {/* Modal for Answer */}
-                  {/* {isResultModalOpen && selectedJob && (
-                    <dialog
-                      data-aos="zoom-in"
-                      data-aos-offset="200"
-                      data-aos-duration="700"
-                      id="assign_assessment_modal"
-                      className="modal"
-                      open
-                    >
-                      <div className="modal-box max-w-xl mt-7">
-                        <form method="dialog">
-                          <button
-                            type="button"
-                            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-                            onClick={handleCloseModals}
-                          >
-                            ✕
-                          </button>
-                        </form>
-                        <div>
-                          {/* details */}
-                          {selectedJob.assignments &&
-                          selectedJob.assignments.length > 0 ? (
-                            <>
-                              <h4 className="mt-4 text-md font-semibold">
-                                Scheduled Interviews:
-                              </h4>
-                              {selectedJob.assignments.map(
-                                (interview, index) => (
-                                  <div key={index}>
-                                    <div>
-                                      <p>
-                                        {" "}
-                                        <strong>Submition Date- </strong>
-                                        {new Date(
-                                          interview.submissionDate
-                                        ).toLocaleString()}
-                                      </p>
-                                      <p>
-                                        <strong>Interview Date- </strong>
-                                        {interview.assignmentDetails}
-                                      </p>
-                                    </div>
-                                  </div>
-                                )
-                              )}
-                            </>
-                          ) : (
-                            <p>No interviews scheduled.</p>
-                          )}
-                        </div>
-                        <InvitationAnswer
-                          job={selectedJob}
-                          onClose={handleCloseModals}
-                        />
-                      </div>
-                    </dialog>
-                  )} */}
+                  {/* 
+                                    {isResultModalOpen && selectedJob && (
+                                        <dialog data-aos="zoom-in" data-aos-offset="200" data-aos-duration="700" id="assign_assessment_modal" className="modal" open>
+                                            ...
+                                        </dialog>
+                                    )}
+                                    */}
                 </tr>
               ))}
             </tbody>
@@ -220,4 +160,4 @@ function InterviewCandidetsList() {
   );
 }
 
-export default InterviewCandidetsList;
+export default InterviewCandidatesList;

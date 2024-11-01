@@ -45,10 +45,10 @@ function SinginLogout() {
                     className="w-full rounded-full h-full object-cover"
                     src={
                       (role === "candidate" && currentCandidate?.photo_url) ||
-                      (role === "candidate" && currentRecruiter?.logo) ||
+                      (role === "recruiter" && currentRecruiter?.logo) ||
                       user?.photoURL
                     }
-                    alt="User photo"
+                    alt="User"
                   />
                 </div>
               </div>

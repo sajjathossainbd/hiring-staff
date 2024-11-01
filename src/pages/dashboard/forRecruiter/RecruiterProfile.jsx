@@ -155,7 +155,7 @@ const RecruiterProfile = () => {
 
           <div className="mt-[-40px] lg:mt-[-100px] md:mt-[-70px] -left-20 z-50">
             <img
-              src={currentRecruiter?.image || user?.photoURL}
+              src={currentRecruiter?.logo || user?.photoURL}
               alt="Profile Photo"
               className="rounded-full xl:h-52 lg:h-44 md:h-32 h-20 xl:w-52 lg:w-44 md:w-32 w-20 object-cover border-[7px] border-white"
             />

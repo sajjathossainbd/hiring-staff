@@ -152,7 +152,7 @@ function InterviewCandidetsList() {
                   )}
 
                   {/* Modal for Answer */}
-                  {isResultModalOpen && selectedJob && (
+                  {/* {isResultModalOpen && selectedJob && (
                     <dialog
                       data-aos="zoom-in"
                       data-aos-offset="200"
@@ -209,7 +209,7 @@ function InterviewCandidetsList() {
                         />
                       </div>
                     </dialog>
-                  )}
+                  )} */}
                 </tr>
               ))}
             </tbody>

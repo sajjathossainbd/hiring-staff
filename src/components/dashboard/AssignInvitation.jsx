@@ -6,6 +6,7 @@ import PrimaryBtnBlue from "./../ui/PrimaryBtnBlue";
 
 function AssignInvitation({ job, onClose, refetch }) {
   const { control, handleSubmit, reset } = useForm();
+  console.log(job);
 
   const onSubmit = async (data) => {
     try {
@@ -15,6 +16,7 @@ function AssignInvitation({ job, onClose, refetch }) {
           interviewDate: data.interviewDate,
           interviewTime: data.interviewTime,
           message: data.message,
+          email:job?.applicantEmail
         }
       );
 
